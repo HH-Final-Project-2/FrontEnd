@@ -1,7 +1,16 @@
-import React from "react";
-
+import React from 'react';
+import { useNavigate } from 'react-router';
 const Main = () => {
-  return <div></div>;
+  const nav = useNavigate();
+  return (
+    <button
+      onClick={() => {
+        nav('/MyCard');
+      }}
+    >
+      mycard
+    </button>
+  );
 };
 
 export default Main;
