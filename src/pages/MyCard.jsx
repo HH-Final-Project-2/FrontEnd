@@ -12,9 +12,8 @@ const MyCard = () => {
     <MyLayout>
       <div>
         <St_title>내 명함</St_title>
-        <hr style={{ margin: '0px' }} />
       </div>
-
+      <hr style={{ margin: '0px' }} />
       <MyProfile />
       <hr style={{ margin: '0px', marginTop: '60px' }} />
 
@@ -27,6 +26,14 @@ const MyCard = () => {
 };
 
 export default MyCard;
+
+// const St_Header = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: left;
+//   width: 100%;
+//   max-width: 500px;
+// `;
 
 const St_title = styled.div`
   font-weight: 600;

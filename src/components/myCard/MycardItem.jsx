@@ -7,7 +7,7 @@ const Mycarditem = () => {
   return (
     <St_Card
       onClick={() => {
-        nav('/mypage/cardpatch');
+        nav('/mypage/cardinfo');
       }}
     >
       <div>이름</div>
@@ -24,14 +24,14 @@ export default Mycarditem;
 
 const St_Card = styled.div`
   width: 100%;
-  max-width: 300px;
-  height: 150px;
-  background-color: white;
+  max-width: 330px;
+  height: 180px;
+  background-color: #b8b8b89b;
   margin: 20px auto;
-  border: 1px solid;
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
+  box-shadow: 2px 2px 0px 0px #9c9c9c;
 `;
 
 const St_Name = styled.div``;
