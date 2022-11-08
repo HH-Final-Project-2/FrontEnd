@@ -1,40 +1,35 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Mycarditem from '../components/myCard/MycardItem';
+import Mycarditem from '../components/myCard/MyCardItem';
 import MyProfile from '../components/myCard/MyProfile';
+import MyLayout from '../components/myCard/MyLayout';
 
 const MyCard = () => {
   const nav = useNavigate();
 
   return (
-    <St_Layout>
+    <MyLayout>
       <div>
         <St_title>내 명함</St_title>
         <hr style={{ margin: '0px' }} />
       </div>
+
       <MyProfile />
-      <hr style={{ margin: '0px' }} />
+      <hr style={{ margin: '0px', marginTop: '60px' }} />
+
       <div>
         <Mycarditem />
       </div>
       <St_share>명함내보내기</St_share>
-    </St_Layout>
+    </MyLayout>
   );
 };
 
 export default MyCard;
 
-const St_Layout = styled.div`
-  width: 100%;
-  max-width: 390px;
-  height: 844px;
-  border: 1px solid;
-  margin: auto;
-`;
-
 const St_title = styled.div`
-  font-weight: bold;
+  font-weight: 600;
   width: 100%;
   max-width: 80px;
   height: 50px;

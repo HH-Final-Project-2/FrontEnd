@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <button
       onClick={() => {
-        nav('/MyCard');
+        nav('/mypage');
       }}
     >
       mycard

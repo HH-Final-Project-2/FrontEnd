@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
 
 const Mycarditem = () => {
+  const nav = useNavigate();
   return (
-    <St_Card>
+    <St_Card
+      onClick={() => {
+        nav('/mypage/cardpatch');
+      }}
+    >
       <div>이름</div>
       <div>직책</div>
       <div>회사명</div>
@@ -25,6 +31,7 @@ const St_Card = styled.div`
   border: 1px solid;
   border-radius: 8px;
   padding: 8px;
+  cursor: pointer;
 `;
 
 const St_Name = styled.div``;
