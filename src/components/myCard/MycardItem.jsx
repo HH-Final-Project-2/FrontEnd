@@ -26,12 +26,12 @@ const St_Card = styled.div`
   width: 100%;
   max-width: 330px;
   height: 180px;
-  background-color: #b8b8b89b;
+  background-color: #f1f1f1;
   margin: 20px auto;
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
-  box-shadow: 2px 2px 0px 0px #9c9c9c;
+  box-shadow: 2px 3px 0px 0px #cecece;
 `;
 
 const St_Name = styled.div``;

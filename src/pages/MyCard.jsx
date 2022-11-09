@@ -52,7 +52,7 @@ const St_share = styled.button`
   height: 50px;
   margin: 40px auto;
   background-color: white;
-  border: 1px solid gray;
+  border: 1px solid #e0e0e0;
   border-radius: 25px;
   display: flex;
   justify-content: center;

@@ -6,11 +6,12 @@ const MyProfile = () => {
   const nav = useNavigate();
   return (
     <St_Profile>
-      <St_Patch>
+      <St_Header>
         <St_Name>이름</St_Name>
-        <button>수정</button>
-      </St_Patch>
-      <St_Info>직책/부서</St_Info>
+        {/* <button>수정</button> */}
+      </St_Header>
+      <St_Info>직책</St_Info>
+      <St_Info>부서</St_Info>
     </St_Profile>
   );
 };
@@ -22,12 +23,10 @@ const St_Profile = styled.div`
   padding: 15px;
 `;
 
-const St_Patch = styled.div`
+const St_Header = styled.div`
   display: flex;
   width: 100%;
-  max-width: 360px;
   align-items: center;
-  justify-content: space-between;
 `;
 
 const St_Name = styled.div`
@@ -35,9 +34,15 @@ const St_Name = styled.div`
 `;
 
 const St_Info = styled.div`
-  display: flex;
+  display: inline-block;
   margin-top: 7px;
+  margin-right: 7px;
   font-size: 13px;
   font-weight: 400;
   color: gray;
+  background-color: #ecebeb;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: 500;
+  align-items: center;
 `;
