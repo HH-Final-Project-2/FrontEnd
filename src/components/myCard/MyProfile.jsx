@@ -20,7 +20,10 @@ export default MyProfile;
 
 const St_Profile = styled.div`
   width: 100%;
+  max-width: 360px;
+  height: 100px;
   padding: 15px;
+  border-bottom: 1px solid #d6d6d6;
 `;
 
 const St_Header = styled.div`

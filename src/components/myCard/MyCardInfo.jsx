@@ -19,9 +19,9 @@ const MyCardInfo = () => {
         </button>
         <St_Title>명함 상세</St_Title>
       </St_Header>
-      <hr style={{ margin: '0px' }} />
+
       <Mycarditem />
-      <hr style={{ margin: '0px' }} />
+
       <St_CardInfo>
         <St_MidHeader>
           <div>명함정보</div>
@@ -79,9 +79,10 @@ const St_Header = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  border-bottom: 1px solid #d6d6d6;
 `;
 
-//명함
+//명함의 정보 body
 const St_CardInfo = styled.div`
   align-items: center;
   justify-content: center;
@@ -94,6 +95,8 @@ const St_MidHeader = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid #d6d6d6;
+  padding-top: 20px;
 `;
 
 //명함 정보의 key값 박스
@@ -128,6 +131,7 @@ const St_Detail_Body = styled.div`
   align-items: center;
 `;
 
+//지도 div
 const MapBox = styled.div`
   margin: 15px auto;
   border-radius: 8px;

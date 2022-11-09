@@ -11,6 +11,6 @@ const St_Layout = styled.div`
   width: 100%;
   max-width: 390px;
   height: 844px;
-  border: 1px solid;
+  border: 1px solid gray;
   margin: auto;
 `;

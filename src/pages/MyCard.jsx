@@ -10,16 +10,13 @@ const MyCard = () => {
 
   return (
     <MyLayout>
-      <div>
+      <St_Header>
         <St_title>내 명함</St_title>
-      </div>
-      <hr style={{ margin: '0px' }} />
-      <MyProfile />
-      <hr style={{ margin: '0px', marginTop: '60px' }} />
+      </St_Header>
 
-      <div>
-        <Mycarditem />
-      </div>
+      <MyProfile />
+      <Mycarditem />
+
       <St_share>명함내보내기</St_share>
     </MyLayout>
   );
@@ -34,6 +31,12 @@ export default MyCard;
 //   width: 100%;
 //   max-width: 500px;
 // `;
+const St_Header = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid #d6d6d6;
+`;
 
 const St_title = styled.div`
   font-weight: 600;
