@@ -7,8 +7,8 @@ const MyProfile = () => {
   return (
     <St_Profile>
       <St_Header>
-        <St_Name>이름</St_Name>
-        {/* <button>수정</button> */}
+        <St_Name>NickName</St_Name>
+        <button>프로필 편집</button>
       </St_Header>
       <St_Info>직책</St_Info>
       <St_Info>부서</St_Info>
@@ -30,6 +30,7 @@ const St_Header = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const St_Name = styled.div`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 
-import Mycarditem from '../myCard/MyCardItem';
+import MycardItem from './MyCardItem';
 
 const MyCardInfo = () => {
   const nav = useNavigate();
@@ -20,7 +20,7 @@ const MyCardInfo = () => {
         <St_Title>명함 상세</St_Title>
       </St_Header>
 
-      <Mycarditem />
+      <MycardItem />
 
       <St_CardInfo>
         <St_MidHeader>
@@ -137,7 +137,7 @@ const MapBox = styled.div`
   border-radius: 8px;
   width: 100%;
   max-width: 300px;
-  height: 180px;
+  height: 170px;
   background-color: #f1f1f1;
   align-items: center;
   display: flex;

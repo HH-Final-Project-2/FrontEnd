@@ -12,6 +12,7 @@ const MyCard = () => {
     <MyLayout>
       <St_Header>
         <St_title>내 명함</St_title>
+        <button>계정관리</button>
       </St_Header>
 
       <MyProfile />
@@ -36,6 +37,7 @@ const St_Header = styled.div`
   width: 100%;
   align-items: center;
   border-bottom: 1px solid #d6d6d6;
+  justify-content: space-between;
 `;
 
 const St_title = styled.div`

@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 const MyCardPatch = () => {
   const nav = useNavigate();
+
+  const [info, setInfo] = useState({
+    ponenum: '',
+  });
+
+  const { ponenum } = info;
+
+  const onChage = (e) => {
+    const { value, name } = e.target;
+    setInfo({
+      ...info,
+      [name]: value,
+    });
+    console.log(ponenum);
+  };
+
   return (
     <MyLayout>
       <St_Header>
@@ -15,12 +31,17 @@ const MyCardPatch = () => {
           이전
         </button>
         <St_Title>명함 정보 편집</St_Title>
+        {/*if 명함이 있다면 명함 정보 편집 아니면 명함 만들기가 보이게 하기*/}
         <SaveButton>저장</SaveButton>
       </St_Header>
       <PatchBox>
         <Item>
           <St_Key>연락처</St_Key>
-          <St_value></St_value>
+          <St_value
+            name="ponenum"
+            value={ponenum}
+            onChange={onChage}
+          ></St_value>
         </Item>
         <Item>
           <St_Key>이메일</St_Key>
