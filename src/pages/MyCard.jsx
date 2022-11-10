@@ -4,34 +4,46 @@ import styled from 'styled-components';
 import Mycarditem from '../components/myCard/MyCardItem';
 import MyProfile from '../components/myCard/MyProfile';
 import MyLayout from '../components/myCard/MyLayout';
+import { useSelector } from 'react-redux';
 
 const MyCard = () => {
   const nav = useNavigate();
 
-  return (
-    <MyLayout>
-      <St_Header>
-        <St_title>내 명함</St_title>
-        <button>계정관리</button>
-      </St_Header>
+  const cardinfo = useSelector((state) => state.mycard.cardinfo);
 
-      <MyProfile />
-      <Mycarditem />
+  if (cardinfo.length == 0) {
+    return (
+      <MyLayout>
+        <St_Header>
+          <St_title>내 명함</St_title>
+          <button>계정관리</button>
+        </St_Header>
 
-      <St_share>명함내보내기</St_share>
-    </MyLayout>
-  );
+        <MyProfile />
+        <Mycarditem />
+
+        <St_share>명함내보내기</St_share>
+      </MyLayout>
+    );
+  } else {
+    return (
+      <MyLayout>
+        <St_Header>
+          <St_title>내 명함</St_title>
+          <button>계정관리</button>
+        </St_Header>
+
+        <MyProfile />
+        <Mycarditem cardinfo={cardinfo} />
+
+        <St_share>명함내보내기</St_share>
+      </MyLayout>
+    );
+  }
 };
 
 export default MyCard;
 
-// const St_Header = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: left;
-//   width: 100%;
-//   max-width: 500px;
-// `;
 const St_Header = styled.div`
   display: flex;
   width: 100%;

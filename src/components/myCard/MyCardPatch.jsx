@@ -25,7 +25,7 @@ const MyCardPatch = () => {
       <St_Header>
         <button
           onClick={() => {
-            nav('/mypage/cardinfo');
+            nav(-1);
           }}
         >
           이전

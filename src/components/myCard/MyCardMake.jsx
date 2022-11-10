@@ -54,7 +54,7 @@ const MyCardMake = () => {
       <St_Header>
         <button
           onClick={() => {
-            nav('/mypage');
+            nav(-1);
           }}
         >
           이전

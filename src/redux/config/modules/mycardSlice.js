@@ -14,12 +14,7 @@ export const _MakeCard = createAsyncThunk(
 
 
 const initialState = {
-  cardinfo: [{
-    ponenum:"",
-
-  }
-    
-  ],
+  cardinfo: [],
   isLoading: false,
   isSuccess: false,
   error: null,
