@@ -1,23 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MyLayout from './MyLayout';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { _getMakeCard, _PutCard } from '../../redux/modules/mycardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 const MyCardPatch = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
-  const [info, setInfo] = useState({
-    ponenum: '',
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+
+  console.log(cardinfo);
+
+  const { id } = useParams();
+
+  const [makeinfo, setMakeinfo] = useState({
+    cardname: cardinfo.cardname,
+    engName: cardinfo.engName,
+    email: cardinfo.email,
+    phoneNum: cardinfo.phoneNum,
+    company: cardinfo.company,
+    // companyAddress:'',
+    department: cardinfo.department,
+    postion: cardinfo.postion,
+    tel: cardinfo.tel,
+    fax: cardinfo.fax,
   });
 
-  const { ponenum } = info;
+  const {
+    cardname,
+    engName,
+    email,
+    phoneNum,
+    company,
+    department,
+    postion,
+    tel,
+    fax,
+  } = makeinfo;
 
   const onChage = (e) => {
     const { value, name } = e.target;
-    setInfo({
-      ...info,
+    setMakeinfo({
+      ...makeinfo,
       [name]: value,
     });
-    console.log(ponenum);
+  };
+
+  useEffect(() => {
+    dispatch(_getMakeCard(id));
+  }, []);
+
+  useEffect(() => {
+    setMakeinfo(cardinfo);
+  }, [cardinfo]);
+
+  const updateHandler = () => {
+    dispatch(_PutCard(makeinfo));
+    nav('/mypage/cardinfo');
   };
 
   return (
@@ -31,34 +72,71 @@ const MyCardPatch = () => {
           이전
         </button>
         <St_Title>명함 정보 편집</St_Title>
-        {/*if 명함이 있다면 명함 정보 편집 아니면 명함 만들기가 보이게 하기*/}
-        <SaveButton>저장</SaveButton>
+
+        <SaveButton onClick={updateHandler}>저장</SaveButton>
       </St_Header>
       <PatchBox>
         <Item>
-          <St_Key>연락처</St_Key>
+          <St_Key>이름</St_Key>
           <St_value
-            name="ponenum"
-            value={ponenum}
+            name="cardname"
+            value={cardname}
+            onChange={onChage}
+          ></St_value>
+        </Item>
+        <Item>
+          <St_Key>영문이름</St_Key>
+          <St_value
+            name="engName"
+            value={engName}
             onChange={onChage}
           ></St_value>
         </Item>
         <Item>
           <St_Key>이메일</St_Key>
-          <St_value></St_value>
+          <St_value name="email" value={email} onChange={onChage}></St_value>
         </Item>
         <Item>
+          <St_Key>연락처</St_Key>
+          <St_value
+            name="phoneNum"
+            value={phoneNum}
+            onChange={onChage}
+          ></St_value>
+        </Item>
+
+        <Item>
           <St_Key>회사</St_Key>
-          <St_value></St_value>
+          <St_value
+            name="company"
+            value={company}
+            onChange={onChage}
+          ></St_value>
           <St_Address>서울 강남구 역삼로 123 (ABC 빌딩) 5층 ABC LAB</St_Address>
         </Item>
         <Item>
           <St_Key>직책</St_Key>
-          <St_value></St_value>
+          <St_value
+            name="postion"
+            value={postion}
+            onChange={onChage}
+          ></St_value>
         </Item>
         <Item>
           <St_Key>부서</St_Key>
-          <St_value></St_value>
+          <St_value
+            name="department"
+            value={department}
+            onChange={onChage}
+          ></St_value>
+        </Item>
+        <Item>
+          <St_Key>Tel</St_Key>
+          <St_value name="tel" value={tel} onChange={onChage}></St_value>
+        </Item>
+        <Item>
+          <St_Key>Fax</St_Key>
+          <St_value name="fax" value={fax} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
     </MyLayout>

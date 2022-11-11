@@ -3,13 +3,22 @@ import { useNavigate } from 'react-router';
 const Main = () => {
   const nav = useNavigate();
   return (
-    <button
-      onClick={() => {
-        nav('/mypage');
-      }}
-    >
-      mycard
-    </button>
+    <div>
+      <button
+        onClick={() => {
+          nav('/mypage');
+        }}
+      >
+        mycard
+      </button>
+      <button
+        onClick={() => {
+          nav('/chat');
+        }}
+      >
+        채팅
+      </button>
+    </div>
   );
 };
 

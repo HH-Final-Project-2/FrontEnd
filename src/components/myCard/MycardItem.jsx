@@ -1,44 +1,39 @@
+import React, { useEffect, useState } from 'react';
 
-import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { _getMakeCard } from '../../redux/modules/mycardSlice';
 
-const Mycarditem = ({ cardinfo }) => {
+const MycardItem = () => {
   const nav = useNavigate();
-  if (cardinfo == undefined) {
-    return (
-      <St_Card
-        onClick={() => {
-          nav('/mypage/cardmake');
-        }}
-      >
-        <St_Plus>➕</St_Plus>
-      </St_Card>
-    );
-    // console.log('undifined입니다');
-  } else {
-    return (
-      <St_Card
-        onClick={() => {
-          nav('/mypage/cardpatch');
-        }}
-      >
-        <div>{cardinfo.cardname}</div>
-        <div>{cardinfo.engName}</div>
-        <div>{cardinfo.email}</div>
-        <div>{cardinfo.phoneNum}</div>
-        <div>{cardinfo.company}</div>
-        <div>{cardinfo.department}</div>
-        <div>{cardinfo.postion}</div>
-        <div>{cardinfo.tel}</div>
-        <div>{cardinfo.fax}</div>
-      </St_Card>
-    );
-  }
-  // console.log(cardinfo);
+  const dispatch = useDispatch();
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+
+  useEffect(() => {
+    dispatch(_getMakeCard());
+  }, []);
+
+  return (
+    <St_Card
+      onClick={() => {
+        nav('/mypage/cardinfo');
+      }}
+    >
+      <div>{cardinfo.cardname}</div>
+      <div>{cardinfo.engName}</div>
+      <div>{cardinfo.email}</div>
+      <div>{cardinfo.phoneNum}</div>
+      <div>{cardinfo.company}</div>
+      <div>{cardinfo.department}</div>
+      <div>{cardinfo.postion}</div>
+      <div>{cardinfo.tel}</div>
+      <div>{cardinfo.fax}</div>
+    </St_Card>
+  );
 };
 
-export default Mycarditem;
+export default MycardItem;
 
 const St_Card = styled.div`
   width: 100%;
@@ -53,19 +48,3 @@ const St_Card = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const St_Plus = styled.div`
-  width: 100%;
-  max-width: 50px;
-  height: 50px;
-  color: #d6d6d6;
-  border: 2px solid;
-  border-radius: 50px;
-  margin: auto;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  font-size: 12px;
-`;
-
-

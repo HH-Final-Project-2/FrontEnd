@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 
-import { _MakeCard } from '../../redux/config/modules/mycardSlice';
+import { _MakeCard } from '../../redux/modules/mycardSlice';
 import { useDispatch } from 'react-redux';
 
 const MyCardMake = () => {
@@ -41,7 +41,6 @@ const MyCardMake = () => {
       ...makeinfo,
       [name]: value,
     });
-    console.log(phoneNum);
   };
 
   const PostHandler = () => {

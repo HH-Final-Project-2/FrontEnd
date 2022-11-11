@@ -1,11 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import mycard from "../config/modules/mycardSlice"
+import cardinfo from "../modules/mycardSlice"
+
 
 const store = configureStore({
   reducer: {
-    mycard,
+    cardinfo,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;
