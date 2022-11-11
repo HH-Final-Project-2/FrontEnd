@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 
-import MycardItem from './MyCardItem';
+import MycardItem from '../myCard/MyCardItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { _getMakeCard } from '../../redux/modules/mycardSlice';
 
 const MyCardInfo = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+
+  useEffect(() => {
+    dispatch(_getMakeCard());
+  }, []);
+
   return (
     <MyLayout>
       <St_Header>
         <button
           onClick={() => {
-            nav('/mypage');
+            nav(-1);
           }}
         >
           이전
@@ -46,11 +56,11 @@ const MyCardInfo = () => {
 
         {/* 명함정보의 각 개체의 정보에 대한 div */}
         <Detail_Body_Box>
-          <St_Detail_Body>010-0000-0000</St_Detail_Body>
-          <St_Detail_Body>dobby@gmail.com</St_Detail_Body>
-          <St_Detail_Body>ABC LAB</St_Detail_Body>
-          <St_Detail_Body>주임</St_Detail_Body>
-          <St_Detail_Body>관리팀</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.phoneNum}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.email}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.postion}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.department}</St_Detail_Body>
           <St_Detail_Body>
             123, Yeoksam-ro, Gangnam-gu, Seoul.Rep.of Korea
           </St_Detail_Body>

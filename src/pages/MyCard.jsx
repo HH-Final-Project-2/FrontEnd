@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Mycarditem from '../components/myCard/MyCardItem';
+import MyCardNoneItem from '../components/myCard/MyCardNoneItem';
 import MyProfile from '../components/myCard/MyProfile';
 import MyLayout from '../components/myCard/MyLayout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { _getMakeCard } from '../redux/modules/mycardSlice';
 
 const MyCard = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.mycard.cardinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
 
-  if (cardinfo.length == 0) {
+  useEffect(() => {
+    dispatch(_getMakeCard());
+  }, [dispatch]);
+
+  //명함이 있을 때
+  if (cardinfo.length == 1) {
     return (
       <MyLayout>
         <St_Header>
@@ -25,6 +33,7 @@ const MyCard = () => {
         <St_share>명함내보내기</St_share>
       </MyLayout>
     );
+    //명함이 없을 때
   } else {
     return (
       <MyLayout>
@@ -34,7 +43,7 @@ const MyCard = () => {
         </St_Header>
 
         <MyProfile />
-        <Mycarditem cardinfo={cardinfo} />
+        <MyCardNoneItem />
 
         <St_share>명함내보내기</St_share>
       </MyLayout>
