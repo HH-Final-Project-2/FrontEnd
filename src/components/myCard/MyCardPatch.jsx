@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MyLayout from './MyLayout';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { _getMakeCard, _PutCard } from '../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,10 +10,6 @@ const MyCardPatch = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
-
-  console.log(cardinfo);
-
-  const { id } = useParams();
 
   const [makeinfo, setMakeinfo] = useState({
     cardname: cardinfo.cardname,
@@ -26,6 +22,7 @@ const MyCardPatch = () => {
     postion: cardinfo.postion,
     tel: cardinfo.tel,
     fax: cardinfo.fax,
+    id: cardinfo.id,
   });
 
   const {
@@ -38,6 +35,7 @@ const MyCardPatch = () => {
     postion,
     tel,
     fax,
+    id,
   } = makeinfo;
 
   const onChage = (e) => {
@@ -49,7 +47,7 @@ const MyCardPatch = () => {
   };
 
   useEffect(() => {
-    dispatch(_getMakeCard(id));
+    dispatch(_getMakeCard());
   }, []);
 
   useEffect(() => {
@@ -58,6 +56,7 @@ const MyCardPatch = () => {
 
   const updateHandler = () => {
     dispatch(_PutCard(makeinfo));
+
     nav('/mypage/cardinfo');
   };
 

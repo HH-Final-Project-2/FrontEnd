@@ -12,7 +12,7 @@ const MycardItem = () => {
 
   useEffect(() => {
     dispatch(_getMakeCard());
-  }, []);
+  }, [dispatch]);
 
   return (
     <St_Card

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 
-import MycardItem from '../myCard/MyCardItem';
+import MycardItem from '../myCard/MycardItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../../redux/modules/mycardSlice';
 
@@ -15,7 +15,7 @@ const MyCardInfo = () => {
 
   useEffect(() => {
     dispatch(_getMakeCard());
-  }, []);
+  }, [dispatch]);
 
   return (
     <MyLayout>
@@ -37,7 +37,7 @@ const MyCardInfo = () => {
           <div>명함정보</div>
           <button
             onClick={() => {
-              nav('/mypage/cardpatch');
+              nav(`/mypage/cardpatch`);
             }}
           >
             편집
