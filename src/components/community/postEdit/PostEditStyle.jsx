@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
-export const WriteBox = styled.div`
+export const EditBox = styled.div`
   width: 375px;
   height: 100vh;
   margin: 0 auto;
 `;
 
-export const WriteSection1 = styled.div`
+export const EditSection1 = styled.div`
   position: relative;
   width: 375px;
   height: 56px;
   top: 37px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 `;
-export const WriteSection1Title = styled.div`
+export const EditSection1Title = styled.div`
   position: relative;
   left: 21px;
   font-weight: 600;
@@ -32,7 +32,7 @@ export const SelectJob = styled.div`
   }
 `;
 
-export const WriteTitle = styled.div`
+export const EditTitle = styled.div`
   input {
     width: 100%;
     height: 50px;
@@ -45,7 +45,7 @@ export const WriteTitle = styled.div`
   }
 `;
 
-export const WriteBody = styled.div`
+export const EditBody = styled.div`
   input {
     width: 100%;
     height: 500px;
@@ -70,7 +70,7 @@ export const ImageUpload = styled.div`
   } */
 `;
 
-export const WriteBtn = styled.button`
+export const EditBtn = styled.button`
   width: 343px;
   height: 52px;
   margin-left: 16px;
