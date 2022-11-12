@@ -21,7 +21,7 @@ const Router = () => {
         <Route path="/mypage/cardinfo" element={<MyCardInfo/>} />
         <Route path="/mypage/cardmake" element={<MyCardMake/>} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch/>} />
-
+        
         {/* 채팅 */}
         <Route path="/chat" element={<Chat/>} />
         <Route path="/chat/chatroom/" element={<Chatroom/>} />

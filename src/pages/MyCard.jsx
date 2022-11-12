@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Mycarditem from '../components/myCard/MyCardItem';
+import Mycarditem from '../components/myCard/MycardItem';
 import MyCardNoneItem from '../components/myCard/MyCardNoneItem';
 import MyProfile from '../components/myCard/MyProfile';
 import MyLayout from '../components/myCard/MyLayout';
