@@ -21,11 +21,9 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
 
+
         <Route path="/" element={<Main />} />
-        
-        {/* 회원관리(회원가입,로그인...) */}
-        <Route path='/join' element={<Join />} />
-        <Route path='/login' element={<Login />} />
+
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />
@@ -42,6 +40,14 @@ const Router = () => {
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/chatroom/" element={<Chatroom />} />
+
+        {/* 메인 테스트용 */}
+        <Route path='/' element={<Main />} />
+
+        {/* 회원관리(회원가입,로그인)*/}
+        <Route path='/join' element={<Join />} />
+        <Route path='/login' element={<Login />} />
+
 
       </Routes>
     </BrowserRouter>
