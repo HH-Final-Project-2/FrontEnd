@@ -20,6 +20,7 @@ const Main = () => {
       </button>
     </div>
   );
+
 };
 
 export default Main;

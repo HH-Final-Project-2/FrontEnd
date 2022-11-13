@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react'
+import UserJoin from '../components/join/UserJoin'
 
 const Join = () => {
-  return <div></div>;
-};
+  return (
+    <UserJoin />
+  )
+}
 
-export default Join;
+export default Join

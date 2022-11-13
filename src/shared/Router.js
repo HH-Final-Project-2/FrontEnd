@@ -12,11 +12,20 @@ import MyCardPatch from '../components/myCard/MyCardPatch';
 import MyCardMake from '../components/myCard/MyCardMake';
 import Chat from '../pages/Chat';
 import Chatroom from '../components/chat/Chatroom';
+
+import Login from "../pages/Login";
+import Join from "../pages/Join";
+
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Main />} />
+        
+        {/* 회원관리(회원가입,로그인...) */}
+        <Route path='/join' element={<Join />} />
+        <Route path='/login' element={<Login />} />
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />
@@ -33,6 +42,7 @@ const Router = () => {
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/chatroom/" element={<Chatroom />} />
+
       </Routes>
     </BrowserRouter>
   );
