@@ -40,12 +40,12 @@ const UserLogin = () => {
       <InputContainer>
         <InputJoin name='password' type='password' placeholder='비밀번호'
           {...register('password', {
-            required: true, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
+            required: true, pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
           })}
         />
       </InputContainer>
       {
-        errors.password && <ErrorText>비밀번호는 영문/숫자 8~20자</ErrorText>
+        errors.password && <ErrorText>비밀번호는 영문/숫자 6~15자</ErrorText>
       }
       <ButtonJoin>로그인</ButtonJoin>
 

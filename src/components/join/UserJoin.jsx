@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Xbutton } from '../../images/x-circle-fill.svg'
-import { signUp } from '../../redux/modules/membersSlice'
+import { emailCheck, signUp } from '../../redux/modules/membersSlice'
 import {
   JoinForm,
   LabelText,
@@ -40,7 +40,7 @@ const UserJoin = () => {
   // 이메일,패스워드,이름,닉네임,연락처 watch
   const watchForEmail = watch('email')
   const watchForPassword = watch('password')
-  const watchForPasswordCheck = watch('passwordcheck')
+  const watchForPasswordCheck = watch('passwordCheck')
   const watchForUserName = watch('username')
   const watchForNickName = watch('nickname')
   const watchForPhoneNumber = watch('phonenumber')
@@ -148,7 +148,6 @@ const UserJoin = () => {
   return (
 
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
-
       {/* 이메일 */}
       <EmailBox>
         <InputContainer>
@@ -171,7 +170,13 @@ const UserJoin = () => {
             />
           </InputButtonEmail>
         </InputContainer>
-        <EmailCheckButton>중복확인</EmailCheckButton>
+        <EmailCheckButton type='button' onClick={() => {
+          dispatch(emailCheck(
+            {
+              email: watchForEmail
+            }
+          ))
+        }}>중복확인</EmailCheckButton>
       </EmailBox>
       {
         errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>
@@ -184,7 +189,7 @@ const UserJoin = () => {
           {...register('password',
             {
               required: true,
-              pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/
+              pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/
             })}
         />
         <InputButton>
@@ -198,13 +203,13 @@ const UserJoin = () => {
         </InputButton>
       </InputContainer>
       {
-        errors.password && <ErrorText>비밀번호는 영문/숫자 8~20자</ErrorText>
+        errors.password && <ErrorText>비밀번호는 영문/숫자 6~15자</ErrorText>
       }
 
       {/* 비밀번호 확인 */}
       <InputContainer>
-        <InputJoin name='passwordcheck' type='password' placeholder='비밀번호 재입력'
-          {...register('passwordcheck',
+        <InputJoin name='passwordCheck' type='password' placeholder='비밀번호 재입력'
+          {...register('passwordCheck',
             {
               required: true,
               validate: (value) =>
@@ -235,7 +240,7 @@ const UserJoin = () => {
             {
               required: true,
               minLength: 2,
-              maxLength: 10
+              maxLength: 5
             })}
         />
         <InputButton>
@@ -254,11 +259,11 @@ const UserJoin = () => {
       }
       {
         errors.username && errors.username.type === 'minLength'
-        && <ErrorText>이름은 최소2~10자 입니다</ErrorText>
+        && <ErrorText>이름은 최소2~5자 입니다</ErrorText>
       }
       {
         errors.username && errors.username.type === 'maxLength'
-        && <ErrorText>이름은 최소2~10자 입니다</ErrorText>
+        && <ErrorText>이름은 최소2~5자 입니다</ErrorText>
       }
 
       {/* 닉네임 */}

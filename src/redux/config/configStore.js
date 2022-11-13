@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import members from "../modules/membersSlice";
+import { configureStore } from "@reduxjs/toolkit"
+import members from "../modules/membersSlice"
 const store = configureStore({
   reducer: {
     members
@@ -10,4 +10,4 @@ const store = configureStore({
     }),
 });
 
-export default store;
+export default store

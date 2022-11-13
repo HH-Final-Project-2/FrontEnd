@@ -1,26 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-//import instance from '../../shared/request';
 import axios from 'axios';
-
 
 const initialState = {
   members: [],
   isLoading: false,
   error: null,
-};
+}
 
+// 이메일 중복체크
+export const emailCheck = createAsyncThunk(
+  "SIGNUP",
+  async (payload) => {
+    try {
+      await axios.post('http://13.124.142.195/api/members/check', payload)
+        .then((res) => {
+
+          // 사용가능한 이메일 alert
+          if (res.data.success === true) alert(res.data.data);
+
+          // 중복되는 이메일 alert
+          if (res.data.success === false) alert(res.data.error.message);
+        })
+    } catch (error) {
+    }
+  }
+)
 
 // 회원가입
 export const signUp = createAsyncThunk(
   "SIGNUP",
   async (payload) => {
-    console.log(payload)
     try {
-      await axios.post('http://13.124.142.195/api/member/signup', payload);
+      await axios.post('http://13.124.142.195/api/members/signup', payload)
+      alert('회원가입 성공')
+      window.location.replace('/login')
     } catch (error) {
     }
   }
-);
+)
 
 // 로그인
 export const signIn = createAsyncThunk(
@@ -32,27 +49,31 @@ export const signIn = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      await axios.post('http://13.124.142.195/api/member/login', payload, config)
+      await axios.post('http://13.124.142.195/api/members/login', payload, config)
         .then((res) => {
+
+          // 로그인 성공
           if (res.data.success) {
             localStorage.setItem('authorization', res.request.getResponseHeader('authorization'));
             localStorage.setItem('refresh-Token', res.request.getResponseHeader('refresh-Token'));
-            alert('로그인 성공');
-            window.location.replace('/');
+            alert('로그인 성공')
+            window.location.replace('/')
           }
-        }).catch(error => {
-          alert("아이디와 비밀번호를 확인해주세요.");
+          // 이메일 확인
+          if (res.data.error.httpStatus === 404) alert(res.data.error.message);
+
+          // // 비밀번호 확인
+          if (res.data.error.httpStatus === 400) alert(res.data.error.message);
         })
     } catch (error) {
     }
   }
-);
+)
 
 // 로그아웃
 export const signOut = createAsyncThunk(
   "SIGHNOUT",
   async (payload) => {
-    console.log(payload)
     try {
       const config = {
         headers: {
@@ -61,22 +82,42 @@ export const signOut = createAsyncThunk(
           'refresh-Token': localStorage.getItem('refresh-Token')
         },
       };
-      await axios.post('http://13.124.142.195/api/auth/member/logout', payload, config)
-        .then(() => {
-          alert('로그아웃')
-          localStorage.clear()
-          window.location.replace('/login')
-        })
+      await axios.post('http://13.124.142.195/api/members/logout', payload, config)
+
+      localStorage.clear()
+      window.location.replace('/login')
+
     } catch (error) {
     }
   }
-);
+)
+
+// 회원탈퇴
+export const withDraw = createAsyncThunk(
+  "WITHDRAW",
+  async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('authorization'),
+          'refresh-Token': localStorage.getItem('refresh-Token')
+        },
+      };
+      await axios.delete('http://13.124.142.195/api/members/withdraw', config)
+      localStorage.clear()
+      window.location.replace('/login')
+
+    } catch (error) {
+    }
+  }
+)
 
 const memberSlice = createSlice({
   name: 'members',
   initialState,
   reducers: {},
   extraReducers: {},
-});
+})
 
-export default memberSlice.reducer;
+export default memberSlice.reducer
