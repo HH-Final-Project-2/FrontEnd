@@ -9,6 +9,7 @@ import { _getMakeCard } from '../../redux/modules/mycardSlice';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const MyCardInfo = () => {
+  //명함 상세보기 페이지 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
 

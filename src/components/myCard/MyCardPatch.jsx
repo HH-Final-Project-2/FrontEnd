@@ -6,6 +6,7 @@ import { _getMakeCard, _PutCard } from '../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MyCardPatch = () => {
+  //내 명함 수정 페이지 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -150,7 +151,7 @@ const St_Header = styled.div`
   align-items: center;
   border-bottom: 1px solid;
 `;
-
+//명함 정보 편집 박스
 const PatchBox = styled.div`
   padding: 17px;
   margin: auto;
@@ -167,19 +168,19 @@ const St_Title = styled.div`
   justify-content: left;
   padding-left: 15px;
 `;
-
+//저장버튼
 const SaveButton = styled.button`
   margin: auto;
   margin-right: 10px;
 `;
-
+//input key 제목
 const St_Key = styled.div`
   width: 100%;
   color: #6b6b6b;
   font-size: 13px;
   padding-left: 7px;
 `;
-
+//input value 값
 const St_value = styled.input`
   width: 100%;
   max-width: 330px;
@@ -189,12 +190,12 @@ const St_value = styled.input`
   margin: auto;
   display: flex;
 `;
-
+//회사 주소 div
 const St_Address = styled.div`
   margin-top: 5px;
   padding-left: 25px;
 `;
-
+//각 수정 목록의 div
 const Item = styled.div`
   margin-top: 10px;
   font-size: 12px;

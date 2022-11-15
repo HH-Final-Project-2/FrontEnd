@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 
 const MyProfile = () => {
+  // 내 명함 페이지의 상단 마이프로필 컴포넌트
+
   const nav = useNavigate();
+
   return (
     <St_Profile>
       <St_Header>

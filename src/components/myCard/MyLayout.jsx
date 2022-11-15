@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MyLayout = ({ children }) => {
+  //내 명함 페이지 전체 임의의 레이아웃
   return <St_Layout>{children}</St_Layout>;
 };
 

@@ -47,7 +47,6 @@ const St_Header = styled.div`
   width: 100%;
   align-items: center;
   border-bottom: 1px solid #d6d6d6;
-  margin-bottom: 15px;
 `;
 //헤더 타이틀의 의미
 const St_Title = styled.div`
@@ -144,7 +143,8 @@ const Button = styled.button`
 const ChatRoomBox = styled.div`
   overflow-y: scroll;
   height: 100%;
-  max-height: 778px;
+  max-height: 750px;
   width: 100%;
+
   background-color: whitesmoke;
 `;
