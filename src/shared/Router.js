@@ -27,7 +27,7 @@ const Router = () => {
         <Route path="/community" element={<Community />} />
         <Route path="/write" element={<Write />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />

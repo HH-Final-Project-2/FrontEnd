@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import useInput from '../../../hook/useInput';
+import instanceJSon from '../../../shared/Request';
 // import { useCookies } from 'react-cookie';
 
 import {
@@ -20,7 +21,6 @@ const PostWrite = () => {
   const [title, titleHandler] = useInput();
   const [content, contentHandler] = useInput();
   const [category, categoryHandler] = useInput();
-  const [writeImage, setWriteImage] = useState();
   const [Image, setImage] = useState();
 
   const navigate = useNavigate();
@@ -30,6 +30,14 @@ const PostWrite = () => {
   function setFile(event) {
     console.log(event.target.files);
     formData.append('file', event.target.files[0]);
+
+    // axios.defaults.headers['Authorization'] = cookie['access_token'];
+    // axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
+    // axios.defaults.headers['Content-Type'] = 'multipart/form-data';
+
+    axios.post(`http://localhost:3001/post`, formData).then((res) => {
+      setImage(res.data.data.Image);
+    });
   }
 
   function writeHandler() {
@@ -39,10 +47,15 @@ const PostWrite = () => {
       category: category,
       Image: Image,
     };
-    console.log(temp);
-    // if (res.data.success) {
-    //   navigate('/community');
-    // }
+
+    // axios.defaults.headers['Authorization'] = cookie['access_token'];
+    // axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
+    // axios.defaults.headers['Content-Type'] = 'application/json';
+    instanceJSon.post('/post', temp).then((res) => {
+      if (res.data.success) {
+        navigate('/community');
+      }
+    });
   }
 
   return (

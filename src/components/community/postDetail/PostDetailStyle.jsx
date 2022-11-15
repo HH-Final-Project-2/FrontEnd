@@ -104,4 +104,6 @@ export const CommentBox = styled.div`
 
 export const HeartNum = styled.div`
   font-size: 12px;
+
+  cursor: pointer;
 `;

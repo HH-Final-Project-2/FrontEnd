@@ -12,5 +12,45 @@
       "fax": "02-000-0000",
       "id": 1
     }
+  ],
+  "post": [
+    {
+      "id": 1,
+      "nickname": "maro",
+      "직군": "dev",
+      "title": "title",
+      "content": "content",
+      "hitNum": "hit",
+      "heartNum": "heart",
+      "commentNum": "comment",
+      "image": "image",
+      "createdAt": "createdAt",
+      "modifiedAt": "modifiedAt"
+    },
+    {
+      "id": 2,
+      "nickname": "maro",
+      "직군": "job",
+      "title": "비지너스",
+      "content": "하하하하하하",
+      "hitNum": "hit",
+      "heartNum": "heart",
+      "commentNum": "comment",
+      "image": "",
+      "createdAt": "어제",
+      "modifiedAt": "modifiedAt"
+    },
+    {
+      "title": "test",
+      "content": "test",
+      "category": "IT·개발",
+      "id": 3
+    },
+    {
+      "title": "123",
+      "content": "123",
+      "category": "IT·개발",
+      "id": 4
+    }
   ]
 }
