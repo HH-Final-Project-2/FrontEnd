@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { __getPost } from '../../../redux/modules/PostSlice';
 import Comment from '../comment/Comment';
+import Heart from '../heart/Heart';
 
 import { Section1, Section1Title } from '../postList/PostListStyle';
 import {
@@ -14,7 +15,6 @@ import {
   DetailPostSection1,
   DetailPostSection2,
   DetailPostSection3,
-  HeartNum,
   JobPosition,
   NickName,
   PostLine,
@@ -29,10 +29,6 @@ const PostDetail = () => {
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
-
-  function heartHandler() {
-    
-  }
 
   return (
     <DetailBox>
@@ -55,11 +51,11 @@ const PostDetail = () => {
       </DetailPostSection3>
       {/*  */}
       <CommentBox>
-        <HeartNum onClick={heartHandler}>
-          <img src="../images/heartBig.png" alt="" />
-          {detail.heartNum}
-        </HeartNum>
-
+        <Heart
+          id={detail.id}
+          heart={detail.heartNum === 'true' ? true : false}
+          numberHeart={detail.heart}
+        />
         <input type="text" placeholder="댓글달기"></input>
         <button>등록</button>
       </CommentBox>

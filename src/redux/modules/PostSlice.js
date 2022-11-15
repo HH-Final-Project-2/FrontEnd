@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import instanceJSon from '../../shared/Request';
 
 //기본 세팅
 const initialState = {
@@ -41,7 +42,7 @@ export const __getPostAll = createAsyncThunk(
   'post/getPostAll',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get('http://localhost:3001/post');
+      const { data } = await instanceJSon.get('/api/posting');
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log(error);
@@ -55,7 +56,7 @@ export const __getPost = createAsyncThunk(
   'post/getPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/post/${payload}`);
+      const { data } = await instanceJSon.get(`/api/posting/${payload}`);
       // if (!data.success) throw new Error(data.error);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -69,7 +70,7 @@ export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/post', payload);
+      const { data } = await instanceJSon.post('/api/posting', payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -82,14 +83,11 @@ export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(
-        `http://localhost:3001/post/${payload.id}`,
-        {
-          title: payload.title,
-          content: payload.content,
-          image: payload.image,
-        }
-      );
+      const { data } = await instanceJSon.put(`/api/posting/${payload.id}`, {
+        title: payload.title,
+        content: payload.content,
+        image: payload.image,
+      });
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -102,9 +100,7 @@ export const __deletePost = createAsyncThunk(
   'post/deletePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.delete(
-        `http://localhost:3001/post/${payload.id}`
-      );
+      const { data } = await instanceJSon.delete(`/api/posting/${payload.id}`);
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import useInput from '../../../hook/useInput';
 import instanceJSon from '../../../shared/Request';
-// import { useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import {
   ImageUpload,
@@ -17,7 +17,7 @@ import {
 } from './PostWriteStyle';
 
 const PostWrite = () => {
-  // const [cookie, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies();
   const [title, titleHandler] = useInput();
   const [content, contentHandler] = useInput();
   const [category, categoryHandler] = useInput();
@@ -31,13 +31,14 @@ const PostWrite = () => {
     console.log(event.target.files);
     formData.append('file', event.target.files[0]);
 
-    // axios.defaults.headers['Authorization'] = cookie['access_token'];
-    // axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
-    // axios.defaults.headers['Content-Type'] = 'multipart/form-data';
+    axios.defaults.headers['Authorization'] = cookie['access_token'];
+    axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
+    axios.defaults.headers['Content-Type'] = 'multipart/form-data';
 
-    axios.post(`http://localhost:3001/post`, formData).then((res) => {
+    axios.post(`http://43.201.105.12/api/posting`, formData).then((res) => {
       setImage(res.data.data.Image);
     });
+    console.log(Image);
   }
 
   function writeHandler() {
@@ -48,10 +49,11 @@ const PostWrite = () => {
       Image: Image,
     };
 
-    // axios.defaults.headers['Authorization'] = cookie['access_token'];
-    // axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
-    // axios.defaults.headers['Content-Type'] = 'application/json';
-    instanceJSon.post('/post', temp).then((res) => {
+    axios.defaults.headers['Authorization'] = cookie['access_token'];
+    axios.defaults.headers['refresh_token'] = cookie['refresh_token'];
+    axios.defaults.headers['Content-Type'] = 'application/json';
+
+    instanceJSon.post('/api/posting', temp).then((res) => {
       if (res.data.success) {
         navigate('/community');
       }
