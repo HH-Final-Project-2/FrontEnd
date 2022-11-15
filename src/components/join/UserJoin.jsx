@@ -227,8 +227,8 @@ const UserJoin = () => {
         </InputButton>
       </InputContainer>
       {
-        errors.passwordcheck
-        && errors.passwordcheck.type === 'validate'
+        errors.passwordCheck
+        && errors.passwordCheck.type === 'validate'
         && <ErrorText>비밀번호가 같지 않습니다</ErrorText>
       }
 
