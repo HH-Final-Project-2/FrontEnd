@@ -4,21 +4,7 @@ import { useNavigate } from 'react-router';
 import { __getPostAll } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
 import {
-  Comment,
   CommunityLayout,
-  Date,
-  Heart,
-  Hits,
-  JobPosition,
-  NickName,
-  PostBody,
-  PostBox,
-  PostImg,
-  PostSection1,
-  PostSection2,
-  PostSection3,
-  PostSection4,
-  PostTitle,
   Section1,
   Section1Title,
   Section2,
@@ -30,6 +16,7 @@ import {
 // 3. 게시글 박스
 // 4. 박스에 들어갈 닉네임, 제목, 내용 미리보기,
 //    회사, 직군, 좋아요, 댓글, 조회수
+
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,9 +38,13 @@ const PostList = () => {
       <Section1 /> <Section1Title>커뮤니티</Section1Title>
       <Section2>익명게시판</Section2>
       <Section3>
-        {post.map((item) => (
-          <Post item={item} />
-        ))}
+        {post.map((post) => {
+          return (
+            <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
+              <Post post={post} />
+            </div>
+          );
+        })}
       </Section3>
       <button onClick={writeHandler}>작성</button>
       <button onClick={editHandler}>수정</button>

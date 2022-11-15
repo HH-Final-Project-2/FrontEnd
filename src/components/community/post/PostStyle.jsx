@@ -9,6 +9,8 @@ export const PostBox = styled.div`
   border: 1px solid #f5f5f5;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
+
+  cursor: pointer;
 `;
 
 export const PostSection1 = styled.div`
@@ -66,7 +68,17 @@ export const JobPosition = styled.div`
   margin-left: 13px;
   margin-top: 15px;
   font-size: 12px;
-  color: #969696;
+
+  width: 27px;
+  height: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #696969;
+  background: #f5f5f5;
+  border-radius: 4px;
 `;
 
 export const PostLine = styled.div`

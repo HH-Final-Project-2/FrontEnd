@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { __getPostAll } from '../../../redux/modules/PostSlice';
 import {
   Comment,
   Date,
@@ -16,29 +18,43 @@ import {
   PostTitle,
 } from './PostStyle';
 
-const Post = ({ item }) => {
+const Post = ({ post }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getPostAll());
+  }, [dispatch]);
+
   return (
     <PostBox>
       <PostSection1>
-        <NickName>닉네임{item.nickname}</NickName>
-        <Date>방금 전{item.createAt}</Date>
+        <NickName>{post.nickname}</NickName>
+        <Date>{post.createdAt}</Date>
       </PostSection1>
 
       <PostSection2>
-        <JobPosition>직군{item.직군}</JobPosition>
-        <PostTitle>제목{item.title}</PostTitle>
+        <JobPosition>{post.직군}</JobPosition>
+        <PostTitle>{post.title}</PostTitle>
       </PostSection2>
 
       <PostSection3>
-        <PostBody>내용{item.content}</PostBody>
-        <PostImg>{item.image}</PostImg>
+        <PostBody>{post.content}</PostBody>
+        <PostImg>{post.image}</PostImg>
       </PostSection3>
 
       <PostSection4>
-        <Heart>좋아요{item.heartNum}</Heart>
-        <Comment>댓글{item.commentNum}</Comment>
+        <Heart>
+          <span>
+            <img src="images/heartSmall.png" alt="" />
+            {post.heartNum}
+          </span>
+        </Heart>
+        <Comment>
+          <img src="images/commentIcon.png" alt="" />
+          {post.commentNum}
+        </Comment>
       </PostSection4>
-      <Hits>조회수{item.hitNum}</Hits>
+      <Hits>조회수 {post.hitNum}</Hits>
     </PostBox>
   );
 };

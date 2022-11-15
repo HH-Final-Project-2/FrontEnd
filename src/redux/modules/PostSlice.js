@@ -3,9 +3,23 @@ import axios from 'axios';
 
 //기본 세팅
 const initialState = {
-  postAll: [],
-  post: {
-    id: 1,
+  post: [
+    {
+      id: 0,
+      nickname: '',
+      직군: '',
+      title: '',
+      content: '',
+      hitNum: '',
+      heartNum: '',
+      commentNum: '',
+      image: '',
+      createdAt: '',
+      modifiedAt: '',
+    },
+  ],
+  detail: {
+    id: 0,
     nickname: '',
     직군: '',
     title: '',
@@ -27,9 +41,8 @@ export const __getPostAll = createAsyncThunk(
   'post/getPostAll',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get('/api/posting');
-      console.log(data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await axios.get('http://localhost:3001/post');
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);
@@ -42,9 +55,9 @@ export const __getPost = createAsyncThunk(
   'post/getPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/api/posting/${payload}`);
-      if (!data.success) throw new Error(data.error);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await axios.get(`http://localhost:3001/post/${payload}`);
+      // if (!data.success) throw new Error(data.error);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -56,7 +69,7 @@ export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post('', payload);
+      const { data } = await axios.post('http://localhost:3001/post', payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -69,11 +82,14 @@ export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(`/api/posting/${payload.id}`, {
-        title: payload.title,
-        content: payload.content,
-        image: payload.image,
-      });
+      const { data } = await axios.put(
+        `http://localhost:3001/post/${payload.id}`,
+        {
+          title: payload.title,
+          content: payload.content,
+          image: payload.image,
+        }
+      );
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -86,7 +102,9 @@ export const __deletePost = createAsyncThunk(
   'post/deletePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`/api/posting/${payload.id}`);
+      const { data } = await axios.delete(
+        `http://localhost:3001/post/${payload.id}`
+      );
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -105,7 +123,7 @@ export const PostSlice = createSlice({
     },
     [__getPostAll.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.post = [...action.payload]; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__getPostAll.rejected]: (state, action) => {
       state.isLoading = false; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
@@ -117,7 +135,7 @@ export const PostSlice = createSlice({
       state.isLoading = true;
     },
     [__getPost.fulfilled]: (state, action) => {
-      state.post = action.payload;
+      state.detail = action.payload;
       state.isLoading = false;
     },
     [__getPost.rejected]: (state, action) => {
