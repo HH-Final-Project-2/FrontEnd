@@ -18,23 +18,25 @@ const Chatroom = () => {
         <St_Title>채팅방이름</St_Title>
       </St_Header>
 
-      <ChatsBox2>
-        <div>
-          <MyChat>나의 채팅</MyChat>
-        </div>
-      </ChatsBox2>
+      <ChatRoomBox>
+        <MyChatBox>
+          <div>
+            <MyChat>나의 채팅</MyChat>
+          </div>
+        </MyChatBox>
 
-      <ChatsBox>
-        <div>
-          {/* <UserName>나는 상대방</UserName> */}
-          <UserChat>상대방 채팅</UserChat>
-        </div>
-      </ChatsBox>
+        <UserChatBox>
+          <div>
+            {/* <UserName>나는 상대방</UserName> */}
+            <UserChat>상대방 채팅</UserChat>
+          </div>
+        </UserChatBox>
 
-      <Footer>
-        <Textarea placeholder="채팅입력..." />
-        <Button>보내기</Button>
-      </Footer>
+        <Footer>
+          <Input placeholder="채팅입력..." />
+          <Button>보내기</Button>
+        </Footer>
+      </ChatRoomBox>
     </MyLayout>
   );
 };
@@ -59,7 +61,7 @@ const St_Title = styled.div`
   padding-left: 15px;
 `;
 
-const ChatsBox2 = styled.div`
+const MyChatBox = styled.div`
   display: flex;
   margin: auto;
   align-items: center;
@@ -80,7 +82,7 @@ const MyChat = styled.div`
   background-color: #e4e4e4;
 `;
 
-const ChatsBox = styled.div`
+const UserChatBox = styled.div`
   display: flex;
   margin: auto;
   align-items: center;
@@ -109,13 +111,15 @@ const UserChat = styled.div`
 `;
 
 const Footer = styled.div`
+  width: 100%;
+  max-width: 375px;
   display: flex;
   flex-direction: row;
-  background-color: #eeeeee;
-  bottom: 0;
+  position: fixed;
+  bottom: 105px;
 `;
 
-const Textarea = styled.input`
+const Input = styled.input`
   width: 100%;
   height: 20px;
   border: none;
@@ -125,6 +129,7 @@ const Textarea = styled.input`
   margin: 10px auto;
   align-items: center;
   padding: 5px;
+  background-color: #c79797;
 `;
 
 const Button = styled.button`
@@ -132,5 +137,14 @@ const Button = styled.button`
   max-width: 70px;
   margin: 10px;
   border: none;
+  background-color: transparent;
   color: #3659b9;
+`;
+
+const ChatRoomBox = styled.div`
+  overflow-y: scroll;
+  height: 100%;
+  max-height: 778px;
+  width: 100%;
+  background-color: whitesmoke;
 `;

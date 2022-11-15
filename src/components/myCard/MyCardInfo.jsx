@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import MycardItem from '../myCard/MycardItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../../redux/modules/mycardSlice';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const MyCardInfo = () => {
   const nav = useNavigate();
@@ -22,7 +23,7 @@ const MyCardInfo = () => {
       <St_Header>
         <button
           onClick={() => {
-            nav(-1);
+            nav('/mypage');
           }}
         >
           이전
@@ -65,7 +66,18 @@ const MyCardInfo = () => {
             123, Yeoksam-ro, Gangnam-gu, Seoul.Rep.of Korea
           </St_Detail_Body>
         </Detail_Body_Box>
-        <MapBox>지도</MapBox>
+        <MapBox>
+          <Map
+            center={{ lat: 37.503680684679125, lng: 126.95701252583554 }}
+            style={{ width: '100%', height: '170px' }}
+          >
+            <MapMarker
+              position={{ lat: 37.503680684679125, lng: 126.95701252583554 }}
+            >
+              {/* <div style={{ color: '#000' }}></div> */}
+            </MapMarker>
+          </Map>
+        </MapBox>
       </St_CardInfo>
     </MyLayout>
   );
