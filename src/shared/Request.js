@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instanceJSon = axios.create({
-  baseURL: 'http://43.201.105.12 ',
+  baseURL: 'https://yusung.shop',
   headers: {
     'Content-Type': 'application/json',
   },
