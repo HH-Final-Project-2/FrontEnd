@@ -13,13 +13,19 @@ const MyCard = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  // const inforid = cardinfo.data.id;
+
+  // console.log(' 페이지 ', inforid);
+  // console.log(inforid === '');
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
 
+  if (cardinfo === undefined) return;
+
   //명함이 있을 때
-  if (cardinfo.length == 1) {
+  if (cardinfo.id !== '') {
     return (
       <MyLayout>
         <St_Header>

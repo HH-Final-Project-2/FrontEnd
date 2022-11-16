@@ -10,30 +10,30 @@ const MyCardPatch = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
 
   const [makeinfo, setMakeinfo] = useState({
-    cardname: cardinfo.cardname,
+    cardName: cardinfo.cardName,
     engName: cardinfo.engName,
     email: cardinfo.email,
     phoneNum: cardinfo.phoneNum,
     company: cardinfo.company,
     // companyAddress:'',
     department: cardinfo.department,
-    postion: cardinfo.postion,
+    position: cardinfo.position,
     tel: cardinfo.tel,
     fax: cardinfo.fax,
     id: cardinfo.id,
   });
 
   const {
-    cardname,
+    cardName,
     engName,
     email,
     phoneNum,
     company,
     department,
-    postion,
+    position,
     tel,
     fax,
     id,
@@ -59,7 +59,10 @@ const MyCardPatch = () => {
     dispatch(_PutCard(makeinfo));
 
     nav('/mypage/cardinfo');
+    console.log('수정디스패치', makeinfo);
   };
+
+  if (cardinfo === undefined) return;
 
   return (
     <MyLayout>
@@ -79,8 +82,8 @@ const MyCardPatch = () => {
         <Item>
           <St_Key>이름</St_Key>
           <St_value
-            name="cardname"
-            value={cardname}
+            name="cardName"
+            value={cardName}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -117,8 +120,8 @@ const MyCardPatch = () => {
         <Item>
           <St_Key>직책</St_Key>
           <St_value
-            name="postion"
-            value={postion}
+            name="position"
+            value={position}
             onChange={onChage}
           ></St_value>
         </Item>

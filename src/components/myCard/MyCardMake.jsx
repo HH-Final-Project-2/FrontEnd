@@ -12,26 +12,26 @@ const MyCardMake = () => {
   const dispatch = useDispatch();
 
   const [makeinfo, setMakeinfo] = useState({
-    cardname: '',
+    cardName: '',
     engName: '',
     email: '',
     phoneNum: '',
     company: '',
     // companyAddress:'',
     department: '',
-    postion: '',
+    position: '',
     tel: '',
     fax: '',
   });
 
   const {
-    cardname,
+    cardName,
     engName,
     email,
     phoneNum,
     company,
     department,
-    postion,
+    position,
     tel,
     fax,
   } = makeinfo;
@@ -67,8 +67,8 @@ const MyCardMake = () => {
         <Item>
           <St_Key>이름</St_Key>
           <St_value
-            name="cardname"
-            value={cardname}
+            name="cardName"
+            value={cardName}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -105,8 +105,8 @@ const MyCardMake = () => {
         <Item>
           <St_Key>직책</St_Key>
           <St_value
-            name="postion"
-            value={postion}
+            name="position"
+            value={position}
             onChange={onChage}
           ></St_value>
         </Item>

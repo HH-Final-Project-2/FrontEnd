@@ -9,11 +9,13 @@ const MycardItem = () => {
   //등록한 명함 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
+
+  if (cardinfo === undefined) return;
 
   return (
     <St_Card
@@ -21,13 +23,13 @@ const MycardItem = () => {
         nav('/mypage/cardinfo');
       }}
     >
-      <div>{cardinfo.cardname}</div>
+      <div>{cardinfo.cardName}</div>
       <div>{cardinfo.engName}</div>
       <div>{cardinfo.email}</div>
       <div>{cardinfo.phoneNum}</div>
       <div>{cardinfo.company}</div>
       <div>{cardinfo.department}</div>
-      <div>{cardinfo.postion}</div>
+      <div>{cardinfo.position}</div>
       <div>{cardinfo.tel}</div>
       <div>{cardinfo.fax}</div>
     </St_Card>

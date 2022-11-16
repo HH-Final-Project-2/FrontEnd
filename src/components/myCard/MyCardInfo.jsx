@@ -13,11 +13,13 @@ const MyCardInfo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
+
+  if (cardinfo === undefined) return;
 
   return (
     <MyLayout>
@@ -61,7 +63,7 @@ const MyCardInfo = () => {
           <St_Detail_Body>{cardinfo.phoneNum}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.email}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
-          <St_Detail_Body>{cardinfo.postion}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.position}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.department}</St_Detail_Body>
           <St_Detail_Body>
             123, Yeoksam-ro, Gangnam-gu, Seoul.Rep.of Korea

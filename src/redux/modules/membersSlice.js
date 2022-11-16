@@ -49,7 +49,8 @@ export const signIn = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      await axios.post('http://13.124.142.195/api/members/login', payload, config)
+      // await axios.post('http://13.124.142.195/api/members/login', payload, config)
+      await axios.post('https://bkyungkeem.shop/api/members/login', payload, config)
         .then((res) => {
 
           // 로그인 성공
