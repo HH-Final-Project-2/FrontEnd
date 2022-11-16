@@ -1,31 +1,3 @@
 {
-  "cardinfo": [
-    {
-      "cardname": "김승재12",
-      "engName": "kimsj",
-      "email": "qwer@qwer.com",
-      "phoneNum": "010-0000-0000",
-      "company": "kakao",
-      "department": "FE",
-      "postion": "쫄병",
-      "tel": "02-000-0000",
-      "fax": "02-000-0000",
-      "id": 1
-    }
-  ],
-  "post": [
-    {
-      "id": 1,
-      "nickname": "maro",
-      "직군": "job",
-      "title": "비지너스",
-      "content": "하하하하하하",
-      "hitNum": "hit",
-      "heartNum": "heart",
-      "commentNum": "comment",
-      "image": "",
-      "createdAt": "어제",
-      "modifiedAt": "modifiedAt"
-    }
-  ]
+  "cardinfo": []
 }

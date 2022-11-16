@@ -32,6 +32,7 @@ export const signUp = createAsyncThunk('SIGNUP', async (payload) => {
 });
 
 // 로그인
+
 export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
   try {
     const config = {
@@ -57,6 +58,7 @@ export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
         }
         // 이메일 확인
         if (res.data.error.httpStatus === 404) alert(res.data.error.message);
+
 
         // // 비밀번호 확인
         if (res.data.error.httpStatus === 400) alert(res.data.error.message);
