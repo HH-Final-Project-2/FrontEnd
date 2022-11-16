@@ -168,7 +168,7 @@ const PostWrite = () => {
 
           {image && <img src={image} alt="preview-img" />}
         </ImageUpload>
-        <WriteBtn onClick={writeHandler}>작성</WriteBtn>
+        <WriteBtn>작성</WriteBtn>
       </WriteBox>
     </form>
   );
