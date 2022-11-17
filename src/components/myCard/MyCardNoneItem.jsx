@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 
 const MyCardNoneItem = () => {
+  //명함이 없을 때 내 명함 페이지에서 호출
+  //명함 만드는 페이지 컴포넌트로 이동
   const nav = useNavigate();
   return (
     <St_Card
@@ -16,6 +18,7 @@ const MyCardNoneItem = () => {
 };
 export default MyCardNoneItem;
 
+//명함div
 const St_Card = styled.div`
   width: 100%;
   max-width: 330px;
@@ -29,7 +32,7 @@ const St_Card = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
+//플러스 표시
 const St_Plus = styled.div`
   width: 100%;
   max-width: 50px;

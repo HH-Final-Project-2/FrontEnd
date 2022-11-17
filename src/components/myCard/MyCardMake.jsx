@@ -7,30 +7,31 @@ import { _MakeCard } from '../../redux/modules/mycardSlice';
 import { useDispatch } from 'react-redux';
 
 const MyCardMake = () => {
+  //명함 만들기 페이지 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   const [makeinfo, setMakeinfo] = useState({
-    cardname: '',
+    cardName: '',
     engName: '',
     email: '',
     phoneNum: '',
     company: '',
     // companyAddress:'',
     department: '',
-    postion: '',
+    position: '',
     tel: '',
     fax: '',
   });
 
   const {
-    cardname,
+    cardName,
     engName,
     email,
     phoneNum,
     company,
     department,
-    postion,
+    position,
     tel,
     fax,
   } = makeinfo;
@@ -66,8 +67,8 @@ const MyCardMake = () => {
         <Item>
           <St_Key>이름</St_Key>
           <St_value
-            name="cardname"
-            value={cardname}
+            name="cardName"
+            value={cardName}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -104,8 +105,8 @@ const MyCardMake = () => {
         <Item>
           <St_Key>직책</St_Key>
           <St_value
-            name="postion"
-            value={postion}
+            name="position"
+            value={position}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -155,19 +156,19 @@ const St_Title = styled.div`
   justify-content: left;
   padding-left: 15px;
 `;
-
+//저장버튼
 const SaveButton = styled.button`
   margin: auto;
   margin-right: 10px;
 `;
-
+//input key 제목
 const St_Key = styled.div`
   width: 100%;
   color: #6b6b6b;
   font-size: 13px;
   padding-left: 7px;
 `;
-
+//input value 값
 const St_value = styled.input`
   width: 100%;
   max-width: 330px;
@@ -177,12 +178,12 @@ const St_value = styled.input`
   margin: auto;
   display: flex;
 `;
-
+//회사 주소 div
 const St_Address = styled.div`
   margin-top: 5px;
   padding-left: 25px;
 `;
-
+//각 수정 목록의 div
 const Item = styled.div`
   margin-top: 10px;
   font-size: 12px;

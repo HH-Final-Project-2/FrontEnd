@@ -1,18 +1,32 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
+
+
+
+
 //post 
 export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try{
-        const data = await axios.post("http://localhost:3001/cardinfo",payload);
-        
+        // const data = await axios.post("http://localhost:3001/cardinfo",payload);
+        console.log(payload)
+        const data = await axios.post("https://bkyungkeem.shop/api/mypages",payload,
+        {
+          headers:{
+              contentType: "application/json",
+              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
+              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
+          },
+        });
         return thunkAPI.fulfillWithValue(data.data);
-        
     }catch (error) {
-        
-    }}
+    }
+  }
 );
 
 //get 
@@ -20,8 +34,20 @@ export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
     try{
-        const data = await axios.get("http://localhost:3001/cardinfo");
-        return thunkAPI.fulfillWithValue(data.data);
+        // const data = await axios.get("http://localhost:3001/cardinfo");
+        const {data} = await axios.get("https://bkyungkeem.shop/api/mypages",
+        {
+          headers:{
+              contentType: "application/json",
+              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
+              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
+          },
+        }
+        
+        
+        );
+
+        return thunkAPI.fulfillWithValue(data);
     }catch (error) {
         
     }}
@@ -32,11 +58,21 @@ export const _getMakeCard = createAsyncThunk(
 export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
-    console.log('>>>나는 썽크 페이로드<<<',payload)
+    console.log("수정 페이로드",payload)
     try{
-        const data = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
-        console.log("나는 데이따",data)
-        return thunkAPI.fulfillWithValue(data.data);
+        // const data = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
+        const {data} = await axios.put(`https:/bkyungkeem.shop/api/mypages/${payload.id}`,payload,
+        {
+          headers:{
+              contentType: "application/json",
+              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
+              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
+          },
+        }
+        
+        );
+
+        return thunkAPI.fulfillWithValue(data);
     }catch (error) {
         
     }}
@@ -46,14 +82,14 @@ export const _PutCard = createAsyncThunk(
 const initialState = {
   cardinfo: [
     {
-    cardname: '',
+    cardName: '',
     engName: '',
     email: '',
     phoneNum: '',
     company: '',
     // companyAddress:'',
     department: '',
-    postion: '',
+    position: '',
     tel: '',
     fax: ''
   }
@@ -62,6 +98,8 @@ const initialState = {
   error: null,
 };
 
+// company 수정할 때  put thunck 데이터 콘솔(Thunck), put 콘솔(createSlice)
+// company 만 수정 됨 하지만 데이터를 불러올 때 부서가 company 의 value로 나타나짐
 
 export const mycardSlice = createSlice({
   name: "cardinfo", //모듈
@@ -78,13 +116,8 @@ export const mycardSlice = createSlice({
       },
       [_PutCard.fulfilled]: (state, action) => {
         state.isLoading = false;
-        state.cardinfo = [...state.cardinfo, action.payload]
-        //이게 ?? 된다고?
-        //매니저님 상담 필요
-        //이게 왜 
-        //
-        //
-        console.log('나는 리듀서의 콘솔로그',action.payload)
+        state.cardinfo = [{...state.cardinfo}, action.payload];
+
       },
 
   },

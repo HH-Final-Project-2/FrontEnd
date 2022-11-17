@@ -13,13 +13,19 @@ const MyCard = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  // const inforid = cardinfo.data.id;
+
+  // console.log(' 페이지 ', inforid);
+  // console.log(inforid === '');
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
 
+  if (cardinfo === undefined) return;
+
   //명함이 있을 때
-  if (cardinfo.length == 1) {
+  if (cardinfo.id !== '') {
     return (
       <MyLayout>
         <St_Header>
@@ -53,6 +59,7 @@ const MyCard = () => {
 
 export default MyCard;
 
+//header
 const St_Header = styled.div`
   display: flex;
   width: 100%;
@@ -60,7 +67,7 @@ const St_Header = styled.div`
   border-bottom: 1px solid #d6d6d6;
   justify-content: space-between;
 `;
-
+//header title
 const St_title = styled.div`
   font-weight: 600;
   width: 100%;
@@ -71,7 +78,7 @@ const St_title = styled.div`
   justify-content: left;
   padding-left: 15px;
 `;
-
+//명함 내보내기 버튼
 const St_share = styled.button`
   width: 100%;
   max-width: 150px;
