@@ -100,7 +100,7 @@ export const __putPost = createAsyncThunk(
     try {
       const { data } = await axios.put(
         `https://yusung.shop/api/posting/${payload.id}`,
-        payload,
+        payload.formData,
         // {
         //   title: payload.testTitle,
         //   content: payload.testContent,
@@ -212,5 +212,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const {} = PostSlice.actions;
+export const { } = PostSlice.actions;
 export default PostSlice.reducer;
