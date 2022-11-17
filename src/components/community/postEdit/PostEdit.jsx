@@ -17,23 +17,25 @@ import {
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams();//동작 원리 알아보기
   const { detail } = useSelector((state) => state.PostSlice);
   console.log('상세 수정', detail);
 
   const [testTitle, setTitle] = useState(detail.title);
   const [testContent, setContent] = useState(detail.content);
+  const [testjobGroup, setJobGroup] = useState(detail.jobGroup);
 
   useEffect(() => {
     setTitle(detail.title);
     setContent(detail.content);
+    setJobGroup(detail.jobGroup);
   }, [detail]);
 
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
 
-  const [memberPost, setMemberpost] = useState();
+  const [memberPost, setMemberpost] = useState('');
   const [image, setImage] = useState('');
 
   const goToCommunity = () => {
@@ -61,7 +63,6 @@ const PostEdit = () => {
       new Blob(
         [
           JSON.stringify({
-            id: detail.id,
             title: memberPost.title,
             content: memberPost.content,
             jobGroup: memberPost.jobGroup,
@@ -72,8 +73,12 @@ const PostEdit = () => {
       )
     );
 
-    dispatch(__putPost(formData));
+    dispatch(__putPost({
+      id: detail.id,
+      formData
+    }));
   };
+
 
   return (
     <form
@@ -87,14 +92,16 @@ const PostEdit = () => {
         <SelectJob>
           <select
             onChange={(ev) => {
+              value = { testjobGroup }
               const { value } = ev.target;
+              setJobGroup(ev.target.value)
               setMemberpost({
                 ...memberPost,
                 jobGroup: value,
               });
             }}
           >
-            <option value="" disabled selected hidden>
+            <option disabled selected hidden>
               직군을 선택해주세요.
             </option>
             <option>기획·전략</option>
