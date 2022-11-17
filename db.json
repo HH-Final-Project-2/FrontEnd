@@ -12,20 +12,5 @@
       "fax": "02-000-0000",
       "id": 1
     }
-  ],
-  "post": [
-    {
-      "id": 1,
-      "nickname": "maro",
-      "직군": "job",
-      "title": "비지너스",
-      "content": "하하하하하하",
-      "hitNum": "hit",
-      "heartNum": "heart",
-      "commentNum": "comment",
-      "image": "",
-      "createdAt": "어제",
-      "modifiedAt": "modifiedAt"
-    }
   ]
 }

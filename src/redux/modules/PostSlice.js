@@ -4,17 +4,17 @@ import instanceJSon from '../../shared/Request';
 
 //기본 세팅
 const initialState = {
-  postAll: [],
+  //postAll: [],
   post: [
     {
       id: 0,
-      nickname: '',
-      직군: '',
+      author: '',
+      jobGroup: '',
       title: '',
       content: '',
-      hitNum: '',
-      heartNum: '',
-      commentNum: '',
+      hit: '',
+      postHeartCnt: '',
+      commentCnt: '',
       image: '',
       createdAt: '',
       modifiedAt: '',
@@ -22,13 +22,13 @@ const initialState = {
   ],
   detail: {
     id: 0,
-    nickname: '',
-    직군: '',
+    author: '',
+    jobGroup: '',
     title: '',
     content: '',
-    hitNum: '',
-    heartNum: '',
-    commentNum: '',
+    hit: '',
+    postHeartCnt: '',
+    commentCnt: '',
     image: '',
     createdAt: '',
     modifiedAt: '',
@@ -44,7 +44,8 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get('https://yusung.shop/api/posting');
-      return thunkAPI.fulfillWithValue(data);
+      // console.log(data.data) // 이미지 null 값 들어옴 확인 필요
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -60,7 +61,7 @@ export const __getPost = createAsyncThunk(
         `https://yusung.shop/api/posting/${payload}`
       );
       // if (!data.success) throw new Error(data.error);
-      return thunkAPI.fulfillWithValue(data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -71,9 +72,8 @@ export const __getPost = createAsyncThunk(
 export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
-    console.log('나는 페이로드', payload);
     try {
-      const postList = await axios.post(
+      const { data } = await axios.post(
         'https://yusung.shop/api/posting',
         payload,
         {
@@ -85,7 +85,7 @@ export const __writePost = createAsyncThunk(
         }
       );
 
-      return thunkAPI.fulfillWithValue(postList.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -96,12 +96,24 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
+    console.log('수정 페이로드', payload);
     try {
-      const { data } = await instanceJSon.put(`/api/posting/${payload.id}`, {
-        title: payload.title,
-        content: payload.content,
-        image: payload.image,
-      });
+      const { data } = await axios.put(
+        `https://yusung.shop/api/posting/${payload.id}`,
+        payload,
+        // {
+        //   title: payload.testTitle,
+        //   content: payload.testContent,
+        //   image: payload.image,
+        // },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: localStorage.getItem('authorization'),
+            'refresh-Token': localStorage.getItem('refresh-Token'),
+          },
+        }
+      );
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -113,8 +125,16 @@ export const __putPost = createAsyncThunk(
 export const __deletePost = createAsyncThunk(
   'post/deletePost',
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const { data } = await instanceJSon.delete(`/api/posting/${payload.id}`);
+      const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: localStorage.getItem('authorization'),
+          'refresh-Token': localStorage.getItem('refresh-Token'),
+        },
+      });
+
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -133,7 +153,7 @@ export const PostSlice = createSlice({
     },
     [__getPostAll.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      // state.post = [...action.payload]; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__getPostAll.rejected]: (state, action) => {
       state.isLoading = false; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
@@ -159,7 +179,8 @@ export const PostSlice = createSlice({
     },
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.postAll.push(action.payload);
+      //state.postAll.push(action.payload);
+      state.post = [...state.post, action.payload];
     },
     [__writePost.rejected]: (state, action) => {
       state.isLoading = false;

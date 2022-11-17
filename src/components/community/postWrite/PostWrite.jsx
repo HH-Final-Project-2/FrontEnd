@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -13,12 +13,8 @@ import {
 } from './PostWriteStyle';
 import { useDispatch } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
-import useInput from '../../../hook/useInput';
 
 const PostWrite = () => {
-  // const [title, titleHandler] = useInput();
-  // const [content, contentHandler] = useInput();
-  // const [jobGroup, jobGroupHandler] = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -62,23 +58,6 @@ const PostWrite = () => {
     );
     dispatch(__writePost(formData));
     console.log(memberPost);
-
-    // function writeHandler(event) {
-    //   const formData = new FormData();
-
-    //   formData.append('image', event.target.image[0]);
-
-    //   const temp = {
-    //     title: title,
-    //     content: content,
-    //     category: category,
-    //     image: image,
-    //   };
-    //   console.log(temp);
-
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
   };
 
   return (
