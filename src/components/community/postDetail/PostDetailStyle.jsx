@@ -85,7 +85,6 @@ export const CommentBox = styled.div`
 
   margin-top: 33px;
 
-  background: green;
   box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
 
   input {
@@ -100,8 +99,4 @@ export const CommentBox = styled.div`
   }
   button {
   }
-`;
-
-export const HeartNum = styled.div`
-  font-size: 12px;
 `;

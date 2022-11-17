@@ -21,15 +21,13 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
 
-
         <Route path="/" element={<Main />} />
-
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />
         <Route path="/write" element={<Write />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />
@@ -40,9 +38,6 @@ const Router = () => {
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/chatroom/" element={<Chatroom />} />
-
-        {/* 메인 테스트용 */}
-        <Route path='/' element={<Main />} />
 
         {/* 회원관리(회원가입,로그인)*/}
         <Route path='/join' element={<Join />} />
