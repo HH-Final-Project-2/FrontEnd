@@ -1,46 +1,64 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
-import { __writePost, __imgPost } from "../../redux/modules/CardsSlice";
+import { __viewGet, __fixPost } from "../../redux/modules/CardsSlice";
 
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const imgGet = useSelector((state) => state.PostReducer.img.data);
-  console.log(imgGet);
-  const [inputValue, setInputValue] = useState({
-    cardName: "",
-    email: "",
-    company: "",
-    companyAddress: "",
-    companyType: "",
-    phoneNum: "",
-    department: "",
-    position: "",
-    tel: "",
-    fax: "",
-  });
+  const { id } = useParams();
+  const cardFix = useSelector((state) => state.PostReducer.viewList.data);
+  console.log(cardFix);
 
-  const mediaChangeHandler = (e) => {
+  const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
-    const file = new FormData();
-    file.append("cardImg", e.target.files[0]);
-    dispatch(__imgPost(file));
+    e.returnValue = "";
   };
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener("beforeunload", preventClose);
+    })();
+
+    return () => {
+      window.removeEventListener("beforeunload", preventClose);
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(__viewGet(id));
+  }, [dispatch]);
+
+  const [inputValue, setInputValue] = useState({
+    cardName: cardFix.cardName,
+    email: cardFix.email,
+    company: cardFix.company,
+    companyAddress: cardFix.companyAddress,
+    companyType: cardFix.companyType,
+    phoneNum: cardFix.phoneNum,
+    department: cardFix.department,
+    position: cardFix.position,
+    tel: cardFix.tel,
+    fax: cardFix.fax,
+  });
 
   const valueChangeHandler = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
     console.log(inputValue);
   };
+  //   const radioChangeHandler = (e) => {
+  //     setCompanyType(e.target.value);
+  //     console.log(companyType);
+  //   };
 
-  const cardsSubmitHandler = (e) => {
-    e.preventDefault();
+  const cardsSubmitHandler = () => {
     dispatch(
-      __writePost({
+      __fixPost({
+        id: cardFix.id,
         cardName: inputValue.cardName,
         email: inputValue.email,
         phoneNum: inputValue.phoneNum,
@@ -53,20 +71,14 @@ const MainCards = () => {
         companyType: inputValue.companyType,
       })
     );
-    alert("done!");
+    alert("FixDone!");
     navigate("/");
   };
-
-  //   const searchClickHandler = (e) => {
-  //     e.preventDefault();
-  //     navigate("/posts/companySearch");
-  //   };
 
   return (
     <HoleBox>
       <div>
         <form onSubmit={cardsSubmitHandler}>
-          <input type="file" onChange={mediaChangeHandler}></input>
           <input
             type="radio"
             name="companyType"
@@ -102,7 +114,9 @@ const MainCards = () => {
             value={inputValue.email}
             onChange={valueChangeHandler}
           ></input>
-          <Link to="/posts/companySearch">회사검색</Link>
+          <button onClick={() => navigate("/posts/companySearch")}>
+            회사검색
+          </button>
           <input
             type="text"
             placeholder="회사"
@@ -145,7 +159,7 @@ const MainCards = () => {
             value={inputValue.fax}
             onChange={valueChangeHandler}
           ></input>
-          <button type="submit">등록하기</button>
+          <button>수정하기</button>
         </form>
       </div>
     </HoleBox>
