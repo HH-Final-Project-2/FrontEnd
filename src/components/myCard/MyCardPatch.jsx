@@ -11,6 +11,8 @@ const MyCardPatch = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
+  console.log(cardinfo === undefined);
+  console.log(cardinfo);
 
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
@@ -49,6 +51,13 @@ const MyCardPatch = () => {
 
   useEffect(() => {
     dispatch(_getMakeCard());
+    console.log('마운트');
+  }, []);
+
+  useEffect(() => {
+    if (cardinfo === undefined) {
+      return dispatch(_getMakeCard());
+    }
   }, []);
 
   useEffect(() => {
@@ -57,9 +66,7 @@ const MyCardPatch = () => {
 
   const updateHandler = () => {
     dispatch(_PutCard(makeinfo));
-
     nav('/mypage/cardinfo');
-    console.log('수정디스패치', makeinfo);
   };
 
   if (cardinfo === undefined) return;

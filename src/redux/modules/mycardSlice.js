@@ -117,7 +117,7 @@ export const mycardSlice = createSlice({
       [_PutCard.fulfilled]: (state, action) => {
         state.isLoading = false;
         state.cardinfo = [{...state.cardinfo}, action.payload];
-
+  
       },
 
   },
