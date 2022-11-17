@@ -12,11 +12,16 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  // const inforid = cardinfo.data.id;
-
-  // console.log(' 페이지 ', inforid);
-  // console.log(inforid === '');
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
+  console.log(cardinfo);
+  const copyHandler = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('클립보드 복사');
+    } catch (error) {
+      alert('error 명함을 확인 해주세요');
+    }
+  };
 
   useEffect(() => {
     dispatch(_getMakeCard());
@@ -36,7 +41,25 @@ const MyCard = () => {
         <MyProfile />
         <Mycarditem />
 
-        <St_share>명함내보내기</St_share>
+        <St_share
+          onClick={() => {
+            copyHandler(
+              '[' +
+                cardinfo.company +
+                ']' +
+                '\n이름 : ' +
+                cardinfo.position +
+                ' ' +
+                cardinfo.cardName +
+                '\n전화번호 : ' +
+                cardinfo.phoneNum +
+                '\n이메일 : ' +
+                cardinfo.email
+            );
+          }}
+        >
+          명함내보내기
+        </St_share>
       </MyLayout>
     );
     //명함이 없을 때
