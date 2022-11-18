@@ -79,9 +79,7 @@ const PostWrite = () => {
               });
             }}
           >
-            <option hidden>
-              직군을 선택해주세요.
-            </option>
+            <option hidden>직군을 선택해주세요.</option>
             <option>기획·전략</option>
             <option>마케팅·홍보·조사</option>
             <option>회계·세무·재무</option>

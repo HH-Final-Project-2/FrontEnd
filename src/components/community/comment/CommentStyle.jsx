@@ -14,8 +14,6 @@ export const CommentTitle = styled.div`
   display: flex;
 `;
 export const ComentPlus = styled.div`
-  font-size: 30px;
-  height: 10px;
   cursor: pointer;
 `;
 

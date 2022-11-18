@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import instanceJSon from '../../../shared/Request';
 import { DivHeart, HeartNum } from './HeartStyle';
 
 const Heart = ({ id, heart = false, numberHeart }) => {
   const [isHeart, setIsHeart] = useState(heart);
   const [countHeart, setCountHeart] = useState(numberHeart);
+  // const { detail } = useSelector((state) => state.PostSlice);
 
   function heartHandler() {
     if (isHeart) {

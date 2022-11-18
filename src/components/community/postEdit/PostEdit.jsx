@@ -20,7 +20,6 @@ const PostEdit = () => {
   const { id } = useParams(); //동작 원리 알아보기
   const { detail } = useSelector((state) => state.PostSlice);
 
-
   const [title, setTitle] = useState(detail.title);
   const [content, setContent] = useState(detail.content);
   const [jobGroup, setJobGroup] = useState(detail.jobGroup);
@@ -28,12 +27,12 @@ const PostEdit = () => {
   useEffect(() => {
     setTitle(detail.title);
     setContent(detail.content);
-    // setJobGroup(detail.jobGroup);
+    setJobGroup(detail.jobGroup);
   }, [detail]);
 
   useEffect(() => {
     dispatch(__getPost(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const [memberPost, setMemberpost] = useState('');
   const [image, setImage] = useState('');
@@ -93,19 +92,17 @@ const PostEdit = () => {
         <SelectJob>
           <select
             onChange={(ev) => {
+              //value = { testjobGroup }
               const { value } = ev.target;
-              // setJobGroup(ev.target.value);
+              setJobGroup(ev.target.value);
               setMemberpost({
                 ...memberPost,
                 jobGroup: value,
               });
             }}
           >
-
-            <option hidden>
-              직군을 선택해주세요.
-            </option>
-            <option >기획·전략</option>
+            <option hidden>직군을 선택해주세요.</option>
+            <option>기획·전략</option>
             <option>마케팅·홍보·조사</option>
             <option>회계·세무·재무</option>
             <option>인사·노무·HRD</option>

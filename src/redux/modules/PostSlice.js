@@ -211,5 +211,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const { } = PostSlice.actions;
+export const {} = PostSlice.actions;
 export default PostSlice.reducer;

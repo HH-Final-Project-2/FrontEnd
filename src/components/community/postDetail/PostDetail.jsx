@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import { addComment } from '../../../redux/modules/commentSlice';
 import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
@@ -26,19 +25,12 @@ const PostDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
-
-
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
 
-
-
   useEffect(() => {
     dispatch(__getPost(id));
-  }, [dispatch]);
-
-
+  }, [dispatch, id]);
 
   // 게시글 삭제
   const deleteHandler = () => {
