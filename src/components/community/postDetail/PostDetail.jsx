@@ -26,18 +26,13 @@ const PostDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
-
-
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
-
 
 
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
-
 
 
   // 게시글 삭제
