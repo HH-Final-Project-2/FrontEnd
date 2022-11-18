@@ -4,7 +4,6 @@ import instanceJSon from '../../shared/Request';
 
 //기본 세팅
 const initialState = {
-  //postAll: [],
   post: [
     {
       id: 0,

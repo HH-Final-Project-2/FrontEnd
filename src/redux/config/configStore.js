@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cardinfo from '../modules/mycardSlice';
 import PostSlice from '../modules/PostSlice';
+import comments from '../modules/commentSlice';
 
 const store = configureStore({
   reducer: {
     cardinfo,
     PostSlice,
+    comments,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

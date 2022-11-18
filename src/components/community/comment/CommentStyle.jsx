@@ -7,6 +7,16 @@ export const CommentListLayout = styled.div`
 
 export const CommentSection1 = styled.div`
   display: flex;
+  justify-content: space-between;
+`;
+
+export const CommentTitle = styled.div`
+  display: flex;
+`;
+export const ComentPlus = styled.div`
+  font-size: 30px;
+  height: 10px;
+  cursor: pointer;
 `;
 
 export const CommentNickName = styled.div`
