@@ -1,9 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
-// import CompanyReducer from "../modules/CompanySlice";
+
+import { configureStore } from '@reduxjs/toolkit';
+import cardinfo from '../modules/mycardSlice';
+import PostSlice from '../modules/PostSlice';
+import comments from '../modules/commentSlice';
 import PostReducer from "../modules/CardsSlice";
 
 const store = configureStore({
-  reducer: { PostReducer },
+  reducer: {
+    cardinfo,
+    PostSlice,
+    comments,
+    PostReducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;
