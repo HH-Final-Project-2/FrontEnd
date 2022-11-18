@@ -1,26 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
-  comments: [
-    {
-      id: 0,
-      comment: '',
-    }
-  ],
-  isLoading: false,
-  error: null,
-}
 
-// 댓글 조회
-export const getComments = createAsyncThunk(
-  "GETCOMMENT",
+//게시글 상세 조회
+export const getCommentList = createAsyncThunk(
+  'GETCOMMENTLIST',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get('http://localhost:3001/comments')
-      return thunkAPI.fulfillWithValue(data)
+      const { data } = await axios.get(
+        `https://yusung.shop/api/posting/${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data.data.commentResponseDtoList);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error)
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -30,7 +22,6 @@ export const getComments = createAsyncThunk(
 export const addComment = createAsyncThunk(
   "ADDCOMMENT",
   async (payload, thunkAPI) => {
-    console.log(payload)
     try {
       const config = {
         headers: {
@@ -39,23 +30,41 @@ export const addComment = createAsyncThunk(
           'refresh-Token': localStorage.getItem('refresh-Token')
         },
       };
-      const { data } = await axios.post(`https://yusung.shop/api/comment/${payload.postingId}`, payload, config)
-
-      return thunkAPI.fulfillWithValue(data)
-
+      const { data } = await axios.post(`https://yusung.shop/api/comment/${payload.postId}`, payload, config)
+      return thunkAPI.fulfillWithValue(data.data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
   }
 );
 
-// 댓글 수정
-export const __putComment = createAsyncThunk(
-  "PUT_POST_DETAIL",
+// 댓글 삭제
+export const deleteComment = createAsyncThunk(
+  "DELETECOMMENT",
   async (payload, thunkAPI) => {
-    console.log(payload)
+
     try {
-      const { data } = await axios.put(`http://localhost:3001/comments/${payload.id}`, payload)
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': localStorage.getItem('authorization'),
+          'refresh-Token': localStorage.getItem('refresh-Token')
+        },
+      };
+      await axios.delete(`https://yusung.shop/api/comment/${payload.postId}/${payload.commentId}`, config)
+      return thunkAPI.fulfillWithValue(payload.commentId)
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
+
+// 댓글 수정
+export const putComment = createAsyncThunk(
+  "PUTCOMMENT",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`https://yusung.shop/api/${payload.postingId}/comment/${payload.id}`, payload)
       return thunkAPI.fulfillWithValue(data)
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -63,57 +72,38 @@ export const __putComment = createAsyncThunk(
   }
 )
 
-// 댓글 삭제
-export const deleteComment = createAsyncThunk(
-  "DELETE_Comment",
-  async (payload, thunkAPI) => {
-    try {
-      await axios.delete(`http://localhost:3001/comments/${payload}`)
-      return thunkAPI.fulfillWithValue(payload)
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error)
-    }
-  }
-)
+const initialState = {
+  comments: [],
+  isLoading: false,
+  error: null,
+}
 
-export const commentSlice = createSlice({ // 리듀서를 만들어주는 역할
-  name: "comments", // 모듈이름
-  initialState, // 초기상태값
-  reducers: {}, // 자동으로 만들어지는 리듀서
-  extraReducers: { // 직접 커스텀으로 만드는 리듀서
+export const commentSlice = createSlice({
+  name: "comments",
+  initialState,
+  reducers: {},
+  extraReducers: {
 
-    // 댓글 조회
-    [getComments.pending]: (state) => {
-      state.isLoading = true
-    },
-
-    [getComments.fulfilled]: (state, action) => {
-
-      state.isLoading = false
+    // 게시글 상세 조회용
+    // payload : 댓글 배열
+    [getCommentList.fulfilled]: (state, action) => {
+      //console.log('슬라이스', action.payload)
       state.comments = action.payload
-
-    },
-
-    [getComments.rejected]: (state, action) => {
-      state.isLoading = false
-      state.error = action.payload
+      state.isLoading = false;
     },
 
     // 댓글 작성
-    [addComment.pending]: (state) => {
-      state.isLoading = true
-    },
-
+    // payload : 단일 댓글
     [addComment.fulfilled]: (state, action) => {
-      console.log(action.payload)
       state.isLoading = false
-      state.comments = [...state.comments, action.payload]
-
+      state.comments = [action.payload, ...state.comments]
     },
 
-    [addComment.rejected]: (state, action) => {
+    // 댓글 삭제
+    // payload : 댓글 id
+    [deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false
-      state.error = action.payload
+      state.comments = state.comments.filter((comment) => comment.id !== action.payload)
     },
 
 
@@ -134,20 +124,12 @@ export const commentSlice = createSlice({ // 리듀서를 만들어주는 역할
     //   state.error = action.payload
     // },
 
-    // 댓글 삭제
-    [deleteComment.pending]: (state) => {
-      state.isLoading = true
-    },
 
-    [deleteComment.fulfilled]: (state, action) => {
-      state.comments = state.comments.filter((comment) => comment.id !== action.payload)
 
-    },
 
-    [deleteComment.rejected]: (state, action) => {
-      state.isLoading = false
-      state.error = action.payload
-    },
+
+
+
 
   },
 

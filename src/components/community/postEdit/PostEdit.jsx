@@ -19,11 +19,11 @@ const PostEdit = () => {
   const navigate = useNavigate();
   const { id } = useParams(); //동작 원리 알아보기
   const { detail } = useSelector((state) => state.PostSlice);
-  console.log('상세 수정', detail);
 
-  const [testTitle, setTitle] = useState(detail.title);
-  const [testContent, setContent] = useState(detail.content);
-  // const [testjobGroup, setJobGroup] = useState(detail.jobGroup);
+
+  const [title, setTitle] = useState(detail.title);
+  const [content, setContent] = useState(detail.content);
+  const [jobGroup, setJobGroup] = useState(detail.jobGroup);
 
   useEffect(() => {
     setTitle(detail.title);
@@ -93,7 +93,6 @@ const PostEdit = () => {
         <SelectJob>
           <select
             onChange={(ev) => {
-              // value = { testjobGroup };
               const { value } = ev.target;
               // setJobGroup(ev.target.value);
               setMemberpost({
@@ -102,7 +101,8 @@ const PostEdit = () => {
               });
             }}
           >
-            <option disabled hidden>
+
+            <option hidden>
               직군을 선택해주세요.
             </option>
             <option >기획·전략</option>
@@ -130,7 +130,7 @@ const PostEdit = () => {
         </SelectJob>
         <EditTitle>
           <input
-            value={testTitle}
+            value={title}
             type="text"
             placeholder="제목"
             onChange={(ev) => {
@@ -145,7 +145,7 @@ const PostEdit = () => {
         </EditTitle>
         <EditBody>
           <input
-            value={testContent}
+            value={content}
             type="text"
             placeholder="내용(500자 이내)"
             maxLength={500}

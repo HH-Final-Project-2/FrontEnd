@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import { addComment } from '../../../redux/modules/commentSlice';
 import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
@@ -24,13 +25,20 @@ import {
 const PostDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
+
+
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
-  //console.log(detail) // 상세이미지는 잘넘어옴
+
+
 
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
+
+
 
   // 게시글 삭제
   const deleteHandler = () => {
@@ -74,13 +82,12 @@ const PostDetail = () => {
           heart={detail.postHeartCnt === 'true' ? true : false}
           numberHeart={detail.heart}
         />
-        <input type="text" placeholder="댓글달기"></input>
-        <button>등록</button>
+
         <button onClick={editHandler}>수정하기</button>
         <button onClick={deleteHandler}>삭제하기</button>
       </CommentBox>
       <PostLine />
-      <Comment />
+      <Comment detail={detail} />
     </DetailBox>
   );
 };
