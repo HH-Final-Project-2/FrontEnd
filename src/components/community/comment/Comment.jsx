@@ -65,23 +65,23 @@ const Comment = () => {
                   <CommentDate>{commentList.modifiedAt}</CommentDate>
                 </CommentTitle>
                 <ComentPlus
-                onClick={() => {
-                  const confirm = window.confirm('정말 삭제하시겠습니까?');
-                  if (confirm) {
-                    dispatch(
-                      deleteComment({
-                        postId: id,
-                        commentId: commentList.id,
-                      })
-                    );
-                  } else {
-                    return;
-                  }
-                }}
+                  onClick={() => {
+                    const confirm = window.confirm('정말 삭제하시겠습니까?');
+                    if (confirm) {
+                      dispatch(
+                        deleteComment({
+                          postId: id,
+                          commentId: commentList.id,
+                        })
+                      );
+                    } else {
+                      return;
+                    }
+                  }}
                 >
-                  <img src="../images/more.png" alt="" />
-                  <button>수정</button>
+                  ···
                 </ComentPlus>
+                <button>수정</button>
               </CommentSection1>
               {/*  */}
               <CommentBody>{commentList.content}</CommentBody>
