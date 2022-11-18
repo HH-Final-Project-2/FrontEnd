@@ -79,7 +79,7 @@ const PostWrite = () => {
               });
             }}
           >
-            <option disabled selected hidden>
+            <option hidden>
               직군을 선택해주세요.
             </option>
             <option>기획·전략</option>
