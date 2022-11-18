@@ -17,18 +17,18 @@ import {
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();//동작 원리 알아보기
+  const { id } = useParams(); //동작 원리 알아보기
   const { detail } = useSelector((state) => state.PostSlice);
   console.log('상세 수정', detail);
 
   const [testTitle, setTitle] = useState(detail.title);
   const [testContent, setContent] = useState(detail.content);
-  const [testjobGroup, setJobGroup] = useState(detail.jobGroup);
+  // const [testjobGroup, setJobGroup] = useState(detail.jobGroup);
 
   useEffect(() => {
     setTitle(detail.title);
     setContent(detail.content);
-    setJobGroup(detail.jobGroup);
+    // setJobGroup(detail.jobGroup);
   }, [detail]);
 
   useEffect(() => {
@@ -73,12 +73,13 @@ const PostEdit = () => {
       )
     );
 
-    dispatch(__putPost({
-      id: detail.id,
-      formData
-    }));
+    dispatch(
+      __putPost({
+        id: detail.id,
+        formData,
+      })
+    );
   };
-
 
   return (
     <form
@@ -92,19 +93,19 @@ const PostEdit = () => {
         <SelectJob>
           <select
             onChange={(ev) => {
-              value = { testjobGroup }
+              // value = { testjobGroup };
               const { value } = ev.target;
-              setJobGroup(ev.target.value)
+              // setJobGroup(ev.target.value);
               setMemberpost({
                 ...memberPost,
                 jobGroup: value,
               });
             }}
           >
-            <option disabled selected hidden>
+            <option disabled hidden>
               직군을 선택해주세요.
             </option>
-            <option>기획·전략</option>
+            <option >기획·전략</option>
             <option>마케팅·홍보·조사</option>
             <option>회계·세무·재무</option>
             <option>인사·노무·HRD</option>
