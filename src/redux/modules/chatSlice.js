@@ -1,6 +1,9 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
+
 
 //채팅방 전체 불러오기
 // export const getChatRoom = createAsyncThunk(

@@ -19,8 +19,8 @@ export const _MakeCard = createAsyncThunk(
         {
           headers:{
               contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
+              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
+              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
           },
         });
         return thunkAPI.fulfillWithValue(data.data);
@@ -38,15 +38,11 @@ export const _getMakeCard = createAsyncThunk(
         const {data} = await axios.get("https://bkyungkeem.shop/api/mypages",
         {
           headers:{
-              contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
-          },
-        }
-        
-        
-        );
-
+            contentType: "application/json",
+            authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
+            "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
+        },
+        });
         return thunkAPI.fulfillWithValue(data);
     }catch (error) {
         
@@ -58,20 +54,16 @@ export const _getMakeCard = createAsyncThunk(
 export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
-    console.log("수정 페이로드",payload)
     try{
         // const data = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
         const {data} = await axios.put(`https:/bkyungkeem.shop/api/mypages/${payload.id}`,payload,
         {
           headers:{
-              contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
-          },
-        }
-        
-        );
-
+            contentType: "application/json",
+            authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
+            "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
+        },
+        });
         return thunkAPI.fulfillWithValue(data);
     }catch (error) {
         
@@ -98,13 +90,11 @@ const initialState = {
   error: null,
 };
 
-// company 수정할 때  put thunck 데이터 콘솔(Thunck), put 콘솔(createSlice)
-// company 만 수정 됨 하지만 데이터를 불러올 때 부서가 company 의 value로 나타나짐
 
 export const mycardSlice = createSlice({
   name: "cardinfo", //모듈
   initialState,
-  reducers: {}, //action value + action creator
+  reducers: {}, 
   extraReducers:{
       [_MakeCard.fulfilled]: (state, action) => {
         state.isLoading = false;

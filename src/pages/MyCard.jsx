@@ -13,7 +13,7 @@ const MyCard = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
-  console.log(cardinfo);
+
   const copyHandler = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -48,9 +48,10 @@ const MyCard = () => {
                 cardinfo.company +
                 ']' +
                 '\n이름 : ' +
-                cardinfo.position +
-                ' ' +
                 cardinfo.cardName +
+                ' (' +
+                cardinfo.position +
+                ')' +
                 '\n전화번호 : ' +
                 cardinfo.phoneNum +
                 '\n이메일 : ' +
