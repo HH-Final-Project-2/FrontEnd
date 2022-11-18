@@ -61,8 +61,8 @@ const Comment = () => {
                   } else {
                     return
                   }
-
                 }}>···</ComentPlus>
+                <button>수정</button>
               </CommentSection1>
               {/*  */}
               <CommentBody>{commentList.content}</CommentBody>

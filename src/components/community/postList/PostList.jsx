@@ -16,7 +16,8 @@ const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.PostSlice);
-  //console.log('글전체조회',post) // 글 전체 조회는 이미지 null
+
+  //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
 
   // 검색 기능
   // const [postAll, setPostAll] = useState([]);
@@ -46,7 +47,7 @@ const PostList = () => {
     navigate('/write');
   };
 
-  if (post === undefined) return;
+  if (post === undefined) return null;
 
   return (
     <CommunityLayout>
