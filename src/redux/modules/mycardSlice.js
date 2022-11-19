@@ -43,7 +43,8 @@ export const _getMakeCard = createAsyncThunk(
             "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
         },
         });
-        return thunkAPI.fulfillWithValue(data);
+        console.log(data.data)
+        return thunkAPI.fulfillWithValue(data.data);
     }catch (error) {
         
     }}

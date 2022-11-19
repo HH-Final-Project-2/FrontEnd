@@ -12,7 +12,7 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
 
   const copyHandler = async (text) => {
     try {
@@ -37,10 +37,8 @@ const MyCard = () => {
           <St_title>내 명함</St_title>
           <button>계정관리</button>
         </St_Header>
-
         <MyProfile />
         <Mycarditem />
-
         <St_share
           onClick={() => {
             copyHandler(

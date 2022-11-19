@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import MyLayout from '../myCard/MyLayout';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+
 const Chatroom = () => {
   const nav = useNavigate();
+
+  const socket = new SockJS('http://13.124.142.195/wss/chat');
+  const client = Stomp.over(socket);
+
+  const headers = {
+    Authorization: localStorage.getItem('authorization'),
+    'Refresh-Token': localStorage.getItem('refresh-Token'),
+  };
+
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   onConneted();
+  //   return () => {
+  //     onConneted();
+  //   };
+  // }, []);
+
+  // const onConneted = () => {
+  //   try {
+  //     client.connect(headers, () => {
+  //       client.subscribe(
+  //         `/sub/chat/room/${id}`,
+  //         (data) => {
+  //           const newMessage = JSON.parse(data.body);
+  //           dispatch(addMessage(newMessage));
+  //         },
+  //         headers
+  //       );
+  //     });
+  //   } catch (error) {}
+  // };
 
   return (
     <MyLayout>
