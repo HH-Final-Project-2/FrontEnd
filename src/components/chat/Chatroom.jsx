@@ -1,9 +1,21 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import MyLayout from '../myCard/MyLayout';
 import { useNavigate, useParams } from 'react-router';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+import {
+  St_Header,
+  St_Title,
+  MyChatBox,
+  MyChat,
+  UserChatBox,
+  UserChat,
+  Footer,
+  Input,
+  Button,
+  ChatRoomBox,
+  MyChatTime,
+} from './ChatroomStyle';
 
 const Chatroom = () => {
   const nav = useNavigate();
@@ -55,16 +67,16 @@ const Chatroom = () => {
 
       <ChatRoomBox>
         <MyChatBox>
-          <div>
-            <MyChat>나의 채팅</MyChat>
-          </div>
+          {/* <MyChatTime>채팅시간</MyChatTime>
+          <MyChat>나의 채팅</MyChat> */}
+
+          <span>시간</span>
+          <span>채팅</span>
         </MyChatBox>
 
         <UserChatBox>
-          <div>
-            {/* <UserName>나는 상대방</UserName> */}
-            <UserChat>상대방 채팅</UserChat>
-          </div>
+          {/* <UserName>나는 상대방</UserName> */}
+          <UserChat>상대방 채팅</UserChat>
         </UserChatBox>
         <Footer>
           <Input placeholder="채팅입력..." />
@@ -75,113 +87,3 @@ const Chatroom = () => {
   );
 };
 export default Chatroom;
-//헤더 박스 div
-const St_Header = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  border-bottom: 1px solid #d6d6d6;
-`;
-//헤더 타이틀의 의미
-const St_Title = styled.div`
-  font-weight: 600;
-  width: 100%;
-  max-width: 80px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-left: 15px;
-`;
-
-const MyChatBox = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  justify-content: end;
-`;
-const MyChat = styled.div`
-  margin: auto;
-  margin-right: 10px;
-  border-radius: 8px;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  padding: 7px;
-  justify-content: right;
-  background-color: #e4e4e4;
-`;
-
-const UserChatBox = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-`;
-
-// const UserName = styled.span`
-//   font-size: 15px;
-//   display: flex;
-//   margin: auto;
-//   margin-left: 10px;
-//   align-items: center;
-// `;
-
-const UserChat = styled.div`
-  margin: auto;
-  border-radius: 8px;
-  display: inline-block;
-  align-items: center;
-  margin-left: 10px;
-  font-size: 13px;
-  padding: 7px;
-  color: #e0e0e0;
-  background-color: #808080;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  max-width: 390px;
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  margin: auto;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  height: 20px;
-  border: none;
-  border-radius: 12px;
-  outline: none;
-  resize: none;
-  margin: 10px auto;
-  align-items: center;
-  padding: 8px;
-  padding-left: 13px;
-  background-color: #c79797;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  max-width: 70px;
-  margin: 10px;
-  border: none;
-  background-color: transparent;
-  color: #3659b9;
-`;
-
-const ChatRoomBox = styled.div`
-  overflow-y: scroll;
-  height: 100%;
-  max-height: 735px;
-  width: 100%;
-
-  background-color: whitesmoke;
-`;

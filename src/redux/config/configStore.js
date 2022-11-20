@@ -11,7 +11,7 @@ const store = configureStore({
     cardinfo,
     PostSlice,
     comments,
-    PostReducer
+    PostReducer,
     chat,
   },
   middleware: (getDefaultMiddleware) =>

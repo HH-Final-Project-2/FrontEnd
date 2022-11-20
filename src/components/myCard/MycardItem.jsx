@@ -9,7 +9,7 @@ const MycardItem = () => {
   //등록한 명함 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
 
   useEffect(() => {
     dispatch(_getMakeCard());
