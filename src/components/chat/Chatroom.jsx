@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import MyLayout from '../myCard/MyLayout';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+
 const Chatroom = () => {
   const nav = useNavigate();
+
+  const socket = new SockJS('http://13.124.142.195/wss/chat');
+  const client = Stomp.over(socket);
+
+  const headers = {
+    Authorization: localStorage.getItem('authorization'),
+    'Refresh-Token': localStorage.getItem('refresh-Token'),
+  };
+
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   onConneted();
+  //   return () => {
+  //     onConneted();
+  //   };
+  // }, []);
+
+  // const onConneted = () => {
+  //   try {
+  //     client.connect(headers, () => {
+  //       client.subscribe(
+  //         `/sub/chat/room/${id}`,
+  //         (data) => {
+  //           const newMessage = JSON.parse(data.body);
+  //           dispatch(addMessage(newMessage));
+  //         },
+  //         headers
+  //       );
+  //     });
+  //   } catch (error) {}
+  // };
 
   return (
     <MyLayout>
@@ -31,7 +66,6 @@ const Chatroom = () => {
             <UserChat>상대방 채팅</UserChat>
           </div>
         </UserChatBox>
-
         <Footer>
           <Input placeholder="채팅입력..." />
           <Button>보내기</Button>
@@ -111,11 +145,13 @@ const UserChat = styled.div`
 
 const Footer = styled.div`
   width: 100%;
-  max-width: 375px;
+  max-width: 390px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   position: fixed;
-  bottom: 105px;
+  bottom: 0;
+  margin: auto;
 `;
 
 const Input = styled.input`
@@ -127,7 +163,8 @@ const Input = styled.input`
   resize: none;
   margin: 10px auto;
   align-items: center;
-  padding: 5px;
+  padding: 8px;
+  padding-left: 13px;
   background-color: #c79797;
 `;
 
@@ -143,7 +180,7 @@ const Button = styled.button`
 const ChatRoomBox = styled.div`
   overflow-y: scroll;
   height: 100%;
-  max-height: 750px;
+  max-height: 735px;
   width: 100%;
 
   background-color: whitesmoke;
