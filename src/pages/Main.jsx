@@ -23,6 +23,13 @@ const Main = () => {
     <div>
       <button
         onClick={() => {
+          nav('/cards');
+        }}
+      >
+        명함첩
+      </button>
+      <button
+        onClick={() => {
           nav('/mypage');
         }}
       >

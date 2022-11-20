@@ -1,3 +1,51 @@
+<<<<<<< HEAD
 {
-  "cardinfo": []
+  "posts": [
+    {
+      "id": 6,
+      "name": "석재1122",
+      "email": "이메일",
+      "phoneNum": "01010101010",
+      "department": "it",
+      "position": "대리",
+      "tel": "02-1111-1111",
+      "fax": "02-2222-2222",
+      "company": "회사 ",
+      "companyAddress": "주소",
+      "companyType": "own"
+    },
+    {
+      "name": "ㅇㅁㄴㅎㄹ",
+      "email": "ㅁㄴㅇㄹ",
+      "phoneNum": "ㅁㄴㄹ",
+      "department": "ㄴㅁㅇㅍ",
+      "position": "ㅁㅍㄴ",
+      "tel": "ㅁㄴㅍㅇ",
+      "fax": "ㅁㄴㅍ",
+      "company": "ㅁㄴㅇㄹ",
+      "companyAddress": "ㅁㅍㄴ",
+      "companyType": "other",
+      "id": 7
+    },
+    {
+      "id": 8
+    }
+  ],
+  "img": []
 }
+=======
+  "cardinfo": [
+    {
+      "cardname": "김승재12",
+      "engName": "kimsj",
+      "email": "qwer@qwer.com",
+      "phoneNum": "010-0000-0000",
+      "company": "kakao",
+      "department": "FE",
+      "postion": "쫄병",
+      "tel": "02-000-0000",
+      "fax": "02-000-0000",
+      "id": 1
+    }
+  ]
+>>>>>>> 06dc4baa92cf0f0ce6cb4ce5f38af534fef2ea93
