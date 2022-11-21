@@ -33,26 +33,26 @@ export const SelectJob = styled.div`
 `;
 
 export const WriteTitle = styled.div`
-  input {
+  textarea {
     width: 100%;
     height: 50px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
   }
-  input::placeholder {
+  textarea::placeholder {
     color: #bdbdbd;
   }
 `;
 
 export const WriteBody = styled.div`
-  input {
+  textarea {
     width: 100%;
     height: 500px;
     border: none;
     outline: none;
   }
-  input::placeholder {
+  textarea::placeholder {
     color: #bdbdbd;
   }
 `;

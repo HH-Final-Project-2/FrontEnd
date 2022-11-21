@@ -8,6 +8,7 @@ import MyLayout from '../components/myCard/MyLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../redux/modules/mycardSlice';
 import KakaoShare from '../components/myCard/kakaoshare/KakaoShare';
+import Layout from '../components/layout/Layout';
 
 const MyCard = () => {
   const nav = useNavigate();
@@ -34,7 +35,7 @@ const MyCard = () => {
   //명함이 있을 때
   if (cardinfo.id !== '') {
     return (
-      <MyLayout>
+      <Layout>
         <St_Header>
           <St_title>내 명함</St_title>
           <button>계정관리</button>
@@ -65,12 +66,12 @@ const MyCard = () => {
           <KakaoShare />
           카카오톡 공유
         </St_Kakao>
-      </MyLayout>
+      </Layout>
     );
     //명함이 없을 때
   } else {
     return (
-      <MyLayout>
+      <Layout>
         <St_Header>
           <St_title>내 명함</St_title>
           <button>계정관리</button>
@@ -80,7 +81,7 @@ const MyCard = () => {
         <MyCardNoneItem />
         {/* 
         <St_share>명함내보내기</St_share> */}
-      </MyLayout>
+      </Layout>
     );
   }
 };

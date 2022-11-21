@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import Layout from '../components/layout/Layout';
 
 const MySchedules = () => {
-  return <div></div>;
+  return (
+    <Layout>
+
+    </Layout>
+  );
 };
 
 export default MySchedules;

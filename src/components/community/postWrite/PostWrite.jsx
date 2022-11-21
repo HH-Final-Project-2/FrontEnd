@@ -44,8 +44,8 @@ const PostWrite = () => {
   const deleteImage = () => {
     //setimg('')
     // setMemberpost('')
-    setImage('')
-  }
+    setImage('');
+  };
 
   //지우기버튼 띄우기
   const display = (str) => {
@@ -54,7 +54,7 @@ const PostWrite = () => {
     } else {
       return false;
     }
-  }
+  };
 
   //작성한 데이터 전송
   const writeHandler = () => {
@@ -97,9 +97,7 @@ const PostWrite = () => {
               });
             }}
           >
-            <option hidden>
-              직군을 선택해주세요.
-            </option>
+            <option hidden>직군을 선택해주세요.</option>
             <option>기획·전략</option>
             <option>마케팅·홍보·조사</option>
             <option>회계·세무·재무</option>
@@ -124,7 +122,7 @@ const PostWrite = () => {
           </select>
         </SelectJob>
         <WriteTitle>
-          <input
+          <textarea
             type="text"
             placeholder="제목"
             onChange={(ev) => {
@@ -137,7 +135,7 @@ const PostWrite = () => {
           />
         </WriteTitle>
         <WriteBody>
-          <input
+          <textarea
             type="text"
             placeholder="내용(500자 이내)"
             maxLength={500}
@@ -169,12 +167,13 @@ const PostWrite = () => {
         <WriteBtn>작성</WriteBtn>
         <Xbutton
           display={display(image) ? 'block' : 'none'}
-          type='button'
-          onClick={deleteImage}>이미지 삭제
+          type="button"
+          onClick={deleteImage}
+        >
+          이미지 삭제
         </Xbutton>
       </WriteBox>
-    </form >
-
+    </form>
   );
 };
 
