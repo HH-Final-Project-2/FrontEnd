@@ -10,7 +10,7 @@ const MyCardPatch = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   console.log(cardinfo === undefined);
   console.log(cardinfo);
 
@@ -55,12 +55,6 @@ const MyCardPatch = () => {
   }, []);
 
   useEffect(() => {
-    if (cardinfo === undefined) {
-      return dispatch(_getMakeCard());
-    }
-  }, []);
-
-  useEffect(() => {
     setMakeinfo(cardinfo);
   }, [cardinfo]);
 
@@ -90,7 +84,7 @@ const MyCardPatch = () => {
           <St_Key>이름</St_Key>
           <St_value
             name="cardName"
-            value={cardName}
+            value={cardName || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -98,19 +92,23 @@ const MyCardPatch = () => {
           <St_Key>영문이름</St_Key>
           <St_value
             name="engName"
-            value={engName}
+            value={engName || ''}
             onChange={onChage}
           ></St_value>
         </Item>
         <Item>
           <St_Key>이메일</St_Key>
-          <St_value name="email" value={email} onChange={onChage}></St_value>
+          <St_value
+            name="email"
+            value={email || ''}
+            onChange={onChage}
+          ></St_value>
         </Item>
         <Item>
           <St_Key>연락처</St_Key>
           <St_value
             name="phoneNum"
-            value={phoneNum}
+            value={phoneNum || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -119,7 +117,7 @@ const MyCardPatch = () => {
           <St_Key>회사</St_Key>
           <St_value
             name="company"
-            value={company}
+            value={company || ''}
             onChange={onChage}
           ></St_value>
           <St_Address>서울 강남구 역삼로 123 (ABC 빌딩) 5층 ABC LAB</St_Address>
@@ -128,7 +126,7 @@ const MyCardPatch = () => {
           <St_Key>직책</St_Key>
           <St_value
             name="position"
-            value={position}
+            value={position || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -136,17 +134,17 @@ const MyCardPatch = () => {
           <St_Key>부서</St_Key>
           <St_value
             name="department"
-            value={department}
+            value={department || ''}
             onChange={onChage}
           ></St_value>
         </Item>
         <Item>
           <St_Key>Tel</St_Key>
-          <St_value name="tel" value={tel} onChange={onChage}></St_value>
+          <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
         </Item>
         <Item>
           <St_Key>Fax</St_Key>
-          <St_value name="fax" value={fax} onChange={onChage}></St_value>
+          <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
     </MyLayout>

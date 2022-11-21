@@ -13,7 +13,7 @@ const MyCardInfo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());
