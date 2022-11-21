@@ -19,14 +19,6 @@ import {
 } from './PostStyle';
 
 const Post = ({ post }) => {
-  const dispatch = useDispatch();
-  //const { post } = useSelector((state) => state.PostSlice);
-  //console.log('나는 자식 포스트', post);
-
-  useEffect(() => {
-    dispatch(__getPostAll());
-  }, [dispatch]);
-
   return (
     <PostBox>
       <PostSection1>
