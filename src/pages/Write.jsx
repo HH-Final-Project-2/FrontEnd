@@ -3,9 +3,7 @@ import PostWrite from '../components/community/postWrite/PostWrite';
 
 const Write = () => {
   return (
-    <div>
-      <PostWrite />
-    </div>
+    <PostWrite />
   );
 };
 

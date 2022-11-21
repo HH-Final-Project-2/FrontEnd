@@ -3,9 +3,9 @@ import PostDetail from '../components/community/postDetail/PostDetail';
 
 const Detail = () => {
   return (
-    <div>
-      <PostDetail />
-    </div>
+
+    <PostDetail />
+
   );
 };
 

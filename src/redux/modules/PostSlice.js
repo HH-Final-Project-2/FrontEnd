@@ -139,6 +139,7 @@ export const PostSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+
     //게시글 전체 조회
 
     [__getPostAll.fulfilled]: (state, action) => {

@@ -3,9 +3,9 @@ import PostList from '../components/community/postList/PostList';
 
 const Community = () => {
   return (
-    <div>
-      <PostList />
-    </div>
+
+    <PostList />
+
   );
 };
 

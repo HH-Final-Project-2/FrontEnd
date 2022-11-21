@@ -22,7 +22,11 @@ import Chatroom from "../components/chat/Chatroom";
 
 import Login from "../pages/Login";
 import Join from "../pages/Join";
+
+import CommentEditPage from '../pages/CommentEditPage';
+
 import Cards from "../pages/Cards";
+
 
 const Router = () => {
   return (
@@ -42,6 +46,8 @@ const Router = () => {
         <Route path="/write" element={<Write />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/commentedit/:id/:cid" element={<CommentEditPage />} />
+
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />

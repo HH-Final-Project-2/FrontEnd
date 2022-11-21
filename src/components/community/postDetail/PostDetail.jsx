@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import { addComment } from '../../../redux/modules/commentSlice';
 import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
@@ -75,14 +74,14 @@ const PostDetail = () => {
         <Heart
           id={detail.id}
           heart={detail.postHeartCnt === 'true' ? true : false}
-          numberHeart={detail.heart}
+          numberHeart={detail.postHeartCnt}
         />
 
         <button onClick={editHandler}>수정하기</button>
         <button onClick={deleteHandler}>삭제하기</button>
       </CommentBox>
       <PostLine />
-      <Comment detail={detail} />
+      <Comment postid={id} />
     </DetailBox>
   );
 };
