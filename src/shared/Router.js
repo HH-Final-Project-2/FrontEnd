@@ -5,11 +5,11 @@ import Detail from "../pages/Detail";
 import Edit from "../pages/Edit";
 
 import Main from "../pages/Main";
-import CompanySearch from "../components/main/CompanySearch";
-import MainCards from "../components/main/MainCards";
-import MainCardsPut from "../components/main/MainCardsPut";
-import OtherCardsCategory from "../components/main/OtherCardsCategory";
-import ViewMainDetailPost from "../components/main/ViewMainDetailPost";
+import CompanySearch from "../components/card/CompanySearch";
+import MainCards from "../components/card/MainCards";
+import MainCardsPut from "../components/card/MainCardsPut";
+import OtherCardsCategory from "../components/card/OtherCardsCategory";
+import ViewMainDetailPost from "../components/card/ViewMainDetailPost";
 
 import Write from "../pages/Write";
 
@@ -23,6 +23,8 @@ import Chatroom from "../components/chat/Chatroom";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
 import Cards from "../pages/Cards";
+import MySchedulesItem from "../components/mySchedules/MySchedulesItem";
+import AddMySchedules from "../components/mySchedules/AddMySchedules";
 
 const Router = () => {
   return (
@@ -36,6 +38,10 @@ const Router = () => {
         <Route path="/posts/:id/put" element={<MainCardsPut />} />
         <Route path="/posts/companySearch" element={<CompanySearch />} />
         <Route path="/posts/get/:id" element={<ViewMainDetailPost />} />
+
+        {/* 내 일정 */}
+        <Route path="/mySchedules" element={<MySchedulesItem />} />
+        <Route path="/addSchedules" element={<AddMySchedules />} />
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />

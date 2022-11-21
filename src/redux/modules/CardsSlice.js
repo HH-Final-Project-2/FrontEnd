@@ -12,9 +12,9 @@ export const __writePost = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.post(
@@ -37,9 +37,9 @@ export const __imgPost = createAsyncThunk(
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.post(
@@ -47,7 +47,7 @@ export const __imgPost = createAsyncThunk(
         payload,
         config
       );
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -62,9 +62,9 @@ export const __mainGet = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.get(
@@ -87,9 +87,9 @@ export const __searchGet = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.post(
@@ -113,9 +113,9 @@ export const __companyInfo = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.post(
@@ -124,7 +124,7 @@ export const __companyInfo = createAsyncThunk(
         config
       );
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -137,19 +137,18 @@ export const __viewGet = createAsyncThunk(
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.get(
         `https://bkyungkeem.shop/api/businessCards/${payload}`,
         config
       );
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      console.log(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -164,9 +163,9 @@ export const __fixPost = createAsyncThunk(
       const config = {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODc5NTEzM30.DWQdm1gFxt7C3yi41Mha7kli_W8rRcP71hzoZqXMRqE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoia3NqQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTExNDM3Nn0.i0fG5tjXERuiS8fCVMRVWDEsbf9wQ6ZFrN5BffFJlgw",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk2MzI3NzZ9.LRDgMrwnIO5hBFqzgcaImwFfjfhOkm1KhbGe4b3-JQA",
         },
       };
       const data = await axios.put(

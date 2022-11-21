@@ -1,5 +1,5 @@
 import React from "react";
-import MainView from "../components/main/MainView";
+import MainView from "../components/card/MainView";
 
 const Cards = () => {
   return (
