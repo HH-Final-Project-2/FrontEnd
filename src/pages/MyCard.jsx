@@ -7,13 +7,15 @@ import MyProfile from '../components/myCard/MyProfile';
 import MyLayout from '../components/myCard/MyLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../redux/modules/mycardSlice';
+import KakaoShare from '../components/myCard/kakaoshare/KakaoShare';
 
 const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
-  console.log(cardinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+  console.log('페이지', cardinfo);
+
   const copyHandler = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -37,10 +39,8 @@ const MyCard = () => {
           <St_title>내 명함</St_title>
           <button>계정관리</button>
         </St_Header>
-
         <MyProfile />
         <Mycarditem />
-
         <St_share
           onClick={() => {
             copyHandler(
@@ -48,9 +48,10 @@ const MyCard = () => {
                 cardinfo.company +
                 ']' +
                 '\n이름 : ' +
-                cardinfo.position +
-                ' ' +
                 cardinfo.cardName +
+                ' (' +
+                cardinfo.position +
+                ')' +
                 '\n전화번호 : ' +
                 cardinfo.phoneNum +
                 '\n이메일 : ' +
@@ -60,6 +61,10 @@ const MyCard = () => {
         >
           명함내보내기
         </St_share>
+        <St_Kakao>
+          <KakaoShare />
+          카카오톡 공유
+        </St_Kakao>
       </MyLayout>
     );
     //명함이 없을 때
@@ -73,8 +78,8 @@ const MyCard = () => {
 
         <MyProfile />
         <MyCardNoneItem />
-
-        <St_share>명함내보내기</St_share>
+        {/* 
+        <St_share>명함내보내기</St_share> */}
       </MyLayout>
     );
   }
@@ -106,12 +111,29 @@ const St_share = styled.button`
   width: 100%;
   max-width: 150px;
   height: 50px;
-  margin: 40px auto;
+  margin: 0 auto;
   background-color: white;
   border: 1px solid #e0e0e0;
   border-radius: 25px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-weight: 550;
+  font-size: 14px;
+  cursor: pointer;
+`;
+
+const St_Kakao = styled.button`
+  width: 100%;
+  max-width: 150px;
+  height: 50px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  display: flex;
+  justify-content: start;
   align-items: center;
   padding: 5px;
   font-weight: 550;
