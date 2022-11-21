@@ -3,9 +3,7 @@ import PostEdit from '../components/community/postEdit/PostEdit';
 
 const Edit = () => {
   return (
-    <div>
-      <PostEdit />
-    </div>
+    <PostEdit />
   );
 };
 

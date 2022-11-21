@@ -35,7 +35,7 @@ const UserJoin = () => {
   const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] = useState('none')
   const [stateXButtonUserName, setStateXButtonUserName] = useState('none')
   const [stateXButtonNickName, setStateXButtonNickName] = useState('none')
-  const [stateXButtonPhoneNumber, setStateXButtonPhoneNumber] = useState('none')
+
 
   // 이메일,패스워드,이름,닉네임,연락처 watch
   const watchForEmail = watch('email')
@@ -125,21 +125,6 @@ const UserJoin = () => {
     setStateXButtonNickName('none');
   }
 
-  // 연락처 확인 X버튼 디스플레이
-  useEffect(() => {
-    if (watchForPhoneNumber === undefined) {
-      setStateXButtonPhoneNumber('none')
-    } else if (watchForPhoneNumber.length === 0) {
-      setStateXButtonPhoneNumber('none')
-    } else {
-      setStateXButtonPhoneNumber('block')
-    }
-  })
-
-  const xButtonPhoneNumber = () => {
-    resetField('phonenumber')
-    setStateXButtonPhoneNumber('none');
-  }
 
   // 폼 데이터 전송
   const onSubmit = (data) => {
@@ -300,34 +285,7 @@ const UserJoin = () => {
         && <ErrorText>닉네임은 최소2~15자 입니다</ErrorText>
       }
 
-      {/* 연락처 */}
-      {/* <InputContainer>
-        <LabelText>연락처</LabelText>
-        <InputJoin name='phonenumber' type='text' placeholder='연락처를 입력해주세요'
-          {...register('phonenumber',
-            {
-              required: true,
-              maxLength: 20
-            })}
-        />
-        <InputButton>
-          <Xbutton
-            width="20"
-            height="20"
-            fill="#e2e2e2"
-            display={stateXButtonPhoneNumber}
-            onClick={xButtonPhoneNumber}
-          />
-        </InputButton>
-      </InputContainer>
-      {
-        errors.phonenumber && errors.phonenumber.type === 'required'
-        && <ErrorText>연락처를 입력해주세요</ErrorText>
-      }
-      {
-        errors.phonenumber && errors.phonenumber.type === 'maxLength'
-        && <ErrorText>연락처를 확인해주세요</ErrorText>
-      } */}
+
 
       {/* 가입하기 버튼 */}
       <ButtonJoin>완료</ButtonJoin>

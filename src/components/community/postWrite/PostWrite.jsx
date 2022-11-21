@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -13,6 +13,7 @@ import {
 } from './PostWriteStyle';
 import { useDispatch } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
+import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 
 const PostWrite = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const PostWrite = () => {
 
   const [memberPost, setMemberpost] = useState();
   const [image, setImage] = useState('');
+
+  //const [img, setimg] = useState('');
 
   const goToCommunity = () => {
     navigate('/community');
@@ -37,6 +40,21 @@ const PostWrite = () => {
       };
     });
   };
+
+  const deleteImage = () => {
+    //setimg('')
+    // setMemberpost('')
+    setImage('')
+  }
+
+  //지우기버튼 띄우기
+  const display = (str) => {
+    if (str) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   //작성한 데이터 전송
   const writeHandler = () => {
@@ -134,6 +152,7 @@ const PostWrite = () => {
         </WriteBody>
         <ImageUpload>
           <input
+            // value={img}
             type="file"
             accept="image/*"
             onChange={(e) => {
@@ -148,8 +167,14 @@ const PostWrite = () => {
           {image && <img src={image} alt="preview-img" />}
         </ImageUpload>
         <WriteBtn>작성</WriteBtn>
+        <Xbutton
+          display={display(image) ? 'block' : 'none'}
+          type='button'
+          onClick={deleteImage}>이미지 삭제
+        </Xbutton>
       </WriteBox>
-    </form>
+    </form >
+
   );
 };
 

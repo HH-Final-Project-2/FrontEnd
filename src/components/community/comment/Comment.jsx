@@ -13,10 +13,13 @@ import {
   ComentPlus
 } from './CommentStyle';
 
-const Comment = () => {
+
+const Comment = ({ postid }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [commentForm, setCommentForm] = useState('');
-  const nickname = localStorage.getItem('nickname')
+
+  const nickname = localStorage.getItem('nickname');
 
   const { id } = useParams();
   const { comments } = useSelector((state) => state.comments);
@@ -62,7 +65,9 @@ const Comment = () => {
                     return
                   }
                 }}>···</ComentPlus>
-                <button>수정</button>
+                <button type='button' onClick={() => {
+                  navigate(`/commentedit/${id}/${commentList.id}`)
+                }}>수정</button>
               </CommentSection1>
               {/*  */}
               <CommentBody>{commentList.content}</CommentBody>

@@ -19,22 +19,23 @@ const PostList = () => {
 
   //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
 
-  // 검색 기능
-  // const [postAll, setPostAll] = useState([]);
-  // const [query, setQuery] = useSearchParams();
-  // const getPosts = async () => {
-  //   let searchQuery = query.get('q') || '';
-  //   console.log('쿼리값은?', searchQuery);
-  //   let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
-  //   let response = await fetch(url);
-  //   let data = await response.json();
-  //   setPostAll(data);
-  // };
+  //검색 기능 url 이동까지 구현 완료
+  const [postAll, setPostAll] = useState([]);
+  const [query, setQuery] = useSearchParams();
+  const getPosts = async () => {
+    let searchQuery = query.get('q') || '';
+    console.log('쿼리값은?', searchQuery);
+    let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setPostAll(data);
+  };
+
   const search = (event) => {
     if (event.key === 'Enter') {
       let keyword = event.target.value;
 
-      navigate(`/?q=${keyword}`);
+      navigate(`/community/?q=${keyword}`);
     }
   };
 
