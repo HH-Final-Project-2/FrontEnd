@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
 import CommentEdit from '../components/community/commentEdit/CommentEdit';
+import Layout from '../components/layout/Layout';
 
 const CommentEditPage = () => {
-  return <CommentEdit />
-
-}
+  return (
+    <Layout>
+      <CommentEdit />
+    </Layout>
+  );
+};
 
 export default CommentEditPage;

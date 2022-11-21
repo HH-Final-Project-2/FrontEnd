@@ -1,32 +1,31 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Community from "../pages/Community";
-import Detail from "../pages/Detail";
-import Edit from "../pages/Edit";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Community from '../pages/Community';
+import Detail from '../pages/Detail';
+import Edit from '../pages/Edit';
 
-import Main from "../pages/Main";
-import CompanySearch from "../components/main/CompanySearch";
-import MainCards from "../components/main/MainCards";
-import MainCardsPut from "../components/main/MainCardsPut";
-import OtherCardsCategory from "../components/main/OtherCardsCategory";
-import ViewMainDetailPost from "../components/main/ViewMainDetailPost";
+import Main from '../pages/Main';
+import CompanySearch from '../components/main/CompanySearch';
+import MainCards from '../components/main/MainCards';
+import MainCardsPut from '../components/main/MainCardsPut';
+import OtherCardsCategory from '../components/main/OtherCardsCategory';
+import ViewMainDetailPost from '../components/main/ViewMainDetailPost';
 
-import Write from "../pages/Write";
+import Write from '../pages/Write';
 
-import MyCard from "../pages/MyCard";
-import MyCardInfo from "../components/myCard/MyCardInfo";
-import MyCardPatch from "../components/myCard/MyCardPatch";
-import MyCardMake from "../components/myCard/MyCardMake";
-import Chat from "../pages/Chat";
-import Chatroom from "../components/chat/Chatroom";
+import MyCard from '../pages/MyCard';
+import MyCardInfo from '../components/myCard/MyCardInfo';
+import MyCardPatch from '../components/myCard/MyCardPatch';
+import MyCardMake from '../components/myCard/MyCardMake';
+import Chat from '../pages/Chat';
+import Chatroom from '../components/chat/Chatroom';
 
-import Login from "../pages/Login";
-import Join from "../pages/Join";
+import Login from '../pages/Login';
+import Join from '../pages/Join';
 
 import CommentEditPage from '../pages/CommentEditPage';
 
-import Cards from "../pages/Cards";
-
+import Cards from '../pages/Cards';
 
 const Router = () => {
   return (
@@ -47,7 +46,6 @@ const Router = () => {
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/commentedit/:id/:cid" element={<CommentEditPage />} />
-
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />
