@@ -14,11 +14,45 @@ const MyCardInfo = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  const companyinfo = useSelector((state) => state.PostReducer.companyInfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
 
+  const { kakao } = window;
+
+  const [map, setMap] = useState({
+    center: { lat: 37.503680684679125, lng: 126.95701252583554 },
+    isPanto: true,
+  });
+
+  const SearchMap = () => {
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    let callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        const newSearch = result[0];
+        setMap({
+          center: { lat: newSearch.y, lng: newSearch.x },
+        });
+      }
+    };
+    geocoder.addressSearch(`${cardinfo.companyAddress}`, callback);
+  };
+
+  useEffect(() => {
+    SearchMap();
+  }, []);
+  // console.log(SearchMap);
+  // const container = document.getElementById('map'),
+  //   options = {
+  //     center: new kakao.maps.LatLng(33.450701, 126.570667),
+  //     level: 3,
+  //   };
+
+  // const mapss = new kakao.maps.Map(container, options);
+  console.log(map.center.lat);
   if (cardinfo === undefined) return;
 
   return (
@@ -65,20 +99,17 @@ const MyCardInfo = () => {
           <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.position}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.department}</St_Detail_Body>
-          <St_Detail_Body>
-            123, Yeoksam-ro, Gangnam-gu, Seoul.Rep.of Korea
-          </St_Detail_Body>
+          <St_Detail_Body>{cardinfo.companyAddress}</St_Detail_Body>
         </Detail_Body_Box>
         <MapBox>
           <Map
-            center={{ lat: 37.503680684679125, lng: 126.95701252583554 }}
+            center={map.center}
+            isPanto={map.isPanto}
             style={{ width: '100%', height: '170px' }}
           >
             <MapMarker
-              position={{ lat: 37.503680684679125, lng: 126.95701252583554 }}
-            >
-              {/* <div style={{ color: '#000' }}></div> */}
-            </MapMarker>
+              position={{ lat: map.center.lat, lng: map.center.lng }}
+            ></MapMarker>
           </Map>
         </MapBox>
       </St_CardInfo>

@@ -14,8 +14,8 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
-  console.log('페이지', cardinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log('페이지', cardinfo.id);
 
   const copyHandler = async (text) => {
     try {
