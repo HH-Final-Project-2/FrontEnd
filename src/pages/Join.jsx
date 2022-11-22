@@ -1,10 +1,13 @@
-import React from 'react'
-import UserJoin from '../components/join/UserJoin'
+import React from 'react';
+import UserJoin from '../components/join/UserJoin';
+import Layout from '../components/layout/Layout';
 
 const Join = () => {
   return (
-    <UserJoin />
-  )
-}
+    <Layout>
+      <UserJoin />
+    </Layout>
+  );
+};
 
-export default Join
+export default Join;

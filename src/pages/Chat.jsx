@@ -5,6 +5,7 @@ import Chatlist from '../components/chat/Chatlist';
 import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { addChatroom } from '../redux/modules/chatSlice';
+import Layout from '../components/layout/Layout';
 
 const Chat = () => {
   const [modal, setModal] = useState(false);
@@ -20,7 +21,7 @@ const Chat = () => {
   console.log(chatRoom);
 
   return (
-    <MyLayout>
+    <Layout>
       <St_Header>
         <St_Title>채팅</St_Title>
         <div>
@@ -70,7 +71,7 @@ const Chat = () => {
         </div>
       </St_Header>
       <Chatlist></Chatlist>
-    </MyLayout>
+    </Layout>
   );
 };
 
