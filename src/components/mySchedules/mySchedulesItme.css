@@ -1,5 +1,14 @@
+.page {
+}
+.layout {
+  width: 375px;
+  max-width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
 .react-calendar {
-  width: 350px;
+  width: 375px;
   max-width: 100%;
   background: white;
   border: 1px solid #a0a096;
@@ -126,4 +135,8 @@
   border-radius: 50%;
   display: inline-block;
   margin-left: 1px;
+}
+
+.detailTodo {
+  margin-top: 10px;
 }

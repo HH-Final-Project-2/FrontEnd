@@ -10,13 +10,13 @@ export const __writeSchedules = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiamFlQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTQ2MTI0M30.IjIQefwTV7gGZ2I4qoy09uhiqZIF5b8_Ehs5nTJgDPE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk0NjEyNDN9._GZjufTNaZyIhyiP3qdcZb0ayAjk-tDUPDXLPnbziy0",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA",
         },
       };
       const data = await axios.post(
-        "http://localhost:3001/date",
+        "https://bkyungkeem.shop/api/calendar",
         payload,
         config
       );
@@ -35,14 +35,17 @@ export const __schedulesGet = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiamFlQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTQ2MTI0M30.IjIQefwTV7gGZ2I4qoy09uhiqZIF5b8_Ehs5nTJgDPE",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g",
           "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk0NjEyNDN9._GZjufTNaZyIhyiP3qdcZb0ayAjk-tDUPDXLPnbziy0",
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA",
         },
       };
-      const data = await axios.get("http://localhost:3001/date", config);
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const data = await axios.get(
+        "https://bkyungkeem.shop/api/calendar",
+        config
+      );
+      console.log(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +53,7 @@ export const __schedulesGet = createAsyncThunk(
 );
 
 const initialState = {
-  date: [{ dateTime: "", todo: "", time: "", id: "" }],
+  date: [],
 };
 
 export const ScheduleSlice = createSlice({

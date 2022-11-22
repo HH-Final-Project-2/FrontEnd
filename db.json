@@ -30,25 +30,56 @@
       "id": 8
     }
   ],
-  "img": [],
   "date": [
     {
-      "dateTime": "2022-11-21",
-      "todo": "ㅁㄴㅇㄹ",
-      "time": "17:39",
-      "id": 3
+      "filteredDate": [
+        "2022-11-22"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:02",
+      "endDate": "2022-11-22",
+      "endTime": "20:02",
+      "title": "asdfasd",
+      "todo": "fasdfasd",
+      "id": 7
     },
     {
-      "dateTime": "2022-11-21",
-      "todo": "asdfasdf",
-      "time": "22:28",
-      "id": 4
+      "filteredDate": [
+        "2022-11-22",
+        "2022-11-23",
+        "2022-11-24",
+        "2022-11-25"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:30",
+      "endDate": "2022-11-25",
+      "endTime": "20:30",
+      "title": "제목",
+      "todo": "일정",
+      "id": 8
     },
     {
-      "dateTime": "2022-11-21",
-      "todo": "asdvas",
-      "time": "22:28",
-      "id": 5
+      "filteredDate": [
+        "2022-11-22",
+        "2022-11-23"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:18",
+      "endDate": "2022-11-23",
+      "endTime": "21:30",
+      "title": "asdfas",
+      "todo": "asdfasd",
+      "id": 9
+    },
+    {
+      "filteredDate": "2022-11-22,2022-11-23,2022-11-24,2022-11-25,2022-11-26,2022-11-27,2022-11-28,2022-11-29",
+      "startDate": "2022-11-22",
+      "startTime": "20:22",
+      "endDate": "2022-11-29",
+      "endTime": "20:22",
+      "title": "asdf",
+      "todo": "asdfas",
+      "id": 10
     }
   ]
 }
