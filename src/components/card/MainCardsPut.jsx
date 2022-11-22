@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
@@ -11,7 +10,9 @@ const MainCards = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const cardFix = useSelector((state) => state.PostReducer.viewList);
-  console.log(cardFix);
+  const companyGet = useSelector((state) => state.PostReducer.companyInfo);
+  console.log(companyGet);
+  // console.log(cardFix);
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
@@ -48,9 +49,10 @@ const MainCards = () => {
   const valueChangeHandler = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-    // console.log(inputValue);
+    console.log(inputValue);
   };
   useEffect(() => setInputValue(cardFix), [cardFix]);
+  // useEffect(() => setInputValue(companyGet), [companyGet]);
   //   const radioChangeHandler = (e) => {
   //     setCompanyType(e.target.value);
   //     console.log(companyType);
@@ -67,8 +69,14 @@ const MainCards = () => {
         position: inputValue.position,
         tel: inputValue.tel,
         fax: inputValue.fax,
-        company: inputValue.company,
-        companyAddress: inputValue.companyAddress,
+        company:
+          companyGet.companyName !== undefined
+            ? companyGet.companyName
+            : inputValue.company,
+        companyAddress:
+          companyGet.companyAddress !== undefined
+            ? companyGet.companyAddress
+            : inputValue.companyAddress,
         companyType: inputValue.companyType,
       })
     );
@@ -122,14 +130,22 @@ const MainCards = () => {
             type="text"
             placeholder="회사"
             name="company"
-            value={inputValue.company || ""}
+            value={
+              companyGet.companyName
+                ? companyGet.companyName
+                : inputValue.company
+            }
             onChange={valueChangeHandler}
           ></input>
           <input
             type="text"
             placeholder="회사주소"
             name="companyAddress"
-            value={inputValue.companyAddress || ""}
+            value={
+              companyGet.companyAddress
+                ? companyGet.companyAddress
+                : inputValue.companyAddress
+            }
             onChange={valueChangeHandler}
           ></input>
           <input

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { __schedulesGet } from "../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
+import addimg from "../../images/Property 1=default.svg";
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
@@ -27,9 +28,9 @@ const MySchedulesItem = () => {
   return (
     <div className="page">
       <div className="layout">
-        <div>
-          <p>개인일정</p>
-          <button onClick={addClickHandler}>일정 추가</button>
+        <div className="head">
+          <p className="todos">개인일정</p>
+          <img src={addimg} className="addBtn" onClick={addClickHandler}></img>
         </div>
         <Calendar
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
@@ -58,50 +59,59 @@ const MySchedulesItem = () => {
           }}
         />
         <div className="detailTodo">
-          {moment(value).format("YYYY년 MM월 DD일")}
+          {moment(value).format("MM월 DD일 일정")}
           {marks !== undefined
             ? marks.map((x) => {
                 if (
                   x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (
-                    <div key={x.id}>
-                      <div>키:{x.id}</div>
-                      <div>시작:{x.startDate}</div>
-                      <div>종료:{x.endDate}</div>
-                      <div>제목:{x.title}</div>
-                      <div>할일:{x.todo}</div>
-                      <button
-                        onClick={() => {
-                          const config = {
-                            headers: {
-                              Authorization:
-                                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g",
-                              "Refresh-Token":
-                                "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA",
-                            },
-                          };
-                          axios
-                            .delete(
-                              `https://bkyungkeem.shop/api/calendar/${x.id}`,
-                              config
-                            )
-                            .then(function (response) {
-                              console.log(response);
-                              marks.filter((x) => x.id !== response);
-                            })
-                            .catch(function (error) {
-                              console.log(error);
-                            })
-                            .then(function () {
-                              // always executed
-                            });
-                          alert("DELETE SECCESS");
-                          window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
-                        }}
-                      >
-                        일정 삭제
-                      </button>
+                    <div className="todoBox">
+                      <div key={x.id}>
+                        <div>
+                          <div className="titleBox">
+                            <div className="dot"></div>
+                            <div className="title">{x.title}</div>
+                          </div>
+                          <div className="todo">{x.todo}</div>
+                        </div>
+                        <div className="dateTime">
+                          {x.startDate} {x.startTime}
+                          <br />
+                          {x.endDate} {x.endTime}
+                        </div>
+                        <button
+                          onClick={() => {
+                            const config = {
+                              headers: {
+                                Authorization:
+                                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g",
+                                "Refresh-Token":
+                                  "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA",
+                              },
+                            };
+                            axios
+                              .delete(
+                                `https://bkyungkeem.shop/api/calendar/${x.id}`,
+                                config
+                              )
+                              .then(function (response) {
+                                console.log(response);
+                                marks.filter((x) => x.id !== response);
+                              })
+                              .catch(function (error) {
+                                console.log(error);
+                              })
+                              .then(function () {
+                                // always executed
+                              });
+                            alert("DELETE SECCESS");
+                            window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
+                          }}
+                        >
+                          일정 삭제
+                        </button>
+                      </div>
                     </div>
                   );
                 } else return null;

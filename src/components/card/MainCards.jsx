@@ -50,7 +50,7 @@ const MainCards = () => {
         position: inputValue.position,
         tel: inputValue.tel,
         fax: inputValue.fax,
-        company: inputValue.company,
+        company: inputValue.companyName,
         companyAddress: inputValue.companyAddress,
         companyType: inputValue.companyType,
       })
@@ -106,7 +106,7 @@ const MainCards = () => {
             type="text"
             placeholder="회사"
             name="company"
-            value={inputValue.company || ""}
+            value={inputValue.companyName || ""}
             onChange={valueChangeHandler}
           ></input>
           <input
