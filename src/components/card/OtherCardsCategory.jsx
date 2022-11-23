@@ -14,11 +14,13 @@ const OtherCardsCategory = () => {
     dispatch(__mainGet());
   }, [dispatch]);
 
+  if (mainpost === undefined) return null;
+
   return (
     <div>
       <button
         onClick={() => {
-          navigate("/");
+          navigate("/cards");
         }}
       >
         자사
@@ -30,25 +32,26 @@ const OtherCardsCategory = () => {
       >
         타사
       </button>
-      {mainpost &&
-        mainpost.map((main) => {
-          if (main.companyType === "other") {
-            return (
-              <div
-                key={main.id}
-                onClick={() => {
-                  navigate(`/posts/get/${main.id}`);
-                }}
-              >
-                <div>{main.name}</div>
-                <div>{main.email}</div>
-                <div>{main.company}</div>
-                <div>{main.phoneNum}</div>
-                <div>{main.companyType}</div>
-              </div>
-            );
-          }
-        })}
+      {mainpost !== "명함을 등록해주세요"
+        ? mainpost.map((main) => {
+            if (main.companyType === "other") {
+              return (
+                <div
+                  key={main.id}
+                  onClick={() => {
+                    navigate(`/posts/get/${main.id}`);
+                  }}
+                >
+                  <div>{main.cardName}</div>
+                  <div>{main.email}</div>
+                  <div>{main.company}</div>
+                  <div>{main.phoneNum}</div>
+                  <div>{main.companyType}</div>
+                </div>
+              );
+            }
+          })
+        : null}
       <button
         onClick={() => {
           navigate("/posts");
