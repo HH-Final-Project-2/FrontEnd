@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
-import { __putPost, __getPost } from '../../../redux/modules/PostSlice';
-import { SectionLine } from '../postList/PostListStyle';
-import { DeleteImage, ImgUploadButton } from '../postWrite/PostWriteStyle';
-import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
+import { __putPost, __getPost } from "../../../redux/modules/PostSlice";
+import { SectionLine } from "../postList/PostListStyle";
+import { DeleteImage, ImgUploadButton } from "../postWrite/PostWriteStyle";
+import { ReactComponent as Xbutton } from "../../../images/x-circle-fill.svg";
 import {
   EditBody,
   EditBox,
@@ -15,53 +14,43 @@ import {
   EditTitle,
   ImageUpload,
   SelectJob,
-} from './PostEditStyle';
-
+} from "./PostEditStyle";
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams(); //동작 원리 알아보기
   const { detail } = useSelector((state) => state.PostSlice);
-
   const [title, setTitle] = useState(detail.title);
   const [content, setContent] = useState(detail.content);
   const [jobGroup, setJobGroup] = useState(detail.jobGroup);
-
   useEffect(() => {
     setTitle(detail.title);
     setContent(detail.content);
     setJobGroup(detail.jobGroup);
   }, [detail]);
-
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
-
-  const [memberPost, setMemberpost] = useState('');
-  const [image, setImage] = useState('');
-
+  const [memberPost, setMemberpost] = useState("");
+  const [image, setImage] = useState("");
   const goToCommunity = () => {
-    navigate('/community');
+    navigate("/community");
   };
-
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
     return new Promise((resolve) => {
       reader.onload = () => {
         setImage(reader.result);
-
         resolve();
       };
     });
   };
-
   const onSubmitHandler = () => {
     const formData = new FormData();
-
-    formData.append('image', memberPost.image);
+    formData.append("image", memberPost.image);
     formData.append(
-      'postDto',
+      "postDto",
       new Blob(
         [
           JSON.stringify({
@@ -71,10 +60,9 @@ const PostEdit = () => {
             image: memberPost.image,
           }),
         ],
-        { type: 'application/json' }
+        { type: "application/json" }
       )
     );
-
     dispatch(
       __putPost({
         id: detail.id,
@@ -82,11 +70,9 @@ const PostEdit = () => {
       })
     );
   };
-
   const deleteImage = () => {
-    setImage('');
+    setImage("");
   };
-
   //지우기버튼 띄우기
   const display = (str) => {
     if (str) {
@@ -95,7 +81,6 @@ const PostEdit = () => {
       return false;
     }
   };
-
   return (
     <form
       onSubmit={(e) => {
@@ -117,7 +102,6 @@ const PostEdit = () => {
           <EditSection1Title>게시글 수정</EditSection1Title>
         </EditSection1>
         <SectionLine />
-
         <SelectJob>
           <select
             onChange={(ev) => {
@@ -188,18 +172,17 @@ const PostEdit = () => {
           {/* 이미지 미리보기 제거 버튼 */}
           <DeleteImage>
             <Xbutton
-              display={display(image) ? 'block' : 'none'}
+              display={display(image) ? "block" : "none"}
               type="button"
               onClick={deleteImage}
             />
           </DeleteImage>
           {/* 이미지 미리보기 */}
           {image && <img src={image} alt="preview-img" />}
-
           {/* 이미지 업로드 */}
           <ImgUploadButton>
             <input
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               id="file-input"
               type="file"
               accept="image/*"
@@ -233,5 +216,4 @@ const PostEdit = () => {
     </form>
   );
 };
-
 export default PostEdit;

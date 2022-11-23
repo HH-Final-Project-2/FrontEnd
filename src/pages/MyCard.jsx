@@ -13,13 +13,14 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log("cardinfo", cardinfo);
   console.log("페이지", cardinfo.id);
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
   if (cardinfo === undefined) return;
   //명함이 있을 때
-  if (cardinfo.id !== "") {
+  if (cardinfo.id !== undefined) {
     return (
       <Layout>
         <St_Header>
