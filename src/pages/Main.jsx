@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux/es/exports';
 import { signOut, withDraw } from '../redux/modules/membersSlice';
-import BottomSheet from '../components/bottomSheet/BottomSheet'
 import Layout from '../components/layout/Layout';
 
 const Main = () => {
@@ -52,7 +51,6 @@ const Main = () => {
       >
         회원탈퇴
       </button>
-      <BottomSheet />
     </Layout>
   );
 };

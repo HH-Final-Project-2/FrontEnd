@@ -26,7 +26,6 @@ import Join from '../pages/Join';
 import CommentEditPage from '../pages/CommentEditPage';
 
 import Cards from '../pages/Cards';
-import Search from '../pages/Search';
 
 const Router = () => {
   return (
@@ -47,7 +46,6 @@ const Router = () => {
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/commentedit/:id/:cid" element={<CommentEditPage />} />
-        <Route path="/search" element={<Search />} />
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />
