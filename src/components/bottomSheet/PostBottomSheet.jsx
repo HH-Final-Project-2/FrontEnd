@@ -8,14 +8,14 @@ import {
 import { ReactComponent as More } from '../../images/ic-more.svg'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { deleteComment } from '../../redux/modules/commentSlice';
+import { __deletePost } from '../../redux/modules/PostSlice';
 
-export default function CommentBottomSheet({ commentList, id }) {
+export default function PostBottomSheet({ detail, id }) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <SheetButton>
@@ -24,22 +24,14 @@ export default function CommentBottomSheet({ commentList, id }) {
 
       <BottomSheet open={open} onDismiss={() => { setOpen(false) }}>
         <Board>
-          <ul
-            onClick={() => {
-              navigate(`/commentedit/${id}/${commentList.id}`)
-            }}
-          >수정</ul>
+          <ul onClick={() => { navigate(`/edit/${id}`); }}>수정</ul>
           <ul
             style={{ color: '#F82323' }}
             onClick={() => {
-              const confirm = window.confirm('정말 삭제하시겠습니까?');
+              const confirm = window.confirm('게시글을 지우시겠습니까?');
               if (confirm) {
-                dispatch(
-                  deleteComment({
-                    postId: id,
-                    commentId: commentList.id,
-                  })
-                );
+                dispatch(__deletePost(detail.id));
+                navigate('/community');
               } else {
                 return;
               }

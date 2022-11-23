@@ -55,3 +55,10 @@ export const WriteButton = styled.div`
   }
   transition-duration: 0.3s;
 `;
+
+export const SearchButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;

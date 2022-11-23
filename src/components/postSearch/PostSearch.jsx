@@ -49,4 +49,4 @@ const PostSearch = () => {
   )
 }
 
-export default PostSearch
+export default PostSearch;

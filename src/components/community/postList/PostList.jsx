@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { useSearchParams } from "react-router-dom";
 
-import Footer from "../../footer/Footer";
-import Post from "../post/Post";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
+import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
+import Post from '../post/Post';
+import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+
 import {
   CommunityLayout,
   Section1,
@@ -13,32 +15,23 @@ import {
   Section3,
   SectionLine,
   WriteButton,
-} from "./PostListStyle";
+  SearchButton
+} from './PostListStyle';
+
 
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [query, setQuery] = useSearchParams();
+  let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
 
-  //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
-
-  //검색 기능 url 이동까지 구현 완료
-  const [postAll, setPostAll] = useState([]);
-  const [query, setQuery] = useSearchParams();
-  const getPosts = async () => {
-    let searchQuery = query.get("q") || "";
-    console.log("쿼리값은?", searchQuery);
-    let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setPostAll(data);
-  };
 
   const writeHandler = () => {
     navigate("/write");
   };
 
-  if (post === undefined) return null;
+  if (post === undefined) return;
 
   return (
     <CommunityLayout>
@@ -55,6 +48,9 @@ const PostList = () => {
           </svg>
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
+
+        <SearchButton onClick={() => navigate('/search')}><SearchIcon /></SearchButton>
+
       </Section1>
       <SectionLine />
 

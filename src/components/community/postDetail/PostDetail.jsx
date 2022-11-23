@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
+import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
 
@@ -29,7 +30,6 @@ import {
 } from './PostDetailStyle';
 
 const PostDetail = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -39,24 +39,9 @@ const PostDetail = () => {
     dispatch(__getPost(id));
   }, [dispatch]);
 
-  // 게시글 삭제
-  const deleteHandler = () => {
-    dispatch(__deletePost(detail.id));
-    alert('삭제되었습니다.');
-    navigate('/community');
-  };
-
-  // 게시글 수정
-  const editHandler = () => {
-    navigate(`/edit/${id}`);
-  };
-
   if (detail === undefined) return;
-
   return (
     <DetailBox>
-      <button onClick={editHandler}>수정하기</button>
-      <button onClick={deleteHandler}>삭제하기</button>
       <Section1>
         <Section2>
           <svg
@@ -68,19 +53,11 @@ const PostDetail = () => {
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g fill="#52596B">
-              <circle cx="11.5" cy="11.5" r="1.5" />
-              <circle cx="6.5" cy="11.5" r="1.5" />
-              <circle cx="16.5" cy="11.5" r="1.5" />
-            </g>
-          </svg>
+
+          {/* 게시글 더보기 바텀 시트 */}
+          <div>
+            <PostBottomSheet id={id} detail={detail} />
+          </div>
         </Section2>
       </Section1>
       <SectionLine />
