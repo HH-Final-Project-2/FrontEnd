@@ -220,7 +220,7 @@ export const PostSlice = createSlice({
 
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('필터전', state.post.length)
+      console.log('필터전이구', state.post.length)
       state.post = state.post.filter((postList) => postList.id !== action.payload)
       console.log('필터후', state.post.length)
     },
