@@ -19,32 +19,6 @@ const MyCardInfo = () => {
     dispatch(_getMakeCard());
   }, [dispatch]);
 
-  useEffect(() => {
-    SearchMap();
-  }, [Map, MapMarker, cardinfo]);
-
-  const { kakao } = window;
-
-  const [map, setMap] = useState({
-    center: { lat: 37.503680684679125, lng: 126.95701252583554 },
-    isPanto: true,
-    level: 3,
-  });
-
-  const SearchMap = () => {
-    const geocoder = new kakao.maps.services.Geocoder();
-
-    let callback = function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        const newSearch = result[0];
-        setMap({
-          center: { lat: newSearch.y, lng: newSearch.x },
-        });
-      }
-    };
-    geocoder.addressSearch(`${cardinfo.companyAddress}`, callback);
-  };
-
   if (cardinfo === undefined) return;
 
   return (
@@ -113,20 +87,26 @@ const MyCardInfo = () => {
           <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.position}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.department}</St_Detail_Body>
-          <St_Detail_Body>{cardinfo.companyAddress}</St_Detail_Body>
+          <St_Detail_Body>
+            123, Yeoksam-ro, Gangnam-gu, Seoul.Rep.of Korea
+          </St_Detail_Body>
         </Detail_Body_Box>
         <MapBox>
           <Map
+
             center={map.center}
             isPanto={map.isPanto}
             style={{
               width: ' 335px',
               height: '192px',
             }}
+
           >
             <MapMarker
-              position={{ lat: map.center.lat, lng: map.center.lng }}
-            ></MapMarker>
+              position={{ lat: 37.503680684679125, lng: 126.95701252583554 }}
+            >
+              {/* <div style={{ color: '#000' }}></div> */}
+            </MapMarker>
           </Map>
         </MapBox>
       </St_CardInfo>

@@ -13,15 +13,12 @@ import ViewMainDetailPost from '../components/main/ViewMainDetailPost';
 
 import Write from '../pages/Write';
 
-
-import MyCard from "../pages/MyCard";
-import MyCardInfo from "../components/myCard/MyCardInfo";
-import MyCardPatch from "../components/myCard/MyCardPatch";
-import MyCardMake from "../components/myCard/MyCardMake";
-import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach";
-import Chat from "../pages/Chat";
-import Chatroom from "../components/chat/Chatroom";
-
+import MyCard from '../pages/MyCard';
+import MyCardInfo from '../components/myCard/MyCardInfo';
+import MyCardPatch from '../components/myCard/MyCardPatch';
+import MyCardMake from '../components/myCard/MyCardMake';
+import Chat from '../pages/Chat';
+import Chatroom from '../components/chat/Chatroom';
 
 import Login from '../pages/Login';
 import Join from '../pages/Join';
@@ -55,7 +52,6 @@ const Router = () => {
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
-        <Route path="/mypage/cardpatch/MyCardCompanySerach" element={<MyCardCompanySerach />} />
 
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />

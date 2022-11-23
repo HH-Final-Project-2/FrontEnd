@@ -118,7 +118,7 @@ export const __companyInfo = createAsyncThunk(
             "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzMTM1MzN9.08D4JCXkn2n_FXLfXT5HXkSeuPnQpfYdJ2LTXEv3h8E",
         },
       };
-      const {data} = await axios.post(
+      const data = await axios.post(
         "https://bkyungkeem.shop/api/companyInfo",
         payload,
         config

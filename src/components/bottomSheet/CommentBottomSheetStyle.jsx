@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-// 수정,삭제 바텀시트
+
 export const Board = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,15 +9,18 @@ export const Board = styled.div`
   width: 60px;
   margin: 20px auto;
   ul {
-    padding: 5px;
-    cursor: pointer;
+  padding: 5px;
+  cursor: pointer;
   }
 `;
 
-// 직군 바텀시트
-export const JobBoard = styled.div`
-  width: 35%;
+export const SheetButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  margin-top: 15px;
+  margin-right: 3px;
+  cursor: pointer;
 `;
-export const BottomSheetJob = styled.div`
-  width: 35%;
-`;
+

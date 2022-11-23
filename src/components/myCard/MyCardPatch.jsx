@@ -12,8 +12,8 @@ const MyCardPatch = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  console.log(cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
+
 
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
@@ -21,7 +21,7 @@ const MyCardPatch = () => {
     email: cardinfo.email,
     phoneNum: cardinfo.phoneNum,
     company: cardinfo.company,
-    companyAddress: cardinfo.companyAddress,
+    // companyAddress:'',
     department: cardinfo.department,
     position: cardinfo.position,
     tel: cardinfo.tel,
@@ -35,15 +35,12 @@ const MyCardPatch = () => {
     email,
     phoneNum,
     company,
-    companyAddress,
     department,
     position,
     tel,
     fax,
     id,
   } = makeinfo;
-
-  console.log('<<<회사명>>>', company);
 
   const onChage = (e) => {
     const { value, name } = e.target;
@@ -52,6 +49,7 @@ const MyCardPatch = () => {
       [name]: value,
     });
   };
+
 
   const updateHandler = () => {
     dispatch(
@@ -173,6 +171,7 @@ const MyCardPatch = () => {
 
         <Item>
           <St_Key>회사</St_Key>
+
           <div>
             <St_value
               name="company"
@@ -216,6 +215,7 @@ const MyCardPatch = () => {
               </SearchAddress>
             </AddressBox>
           </St_Address>
+
         </Item>
         <Item>
           <St_Key>직책</St_Key>

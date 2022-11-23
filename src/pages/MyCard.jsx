@@ -13,8 +13,8 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  console.log('페이지', cardinfo.id);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
+  console.log('페이지', cardinfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());

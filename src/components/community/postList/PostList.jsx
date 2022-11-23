@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-
-import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
-
 import { useSearchParams } from 'react-router-dom';
 
 import Footer from '../../footer/Footer';
-
 import Post from '../post/Post';
 import {
   CommunityLayout,
@@ -24,13 +20,21 @@ const PostList = () => {
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.PostSlice);
 
-  const search = (event) => {
-    if (event.key === 'Enter') {
-      //입력한 검색어를 읽어와서
-      let keyword = event.target.value;
-      dispatch(__searchPost(keyword));
-    }
+  //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
+
+  //검색 기능 url 이동까지 구현 완료
+  const [postAll, setPostAll] = useState([]);
+  const [query, setQuery] = useSearchParams();
+  const getPosts = async () => {
+    let searchQuery = query.get('q') || '';
+    console.log('쿼리값은?', searchQuery);
+    let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setPostAll(data);
   };
+
+
 
   // 게시글 전체 조회
   useEffect(() => {
@@ -56,7 +60,7 @@ const PostList = () => {
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>
-          <Section1Title>익명게시판</Section1Title>
+          <Section1Title>커뮤니티</Section1Title>
         </Section2>
 
         <input
