@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import instanceJSon from '../../shared/Request';
+import { useNavigate } from 'react-router';
+
+
 
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
@@ -16,6 +18,7 @@ export const __searchPost = createAsyncThunk(
     }
   }
 );
+
 
 // 게시글 전체 조회
 export const __getPostAll = createAsyncThunk(
@@ -61,7 +64,6 @@ export const __writePost = createAsyncThunk(
           },
         }
       );
-
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -97,14 +99,14 @@ export const __deletePost = createAsyncThunk(
   'post/deletePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
+      const { data } = await axios.delete(`https://yusung.shop/api/posting/${payload}`, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          //'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           authorization: localStorage.getItem('authorization'),
           'refresh-Token': localStorage.getItem('refresh-Token'),
         },
       });
-
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -219,16 +221,17 @@ export const PostSlice = createSlice({
 
 
     //게시글 삭제
-    [__deletePost.pending]: (state, action) => {
-      state.isLoading = true;
-    },
+    // [__deletePost.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.post = state.post.filter((postList) => postList.id !== action.payload)
     },
-    [__deletePost.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+    // [__deletePost.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
   },
 });
 

@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
-import { Board } from './BottomSheetStyle';
+import {
+  Board,
+  SheetButton
+} from './CommentBottomSheetStyle';
+import { ReactComponent as More } from '../../images/ic-more.svg'
 
-export default function Bottom() {
+export default function CommentBottomSheet() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)}>빠땀씨뜨</button>
+      <SheetButton>
+        <More onClick={() => setOpen(true)} />
+      </SheetButton>
+
       <BottomSheet open={open} onDismiss={() => { setOpen(false) }}>
         <Board>
           <ul>수정</ul>

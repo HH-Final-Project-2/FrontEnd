@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+
+// export const BottomSheet = styled.div`
+//   width: 35%;
+// `;
 export const Board = styled.div`
 display: flex;
 flex-direction: column;

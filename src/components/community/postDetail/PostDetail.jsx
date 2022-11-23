@@ -5,6 +5,7 @@ import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
 
+
 import { Section1, Section1Title } from '../postList/PostListStyle';
 import {
   CommentBox,

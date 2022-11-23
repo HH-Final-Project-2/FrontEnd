@@ -22,7 +22,7 @@ const PostWrite = () => {
   const [memberPost, setMemberpost] = useState();
   const [image, setImage] = useState('');
 
-  //const [img, setimg] = useState('');
+  const [resetImage, setResetImage] = useState('');
 
   const goToCommunity = () => {
     navigate('/community');
@@ -42,7 +42,7 @@ const PostWrite = () => {
   };
 
   const deleteImage = () => {
-    //setimg('')
+    setResetImage('')
     // setMemberpost('')
     setImage('');
   };
@@ -150,7 +150,7 @@ const PostWrite = () => {
         </WriteBody>
         <ImageUpload>
           <input
-            // value={img}
+            value={resetImage}
             type="file"
             accept="image/*"
             onChange={(e) => {
