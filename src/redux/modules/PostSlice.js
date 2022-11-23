@@ -1,10 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
-  'search/searchPost',
+  "search/searchPost",
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
@@ -12,28 +11,28 @@ export const __searchPost = createAsyncThunk(
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      console.log(error);
     }
   }
 );
 
-
 // 게시글 전체 조회
 export const __getPostAll = createAsyncThunk(
-  'posts/getPostAll',
+  "posts/getPostAll",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
-      const { data } = await axios.get('https://yusung.shop/api/posting');
+      const { data } = await axios.get("https://yusung.shop/api/posting");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      console.log(error);
     }
   }
 );
 
 // 게시글 상세 조회
 export const __getPost = createAsyncThunk(
-  'post/getPost',
+  "post/getPost",
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
@@ -41,37 +40,37 @@ export const __getPost = createAsyncThunk(
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      console.log(error);
     }
   }
 );
 
 // 게시글 작성
 export const __writePost = createAsyncThunk(
-  'post/writePost',
+  "post/writePost",
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        'https://yusung.shop/api/posting',
+        "https://yusung.shop/api/posting",
         payload,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: localStorage.getItem('authorization'),
-            'refresh-Token': localStorage.getItem('refresh-Token'),
+            "Content-Type": "multipart/form-data",
+            authorization: localStorage.getItem("authorization"),
+            "refresh-Token": localStorage.getItem("refresh-Token"),
           },
         }
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      console.log(error);
     }
   }
 );
 
 // 게시글 수정
 export const __putPost = createAsyncThunk(
-  'post/putPost',
+  "post/putPost",
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.put(
@@ -79,9 +78,9 @@ export const __putPost = createAsyncThunk(
         payload.formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: localStorage.getItem('authorization'),
-            'refresh-Token': localStorage.getItem('refresh-Token'),
+            "Content-Type": "multipart/form-data",
+            authorization: localStorage.getItem("authorization"),
+            "refresh-Token": localStorage.getItem("refresh-Token"),
           },
         }
       );
@@ -94,19 +93,21 @@ export const __putPost = createAsyncThunk(
 
 //게시글 삭제
 export const __deletePost = createAsyncThunk(
-  'post/deletePost',
+  "post/deletePost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`https://yusung.shop/api/posting/${payload}`, {
-        headers: {
-
-          //'Content-Type': 'multipart/form-data',
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('authorization'),
-          'refresh-Token': localStorage.getItem('refresh-Token'),
-        },
-      });
-      console.log(data)
+      const { data } = await axios.delete(
+        `https://yusung.shop/api/posting/${payload}`,
+        {
+          headers: {
+            //'Content-Type': 'multipart/form-data',
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("authorization"),
+            "refresh-Token": localStorage.getItem("refresh-Token"),
+          },
+        }
+      );
+      console.log(data);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -119,30 +120,30 @@ const initialState = {
   post: [
     {
       id: 0,
-      author: '',
-      jobGroup: '',
-      title: '',
-      content: '',
-      hit: '',
-      postHeartCnt: '',
-      commentCnt: '',
-      image: '',
-      createdAt: '',
-      modifiedAt: '',
+      author: "",
+      jobGroup: "",
+      title: "",
+      content: "",
+      hit: "",
+      postHeartCnt: "",
+      commentCnt: "",
+      image: "",
+      createdAt: "",
+      modifiedAt: "",
     },
   ],
   detail: {
     id: 0,
-    author: '',
-    jobGroup: '',
-    title: '',
-    content: '',
-    hit: '',
-    postHeartCnt: '',
-    commentCnt: '',
-    image: '',
-    createdAt: '',
-    modifiedAt: '',
+    author: "",
+    jobGroup: "",
+    title: "",
+    content: "",
+    hit: "",
+    postHeartCnt: "",
+    commentCnt: "",
+    image: "",
+    createdAt: "",
+    modifiedAt: "",
   },
 
   isLoading: false,
@@ -150,20 +151,16 @@ const initialState = {
 };
 
 export const PostSlice = createSlice({
-  name: 'post',
+  name: "post",
   initialState,
   reducers: {},
   extraReducers: {
-
-
     //게시글 검색
 
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
     },
-
-
 
     //게시글 전체 조회
 
@@ -215,14 +212,14 @@ export const PostSlice = createSlice({
       state.post = newPosts;
     },
 
-
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('필터전이구', state.post.length)
-      state.post = state.post.filter((postList) => postList.id !== action.payload)
-      console.log('필터후', state.post.length)
+      console.log("필터전이구", state.post.length);
+      state.post = state.post.filter(
+        (postList) => postList.id !== action.payload
+      );
+      console.log("필터후", state.post.length);
     },
-
   },
 });
 
