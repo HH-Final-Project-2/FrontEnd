@@ -139,7 +139,7 @@ export default MyCardInfo;
 const St_Title = styled.div`
   font-weight: 600;
   width: 100%;
-  max-width: 80px;
+  max-width: 85px;
   height: 50px;
   display: flex;
   align-items: center;

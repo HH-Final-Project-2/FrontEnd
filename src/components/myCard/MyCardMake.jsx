@@ -54,13 +54,24 @@ const MyCardMake = () => {
   return (
     <MyLayout>
       <St_Header>
-        <button
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ cursor: 'pointer' }}
           onClick={() => {
             nav(-1);
           }}
         >
-          이전
-        </button>
+          <path
+            d="M15 4L8 11.5L15 19"
+            stroke="#1A1F27"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
         <St_Title>명함 만들기</St_Title>
 
         <SaveButton onClick={PostHandler}>저장</SaveButton>
@@ -193,9 +204,16 @@ const St_Title = styled.div`
   padding-left: 15px;
 `;
 //저장버튼
-const SaveButton = styled.button`
+const SaveButton = styled.a`
   margin: auto;
   margin-right: 10px;
+  color: #277dff;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
 `;
 //input key 제목
 const St_Key = styled.div`
