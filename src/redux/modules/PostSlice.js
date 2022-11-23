@@ -97,8 +97,11 @@ export const __deletePost = createAsyncThunk(
   "post/deletePost",
   async (payload, thunkAPI) => {
     try {
+
       const { data } = await instance.delete(`/api/posting/${payload}`);
-      console.log(data);
+
+      // console.log(data)
+
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -214,5 +217,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const {} = PostSlice.actions;
+export const { } = PostSlice.actions;
 export default PostSlice.reducer;
