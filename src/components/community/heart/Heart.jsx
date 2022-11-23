@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { DivHeart, HeartNum } from './HeartStyle';
+import React, { useState } from "react";
+import axios from "axios";
+import { DivHeart, HeartNum } from "./HeartStyle";
 
 const Heart = ({ id, heart = false, numberHeart }) => {
   const [isHeart, setIsHeart] = useState(heart);
@@ -11,21 +11,21 @@ const Heart = ({ id, heart = false, numberHeart }) => {
   function heartHandler() {
     if (isHeart) {
       //instanceJSon.delete(`/api/auth/post/heart/${id}`);
-      axios.post(`https://yusung.shop/api/auth/post/heart/${id}`, '', {
+      axios.post(`https://bkyungkeem.shop/api/auth/post/heart/${id}`, "", {
         headers: {
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('authorization'),
-          'refresh-Token': localStorage.getItem('refresh-Token'),
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("authorization"),
+          "refresh-Token": localStorage.getItem("refresh-Token"),
         },
       });
       setIsHeart(false);
       //setCountHeart(countHeart - 1);
     } else {
-      axios.post(`https://yusung.shop/api/auth/post/heart/${id}`, '', {
+      axios.post(`https://bkyungkeem.shop/api/auth/post/heart/${id}`, "", {
         headers: {
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('authorization'),
-          'refresh-Token': localStorage.getItem('refresh-Token'),
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("authorization"),
+          "refresh-Token": localStorage.getItem("refresh-Token"),
         },
       });
       setIsHeart(true);
@@ -49,7 +49,7 @@ const Heart = ({ id, heart = false, numberHeart }) => {
             fill="#BCC2CC"
           />
         </svg>
-        <HeartNum>{countHeart ? countHeart : ''}</HeartNum>
+        <HeartNum>{countHeart ? countHeart : ""}</HeartNum>
       </DivHeart>
     </div>
   );
