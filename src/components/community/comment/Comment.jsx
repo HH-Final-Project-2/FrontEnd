@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import {
-  deleteComment,
-  getCommentList,
-  addComment,
-} from '../../../redux/modules/commentSlice';
+import { deleteComment, getCommentList, addComment } from '../../../redux/modules/commentSlice';
+import CommentBottomSheet from '../../bottomSheet/CommentBottomSheet';
+import { ReactComponent as Like } from '../../../images/likeHeart.svg'
 
 import {
   CommentBody,
@@ -15,7 +13,13 @@ import {
   CommentSection1,
   CommentTitle,
   ComentPlus,
+  CommentTextarea,
+  CommentWriteBox,
+  CommentWirteButton,
+  LikeButton,
+  LikeButtonText
 } from './CommentStyle';
+
 
 const Comment = ({ postid }) => {
   const dispatch = useDispatch();
@@ -34,28 +38,22 @@ const Comment = ({ postid }) => {
   return (
     <div>
       {/* 댓글 작성 */}
-      <input
-        type="text"
-        value={commentForm}
-        onChange={(e) => {
-          setCommentForm(e.target.value);
-        }}
-        placeholder="댓글작성"
-      />
-      <button
-        onClick={() => {
-          dispatch(
-            addComment({
-              postId: id,
-              content: commentForm,
-              nickname: nickname,
-            })
-          );
-          setCommentForm('');
-        }}
-      >
-        등록
-      </button>
+      <CommentWriteBox>
+
+        <CommentTextarea type="text" value={commentForm} onChange={(e) => {
+          setCommentForm(e.target.value)
+        }} placeholder="댓글을 입력해주세요" />
+        <CommentWirteButton onClick={() => {
+          dispatch(addComment({
+            postId: id,
+            content: commentForm,
+            nickname: nickname
+          }))
+          setCommentForm('')
+        }}>등록</CommentWirteButton>
+
+      </CommentWriteBox>
+
 
       <CommentListLayout>
         {comments.map((commentList) => {
@@ -66,37 +64,37 @@ const Comment = ({ postid }) => {
                   <CommentNickName>{commentList.author}</CommentNickName>
                   <CommentDate>{commentList.modifiedAt}</CommentDate>
                 </CommentTitle>
-                <ComentPlus
-                  onClick={() => {
-                    const confirm = window.confirm('정말 삭제하시겠습니까?');
-                    if (confirm) {
-                      dispatch(
-                        deleteComment({
-                          postId: id,
-                          commentId: commentList.id,
-                        })
-                      );
-                    } else {
-                      return;
+
+                <div>
+                  <CommentBottomSheet />
+                </div>
+                {/* <ComentPlus onClick={() => {
+                  const confirm = window.confirm('정말 삭제하시겠습니까?')
+                  if (confirm) {
+                    dispatch(deleteComment({
+                      postId: id,
+                      commentId: commentList.id
                     }
-                  }}
-                >
-                  ···
-                </ComentPlus>
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate(`/commentedit/${id}/${commentList.id}`);
-                  }}
-                >
-                  수정
-                </button>
+                    ))
+                  } else {
+                    return
+                  }
+                }}>···</ComentPlus>
+                <button type='button' onClick={() => {
+                  navigate(`/commentedit/${id}/${commentList.id}`)
+                }}>수정</button> */}
               </CommentSection1>
               {/*  */}
               <CommentBody>{commentList.content}</CommentBody>
+              <LikeButton>
+                <Like />
+                <LikeButtonText>100</LikeButtonText>
+              </LikeButton>
             </div>
-          );
+
+          )
         })}
+
       </CommentListLayout>
     </div>
   );
