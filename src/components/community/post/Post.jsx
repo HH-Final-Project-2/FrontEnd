@@ -20,11 +20,6 @@ import {
 } from './PostStyle';
 
 const Post = ({ post }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(__getPostAll());
-  }, [dispatch]);
 
   return (
     <PostBox>

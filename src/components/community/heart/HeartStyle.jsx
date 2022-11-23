@@ -1,25 +1,21 @@
 import styled from 'styled-components';
 
 export const DivHeart = styled.div`
-  display: flex;
   font-size: 12px;
-  margin-right: 15px;
+  margin-right: 20px;
+  img {
+    cursor: pointer;
 
-  color: #52596b;
-
-  img:hover {
-    background-color: aqua;
-    border-radius: 50%;
+    :hover {
+      filter: brightness(0.1);
+    }
+    &:active {
+      margin-bottom: 15px;
+    }
+    transition-duration: 0.1s;
   }
-
-  /* rect:hover {
-    fill: #ff7575;
-  } */
 `;
 
 export const HeartNum = styled.div`
-  font-size: 12px;
-  color: #52596b;
-
-  margin-left: 7px;
-`;
+  
+`

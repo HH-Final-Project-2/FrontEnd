@@ -3,30 +3,26 @@ import styled from 'styled-components';
 export const EditBox = styled.div`
   width: 375px;
   height: 100vh;
-  background: white;
   margin: 0 auto;
 `;
 
 export const EditSection1 = styled.div`
   position: relative;
-
+  width: 375px;
+  height: 56px;
   top: 37px;
-  display: flex;
-
-  margin-left: 13px;
-  svg {
-    margin-top: 2.7px;
-  }
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 `;
 export const EditSection1Title = styled.div`
   position: relative;
-  left: 18px;
+  left: 21px;
   font-weight: 600;
 `;
 export const SelectJob = styled.div`
   select {
     width: 375px;
     height: 56px;
+    margin-top: 17px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
@@ -37,78 +33,53 @@ export const SelectJob = styled.div`
 `;
 
 export const EditTitle = styled.div`
-  textarea {
-    padding: 10px;
-    margin-top: 6px;
-
-    width: 375px;
-    height: 45px;
+  input {
+    width: 100%;
+    height: 50px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
-    resize: none;
-
-    font-size: 16px;
   }
-  textarea:focus {
-    border-bottom: 1px solid blue;
-  }
-  textarea::placeholder {
-    color: #bcc2cc;
+  input::placeholder {
+    color: #bdbdbd;
   }
 `;
 
 export const EditBody = styled.div`
-  textarea {
-    padding: 10px;
-    margin-top: 6px;
-    width: 375px;
-    height: 190px;
+  input {
+    width: 100%;
+    height: 500px;
     border: none;
     outline: none;
-    resize: none;
-
-    font-size: 16px;
   }
-  textarea:focus {
-    border-bottom: 1px solid blue;
-  }
-  textarea::placeholder {
-    color: #bcc2cc;
+  input::placeholder {
+    color: #bdbdbd;
   }
 `;
 
 export const ImageUpload = styled.div`
-  img {
-    width: 152px;
-    margin-top: 10px;
-    margin-left: 20px;
-    border-radius: 8px;
+  /* label {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
   }
+  label input {
+    width: 100%;
+    opacity: 1;
+    cursor: pointer;
+  } */
 `;
 
 export const EditBtn = styled.button`
-  position: fixed;
-  bottom: 0;
-
-  width: 335px;
+  width: 343px;
   height: 52px;
-
-  margin-left: 20px;
-  margin-bottom: 50px;
-
-  background: #f5f6fa;
-  border-radius: 8px;
+  margin-left: 16px;
   border: none;
 
-  color: #bcc2cc;
-  font-size: 16px;
+  background: #e2e2e2;
+  border-radius: 8px;
 
   :hover {
-    background: #5546ff;
-    color: #ffffff;
+    filter: brightness(0.1);
   }
-
-  transition: 0.2s;
-  cursor: pointer;
 `;

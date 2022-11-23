@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const CommunityLayout = styled.div`
   width: 375px;
+  height: 100vh;
   margin: 0 auto;
   background-color: white;
 `;
@@ -27,7 +28,6 @@ export const Section2 = styled.div`
   svg {
     margin-top: 2.7px;
   }
-  cursor: pointer;
 `;
 
 export const Section3 = styled.div`
@@ -36,7 +36,7 @@ export const Section3 = styled.div`
 `;
 
 export const SectionLine = styled.div`
-  height: 1px;
+  height: 2px;
   margin-top: 60px;
   background: #d9d9d9;
 `;
