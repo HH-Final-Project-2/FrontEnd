@@ -1,119 +1,171 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-
 const accessToken = localStorage.getItem("authorization");
 const refreshToken = localStorage.getItem("refresh-Token");
-
-
-
-
-//post 
+//post
 export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
-    try{
-        const data = await axios.post("http://localhost:3001/cardinfo",payload);
-
-        // const data = await axios.post("https://bkyungkeem.shop/api/mypages",payload,
-        // {
-        //   headers:{
-        //       contentType: "application/json",
-        //       authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
-        //       "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
-        //   },
-        // });
-        return thunkAPI.fulfillWithValue(data.data);
-    }catch (error) {
-    }
+    try {
+      // const data = await axios.post("http://localhost:3001/cardinfo",payload);
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/mypages",
+        payload,
+        {
+          headers: {
+            contentType: "application/json",
+            authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+            "refresh-Token":
+              "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+          },
+        }
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
   }
 );
-
-//get 
+//get
 export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
-    try{
-        const data = await axios.get("http://localhost:3001/cardinfo");
-        console.log(data.data)
-        // const {data} = await axios.get("https://bkyungkeem.shop/api/mypages",
-        // {
-        //   headers:{
-        //     contentType: "application/json",
-        //     authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
-        //     "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
-        // },
-        // });
-
-        return thunkAPI.fulfillWithValue(data.data);
-    }catch (error) {
-        
-    }}
+    try {
+      // const data = await axios.get("http://localhost:3001/cardinfo");
+      // console.log(data.data)
+      const { data } = await axios.get("https://bkyungkeem.shop/api/mypages", {
+        headers: {
+          contentType: "application/json",
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+          "refresh-Token":
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+      });
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
+  }
 );
-
-
-//put 
+//put
 export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
-    try{
-        const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
-        // const {data} = await axios.put(`https:/bkyungkeem.shop/api/mypages/${payload.id}`,payload,
-        // {
-        //   headers:{
-        //     contentType: "application/json",
-        //     authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTM2NDQ5N30.aDnKOaUA86tu4STFoxfOUSPmMg72gAjE9NDi_YKTlHw",
-        //     "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkzNjQ0OTd9.ImOYoac4cY5vR2O11_pG6QIBo5fKzxpYCAsemiJ7xnY",
-        // },
-        // });
-        return thunkAPI.fulfillWithValue(data);
-    }catch (error) {
-        
-    }}
+    try {
+      // const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
+      const { data } = await axios.put(
+        `https:/bkyungkeem.shop/api/mypages/${payload.id}`,
+        payload,
+        {
+          headers: {
+            contentType: "application/json",
+            authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+            "refresh-Token":
+              "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+          },
+        }
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
+  }
 );
-
-
+//검색
+export const _searchGet = createAsyncThunk(
+  "SEARCH_GET",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+          "refresh-Token":
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+      };
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/companySearch",
+        payload,
+        config
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+//회사명, 주소 저장
+export const _companyInfo = createAsyncThunk(
+  "COMPANY_INFO",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+          "refresh-Token":
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+      };
+      const { data } = await axios.post(
+        "https://bkyungkeem.shop/api/companyInfo",
+        payload,
+        config
+      );
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 const initialState = {
   cardinfo: [
     {
-    cardName: '',
-    engName: '',
-    email: '',
-    phoneNum: '',
-    company: '',
-    // companyAddress:'',
-    department: '',
-    position: '',
-    tel: '',
-    fax: ''
-  }
-],
+      cardName: "",
+      engName: "",
+      email: "",
+      phoneNum: "",
+      company: "",
+      companyAddress: "",
+      department: "",
+      position: "",
+      tel: "",
+      fax: "",
+    },
+  ],
+  companyInfo: [{}],
+  searchCompany: [{}],
   isLoading: false,
   error: null,
 };
-
-
 export const mycardSlice = createSlice({
   name: "cardinfo", //모듈
   initialState,
-  reducers: {}, 
-  extraReducers:{
-      [_MakeCard.fulfilled]: (state, action) => {
-        state.isLoading = false;
-        state.cardinfo = action.payload;
-      },
-      [_getMakeCard.fulfilled]: (state, action) => {
-        state.isLoading = false;
-        state.cardinfo = action.payload
-      },
-      [_PutCard.fulfilled]: (state, action) => {
-        state.isLoading = false;
-        state.cardinfo = [{...state.cardinfo}, action.payload];
-  
-      },
-
+  reducers: {},
+  extraReducers: {
+    [_MakeCard.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.cardinfo = action.payload;
+    },
+    [_getMakeCard.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.cardinfo = action.payload;
+    },
+    [_PutCard.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.cardinfo = [{ ...state.cardinfo }, action.payload];
+    },
+    [_searchGet.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.searchCompany = { ...action.payload };
+    },
+    [_companyInfo.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.companyInfo = { ...action.payload };
+    },
   },
 });
-
 export const {} = mycardSlice.actions;
 export default mycardSlice.reducer;

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -5,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
 import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+
 import {
   CommunityLayout,
   Section1,
@@ -16,6 +18,7 @@ import {
   SearchButton
 } from './PostListStyle';
 
+
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,16 +26,9 @@ const PostList = () => {
   let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
 
-  //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
-
-  useEffect(() => {
-    console.log('리스트 유즈이팩트/서치쿼리=', searchQuery)
-    if (searchQuery == null) dispatch(__getPostAll());
-    else dispatch(__searchPost(searchQuery));
-  }, [dispatch]);
 
   const writeHandler = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   if (post === undefined) return;
@@ -52,7 +48,9 @@ const PostList = () => {
           </svg>
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
+
         <SearchButton onClick={() => navigate('/search')}><SearchIcon /></SearchButton>
+
       </Section1>
       <SectionLine />
 

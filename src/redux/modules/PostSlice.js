@@ -99,6 +99,7 @@ export const __deletePost = createAsyncThunk(
     try {
       const { data } = await axios.delete(`https://yusung.shop/api/posting/${payload}`, {
         headers: {
+
           //'Content-Type': 'multipart/form-data',
           'Content-Type': 'application/json',
           authorization: localStorage.getItem('authorization'),
