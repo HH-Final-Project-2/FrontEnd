@@ -154,12 +154,14 @@ export const PostSlice = createSlice({
   reducers: {},
   extraReducers: {
 
+
     //게시글 검색
 
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
     },
+
 
 
     //게시글 전체 조회
@@ -169,7 +171,6 @@ export const PostSlice = createSlice({
       state.post = action.payload;
     },
 
-
     //게시글 상세 조회
 
     [__getPost.fulfilled]: (state, action) => {
@@ -177,13 +178,11 @@ export const PostSlice = createSlice({
       state.isLoading = false;
     },
 
-
     //게시글 작성
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = [action.payload, ...state.post];
     },
-
 
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
@@ -207,14 +206,12 @@ export const PostSlice = createSlice({
         if (state.post[i].id === modPost.id)
           // 수정된 게시글 id와 동일하다. 새로 전송받은 게시글 객체로 저장
           newPosts.push(modPost);
-        else
-          // 수정된 게시글 id와 다르다. 기존 데이터 저장
-          newPosts.push(state.post[i]);
+        // 수정된 게시글 id와 다르다. 기존 데이터 저장
+        else newPosts.push(state.post[i]);
       }
 
       // 4. state.post를 새로 만든 배열로 변경 시켜준다
       state.post = newPosts;
-
     },
 
 
@@ -228,5 +225,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const { } = PostSlice.actions;
+export const {} = PostSlice.actions;
 export default PostSlice.reducer;

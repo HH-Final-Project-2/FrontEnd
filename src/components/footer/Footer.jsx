@@ -28,7 +28,7 @@ const Footer = () => {
       </svg>
       {/* 일정으로 이동 */}
       <svg
-        onClick={() => navigate('/일정url 넣어주십셔')}
+        onClick={() => navigate('/mySchedules')}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -61,6 +61,7 @@ const Footer = () => {
       {/* 커뮤니티로 이동 */}
       <svg
         onClick={() => {
+
           // dispatch(__getPostAll()); // 일단 dispatch로 해결
           // navigate('/community');
           //navigate('/community', { replace: true });
@@ -69,6 +70,7 @@ const Footer = () => {
           //url은 바뀌어도 화면은 그대로..(원인은 모르겠음 찾는중)
         }
         }
+
         width="72"
         height="56"
         viewBox="0 0 72 56"
