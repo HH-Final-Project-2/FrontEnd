@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
-import Footer from '../../footer/Footer';
-import Post from '../post/Post';
+import Footer from "../../footer/Footer";
+import Post from "../post/Post";
 import {
   CommunityLayout,
   Section1,
@@ -13,7 +13,7 @@ import {
   Section3,
   SectionLine,
   WriteButton,
-} from './PostListStyle';
+} from "./PostListStyle";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -26,23 +26,16 @@ const PostList = () => {
   const [postAll, setPostAll] = useState([]);
   const [query, setQuery] = useSearchParams();
   const getPosts = async () => {
-    let searchQuery = query.get('q') || '';
-    console.log('쿼리값은?', searchQuery);
+    let searchQuery = query.get("q") || "";
+    console.log("쿼리값은?", searchQuery);
     let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();
     setPostAll(data);
   };
 
-
-
-  // 게시글 전체 조회
-  useEffect(() => {
-    dispatch(__getPostAll());
-  }, [dispatch]);
-
   const writeHandler = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   if (post === undefined) return null;
@@ -62,14 +55,6 @@ const PostList = () => {
           </svg>
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
-
-        <input
-          type="text"
-          placeholder="검색"
-          onKeyPress={(event) => {
-            search(event);
-          }}
-        />
       </Section1>
       <SectionLine />
 
