@@ -1,20 +1,15 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
-import { __getPostAll } from '../../redux/modules/PostSlice';
-
 
 const Footer = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   return (
     <FooterBox>
       {/* 명함첩으로 이동 */}
 
       <svg
-        onClick={() => navigate("/cards")}
+        onClick={() => navigate('/cards')}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -30,7 +25,7 @@ const Footer = () => {
       </svg>
       {/* 일정으로 이동 */}
       <svg
-        onClick={() => navigate("/mySchedules")}
+        onClick={() => navigate('/일정url 넣어주십셔')}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -46,7 +41,7 @@ const Footer = () => {
       </svg>
       {/* 채팅으로 이동 */}
       <svg
-        onClick={() => navigate("/chat")}
+        onClick={() => navigate('/chat')}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -62,16 +57,7 @@ const Footer = () => {
       </svg>
       {/* 커뮤니티로 이동 */}
       <svg
-        onClick={() => {
-          dispatch(__getPostAll()); // 일단 dispatch로 해결
-          navigate('/community');
-          //navigate('/community', { replace: true });
-          //window.location = '/community';
-          //navigate 동일한 주소로 이동시 컴포넌트가 랜더링 되지않음
-          //url은 바뀌어도 화면은 그대로..(원인은 모르겠음 찾는중)
-        }
-        }
-
+        onClick={() => navigate('/community')}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -89,7 +75,7 @@ const Footer = () => {
       </svg>
       {/* 내 명함으로 이동 */}
       <svg
-        onClick={() => navigate("/mypage")}
+        onClick={() => navigate('/mypage')}
         width="72"
         height="56"
         viewBox="0 0 72 56"

@@ -1,13 +1,10 @@
-import React from "react";
-import Footer from "../components/footer/Footer";
-import Layout from "../components/layout/Layout";
-import MySchedulesItem from "../components/mySchedules/MySchedulesItem";
+import React from 'react';
+import Layout from '../components/layout/Layout';
 
 const MySchedules = () => {
   return (
     <Layout>
-      <MySchedulesItem />
-      <Footer />
+
     </Layout>
   );
 };

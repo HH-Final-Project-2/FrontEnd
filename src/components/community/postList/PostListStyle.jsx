@@ -27,6 +27,7 @@ export const Section2 = styled.div`
   svg {
     margin-top: 2.7px;
   }
+  cursor: pointer;
 `;
 
 export const Section3 = styled.div`
