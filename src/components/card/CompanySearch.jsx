@@ -1,10 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { __searchGet, __companyInfo } from "../../redux/modules/CardsSlice";
+import React from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { __searchGet, __companyInfo } from '../../redux/modules/CardsSlice';
 
 const CompanySearch = () => {
   const [search, setSearch] = useState();
