@@ -4,12 +4,13 @@ import MyLayout from './MyLayout';
 import { useNavigate } from 'react-router';
 
 import { _MakeCard } from '../../redux/modules/mycardSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
 
   const [makeinfo, setMakeinfo] = useState({
     cardName: '',
@@ -97,10 +98,19 @@ const MyCardMake = () => {
           <St_Key>회사</St_Key>
           <St_value
             name="company"
-            value={company}
+            value={searchinfo.companyName ? searchinfo.companyName : company}
             onChange={onChage}
+            onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
           ></St_value>
-          <St_Address>서울 강남구 역삼로 123 (ABC 빌딩) 5층 ABC LAB</St_Address>
+          <St_Address
+            name="companyAddress"
+            value={
+              searchinfo.companyAddress
+                ? searchinfo.companyAddress
+                : companyAddress
+            }
+            onChange={onChage}
+          ></St_Address>
         </Item>
         <Item>
           <St_Key>직책</St_Key>
