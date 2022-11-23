@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import instance from "../../shared/Request";
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
 
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
@@ -7,7 +10,7 @@ export const __searchPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `https://yusung.shop/api/posting/search?keyword=${payload}`
+        `https://bkyungkeem.shop/api/posting/search?keyword=${payload}`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -22,7 +25,7 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await axios.get("https://yusung.shop/api/posting");
+      const { data } = await instance.get("/api/posting");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -35,9 +38,7 @@ export const __getPost = createAsyncThunk(
   "post/getPost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `https://yusung.shop/api/posting/${payload}`
-      );
+      const { data } = await instance.get(`/api/posting/${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -51,13 +52,13 @@ export const __writePost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        "https://yusung.shop/api/posting",
+        "https://bkyungkeem.shop/api/posting",
         payload,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            authorization: localStorage.getItem("authorization"),
-            "refresh-Token": localStorage.getItem("refresh-Token"),
+            authorization: accessToken,
+            "refresh-Token": refreshToken,
           },
         }
       );
@@ -74,13 +75,13 @@ export const __putPost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.put(
-        `https://yusung.shop/api/posting/${payload.id}`,
+        `https://bkyungkeem.shop/api/posting/${payload.id}`,
         payload.formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            authorization: localStorage.getItem("authorization"),
-            "refresh-Token": localStorage.getItem("refresh-Token"),
+            authorization: accessToken,
+            "refresh-Token": refreshToken,
           },
         }
       );
@@ -96,17 +97,7 @@ export const __deletePost = createAsyncThunk(
   "post/deletePost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.delete(
-        `https://yusung.shop/api/posting/${payload}`,
-        {
-          headers: {
-            //'Content-Type': 'multipart/form-data',
-            "Content-Type": "application/json",
-            authorization: localStorage.getItem("authorization"),
-            "refresh-Token": localStorage.getItem("refresh-Token"),
-          },
-        }
-      );
+      const { data } = await instance.delete(`/api/posting/${payload}`);
       console.log(data);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
