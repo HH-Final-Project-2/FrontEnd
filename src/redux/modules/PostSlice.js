@@ -23,7 +23,6 @@ export const __searchPost = createAsyncThunk(
 export const __getPostAll = createAsyncThunk(
   "posts/getPostAll",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get("/api/posting");
       return thunkAPI.fulfillWithValue(data.data);
@@ -97,11 +96,7 @@ export const __deletePost = createAsyncThunk(
   "post/deletePost",
   async (payload, thunkAPI) => {
     try {
-
       const { data } = await instance.delete(`/api/posting/${payload}`);
-
-      // console.log(data)
-
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
