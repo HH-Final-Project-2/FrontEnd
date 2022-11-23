@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux/es/exports';
 import { signOut, withDraw } from '../redux/modules/membersSlice';
+import Layout from '../components/layout/Layout';
 
 const Main = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Layout>
       <button
         onClick={() => {
           nav('/cards');
@@ -50,7 +51,7 @@ const Main = () => {
       >
         회원탈퇴
       </button>
-    </div>
+    </Layout>
   );
 };
 
