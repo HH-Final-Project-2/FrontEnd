@@ -14,17 +14,21 @@ const MyCardInfo = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  const companyinfo = useSelector((state) => state.PostReducer.companyInfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
+
+  useEffect(() => {
+    SearchMap();
+  }, [Map, MapMarker, cardinfo]);
 
   const { kakao } = window;
 
   const [map, setMap] = useState({
     center: { lat: 37.503680684679125, lng: 126.95701252583554 },
     isPanto: true,
+    level: 3,
   });
 
   const SearchMap = () => {
@@ -41,18 +45,6 @@ const MyCardInfo = () => {
     geocoder.addressSearch(`${cardinfo.companyAddress}`, callback);
   };
 
-  useEffect(() => {
-    SearchMap();
-  }, []);
-  // console.log(SearchMap);
-  // const container = document.getElementById('map'),
-  //   options = {
-  //     center: new kakao.maps.LatLng(33.450701, 126.570667),
-  //     level: 3,
-  //   };
-
-  // const mapss = new kakao.maps.Map(container, options);
-  console.log(map.center.lat);
   if (cardinfo === undefined) return;
 
   return (
