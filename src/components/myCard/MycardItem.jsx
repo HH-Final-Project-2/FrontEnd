@@ -9,9 +9,7 @@ const MycardItem = () => {
   //등록한 명함 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  const companyinfo = useSelector((state) => state.PostReducer.companyInfo);
-  console.log(companyinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo)[0];
 
   useEffect(() => {
     dispatch(_getMakeCard());
@@ -29,7 +27,6 @@ const MycardItem = () => {
       <div>{cardinfo.engName}</div>
       <div>{cardinfo.email}</div>
       <div>{cardinfo.phoneNum}</div>
-      {/* <div>{cardinfo.company}</div> */}
       <div>{cardinfo.company}</div>
       <div>{cardinfo.department}</div>
       <div>{cardinfo.position}</div>

@@ -79,14 +79,15 @@ export const PostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
-  padding: 5px;
+  padding: 6px;
 
   margin-left: 5px;
   margin-top: 15px;
   font-size: 12px;
+  font-weight: 600;
 
-  color: #696969;
-  background: #f5f6fa;
+  color: #3425de;
+  background: #eeecff;
   border-radius: 4px;
 `;
 
