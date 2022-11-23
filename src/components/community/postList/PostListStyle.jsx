@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const CommunityLayout = styled.div`
   width: 375px;
-  height: 100vh;
   margin: 0 auto;
   background-color: white;
 `;
@@ -36,7 +35,7 @@ export const Section3 = styled.div`
 `;
 
 export const SectionLine = styled.div`
-  height: 2px;
+  height: 1px;
   margin-top: 60px;
   background: #d9d9d9;
 `;

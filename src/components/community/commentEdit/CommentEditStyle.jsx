@@ -3,45 +3,77 @@ import styled from 'styled-components';
 export const CommentEditBox = styled.div`
   width: 375px;
   height: 100vh;
+  background-color: white;
   margin: 0 auto;
 `;
 
-export const CommentEditSection = styled.div`
-  position: relative;
-  width: 375px;
-  height: 56px;
-  top: 37px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-`;
-export const CommentEditSectionTitle = styled.div`
-  position: relative;
-  //left: 21px;
-  font-weight: 600;
+export const CommentEditInputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 24px;
+
+  textarea {
+    padding-top: 10px;
+    padding-left: 7px;
+    width: 335px;
+    height: 112px;
+    border: 1px solid #e2e6ef;
+    outline: none;
+    border-radius: 8px;
+    resize: none;
+  }
+
+  textarea:focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
-export const CommentEditInputBox = styled.div`
-margin-top: 37px;
-  textarea {
-    width: 100%;
-    height: 80px;
-    border: none;
-    outline: none;
-  }
-  
+export const CommentBtns = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
+
+  margin-top: 16px;
+  margin-right: 40px;
 `;
 
 export const CommentEditBtn = styled.button`
-  width: 100px;
-  height: 52px;
-  margin-left: 16px;
-  border: none;
+  padding: 4px 20px;
+  gap: 8px;
 
-  background: #e2e2e2;
+  width: 70px;
+  height: 40px;
+
+  background: #5546ff;
+  color: #ffffff;
+  font-size: 14px;
+
+  border: 1px solid #e2e6ef;
   border-radius: 8px;
 
-  :hover {
-    filter: brightness(0.1);
-  }
+  cursor: pointer;
+`;
+
+export const EditCancelBtn = styled.button`
+  padding: 4px 20px;
+  gap: 8px;
+  margin-right: 12px;
+
+  width: 70px;
+  height: 40px;
+
+  background: #ffffff;
+  color: #52596b;
+
+  font-size: 14px;
+
+  border: 1px solid #e2e6ef;
+  border-radius: 8px;
 
   cursor: pointer;
 `;
