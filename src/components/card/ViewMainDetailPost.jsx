@@ -1,34 +1,35 @@
-import React from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { __viewGet } from "../../redux/modules/CardsSlice";
-import { useNavigate, useParams } from "react-router";
-import { useEffect } from "react";
+import React from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { __viewGet } from '../../redux/modules/CardsSlice';
+import { useNavigate, useParams } from 'react-router';
+import { useEffect } from 'react';
 const ViewMainDetailPost = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
   const view = useSelector((state) => state.PostReducer.viewList.data);
   console.log(view);
+  const viewArr = [view];
 
   useEffect(() => {
     dispatch(__viewGet(id));
-  }, []);
+  }, [dispatch]);
 
   const deleteClickHandler = () => {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODcwMjMyOH0.TZ7RTsW9eDKqBacKaBrB79dATPUqVp12DvLAuRqwxoM",
-        "Refresh-Token":
-          "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkyMjA3Mjh9.Fc1_EpZFIfdgPLyFpoDOv2eWFRl0YIVx4KrR0iTlfNI",
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w',
+        'Refresh-Token':
+          'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE',
       },
     };
     axios
       .delete(`https://bkyungkeem.shop/api/businessCards/${id}`, config)
       .then(function (response) {
         console.log(response);
-        view.filter((x) => x.id !== response);
+        viewArr.filter((x) => x.id !== response);
       })
       .catch(function (error) {
         console.log(error);
@@ -36,8 +37,8 @@ const ViewMainDetailPost = () => {
       .then(function () {
         // always executed
       });
-    alert("DELETE SECCESS");
-    navigate("/");
+    alert('DELETE SECCESS');
+    navigate('/cards');
   };
   const fixClickHandler = () => {
     navigate(`/posts/${view.id}/put`);
