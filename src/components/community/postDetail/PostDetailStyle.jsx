@@ -6,72 +6,22 @@ export const DetailBox = styled.div`
   margin: 0 auto;
 `;
 
-export const Section1 = styled.div`
-  position: relative;
-  top: 37px;
-`;
-
-export const Section2 = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-left: 15px;
-  margin-right: 15px;
-
-  svg {
-    margin-top: 2.7px;
-  }
-  g:hover {
-    fill: #5546ff;
-    cursor: pointer;
-  }
-`;
-
 export const DetailPostSection1 = styled.div`
   display: flex;
-  justify-content: space-between;
-
-  svg {
-    margin-top: 16px;
-    margin-right: 18px;
-  }
-
-  g:hover {
-    fill: #5546ff;
-    cursor: pointer;
-  }
-
-  g rect:hover {
-    stroke: #5546ff;
-  }
-
-  .nickdate {
-    display: flex;
-  }
 `;
 
 export const NickName = styled.div`
   margin-left: 13px;
-  margin-top: 25px;
+  margin-top: 30px;
   font-weight: 600;
-  font-size: 14px;
-
-  color: #52596b;
+  font-size: 12px;
 `;
 
 export const Date = styled.div`
-  margin-left: 7px;
-  margin-top: 27px;
+  margin-left: 5px;
+  margin-top: 30px;
   font-size: 12px;
-  color: #8892a0;
-`;
-
-export const SectionLine = styled.div`
-  height: 1px;
-  margin-top: 61px;
-  background: #d9d9d9;
+  color: #969696;
 `;
 
 export const PostLine = styled.div`
@@ -81,7 +31,7 @@ export const PostLine = styled.div`
   margin-left: 12px;
   margin-top: 13px;
 
-  background: #f5f6fa;
+  background: #f5f5f5;
 `;
 
 export const DetailPostSection2 = styled.div`
@@ -89,26 +39,16 @@ export const DetailPostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
-  padding: 5px;
-
-  margin-left: 10px;
+  margin-left: 13px;
   margin-top: 15px;
   font-size: 12px;
-
-  color: #696969;
-  background: #f5f6fa;
-  border-radius: 4px;
+  color: #969696;
 `;
 
 export const PostTitle = styled.div`
   margin-left: 13px;
-  margin-top: 16px;
+  margin-top: 15px;
   font-weight: 600;
-  font-size: 18px;
-
-  word-break: break-all;
-
-  color: #1a1f27;
 `;
 
 export const DetailPostSection3 = styled.div`
@@ -118,37 +58,36 @@ export const DetailPostSection3 = styled.div`
 
 export const DetailPostBody = styled.div`
   margin-left: 13px;
-  margin-top: 25px;
+  margin-top: 13px;
 
-  font-size: 16px;
+  font-size: 14px;
 
-  white-space: pre-line;
-  word-break: break-all;
-
-  color: #1a1f27;
+  color: #969696;
 `;
 
 export const DetailPostImg = styled.div`
   margin-left: 20px;
-  margin-top: 32px;
-  margin-bottom: 40px;
+  margin-top: 13px;
 
   width: 335px;
-  img {
-    max-width: 100%;
-  }
+  height: 240px;
   border-radius: 8px;
+  background: #e2e2e2;
 `;
 
-export const DetailPostSection4 = styled.div`
+export const CommentBox = styled.div`
   width: 375px;
   height: 68px;
 
   display: flex;
+  justify-content: center;
+  align-items: center;
 
-  margin-top: 14px;
-  margin-left: 20px;
-  /* input {
+  margin-top: 33px;
+
+  box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
+
+  input {
     width: 283px;
     height: 40px;
 
@@ -157,43 +96,7 @@ export const DetailPostSection4 = styled.div`
 
     background: #f5f5f5;
     border-radius: 8px;
-  } */
-`;
-
-export const CommentBox = styled.div`
-  display: flex;
-  font-size: 12px;
-  color: #52596b;
-
-  path:hover {
-    fill: #5546ff;
   }
-`;
-
-export const CommentNum = styled.div`
-  font-size: 12px;
-  color: #52596b;
-
-  margin-left: 7px;
-`;
-
-export const HitBox = styled.div`
-  display: flex;
-  margin-left: auto;
-  margin-right: 42px;
-  color: #8892a0;
-  font-size: 12px;
-`;
-
-export const HitNum = styled.div`
-  margin-left: 3px;
-  color: #8892a0;
-  font-size: 12px;
-`;
-
-export const DetailSectionLine = styled.div`
-  margin: auto;
-  width: 343px;
-  height: 1px;
-  background: #e2e6ef;
+  button {
+  }
 `;

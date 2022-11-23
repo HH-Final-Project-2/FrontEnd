@@ -4,7 +4,7 @@ export const PostBox = styled.div`
   box-sizing: border-box;
   width: 335px;
   height: 188px;
-  margin: 36px auto;
+  margin: 20px auto;
   cursor: pointer;
 `;
 
@@ -35,10 +35,6 @@ export const PostTitle = styled.div`
   margin-top: 16px;
   font-weight: 600;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
   color: #1a1f27;
 `;
 
@@ -60,18 +56,16 @@ export const PostBody = styled.div`
   color: #52596b;
 `;
 export const PostImg = styled.div`
-  margin-right: 1px;
+  margin-right: 3px;
   margin-top: 19px;
-  margin-bottom: 5px;
+  width: 72px;
   height: 72px;
 
   img {
-    width: 72px;
-    height: 72px;
-    border-radius: 8px;
-
-    object-fit: cover;
+    max-width: 100%;
   }
+
+  border-radius: 8px;
 `;
 
 export const PostSection2 = styled.div`
@@ -79,15 +73,14 @@ export const PostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
-  padding: 6px;
+  padding: 5px;
 
   margin-left: 5px;
   margin-top: 15px;
   font-size: 12px;
-  font-weight: 600;
 
-  color: #3425de;
-  background: #eeecff;
+  color: #696969;
+  background: #f5f6fa;
   border-radius: 4px;
 `;
 

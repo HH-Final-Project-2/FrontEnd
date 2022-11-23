@@ -8,7 +8,7 @@ export default function Bottom() {
   return (
     <>
       <button onClick={() => setOpen(true)}>빠땀씨뜨</button>
-      <BottomSheet open={open}>
+      <BottomSheet open={open} onDismiss={() => { setOpen(false) }}>
         <Board>
           <ul>수정</ul>
           <ul style={{ color: '#F82323' }}>삭제</ul>
