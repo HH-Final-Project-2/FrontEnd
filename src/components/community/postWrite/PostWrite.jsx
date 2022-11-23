@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -16,7 +16,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-import BottomJobGroup from '../../bottomSheet/BottomJobGroup';
 import { SectionLine } from '../postList/PostListStyle';
 
 const PostWrite = () => {
@@ -75,7 +74,6 @@ const PostWrite = () => {
       )
     );
     dispatch(__writePost(formData));
-    console.log(memberPost);
   };
 
   return (

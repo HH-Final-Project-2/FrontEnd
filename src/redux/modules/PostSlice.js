@@ -1,6 +1,117 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import instanceJSon from '../../shared/Request';
+
+
+// 게시글 검색
+export const __searchPost = createAsyncThunk(
+  'search/searchPost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `https://yusung.shop/api/posting/search?keyword=${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+// 게시글 전체 조회
+export const __getPostAll = createAsyncThunk(
+  'posts/getPostAll',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get('https://yusung.shop/api/posting');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// 게시글 상세 조회
+export const __getPost = createAsyncThunk(
+  'post/getPost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `https://yusung.shop/api/posting/${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// 게시글 작성
+export const __writePost = createAsyncThunk(
+  'post/writePost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.post(
+        'https://yusung.shop/api/posting',
+        payload,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: localStorage.getItem('authorization'),
+            'refresh-Token': localStorage.getItem('refresh-Token'),
+          },
+        }
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// 게시글 수정
+export const __putPost = createAsyncThunk(
+  'post/putPost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.put(
+        `https://yusung.shop/api/posting/${payload.id}`,
+        payload.formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: localStorage.getItem('authorization'),
+            'refresh-Token': localStorage.getItem('refresh-Token'),
+          },
+        }
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+//게시글 삭제
+export const __deletePost = createAsyncThunk(
+  'post/deletePost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`https://yusung.shop/api/posting/${payload}`, {
+        headers: {
+          //'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+          authorization: localStorage.getItem('authorization'),
+          'refresh-Token': localStorage.getItem('refresh-Token'),
+        },
+      });
+      console.log(data)
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 //기본 세팅
 const initialState = {
@@ -37,114 +148,25 @@ const initialState = {
   error: null,
 };
 
-// 게시글 전체 조회
-export const __getPostAll = createAsyncThunk(
-  'posts/getPostAll',
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.get('https://yusung.shop/api/posting');
-      // console.log(data.data) // 이미지 null 값 들어옴 확인 필요
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-// 게시글 상세 조회
-export const __getPost = createAsyncThunk(
-  'post/getPost',
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.get(
-        `https://yusung.shop/api/posting/${payload}`
-      );
-      // if (!data.success) throw new Error(data.error);
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-// 게시글 작성
-export const __writePost = createAsyncThunk(
-  'post/writePost',
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post(
-        'https://yusung.shop/api/posting',
-        payload,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: localStorage.getItem('authorization'),
-            'refresh-Token': localStorage.getItem('refresh-Token'),
-          },
-        }
-      );
-
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-// 게시글 수정
-export const __putPost = createAsyncThunk(
-  'post/putPost',
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.put(
-        `https://yusung.shop/api/posting/${payload.id}`,
-        payload.formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: localStorage.getItem('authorization'),
-            'refresh-Token': localStorage.getItem('refresh-Token'),
-          },
-        }
-      );
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-//게시글 삭제
-export const __deletePost = createAsyncThunk(
-  'post/deletePost',
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          authorization: localStorage.getItem('authorization'),
-          'refresh-Token': localStorage.getItem('refresh-Token'),
-        },
-      });
-
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
 export const PostSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {},
   extraReducers: {
 
+    //게시글 검색
+
+    [__searchPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.post = action.payload;
+    },
+
+
     //게시글 전체 조회
 
     [__getPostAll.fulfilled]: (state, action) => {
-      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.isLoading = false;
+      state.post = action.payload;
     },
 
 
@@ -157,10 +179,9 @@ export const PostSlice = createSlice({
 
 
     //게시글 작성
-
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.post = [...state.post, action.payload];
+      state.post = [action.payload, ...state.post];
     },
 
 
@@ -196,18 +217,12 @@ export const PostSlice = createSlice({
 
     },
 
-
-    //게시글 삭제
-    [__deletePost.pending]: (state, action) => {
-      state.isLoading = true;
-    },
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
+      // console.log(state.post.length)
+      state.post = state.post.filter((postList) => postList.id !== action.payload)
     },
-    [__deletePost.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+
   },
 });
 
