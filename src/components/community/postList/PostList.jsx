@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
+
 import {
   CommunityLayout,
   Section1,
@@ -12,7 +14,7 @@ import {
   Section3,
   SectionLine,
   WriteButton,
-} from './PostListStyle';
+} from "./PostListStyle";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -22,8 +24,14 @@ const PostList = () => {
   let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
 
-  // console.log('PostList keyword', searchQuery)
 
+  const search = (event) => {
+    if (event.key === "Enter") {
+      //입력한 검색어를 읽어와서
+      let keyword = event.target.value;
+      dispatch(__searchPost(keyword));
+    }
+  };
 
 
   useEffect(() => {
@@ -46,14 +54,13 @@ const PostList = () => {
   // }, [dispatch]);
 
   const writeHandler = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   if (post === undefined) return null;
 
   return (
     <CommunityLayout>
-
       <Section1>
         <Section2>
           <svg
@@ -78,7 +85,6 @@ const PostList = () => {
         /> */}
       </Section1>
       <SectionLine />
-
 
       <Section3>
         {post.map((post) => {
