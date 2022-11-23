@@ -7,14 +7,7 @@ export const DivHeart = styled.div`
 
   color: #52596b;
 
-  img:hover {
-    background-color: aqua;
-    border-radius: 50%;
-  }
-
-  /* rect:hover {
-    fill: #ff7575;
-  } */
+  
 `;
 
 export const HeartNum = styled.div`
