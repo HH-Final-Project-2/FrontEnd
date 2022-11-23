@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
-import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
+import { __getPostAll } from '../../../redux/modules/PostSlice';
+import Footer from '../../footer/Footer';
 import Post from '../post/Post';
 import {
   CommunityLayout,
@@ -17,33 +18,34 @@ import {
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { keyword } = useParams();
-  const [query, setQuery] = useSearchParams();
-  let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
 
-  // console.log('PostList keyword', searchQuery)
+  //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
 
+  //검색 기능 url 이동까지 구현 완료
+  const [postAll, setPostAll] = useState([]);
+  const [query, setQuery] = useSearchParams();
+  const getPosts = async () => {
+    let searchQuery = query.get('q') || '';
+    console.log('쿼리값은?', searchQuery);
+    let url = `https://yusung.shop/api/posting?q=${searchQuery}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    setPostAll(data);
+  };
 
+  const search = (event) => {
+    if (event.key === 'Enter') {
+      let keyword = event.target.value;
 
+      navigate(`/community/?q=${keyword}`);
+    }
+  };
+
+  // 게시글 전체 조회
   useEffect(() => {
-    if (searchQuery == null) dispatch(__getPostAll());
-    else dispatch(__searchPost(searchQuery));
-  }, [dispatch])
-
-
-  // const search = (event) => {
-  //   if (event.key === 'Enter') {
-  //     //입력한 검색어를 읽어와서
-  //     let keyword = event.target.value;
-  //     dispatch(__searchPost(keyword))
-  //   }
-  // };
-
-  //게시글 전체 조회
-  // useEffect(() => {
-  //   dispatch(__getPostAll());
-  // }, [dispatch]);
+    dispatch(__getPostAll());
+  }, [dispatch]);
 
   const writeHandler = () => {
     navigate('/write');
@@ -53,7 +55,6 @@ const PostList = () => {
 
   return (
     <CommunityLayout>
-
       <Section1>
         <Section2>
           <svg
@@ -65,20 +66,18 @@ const PostList = () => {
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>
-          <Section1Title>익명게시판</Section1Title>
+          <Section1Title>커뮤니티</Section1Title>
         </Section2>
 
-        <button onClick={() => navigate('/search')}>검색</button>
-        {/* <input
+        <input
           type="text"
           placeholder="검색"
           onKeyPress={(event) => {
             search(event);
           }}
-        /> */}
+        />
       </Section1>
       <SectionLine />
-
 
       <Section3>
         {post.map((post) => {
