@@ -11,7 +11,11 @@ export default MyLayout;
 const St_Layout = styled.div`
   width: 100%;
   max-width: 390px;
-  height: 844px;
+  height: 98vh;
   border: 1px solid gray;
+  border-radius: 12px;
   margin: auto;
+  body {
+    height: 100%;
+  }
 `;

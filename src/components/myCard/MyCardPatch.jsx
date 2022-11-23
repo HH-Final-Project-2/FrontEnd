@@ -10,9 +10,12 @@ const MyCardPatch = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo.data);
-  console.log(cardinfo === undefined);
-  console.log(cardinfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+
+  console.log('<명함정보>', cardinfo.company);
+
+  const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
+  console.log('[검색정보]', searchinfo);
 
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
@@ -20,7 +23,7 @@ const MyCardPatch = () => {
     email: cardinfo.email,
     phoneNum: cardinfo.phoneNum,
     company: cardinfo.company,
-    // companyAddress:'',
+    companyAddress: cardinfo.companyAddress,
     department: cardinfo.department,
     position: cardinfo.position,
     tel: cardinfo.tel,
@@ -34,6 +37,7 @@ const MyCardPatch = () => {
     email,
     phoneNum,
     company,
+    companyAddress,
     department,
     position,
     tel,
@@ -41,23 +45,21 @@ const MyCardPatch = () => {
     id,
   } = makeinfo;
 
+  console.log('<<<회사명>>>', company);
+
   const onChage = (e) => {
     const { value, name } = e.target;
     setMakeinfo({
       ...makeinfo,
       [name]: value,
     });
+    console.log(makeinfo);
   };
+
+  console.log(onChage === false);
 
   useEffect(() => {
     dispatch(_getMakeCard());
-    console.log('마운트');
-  }, []);
-
-  useEffect(() => {
-    if (cardinfo === undefined) {
-      return dispatch(_getMakeCard());
-    }
   }, []);
 
   useEffect(() => {
@@ -65,7 +67,27 @@ const MyCardPatch = () => {
   }, [cardinfo]);
 
   const updateHandler = () => {
-    dispatch(_PutCard(makeinfo));
+    dispatch(
+      _PutCard({
+        cardName: cardinfo.cardName,
+        engName: cardinfo.engName,
+        email: cardinfo.email,
+        phoneNum: cardinfo.phoneNum,
+        company:
+          searchinfo.companyName !== undefined
+            ? searchinfo.companyName
+            : cardinfo.company,
+        department: cardinfo.department,
+        companyAddress:
+          searchinfo.companyAddress !== undefined
+            ? searchinfo.companyAddress
+            : cardinfo.companyAddress,
+        position: cardinfo.position,
+        tel: cardinfo.tel,
+        fax: cardinfo.fax,
+        id: cardinfo.id,
+      })
+    );
     nav('/mypage/cardinfo');
   };
 
@@ -90,7 +112,7 @@ const MyCardPatch = () => {
           <St_Key>이름</St_Key>
           <St_value
             name="cardName"
-            value={cardName}
+            value={cardName || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -98,19 +120,23 @@ const MyCardPatch = () => {
           <St_Key>영문이름</St_Key>
           <St_value
             name="engName"
-            value={engName}
+            value={engName || ''}
             onChange={onChage}
           ></St_value>
         </Item>
         <Item>
           <St_Key>이메일</St_Key>
-          <St_value name="email" value={email} onChange={onChage}></St_value>
+          <St_value
+            name="email"
+            value={email || ''}
+            onChange={onChage}
+          ></St_value>
         </Item>
         <Item>
           <St_Key>연락처</St_Key>
           <St_value
             name="phoneNum"
-            value={phoneNum}
+            value={phoneNum || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -119,16 +145,29 @@ const MyCardPatch = () => {
           <St_Key>회사</St_Key>
           <St_value
             name="company"
-            value={company}
+            value={searchinfo.companyName ? searchinfo.companyName : company}
             onChange={onChage}
+            onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
           ></St_value>
-          <St_Address>서울 강남구 역삼로 123 (ABC 빌딩) 5층 ABC LAB</St_Address>
+          <St_Address
+            name="companyAddress"
+            value={
+              searchinfo.companyAddress
+                ? searchinfo.companyAddress
+                : companyAddress
+            }
+            onChange={onChage}
+          >
+            {searchinfo.companyAddress
+              ? searchinfo.companyAddress
+              : companyAddress}
+          </St_Address>
         </Item>
         <Item>
           <St_Key>직책</St_Key>
           <St_value
             name="position"
-            value={position}
+            value={position || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -136,17 +175,17 @@ const MyCardPatch = () => {
           <St_Key>부서</St_Key>
           <St_value
             name="department"
-            value={department}
+            value={department || ''}
             onChange={onChage}
           ></St_value>
         </Item>
         <Item>
           <St_Key>Tel</St_Key>
-          <St_value name="tel" value={tel} onChange={onChage}></St_value>
+          <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
         </Item>
         <Item>
           <St_Key>Fax</St_Key>
-          <St_value name="fax" value={fax} onChange={onChage}></St_value>
+          <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
     </MyLayout>

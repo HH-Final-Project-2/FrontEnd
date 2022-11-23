@@ -1,30 +1,34 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Community from "../pages/Community";
-import Detail from "../pages/Detail";
-import Edit from "../pages/Edit";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Community from '../pages/Community';
+import Detail from '../pages/Detail';
+import Edit from '../pages/Edit';
 
-import Main from "../pages/Main";
-import CompanySearch from "../components/card/CompanySearch";
-import MainCards from "../components/card/MainCards";
-import MainCardsPut from "../components/card/MainCardsPut";
-import OtherCardsCategory from "../components/card/OtherCardsCategory";
-import ViewMainDetailPost from "../components/card/ViewMainDetailPost";
+import Main from '../pages/Main';
+import CompanySearch from '../components/main/CompanySearch';
+import MainCards from '../components/main/MainCards';
+import MainCardsPut from '../components/main/MainCardsPut';
+import OtherCardsCategory from '../components/main/OtherCardsCategory';
+import ViewMainDetailPost from '../components/main/ViewMainDetailPost';
 
-import Write from "../pages/Write";
+import Write from '../pages/Write';
+
 
 import MyCard from "../pages/MyCard";
 import MyCardInfo from "../components/myCard/MyCardInfo";
 import MyCardPatch from "../components/myCard/MyCardPatch";
 import MyCardMake from "../components/myCard/MyCardMake";
+import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
+
 
 import Login from "../pages/Login";
 import Join from "../pages/Join";
 import Cards from "../pages/Cards";
 import MySchedulesItem from "../components/mySchedules/MySchedulesItem";
 import AddMySchedules from "../components/mySchedules/AddMySchedules";
+import CommentEditPage from '../pages/CommentEditPage';
 
 const Router = () => {
   return (
@@ -48,12 +52,14 @@ const Router = () => {
         <Route path="/write" element={<Write />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/commentedit/:id/:cid" element={<CommentEditPage />} />
 
         {/* 내 명함  */}
         <Route path="/mypage" element={<MyCard />} />
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
+        <Route path="/mypage/cardpatch/MyCardCompanySerach" element={<MyCardCompanySerach />} />
 
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />

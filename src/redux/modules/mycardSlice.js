@@ -14,13 +14,13 @@ export const _MakeCard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try{
         // const data = await axios.post("http://localhost:3001/cardinfo",payload);
-        console.log(payload)
+
         const data = await axios.post("https://bkyungkeem.shop/api/mypages",payload,
         {
           headers:{
               contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
+              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
           },
         });
         return thunkAPI.fulfillWithValue(data.data);
@@ -35,19 +35,17 @@ export const _getMakeCard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try{
         // const data = await axios.get("http://localhost:3001/cardinfo");
+        // console.log(data.data)
         const {data} = await axios.get("https://bkyungkeem.shop/api/mypages",
         {
           headers:{
-              contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
-          },
-        }
-        
-        
-        );
+            contentType: "application/json",
+            authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+            "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+        });
 
-        return thunkAPI.fulfillWithValue(data);
+        return thunkAPI.fulfillWithValue(data.data);
     }catch (error) {
         
     }}
@@ -58,25 +56,79 @@ export const _getMakeCard = createAsyncThunk(
 export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
-    console.log("수정 페이로드",payload)
+    console.log("페이로드다",payload)
     try{
-        // const data = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
+        // const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
         const {data} = await axios.put(`https:/bkyungkeem.shop/api/mypages/${payload.id}`,payload,
         {
           headers:{
-              contentType: "application/json",
-              authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoic3NzQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODY3Njg5OX0.XbBc2i3MUbWurHn_apS0Cyo66lE34wcZxz9ZzixyP64",
-              "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkxOTUyOTl9.mV-LEyem5vyKVN1Y2KVShAad30gTuAlOwGJAr-p4pSk",
-          },
-        }
-        
-        );
-
+            contentType: "application/json",
+            authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+            "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+        });
         return thunkAPI.fulfillWithValue(data);
+        
     }catch (error) {
         
     }}
 );
+
+//검색
+export const _searchGet = createAsyncThunk(
+  "SEARCH_GET",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+            "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+      };
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/companySearch",
+        payload,
+        config
+      );
+      console.log(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+//회사명, 주소 저장
+export const _companyInfo = createAsyncThunk(
+  "COMPANY_INFO",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwic3ViIjoiYmJiQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIyMTMzNX0.3mWSrJH85aV3CJ5oA23TUwqzI7sQtwY-2o7RqDzlwUE",
+          "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
+        },
+      };
+      const {data} = await axios.post(
+        "https://bkyungkeem.shop/api/companyInfo",
+        payload,
+        config
+      );
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+
+
+
 
 
 const initialState = {
@@ -87,24 +139,32 @@ const initialState = {
     email: '',
     phoneNum: '',
     company: '',
-    // companyAddress:'',
+    companyAddress:'',
     department: '',
     position: '',
     tel: '',
     fax: ''
   }
 ],
+companyInfo: [
+  {
+
+  }
+],
+searchCompany: [
+  {
+
+  }
+],
   isLoading: false,
   error: null,
 };
 
-// company 수정할 때  put thunck 데이터 콘솔(Thunck), put 콘솔(createSlice)
-// company 만 수정 됨 하지만 데이터를 불러올 때 부서가 company 의 value로 나타나짐
 
 export const mycardSlice = createSlice({
   name: "cardinfo", //모듈
   initialState,
-  reducers: {}, //action value + action creator
+  reducers: {}, 
   extraReducers:{
       [_MakeCard.fulfilled]: (state, action) => {
         state.isLoading = false;
@@ -117,7 +177,15 @@ export const mycardSlice = createSlice({
       [_PutCard.fulfilled]: (state, action) => {
         state.isLoading = false;
         state.cardinfo = [{...state.cardinfo}, action.payload];
-  
+      },
+
+      [_searchGet.fulfilled]: (state, action) => {
+        console.log(action.payload);
+        state.searchCompany ={...action.payload};
+      },
+      [_companyInfo.fulfilled]: (state, action) => {
+        console.log(action.payload);
+        state.companyInfo ={...action.payload};
       },
 
   },

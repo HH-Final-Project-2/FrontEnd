@@ -2,32 +2,55 @@ import styled from 'styled-components';
 
 export const CommunityLayout = styled.div`
   width: 375px;
-  height: 100vh;
   margin: 0 auto;
+  background-color: white;
 `;
 
 export const Section1 = styled.div`
   position: relative;
-  width: 375px;
-  height: 56px;
   top: 37px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Section1Title = styled.div`
   position: relative;
-  left: 21px;
+  left: 18px;
   font-weight: 600;
 `;
 
 export const Section2 = styled.div`
-  position: relative;
-  left: 21px;
-  top: 40px;
-  font-weight: 600;
+  display: flex;
+
+  margin-left: 13px;
+  svg {
+    margin-top: 2.7px;
+  }
 `;
 
 export const Section3 = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const SectionLine = styled.div`
+  height: 1px;
+  margin-top: 60px;
+  background: #d9d9d9;
+`;
+
+export const WriteButton = styled.div`
+  position: fixed;
+  bottom: 130px;
+  margin-left: 300px;
+
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.7);
+  }
+  &:active {
+    margin-bottom: 15px;
+  }
+  transition-duration: 0.3s;
 `;

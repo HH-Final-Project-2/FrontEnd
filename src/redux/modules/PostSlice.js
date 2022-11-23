@@ -2,40 +2,20 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import instanceJSon from '../../shared/Request';
 
-//기본 세팅
-const initialState = {
-  post: [
-    {
-      id: 0,
-      author: '',
-      jobGroup: '',
-      title: '',
-      content: '',
-      hit: '',
-      postHeartCnt: '',
-      commentCnt: '',
-      image: '',
-      createdAt: '',
-      modifiedAt: '',
-    },
-  ],
-  detail: {
-    id: 0,
-    author: '',
-    jobGroup: '',
-    title: '',
-    content: '',
-    hit: '',
-    postHeartCnt: '',
-    commentCnt: '',
-    image: '',
-    createdAt: '',
-    modifiedAt: '',
-  },
-
-  isLoading: false,
-  error: null,
-};
+// 게시글 검색
+export const __searchPost = createAsyncThunk(
+  'search/searchPost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `https://yusung.shop/api/posting/search?keyword=${payload}`
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 // 게시글 전체 조회
 export const __getPostAll = createAsyncThunk(
@@ -43,7 +23,6 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get('https://yusung.shop/api/posting');
-      // console.log(data.data) // 이미지 null 값 들어옴 확인 필요
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -59,7 +38,6 @@ export const __getPost = createAsyncThunk(
       const { data } = await axios.get(
         `https://yusung.shop/api/posting/${payload}`
       );
-      // if (!data.success) throw new Error(data.error);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -95,16 +73,10 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
-    console.log('수정 페이로드', payload);
     try {
       const { data } = await axios.put(
         `https://yusung.shop/api/posting/${payload.id}`,
         payload.formData,
-        // {
-        //   title: payload.testTitle,
-        //   content: payload.testContent,
-        //   image: payload.image,
-        // },
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -113,7 +85,7 @@ export const __putPost = createAsyncThunk(
           },
         }
       );
-      return thunkAPI.fulfillWithValue();
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -124,7 +96,6 @@ export const __putPost = createAsyncThunk(
 export const __deletePost = createAsyncThunk(
   'post/deletePost',
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
         headers: {
@@ -134,68 +105,118 @@ export const __deletePost = createAsyncThunk(
         },
       });
 
-      return thunkAPI.fulfillWithValue();
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
+//기본 세팅
+const initialState = {
+  post: [
+    {
+      id: 0,
+      author: '',
+      jobGroup: '',
+      title: '',
+      content: '',
+      hit: '',
+      postHeartCnt: '',
+      commentCnt: '',
+      image: '',
+      createdAt: '',
+      modifiedAt: '',
+    },
+  ],
+  detail: {
+    id: 0,
+    author: '',
+    jobGroup: '',
+    title: '',
+    content: '',
+    hit: '',
+    postHeartCnt: '',
+    commentCnt: '',
+    image: '',
+    createdAt: '',
+    modifiedAt: '',
+  },
+
+  isLoading: false,
+  error: null,
+};
+
 export const PostSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {},
   extraReducers: {
-    //게시글 전체 조회
-    [__getPostAll.pending]: (state, action) => {
-      state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+
+    //게시글 검색
+
+    [__searchPost.fulfilled]: (state, action) => {
+      state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
+      state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
+
+
+    //게시글 전체 조회
+
     [__getPostAll.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
-    [__getPostAll.rejected]: (state, action) => {
-      state.isLoading = false; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
-      state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
-    },
+
 
     //게시글 상세 조회
-    [__getPost.pending]: (state) => {
-      state.isLoading = true;
-    },
+
     [__getPost.fulfilled]: (state, action) => {
       state.detail = action.payload;
       state.isLoading = false;
     },
-    [__getPost.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+
 
     //게시글 작성
-    [__writePost.pending]: (state) => {
-      state.isLoading = true;
-    },
+
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      //state.postAll.push(action.payload);
       state.post = [...state.post, action.payload];
     },
-    [__writePost.rejected]: (state, action) => {
-      state.isLoading = false;
-    },
+
 
     //게시글 수정
-    [__putPost.pending]: (state, action) => {
-      state.isLoading = true;
-    },
     [__putPost.fulfilled]: (state, action) => {
       state.isLoading = false;
+
+      // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
+      // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
+
+      // 1. 게시글 id 확인
+      // let id = action.payload.id;
+
+      // 1.1. 수정된 게시글
+      let modPost = action.payload;
+
+      // 2. 새로 저장할 게시글 배열 생성
+      //    불변성 때문에 state.post[수정된게시글]을 수정하면 렌더링이 안된다.
+      let newPosts = [];
+
+      // 3. for 루프를 이용, state.post를 반복(iteration)한다
+      for (let i = 0; i < state.post.length; i++) {
+        if (state.post[i].id === modPost.id)
+          // 수정된 게시글 id와 동일하다. 새로 전송받은 게시글 객체로 저장
+          newPosts.push(modPost);
+        else
+          // 수정된 게시글 id와 다르다. 기존 데이터 저장
+          newPosts.push(state.post[i]);
+      }
+
+      // 4. state.post를 새로 만든 배열로 변경 시켜준다
+      state.post = newPosts;
+
     },
-    [__putPost.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+
 
     //게시글 삭제
     [__deletePost.pending]: (state, action) => {

@@ -3,7 +3,11 @@ import cardinfo from "../modules/mycardSlice";
 import PostSlice from "../modules/PostSlice";
 import comments from "../modules/commentSlice";
 import PostReducer from "../modules/CardsSlice";
+
 import ScheduleSlice from "../modules/SchedulesSlice";
+
+import chat from '../modules/chatSlice' 
+
 
 const store = configureStore({
   reducer: {
@@ -12,6 +16,8 @@ const store = configureStore({
     comments,
     PostReducer,
     ScheduleSlice,
+    chat,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
