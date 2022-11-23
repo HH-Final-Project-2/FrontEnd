@@ -23,12 +23,12 @@ import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
 
-import Login from '../pages/Login';
-import Join from '../pages/Join';
-
+import Login from "../pages/Login";
+import Join from "../pages/Join";
+import Cards from "../pages/Cards";
+import MySchedulesItem from "../components/mySchedules/MySchedulesItem";
+import AddMySchedules from "../components/mySchedules/AddMySchedules";
 import CommentEditPage from '../pages/CommentEditPage';
-
-import Cards from '../pages/Cards';
 
 const Router = () => {
   return (
@@ -42,6 +42,10 @@ const Router = () => {
         <Route path="/posts/:id/put" element={<MainCardsPut />} />
         <Route path="/posts/companySearch" element={<CompanySearch />} />
         <Route path="/posts/get/:id" element={<ViewMainDetailPost />} />
+
+        {/* 내 일정 */}
+        <Route path="/mySchedules" element={<MySchedulesItem />} />
+        <Route path="/addSchedules" element={<AddMySchedules />} />
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />

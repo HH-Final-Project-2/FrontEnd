@@ -1,21 +1,85 @@
-
 {
-  "cardinfo": [
+  "posts": [
     {
-      "cardname": "김승재12",
-      "engName": "kimsj",
-      "email": "qwer@qwer.com",
-      "phoneNum": "010-0000-0000",
-      "company": "kakao",
-      "department": "FE",
-      "postion": "쫄병",
-      "tel": "02-000-0000",
-      "fax": "02-000-0000",
-      "id": 1
+      "id": 6,
+      "name": "석재1122",
+      "email": "이메일",
+      "phoneNum": "01010101010",
+      "department": "it",
+      "position": "대리",
+      "tel": "02-1111-1111",
+      "fax": "02-2222-2222",
+      "company": "회사 ",
+      "companyAddress": "주소",
+      "companyType": "own"
+    },
+    {
+      "name": "ㅇㅁㄴㅎㄹ",
+      "email": "ㅁㄴㅇㄹ",
+      "phoneNum": "ㅁㄴㄹ",
+      "department": "ㄴㅁㅇㅍ",
+      "position": "ㅁㅍㄴ",
+      "tel": "ㅁㄴㅍㅇ",
+      "fax": "ㅁㄴㅍ",
+      "company": "ㅁㄴㅇㄹ",
+      "companyAddress": "ㅁㅍㄴ",
+      "companyType": "other",
+      "id": 7
+    },
+    {
+      "id": 8
+    }
+  ],
+  "date": [
+    {
+      "filteredDate": [
+        "2022-11-22"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:02",
+      "endDate": "2022-11-22",
+      "endTime": "20:02",
+      "title": "asdfasd",
+      "todo": "fasdfasd",
+      "id": 7
+    },
+    {
+      "filteredDate": [
+        "2022-11-22",
+        "2022-11-23",
+        "2022-11-24",
+        "2022-11-25"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:30",
+      "endDate": "2022-11-25",
+      "endTime": "20:30",
+      "title": "제목",
+      "todo": "일정",
+      "id": 8
+    },
+    {
+      "filteredDate": [
+        "2022-11-22",
+        "2022-11-23"
+      ],
+      "startDate": "2022-11-22",
+      "startTime": "20:18",
+      "endDate": "2022-11-23",
+      "endTime": "21:30",
+      "title": "asdfas",
+      "todo": "asdfasd",
+      "id": 9
+    },
+    {
+      "filteredDate": "2022-11-22,2022-11-23,2022-11-24,2022-11-25,2022-11-26,2022-11-27,2022-11-28,2022-11-29",
+      "startDate": "2022-11-22",
+      "startTime": "20:22",
+      "endDate": "2022-11-29",
+      "endTime": "20:22",
+      "title": "asdf",
+      "todo": "asdfas",
+      "id": 10
     }
   ]
 }
-
-
-  
-

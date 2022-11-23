@@ -8,27 +8,28 @@ const ViewMainDetailPost = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const view = useSelector((state) => state.PostReducer.viewList.data);
+  const view = useSelector((state) => state.PostReducer.viewList);
   console.log(view);
+  const viewArr = [view];
 
   useEffect(() => {
     dispatch(__viewGet(id));
-  }, []);
+  }, [dispatch]);
 
   const deleteClickHandler = () => {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2ODcwMjMyOH0.TZ7RTsW9eDKqBacKaBrB79dATPUqVp12DvLAuRqwxoM",
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g",
         "Refresh-Token":
-          "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkyMjA3Mjh9.Fc1_EpZFIfdgPLyFpoDOv2eWFRl0YIVx4KrR0iTlfNI",
+          "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA",
       },
     };
     axios
       .delete(`https://bkyungkeem.shop/api/businessCards/${id}`, config)
       .then(function (response) {
         console.log(response);
-        view.filter((x) => x.id !== response);
+        viewArr.filter((x) => x.id !== response);
       })
       .catch(function (error) {
         console.log(error);
@@ -37,7 +38,7 @@ const ViewMainDetailPost = () => {
         // always executed
       });
     alert("DELETE SECCESS");
-    navigate("/");
+    navigate("/cards");
   };
   const fixClickHandler = () => {
     navigate(`/posts/${view.id}/put`);
