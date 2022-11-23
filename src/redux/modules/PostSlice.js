@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import instance from "../../shared/Request";
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import instance from '../../shared/Request';
+const accessToken = localStorage.getItem('authorization');
+const refreshToken = localStorage.getItem('refresh-Token');
 
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
-  "search/searchPost",
+  'search/searchPost',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
@@ -21,11 +21,11 @@ export const __searchPost = createAsyncThunk(
 
 // 게시글 전체 조회
 export const __getPostAll = createAsyncThunk(
-  "posts/getPostAll",
+  'posts/getPostAll',
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await instance.get("/api/posting");
+      const { data } = await instance.get('/api/posting');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ export const __getPostAll = createAsyncThunk(
 
 // 게시글 상세 조회
 export const __getPost = createAsyncThunk(
-  "post/getPost",
+  'post/getPost',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/api/posting/${payload}`);
@@ -48,17 +48,17 @@ export const __getPost = createAsyncThunk(
 
 // 게시글 작성
 export const __writePost = createAsyncThunk(
-  "post/writePost",
+  'post/writePost',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        "https://bkyungkeem.shop/api/posting",
+        'https://bkyungkeem.shop/api/posting',
         payload,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
             authorization: accessToken,
-            "refresh-Token": refreshToken,
+            'refresh-Token': refreshToken,
           },
         }
       );
@@ -71,7 +71,7 @@ export const __writePost = createAsyncThunk(
 
 // 게시글 수정
 export const __putPost = createAsyncThunk(
-  "post/putPost",
+  'post/putPost',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.put(
@@ -79,9 +79,9 @@ export const __putPost = createAsyncThunk(
         payload.formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
             authorization: accessToken,
-            "refresh-Token": refreshToken,
+            'refresh-Token': refreshToken,
           },
         }
       );
@@ -94,7 +94,7 @@ export const __putPost = createAsyncThunk(
 
 //게시글 삭제
 export const __deletePost = createAsyncThunk(
-  "post/deletePost",
+  'post/deletePost',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.delete(`/api/posting/${payload}`);
@@ -111,30 +111,30 @@ const initialState = {
   post: [
     {
       id: 0,
-      author: "",
-      jobGroup: "",
-      title: "",
-      content: "",
-      hit: "",
-      postHeartCnt: "",
-      commentCnt: "",
-      image: "",
-      createdAt: "",
-      modifiedAt: "",
+      author: '',
+      jobGroup: '',
+      title: '',
+      content: '',
+      hit: '',
+      postHeartCnt: '',
+      commentCnt: '',
+      image: '',
+      createdAt: '',
+      modifiedAt: '',
     },
   ],
   detail: {
     id: 0,
-    author: "",
-    jobGroup: "",
-    title: "",
-    content: "",
-    hit: "",
-    postHeartCnt: "",
-    commentCnt: "",
-    image: "",
-    createdAt: "",
-    modifiedAt: "",
+    author: '',
+    jobGroup: '',
+    title: '',
+    content: '',
+    hit: '',
+    postHeartCnt: '',
+    commentCnt: '',
+    image: '',
+    createdAt: '',
+    modifiedAt: '',
   },
 
   isLoading: false,
@@ -142,7 +142,7 @@ const initialState = {
 };
 
 export const PostSlice = createSlice({
-  name: "post",
+  name: 'post',
   initialState,
   reducers: {},
   extraReducers: {
@@ -203,13 +203,14 @@ export const PostSlice = createSlice({
       state.post = newPosts;
     },
 
+    // 게시글 삭제
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("필터전이구", state.post.length);
+      console.log('필터전이구', state.post.length);
       state.post = state.post.filter(
         (postList) => postList.id !== action.payload
       );
-      console.log("필터후", state.post.length);
+      console.log('필터후', state.post.length);
     },
   },
 });
