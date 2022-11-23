@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
-import { __getPostAll } from '../../../redux/modules/PostSlice';
+
 import Footer from '../../footer/Footer';
 import Post from '../post/Post';
 import {
@@ -34,13 +34,7 @@ const PostList = () => {
     setPostAll(data);
   };
 
-  const search = (event) => {
-    if (event.key === 'Enter') {
-      let keyword = event.target.value;
 
-      navigate(`/community/?q=${keyword}`);
-    }
-  };
 
   // 게시글 전체 조회
   useEffect(() => {

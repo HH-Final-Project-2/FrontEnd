@@ -1,20 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const MyProfile = () => {
   // 내 명함 페이지의 상단 마이프로필 컴포넌트
 
   const nav = useNavigate();
+  const nickname = localStorage.getItem('nickname');
+  console.log(nickname);
+
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
 
   return (
     <St_Profile>
       <St_Header>
-        <St_Name>NickName</St_Name>
-        <button>프로필 편집</button>
+        <St_Name>{nickname}</St_Name>
+        <PutButton>편집</PutButton>
       </St_Header>
-      <St_Info>직책</St_Info>
-      <St_Info>부서</St_Info>
+
+      <St_Info>{cardinfo.position}</St_Info>
+      <St_Info>{cardinfo.department}</St_Info>
     </St_Profile>
   );
 };
@@ -26,7 +32,19 @@ const St_Profile = styled.div`
   max-width: 360px;
   height: 100px;
   padding: 15px;
-  border-bottom: 1px solid #d6d6d6;
+  /* border-bottom: 1px solid #d6d6d6; */
+`;
+
+const PutButton = styled.a`
+  margin: auto;
+  margin-right: 10px;
+  color: #277dff;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15px;
 `;
 
 const St_Header = styled.div`
@@ -48,7 +66,7 @@ const St_Info = styled.div`
   font-weight: 400;
   color: gray;
   background-color: #ecebeb;
-  padding: 3px;
+  padding: 4px;
   border-radius: 5px;
   font-weight: 500;
   align-items: center;
