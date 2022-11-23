@@ -43,7 +43,6 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get('https://yusung.shop/api/posting');
-      // console.log(data.data) // 이미지 null 값 들어옴 확인 필요
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -121,7 +120,7 @@ export const __deletePost = createAsyncThunk(
     try {
       const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           authorization: localStorage.getItem('authorization'),
           'refresh-Token': localStorage.getItem('refresh-Token'),
         },
@@ -139,14 +138,12 @@ export const PostSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-
     //게시글 전체 조회
 
     [__getPostAll.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
       state.post = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
-
 
     //게시글 상세 조회
 
@@ -155,14 +152,12 @@ export const PostSlice = createSlice({
       state.isLoading = false;
     },
 
-
     //게시글 작성
 
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = [...state.post, action.payload];
     },
-
 
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
@@ -186,16 +181,13 @@ export const PostSlice = createSlice({
         if (state.post[i].id === modPost.id)
           // 수정된 게시글 id와 동일하다. 새로 전송받은 게시글 객체로 저장
           newPosts.push(modPost);
-        else
-          // 수정된 게시글 id와 다르다. 기존 데이터 저장
-          newPosts.push(state.post[i]);
+        // 수정된 게시글 id와 다르다. 기존 데이터 저장
+        else newPosts.push(state.post[i]);
       }
 
       // 4. state.post를 새로 만든 배열로 변경 시켜준다
       state.post = newPosts;
-
     },
-
 
     //게시글 삭제
     [__deletePost.pending]: (state, action) => {
@@ -211,5 +203,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const { } = PostSlice.actions;
+export const {} = PostSlice.actions;
 export default PostSlice.reducer;
