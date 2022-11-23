@@ -12,6 +12,7 @@ import addimg from '../../images/Property 1=default.svg';
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
   const marks = useSelector((state) => state.ScheduleSlice.date);
+  console.log(marks)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MySchedulesItem = () => {
     e.preventDefault();
     navigate('/addSchedules');
   };
+  if (marks === null) return;
 
   return (
     <div className="page">
@@ -60,7 +62,7 @@ const MySchedulesItem = () => {
         />
         <div className="detailTodo">
           {moment(value).format('MM월 DD일 일정')}
-          {marks !== undefined
+          {marks !== null
             ? marks.map((x) => {
                 if (
                   x.filteredDate.includes(moment(value).format('YYYY-MM-DD'))
@@ -114,7 +116,7 @@ const MySchedulesItem = () => {
                       </div>
                     </div>
                   );
-                } else return null;
+                } else return null
               })
             : null}
         </div>

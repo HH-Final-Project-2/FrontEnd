@@ -42,9 +42,7 @@ export const __getPostAll = createAsyncThunk(
   'posts/getPostAll',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        'https://yusung.shop/api/posting/list/1'
-      );
+      const { data } = await axios.get('https://yusung.shop/api/posting');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -122,7 +120,7 @@ export const __deletePost = createAsyncThunk(
     try {
       const { data } = await instanceJSon.delete(`/api/posting/${payload}`, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           authorization: localStorage.getItem('authorization'),
           'refresh-Token': localStorage.getItem('refresh-Token'),
         },

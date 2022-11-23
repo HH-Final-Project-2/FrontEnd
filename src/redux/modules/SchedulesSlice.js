@@ -10,9 +10,9 @@ export const __writeSchedules = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json',
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g',
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w',
           'Refresh-Token':
-            'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA',
+            'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE',
         },
       };
       const data = await axios.post(
@@ -35,16 +35,16 @@ export const __schedulesGet = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json',
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTIxMjM2NH0.4LgYwsbIz38cwRkPQcSJIrDOmaBvBEt4eqPXx5IjC1g',
+            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w',
           'Refresh-Token':
-            'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3MzA3NjR9.o8pS793rKuCaIFbtHrKbRL19U--qQpfeV9fH_8b18fA',
+            'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE',
         },
       };
       const data = await axios.get(
         'https://bkyungkeem.shop/api/calendar',
         config
       );
-      console.log(data.data.data);
+      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
