@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
-import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
+import { __getPostAll, __searchPost } from "../../../redux/modules/PostSlice";
 
-import { useSearchParams } from 'react-router-dom';
-import { __getPostAll } from '../../../redux/modules/PostSlice';
-import Footer from '../../footer/Footer';
+import { useSearchParams } from "react-router-dom";
+import Footer from "../../footer/Footer";
 
-import Post from '../post/Post';
+import Post from "../post/Post";
 import {
   CommunityLayout,
   Section1,
@@ -17,7 +16,7 @@ import {
   Section3,
   SectionLine,
   WriteButton,
-} from './PostListStyle';
+} from "./PostListStyle";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -25,10 +24,10 @@ const PostList = () => {
   const { post } = useSelector((state) => state.PostSlice);
 
   const search = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       //입력한 검색어를 읽어와서
       let keyword = event.target.value;
-      dispatch(__searchPost(keyword))
+      dispatch(__searchPost(keyword));
     }
   };
 
@@ -38,14 +37,13 @@ const PostList = () => {
   }, [dispatch]);
 
   const writeHandler = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   if (post === undefined) return null;
 
   return (
     <CommunityLayout>
-
       <Section1>
         <Section2>
           <svg
@@ -69,7 +67,6 @@ const PostList = () => {
         />
       </Section1>
       <SectionLine />
-
 
       <Section3>
         {post.map((post) => {

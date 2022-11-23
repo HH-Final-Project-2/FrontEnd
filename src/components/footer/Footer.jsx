@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
-import { FooterBox } from './FooterStyle';
+import React from "react";
+import { useNavigate } from "react-router";
+import { FooterBox } from "./FooterStyle";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Footer = () => {
       {/* 명함첩으로 이동 */}
 
       <svg
-        onClick={() => navigate('/cards')}
+        onClick={() => navigate("/cards")}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -25,7 +25,7 @@ const Footer = () => {
       </svg>
       {/* 일정으로 이동 */}
       <svg
-        onClick={() => navigate('/일정url 넣어주십셔')}
+        onClick={() => navigate("/mySchedules")}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -41,7 +41,7 @@ const Footer = () => {
       </svg>
       {/* 채팅으로 이동 */}
       <svg
-        onClick={() => navigate('/chat')}
+        onClick={() => navigate("/chat")}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -57,7 +57,7 @@ const Footer = () => {
       </svg>
       {/* 커뮤니티로 이동 */}
       <svg
-        onClick={() => navigate('/community')}
+        onClick={() => navigate("/community")}
         width="72"
         height="56"
         viewBox="0 0 72 56"
@@ -75,7 +75,7 @@ const Footer = () => {
       </svg>
       {/* 내 명함으로 이동 */}
       <svg
-        onClick={() => navigate('/mypage')}
+        onClick={() => navigate("/mypage")}
         width="72"
         height="56"
         viewBox="0 0 72 56"
