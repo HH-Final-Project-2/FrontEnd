@@ -33,6 +33,7 @@ export const _MakeCard = createAsyncThunk(
 export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
+
     try{
         // const data = await axios.get("http://localhost:3001/cardinfo");
         // console.log(data.data)
@@ -44,7 +45,7 @@ export const _getMakeCard = createAsyncThunk(
             "refresh-Token": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk3Mzk3MzV9.ClJ9CSbugHFFBkDAB6wuAfQazah3Nbxruo5N_SmZ-DU",
         },
         });
-
+        console.log(data.data)
         return thunkAPI.fulfillWithValue(data.data);
     }catch (error) {
         
@@ -56,7 +57,7 @@ export const _getMakeCard = createAsyncThunk(
 export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
-    console.log("페이로드다",payload)
+
     try{
         // const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
         const {data} = await axios.put(`https:/bkyungkeem.shop/api/mypages/${payload.id}`,payload,
@@ -78,7 +79,7 @@ export const _PutCard = createAsyncThunk(
 export const _searchGet = createAsyncThunk(
   "SEARCH_GET",
   async (payload, thunkAPI) => {
-    console.log(payload);
+
     try {
       const config = {
         headers: {
@@ -92,7 +93,7 @@ export const _searchGet = createAsyncThunk(
         payload,
         config
       );
-      console.log(data.data.data);
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -104,7 +105,6 @@ export const _searchGet = createAsyncThunk(
 export const _companyInfo = createAsyncThunk(
   "COMPANY_INFO",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const config = {
         headers: {
@@ -128,9 +128,6 @@ export const _companyInfo = createAsyncThunk(
 
 
 
-
-
-
 const initialState = {
   cardinfo: [
     {
@@ -146,16 +143,8 @@ const initialState = {
     fax: ''
   }
 ],
-companyInfo: [
-  {
-
-  }
-],
-searchCompany: [
-  {
-
-  }
-],
+companyInfo: [{}],
+searchCompany: [{}],
   isLoading: false,
   error: null,
 };

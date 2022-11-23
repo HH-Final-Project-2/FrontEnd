@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
 
 import { useSearchParams } from 'react-router-dom';
-import { __getPostAll } from '../../../redux/modules/PostSlice';
+
 import Footer from '../../footer/Footer';
 
 import Post from '../post/Post';
@@ -28,7 +28,7 @@ const PostList = () => {
     if (event.key === 'Enter') {
       //입력한 검색어를 읽어와서
       let keyword = event.target.value;
-      dispatch(__searchPost(keyword))
+      dispatch(__searchPost(keyword));
     }
   };
 
@@ -45,7 +45,6 @@ const PostList = () => {
 
   return (
     <CommunityLayout>
-
       <Section1>
         <Section2>
           <svg
@@ -69,7 +68,6 @@ const PostList = () => {
         />
       </Section1>
       <SectionLine />
-
 
       <Section3>
         {post.map((post) => {
