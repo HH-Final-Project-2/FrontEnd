@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 
-import { __getPostAll, __searchPost } from "../../../redux/modules/PostSlice";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
+import { __getPostAll, __searchPost } from '../../../redux/modules/PostSlice';
+import Post from '../post/Post';
 
-import { useSearchParams } from "react-router-dom";
-import Footer from "../../footer/Footer";
-
-import Post from "../post/Post";
 import {
   CommunityLayout,
   Section1,
@@ -21,7 +19,11 @@ import {
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const { keyword } = useParams();
+  const [query, setQuery] = useSearchParams();
+  let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
+
 
   const search = (event) => {
     if (event.key === "Enter") {
@@ -31,10 +33,25 @@ const PostList = () => {
     }
   };
 
-  // 게시글 전체 조회
+
   useEffect(() => {
-    dispatch(__getPostAll());
-  }, [dispatch]);
+    if (searchQuery == null) dispatch(__getPostAll());
+    else dispatch(__searchPost(searchQuery));
+  }, [dispatch])
+
+
+  // const search = (event) => {
+  //   if (event.key === 'Enter') {
+  //     //입력한 검색어를 읽어와서
+  //     let keyword = event.target.value;
+  //     dispatch(__searchPost(keyword))
+  //   }
+  // };
+
+  //게시글 전체 조회
+  // useEffect(() => {
+  //   dispatch(__getPostAll());
+  // }, [dispatch]);
 
   const writeHandler = () => {
     navigate("/write");
@@ -58,13 +75,14 @@ const PostList = () => {
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
 
-        <input
+        <button onClick={() => navigate('/search')}>검색</button>
+        {/* <input
           type="text"
           placeholder="검색"
           onKeyPress={(event) => {
             search(event);
           }}
-        />
+        /> */}
       </Section1>
       <SectionLine />
 
