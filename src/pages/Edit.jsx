@@ -2,11 +2,7 @@ import React from 'react';
 import PostEdit from '../components/community/postEdit/PostEdit';
 
 const Edit = () => {
-  return (
-    <div>
-      <PostEdit />
-    </div>
-  );
+  return <PostEdit />;
 };
 
 export default Edit;

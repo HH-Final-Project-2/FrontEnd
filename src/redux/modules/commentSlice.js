@@ -64,8 +64,17 @@ export const putComment = createAsyncThunk(
   "PUTCOMMENT",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(`https://yusung.shop/api/${payload.postingId}/comment/${payload.id}`, payload)
-      return thunkAPI.fulfillWithValue(data)
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('authorization'),
+          'Refresh-Token': localStorage.getItem('refresh-Token')
+        },
+      };
+      const { data } = await axios.put(`https://yusung.shop/api/comment/${payload.postId}/${payload.commentId}`,
+        { content: payload.content }, config)
+      return thunkAPI.fulfillWithValue(data.data)
+
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -74,6 +83,7 @@ export const putComment = createAsyncThunk(
 
 const initialState = {
   comments: [],
+  comment: {},
   isLoading: false,
   error: null,
 }
@@ -88,15 +98,15 @@ export const commentSlice = createSlice({
     // payload : 댓글 배열
     [getCommentList.fulfilled]: (state, action) => {
       //console.log('슬라이스', action.payload)
-      state.comments = action.payload
       state.isLoading = false;
+      state.comments = action.payload;
     },
 
     // 댓글 작성
     // payload : 단일 댓글
     [addComment.fulfilled]: (state, action) => {
       state.isLoading = false
-      state.comments = [action.payload, ...state.comments]
+      state.comments = [...state.comments, action.payload]
     },
 
     // 댓글 삭제
@@ -108,29 +118,22 @@ export const commentSlice = createSlice({
 
 
     // 댓글 수정
-    // [__addComment.pending]: (state) => {
-    //   state.isLoading = true
-    // },
+    [putComment.fulfilled]: (state, action) => {
+      state.isLoading = false
 
-    // [__addComment.fulfilled]: (state, action) => {
+      let modComment = action.payload;
 
-    //   state.isLoading = false
-    //   state.comments = action.payload
+      let newComment = [];
 
-    // },
-
-    // [__addComment.rejected]: (state, action) => {
-    //   state.isLoading = false
-    //   state.error = action.payload
-    // },
-
-
-
-
-
-
-
-
+      for (let i = 0; i < state.comments.length; i++) {
+        if (state.comments[i].id === modComment.id) {
+          newComment.push(modComment);
+        } else {
+          newComment.push(state.comments[i]);
+        }
+      }
+      state.comments = newComment;
+    },
   },
 
 })
