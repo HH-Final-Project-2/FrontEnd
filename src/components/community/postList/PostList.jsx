@@ -57,7 +57,7 @@ const PostList = () => {
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>
-          <Section1Title>익명게시판</Section1Title>
+          <Section1Title>커뮤니티</Section1Title>
         </Section2>
 
         <input
