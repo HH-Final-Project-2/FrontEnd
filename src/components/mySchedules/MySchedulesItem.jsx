@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { __schedulesGet } from "../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
 import addimg from "../../images/Property 1=default.svg";
+import Footer from "../footer/Footer";
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
@@ -121,6 +122,7 @@ const MySchedulesItem = () => {
             : null}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
