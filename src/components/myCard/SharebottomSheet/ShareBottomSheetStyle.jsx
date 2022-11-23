@@ -39,3 +39,7 @@ export const Share = styled.a`
   letter-spacing: 0.15px;
   color: #1a1f27;
 `;
+
+export const Textshare = styled.div`
+  background-color: gold;
+`;
