@@ -79,12 +79,11 @@ export const PostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
-  padding: 6px;
+  padding: 5px;
 
   margin-left: 5px;
   margin-top: 15px;
   font-size: 12px;
-  font-weight: 600;
 
   color: #3425de;
   background: #eeecff;
