@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MyLayout from './MyLayout';
+import Layout from '../layout/Layout';
+
 import { useNavigate } from 'react-router';
 
-import { _MakeCard } from '../../redux/modules/mycardSlice';
+import {
+  _getMakeCard,
+  _MakeCard,
+  _PutCard,
+} from '../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MyCardMake = () => {
@@ -11,12 +16,18 @@ const MyCardMake = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log(cardinfo);
 
   const [makeinfo, setMakeinfo] = useState({
-    cardName: '',
-    engName: '',
-    email: '',
-    phoneNum: '',
+    // cardName: '',
+    // engName: '',
+    // email: '',
+    // phoneNum: '',
+    cardName: localStorage.getItem('cardName'),
+    engName: localStorage.getItem('engName'),
+    email: localStorage.getItem('email'),
+    phoneNum: localStorage.getItem('phoneNum'),
     company: '',
     companyAddress: '',
     department: '',
@@ -47,12 +58,37 @@ const MyCardMake = () => {
   };
 
   const PostHandler = () => {
-    dispatch(_MakeCard(makeinfo));
+    dispatch(
+      _MakeCard({
+        cardName,
+        engName,
+        email,
+        phoneNum,
+        company:
+          searchinfo.companyName !== undefined
+            ? searchinfo.companyName
+            : company,
+        department,
+        companyAddress:
+          searchinfo.companyAddress !== undefined
+            ? searchinfo.companyAddress
+            : companyAddress,
+        position,
+        tel,
+        fax,
+      })
+    );
     nav('/mypage');
   };
 
+  localStorage.setItem('cardName', cardName);
+  localStorage.setItem('engName', engName);
+  localStorage.setItem('email', email);
+  localStorage.setItem('phoneNum', phoneNum);
+
+  console.log(cardName);
   return (
-    <MyLayout>
+    <Layout>
       <St_Header>
         <svg
           width="24"
@@ -74,7 +110,17 @@ const MyCardMake = () => {
         </svg>
         <St_Title>명함 만들기</St_Title>
 
-        <SaveButton onClick={PostHandler}>저장</SaveButton>
+        <SaveButton
+          onClick={() => {
+            PostHandler();
+            localStorage.removeItem('cardName');
+            localStorage.removeItem('engName');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phoneNum');
+          }}
+        >
+          저장
+        </SaveButton>
       </St_Header>
       <PatchBox>
         <Item>
@@ -114,6 +160,7 @@ const MyCardMake = () => {
             onChange={onChage}
             onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
           ></St_value>
+
           <St_Address
             name="companyAddress"
             value={
@@ -174,7 +221,7 @@ const MyCardMake = () => {
           <St_value name="fax" value={fax} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
-    </MyLayout>
+    </Layout>
   );
 };
 export default MyCardMake;
@@ -201,7 +248,7 @@ const St_Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 15px;
+  padding-left: 4px;
 `;
 //저장버튼
 const SaveButton = styled.a`
