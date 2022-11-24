@@ -3,11 +3,9 @@ import styled from 'styled-components';
 export const DivHeart = styled.div`
   display: flex;
   font-size: 12px;
-  margin-right: 15px;
+  margin-right: 20px;
 
   color: #52596b;
-
-  
 `;
 
 export const HeartNum = styled.div`

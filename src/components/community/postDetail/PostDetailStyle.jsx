@@ -147,16 +147,6 @@ export const DetailPostSection4 = styled.div`
 
   margin-top: 14px;
   margin-left: 20px;
-  /* input {
-    width: 283px;
-    height: 40px;
-
-    border: none;
-    outline: none;
-
-    background: #f5f5f5;
-    border-radius: 8px;
-  } */
 `;
 
 export const CommentBox = styled.div`
