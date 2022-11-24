@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Section1 = styled.div`
   position: relative;
@@ -16,17 +15,25 @@ export const Section1Title = styled.div`
 
 export const Section2 = styled.div`
   display: flex;
-  margin-left: 13px;
+  margin-left: 18px;
   svg {
-    margin-top: 2.7px;
+    margin-top: 10px;
   }
 `;
 
 export const SearchInput = styled.input`
+  padding-left: 10px;
+  width: 299px;
+  height: 40px;
   border: none;
   outline: none;
   font-size: 16px;
-  
-  margin-left: 10px;
-  /* border-bottom: 1px solid #000; */
+
+  margin-left: 5px;
+  background: #f5f5f5;
+  border-radius: 8px;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
 `;
