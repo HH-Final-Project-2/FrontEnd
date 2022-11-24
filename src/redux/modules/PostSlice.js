@@ -54,10 +54,10 @@ export const __getPost = createAsyncThunk(
       await instance.post(`/api/auth/post/heart/${payload}`);
       let likeStore = await instance.post(`/api/auth/post/heart/${payload}`);
       // console.log('나는 라이크 데이터', likeData.data)
-
       const { data } = await instance.get(`/api/posting/${payload}`);
       data.data.like = likeStore.data.data;
       return thunkAPI.fulfillWithValue(data.data);
+
     } catch (error) {
       console.log(error);
     }
@@ -123,6 +123,8 @@ export const __deletePost = createAsyncThunk(
   }
 );
 
+
+
 //기본 세팅
 const initialState = {
   post: [
@@ -158,6 +160,7 @@ const initialState = {
     success: true,
     data: false,
     error: null,
+
   },
 
   isLoading: false,
@@ -169,8 +172,8 @@ export const PostSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    //게시글 검색
 
+    //게시글 검색
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
@@ -183,14 +186,12 @@ export const PostSlice = createSlice({
     },
 
     //게시글 전체 조회
-
     [__getPostAll.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
     },
 
     //게시글 상세 조회
-
     [__getPost.fulfilled]: (state, action) => {
       state.detail = action.payload;
       state.isLoading = false;

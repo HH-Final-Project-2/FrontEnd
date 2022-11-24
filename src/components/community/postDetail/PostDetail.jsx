@@ -6,6 +6,7 @@ import {
   __getPost,
   __likePost,
 } from '../../../redux/modules/PostSlice';
+
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
@@ -37,6 +38,7 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
+
 } from './PostDetailStyle';
 
 const PostDetail = () => {
@@ -46,8 +48,10 @@ const PostDetail = () => {
   const { detail } = useSelector((state) => state.PostSlice);
   const { like } = useSelector((state) => state.PostSlice);
 
+
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
+
 
   useEffect(() => {
     dispatch(__getPost(id));
@@ -60,7 +64,6 @@ const PostDetail = () => {
 
   const likeHandler = () => {
     setIsHeart(!isHeart);
-
     dispatch(__likePost(id));
     if (isHeart) {
       setCountHeart(countHeart - 1);
@@ -68,6 +71,7 @@ const PostDetail = () => {
       setCountHeart(countHeart + 1);
     }
   };
+
 
   if (detail === undefined) return;
   return (
@@ -139,11 +143,14 @@ const PostDetail = () => {
       {/*  */}
       <DetailSectionLine />
       <DetailPostSection4>
+      
         <div>
           <DivHeart onClick={likeHandler}>
             {like && isHeart ? <FillLike /> : <Like />}
 
-            <HeartNum>{countHeart}</HeartNum>
+            <HeartNum>
+              {countHeart}
+            </HeartNum>
           </DivHeart>
         </div>
 
