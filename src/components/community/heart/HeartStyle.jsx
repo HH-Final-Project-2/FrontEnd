@@ -6,8 +6,6 @@ export const DivHeart = styled.div`
   margin-right: 15px;
   cursor: pointer;
   color: #52596b;
-
-  
 `;
 
 export const HeartNum = styled.div`

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { __deletePost, __getPost, __likePost } from '../../../redux/modules/PostSlice';
+import {
+  __deletePost,
+  __getPost,
+  __likePost,
+} from '../../../redux/modules/PostSlice';
+
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
@@ -32,7 +37,8 @@ import {
   Section2,
   SectionLine,
   DivHeart,
-  HeartNum
+  HeartNum,
+
 } from './PostDetailStyle';
 
 const PostDetail = () => {
@@ -43,9 +49,6 @@ const PostDetail = () => {
   const { like } = useSelector((state) => state.PostSlice);
 
 
-
-
-  //
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
 
@@ -59,21 +62,15 @@ const PostDetail = () => {
     setCountHeart(detail.postHeartCnt);
   }, [detail]);
 
-
-
-
-
   const likeHandler = () => {
-    setIsHeart(!isHeart)
-    dispatch(__likePost(id))
+    setIsHeart(!isHeart);
+    dispatch(__likePost(id));
     if (isHeart) {
       setCountHeart(countHeart - 1);
     } else {
       setCountHeart(countHeart + 1);
     }
-  }
-
-
+  };
 
 
   if (detail === undefined) return;
@@ -113,7 +110,7 @@ const PostDetail = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g fill="#52596B" >
+          <g fill="#52596B">
             <rect
               x="0.5"
               y="0.5"
@@ -146,7 +143,7 @@ const PostDetail = () => {
       {/*  */}
       <DetailSectionLine />
       <DetailPostSection4>
-
+      
         <div>
           <DivHeart onClick={likeHandler}>
             {like && isHeart ? <FillLike /> : <Like />}

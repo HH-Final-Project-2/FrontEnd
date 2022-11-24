@@ -43,7 +43,6 @@ const Heart = ({ heart = false, numberHeart, id }) => {
 
 
 
-  // console.log(numberHeart);
 
   // function heartHandler() {
   //   if (isHeart) {

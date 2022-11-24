@@ -20,8 +20,7 @@ import {
   CommentTextarea,
   CommentWirteButton,
   LikeButton,
-  LikeButtonText
-
+  LikeButtonText,
 } from './CommentStyle';
 
 const Comment = () => {
@@ -60,19 +59,29 @@ const Comment = () => {
     <div>
       {/* 댓글 작성 */}
       <CommentWriteBox>
-
-        <CommentTextarea type="text" value={commentForm} onChange={(e) => {
-          setCommentForm(e.target.value)
-        }} placeholder="댓글을 입력해주세요" />
-        <CommentWirteButton onClick={() => {
-          dispatch(addComment({
-            postId: id,
-            content: commentForm,
-            nickname: nickname
-          }))
-          setCommentForm('')
-        }}>등록</CommentWirteButton>
-
+        <CommentTextarea
+          Rows={10}
+          type="text"
+          value={commentForm}
+          onChange={(e) => {
+            setCommentForm(e.target.value);
+          }}
+          placeholder="댓글을 입력해주세요"
+        ></CommentTextarea>
+        <CommentWirteButton
+          onClick={() => {
+            dispatch(
+              addComment({
+                postId: id,
+                content: commentForm,
+                nickname: nickname,
+              })
+            );
+            setCommentForm('');
+          }}
+        >
+          등록
+        </CommentWirteButton>
       </CommentWriteBox>
 
       <CommentListLayout>

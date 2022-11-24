@@ -54,10 +54,9 @@ export const __getPost = createAsyncThunk(
       await instance.post(`/api/auth/post/heart/${payload}`);
       let likeStore = await instance.post(`/api/auth/post/heart/${payload}`);
       // console.log('나는 라이크 데이터', likeData.data)
-
       const { data } = await instance.get(`/api/posting/${payload}`);
-      data.data.like = likeStore.data.data
-      return thunkAPI.fulfillWithValue(data.data)
+      data.data.like = likeStore.data.data;
+      return thunkAPI.fulfillWithValue(data.data);
 
     } catch (error) {
       console.log(error);
@@ -160,7 +159,8 @@ const initialState = {
   like: {
     success: true,
     data: false,
-    error: null
+    error: null,
+
   },
 
   isLoading: false,

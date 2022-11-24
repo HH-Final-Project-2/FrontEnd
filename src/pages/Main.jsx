@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux/es/exports';
 import { signOut, withDraw } from '../redux/modules/membersSlice';
 import Layout from '../components/layout/Layout';
+import Footer from '../components/footer/Footer';
 
 const Main = () => {
   const nav = useNavigate();
@@ -51,6 +52,7 @@ const Main = () => {
       >
         회원탈퇴
       </button>
+      <Footer />
     </Layout>
   );
 };
