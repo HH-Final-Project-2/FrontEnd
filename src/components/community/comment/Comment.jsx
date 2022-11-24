@@ -6,7 +6,8 @@ import {
   addComment,
 } from '../../../redux/modules/commentSlice';
 import CommentBottomSheet from '../../bottomSheet/CommentBottomSheet';
-import { ReactComponent as Like } from '../../../images/likeHeart.svg';
+import { ReactComponent as Like } from '../../../images/noneLike.svg';
+import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 
 import {
   CommentBody,
@@ -31,6 +32,25 @@ const Comment = () => {
 
   const { id } = useParams();
   const { comments } = useSelector((state) => state.comments);
+
+
+  // 댓글 좋아요
+  const [isHeart, setIsHeart] = useState(false);
+  const [countHeart, setCountHeart] = useState(0);
+
+  const likeHandler = () => {
+    setIsHeart(!isHeart)
+    // let isHeartLocal = localStorage.setItem('heart', isHeart)
+    // let countHeartLocal = localStorage.setItem('countheart', countHeart)
+    //dispatch(__likePost(id))
+    if (isHeart) {
+      setCountHeart((prevstate) => prevstate - 1);
+      // setCountHeart(countHeart - 1);
+    } else {
+      setCountHeart((prevstate) => prevstate + 1);
+      // setCountHeart(countHeart + 1);
+    }
+  }
 
   useEffect(() => {
     dispatch(getCommentList(id));
@@ -70,11 +90,11 @@ const Comment = () => {
                   <CommentBottomSheet id={id} commentList={commentList} />
                 </div>
               </CommentSection1>
+              <CommentBody>{commentList.content}</CommentBody>
 
               {/* 댓글 좋아요 */}
-              <CommentBody>{commentList.content}</CommentBody>
-              <LikeButton>
-                <Like />
+              <LikeButton onClick={likeHandler}>
+                {isHeart ? <FillLike /> : <Like />}
                 <LikeButtonText>100</LikeButtonText>
               </LikeButton>
             </div>
