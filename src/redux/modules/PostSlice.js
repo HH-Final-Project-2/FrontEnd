@@ -19,6 +19,20 @@ export const __searchPost = createAsyncThunk(
   }
 );
 
+// 게시글 좋아요
+export const __likePost = createAsyncThunk(
+  'post/likePost',
+  async (payload, thunkAPI) => {
+    // console.log(payload)
+    try {
+      const { data } = await instance.post(`/api/auth/post/heart/${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 // 게시글 전체 조회
 export const __getPostAll = createAsyncThunk(
   'posts/getPostAll',
@@ -37,7 +51,12 @@ export const __getPost = createAsyncThunk(
   'post/getPost',
   async (payload, thunkAPI) => {
     try {
+      await instance.post(`/api/auth/post/heart/${payload}`);
+      let likeStore = await instance.post(`/api/auth/post/heart/${payload}`);
+      // console.log('나는 라이크 데이터', likeData.data)
+
       const { data } = await instance.get(`/api/posting/${payload}`);
+      data.data.like = likeStore.data.data;
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -133,6 +152,12 @@ const initialState = {
     image: '',
     createdAt: '',
     modifiedAt: '',
+    like: false,
+  },
+  like: {
+    success: true,
+    data: false,
+    error: null,
   },
 
   isLoading: false,
@@ -149,6 +174,12 @@ export const PostSlice = createSlice({
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
+    },
+
+    //게시글 좋아요
+    [__likePost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.like = action.payload;
     },
 
     //게시글 전체 조회

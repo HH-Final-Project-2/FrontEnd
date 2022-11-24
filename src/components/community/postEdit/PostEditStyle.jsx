@@ -18,11 +18,13 @@ export const EditSection1 = styled.div`
     margin-top: 2.7px;
   }
 `;
+
 export const EditSection1Title = styled.div`
   position: relative;
   left: 18px;
   font-weight: 600;
 `;
+
 export const SelectJob = styled.div`
   select {
     width: 375px;

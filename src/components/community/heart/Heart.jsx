@@ -6,7 +6,6 @@ const Heart = ({ id, heart = false, numberHeart }) => {
   const [isHeart, setIsHeart] = useState(heart);
   const [countHeart, setCountHeart] = useState(numberHeart);
 
-  // console.log(numberHeart);
 
   function heartHandler() {
     if (isHeart) {
