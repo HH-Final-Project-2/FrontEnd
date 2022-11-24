@@ -39,35 +39,50 @@ export const CommentBody = styled.div`
 
 export const CommentWriteBox = styled.div`
   display: flex;
-  width: 357px;
-  border: 1px solid #E2E6EF;
-  border-radius: 8px;
-  margin-top: 8px;
-  margin-left: 17px;
-  margin-bottom: 32px;
-  height: 50px;
+  justify-content: center;
   align-items: center;
-  
+  margin-top: -22px;
+  margin-bottom: 50px;
 `;
 
 export const CommentTextarea = styled.textarea`
-  width: 280px;
-  height: 30px;
+  width: 290px;
+  height: 44px;
+  padding-left: 12px;
+  padding-top: 14px;
   resize: none;
-  border-radius: 8px;
-  border: none;
   outline: none;
-  padding-left: 5px;
-  padding-top: 7px;
+  overflow: hidden;
+  border: 1px solid #e2e6ef;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: none;
+
+  :focus {
+    border: 1px solid #bbb5ff;
+    border-right: none;
+  }
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
 `;
 
 export const CommentWirteButton = styled.button`
-  margin-left: 10px;
-  height: 36px;
+  height: 44px;
   width: 50px;
   border: none;
   outline: none;
-  background-color: transparent;
+  background: #bbb5ff;
+  color: #ffffff;
+  font-size: 14px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+  :hover {
+    background: #5546ff;
+  }
+
   cursor: pointer;
 `;
 
