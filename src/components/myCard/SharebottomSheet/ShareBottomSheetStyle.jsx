@@ -41,5 +41,10 @@ export const Share = styled.a`
 `;
 
 export const Textshare = styled.div`
-  background-color: gold;
+  width: 375px;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  cursor: pointer;
 `;

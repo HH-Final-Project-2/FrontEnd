@@ -187,7 +187,7 @@ const MyCardPatch = () => {
             value={
               searchinfo.companyAddress
                 ? searchinfo.companyAddress
-                : cardinfo.companyAddress
+                : companyAddress
             }
             onChange={onChage}
           >
