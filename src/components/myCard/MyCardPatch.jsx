@@ -253,6 +253,7 @@ const St_Header = styled.div`
   width: 100%;
   align-items: center;
   border-bottom: 1px solid;
+  padding-left: 12px;
 `;
 //명함 정보 편집 박스
 const PatchBox = styled.div`
@@ -271,7 +272,7 @@ const St_Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 15px;
+  padding-left: 4px;
 `;
 //저장버튼
 const SaveButton = styled.a`

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const KakaoShare = () => {
-  const infor = `[Kakao]\n이름 : 김승재(쫄병)\n전화번호 : 010-0000-0000\n이메일 : qwer@qwer.com`;
+  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  const infor = `[${cardinfo.company}]\n이름 : ${cardinfo.cardName}(${cardinfo.position})\n전화번호 : ${cardinfo.phoneNum}\n이메일 : ${cardinfo.email}`;
 
   // '전화번호:010-0000-0000'
   // '이메일:qwer@qwer.com';
@@ -59,6 +61,15 @@ const KakaoShare = () => {
 
 export default KakaoShare;
 
+export const Kakaoshare = styled.div`
+  width: 375px;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  cursor: pointer;
+`;
+
 // useEffect(() => {
 //   const script = document.createElement('script');
 //   script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js';
@@ -70,11 +81,3 @@ export default KakaoShare;
 //   document.body.appendChild(script);
 //   return () => document.body.removeChild(script);
 // }, []);
-export const Kakaoshare = styled.div`
-  width: 375px;
-  height: 52px;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  cursor: pointer;
-`;

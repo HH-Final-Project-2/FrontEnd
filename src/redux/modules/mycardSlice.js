@@ -7,17 +7,15 @@ export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try {
-      // const data = await axios.post("http://localhost:3001/cardinfo",payload);
+  
       const data = await axios.post(
         "https://bkyungkeem.shop/api/mypages",
         payload,
         {
           headers: {
             contentType: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-            "Refresh-Token":
-              "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+            Authorization:accessToken,
+            "Refresh-Token":refreshToken
           },
         }
       );
@@ -35,10 +33,8 @@ export const _getMakeCard = createAsyncThunk(
       const { data } = await axios.get("https://bkyungkeem.shop/api/mypages", {
         headers: {
           contentType: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-          "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
         },
       });
       console.log(data.data);
@@ -58,10 +54,9 @@ export const _PutCard = createAsyncThunk(
         {
           headers: {
             contentType: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-            "Refresh-Token":
-              "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+            Authorization: accessToken,
+          "Refresh-Token": refreshToken,
+
           },
         }
       );
@@ -77,10 +72,8 @@ export const _searchGet = createAsyncThunk(
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-          "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
         },
       };
       const data = await axios.post(
@@ -88,6 +81,7 @@ export const _searchGet = createAsyncThunk(
         payload,
         config
       );
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -102,10 +96,8 @@ export const _companyInfo = createAsyncThunk(
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-          "Refresh-Token":
-            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
         },
       };
       const { data } = await axios.post(
