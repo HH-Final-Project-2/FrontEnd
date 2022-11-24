@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import instance from "../../shared/Request";
 
 const initialState = {
   members: [],
@@ -8,7 +9,7 @@ const initialState = {
 };
 
 // 이메일 중복체크
-export const emailCheck = createAsyncThunk('SIGNUP', async (payload) => {
+export const emailCheck = createAsyncThunk("SIGNUP", async (payload) => {
   try {
     await axios
       .post('https://bkyungkeem.shop/api/members/check', payload)
@@ -23,7 +24,7 @@ export const emailCheck = createAsyncThunk('SIGNUP', async (payload) => {
 });
 
 // 회원가입
-export const signUp = createAsyncThunk('SIGNUP', async (payload) => {
+export const signUp = createAsyncThunk("SIGNUP", async (payload) => {
   try {
     await axios.post('https://bkyungkeem.shop/api/members/signup', payload);
     alert('회원가입 성공');
@@ -33,7 +34,7 @@ export const signUp = createAsyncThunk('SIGNUP', async (payload) => {
 
 // 로그인
 
-export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
+export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
   try {
     const config = {
       headers: {
@@ -60,14 +61,16 @@ export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
         // 이메일 확인
         if (res.data.error.httpStatus === 404) alert(res.data.error.message);
 
-        // // 비밀번호 확인
-        if (res.data.error.httpStatus === 400) alert(res.data.error.message);
-      });
-  } catch (error) {}
+      // // 비밀번호 확인
+      if (res.data.error.httpStatus === 400) alert(res.data.error.message);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // 로그아웃
-export const signOut = createAsyncThunk('SIGHNOUT', async (payload) => {
+export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
   try {
     const config = {
       headers: {
@@ -79,12 +82,12 @@ export const signOut = createAsyncThunk('SIGHNOUT', async (payload) => {
     await axios.post('https://bkyungkeem.shop/api/members/logout', payload, config);
 
     localStorage.clear();
-    window.location.replace('/login');
+    window.location.replace("/login");
   } catch (error) {}
 });
 
 // 회원탈퇴
-export const withDraw = createAsyncThunk('WITHDRAW', async () => {
+export const withDraw = createAsyncThunk("WITHDRAW", async () => {
   try {
     const config = {
       headers: {
@@ -95,12 +98,12 @@ export const withDraw = createAsyncThunk('WITHDRAW', async () => {
     };
     await axios.delete('https://bkyungkeem.shop/api/members/withdraw', config);
     localStorage.clear();
-    window.location.replace('/login');
+    window.location.replace("/login");
   } catch (error) {}
 });
 
 const memberSlice = createSlice({
-  name: 'members',
+  name: "members",
   initialState,
   reducers: {},
   extraReducers: {},

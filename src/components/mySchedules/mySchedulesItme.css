@@ -134,16 +134,10 @@
 .dot {
   height: 8px;
   width: 8px;
-  background-color: #aa7ec2;
+  background: #bbb5ff;
   border-radius: 50%;
   display: inline-block;
-  margin-left: 1px;
-  margin-top: 5px;
-}
-
-.detailTodo {
-  display: block;
-  margin-top: 30px;
+  margin-top: 8px;
 }
 
 .head {
@@ -157,11 +151,9 @@
   height: 30px;
   width: 30px;
   margin-top: 10px;
+  cursor: pointer;
 }
-.titleBox {
-  display: flex;
-  justify-content: inherit;
-}
+
 .todos {
   margin-left: 10px;
   margin-bottom: 10px;
@@ -172,24 +164,81 @@
   margin-bottom: 10px;
 }
 
+/* 일정 리스트 부분  start*/
+.detailTodo {
+  margin-top: 16px;
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1f27;
+}
+
 .todoBox {
-  margin-top: 30px;
-  border: 1px solid rgb(213, 213, 213);
+  height: 68px;
+  margin-top: 28px;
+}
+
+.todoBoxSection {
+  display: flex;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.titleSection {
+  display: flex;
+}
+
+.todoDot {
+  height: 8px;
+  width: 8px;
+  background: #bbb5ff;
+  border-radius: 50%;
+  margin-top: 5px;
 }
 
 .title {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  font-size: large;
+  width: 246px;
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1a1f27;
 }
+
 .todo {
-  margin-left: 30px;
-  margin-top: 0px;
-  color: #757575;
+  width: 262px;
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: 400;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #8892a0;
 }
 
 .dateTime {
   display: flex;
-  justify-content: space-between;
-  font-size: small;
+  flex-direction: column;
+  margin-left: 10px;
 }
+
+.startDate {
+  font-size: 12px;
+  font-weight: 400;
+  color: #52596b;
+}
+
+.endDate {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #bcc2cc;
+}
+/* 일정 리스트 부분  end*/

@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+import instance from "../../shared/Request";
+// const accessToken = localStorage.getItem("authorization");
+// const refreshToken = localStorage.getItem("refresh-Token");
 //post
 export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try {
-  
       const data = await axios.post(
         "https://bkyungkeem.shop/api/mypages",
         payload,
@@ -28,8 +28,6 @@ export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
     try {
-      // const data = await axios.get("http://localhost:3001/cardinfo");
-      // console.log(data.data)
       const { data } = await axios.get("https://bkyungkeem.shop/api/mypages", {
         headers: {
           contentType: "application/json",
@@ -47,7 +45,6 @@ export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
     try {
-      // const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
       const { data } = await axios.put(
         `https:/bkyungkeem.shop/api/mypages/${payload.id}`,
         payload,
@@ -81,7 +78,6 @@ export const _searchGet = createAsyncThunk(
         payload,
         config
       );
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -93,6 +89,7 @@ export const _companyInfo = createAsyncThunk(
   "COMPANY_INFO",
   async (payload, thunkAPI) => {
     try {
+
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -105,6 +102,7 @@ export const _companyInfo = createAsyncThunk(
         payload,
         config
       );
+
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {

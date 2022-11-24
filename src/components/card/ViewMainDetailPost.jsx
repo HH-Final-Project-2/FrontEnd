@@ -1,9 +1,13 @@
-import React from 'react';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { __viewGet } from '../../redux/modules/CardsSlice';
-import { useNavigate, useParams } from 'react-router';
-import { useEffect } from 'react';
+import React from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { __viewGet } from "../../redux/modules/CardsSlice";
+import { useNavigate, useParams } from "react-router";
+import { useEffect } from "react";
+
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
+
 const ViewMainDetailPost = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,10 +23,8 @@ const ViewMainDetailPost = () => {
   const deleteClickHandler = () => {
     const config = {
       headers: {
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w',
-        'Refresh-Token':
-          'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE',
+        Authorization: accessToken,
+        "Refresh-Token": refreshToken,
       },
     };
     axios
@@ -37,8 +39,8 @@ const ViewMainDetailPost = () => {
       .then(function () {
         // always executed
       });
-    alert('DELETE SECCESS');
-    navigate('/cards');
+    alert("DELETE SECCESS");
+    navigate("/cards");
   };
   const fixClickHandler = () => {
     navigate(`/posts/${view.id}/put`);
