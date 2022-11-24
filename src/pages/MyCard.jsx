@@ -9,6 +9,9 @@ import { _getMakeCard } from '../redux/modules/mycardSlice';
 import KakaoShare from '../components/myCard/kakaoshare/KakaoShare';
 import Layout from '../components/layout/Layout';
 import BottomSheet from '../components/myCard/SharebottomSheet/ShareBottomSheet';
+import MyCardFooter from '../components/footer/MyCardFooter';
+
+
 const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -51,6 +54,7 @@ const MyCard = () => {
           카카오톡 공유
         </St_Kakao> */}
         <BottomSheet />
+        <MyCardFooter />
       </Layout>
     );
     //명함이 없을 때
@@ -67,6 +71,7 @@ const MyCard = () => {
         </Mycard>
         {/*
         <St_share>명함내보내기</St_share> */}
+        <MyCardFooter />
       </Layout>
     );
   }
