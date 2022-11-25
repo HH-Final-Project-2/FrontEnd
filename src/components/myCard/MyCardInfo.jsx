@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Layout from '../layout/Layout';
-import { useNavigate } from 'react-router';
-import MyCardFooter from '../footer/MyCardFooter';
-import MycardItem from '../myCard/MycardItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { _getMakeCard } from '../../redux/modules/mycardSlice';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Layout from "../layout/Layout";
+import { useNavigate } from "react-router";
+import MyCardFooter from "../footer/MyCardFooter";
+import MycardItem from "../myCard/MycardItem";
+import { useDispatch, useSelector } from "react-redux";
+import { _getMakeCard } from "../../redux/modules/mycardSlice";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 const MyCardInfo = () => {
   //명함 상세보기 페이지 컴포넌트
@@ -56,9 +56,9 @@ const MyCardInfo = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
-            nav('/mypage');
+            nav("/mypage");
           }}
         >
           <path
@@ -84,7 +84,7 @@ const MyCardInfo = () => {
             viewBox="0 0 23 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               nav(`/mypage/cardpatch`);
             }}
