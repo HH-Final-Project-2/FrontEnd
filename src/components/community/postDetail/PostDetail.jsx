@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import {
-  __deletePost,
-  __getPost,
-  __likePost,
-} from '../../../redux/modules/PostSlice';
+import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
 
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
-import Heart from '../heart/Heart';
 
-//
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 
@@ -38,7 +32,6 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
-
 } from './PostDetailStyle';
 
 const PostDetail = () => {
@@ -48,10 +41,8 @@ const PostDetail = () => {
   const { detail } = useSelector((state) => state.PostSlice);
   const { like } = useSelector((state) => state.PostSlice);
 
-
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
-
 
   useEffect(() => {
     dispatch(__getPost(id));
@@ -72,6 +63,34 @@ const PostDetail = () => {
     }
   };
 
+  const nickname = localStorage.getItem('nickname');
+
+  // 시간 카운팅
+  function displayedAt(postCreatedAt) {
+    const milliSeconds = new window.Date() - postCreatedAt;
+    const seconds = milliSeconds / 1000;
+    if (seconds < 60) return `방금 전`;
+
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+
+    const weeks = days / 7;
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`;
+
+    const months = days / 30;
+    if (months < 12) return `${Math.floor(months)}개월 전`;
+
+    const years = days / 365;
+    return `${Math.floor(years)}년 전`;
+  }
+
+  const nowAt = displayedAt(new window.Date(detail.createdAt));
 
   if (detail === undefined) return;
   return (
@@ -87,12 +106,15 @@ const PostDetail = () => {
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>
-
-          {/* 게시글 더보기 바텀 시트 */}
-          <div>
+        </Section2>
+        {/* 게시글 더보기 바텀 시트 */}
+        {nickname === detail.author ? (
+          <div className="moreBtn">
             <PostBottomSheet id={id} detail={detail} />
           </div>
-        </Section2>
+        ) : (
+          ''
+        )}
       </Section1>
       <SectionLine />
 
@@ -100,7 +122,7 @@ const PostDetail = () => {
       <DetailPostSection1>
         <div className="nickdate">
           <NickName>{detail.author}</NickName>
-          <Date>{detail.createdAt}</Date>
+          <Date>{nowAt}</Date>
         </div>
         {/* 채팅하기 버튼 svg start*/}
         <svg
@@ -143,14 +165,11 @@ const PostDetail = () => {
       {/*  */}
       <DetailSectionLine />
       <DetailPostSection4>
-      
         <div>
           <DivHeart onClick={likeHandler}>
             {like && isHeart ? <FillLike /> : <Like />}
 
-            <HeartNum>
-              {countHeart}
-            </HeartNum>
+            <HeartNum>{countHeart}</HeartNum>
           </DivHeart>
         </div>
 
@@ -173,7 +192,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment postid={id} />
+      <Comment />
     </DetailBox>
   );
 };

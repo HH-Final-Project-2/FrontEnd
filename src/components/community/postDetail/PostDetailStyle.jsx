@@ -2,31 +2,29 @@ import styled from 'styled-components';
 
 export const DetailBox = styled.div`
   width: 375px;
-  height: 100vh;
   margin: 0 auto;
 `;
 
 export const Section1 = styled.div`
   position: relative;
   top: 37px;
+
+  display: flex;
+  justify-content: space-between;
+
+  .moreBtn {
+    margin-right: 13px;
+    margin-top: -5px;
+  }
 `;
 
 export const Section2 = styled.div`
-  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 13px;
 
-  svg {
-    margin-top: 2.7px;
-  }
-  g:hover {
-    fill: #5546ff;
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export const DetailPostSection1 = styled.div`
@@ -70,7 +68,7 @@ export const Date = styled.div`
 
 export const SectionLine = styled.div`
   height: 1px;
-  margin-top: 61px;
+  margin-top: 57px;
   background: #d9d9d9;
 `;
 
@@ -153,10 +151,6 @@ export const CommentBox = styled.div`
   display: flex;
   font-size: 12px;
   color: #52596b;
-
-  path:hover {
-    fill: #5546ff;
-  }
 `;
 
 export const CommentNum = styled.div`
