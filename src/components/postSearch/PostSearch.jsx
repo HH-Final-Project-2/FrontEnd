@@ -18,7 +18,7 @@ const PostSearch = () => {
   const search = (event) => {
     if (event.key === 'Enter') {
       let keyword = event.target.value;
-      navigate(`/community/?keyword=${keyword}`)
+      navigate(`/community?keyword=${keyword}`)
     }
   };
   return (

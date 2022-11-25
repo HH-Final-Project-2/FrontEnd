@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
+
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 
@@ -54,7 +55,6 @@ const PostDetail = () => {
 
   const likeHandler = () => {
     setIsHeart(!isHeart);
-
     dispatch(__likePost(id));
     if (isHeart) {
       setCountHeart(countHeart - 1);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../layout/Layout';
 import { useNavigate } from 'react-router';
-
+import MyCardFooter from '../footer/MyCardFooter';
 import MycardItem from '../myCard/MycardItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../../redux/modules/mycardSlice';
@@ -120,7 +120,8 @@ const MyCardInfo = () => {
             center={map.center}
             isPanto={map.isPanto}
             style={{
-              width: ' 335px',
+              width: '100%',
+              maxWidth: ' 325px',
               height: '192px',
             }}
           >
@@ -130,6 +131,7 @@ const MyCardInfo = () => {
           </Map>
         </MapBox>
       </St_CardInfo>
+      <MyCardFooter />
     </Layout>
   );
 };
@@ -144,7 +146,7 @@ const St_Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 15px;
+  padding-left: 4px;
 `;
 
 //헤더 박스 div
@@ -152,6 +154,7 @@ const St_Header = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  padding-left: 12px;
   border-bottom: 1px solid #d6d6d6;
 `;
 
@@ -214,6 +217,7 @@ const St_Detail_Body = styled.div`
 
 //지도 div
 const MapBox = styled.div`
+  width: 100%;
   margin: 24px auto;
   /* margin-left: 20px;
   margin-right: 20px; */

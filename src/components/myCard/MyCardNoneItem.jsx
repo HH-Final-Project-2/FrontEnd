@@ -12,7 +12,22 @@ const MyCardNoneItem = () => {
         nav('/mypage/cardmake');
       }}
     >
-      <St_Plus>➕</St_Plus>
+      <St_Plus>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 20V12M12 12V4M12 12H20M12 12H4"
+            stroke="#8892A0"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      </St_Plus>
     </St_Card>
   );
 };
@@ -21,14 +36,14 @@ export default MyCardNoneItem;
 //명함div
 const St_Card = styled.div`
   width: 100%;
-  max-width: 330px;
-  height: 180px;
-  background-color: #f1f1f1;
-  margin: 20px auto;
+  max-width: 311px;
+  height: 176px;
+  margin: 32px;
   border-radius: 8px;
-  padding: 8px;
+  padding: 0px;
   cursor: pointer;
-  box-shadow: 2px 3px 0px 0px #cecece;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
   flex-direction: column;
 `;
@@ -38,8 +53,8 @@ const St_Plus = styled.div`
   max-width: 50px;
   height: 50px;
   color: #d6d6d6;
-  border: 2px solid;
-  border-radius: 50px;
+  /* border: 2px solid; */
+  /* border-radius: 50px; */
   margin: auto;
   align-items: center;
   display: flex;
