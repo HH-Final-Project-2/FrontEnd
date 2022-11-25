@@ -1,7 +1,7 @@
-import React from 'react';
-import Layout from '../components/layout/Layout';
-import MainView from '../components/card/MainView';
-import CardsFooter from '../components/footer/CardsFooter';
+import React from "react";
+import Layout from "../components/layout/Layout";
+import MainView from "../components/card/mainview/MainView";
+import CardsFooter from "../components/footer/CardsFooter";
 
 const Cards = () => {
   return (

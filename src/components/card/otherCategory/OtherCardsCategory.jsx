@@ -1,8 +1,8 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { __mainGet } from '../../redux/modules/CardsSlice';
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { __mainGet } from "../../../redux/modules/CardsSlice";
 
 const OtherCardsCategory = () => {
   const mainpost = useSelector((state) => state.PostReducer.list.data);
@@ -20,21 +20,21 @@ const OtherCardsCategory = () => {
     <div>
       <button
         onClick={() => {
-          navigate('/cards');
+          navigate("/cards");
         }}
       >
         자사
       </button>
       <button
         onClick={() => {
-          navigate('/otherCategory');
+          navigate("/otherCategory");
         }}
       >
         타사
       </button>
-      {mainpost !== '명함을 등록해주세요'
+      {mainpost !== "명함을 등록해주세요"
         ? mainpost.map((main) => {
-            if (main.companyType === 'other') {
+            if (main.companyType === "other") {
               return (
                 <div
                   key={main.id}
@@ -54,7 +54,7 @@ const OtherCardsCategory = () => {
         : null}
       <button
         onClick={() => {
-          navigate('/posts');
+          navigate("/posts");
         }}
       >
         명함 작성
