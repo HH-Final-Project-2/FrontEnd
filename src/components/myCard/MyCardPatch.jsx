@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../layout/Layout';
+import MyCardFooter from '../footer/MyCardFooter';
 import { useNavigate } from 'react-router';
 import { _getMakeCard, _PutCard } from '../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -173,14 +174,38 @@ const MyCardPatch = () => {
 
         <Item>
           <St_Key>회사</St_Key>
+          <CompanyIcon>
+            <svg
+              width="16"
+              height="21"
+              viewBox="0 0 16 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clipPath="url(#clip0_1433_140)">
+                <path
+                  d="M2 0C0.895833 0 0 0.881836 0 1.96875V19.0312C0 20.1182 0.895833 21 2 21H6V17.7188C6 16.6318 6.89583 15.75 8 15.75C9.10417 15.75 10 16.6318 10 17.7188V21H14C15.1042 21 16 20.1182 16 19.0312V1.96875C16 0.881836 15.1042 0 14 0H2ZM3.56863 9.1875H12.4314C12.798 9.1875 13.098 9.48281 13.098 9.84375V11.1562C13.098 11.5172 12.798 11.8125 12.4314 11.8125H3.56863C3.20196 11.8125 2.90196 11.5172 2.90196 11.1562V9.84375C2.90196 9.48281 3.20196 9.1875 3.56863 9.1875ZM2.90196 4.59375C2.90196 4.23281 3.20196 3.9375 3.56863 3.9375H12.4314C12.798 3.9375 13.098 4.23281 13.098 4.59375V5.90625C13.098 6.26719 12.798 6.5625 12.4314 6.5625H3.56863C3.20196 6.5625 2.90196 6.26719 2.90196 5.90625V4.59375Z"
+                  fill="#8892A0"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1433_140">
+                  <rect width="16" height="21" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </CompanyIcon>
+
           <div>
             <St_value
               name="company"
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
+              style={{ paddingLeft: '35px' }}
               onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
             ></St_value>
           </div>
+
           {/* <img src="/images/ic-company.png"></img> */}
           <St_Address
             name="companyAddress"
@@ -192,7 +217,7 @@ const MyCardPatch = () => {
             onChange={onChage}
           >
             <AddressBox>
-              <div>
+              <AddressIcon>
                 <svg
                   width="12"
                   height="15"
@@ -208,7 +233,7 @@ const MyCardPatch = () => {
                     fill="#BCC2CC"
                   />
                 </svg>
-              </div>
+              </AddressIcon>
               <SearchAddress>
                 {searchinfo.companyAddress
                   ? searchinfo.companyAddress
@@ -242,6 +267,7 @@ const MyCardPatch = () => {
           <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
+      <MyCardFooter />
     </Layout>
   );
 };
@@ -330,6 +356,7 @@ const AddressBox = styled.div`
 const SearchAddress = styled.div`
   display: flex;
   width: 250px;
+  padding-left: 11px;
 `;
 
 //각 수정 목록의 div
@@ -337,4 +364,19 @@ const Item = styled.div`
   margin-top: 10px;
   font-size: 12px;
   color: #6b6b6b;
+`;
+
+const CompanyIcon = styled.div`
+  height: 0px;
+  position: relative;
+  display: flex;
+  top: 5px;
+  left: 40px;
+`;
+
+const AddressIcon = styled.div`
+  height: 0px;
+  position: relative;
+  display: flex;
+  left: 10px;
 `;
