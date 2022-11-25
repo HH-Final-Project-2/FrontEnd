@@ -48,17 +48,18 @@ const St_Card = styled.div`
   width: 100%;
   max-width: 311px;
   height: 176px;
-  margin: 32px;
+  margin: 32px auto;
   border-radius: 8px;
-  padding: 0px;
   background-color: white;
   box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
 const OutLine = styled.div`
-  margin: 16px 20px 16px 20px;
+  width: 311px;
+  padding: 16px 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
 `;
 const NameBox = styled.div`
   display: flex;
@@ -89,7 +90,8 @@ const Position = styled.div`
 `;
 
 const Company = styled.div`
-  margin-top: 20px;
+  width: 200px;
+  margin-top: 15px;
   color: #1a1f27;
   letter-spacing: 0.15px;
   font-size: 14px;
@@ -104,14 +106,13 @@ const Address = styled.div`
   font-size: 12px;
   font-weight: 400;
   color: #8892a0;
-  width: 200px;
+  width: 250px;
   display: inline-block;
   align-items: center;
 `;
 
 const NumBox = styled.div`
   display: flex;
-  margin-bottom: 16px;
+  margin-top: 5px;
   align-items: center;
-  margin-top: 12px;
 `;

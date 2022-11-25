@@ -95,6 +95,7 @@ export const LikeButton = styled.div`
 `;
 
 export const LikeButtonText = styled.label`
-  font-size: 15px;
-  margin-left: 5px;
+  font-size: 12px;
+  color: #52596b;
+  margin-left: 7px;
 `;

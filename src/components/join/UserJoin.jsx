@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { ReactComponent as Xbutton } from '../../images/x-circle-fill.svg'
 import { emailCheck, signUp } from '../../redux/modules/membersSlice'
@@ -7,13 +8,17 @@ import {
   JoinForm,
   LabelText,
   InputJoin,
+  InputJoin2,
   ErrorText,
   ButtonJoin,
   InputButton,
   InputContainer,
   InputButtonEmail,
   EmailBox,
-  EmailCheckButton
+  EmailCheckButton,
+  JoinTitle,
+  Section2,
+  Section1
 }
   from './UserJoinStyle'
 
@@ -28,6 +33,7 @@ const UserJoin = () => {
 
   // 디스패치
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // 이메일,패스워드,이름,닉네임,연락처 버튼 초기값
   const [stateXButtonEmail, setStateXButtonEmail] = useState('none')
@@ -43,7 +49,7 @@ const UserJoin = () => {
   const watchForPasswordCheck = watch('passwordCheck')
   const watchForUserName = watch('username')
   const watchForNickName = watch('nickname')
-  const watchForPhoneNumber = watch('phonenumber')
+
 
   // 이메일 X버튼 디스플레이
   useEffect(() => {
@@ -133,11 +139,29 @@ const UserJoin = () => {
   return (
 
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
+      {/* 뒤로가기 */}
+      <Section1 onClick={() => navigate(-1)}>
+        <Section2>
+          <svg
+            width="10"
+            height="17"
+            viewBox="0 0 10 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
+          </svg>
+        </Section2>
+      </Section1>
+
+      {/* 회원가입 제목 */}
+      <JoinTitle>회원정보를 입력해주세요</JoinTitle>
+
       {/* 이메일 */}
       <EmailBox>
         <InputContainer>
           <LabelText>이메일</LabelText>
-          <InputJoin name='email' type='text' placeholder='이메일 입력'
+          <InputJoin2 name='email' type='text' placeholder='이메일'
             {...register('email',
               {
                 required: true,
@@ -149,7 +173,7 @@ const UserJoin = () => {
             <Xbutton
               width="20"
               height="20"
-              fill="#e2e2e2"
+              fill="#BCC2CC"
               display={stateXButtonEmail}
               onClick={xButtonEmail}
             />
@@ -170,7 +194,7 @@ const UserJoin = () => {
       {/* 비밀번호 */}
       <InputContainer>
         <LabelText>비밀번호</LabelText>
-        <InputJoin name='password' type='password' placeholder='영문/숫자(8~20자)'
+        <InputJoin name='password' type='password' placeholder='6~15자, 영문, 숫자'
           {...register('password',
             {
               required: true,
@@ -181,19 +205,19 @@ const UserJoin = () => {
           <Xbutton
             width="20"
             height="20"
-            fill="#e2e2e2"
+            fill="#BCC2CC"
             display={stateXButtonPassword}
             onClick={xButtonPassword}
           />
         </InputButton>
       </InputContainer>
       {
-        errors.password && <ErrorText>비밀번호는 영문/숫자 6~15자</ErrorText>
+        errors.password && <ErrorText>비밀번호는 영문,숫자 6~15자</ErrorText>
       }
 
       {/* 비밀번호 확인 */}
       <InputContainer>
-        <InputJoin name='passwordCheck' type='password' placeholder='비밀번호 재입력'
+        <InputJoin name='passwordCheck' type='password' placeholder='비밀번호를 한번 더 입력해주세요'
           {...register('passwordCheck',
             {
               required: true,
@@ -205,7 +229,7 @@ const UserJoin = () => {
           <Xbutton
             width="20"
             height="20"
-            fill="#e2e2e2"
+            fill="#BCC2CC"
             display={stateXButtonPasswordCheck}
             onClick={xButtonPasswordCheck}
           />
@@ -220,7 +244,7 @@ const UserJoin = () => {
       {/* 이름 */}
       <InputContainer>
         <LabelText>이름</LabelText>
-        <InputJoin name='username' type='text' placeholder='이름을 입력해주세요'
+        <InputJoin name='username' type='text' placeholder='이름'
           {...register('username',
             {
               required: true,
@@ -232,7 +256,7 @@ const UserJoin = () => {
           <Xbutton
             width="20"
             height="20"
-            fill="#e2e2e2"
+            fill="#BCC2CC"
             display={stateXButtonUserName}
             onClick={xButtonUserName}
           />
@@ -254,19 +278,19 @@ const UserJoin = () => {
       {/* 닉네임 */}
       <InputContainer>
         <LabelText>닉네임</LabelText>
-        <InputJoin name='nickname' type='text' placeholder='닉네임을 입력해주세요'
+        <InputJoin name='nickname' type='text' placeholder='2~5자 이내'
           {...register('nickname',
             {
               required: true,
               minLength: 2,
-              maxLength: 15
+              maxLength: 5
             })}
         />
         <InputButton>
           <Xbutton
             width="20"
             height="20"
-            fill="#e2e2e2"
+            fill="#BCC2CC"
             display={stateXButtonNickName}
             onClick={xButtonNickName}
           />
@@ -278,11 +302,11 @@ const UserJoin = () => {
       }
       {
         errors.nickname && errors.nickname.type === 'minLength'
-        && <ErrorText>닉네임은 최소2~15자 입니다</ErrorText>
+        && <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
       }
       {
         errors.nickname && errors.nickname.type === 'maxLength'
-        && <ErrorText>닉네임은 최소2~15자 입니다</ErrorText>
+        && <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
       }
 
 
