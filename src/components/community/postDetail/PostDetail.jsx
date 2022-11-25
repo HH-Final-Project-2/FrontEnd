@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 import {
   __deletePost,
   __getPost,
   __likePost,
-} from "../../../redux/modules/PostSlice";
-import PostBottomSheet from "../../bottomSheet/PostBottomSheet";
-import Comment from "../comment/Comment";
+} from '../../../redux/modules/PostSlice';
+import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
+import Comment from '../comment/Comment';
 
-import { ReactComponent as Like } from "../../../images/noneLike.svg";
-import { ReactComponent as FillLike } from "../../../images/fillLike.svg";
+import { ReactComponent as Like } from '../../../images/noneLike.svg';
+import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 import {
   CommentBox,
   CommentNum,
@@ -35,7 +35,7 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
-} from "./PostDetailStyle";
+} from './PostDetailStyle';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem("nickname");
+  const nickname = localStorage.getItem('nickname');
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -115,7 +115,7 @@ const PostDetail = () => {
             <PostBottomSheet id={id} detail={detail} />
           </div>
         ) : (
-          ""
+          ''
         )}
       </Section1>
       <SectionLine />
@@ -192,7 +192,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      {/* <Comment /> */}
+      <Comment />
     </DetailBox>
   );
 };
