@@ -22,3 +22,5 @@ export const SheetButton = styled.div`
   margin-right: 3px;
   cursor: pointer;
 `;
+
+export const DivSheet = styled.div``;

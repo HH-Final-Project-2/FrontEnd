@@ -13,32 +13,46 @@ import ViewMainDetailPost from '../components/card/cardDetail/ViewMainDetailPost
 
 import Write from '../pages/Write';
 
-import Cards from '../pages/Cards';
-import MyCard from '../pages/MyCard';
-import MyCardInfo from '../components/myCard/MyCardInfo';
-import MyCardPatch from '../components/myCard/MyCardPatch';
-import MyCardMake from '../components/myCard/MyCardMake';
-import MyCardCompanySerach from '../components/myCard/MyCardCompanySerach';
-import Manage from '../pages/Manage';
-import Chat from '../pages/Chat';
-import Chatroom from '../components/chat/Chatroom';
+
+import Cards from "../pages/Cards";
+import MyCard from "../pages/MyCard";
+import MyCardInfo from "../components/myCard/MyCardInfo/MyCardInfo";
+import MyCardPatch from "../components/myCard/MyCardPatch/MyCardPatch";
+import MyCardMake from "../components/myCard/MyCardMake/MyCardMake";
+import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach/MyCardCompanySerach";
+import Manage from "../pages/Manage";
+import Chat from "../pages/Chat";
+import Chatroom from "../components/chat/Chatroom";
+
 
 import Login from '../pages/Login';
 import Join from '../pages/Join';
 
 import CommentEditPage from '../pages/CommentEditPage';
-
 import Search from '../pages/Search';
 
+import PrivateRoute from "./PrivateRoute";
 import MySchedules from '../pages/MySchedules';
 import AddSchedulesPage from '../pages/AddSchedulesPage';
 
+
 const Router = () => {
+  const access = localStorage.getItem("authorization");
+  const refresh = localStorage.getItem("refresh-Token");
+
   return (
     <BrowserRouter>
       <Routes>
         {/* 메인 */}
-        <Route path="/" element={<Main />} />
+        <Route path="/"
+          element={
+            <PrivateRoute
+              access={access}
+              refresh={refresh}
+              component={<Main />}
+            />
+          }
+        />
         <Route path="/cards" element={<Cards />} />
         <Route path="/otherCategory" element={<OtherCardsCategory />} />
         <Route path="/posts" element={<MainCards />} />

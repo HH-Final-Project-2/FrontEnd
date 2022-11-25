@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-
 export const Board = styled.div`
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  margin: 20px auto;
+  margin: auto;
   ul {
-  padding: 5px;
-  cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -23,4 +23,3 @@ export const SheetButton = styled.div`
   margin-right: 3px;
   cursor: pointer;
 `;
-

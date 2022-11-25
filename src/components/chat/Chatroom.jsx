@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import MyLayout from '../myCard/MyLayout';
+import Layout from '../layout/Layout';
 import { useNavigate, useParams } from 'react-router';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
@@ -53,7 +53,7 @@ const Chatroom = () => {
   // };
 
   return (
-    <MyLayout>
+    <Layout>
       <St_Header>
         <button
           onClick={() => {
@@ -83,7 +83,7 @@ const Chatroom = () => {
           <Button>보내기</Button>
         </Footer>
       </ChatRoomBox>
-    </MyLayout>
+    </Layout>
   );
 };
 export default Chatroom;
