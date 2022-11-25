@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import MyLayout from '../components/myCard/MyLayout';
 import styled from 'styled-components';
 import Chatlist from '../components/chat/Chatlist';
 import ReactModal from 'react-modal';
