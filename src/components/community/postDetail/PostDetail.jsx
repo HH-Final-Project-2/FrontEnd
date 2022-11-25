@@ -192,7 +192,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment />
+      {/* <Comment /> */}
     </DetailBox>
   );
 };

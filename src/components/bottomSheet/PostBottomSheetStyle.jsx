@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Board = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,8 +8,8 @@ export const Board = styled.div`
   width: 60px;
   margin: 20px auto;
   ul {
-  padding: 5px;
-  cursor: pointer;
+    padding: 5px;
+    cursor: pointer;
   }
 `;
 
@@ -24,3 +23,6 @@ export const SheetButton = styled.div`
   cursor: pointer;
 `;
 
+export const DivSheet = styled.div`
+  
+`
