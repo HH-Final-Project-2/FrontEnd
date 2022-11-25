@@ -5,13 +5,8 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     background: aliceblue;
-<<<<<<< HEAD
-    margin : 0;
-padding : 0;
-=======
     margin: 0;
     padding: 0;
->>>>>>> 1a50103dcc53f500a368560105fa37b80cc00711
   }
   p,
   ol,

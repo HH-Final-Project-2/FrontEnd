@@ -149,7 +149,7 @@ export const CardsSlice = createSlice({
     },
     [__imgPost.fulfilled]: (state, action) => {
       console.log(action.payload.data);
-      state.img = { ...action.payload };
+      state.img = action.payload;
     },
     [__mainGet.fulfilled]: (state, action) => {
       console.log(action.payload);
@@ -166,7 +166,7 @@ export const CardsSlice = createSlice({
     },
     [__companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);
-      state.companyInfo = { ...action.payload };
+      state.companyInfo = action.payload;
     },
 
     [__fixPost.fulfilled]: (state, action) => {

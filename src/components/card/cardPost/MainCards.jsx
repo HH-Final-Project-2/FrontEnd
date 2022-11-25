@@ -23,6 +23,7 @@ import {
   RadioBox,
   RadioDetail,
   ImgBox,
+  PrevImg,
 } from "./cardPostStyle";
 
 const MainCards = () => {
@@ -69,17 +70,27 @@ const MainCards = () => {
         position: inputValue.position,
         tel: inputValue.tel,
         fax: inputValue.fax,
-        company: inputValue.company,
-        companyAddress: inputValue.companyAddress,
+        company:
+          companyGet.companyName !== undefined
+            ? companyGet.companyName
+            : inputValue.company,
+        companyAddress:
+          companyGet.companyAddress !== undefined
+            ? companyGet.companyAddress
+            : inputValue.companyAddress,
         companyType: inputValue.companyType,
       })
     );
-    alert("done!");
-    navigate("/cards");
+    alert("명함 작성 완료!");
+    inputValue.companyType === "own"
+      ? navigate("/cards")
+      : navigate("/otherCategory");
   };
+
   useEffect(() => {
     dispatch(__imgPost);
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(__searchPost);
   }, [dispatch]);
@@ -161,7 +172,9 @@ const MainCards = () => {
                 />
               </svg>
               {imgGet !== undefined
-                ? imgGet.imgUrl && <img src={imgGet.imgUrl} alt="preview-img" />
+                ? imgGet.imgUrl && (
+                    <PrevImg src={imgGet.imgUrl} alt="preview-img" />
+                  )
                 : null}
             </St_Plus>
             <Input type="file" id="card" onChange={mediaChangeHandler}></Input>
@@ -183,7 +196,7 @@ const MainCards = () => {
             type="text"
             placeholder="이메일"
             name="email"
-            value={inputValue.email || ""}
+            value={imgGet.email ? imgGet.email : inputValue.email}
             onChange={valueChangeHandler}
           ></St_value>
         </Item>
@@ -193,7 +206,7 @@ const MainCards = () => {
             type="text"
             placeholder="연락처"
             name="phoneNum"
-            value={inputValue.phoneNum || ""}
+            value={imgGet.phoneNum ? imgGet.phoneNum : inputValue.phoneNum}
             onChange={valueChangeHandler}
           ></St_value>
         </Item>
@@ -238,7 +251,11 @@ const MainCards = () => {
                   />
                 </svg>
               </div>
-              <SearchAddress>{inputValue.companyAddress}</SearchAddress>
+              <SearchAddress>
+                {companyGet.companyAddress
+                  ? companyGet.companyAddress
+                  : inputValue.companyAddress}
+              </SearchAddress>
             </AddressBox>
           </St_Address>
         </Item>
@@ -268,7 +285,7 @@ const MainCards = () => {
             type="text"
             placeholder="회사번호"
             name="tel"
-            value={inputValue.tel || ""}
+            value={imgGet.tel ? imgGet.tel : inputValue.tel}
             onChange={valueChangeHandler}
           ></St_value>
         </Item>
@@ -278,7 +295,7 @@ const MainCards = () => {
             type="text"
             placeholder="팩스"
             name="fax"
-            value={inputValue.fax || ""}
+            value={imgGet.fax ? imgGet.fax : inputValue.fax}
             onChange={valueChangeHandler}
           ></St_value>
         </Item>
