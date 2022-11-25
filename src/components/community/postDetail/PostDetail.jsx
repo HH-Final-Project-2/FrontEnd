@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import {
-  __deletePost,
-  __getPost,
-  __likePost,
-} from '../../../redux/modules/PostSlice';
+import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
-import Heart from '../heart/Heart';
 
-//
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 
