@@ -15,10 +15,10 @@ import Write from "../pages/Write";
 
 import Cards from "../pages/Cards";
 import MyCard from "../pages/MyCard";
-import MyCardInfo from "../components/myCard/MyCardInfo";
-import MyCardPatch from "../components/myCard/MyCardPatch";
-import MyCardMake from "../components/myCard/MyCardMake";
-import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach";
+import MyCardInfo from "../components/myCard/MyCardInfo/MyCardInfo";
+import MyCardPatch from "../components/myCard/MyCardPatch/MyCardPatch";
+import MyCardMake from "../components/myCard/MyCardMake/MyCardMake";
+import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach/MyCardCompanySerach";
 import Manage from "../pages/Manage";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
