@@ -19,7 +19,7 @@ import MyCardInfo from "../components/myCard/MyCardInfo";
 import MyCardPatch from "../components/myCard/MyCardPatch";
 import MyCardMake from "../components/myCard/MyCardMake";
 import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach";
-
+import Manage from "../pages/Manage";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
@@ -59,10 +59,12 @@ const Router = () => {
         <Route path="/search" element={<Search />} />
 
         {/* 내 명함  */}
+        <Route path="/manage" element={<Manage />} />
         <Route path="/mypage" element={<MyCard />} />
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
+
         <Route
           path="/mypage/cardpatch/MyCardCompanySerach"
           element={<MyCardCompanySerach />}

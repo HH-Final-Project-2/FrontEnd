@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { __deletePost, __getPost } from '../../../redux/modules/PostSlice';
+import {
+  __deletePost,
+  __getPost,
+  __likePost,
+} from '../../../redux/modules/PostSlice';
+
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 import Heart from '../heart/Heart';
+
+//
+import { ReactComponent as Like } from '../../../images/noneLike.svg';
+import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 
 import {
   CommentBox,
@@ -27,6 +36,9 @@ import {
   Section1,
   Section2,
   SectionLine,
+  DivHeart,
+  HeartNum,
+
 } from './PostDetailStyle';
 
 const PostDetail = () => {
@@ -34,10 +46,32 @@ const PostDetail = () => {
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+  const { like } = useSelector((state) => state.PostSlice);
+
+
+  const [isHeart, setIsHeart] = useState(false);
+  const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
+
 
   useEffect(() => {
     dispatch(__getPost(id));
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    setIsHeart(detail.like);
+    setCountHeart(detail.postHeartCnt);
+  }, [detail]);
+
+  const likeHandler = () => {
+    setIsHeart(!isHeart);
+    dispatch(__likePost(id));
+    if (isHeart) {
+      setCountHeart(countHeart - 1);
+    } else {
+      setCountHeart(countHeart + 1);
+    }
+  };
+
 
   if (detail === undefined) return;
   return (
@@ -76,7 +110,7 @@ const PostDetail = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g fill="#52596B" >
+          <g fill="#52596B">
             <rect
               x="0.5"
               y="0.5"
@@ -109,11 +143,17 @@ const PostDetail = () => {
       {/*  */}
       <DetailSectionLine />
       <DetailPostSection4>
-        <Heart
-          id={detail.id}
-          heart={detail.postHeartCnt === 'true' ? true : false}
-          numberHeart={detail.postHeartCnt}
-        />
+      
+        <div>
+          <DivHeart onClick={likeHandler}>
+            {like && isHeart ? <FillLike /> : <Like />}
+
+            <HeartNum>
+              {countHeart}
+            </HeartNum>
+          </DivHeart>
+        </div>
+
         <CommentBox>
           <svg
             width="19"

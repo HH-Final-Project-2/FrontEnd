@@ -34,7 +34,12 @@ const MySchedulesItem = () => {
       <div className="layout">
         <div className="head">
           <p className="todos">개인일정</p>
-          <img src={addimg} className="addBtn" onClick={addClickHandler} />
+          <img
+            src={addimg}
+            className="addBtn"
+            onClick={addClickHandler}
+            alt=""
+          />
         </div>
         <Calendar
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
@@ -73,18 +78,26 @@ const MySchedulesItem = () => {
                   return (
                     <div className="todoBox">
                       <div key={x.id}>
-                        <div>
+                        <div className="todoBoxSection">
                           <div className="titleBox">
-                            <div className="dot"></div>
-                            <div className="title">{x.title}</div>
+                            <div className="titleSection">
+                              <div className="todoDot" />
+                              <div className="title">{x.title}</div>
+                            </div>
+
+                            <div className="todo">{x.todo}</div>
                           </div>
-                          <div className="todo">{x.todo}</div>
+
+                          <div className="dateTime">
+                            <div className="startDate">
+                              {x.startDate} {x.startTime}
+                            </div>
+                            <div className="endDate">
+                              {x.endDate} {x.endTime}
+                            </div>
+                          </div>
                         </div>
-                        <div className="dateTime">
-                          {x.startDate} {x.startTime}
-                          <br />
-                          {x.endDate} {x.endTime}
-                        </div>
+
                         <button
                           onClick={() => {
                             const config = {

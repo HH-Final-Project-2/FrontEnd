@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
 import { __getPostAll } from '../../redux/modules/PostSlice';
 
-const Footer = () => {
+const ChatFooter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -51,7 +51,7 @@ const Footer = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g fill="#8892A0">
+        <g fill="#5546ff">
           <rect width="72" height="56" fill="white" />
 
           <path d="M27.0005 18.9983C27.0009 17.0168 27.6551 15.0909 28.8617 13.5193C30.0683 11.9476 31.7599 10.8181 33.6739 10.3059C35.5879 9.7937 37.6175 9.92749 39.4477 10.6865C41.2779 11.4455 42.8066 12.7873 43.7964 14.5038C44.7863 16.2202 45.182 18.2153 44.9223 20.1797C44.6626 22.144 43.762 23.9677 42.36 25.3679C40.9581 26.7681 39.1333 27.6666 37.1687 27.9238C35.2041 28.1811 33.2095 27.7828 31.4944 26.7908L27.9875 27.9608C27.8579 28.004 27.719 28.0111 27.5857 27.9811C27.4525 27.9512 27.3299 27.8855 27.2312 27.791C27.1326 27.6965 27.0616 27.5769 27.026 27.445C26.9903 27.3132 26.9914 27.1741 27.029 27.0427L28.097 23.3063C27.3755 21.9851 26.9984 20.5036 27.0005 18.9983Z" />
@@ -103,4 +103,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default ChatFooter;

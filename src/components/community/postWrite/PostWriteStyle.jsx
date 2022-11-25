@@ -117,8 +117,8 @@ export const WriteBtn = styled.button`
 
 export const DeleteImage = styled.div`
   position: absolute;
-  margin-left: 138px;
-  margin-top: 13px;
+  margin-left: 147px;
+  margin-top: 15px;
 `;
 
 export const ImgUploadButton = styled.div`

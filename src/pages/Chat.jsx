@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { addChatroom } from '../redux/modules/chatSlice';
 import Layout from '../components/layout/Layout';
+import ChatFooter from '../components/footer/ChatFooter';
 
 const Chat = () => {
   const [modal, setModal] = useState(false);
@@ -71,6 +72,7 @@ const Chat = () => {
         </div>
       </St_Header>
       <Chatlist></Chatlist>
+      <ChatFooter />
     </Layout>
   );
 };

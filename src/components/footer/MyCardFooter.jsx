@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
 import { __getPostAll } from '../../redux/modules/PostSlice';
 
-const Footer = () => {
+const MyCardFooter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -92,7 +92,7 @@ const Footer = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g fill="#8892A0">
+        <g fill="#5546ff">
           <rect width="72" height="56" fill="white" />
 
           <path d="M44.8 12H27.2C25.9867 12 25 13.0091 25 14.25V27.75C25 28.9909 25.9867 30 27.2 30H44.8C46.0133 30 47 28.9909 47 27.75V14.25C47 13.0091 46.0133 12 44.8 12ZM32.3865 16.5C33.6526 16.5 34.5865 17.4551 34.5865 18.75C34.5865 20.0449 33.6526 21 32.3865 21C31.1204 21 30.1865 20.0449 30.1865 18.75C30.1865 17.4551 31.1193 16.5 32.3865 16.5ZM36.473 25.5H28.3V24.9769C28.3 23.4323 30.1436 21.8438 32.3865 21.8438C34.6294 21.8438 36.473 23.4323 36.473 24.9769V25.5ZM43.7 24.375H39.3V22.125H43.7V24.375ZM43.7 19.875H38.2V17.625H43.7V19.875Z" />
@@ -103,4 +103,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default MyCardFooter;

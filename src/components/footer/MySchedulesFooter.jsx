@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
 import { __getPostAll } from '../../redux/modules/PostSlice';
 
-const Footer = () => {
+const MySchedulesFooter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -35,7 +35,7 @@ const Footer = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g fill="#8892A0">
+        <g fill="#5546ff">
           <rect width="72" height="56" fill="white" />
 
           <path d="M31.6531 11C32.2965 11 32.8163 11.5307 32.8163 12.1875V13.375H39.1837V12.1875C39.1837 11.5307 39.7035 11 40.3469 11C40.9904 11 41.5102 11.5307 41.5102 12.1875V13.375H43.2551C44.2184 13.375 45 14.1729 45 15.1562V16.9375H27V15.1562C27 14.1729 27.7816 13.375 28.7449 13.375H30.4898V12.1875C30.4898 11.5307 31.0096 11 31.6531 11ZM27 18.125H45V28.2188C45 29.2021 44.2184 30 43.2551 30H28.7449C27.7816 30 27 29.2021 27 28.2188V18.125ZM39.817 22.3184C40.1587 21.9695 40.1587 21.4055 39.817 21.0604C39.4753 20.7152 38.9227 20.7115 38.5846 21.0604L35.1312 24.5857L33.4226 22.8416C33.0809 22.4928 32.5284 22.4928 32.1903 22.8416C31.8522 23.1904 31.8486 23.7545 32.1903 24.0996L34.5168 26.4746C34.8585 26.8234 35.4111 26.8234 35.7492 26.4746L39.817 22.3184Z" />
@@ -103,4 +103,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default MySchedulesFooter;

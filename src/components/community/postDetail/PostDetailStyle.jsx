@@ -90,13 +90,12 @@ export const DetailPostSection2 = styled.div`
 
 export const JobPosition = styled.div`
   padding: 5px;
-
   margin-left: 10px;
   margin-top: 15px;
   font-size: 12px;
 
-  color: #696969;
-  background: #f5f6fa;
+  color: #3425de;
+  background: #eeecff;
   border-radius: 4px;
 `;
 
@@ -148,16 +147,6 @@ export const DetailPostSection4 = styled.div`
 
   margin-top: 14px;
   margin-left: 20px;
-  /* input {
-    width: 283px;
-    height: 40px;
-
-    border: none;
-    outline: none;
-
-    background: #f5f5f5;
-    border-radius: 8px;
-  } */
 `;
 
 export const CommentBox = styled.div`
@@ -196,4 +185,18 @@ export const DetailSectionLine = styled.div`
   width: 343px;
   height: 1px;
   background: #e2e6ef;
+`;
+
+export const DivHeart = styled.div`
+  display: flex;
+  font-size: 12px;
+  margin-right: 15px;
+  cursor: pointer;
+  color: #52596b;
+`;
+
+export const HeartNum = styled.div`
+  font-size: 12px;
+  color: #52596b;
+  margin-left: 7px;
 `;

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
 import { __getPostAll } from '../../redux/modules/PostSlice';
 
-const Footer = () => {
+const CommunityFooter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -74,7 +74,7 @@ const Footer = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g fill="#8892A0">
+        <g fill="#5546ff">
           <rect width="72" height="56" fill="white" />
 
           <path d="M31.1996 20.7996C33.1878 20.7996 34.7996 19.1878 34.7996 17.1996C34.7996 15.2114 33.1878 13.5996 31.1996 13.5996C29.2114 13.5996 27.5996 15.2114 27.5996 17.1996C27.5996 19.1878 29.2114 20.7996 31.1996 20.7996Z" />
@@ -103,4 +103,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default CommunityFooter;
