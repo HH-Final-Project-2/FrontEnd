@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import instance from "../../shared/Request";
-// const accessToken = localStorage.getItem("authorization");
-// const refreshToken = localStorage.getItem("refresh-Token");
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
 //post
 export const _MakeCard = createAsyncThunk(
   "post/card",

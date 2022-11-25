@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../layout/Layout';
 import { useNavigate } from 'react-router';
-
+import MyCardFooter from '../footer/MyCardFooter';
 import MycardItem from '../myCard/MycardItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../../redux/modules/mycardSlice';
@@ -131,6 +131,7 @@ const MyCardInfo = () => {
           </Map>
         </MapBox>
       </St_CardInfo>
+      <MyCardFooter />
     </Layout>
   );
 };
