@@ -21,6 +21,7 @@ export const EditSection1 = styled.div`
 
 export const EditSection1Title = styled.div`
   position: relative;
+  margin-bottom: 8px;
   left: 18px;
   font-weight: 600;
 `;

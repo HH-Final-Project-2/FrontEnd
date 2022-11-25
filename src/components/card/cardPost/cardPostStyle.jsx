@@ -129,3 +129,43 @@ export const Input = styled.input`
   clip: rect(0, 0, 0, 0);
   border: 0;
 `;
+
+export const ImgBox = styled.div`
+  width: 375px;
+  height: 120px;
+  background-color: #f5f5f5;
+  display: flex;
+  img {
+    margin: 15px 15px 10px 30px;
+    width: 162px;
+    height: 89px;
+    border-radius: 8px;
+    padding: 0px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px #cecece;
+  }
+  div {
+    margin: 40px 24px 10px 0px;
+  }
+`;
+
+export const RadioBox = styled.div`
+  display: flex;
+  justify-content: left;
+`;
+export const RadioDetail = styled.div`
+  display: flex;
+  justify-content: left;
+  margin: 10px 15px 30px 25px;
+  input[type="radio"]:checked:after {
+    background: $white no-repeat center center;
+    background-image: url("/src/images/Property 1=deselected.png");
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+  }
+  label {
+    margin-left: 6px;
+    font-size: 14px;
+  }
+`;

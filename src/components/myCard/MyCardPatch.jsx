@@ -283,10 +283,11 @@ const St_Header = styled.div`
 `;
 //명함 정보 편집 박스
 const PatchBox = styled.div`
-  margin: 20px auto;
+  /* margin: 20px auto;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100%; */
+  padding: 17px;
 `;
 
 //헤더 타이틀의 의미
@@ -303,7 +304,7 @@ const St_Title = styled.div`
 //저장버튼
 const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 20px;
   color: #277dff;
   cursor: pointer;
   font-style: normal;
@@ -316,7 +317,7 @@ const SaveButton = styled.a`
 const St_Key = styled.div`
   color: #52596b;
   font-size: 13px;
-  margin-left: 22px;
+  padding-left: 7px;
   margin-bottom: 5px;
   display: flex;
   align-items: center;

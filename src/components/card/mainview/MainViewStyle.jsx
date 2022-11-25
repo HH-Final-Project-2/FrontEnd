@@ -35,7 +35,7 @@ export const CategoryBtn1 = styled.button`
   font-size: 16px;
   background-color: white;
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #5546ff;
 `;
 export const CategoryBtn2 = styled.button`
   font-size: 16px;
@@ -95,7 +95,7 @@ export const Department = styled.div`
 export const CardInCard = styled.div`
   margin: 20px 10px 0px 30px;
   height: 60px;
-  width: 156px;
+  width: 120px;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
 `;

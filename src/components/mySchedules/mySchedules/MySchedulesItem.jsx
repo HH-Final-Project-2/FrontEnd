@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import addimg from "../../../images/Property 1=default.svg";
 import Footer from "../../footer/Footer";
 
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
+
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
   const marks = useSelector((state) => state.ScheduleSlice.date);
@@ -100,10 +103,8 @@ const MySchedulesItem = () => {
                           onClick={() => {
                             const config = {
                               headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-                                "Refresh-Token":
-                                  "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+                                Authorization: accessToken,
+                                "Refresh-Token": refreshToken,
                               },
                             };
                             axios

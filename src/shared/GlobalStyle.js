@@ -1,10 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   
   html,
   body {
     background: aliceblue;
+    margin : 0;
+padding : 0;
   }
   p,
   ol,

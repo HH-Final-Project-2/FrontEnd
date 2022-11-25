@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CommunityLayout = styled.div`
   width: 375px;
@@ -37,7 +37,7 @@ export const Section3 = styled.div`
 
 export const SectionLine = styled.div`
   height: 1px;
-  margin-top: 60px;
+  margin-top: 50px;
   background: #d9d9d9;
 `;
 
@@ -57,6 +57,7 @@ export const WriteButton = styled.div`
 `;
 
 export const SearchButton = styled.button`
+  margin-right: 5px;
   border: none;
   outline: none;
   background-color: transparent;
