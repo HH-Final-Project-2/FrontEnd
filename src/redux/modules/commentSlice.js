@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import instance from "../../shared/Request";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import instance from '../../shared/Request';
 
 //게시글 상세 조회
 export const getCommentList = createAsyncThunk(
-  "GETCOMMENTLIST",
+  'GETCOMMENTLIST',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/api/posting/${payload}`);
@@ -17,7 +17,7 @@ export const getCommentList = createAsyncThunk(
 
 // 댓글 작성
 export const addComment = createAsyncThunk(
-  "ADDCOMMENT",
+  'ADDCOMMENT',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post(
@@ -33,7 +33,7 @@ export const addComment = createAsyncThunk(
 
 // 댓글 삭제
 export const deleteComment = createAsyncThunk(
-  "DELETECOMMENT",
+  'DELETECOMMENT',
   async (payload, thunkAPI) => {
     try {
       await instance.delete(
@@ -48,7 +48,7 @@ export const deleteComment = createAsyncThunk(
 
 // 댓글 수정
 export const putComment = createAsyncThunk(
-  "PUTCOMMENT",
+  'PUTCOMMENT',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.put(
@@ -63,14 +63,23 @@ export const putComment = createAsyncThunk(
 );
 
 const initialState = {
-  comments: [],
+  comments: [
+    {
+      author: '',
+      commentHeartCnt: '',
+      content: '',
+      createdAt: '',
+      id: 0,
+      modifiedAt: '',
+    },
+  ],
   comment: {},
   isLoading: false,
   error: null,
 };
 
 export const commentSlice = createSlice({
-  name: "comments",
+  name: 'comments',
   initialState,
   reducers: {},
   extraReducers: {
