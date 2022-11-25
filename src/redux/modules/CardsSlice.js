@@ -33,7 +33,7 @@ export const __imgPost = createAsyncThunk(
         payload,
         config
       );
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +85,7 @@ export const __viewGet = createAsyncThunk(
     try {
       const data = await instance.get(`/api/businessCards/${payload}`);
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +102,7 @@ export const __fixPost = createAsyncThunk(
         payload
       );
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }

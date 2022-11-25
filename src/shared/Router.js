@@ -5,20 +5,21 @@ import Detail from "../pages/Detail";
 import Edit from "../pages/Edit";
 
 import Main from "../pages/Main";
-import CompanySearch from "../components/card/CompanySearch";
-import MainCards from "../components/card/MainCards";
-import MainCardsPut from "../components/card/MainCardsPut";
-import OtherCardsCategory from "../components/card/OtherCardsCategory";
-import ViewMainDetailPost from "../components/card/ViewMainDetailPost";
+import CompanySearch from "../components/card/companySearch/CompanySearch";
+import MainCards from "../components/card/cardPost/MainCards";
+import MainCardsPut from "../components/card/cardPut/MainCardsPut";
+import OtherCardsCategory from "../components/card/otherCategory/OtherCardsCategory";
+import ViewMainDetailPost from "../components/card/cardDetail/ViewMainDetailPost";
 
 import Write from "../pages/Write";
 
+import Cards from "../pages/Cards";
 import MyCard from "../pages/MyCard";
 import MyCardInfo from "../components/myCard/MyCardInfo";
 import MyCardPatch from "../components/myCard/MyCardPatch";
 import MyCardMake from "../components/myCard/MyCardMake";
 import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach";
-import Manage from "../pages/Manage"
+import Manage from "../pages/Manage";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
@@ -27,14 +28,10 @@ import Join from "../pages/Join";
 
 import CommentEditPage from "../pages/CommentEditPage";
 
+import Search from "../pages/Search";
 
-import Search from '../pages/Search';
-
-import Cards from "../pages/Cards";
 import MySchedules from "../pages/MySchedules";
-import AddMySchedules from "../components/mySchedules/AddMySchedules";
-
-
+import AddMySchedules from "../components/mySchedules/addSchedules/AddMySchedules";
 
 const Router = () => {
   return (
@@ -61,14 +58,13 @@ const Router = () => {
         <Route path="/commentedit/:id/:cid" element={<CommentEditPage />} />
         <Route path="/search" element={<Search />} />
 
-
         {/* 내 명함  */}
         <Route path="/manage" element={<Manage />} />
         <Route path="/mypage" element={<MyCard />} />
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
-        
+
         <Route
           path="/mypage/cardpatch/MyCardCompanySerach"
           element={<MyCardCompanySerach />}
