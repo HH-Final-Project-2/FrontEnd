@@ -5,14 +5,15 @@ import Detail from '../pages/Detail';
 import Edit from '../pages/Edit';
 
 import Main from '../pages/Main';
-import CompanySearch from '../components/card/CompanySearch';
-import MainCards from '../components/card/MainCards';
-import MainCardsPut from '../components/card/MainCardsPut';
-import OtherCardsCategory from '../components/card/OtherCardsCategory';
-import ViewMainDetailPost from '../components/card/ViewMainDetailPost';
+import CompanySearch from '../components/card/companySearch/CompanySearch';
+import MainCards from '../components/card/cardPost/MainCards';
+import MainCardsPut from '../components/card/cardPut/MainCardsPut';
+import OtherCardsCategory from '../components/card/otherCategory/OtherCardsCategory';
+import ViewMainDetailPost from '../components/card/cardDetail/ViewMainDetailPost';
 
 import Write from '../pages/Write';
 
+import Cards from '../pages/Cards';
 import MyCard from '../pages/MyCard';
 import MyCardInfo from '../components/myCard/MyCardInfo';
 import MyCardPatch from '../components/myCard/MyCardPatch';
@@ -29,7 +30,6 @@ import CommentEditPage from '../pages/CommentEditPage';
 
 import Search from '../pages/Search';
 
-import Cards from '../pages/Cards';
 import MySchedules from '../pages/MySchedules';
 import AddSchedulesPage from '../pages/AddSchedulesPage';
 
