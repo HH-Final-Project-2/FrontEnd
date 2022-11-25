@@ -8,7 +8,6 @@ const MyProfile = () => {
 
   const nav = useNavigate();
   const nickname = localStorage.getItem('nickname');
-  console.log(nickname);
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
 
@@ -16,7 +15,7 @@ const MyProfile = () => {
     <St_Profile>
       <St_Header>
         <St_Name>{nickname}</St_Name>
-        <PutButton>편집</PutButton>
+        <PutButton>수정</PutButton>
       </St_Header>
 
       <St_Info>{cardinfo.position}</St_Info>
@@ -29,15 +28,14 @@ export default MyProfile;
 
 const St_Profile = styled.div`
   width: 100%;
-  max-width: 360px;
+  max-width: 355px;
   height: 100px;
-  padding: 15px;
-  /* border-bottom: 1px solid #d6d6d6; */
+  margin: 24px 0px 0px 21px;
 `;
 
 const PutButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 20px;
   color: #277dff;
   cursor: pointer;
   font-style: normal;
@@ -61,12 +59,12 @@ const St_Name = styled.div`
 const St_Info = styled.div`
   display: inline-block;
   margin-top: 7px;
-  margin-right: 7px;
+  margin-right: 8px;
   font-size: 13px;
   font-weight: 400;
   color: gray;
   background-color: #ecebeb;
-  padding: 4px;
+  padding: 5px;
   border-radius: 5px;
   font-weight: 500;
   align-items: center;

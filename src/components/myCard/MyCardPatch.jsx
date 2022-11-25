@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../layout/Layout';
+import MyCardFooter from '../footer/MyCardFooter';
 import { useNavigate } from 'react-router';
 import { _getMakeCard, _PutCard } from '../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,6 @@ const MyCardPatch = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  console.log(cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
 
   const [makeinfo, setMakeinfo] = useState({
@@ -86,31 +86,8 @@ const MyCardPatch = () => {
     setMakeinfo(cardinfo);
   }, [cardinfo]);
 
-  // const Icon = () => {
-  //   return (
-  //     <svg
-  //       width="16"
-  //       height="21"
-  //       viewBox="0 0 16 21"
-  //       fill="none"
-  //       xmlns="http://www.w3.org/2000/svg"
-  //     >
-  //       <g clipPath="url(#clip0_1266_167)">
-  //         <path
-  //           d="M2 0C0.895833 0 0 0.881836 0 1.96875V19.0312C0 20.1182 0.895833 21 2 21H6V17.7188C6 16.6318 6.89583 15.75 8 15.75C9.10417 15.75 10 16.6318 10 17.7188V21H14C15.1042 21 16 20.1182 16 19.0312V1.96875C16 0.881836 15.1042 0 14 0H2ZM3.56863 9.1875H12.4314C12.798 9.1875 13.098 9.48281 13.098 9.84375V11.1562C13.098 11.5172 12.798 11.8125 12.4314 11.8125H3.56863C3.20196 11.8125 2.90196 11.5172 2.90196 11.1562V9.84375C2.90196 9.48281 3.20196 9.1875 3.56863 9.1875ZM2.90196 4.59375C2.90196 4.23281 3.20196 3.9375 3.56863 3.9375H12.4314C12.798 3.9375 13.098 4.23281 13.098 4.59375V5.90625C13.098 6.26719 12.798 6.5625 12.4314 6.5625H3.56863C3.20196 6.5625 2.90196 6.26719 2.90196 5.90625V4.59375Z"
-  //           fill="#8892A0"
-  //         />
-  //       </g>
-  //       <defs>
-  //         <clipPath id="clip0_1266_167">
-  //           <rect width="16" height="21" fill="white" />
-  //         </clipPath>
-  //       </defs>
-  //     </svg>
-  //   );
-  // };
-
   if (cardinfo === undefined) return;
+
   return (
     <Layout>
       <St_Header>
@@ -139,13 +116,16 @@ const MyCardPatch = () => {
       </St_Header>
       <PatchBox>
         <Item>
-          <St_Key>이름</St_Key>
+          <St_Key>
+            이름<Essential>*</Essential>
+          </St_Key>
           <St_value
             name="cardName"
             value={cardName || ''}
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
           <St_Key>영문이름</St_Key>
           <St_value
@@ -154,16 +134,22 @@ const MyCardPatch = () => {
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
-          <St_Key>이메일</St_Key>
+          <St_Key>
+            이메일<Essential>*</Essential>
+          </St_Key>
           <St_value
             name="email"
             value={email || ''}
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
-          <St_Key>연락처</St_Key>
+          <St_Key>
+            연락처<Essential>*</Essential>
+          </St_Key>
           <St_value
             name="phoneNum"
             value={phoneNum || ''}
@@ -172,15 +158,41 @@ const MyCardPatch = () => {
         </Item>
 
         <Item>
-          <St_Key>회사</St_Key>
+          <St_Key>
+            회사<Essential>*</Essential>
+          </St_Key>
+          <CompanyIcon>
+            <svg
+              width="16"
+              height="21"
+              viewBox="0 0 16 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clipPath="url(#clip0_1433_140)">
+                <path
+                  d="M2 0C0.895833 0 0 0.881836 0 1.96875V19.0312C0 20.1182 0.895833 21 2 21H6V17.7188C6 16.6318 6.89583 15.75 8 15.75C9.10417 15.75 10 16.6318 10 17.7188V21H14C15.1042 21 16 20.1182 16 19.0312V1.96875C16 0.881836 15.1042 0 14 0H2ZM3.56863 9.1875H12.4314C12.798 9.1875 13.098 9.48281 13.098 9.84375V11.1562C13.098 11.5172 12.798 11.8125 12.4314 11.8125H3.56863C3.20196 11.8125 2.90196 11.5172 2.90196 11.1562V9.84375C2.90196 9.48281 3.20196 9.1875 3.56863 9.1875ZM2.90196 4.59375C2.90196 4.23281 3.20196 3.9375 3.56863 3.9375H12.4314C12.798 3.9375 13.098 4.23281 13.098 4.59375V5.90625C13.098 6.26719 12.798 6.5625 12.4314 6.5625H3.56863C3.20196 6.5625 2.90196 6.26719 2.90196 5.90625V4.59375Z"
+                  fill="#8892A0"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1433_140">
+                  <rect width="16" height="21" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </CompanyIcon>
+
           <div>
             <St_value
               name="company"
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
+              style={{ paddingLeft: '35px' }}
               onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
             ></St_value>
           </div>
+
           {/* <img src="/images/ic-company.png"></img> */}
           <St_Address
             name="companyAddress"
@@ -192,7 +204,7 @@ const MyCardPatch = () => {
             onChange={onChage}
           >
             <AddressBox>
-              <div>
+              <AddressIcon>
                 <svg
                   width="12"
                   height="15"
@@ -208,7 +220,7 @@ const MyCardPatch = () => {
                     fill="#BCC2CC"
                   />
                 </svg>
-              </div>
+              </AddressIcon>
               <SearchAddress>
                 {searchinfo.companyAddress
                   ? searchinfo.companyAddress
@@ -217,31 +229,42 @@ const MyCardPatch = () => {
             </AddressBox>
           </St_Address>
         </Item>
+
         <Item>
-          <St_Key>직책</St_Key>
+          <St_Key>
+            직책<Essential>*</Essential>
+          </St_Key>
           <St_value
             name="position"
             value={position || ''}
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
-          <St_Key>부서</St_Key>
+          <St_Key>
+            부서<Essential>*</Essential>
+          </St_Key>
           <St_value
             name="department"
             value={department || ''}
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
-          <St_Key>Tel</St_Key>
+          <St_Key>
+            Tel<Essential>*</Essential>
+          </St_Key>
           <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
         </Item>
+
         <Item>
           <St_Key>Fax</St_Key>
           <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
+      <MyCardFooter />
     </Layout>
   );
 };
@@ -253,13 +276,11 @@ const St_Header = styled.div`
   width: 100%;
   align-items: center;
   border-bottom: 1px solid;
+  padding-left: 12px;
 `;
 //명함 정보 편집 박스
 const PatchBox = styled.div`
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  padding: 17px;
 `;
 
 //헤더 타이틀의 의미
@@ -271,12 +292,12 @@ const St_Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 15px;
+  padding-left: 4px;
 `;
 //저장버튼
 const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 20px;
   color: #277dff;
   cursor: pointer;
   font-style: normal;
@@ -287,37 +308,34 @@ const SaveButton = styled.a`
 `;
 //input key 제목
 const St_Key = styled.div`
-  color: #52596b;
+  width: 100%;
+  color: #6b6b6b;
   font-size: 13px;
-  margin-left: 22px;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
+  padding-left: 7px;
+  margin-bottom: 8px;
 `;
 //input value 값
 const St_value = styled.input`
-  width: 100%;
-  max-width: 320px;
-  height: 30px;
-  border-radius: 4px;
-  border: 1px solid #cccccc;
-  padding-left: 10px;
-  margin: auto;
-  display: flex;
-  color: #1a1f27;
   letter-spacing: 0.15px;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  /* background-image: '/images/ic-company.png'; */
+  width: 100%;
+  max-width: 330px;
+  height: 42px;
+  padding: 14px;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  margin: auto;
+  display: flex;
+  color: #1a1f27;
 `;
 
 //회사 주소 div
 const St_Address = styled.div`
   margin-top: 5px;
-  padding-left: 25px;
 `;
 
 const AddressBox = styled.div`
@@ -329,6 +347,7 @@ const AddressBox = styled.div`
 const SearchAddress = styled.div`
   display: flex;
   width: 250px;
+  padding-left: 11px;
 `;
 
 //각 수정 목록의 div
@@ -336,4 +355,28 @@ const Item = styled.div`
   margin-top: 10px;
   font-size: 12px;
   color: #6b6b6b;
+`;
+
+const CompanyIcon = styled.div`
+  height: 0px;
+  position: relative;
+  display: flex;
+  top: 10px;
+  left: 18px;
+`;
+
+const AddressIcon = styled.div`
+  height: 0px;
+  position: relative;
+  display: flex;
+  left: 12px;
+`;
+
+const Essential = styled.a`
+  margin-left: 3px;
+  color: #5546ff;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
 `;

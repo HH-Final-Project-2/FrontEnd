@@ -20,34 +20,23 @@ const MycardItem = () => {
   if (cardinfo === undefined) return;
 
   return (
-    <St_Card
-      onClick={() => {
-        nav('/mypage/cardinfo');
-      }}
-    >
+    <St_Card>
       <OutLine>
         <NameBox>
           <Name>{cardinfo.cardName}</Name>
           <Position>{cardinfo.position}</Position>
         </NameBox>
         <NameEng>{cardinfo.engName}</NameEng>
-        {/* <div>{cardinfo.email}</div> */}
-
-        {/* <div>{cardinfo.company}</div> */}
-        {/* <Position>{cardinfo.company}</Position> */}
-        {/* <div>{cardinfo.department}</div> */}
+        <Company>{cardinfo.company}</Company>
         <AddressBox>
-          <Name>주소</Name>
           <Address>{cardinfo.companyAddress}</Address>
         </AddressBox>
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}
-        >
-          <Name>연락처 </Name>
+        <NumBox>
+          <Name>M.</Name>
           <Address>{cardinfo.phoneNum}</Address>
-        </div>
-        {/* <div>{cardinfo.tel}</div>
-      <div>{cardinfo.fax}</div> */}
+          <Name>T.</Name>
+          <Address>{cardinfo.tel}</Address>
+        </NumBox>
       </OutLine>
     </St_Card>
   );
@@ -59,18 +48,18 @@ const St_Card = styled.div`
   width: 100%;
   max-width: 311px;
   height: 176px;
-  margin: 32px;
+  margin: 32px auto;
   border-radius: 8px;
-  padding: 0px;
-  cursor: pointer;
   background-color: white;
   box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
 const OutLine = styled.div`
-  margin: 16px 20px 16px 20px;
+  width: 311px;
+  padding: 16px 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
 `;
 const NameBox = styled.div`
   display: flex;
@@ -86,7 +75,7 @@ const Name = styled.div`
   color: #1a1f27;
 `;
 const NameEng = styled.div`
-  margin-top: 8px;
+  margin-top: 3px;
   margin-left: 2px;
   font-size: 12px;
   font-weight: 500;
@@ -100,8 +89,16 @@ const Position = styled.div`
   color: #8892a0;
 `;
 
+const Company = styled.div`
+  width: 200px;
+  margin-top: 15px;
+  color: #1a1f27;
+  letter-spacing: 0.15px;
+  font-size: 14px;
+  margin-bottom: 3px;
+`;
+
 const AddressBox = styled.div`
-  margin-top: 40px;
   display: flex;
 `;
 
@@ -109,7 +106,13 @@ const Address = styled.div`
   font-size: 12px;
   font-weight: 400;
   color: #8892a0;
-  width: 200px;
+  width: 250px;
   display: inline-block;
+  align-items: center;
+`;
+
+const NumBox = styled.div`
+  display: flex;
+  margin-top: 5px;
   align-items: center;
 `;

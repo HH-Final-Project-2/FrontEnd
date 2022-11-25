@@ -1,14 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import instance from "../../shared/Request";
-// const accessToken = localStorage.getItem("authorization");
-// const refreshToken = localStorage.getItem("refresh-Token");
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
 //post
 export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post("/api/mypages", payload);
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/mypages",
+        payload,
+        {
+          headers: {
+            contentType: "application/json",
+            Authorization:accessToken,
+            "Refresh-Token":refreshToken
+          },
+        }
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -18,7 +28,13 @@ export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/api/mypages");
+      const { data } = await axios.get("https://bkyungkeem.shop/api/mypages", {
+        headers: {
+          contentType: "application/json",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
+        },
+      });
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
@@ -29,10 +45,17 @@ export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
     try {
-      // const {data} = await axios.put(`http://localhost:3001/cardinfo/${payload.id}`,payload);
-      const { data } = await instance.put(
-        `/api/mypages/${payload.id}`,
-        payload
+      const { data } = await axios.put(
+        `https:/bkyungkeem.shop/api/mypages/${payload.id}`,
+        payload,
+        {
+          headers: {
+            contentType: "application/json",
+            Authorization: accessToken,
+          "Refresh-Token": refreshToken,
+
+          },
+        }
       );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
@@ -43,7 +66,18 @@ export const _searchGet = createAsyncThunk(
   "SEARCH_GET",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post("/api/companySearch", payload);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
+        },
+      };
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/companySearch",
+        payload,
+        config
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -55,7 +89,20 @@ export const _companyInfo = createAsyncThunk(
   "COMPANY_INFO",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.post("/api/companyInfo", payload);
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: accessToken,
+          "Refresh-Token": refreshToken,
+        },
+      };
+      const { data } = await axios.post(
+        "https://bkyungkeem.shop/api/companyInfo",
+        payload,
+        config
+      );
+
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
