@@ -7,12 +7,12 @@ const MyCardNoneItem = () => {
   //명함 만드는 페이지 컴포넌트로 이동
   const nav = useNavigate();
   return (
-    <St_Card
-      onClick={() => {
-        nav('/mypage/cardmake');
-      }}
-    >
-      <St_Plus>
+    <St_Card>
+      <St_Plus
+        onClick={() => {
+          nav('/mypage/cardmake');
+        }}
+      >
         <svg
           width="30"
           height="30"
@@ -41,7 +41,6 @@ const St_Card = styled.div`
   margin: 32px;
   border-radius: 8px;
   padding: 0px;
-  cursor: pointer;
   background-color: white;
   box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
@@ -53,8 +52,7 @@ const St_Plus = styled.div`
   max-width: 50px;
   height: 50px;
   color: #d6d6d6;
-  /* border: 2px solid; */
-  /* border-radius: 50px; */
+  cursor: pointer;
   margin: auto;
   align-items: center;
   display: flex;

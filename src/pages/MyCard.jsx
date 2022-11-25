@@ -100,6 +100,9 @@ const MyCard = () => {
               cursor: 'pointer',
               marginRight: '20px',
             }}
+            onClick={() => {
+              nav('/manage');
+            }}
           >
             <path
               d="M12 1C5.928 1 1 5.928 1 12C1 18.072 5.928 23 12 23C18.072 23 23 18.072 23 12C23 5.928 18.072 1 12 1ZM12 5.4C14.123 5.4 15.85 7.127 15.85 9.25C15.85 11.373 14.123 13.1 12 13.1C9.877 13.1 8.15 11.373 8.15 9.25C8.15 7.127 9.877 5.4 12 5.4ZM12 20.8C9.767 20.8 7.127 19.898 5.246 17.632C7.17277 16.1203 9.55098 15.2987 12 15.2987C14.449 15.2987 16.8272 16.1203 18.754 17.632C16.873 19.898 14.233 20.8 12 20.8Z"
@@ -111,9 +114,6 @@ const MyCard = () => {
         <Mycard>
           <MyCardNoneItem />
         </Mycard>
-
-        {/*
-        <St_share>명함내보내기</St_share> */}
         <MyCardFooter />
       </Layout>
     );
@@ -149,10 +149,9 @@ const Mycard = styled.div`
 
 const PutButton = styled.div`
   display: flex;
-  justify-content: end;
-  /* background-color: orange; */
+  width: 40px;
   position: relative;
   bottom: 50px;
-  right: 20px;
+  left: 320px;
   cursor: pointer;
 `;

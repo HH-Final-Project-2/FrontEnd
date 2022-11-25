@@ -19,8 +19,7 @@ const MyCardMake = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const imgGet = useSelector((state) => state.PostReducer.img);
 
-  console.log(cardinfo);
-  console.log(imgGet);
+  console.log(imgGet.data.imgUrl);
 
   const [makeinfo, setMakeinfo] = useState({
     // cardName: '',
@@ -162,7 +161,6 @@ const MyCardMake = () => {
           <St_Key>
             이름<Essential>*</Essential>
           </St_Key>
-
           <St_value
             name="cardName"
             value={cardName}
@@ -178,12 +176,14 @@ const MyCardMake = () => {
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
           <St_Key>
             이메일<Essential>*</Essential>
           </St_Key>
           <St_value name="email" value={email} onChange={onChage}></St_value>
         </Item>
+
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>
@@ -263,6 +263,7 @@ const MyCardMake = () => {
             </SearchAddress>
           </AddressBox>
         </Item>
+
         <Item>
           <St_Key>
             직책<Essential>*</Essential>
@@ -273,6 +274,7 @@ const MyCardMake = () => {
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
           <St_Key>
             부서<Essential>*</Essential>
@@ -283,12 +285,14 @@ const MyCardMake = () => {
             onChange={onChage}
           ></St_value>
         </Item>
+
         <Item>
           <St_Key>
             Tel<Essential>*</Essential>
           </St_Key>
           <St_value name="tel" value={tel} onChange={onChage}></St_value>
         </Item>
+
         <Item>
           <St_Key>Fax</St_Key>
           <St_value name="fax" value={fax} onChange={onChage}></St_value>
@@ -304,7 +308,7 @@ const St_Header = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #d6d6d6;
   padding-left: 12px;
 `;
 
