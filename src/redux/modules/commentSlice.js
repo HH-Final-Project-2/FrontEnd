@@ -1,14 +1,27 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import instance from '../../shared/Request';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import instance from "../../shared/Request";
 
-//게시글 상세 조회
+// 댓글 조회
 export const getCommentList = createAsyncThunk(
-  'GETCOMMENTLIST',
+  "GETCOMMENTLIST",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/api/posting/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data.commentResponseDtoList);
+      const { data } = await instance.get(`/api/comment/${payload}`);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// 댓글 좋아요
+export const likeComment = createAsyncThunk(
+  'likeComment',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.post(`/api/auth/comment/heart/${payload}`);
+      console.log('나는 댓글 좋아요입니다', data)
+      return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -17,7 +30,7 @@ export const getCommentList = createAsyncThunk(
 
 // 댓글 작성
 export const addComment = createAsyncThunk(
-  'ADDCOMMENT',
+  "ADDCOMMENT",
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post(
@@ -33,7 +46,7 @@ export const addComment = createAsyncThunk(
 
 // 댓글 삭제
 export const deleteComment = createAsyncThunk(
-  'DELETECOMMENT',
+  "DELETECOMMENT",
   async (payload, thunkAPI) => {
     try {
       await instance.delete(
@@ -48,7 +61,7 @@ export const deleteComment = createAsyncThunk(
 
 // 댓글 수정
 export const putComment = createAsyncThunk(
-  'PUTCOMMENT',
+  "PUTCOMMENT",
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.put(
@@ -65,30 +78,56 @@ export const putComment = createAsyncThunk(
 const initialState = {
   comments: [
     {
-      author: '',
-      commentHeartCnt: '',
+      id: 0,
+      commentHeartCnt: 0,
+      commentHeartYn: false,
       content: '',
       createdAt: '',
-      id: 0,
       modifiedAt: '',
-    },
+      author: ''
+    }
   ],
-  comment: {},
+  comment: {
+    id: 0,
+    commentHeartCnt: 0,
+    commentHeartYn: false,
+    content: '',
+    createdAt: '',
+    modifiedAt: '',
+    author: ''
+  },
   isLoading: false,
   error: null,
 };
 
 export const commentSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState,
   reducers: {},
   extraReducers: {
-    // 게시글 상세 조회용
+    // 댓글 조회
     // payload : 댓글 배열
     [getCommentList.fulfilled]: (state, action) => {
-      //console.log('슬라이스', action.payload)
       state.isLoading = false;
       state.comments = action.payload;
+    },
+
+    // 댓글 좋아요
+    [likeComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      let commentId = action.payload.payload;
+      let commentHeartYn = action.payload.data.data;
+      let newComments = [];
+
+      state.comments.map((comment) => {
+        newComments.push(comment);
+        if (comment.id === commentId) {
+          comment.commentHeartYn = commentHeartYn;
+          comment.commentHeartCnt += comment.commentHeartYn ? 1 : -1;
+        }
+      });
+      state.comments = newComments;
     },
 
     // 댓글 작성
@@ -110,9 +149,7 @@ export const commentSlice = createSlice({
     // 댓글 수정
     [putComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-
       let modComment = action.payload;
-
       let newComment = [];
 
       for (let i = 0; i < state.comments.length; i++) {

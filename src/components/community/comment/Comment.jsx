@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import {
   getCommentList,
   addComment,
+  likeComment,
 } from '../../../redux/modules/commentSlice';
 import CommentBottomSheet from '../../bottomSheet/CommentBottomSheet';
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
@@ -24,6 +25,7 @@ import {
 } from './CommentStyle';
 
 const Comment = () => {
+
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
 
@@ -32,27 +34,10 @@ const Comment = () => {
   const { id } = useParams();
   const { comments } = useSelector((state) => state.comments);
 
-  // 댓글 좋아요
-  const [isHeart, setIsHeart] = useState(false);
-  const [countHeart, setCountHeart] = useState(0);
-
-  const likeHandler = () => {
-    setIsHeart(!isHeart);
-    // let isHeartLocal = localStorage.setItem('heart', isHeart)
-    // let countHeartLocal = localStorage.setItem('countheart', countHeart)
-    //dispatch(__likePost(id))
-    if (isHeart) {
-      setCountHeart((prevstate) => prevstate - 1);
-      // setCountHeart(countHeart - 1);
-    } else {
-      setCountHeart((prevstate) => prevstate + 1);
-      // setCountHeart(countHeart + 1);
-    }
-  };
-
   useEffect(() => {
     dispatch(getCommentList(id));
   }, [dispatch]);
+
 
   // 시간 카운팅
   function displayedAt(commentCreatedAt) {
@@ -79,22 +64,13 @@ const Comment = () => {
     return `${Math.floor(years)}년 전`;
   }
 
-  // const nowAt = displayedAt(new window.Date(comments.nowAt));
-  // 댓글 전체 조회가 필요할 것 같음.
-
-  //   for (let i = 0; i <= comments.length; i++) {
-  //     let comment = comments[i];
-  //     comment.nowAt = displayAt(new window.Date(comment.createAt));
-  // }
-  // const timeIsGold = comments.map((comment) => {
-  //   comment.nowAt = displayedAt(new window.Date(comment.createAt));
-  // })
-
+  if (comments === undefined) return null;
   return (
     <div>
       {/* 댓글 작성 */}
       <CommentWriteBox>
         <CommentTextarea
+          Rows={10}
           type="text"
           value={commentForm}
           onChange={(e) => {
@@ -104,6 +80,7 @@ const Comment = () => {
         ></CommentTextarea>
         <CommentWirteButton
           onClick={() => {
+            if (commentForm.trim() === '') return alert('댓글을 입력해 주세요')
             dispatch(
               addComment({
                 postId: id,
@@ -125,26 +102,22 @@ const Comment = () => {
               <CommentSection1>
                 <CommentTitle>
                   <CommentNickName>{commentList.author}</CommentNickName>
-                  <CommentDate>
-                    {displayedAt(new window.Date(commentList.createAt))}
-                  </CommentDate>
+                  <CommentDate>{displayedAt(new window.Date(commentList.createdAt))}</CommentDate>
                 </CommentTitle>
 
                 {/* 댓글 더보기 바텀시트 */}
-                {nickname === commentList.author ? (
-                  <div>
-                    <CommentBottomSheet id={id} commentList={commentList} />
-                  </div>
-                ) : (
-                  ''
-                )}
+                <div>
+                  <CommentBottomSheet id={id} commentList={commentList} />
+                </div>
               </CommentSection1>
               <CommentBody>{commentList.content}</CommentBody>
 
               {/* 댓글 좋아요 */}
-              <LikeButton onClick={likeHandler}>
-                {isHeart ? <FillLike /> : <Like />}
-                <LikeButtonText>100</LikeButtonText>
+              <LikeButton onClick={() => {
+                dispatch(likeComment(commentList.id))
+              }}>
+                {commentList.commentHeartYn ? <FillLike /> : <Like />}
+                <LikeButtonText>{commentList.commentHeartCnt}</LikeButtonText>
               </LikeButton>
             </div>
           );
