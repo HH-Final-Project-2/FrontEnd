@@ -72,6 +72,7 @@ export const AddressBox = styled.div`
 export const SearchAddress = styled.div`
   display: flex;
   width: 250px;
+  padding-left: 20px;
   margin-bottom: 20px;
 `;
 export const St_Card = styled.label`

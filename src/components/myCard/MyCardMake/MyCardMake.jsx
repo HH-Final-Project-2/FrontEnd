@@ -39,7 +39,7 @@ const MyCardMake = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const imgGet = useSelector((state) => state.PostReducer.img);
 
-  // console.log(imgGet.data.imgUrl);
+  console.log('이미지', imgGet);
 
   const [makeinfo, setMakeinfo] = useState({
     // cardName: '',
@@ -91,8 +91,8 @@ const MyCardMake = () => {
       _MakeCard({
         cardName,
         engName,
-        email,
-        phoneNum,
+        email: imgGet.email !== undefined ? imgGet.email : email,
+        phoneNum: imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
         company:
           searchinfo.companyName !== undefined
             ? searchinfo.companyName
@@ -103,19 +103,20 @@ const MyCardMake = () => {
             ? searchinfo.companyAddress
             : companyAddress,
         position,
-        tel,
-        fax,
+        tel: imgGet.tel !== undefined ? imgGet.tel : tel,
+        fax: imgGet.fax !== undefined ? imgGet.fax : fax,
       })
     );
     nav('/mypage');
   };
+
+  useEffect(() => {}, []);
 
   localStorage.setItem('cardName', cardName);
   localStorage.setItem('engName', engName);
   localStorage.setItem('email', email);
   localStorage.setItem('phoneNum', phoneNum);
 
-  console.log(cardName);
   return (
     <Layout>
       <St_Header>
@@ -148,7 +149,11 @@ const MyCardMake = () => {
       <PatchBox>
         <St_Card>
           <St_Plus htmlFor="card">
-            <Icplus />
+            {imgGet.imgUrl !== undefined ? (
+              <img src={imgGet.imgUrl} alt="preview-img" />
+            ) : (
+              <Icplus />
+            )}
           </St_Plus>
           <Input type="file" id="card" onChange={mediaChangeHandler}></Input>
         </St_Card>
@@ -177,7 +182,11 @@ const MyCardMake = () => {
           <St_Key>
             이메일<Essential>*</Essential>
           </St_Key>
-          <St_value name="email" value={email} onChange={onChage}></St_value>
+          <St_value
+            name="email"
+            value={imgGet.email !== undefined ? imgGet.email : email}
+            onChange={onChage}
+          ></St_value>
         </Item>
 
         <Item>
@@ -186,7 +195,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="phoneNum"
-            value={phoneNum}
+            value={imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -254,12 +263,20 @@ const MyCardMake = () => {
           <St_Key>
             Tel<Essential>*</Essential>
           </St_Key>
-          <St_value name="tel" value={tel} onChange={onChage}></St_value>
+          <St_value
+            name="tel"
+            value={imgGet.tel !== undefined ? imgGet.tel : tel}
+            onChange={onChage}
+          ></St_value>
         </Item>
 
         <Item>
           <St_Key>Fax</St_Key>
-          <St_value name="fax" value={fax} onChange={onChage}></St_value>
+          <St_value
+            name="fax"
+            value={imgGet.fax !== undefined ? imgGet.fax : fax}
+            onChange={onChage}
+          ></St_value>
         </Item>
       </PatchBox>
     </Layout>
