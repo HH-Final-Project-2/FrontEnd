@@ -4,13 +4,13 @@ import { ko } from 'date-fns/esm/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { __writeSchedules } from '../../redux/modules/SchedulesSlice';
+import { __writeSchedules } from '../../../redux/modules/SchedulesSlice';
 import {
   Section1,
   Section1Title,
   Section2,
   SectionLine,
-} from '../community/postList/PostListStyle';
+} from '../../community/postList/PostListStyle';
 import {
   AddBtn,
   AddSchedulesBox,
@@ -21,7 +21,7 @@ import {
   DateStart,
   TitleTextArea,
 } from './AddMySchedulesStyle';
-import { PostLine } from '../community/postDetail/PostDetailStyle';
+import { PostLine } from '../../community/postDetail/PostDetailStyle';
 
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
