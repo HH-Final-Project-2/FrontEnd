@@ -13,7 +13,10 @@ import ViewMainDetailPost from '../components/card/cardDetail/ViewMainDetailPost
 
 import Write from '../pages/Write';
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> c1a6b92d0502cba8efbc5fe41a4dad24cefa7a40
 import Cards from "../pages/Cards";
 import MyCard from "../pages/MyCard";
 import MyCardInfo from "../components/myCard/MyCardInfo/MyCardInfo";
@@ -23,7 +26,10 @@ import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach/MyCard
 import Manage from "../pages/Manage";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
+<<<<<<< HEAD
+=======
 
+>>>>>>> c1a6b92d0502cba8efbc5fe41a4dad24cefa7a40
 
 import Login from '../pages/Login';
 import Join from '../pages/Join';
