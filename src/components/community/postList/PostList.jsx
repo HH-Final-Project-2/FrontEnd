@@ -23,7 +23,6 @@ const PostList = () => {
   const { post } = useSelector((state) => state.PostSlice);
   //console.log('글전체조회', post) // 글 전체 조회는 이미지 null
   useEffect(() => {
-    console.log('리스트 유즈이팩트/서치쿼리=', searchQuery);
     if (searchQuery == null) dispatch(__getPostAll());
     else dispatch(__searchPost(searchQuery));
   }, [dispatch]);

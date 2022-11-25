@@ -33,14 +33,25 @@ import Cards from "../pages/Cards";
 import MySchedules from "../pages/MySchedules";
 import AddMySchedules from "../components/mySchedules/AddMySchedules";
 
-
+import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
+  const access = localStorage.getItem("authorization");
+  const refresh = localStorage.getItem("refresh-Token");
+
   return (
     <BrowserRouter>
       <Routes>
         {/* 메인 */}
-        <Route path="/" element={<Main />} />
+        <Route path="/"
+          element={
+            <PrivateRoute
+              access={access}
+              refresh={refresh}
+              component={<Main />}
+            />
+          }
+        />
         <Route path="/cards" element={<Cards />} />
         <Route path="/otherCategory" element={<OtherCardsCategory />} />
         <Route path="/posts" element={<MainCards />} />
