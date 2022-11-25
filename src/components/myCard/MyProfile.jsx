@@ -31,7 +31,6 @@ const St_Profile = styled.div`
   max-width: 355px;
   height: 100px;
   margin: 24px 0px 0px 21px;
-  /* border-bottom: 1px solid #d6d6d6; */
 `;
 
 const PutButton = styled.a`
