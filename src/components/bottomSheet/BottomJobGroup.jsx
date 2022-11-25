@@ -16,6 +16,7 @@ export default function Bottom() {
         onDismiss={() => {
           setOpen(false);
         }}
+        header={<div className="headerSheet">직군을 선택해 주세요.</div>}
       >
         <JobBoard>
           <ul>기획·전략</ul>

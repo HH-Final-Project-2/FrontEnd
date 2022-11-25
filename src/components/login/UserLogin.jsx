@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { signIn } from '../../redux/modules/membersSlice'
+import logo from '../../images/login-logo.png'
 
 import {
   JoinForm,
@@ -10,7 +11,8 @@ import {
   ErrorText,
   ButtonJoin,
   InputContainer,
-  SignUpBox
+  SignUpBox,
+  LogoBox
 }
   from './UserLoginStyle'
 
@@ -25,10 +27,12 @@ const UserLogin = () => {
   return (
 
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
-
+      <LogoBox>
+        <img src={logo} />
+      </LogoBox>
       {/* 이메일 */}
       <InputContainer>
-        <InputJoin name='email' type='text' placeholder='이메일 입력'
+        <InputJoin name='email' type='text' placeholder='이메일'
           {...register('email', { required: true, pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/ })}
         />
       </InputContainer>
@@ -51,7 +55,7 @@ const UserLogin = () => {
 
       {/* 회원가입 이동 */}
       <SignUpBox>
-        <h4 onClick={() => navigate('/join')}>회원가입</h4>
+        <p onClick={() => navigate('/join')}>회원가입</p>
       </SignUpBox>
 
     </JoinForm>
