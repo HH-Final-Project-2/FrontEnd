@@ -14,7 +14,13 @@ export const CategoryBtnBox = styled.div`
   top: 14px;
 `;
 
-export const SearchSvg = styled.svg``;
+export const SearchSvg = styled.svg`
+  display: flex;
+  position: relative;
+  bottom: -43px;
+  left: 320px;
+  cursor: pointer;
+`;
 export const CardSearchInput = styled.input`
   margin: 12px 20px 12px 20px;
   width: 100%;
@@ -29,7 +35,7 @@ export const CategoryBtn1 = styled.button`
   font-size: 16px;
   background-color: white;
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid #5546ff;
 `;
 export const CategoryBtn2 = styled.button`
   font-size: 16px;
@@ -38,16 +44,15 @@ export const CategoryBtn2 = styled.button`
 `;
 
 export const CardList = styled.div`
-  margin-top: 12px;
-  width: 100%;
-  max-width: 375px;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
+  padding-top: 32px;
+  height: 100vh;
 `;
 
 export const Card = styled.div`
   display: flex;
   background-color: white;
-  margin: 0px 20px 0px 20px;
+  margin: 12px 20px 0px 20px;
   border-radius: 10px;
   width: 335px;
   height: 96px;
@@ -75,7 +80,7 @@ export const Position = styled.div`
   font-weight: 400;
   padding: 6px 16px 6px 16px;
   margin-right: 10px;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
   border-radius: 5px;
 `;
 
@@ -83,14 +88,14 @@ export const Department = styled.div`
   font-size: 8px;
   font-weight: 400;
   padding: 6px 16px 6px 16px;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
   border-radius: 5px;
 `;
 
 export const CardInCard = styled.div`
   margin: 20px 10px 0px 30px;
   height: 60px;
-  width: 156px;
+  width: 120px;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
 `;
