@@ -31,40 +31,12 @@ const MycardItem = () => {
         <AddressBox>
           <Address>{cardinfo.companyAddress}</Address>
         </AddressBox>
-        <NumBox
-          style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}
-        >
+        <NumBox>
           <Name>M.</Name>
           <Address>{cardinfo.phoneNum}</Address>
           <Name>T.</Name>
           <Address>{cardinfo.tel}</Address>
         </NumBox>
-        {/* <PutButton
-          onClick={() => {
-            nav('/mypage/cardinfo');
-          }}
-        >
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 36 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clipPath="url(#clip0_917_5555)">
-              <circle cx="18" cy="18" r="18" fill="black" fillOpacity="0.5" />
-              <path
-                d="M14.9131 24.8869L22.9132 16.8867L19.1133 13.0868L11.1131 21.0869C11.003 21.1972 10.9247 21.3352 10.8867 21.4864L10 26L14.5127 25.1133C14.6643 25.0754 14.8029 24.9971 14.9131 24.8869ZM25.4959 14.304C25.8187 13.9812 26 13.5433 26 13.0868C26 12.6302 25.8187 12.1923 25.4959 11.8695L24.1305 10.5041C23.8077 10.1813 23.3698 10 22.9132 10C22.4567 10 22.0188 10.1813 21.696 10.5041L20.3306 11.8695L24.1305 15.6694L25.4959 14.304Z"
-                fill="white"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_917_5555">
-                <rect width="36" height="36" rx="18" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-        </PutButton> */}
       </OutLine>
     </St_Card>
   );
@@ -120,7 +92,8 @@ const Company = styled.div`
   margin-top: 20px;
   color: #1a1f27;
   letter-spacing: 0.15px;
-  font-size: 12px;
+  font-size: 14px;
+  margin-bottom: 3px;
 `;
 
 const AddressBox = styled.div`
@@ -139,6 +112,8 @@ const Address = styled.div`
 const NumBox = styled.div`
   display: flex;
   margin-bottom: 16px;
+  align-items: center;
+  margin-top: 12px;
 `;
 
 // const PutButton = styled.div`
