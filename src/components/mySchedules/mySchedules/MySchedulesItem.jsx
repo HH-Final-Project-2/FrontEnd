@@ -3,12 +3,13 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "./mySchedulesItme.css";
 import moment from "moment";
+import { ko } from "date-fns/esm/locale";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { __schedulesGet } from "../../redux/modules/SchedulesSlice";
+import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
-import addimg from "../../images/Property 1=default.svg";
-import Footer from "../footer/Footer";
+import addimg from "../../../images/Property 1=default.svg";
+import Footer from "../../footer/Footer";
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
@@ -39,6 +40,7 @@ const MySchedulesItem = () => {
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
           formatDay={(locale, date) => moment(date).format("DD")} // 날'일' 제외하고 숫자만 보이도록 설정
           value={value}
+          locale={ko}
           minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           maxDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           navigationLabel={null}
