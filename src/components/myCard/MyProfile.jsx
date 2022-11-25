@@ -15,7 +15,7 @@ const MyProfile = () => {
     <St_Profile>
       <St_Header>
         <St_Name>{nickname}</St_Name>
-        <PutButton>편집</PutButton>
+        <PutButton>수정</PutButton>
       </St_Header>
 
       <St_Info>{cardinfo.position}</St_Info>

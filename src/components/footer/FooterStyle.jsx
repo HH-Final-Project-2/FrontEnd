@@ -7,7 +7,9 @@ export const FooterBox = styled.div`
   width: 375px;
   height: 56px;
   box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
-  background: #FFFFFF;
+  background: #ffffff;
+
+  z-index: 2;
   svg {
     margin-left: 2.7px;
   }

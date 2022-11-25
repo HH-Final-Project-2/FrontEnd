@@ -115,13 +115,3 @@ const NumBox = styled.div`
   align-items: center;
   margin-top: 12px;
 `;
-
-// const PutButton = styled.div`
-//   display: flex;
-//   justify-content: end;
-//   /* background-color: orange; */
-//   position: relative;
-//   bottom: 30px;
-//   left: 30px;
-//   cursor: pointer;
-// `;

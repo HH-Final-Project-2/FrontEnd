@@ -120,6 +120,7 @@ const MyCardInfo = () => {
             center={map.center}
             isPanto={map.isPanto}
             style={{
+              display: 'flex',
               width: '100%',
               maxWidth: ' 325px',
               height: '192px',
@@ -219,9 +220,9 @@ const St_Detail_Body = styled.div`
 const MapBox = styled.div`
   width: 100%;
   margin: 24px auto;
-  /* margin-left: 20px;
-  margin-right: 20px; */
   align-items: center;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 `;
