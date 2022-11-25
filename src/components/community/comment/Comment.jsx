@@ -25,7 +25,6 @@ import {
 } from './CommentStyle';
 
 const Comment = () => {
-
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
 
@@ -37,7 +36,6 @@ const Comment = () => {
   useEffect(() => {
     dispatch(getCommentList(id));
   }, [dispatch]);
-
 
   // 시간 카운팅
   function displayedAt(commentCreatedAt) {
@@ -80,7 +78,7 @@ const Comment = () => {
         ></CommentTextarea>
         <CommentWirteButton
           onClick={() => {
-            if (commentForm.trim() === '') return alert('댓글을 입력해 주세요')
+            if (commentForm.trim() === '') return alert('댓글을 입력해 주세요');
             dispatch(
               addComment({
                 postId: id,
@@ -102,20 +100,28 @@ const Comment = () => {
               <CommentSection1>
                 <CommentTitle>
                   <CommentNickName>{commentList.author}</CommentNickName>
-                  <CommentDate>{displayedAt(new window.Date(commentList.createdAt))}</CommentDate>
+                  <CommentDate>
+                    {displayedAt(new window.Date(commentList.createdAt))}
+                  </CommentDate>
                 </CommentTitle>
 
                 {/* 댓글 더보기 바텀시트 */}
-                <div>
-                  <CommentBottomSheet id={id} commentList={commentList} />
-                </div>
+                {nickname === commentList.author ? (
+                  <div>
+                    <CommentBottomSheet id={id} commentList={commentList} />
+                  </div>
+                ) : (
+                  ''
+                )}
               </CommentSection1>
               <CommentBody>{commentList.content}</CommentBody>
 
               {/* 댓글 좋아요 */}
-              <LikeButton onClick={() => {
-                dispatch(likeComment(commentList.id))
-              }}>
+              <LikeButton
+                onClick={() => {
+                  dispatch(likeComment(commentList.id));
+                }}
+              >
                 {commentList.commentHeartYn ? <FillLike /> : <Like />}
                 <LikeButtonText>{commentList.commentHeartCnt}</LikeButtonText>
               </LikeButton>

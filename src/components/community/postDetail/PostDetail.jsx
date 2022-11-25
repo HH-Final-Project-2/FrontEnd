@@ -34,14 +34,11 @@ import {
   Section2,
   SectionLine,
   DivHeart,
-  HeartNum
-
+  HeartNum,
 } from './PostDetailStyle';
-
 
 const PostDetail = () => {
   const dispatch = useDispatch();
-
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
@@ -67,7 +64,6 @@ const PostDetail = () => {
       setCountHeart(countHeart + 1);
     }
   };
-
 
   const nickname = localStorage.getItem('nickname');
 
@@ -97,7 +93,6 @@ const PostDetail = () => {
   }
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
-
 
   if (detail === undefined) return;
   return (
@@ -171,14 +166,10 @@ const PostDetail = () => {
       {/*  */}
       <DetailSectionLine />
       <DetailPostSection4>
-
-
         <div>
           <DivHeart onClick={likeHandler}>
             {isHeart ? <FillLike /> : <Like />}
-            <HeartNum>
-              {countHeart}
-            </HeartNum>
+            <HeartNum>{countHeart}</HeartNum>
           </DivHeart>
         </div>
 
