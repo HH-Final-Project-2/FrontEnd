@@ -21,6 +21,7 @@ export const WriteSection1 = styled.div`
 
 export const WriteSection1Title = styled.div`
   position: relative;
+  margin-bottom: 8px;
   left: 18px;
   font-weight: 600;
 `;
@@ -33,10 +34,9 @@ export const SelectJob = styled.div`
     border-bottom: 1px solid #e2e2e2;
     outline: none;
   }
-  select:after {
-    color: red;
-  }
 `;
+
+export const SelectBoard = styled.div``;
 
 export const WriteTitle = styled.div`
   textarea {

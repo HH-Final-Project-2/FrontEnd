@@ -51,13 +51,8 @@ export const __getPost = createAsyncThunk(
   'post/getPost',
   async (payload, thunkAPI) => {
     try {
-      await instance.post(`/api/auth/post/heart/${payload}`);
-      let likeStore = await instance.post(`/api/auth/post/heart/${payload}`);
-      // console.log('나는 라이크 데이터', likeData.data)
       const { data } = await instance.get(`/api/posting/${payload}`);
-      data.data.like = likeStore.data.data;
       return thunkAPI.fulfillWithValue(data.data);
-
     } catch (error) {
       console.log(error);
     }
@@ -124,7 +119,6 @@ export const __deletePost = createAsyncThunk(
 );
 
 
-
 //기본 세팅
 const initialState = {
   post: [
@@ -156,13 +150,6 @@ const initialState = {
     modifiedAt: '',
     like: false,
   },
-  like: {
-    success: true,
-    data: false,
-    error: null,
-
-  },
-
   isLoading: false,
   error: null,
 };
@@ -177,12 +164,6 @@ export const PostSlice = createSlice({
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
-    },
-
-    //게시글 좋아요
-    [__likePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.like = action.payload;
     },
 
     //게시글 전체 조회
@@ -236,11 +217,11 @@ export const PostSlice = createSlice({
     // 게시글 삭제
     [__deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log('필터전이구', state.post.length);
+      //console.log('필터전이구', state.post.length);
       state.post = state.post.filter(
         (postList) => postList.id !== action.payload
       );
-      console.log('필터후', state.post.length);
+      //console.log('필터후', state.post.length);
     },
   },
 });

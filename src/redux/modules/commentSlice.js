@@ -1,14 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../shared/Request";
 
-//게시글 상세 조회
+// 댓글 조회
 export const getCommentList = createAsyncThunk(
   "GETCOMMENTLIST",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/api/posting/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data.commentResponseDtoList);
+      const { data } = await instance.get(`/api/comment/${payload}`);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+// 댓글 좋아요
+export const likeComment = createAsyncThunk(
+  'likeComment',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.post(`/api/auth/comment/heart/${payload}`);
+      console.log('나는 댓글 좋아요입니다', data)
+      return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -63,8 +76,26 @@ export const putComment = createAsyncThunk(
 );
 
 const initialState = {
-  comments: [],
-  comment: {},
+  comments: [
+    {
+      id: 0,
+      commentHeartCnt: 0,
+      commentHeartYn: false,
+      content: '',
+      createdAt: '',
+      modifiedAt: '',
+      author: ''
+    }
+  ],
+  comment: {
+    id: 0,
+    commentHeartCnt: 0,
+    commentHeartYn: false,
+    content: '',
+    createdAt: '',
+    modifiedAt: '',
+    author: ''
+  },
   isLoading: false,
   error: null,
 };
@@ -74,12 +105,29 @@ export const commentSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // 게시글 상세 조회용
+    // 댓글 조회
     // payload : 댓글 배열
     [getCommentList.fulfilled]: (state, action) => {
-      //console.log('슬라이스', action.payload)
       state.isLoading = false;
       state.comments = action.payload;
+    },
+
+    // 댓글 좋아요
+    [likeComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      let commentId = action.payload.payload;
+      let commentHeartYn = action.payload.data.data;
+      let newComments = [];
+
+      state.comments.map((comment) => {
+        newComments.push(comment);
+        if (comment.id === commentId) {
+          comment.commentHeartYn = commentHeartYn;
+          comment.commentHeartCnt += comment.commentHeartYn ? 1 : -1;
+        }
+      });
+      state.comments = newComments;
     },
 
     // 댓글 작성
@@ -101,9 +149,7 @@ export const commentSlice = createSlice({
     // 댓글 수정
     [putComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-
       let modComment = action.payload;
-
       let newComment = [];
 
       for (let i = 0; i < state.comments.length; i++) {
