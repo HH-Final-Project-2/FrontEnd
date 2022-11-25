@@ -36,7 +36,7 @@ export const SelectJob = styled.div`
   }
 `;
 
-export const SelectBoard = styled.div``;
+export const SelectBoard = styled.select``;
 
 export const WriteTitle = styled.div`
   textarea {

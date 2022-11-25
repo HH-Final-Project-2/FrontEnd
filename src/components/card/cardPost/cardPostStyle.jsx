@@ -92,6 +92,80 @@ export const Item = styled.div`
   color: #6b6b6b;
 `;
 
-//이미지 input
-export const ImgInfo = styled.input``;
-export const ImgValue = styled.input``;
+export const St_Card = styled.label`
+  width: 100%;
+  max-width: 311px;
+  height: 176px;
+  margin: 32px auto;
+  border-radius: 8px;
+  padding: 0px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #cecece;
+  display: flex;
+  flex-direction: column;
+`;
+//플러스 표시
+export const St_Plus = styled.label`
+  width: 100%;
+  max-width: 50px;
+  height: 50px;
+  color: #d6d6d6;
+  /* border: 2px solid; */
+  /* border-radius: 50px; */
+  margin: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+`;
+export const Input = styled.input`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
+
+export const ImgBox = styled.div`
+  width: 375px;
+  height: 120px;
+  background-color: #f5f5f5;
+  display: flex;
+  img {
+    margin: 15px 15px 10px 30px;
+    width: 162px;
+    height: 89px;
+    border-radius: 8px;
+    padding: 0px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px #cecece;
+  }
+  div {
+    margin: 40px 24px 10px 0px;
+  }
+`;
+
+export const RadioBox = styled.div`
+  display: flex;
+  justify-content: left;
+`;
+export const RadioDetail = styled.div`
+  display: flex;
+  justify-content: left;
+  margin: 10px 15px 30px 25px;
+  input[type="radio"]:checked:after {
+    background: $white no-repeat center center;
+    background-image: url("/src/images/Property 1=deselected.png");
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+  }
+  label {
+    margin-left: 6px;
+    font-size: 14px;
+  }
+`;

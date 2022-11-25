@@ -118,7 +118,6 @@ export const __deletePost = createAsyncThunk(
   }
 );
 
-
 //기본 세팅
 const initialState = {
   post: [
@@ -159,7 +158,6 @@ export const PostSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-
     //게시글 검색
     [__searchPost.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -226,5 +224,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const { } = PostSlice.actions;
+export const {} = PostSlice.actions;
 export default PostSlice.reducer;

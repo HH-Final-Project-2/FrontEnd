@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import Layout from "../../layout/Layout";
 import { __writePost, __imgPost } from "../../../redux/modules/CardsSlice";
 import { __searchPost } from "../../../redux/modules/PostSlice";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import ExImg from "../../../images/KakaoTalk_Photo_2022-11-17-03-38-44 001.png";
 import {
   St_Header,
   PatchBox,
@@ -18,7 +17,12 @@ import {
   AddressBox,
   SearchAddress,
   Item,
-  ImgValue,
+  St_Plus,
+  Input,
+  St_Card,
+  RadioBox,
+  RadioDetail,
+  ImgBox,
 } from "./cardPostStyle";
 
 const MainCards = () => {
@@ -109,29 +113,59 @@ const MainCards = () => {
       </St_Header>
       <PatchBox>
         <Item>
-          <St_Key>회사타입</St_Key>
-          <input
-            type="radio"
-            name="companyType"
-            value="own"
-            checked={inputValue === "own"}
-            onChange={valueChangeHandler}
-          ></input>
-          <div>자사</div>
-          <input
-            type="radio"
-            name="companyType"
-            value="own"
-            checked={inputValue === "own"}
-            onChange={valueChangeHandler}
-          ></input>
-          <div>타사</div>
+          <RadioBox>
+            <RadioDetail>
+              <input
+                type="radio"
+                id="own"
+                name="companyType"
+                value="own"
+                checked={inputValue === "own"}
+                onChange={valueChangeHandler}
+              ></input>
+              <label htmlFor="own">자사</label>
+            </RadioDetail>
+            <RadioDetail>
+              <input
+                type="radio"
+                id="other"
+                name="companyType"
+                value="other"
+                checked={inputValue === "other"}
+                onChange={valueChangeHandler}
+              ></input>
+              <label htmlFor="other">타사</label>
+            </RadioDetail>
+          </RadioBox>
         </Item>
         <Item>
           <St_Key>명함사진</St_Key>
-          <div>명함 사진 등록은 예시 이미지와 유사한 형태만 가능합니다.</div>
-
-          <ImgValue type="file" onChange={mediaChangeHandler}></ImgValue>
+          <ImgBox>
+            <img src={ExImg} alt="" />
+            <div>명함 사진 등록은 예시 이미지와 유사한 형태만 가능합니다.</div>
+          </ImgBox>
+          <St_Card>
+            <St_Plus htmlFor="card">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M14.9997 0.333496C6.89967 0.333496 0.333008 6.90016 0.333008 15.0002C0.333008 23.1002 6.89967 29.6668 14.9997 29.6668C23.0997 29.6668 29.6663 23.1002 29.6663 15.0002C29.6663 6.90016 23.0997 0.333496 14.9997 0.333496ZM16.333 20.3335C16.333 20.6871 16.1925 21.0263 15.9425 21.2763C15.6924 21.5264 15.3533 21.6668 14.9997 21.6668C14.6461 21.6668 14.3069 21.5264 14.0569 21.2763C13.8068 21.0263 13.6663 20.6871 13.6663 20.3335V16.3335H9.66634C9.31272 16.3335 8.97358 16.193 8.72353 15.943C8.47348 15.6929 8.33301 15.3538 8.33301 15.0002C8.33301 14.6465 8.47348 14.3074 8.72353 14.0574C8.97358 13.8073 9.31272 13.6668 9.66634 13.6668H13.6663V9.66683C13.6663 9.31321 13.8068 8.97407 14.0569 8.72402C14.3069 8.47397 14.6461 8.3335 14.9997 8.3335C15.3533 8.3335 15.6924 8.47397 15.9425 8.72402C16.1925 8.97407 16.333 9.31321 16.333 9.66683V13.6668H20.333C20.6866 13.6668 21.0258 13.8073 21.2758 14.0574C21.5259 14.3074 21.6663 14.6465 21.6663 15.0002C21.6663 15.3538 21.5259 15.6929 21.2758 15.943C21.0258 16.193 20.6866 16.3335 20.333 16.3335H16.333V20.3335Z"
+                  fill="#8892A0"
+                />
+              </svg>
+              {imgGet !== undefined
+                ? imgGet.imgUrl && <img src={imgGet.imgUrl} alt="preview-img" />
+                : null}
+            </St_Plus>
+            <Input type="file" id="card" onChange={mediaChangeHandler}></Input>
+          </St_Card>
         </Item>
         <Item>
           <St_Key>이름</St_Key>
@@ -168,14 +202,22 @@ const MainCards = () => {
           <div>
             <St_value
               name="company"
-              value={inputValue.company}
+              value={
+                companyGet.companyName
+                  ? companyGet.companyName
+                  : inputValue.company
+              }
               onChange={valueChangeHandler}
               onClick={() => navigate("/posts/companySearch")}
             ></St_value>
           </div>
           <St_Address
             name="companyAddress"
-            value={inputValue.companyAddress}
+            value={
+              companyGet.companyAddress
+                ? companyGet.companyAddress
+                : inputValue.companyAddress
+            }
             onChange={valueChangeHandler}
           >
             <AddressBox>
