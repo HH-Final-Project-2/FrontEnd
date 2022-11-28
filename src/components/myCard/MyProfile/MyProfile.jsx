@@ -22,7 +22,13 @@ const MyProfile = () => {
     <St_Profile>
       <St_Header>
         <St_Name>{nickname}</St_Name>
-        <PutButton>수정</PutButton>
+        <PutButton
+          onClick={() => {
+            nav('/mynicknamepatch');
+          }}
+        >
+          수정
+        </PutButton>
       </St_Header>
 
       <St_Info>{cardinfo.position}</St_Info>
