@@ -20,6 +20,7 @@ import MyCardPatch from "../components/myCard/MyCardPatch/MyCardPatch";
 import MyCardMake from "../components/myCard/MyCardMake/MyCardMake";
 import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach/MyCardCompanySerach";
 import Manage from "../pages/Manage";
+import MyNickName from '../components/myCard/MyProfile/MyNickName';
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
@@ -73,6 +74,7 @@ const Router = () => {
         {/* 내 명함  */}
         <Route path="/manage" element={<Manage />} />
         <Route path="/mypage" element={<MyCard />} />
+        <Route path="/mynicknamepatch/" element={<MyNickName />} />
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
