@@ -1,17 +1,17 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Community from '../pages/Community';
-import Detail from '../pages/Detail';
-import Edit from '../pages/Edit';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Community from "../pages/Community";
+import Detail from "../pages/Detail";
+import Edit from "../pages/Edit";
 
-import Main from '../pages/Main';
-import CompanySearch from '../components/card/companySearch/CompanySearch';
-import MainCards from '../components/card/cardPost/MainCards';
-import MainCardsPut from '../components/card/cardPut/MainCardsPut';
-import OtherCardsCategory from '../components/card/otherCategory/OtherCardsCategory';
-import ViewMainDetailPost from '../components/card/cardDetail/ViewMainDetailPost';
+import Main from "../pages/Main";
+import CompanySearch from "../components/card/companySearch/CompanySearch";
+import MainCards from "../components/card/cardPost/MainCards";
+import MainCardsPut from "../components/card/cardPut/MainCardsPut";
+import OtherCards from "../pages/OtherCards";
+import ViewMainDetailPost from "../components/card/cardDetail/ViewMainDetailPost";
 
-import Write from '../pages/Write';
+import Write from "../pages/Write";
 
 import Cards from "../pages/Cards";
 import MyCard from "../pages/MyCard";
@@ -23,17 +23,19 @@ import Manage from "../pages/Manage";
 import MyNickName from '../components/myCard/MyProfile/MyNickName';
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
+<<<<<<< HEAD
+=======
 
-import Login from '../pages/Login';
-import Join from '../pages/Join';
+import Login from "../pages/Login";
+import Join from "../pages/Join";
+>>>>>>> ddbd63711de18a54082fe90725a5c9b545ec5c06
 
-import CommentEditPage from '../pages/CommentEditPage';
-import Search from '../pages/Search';
+import CommentEditPage from "../pages/CommentEditPage";
+import Search from "../pages/Search";
 
 import PrivateRoute from "./PrivateRoute";
-import MySchedules from '../pages/MySchedules';
-import AddSchedulesPage from '../pages/AddSchedulesPage';
-
+import MySchedules from "../pages/MySchedules";
+import AddSchedulesPage from "../pages/AddSchedulesPage";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -43,7 +45,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {/* 메인 */}
-        <Route path="/"
+        <Route
+          path="/"
           element={
             <PrivateRoute
               access={access}
@@ -53,7 +56,7 @@ const Router = () => {
           }
         />
         <Route path="/cards" element={<Cards />} />
-        <Route path="/otherCategory" element={<OtherCardsCategory />} />
+        <Route path="/otherCategory" element={<OtherCards />} />
         <Route path="/posts" element={<MainCards />} />
         <Route path="/posts/:id/put" element={<MainCardsPut />} />
         <Route path="/posts/companySearch" element={<CompanySearch />} />

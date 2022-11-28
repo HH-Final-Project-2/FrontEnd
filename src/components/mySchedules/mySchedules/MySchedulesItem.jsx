@@ -9,6 +9,7 @@ import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
 import addimg from "../../../images/Property 1=default.svg";
 import Footer from "../../footer/Footer";
+import Delete from "../../../images/ic-close-fill-wh-32px.svg";
 
 const accessToken = localStorage.getItem("authorization");
 const refreshToken = localStorage.getItem("refresh-Token");
@@ -78,7 +79,7 @@ const MySchedulesItem = () => {
                 ) {
                   return (
                     <div className="todoBox">
-                      <div key={x.id}>
+                      <div key={x.id} className="todoOneBox">
                         <div className="todoBoxSection">
                           <div className="titleBox">
                             <div className="titleSection">
@@ -99,7 +100,9 @@ const MySchedulesItem = () => {
                           </div>
                         </div>
 
-                        <button
+                        <img
+                          className="deleteBtn"
+                          src={Delete}
                           onClick={() => {
                             const config = {
                               headers: {
@@ -125,9 +128,7 @@ const MySchedulesItem = () => {
                             alert("DELETE SECCESS");
                             window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
                           }}
-                        >
-                          일정 삭제
-                        </button>
+                        />
                       </div>
                     </div>
                   );

@@ -169,4 +169,3 @@ export const RadioDetail = styled.div`
     font-size: 14px;
   }
 `;
-export const PrevImg = styled.img``;
