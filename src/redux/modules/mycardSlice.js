@@ -35,7 +35,7 @@ export const _getMakeCard = createAsyncThunk(
           "Refresh-Token": refreshToken,
         },
       });
-      console.log(data.data);
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -111,46 +111,6 @@ export const _companyInfo = createAsyncThunk(
   }
 );
 
-//프로필 get
-export const _getProfile = createAsyncThunk(
-  "get/card",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.get("https://api/members/profiles", {
-        headers: {
-          contentType: "application/json",
-          Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-        },
-      });
-      console.log(data);
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
-  }
-);
-//프로필 put
-export const _PutPorfile = createAsyncThunk(
-  "put/card",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.put(
-        `https://api/members/profiles/${payload.id}`,
-        payload,
-        {
-          headers: {
-            contentType: "application/json",
-            Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-
-          },
-        }
-      );
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
-  }
-);
-
-
 const initialState = {
   cardinfo: [
     {
@@ -168,7 +128,6 @@ const initialState = {
   ],
   companyInfo: [{}],
   searchCompany: [{}],
-  userprofile:[{}],
   isLoading: false,
   error: null,
 };
@@ -196,11 +155,7 @@ export const mycardSlice = createSlice({
     [_companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.companyInfo = { ...action.payload };
-    },
-    [_getProfile.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      state.companyInfo = action.payload;
-    },
+    }
 
   },
 });
