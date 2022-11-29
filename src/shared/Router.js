@@ -32,6 +32,7 @@ import Search from "../pages/Search";
 import PrivateRoute from "./PrivateRoute";
 import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
+import CardSearch from "../components/card/cardSearch/CardSearch";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -52,6 +53,7 @@ const Router = () => {
           }
         />
         <Route path="/cards" element={<Cards />} />
+        <Route path="/cardSearch" element={<CardSearch />} />
         <Route path="/otherCategory" element={<OtherCards />} />
         <Route path="/posts" element={<MainCards />} />
         <Route path="/posts/:id/put" element={<MainCardsPut />} />
