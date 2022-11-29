@@ -63,13 +63,14 @@ const MainCards = () => {
     e.preventDefault();
     dispatch(
       __writePost({
-        cardName: inputValue.cardName,
-        email: inputValue.email,
+        cardName:
+          imgGet.cardName !== undefined ? imgGet.cardName : inputValue.cardName,
+        email: imgGet.email !== undefined ? imgGet.email : inputValue.email,
         phoneNum: inputValue.phoneNum,
         department: inputValue.department,
         position: inputValue.position,
-        tel: inputValue.tel,
-        fax: inputValue.fax,
+        tel: imgGet.tel !== undefined ? imgGet.tel : inputValue.tel,
+        fax: imgGet.fax !== undefined ? imgGet.fax : inputValue.fax,
         company:
           companyGet.companyName !== undefined
             ? companyGet.companyName
@@ -173,7 +174,11 @@ const MainCards = () => {
               </svg>
               {imgGet !== undefined
                 ? imgGet.imgUrl && (
-                    <PrevImg src={imgGet.imgUrl} alt="preview-img" />
+                    <PrevImg
+                      src={imgGet.imgUrl}
+                      alt="preview-img"
+                      style={{ margin: "auto" }}
+                    />
                   )
                 : null}
             </St_Plus>
