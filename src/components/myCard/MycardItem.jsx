@@ -11,7 +11,6 @@ const MycardItem = () => {
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const companyinfo = useSelector((state) => state.PostReducer.companyInfo);
-  console.log(companyinfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());

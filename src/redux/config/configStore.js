@@ -5,10 +5,12 @@ import comments from '../modules/commentSlice';
 import PostReducer from '../modules/CardsSlice';
 import chat from '../modules/chatSlice';
 import ScheduleSlice from '../modules/SchedulesSlice';
+import userprofile from "../modules/profileSlice"
 
 const store = configureStore({
   reducer: {
     cardinfo,
+    userprofile,
     PostSlice,
     comments,
     PostReducer,
