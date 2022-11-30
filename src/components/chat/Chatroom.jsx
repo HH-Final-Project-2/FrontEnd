@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import Layout from '../layout/Layout';
 import { useNavigate, useParams } from 'react-router';
 import SockJS from 'sockjs-client';
@@ -16,41 +16,67 @@ import {
   ChatRoomBox,
   MyChatTime,
 } from './ChatroomStyle';
+import { addMessage, _postId } from '../../redux/modules/chatSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
+// console.log(_postId);
 
 const Chatroom = () => {
   const nav = useNavigate();
-
-  const socket = new SockJS('http://13.124.142.195/wss/chat');
+  const dispatch = useDispatch();
+  const socket = new SockJS('http://13.124.142.195/stomp/chat');
   const client = Stomp.over(socket);
+  const id = useSelector((state) => state.chat.roomId);
 
   const headers = {
     Authorization: localStorage.getItem('authorization'),
     'Refresh-Token': localStorage.getItem('refresh-Token'),
   };
 
-  const { id } = useParams();
+  useEffect(() => {
+    _postId();
+  }, []);
 
-  // useEffect(() => {
-  //   onConneted();
-  //   return () => {
-  //     onConneted();
-  //   };
-  // }, []);
+  useEffect(() => {
+    onConneted();
+    return () => {
+      onConneted();
+    };
+  }, [id]);
 
-  // const onConneted = () => {
-  //   try {
-  //     client.connect(headers, () => {
-  //       client.subscribe(
-  //         `/sub/chat/room/${id}`,
-  //         (data) => {
-  //           const newMessage = JSON.parse(data.body);
-  //           dispatch(addMessage(newMessage));
-  //         },
-  //         headers
-  //       );
-  //     });
-  //   } catch (error) {}
+  const onConneted = () => {
+    try {
+      client.connect(headers, () => {
+        client.subscribe(
+          `/sub/chat/room/${id}`,
+          (data) => {
+            const newMessage = JSON.parse(data.body);
+            dispatch(addMessage(newMessage));
+          },
+          headers
+        );
+      });
+    } catch (error) {}
+  };
+
+  // //메시지 보내기
+  // const sendMessage = () => {
+  //   client.send(
+  //     '/pub/chat/message',
+  //     headers,
+  //     JSON.stringify({
+  //       type: 'TALK',
+  //       memberId: users.memberId,
+  //       roomId: id,
+  //       message: message,
+  //       sender: users.nickName,
+  //       createdAt: createdAt,
+  //     })
+  //   );
+  //   setMessage('');
   // };
+
+  if (id === undefined) return;
 
   return (
     <Layout>

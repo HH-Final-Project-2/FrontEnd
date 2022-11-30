@@ -7,7 +7,7 @@ import axios from "axios";
 // axios.defaults.headers.common["refresh-Token"] = `${refreshToken}`;
 
 const instance = axios.create({
-  baseURL: "https://bkyungkeem.shop",
+  baseURL: "http://13.124.142.195",
   headers: {
     "Content-Type": "application/json",
     authorization: localStorage.getItem("authorization"),

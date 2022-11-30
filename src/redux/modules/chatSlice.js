@@ -28,28 +28,28 @@ const initialState = {
 };
 
 //채팅방 생성
-export const addChatroom = createAsyncThunk(
-  "post/chatroom",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const data = await axios.post(
-        "http://13.124.142.195/create/chat",
-        payload,
-        {
-          headers: {
-            contentType: "application/json",
-            authorization: accessToken,
-            "refresh-Token": refreshToken,
-          },
-        }
-      );
-      console.log(payload);
-      return data.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+// export const addChatroom = createAsyncThunk(
+//   "post/chatroom",
+//   async (payload, { rejectWithValue }) => {
+//     try {
+//       const data = await axios.post(
+//         "http://13.124.142.195/create/chat",
+//         payload,
+//         {
+//           headers: {
+//             contentType: "application/json",
+//             authorization: accessToken,
+//             "refresh-Token": refreshToken,
+//           },
+//         }
+//       );
+//       console.log(payload);
+//       return data.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
 
 //채팅방 전체 불러오기
 // export const getChatRoom = createAsyncThunk(
@@ -70,19 +70,46 @@ export const addChatroom = createAsyncThunk(
 //   }
 // );
 
+export const _postId = createAsyncThunk(
+  "post/chatid",
+  async (payload, thunkAPI) => {
+    console.log("페이로드",payload)
+    try {
+      const {data} = await axios.post(
+        "http://13.124.142.195/chat/rooms",
+        payload,
+        {
+          headers: {
+            contentType: "application/json",
+            "Authorization":accessToken,
+            "Refresh-Token":refreshToken
+          },
+        }
+      );
+
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
+  }
+);
+
 export const chatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
-    // addMessage: (state, { payload }) => {
-    //   state.chat = [ ...state.chat ,payload];
-    // },
+    addMessage: (state, { payload }) => {
+      state.chat = [ ...state.chat ,payload];
+    },
   },
   extraReducers: {
-    [addChatroom.fulfilled]: (state, { payload }) => {
+    [_postId.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chat = payload;
+      state.roomId = action.payload;
+
     },
+    // [addChatroom.fulfilled]: (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.chat = payload;
+    // },
     // [getChatRoom.fulfilled]: (state, { payload }) => {
     //   state.isLoading = false;
     //   state.chatRoom = payload;

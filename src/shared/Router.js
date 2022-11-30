@@ -85,7 +85,7 @@ const Router = () => {
         />
 
         {/* 채팅 */}
-        <Route path="/chat" element={<Chat />} />
+        {/* <Route path="/chat" element={<Chat />} /> */}
         <Route path="/chat/chatroom/" element={<Chatroom />} />
 
         {/* 회원관리(회원가입,로그인)*/}
