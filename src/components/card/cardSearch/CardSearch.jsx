@@ -31,7 +31,7 @@ import {
 const CardSearch = () => {
   const [search, setSearch] = useState();
   const searched = useSelector((state) => state.PostReducer.searchCard);
-  //   const searched = [a];
+
   console.log(searched);
   const dispatch = useDispatch();
   const navigate = useNavigate();

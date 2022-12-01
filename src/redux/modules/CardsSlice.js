@@ -29,7 +29,7 @@ export const __imgPost = createAsyncThunk(
         },
       };
       const data = await axios.post(
-        "https://bkyungkeem.shop/api/card/upload/img",
+        "https://bkyungkeem.shop/api/upload/img",
         payload,
         config
       );
@@ -58,7 +58,9 @@ export const __searchGet = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await instance.post("/api/companySearch", payload);
+      const data = await instance.post(
+        `/api/companySearch/?keyword=${payload}`
+      );
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -189,7 +191,6 @@ export const CardsSlice = createSlice({
       console.log(action.payload);
       state.companyInfo = action.payload;
     },
-
     [__fixPost.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.list = [{ ...state.list }, action.payload];

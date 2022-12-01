@@ -17,6 +17,7 @@ import {
   Input,
   Button,
 } from "./CompanySearchStyle";
+import Pagination from "react-js-pagination";
 
 const CompanySearch = () => {
   const [search, setSearch] = useState();
@@ -32,12 +33,7 @@ const CompanySearch = () => {
   };
 
   const searchClickHandler = () => {
-    dispatch(
-      __searchGet({
-        pageNo: 1,
-        companyName: search,
-      })
-    );
+    dispatch(__searchGet(search));
   };
 
   return (
