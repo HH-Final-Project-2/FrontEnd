@@ -19,6 +19,10 @@ export const Section2 = styled.div`
   svg {
     margin-top: 10px;
   }
+
+  .backBtn {
+    cursor: pointer;
+  }
 `;
 
 export const SearchInput = styled.input`
