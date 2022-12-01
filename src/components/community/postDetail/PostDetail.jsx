@@ -52,7 +52,6 @@ const PostDetail = () => {
   const [postid, setPostId] = useState({
     postId: id,
   });
-  console.log(postid);
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);

@@ -66,7 +66,7 @@ export const __writePost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        'https://bkyungkeem.shop/api/posting',
+        'http://13.124.142.195/api/posting',
         payload,
         {
           headers: {

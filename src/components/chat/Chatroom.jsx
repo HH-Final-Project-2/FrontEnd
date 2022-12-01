@@ -16,32 +16,41 @@ import {
   ChatRoomBox,
   MyChatTime,
 } from './ChatroomStyle';
-import { addMessage, _postId } from '../../redux/modules/chatSlice';
+import {
+  addMessage,
+  getMessage,
+  getUserinfo,
+  _postId,
+} from '../../redux/modules/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
-// console.log(_postId);
+import { ReactComponent as Icbefore } from '../../images/ic-before.svg';
+import { compose } from 'redux';
 
 const Chatroom = () => {
-  const nav = useNavigate();
-  const dispatch = useDispatch();
-  const socket = new SockJS('http://13.124.142.195/stomp/chat');
-  const client = Stomp.over(socket);
-  const id = useSelector((state) => state.chat.roomId);
-
   const headers = {
     Authorization: localStorage.getItem('authorization'),
     'Refresh-Token': localStorage.getItem('refresh-Token'),
   };
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+  const socket = new SockJS('http://13.124.142.195/stomp/chat');
+  const client = Stomp.over(socket);
+
+  const handleEnterPress = (e) => {
+    if (e.keyCode === 13 && e.shiftKey == false) {
+      sendMessage();
+    }
+  };
+
+  const id = useSelector((state) => state.chat.roomId);
+  const userinfo = useSelector((state) => state.chat.userinfo);
+  const chatList = useSelector((state) => state.chat.chat);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    _postId();
-  }, []);
-
-  useEffect(() => {
+    dispatch(getMessage(id));
+    dispatch(getUserinfo(id));
     onConneted();
-    return () => {
-      onConneted();
-    };
   }, [id]);
 
   const onConneted = () => {
@@ -59,54 +68,59 @@ const Chatroom = () => {
     } catch (error) {}
   };
 
-  // //메시지 보내기
-  // const sendMessage = () => {
-  //   client.send(
-  //     '/pub/chat/message',
-  //     headers,
-  //     JSON.stringify({
-  //       type: 'TALK',
-  //       memberId: users.memberId,
-  //       roomId: id,
-  //       message: message,
-  //       sender: users.nickName,
-  //       createdAt: createdAt,
-  //     })
-  //   );
-  //   setMessage('');
-  // };
+  //메시지 보내기
+  const sendMessage = () => {
+    client.send(
+      '/pub/chat/message',
+      headers,
+      JSON.stringify({
+        roomId: id,
+        message: message,
+      })
+    );
+    setMessage('');
+  };
 
-  if (id === undefined) return;
+  if (chatList === undefined && userinfo === undefined) return;
 
   return (
     <Layout>
       <St_Header>
-        <button
+        <Icbefore
           onClick={() => {
             nav(-1);
           }}
-        >
-          이전으로
-        </button>
+        />
         <St_Title>채팅방이름</St_Title>
       </St_Header>
 
       <ChatRoomBox>
-        <MyChatBox>
-          {/* <MyChatTime>채팅시간</MyChatTime>
-          <MyChat>나의 채팅</MyChat> */}
+        {chatList.map((chat) => {
+          if (chat.userId === userinfo.myId) {
+            return (
+              <MyChatBox key={message.id}>
+                <MyChat>{chat.message}</MyChat>
+              </MyChatBox>
+            );
+          }
+          if (chat.userId !== userinfo.myId) {
+            return (
+              <UserChatBox key={message.id}>
+                <UserChat>{chat.message}</UserChat>
+              </UserChatBox>
+            );
+          }
+        })}
 
-          <span>시간</span>
-          <span>채팅</span>
-        </MyChatBox>
-
-        <UserChatBox>
-          {/* <UserName>나는 상대방</UserName> */}
-          <UserChat>상대방 채팅</UserChat>
-        </UserChatBox>
         <Footer>
-          <Input placeholder="채팅입력..." />
-          <Button>보내기</Button>
+          <Input
+            placeholder="채팅입력..."
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleEnterPress}
+          />
+          {/* <Button onClick={sendMessage}>보내기</Button> */}
         </Footer>
       </ChatRoomBox>
     </Layout>
