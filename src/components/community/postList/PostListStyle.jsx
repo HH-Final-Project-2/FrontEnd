@@ -67,7 +67,7 @@ export const SortPost = styled.div`
 export const WriteButton = styled.div`
   position: fixed;
   bottom: 130px;
-  margin-left: 300px;
+  margin-left: 310px;
 
   cursor: pointer;
   &:hover {
@@ -89,7 +89,7 @@ export const SearchButton = styled.button`
 
 //페이지네이션
 export const PaginationBox = styled.div`
-  margin-bottom: 70px;
+  margin-bottom: 200px;
   .pagination {
     display: flex;
     justify-content: center;
@@ -108,16 +108,11 @@ export const PaginationBox = styled.div`
     align-items: center;
     font-size: 1rem;
   }
-  ul.pagination li:first-child {
-    border-radius: 5px 0 0 5px;
-  }
-  ul.pagination li:last-child {
-    border-radius: 0 5px 5px 0;
-  }
+
   ul.pagination li a {
     text-decoration: none;
     color: #bcc2cc;
-    font-size: 1rem;
+    font-size: 12px;
   }
   ul.pagination li.active a {
     color: white;
@@ -133,13 +128,13 @@ export const PaginationBox = styled.div`
 
 export const Container = styled.div`
   margin-top: 32px;
-  margin-left: 21px;
   height: 250px;
   font-size: 16px;
   font-weight: 600;
   color: #1a1f27;
 
   .topFive {
+    margin-left: 21px;
   }
 `;
 
@@ -147,6 +142,8 @@ export const StyledSlider = styled(Slider)`
   margin-top: 16px;
 
   .slick-slide div {
+    margin-left: 7px;
+
     outline: none;
   }
 
