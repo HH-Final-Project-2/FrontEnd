@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { __deletePost } from '../../redux/modules/PostSlice';
 import { DivSheet } from './PostBottomSheetStyle';
 
+
 export default function PostBottomSheet({ detail, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,12 +44,12 @@ export default function PostBottomSheet({ detail, id }) {
               수정
             </ul>
             <ul
-              style={{ color: '#F82323' }}
+              style={{ color: "#F82323" }}
               onClick={() => {
-                const confirm = window.confirm('게시글을 지우시겠습니까?');
+                const confirm = window.confirm("게시글을 지우시겠습니까?");
                 if (confirm) {
                   dispatch(__deletePost(detail.id));
-                  navigate('/community');
+                  navigate("/community");
                 } else {
                   return;
                 }

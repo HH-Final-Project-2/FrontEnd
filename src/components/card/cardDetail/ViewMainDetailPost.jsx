@@ -1,11 +1,34 @@
-import axios from "axios";
-import styled from "styled-components";
 import Layout from "../../layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { __viewGet } from "../../../../src/redux/modules/CardsSlice";
 import { useNavigate, useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import CardsFooter from "../../footer/CardsFooter";
+import CardBottomSheet from "../../bottomSheet/CardBottomSheet";
+import {
+  St_Title,
+  St_Header,
+  Mycard,
+  St_CardInfo,
+  St_MidHeader,
+  Detail_Title_Box,
+  St_Detail_Title,
+  Detail_Body_Box,
+  St_Detail_Body,
+  MapBox,
+  St_Card,
+  OutLine,
+  NameBox,
+  Name,
+  NameEng,
+  Position,
+  Company,
+  AddressBox,
+  Address,
+  NumBox,
+  MoreButton,
+} from "./ViewMainDetailStyle";
 
 const accessToken = localStorage.getItem("authorization");
 const refreshToken = localStorage.getItem("refresh-Token");
@@ -15,8 +38,6 @@ const ViewMainDetailPost = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const view = useSelector((state) => state.PostReducer.viewList);
-  console.log(view);
-  const viewArr = [view];
 
   useEffect(() => {
     dispatch(__viewGet(id));
@@ -48,32 +69,6 @@ const ViewMainDetailPost = () => {
     geocoder?.addressSearch(`${view.companyAddress}`, callback);
   };
 
-  const deleteClickHandler = () => {
-    const config = {
-      headers: {
-        Authorization: accessToken,
-        "Refresh-Token": refreshToken,
-      },
-    };
-    axios
-      .delete(`https://bkyungkeem.shop/api/businessCards/${id}`, config)
-      .then(function (response) {
-        console.log(response);
-        viewArr.filter((x) => x.id !== response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-    alert("DELETE SECCESS");
-    navigate("/cards");
-  };
-  const fixClickHandler = () => {
-    navigate(`/posts/${view.id}/put`);
-  };
-
   if (view === undefined) return;
 
   return (
@@ -99,8 +94,37 @@ const ViewMainDetailPost = () => {
         </svg>
 
         <St_Title>명함 상세</St_Title>
+        <MoreButton>
+          <CardBottomSheet id={id} detail={view} />
+        </MoreButton>
       </St_Header>
-      <Mycard>{/* <MycardItem /> */}</Mycard>
+      <Mycard>
+        <St_Card>
+          <OutLine>
+            <NameBox>
+              <Name>{view.cardName}</Name>
+              <Position>{view.position}</Position>
+            </NameBox>
+            <NameEng>{view.engName}</NameEng>
+            <Company>{view.company}</Company>
+            <AddressBox>
+              <Address>{view.companyAddress}</Address>
+            </AddressBox>
+            <NumBox
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "8px",
+              }}
+            >
+              <Name>M.</Name>
+              <Address>{view.phoneNum}</Address>
+              <Name>T.</Name>
+              <Address>{view.tel}</Address>
+            </NumBox>
+          </OutLine>
+        </St_Card>
+      </Mycard>
 
       <St_CardInfo>
         <St_MidHeader>
@@ -144,120 +168,9 @@ const ViewMainDetailPost = () => {
           </Map>
         </MapBox>
       </St_CardInfo>
+      <CardsFooter />
     </Layout>
-    // <div key={id}>
-    //   <div>{view.cardName}</div>
-    //   <div>{view.email}</div>
-    //   <div>{view.company}</div>
-    //   <div>{view.phoneNum}</div>
-    //   <div>{view.companyType}</div>
-    //   <button onClick={deleteClickHandler}>삭제</button>
-    //   <button onClick={fixClickHandler}>수정</button>
-    //   {view !== undefined ? (
-    //     <div>
-    //       <Map
-    //         center={map.center}
-    //         isPanto={map.isPanto}
-    //         style={{
-    //           width: " 335px",
-    //           height: "192px",
-    //         }}
-    //       >
-    //         <MapMarker
-    //           position={{ lat: map.center.lat, lng: map.center.lng }}
-    //         ></MapMarker>
-    //       </Map>
-    //     </div>
-    //   ) : null}
-    // </div>
   );
 };
 
 export default ViewMainDetailPost;
-
-//헤더 타이틀의 의미
-const St_Title = styled.div`
-  font-weight: 600;
-  width: 100%;
-  max-width: 80px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-left: 15px;
-`;
-
-//헤더 박스 div
-const St_Header = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  border-bottom: 1px solid #d6d6d6;
-`;
-
-const Mycard = styled.div`
-  width: 375px;
-  height: 248px;
-  background-color: #f5f5f5;
-  /* justify-content: center;
-  display: flex; */
-`;
-
-//명함의 정보 body
-const St_CardInfo = styled.div`
-  align-items: center;
-  justify-content: center;
-  padding: 17px;
-`;
-
-//명함정보 Header
-const St_MidHeader = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  /* border-top: 1px solid #d6d6d6; */
-  padding-top: 20px;
-`;
-
-//명함 정보의 key값 박스
-const Detail_Title_Box = styled.div`
-  width: 50px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  float: left;
-`;
-
-//명함 정보의 key값
-const St_Detail_Title = styled.div`
-  margin-top: 28px;
-  color: gray;
-  font-size: 14px;
-`;
-
-//명함 정보의 value값 박스
-const Detail_Body_Box = styled.div`
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  margin-right: 30px;
-`;
-
-//명함 정보의 value값
-const St_Detail_Body = styled.div`
-  margin-left: 15px;
-  margin-top: 28px;
-  font-size: 14px;
-  align-items: center;
-`;
-
-//지도 div
-const MapBox = styled.div`
-  margin: 24px auto;
-  /* margin-left: 20px;
-  margin-right: 20px; */
-  align-items: center;
-  display: flex;
-  justify-content: center;
-`;

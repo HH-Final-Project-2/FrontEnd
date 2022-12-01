@@ -3,13 +3,16 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "./mySchedulesItme.css";
 import moment from "moment";
-import { ko } from "date-fns/esm/locale";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
 import addimg from "../../../images/Property 1=default.svg";
 import Footer from "../../footer/Footer";
+import Delete from "../../../images/ic-close-fill-wh-32px.svg";
+
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
@@ -45,7 +48,6 @@ const MySchedulesItem = () => {
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
           formatDay={(locale, date) => moment(date).format("DD")} // 날'일' 제외하고 숫자만 보이도록 설정
           value={value}
-          locale={ko}
           minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           maxDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           navigationLabel={null}
@@ -77,7 +79,7 @@ const MySchedulesItem = () => {
                 ) {
                   return (
                     <div className="todoBox">
-                      <div key={x.id}>
+                      <div key={x.id} className="todoOneBox">
                         <div className="todoBoxSection">
                           <div className="titleBox">
                             <div className="titleSection">
@@ -98,14 +100,14 @@ const MySchedulesItem = () => {
                           </div>
                         </div>
 
-                        <button
+                        <img
+                          className="deleteBtn"
+                          src={Delete}
                           onClick={() => {
                             const config = {
                               headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiYWFhQG5hdmVyLmNvbSIsImF1dGgiOiJST0xFX01FTUJFUiIsImV4cCI6MTY2OTI5NjM4OX0.8L-0Zs-MjGUICUDtKimYx2Q4qs03j_AceS4dHtOlV8w",
-                                "Refresh-Token":
-                                  "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Njk4MTQ3ODl9.ugKSjtj5lpDMXphCEIVTuSP1SyP-ZOdAhID43Y-pnRE",
+                                Authorization: accessToken,
+                                "Refresh-Token": refreshToken,
                               },
                             };
                             axios
@@ -126,9 +128,7 @@ const MySchedulesItem = () => {
                             alert("DELETE SECCESS");
                             window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
                           }}
-                        >
-                          일정 삭제
-                        </button>
+                        />
                       </div>
                     </div>
                   );

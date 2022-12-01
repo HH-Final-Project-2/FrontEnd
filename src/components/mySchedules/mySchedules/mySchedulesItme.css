@@ -155,8 +155,14 @@
 }
 
 .todos {
-  margin-left: 10px;
-  margin-bottom: 10px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 15px;
 }
 
 .addBtn {
@@ -226,7 +232,7 @@
 .dateTime {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .startDate {
@@ -242,3 +248,10 @@
   color: #bcc2cc;
 }
 /* 일정 리스트 부분  end*/
+
+.deleteBtn {
+  margin-left: 320px;
+}
+
+.todoOneBox {
+}

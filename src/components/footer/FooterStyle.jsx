@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const FooterBox = styled.div`
+  z-index: 2;
   display: flex;
   position: fixed;
   bottom: 0;
   width: 375px;
-  height: 56px;
+  height: 80px;
   box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
   background: #ffffff;
 

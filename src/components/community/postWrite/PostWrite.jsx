@@ -31,11 +31,13 @@ const PostWrite = () => {
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 
+
   const { isLoading } = useSelector((state) => state.PostSlice);
 
   useEffect(() => {
     if (isLoading) goToCommunity();
   }, [isLoading]);
+
 
   const goToCommunity = () => {
     navigate('/community');

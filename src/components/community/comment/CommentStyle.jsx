@@ -21,8 +21,21 @@ export const CommentNickName = styled.div`
   font-size: 12px;
 `;
 
+export const CommentNickName2 = styled.div`
+  padding: 2px 4px 2px 4px;
+
+  margin-left: 13px;
+  margin-top: 11px;
+  font-weight: 600;
+  font-size: 12px;
+
+  color: #3425de;
+  background: #eeecff;
+  border-radius: 4px;
+`;
+
 export const CommentDate = styled.div`
-  margin-left: 5px;
+  margin-left: 8px;
   margin-top: 13px;
   font-size: 12px;
   color: #969696;

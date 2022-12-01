@@ -18,6 +18,7 @@ export const __writeSchedules = createAsyncThunk(
 export const __schedulesGet = createAsyncThunk(
   "SCHEDULE_GET",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const data = await instance.get("/api/calendar");
       console.log(data.data);

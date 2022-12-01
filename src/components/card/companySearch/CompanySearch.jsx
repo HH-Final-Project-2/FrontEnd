@@ -17,10 +17,13 @@ import {
   Input,
   Button,
 } from "./CompanySearchStyle";
+import Pagination from "react-js-pagination";
 
 const CompanySearch = () => {
   const [search, setSearch] = useState();
-  const searched = useSelector((state) => state.PostReducer.searchCompany.data);
+  const searched = useSelector(
+    (state) => state.PostReducer.searchCompanyInfo.data
+  );
   console.log(searched);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,12 +33,7 @@ const CompanySearch = () => {
   };
 
   const searchClickHandler = () => {
-    dispatch(
-      __searchGet({
-        pageNo: 1,
-        companyName: search,
-      })
-    );
+    dispatch(__searchGet(search));
   };
 
   return (

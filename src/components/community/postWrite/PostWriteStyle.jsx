@@ -10,12 +10,16 @@ export const WriteBox = styled.div`
 export const WriteSection1 = styled.div`
   position: relative;
 
-  top: 37px;
+  top: 20px;
   display: flex;
 
   margin-left: 13px;
   svg {
     margin-top: 2.7px;
+  }
+
+  .backBtn {
+    cursor: pointer;
   }
 `;
 
@@ -29,6 +33,7 @@ export const WriteSection1Title = styled.div`
 //셀렉박스 작업중
 export const SelectJob = styled.div`
   select {
+    padding-left: 6px;
     width: 375px;
     height: 56px;
     border: none;
@@ -37,7 +42,6 @@ export const SelectJob = styled.div`
   }
 `;
 
-export const SelectBoard = styled.select``;
 
 export const WriteTitle = styled.div`
   textarea {
@@ -50,6 +54,7 @@ export const WriteTitle = styled.div`
     border-bottom: 1px solid #e2e2e2;
     outline: none;
     resize: none;
+    overflow: hidden;
 
     font-size: 16px;
   }
@@ -66,10 +71,11 @@ export const WriteBody = styled.div`
     padding: 10px;
     margin-top: 6px;
     width: 375px;
-    height: 190px;
+
     border: none;
     outline: none;
     resize: none;
+    overflow: hidden;
 
     font-size: 16px;
   }
@@ -100,11 +106,11 @@ export const WriteBtn = styled.button`
   margin-left: 20px;
   margin-bottom: 50px;
 
-  background: #f5f6fa;
+  background: #bbb5ff;
   border-radius: 8px;
   border: none;
 
-  color: #bcc2cc;
+  color: white;
   font-size: 16px;
 
   :hover {

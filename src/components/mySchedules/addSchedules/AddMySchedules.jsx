@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import { ko } from 'date-fns/esm/locale';
-import 'react-datepicker/dist/react-datepicker.css';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { __writeSchedules } from '../../../redux/modules/SchedulesSlice';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import { ko } from "date-fns/esm/locale";
+import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { __writeSchedules } from "../../../redux/modules/SchedulesSlice";
 import {
   Section1,
   Section1Title,
   Section2,
   SectionLine,
-} from '../../community/postList/PostListStyle';
+} from "../../community/postList/PostListStyle";
 import {
   AddBtn,
   AddSchedulesBox,
@@ -20,8 +20,8 @@ import {
   DateEnd,
   DateStart,
   TitleTextArea,
-} from './AddMySchedulesStyle';
-import { PostLine } from '../../community/postDetail/PostDetailStyle';
+} from "./AddMySchedulesStyle";
+import { PostLine } from "../../community/postDetail/PostDetailStyle";
 
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
@@ -31,20 +31,20 @@ const AddMySchedules = () => {
 
   const filterStartDate = startDate
     .toISOString()
-    .replace('T', ' ')
-    .split(' ')[0];
-  const filterStartTime = startDate.toTimeString().split(' ')[0].slice(0, 5);
-  const filterEndDate = endDate.toISOString().replace('T', ' ').split(' ')[0];
-  const filterEndTime = endDate.toTimeString().split(' ')[0].slice(0, 5);
+    .replace("T", " ")
+    .split(" ")[0];
+  const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
+  const filterEndDate = endDate.toISOString().replace("T", " ").split(" ")[0];
+  const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
 
   const dateFilterFunction = (filterStartDate, filterEndDate) => {
     let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
     if (!(regex.test(filterStartDate) && regex.test(filterEndDate)))
-      return 'Not Date Format';
+      return "Not Date Format";
     let result = [];
     let curDate = new Date(filterStartDate);
     while (curDate <= new Date(filterEndDate)) {
-      result.push(curDate.toISOString().split('T')[0]);
+      result.push(curDate.toISOString().split("T")[0]);
       curDate.setDate(curDate.getDate() + 1);
     }
     return result.join();
@@ -67,8 +67,8 @@ const AddMySchedules = () => {
         todo: todo,
       })
     );
-    alert('일정 추가되었습니다');
-    navigate('/mySchedules');
+    alert("일정 추가되었습니다");
+    navigate("/mySchedules");
   };
 
   return (
@@ -82,6 +82,9 @@ const AddMySchedules = () => {
             viewBox="0 0 10 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              navigate("/mySchedules");
+            }}
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>

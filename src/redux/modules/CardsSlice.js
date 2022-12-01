@@ -29,10 +29,11 @@ export const __imgPost = createAsyncThunk(
         },
       };
       const data = await axios.post(
-        "https://bkyungkeem.shop/api/scan/cards",
+        "https://bkyungkeem.shop/api/upload/img",
         payload,
         config
       );
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
@@ -57,9 +58,26 @@ export const __searchGet = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const data = await instance.post("/api/companySearch", payload);
+      const data = await instance.post(
+        `/api/companySearch/?keyword=${payload}`
+      );
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+export const __CardSearchGet = createAsyncThunk(
+  "SEARCH_CARD",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const data = await instance.get(
+        `/api/search/businessCards/?keyword=${payload}`
+      );
+      console.log(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -133,7 +151,8 @@ const initialState = {
       imgUrl: "",
     },
   ],
-  searchCompany: [{}],
+  searchCompanyInfo: [{}],
+  searchCard: [{}],
   viewList: [{}],
   companyInfo: [{}],
 };
@@ -149,7 +168,7 @@ export const CardsSlice = createSlice({
     },
     [__imgPost.fulfilled]: (state, action) => {
       console.log(action.payload.data);
-      state.img = { ...action.payload };
+      state.img = action.payload;
     },
     [__mainGet.fulfilled]: (state, action) => {
       console.log(action.payload);
@@ -162,13 +181,16 @@ export const CardsSlice = createSlice({
     },
     [__searchGet.fulfilled]: (state, action) => {
       console.log(action.payload);
-      state.searchCompany = { ...action.payload };
+      state.searchCompanyInfo = { ...action.payload };
+    },
+    [__CardSearchGet.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.searchCard = action.payload;
     },
     [__companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);
-      state.companyInfo = { ...action.payload };
+      state.companyInfo = action.payload;
     },
-
     [__fixPost.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.list = [{ ...state.list }, action.payload];

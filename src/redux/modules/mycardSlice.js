@@ -35,7 +35,7 @@ export const _getMakeCard = createAsyncThunk(
           "Refresh-Token": refreshToken,
         },
       });
-      console.log(data.data);
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -110,6 +110,7 @@ export const _companyInfo = createAsyncThunk(
     }
   }
 );
+
 const initialState = {
   cardinfo: [
     {
@@ -154,7 +155,8 @@ export const mycardSlice = createSlice({
     [_companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.companyInfo = { ...action.payload };
-    },
+    }
+
   },
 });
 export const {} = mycardSlice.actions;
