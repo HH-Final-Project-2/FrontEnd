@@ -115,6 +115,7 @@ export const DetailPostSection3 = styled.div`
 
 export const DetailPostBody = styled.div`
   margin-left: 13px;
+  margin-right: 13px;
   margin-top: 25px;
 
   font-size: 16px;

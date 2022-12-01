@@ -4,13 +4,52 @@ import instance from '../../shared/Request';
 const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
 
+// 인기 게시글 top5
+export const topFivePost = createAsyncThunk(
+  'topfive/topFivePost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/five');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 좋아요순 정렬
+export const heartSort = createAsyncThunk(
+  'heart/heartSort',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/hearts');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 조회순 정렬
+export const hitsSort = createAsyncThunk(
+  'sort/viewSort',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/hits');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
   'search/searchPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `https://bkyungkeem.shop/api/posting/search?keyword=${payload}`
+      const { data } = await instance.get(
+        `/api/posting/search?keyword=${payload}`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -23,7 +62,6 @@ export const __searchPost = createAsyncThunk(
 export const __likePost = createAsyncThunk(
   'post/likePost',
   async (payload, thunkAPI) => {
-    // console.log(payload)
     try {
       const { data } = await instance.post(`/api/auth/post/heart/${payload}`);
       return thunkAPI.fulfillWithValue(data);
@@ -39,6 +77,7 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get('/api/posting');
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -64,17 +103,13 @@ export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        'https://bkyungkeem.shop/api/posting',
-        payload,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: accessToken,
-            'refresh-Token': refreshToken,
-          },
-        }
-      );
+      const { data } = await instance.post('/api/posting', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: accessToken,
+          'refresh-Token': refreshToken,
+        },
+      });
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -87,8 +122,8 @@ export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(
-        `https://bkyungkeem.shop/api/posting/${payload.id}`,
+      const { data } = await instance.put(
+        `/api/posting/${payload.id}`,
         payload.formData,
         {
           headers: {
@@ -149,6 +184,21 @@ const initialState = {
     modifiedAt: '',
     like: false,
   },
+  postTopFive: [
+    {
+      id: 0,
+      author: '',
+      jobGroup: '',
+      title: '',
+      content: '',
+      hit: '',
+      postHeartCnt: '',
+      commentCnt: '',
+      image: '',
+      createdAt: '',
+      modifiedAt: '',
+    },
+  ],
   isLoading: false,
   error: null,
 };
@@ -160,6 +210,23 @@ export const PostSlice = createSlice({
   extraReducers: {
     //게시글 검색
     [__searchPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.post = action.payload;
+    },
+
+    // 인기글 top5
+    [topFivePost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.postTopFive = action.payload;
+    },
+
+    // 조회순 정렬
+    [hitsSort.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.post = action.payload;
+    },
+    // 좋아요순 정렬
+    [heartSort.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
     },

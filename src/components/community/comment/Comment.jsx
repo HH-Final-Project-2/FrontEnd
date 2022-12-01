@@ -15,6 +15,7 @@ import {
   CommentDate,
   CommentListLayout,
   CommentNickName,
+  CommentNickName2,
   CommentSection1,
   CommentTitle,
   CommentWriteBox,
@@ -24,7 +25,7 @@ import {
   LikeButtonText,
 } from './CommentStyle';
 
-const Comment = () => {
+const Comment = ({detailAuthor}) => {
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
 
@@ -99,7 +100,12 @@ const Comment = () => {
             <div key={commentList.id}>
               <CommentSection1>
                 <CommentTitle>
+                {commentList.author === detailAuthor ? (
+                  <CommentNickName2>{commentList.author}</CommentNickName2>
+                ) : (
                   <CommentNickName>{commentList.author}</CommentNickName>
+                )}
+                  
                   <CommentDate>
                     {displayedAt(new window.Date(commentList.createdAt))}
                   </CommentDate>

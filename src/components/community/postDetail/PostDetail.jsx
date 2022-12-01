@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import {
   __deletePost,
@@ -39,15 +39,19 @@ import {
 
 const PostDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+  
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
 
+  //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   useEffect(() => {
@@ -98,7 +102,7 @@ const PostDetail = () => {
   return (
     <DetailBox>
       <Section1>
-        <Section2>
+        <Section2 onClick={() => navigate('/community')}>
           <svg
             width="10"
             height="17"
@@ -192,7 +196,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment />
+      <Comment detailAuthor={detail.author}/>
     </DetailBox>
   );
 };
