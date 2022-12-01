@@ -20,7 +20,6 @@ export const likeComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post(`/api/auth/comment/heart/${payload}`);
-      console.log('나는 댓글 좋아요입니다', data)
       return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

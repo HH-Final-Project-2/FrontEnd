@@ -31,15 +31,13 @@ const PostWrite = () => {
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 
-  // 이미지 파일 초기화
 
-  // const { isLoading } = useSelector((state) => state.PostSlice);
+  const { isLoading } = useSelector((state) => state.PostSlice);
 
-  // console.log(isLoading);
+  useEffect(() => {
+    if (isLoading) goToCommunity();
+  }, [isLoading]);
 
-  // useEffect(() => {
-  //   if (isLoading === false);
-  // }, [isLoading]);
 
   const goToCommunity = () => {
     navigate('/community');
@@ -59,7 +57,7 @@ const PostWrite = () => {
 
   //지우기버튼 띄우기
   const deleteImage = () => {
-    memberPost.image = null;
+    memberPost.image = null
     setImage('');
   };
 
@@ -100,7 +98,7 @@ const PostWrite = () => {
     >
       <WriteBox>
         <WriteSection1>
-          <div className="backBtn" type="button" onClick={goToCommunity}>
+          <div type="button" onClick={() => navigate('/community')}>
             <svg
               width="10"
               height="17"
@@ -178,6 +176,7 @@ const PostWrite = () => {
               });
             }}
           />
+
         </WriteBody>
         <ImageUpload>
           {/* 이미지 미리보기 제거 버튼 */}
@@ -190,6 +189,7 @@ const PostWrite = () => {
           </DeleteImage>
           {/* 이미지 미리보기 */}
           {image && <img src={image} alt="preview-img" />}
+
 
           {/* 이미지 업로드 */}
           {display(image) ? (
@@ -229,7 +229,7 @@ const PostWrite = () => {
         </ImageUpload>
         <WriteBtn>작성</WriteBtn>
       </WriteBox>
-    </form>
+    </form >
   );
 };
 

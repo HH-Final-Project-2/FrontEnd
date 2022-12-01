@@ -121,6 +121,10 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
+    console.log(payload)
+    for (var pair of payload.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
     try {
       const { data } = await instance.put(
         `/api/posting/${payload.id}`,
@@ -245,7 +249,7 @@ export const PostSlice = createSlice({
 
     //게시글 작성
     [__writePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = true;
       state.post = [action.payload, ...state.post];
     },
 
@@ -281,12 +285,11 @@ export const PostSlice = createSlice({
 
     // 게시글 삭제
     [__deletePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      //console.log('필터전이구', state.post.length);
+      state.isLoading = true;
       state.post = state.post.filter(
         (postList) => postList.id !== action.payload
       );
-      //console.log('필터후', state.post.length);
+
     },
   },
 });

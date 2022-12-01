@@ -73,7 +73,7 @@ const PostList = () => {
 
   // 검색
   useEffect(() => {
-    if (searchQuery == null) dispatch(__getPostAll());
+    if (searchQuery === null) dispatch(__getPostAll());
     else dispatch(__searchPost(searchQuery));
   }, [dispatch]);
 

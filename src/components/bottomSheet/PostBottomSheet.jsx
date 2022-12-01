@@ -1,18 +1,26 @@
-import { useState } from "react";
-import { BottomSheet } from "react-spring-bottom-sheet";
-import "react-spring-bottom-sheet/dist/style.css";
-import { Board, SheetButton } from "./CommentBottomSheetStyle";
-import { ReactComponent as More } from "../../images/ic-more.svg";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import { __deletePost } from "../../redux/modules/PostSlice";
-import { DivSheet } from "./PostBottomSheetStyle";
+import { useState, useEffect } from 'react';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
+import { Board, SheetButton } from './CommentBottomSheetStyle';
+import { ReactComponent as More } from '../../images/ic-more.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { __deletePost } from '../../redux/modules/PostSlice';
+import { DivSheet } from './PostBottomSheetStyle';
+
 
 export default function PostBottomSheet({ detail, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
+
+  const { isLoading } = useSelector((state) => state.PostSlice);
+
+  useEffect(() => {
+    if (isLoading) navigate('/community');
+  }, [isLoading]);
+
   return (
     <>
       <SheetButton>
@@ -25,7 +33,7 @@ export default function PostBottomSheet({ detail, id }) {
           onDismiss={() => {
             setOpen(false);
           }}
-          // snapPoints={({ maxHeight }) => [maxHeight / 4, maxHeight * 0.6]}
+        // snapPoints={({ maxHeight }) => [maxHeight / 4, maxHeight * 0.6]}
         >
           <Board>
             <ul

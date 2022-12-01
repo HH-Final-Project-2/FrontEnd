@@ -52,6 +52,7 @@ const UserLogin = () => {
         errors.password && <ErrorText>비밀번호는 영문/숫자 6~15자</ErrorText>
       }
       <ButtonJoin>로그인</ButtonJoin>
+      <ButtonJoin type='button'>카카오로 시작하기</ButtonJoin>
 
       {/* 회원가입 이동 */}
       <SignUpBox>
