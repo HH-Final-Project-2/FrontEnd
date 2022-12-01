@@ -26,6 +26,7 @@ export const WriteSection1Title = styled.div`
   font-weight: 600;
 `;
 
+//셀렉박스 작업중
 export const SelectJob = styled.div`
   select {
     width: 375px;
@@ -36,7 +37,7 @@ export const SelectJob = styled.div`
   }
 `;
 
-export const SelectBoard = styled.div``;
+export const SelectBoard = styled.select``;
 
 export const WriteTitle = styled.div`
   textarea {

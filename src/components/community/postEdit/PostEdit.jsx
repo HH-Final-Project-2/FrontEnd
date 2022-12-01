@@ -18,21 +18,32 @@ import {
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams(); //동작 원리 알아보기
+  const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+
+  useEffect(() => {
+    dispatch(__getPost(id));
+  }, [dispatch]);
+
+  const [memberPost, setMemberpost] = useState("");
+  const [image, setImage] = useState(detail.image);
+
   const [title, setTitle] = useState(detail.title);
   const [content, setContent] = useState(detail.content);
   const [jobGroup, setJobGroup] = useState(detail.jobGroup);
+
+  // console.log('제목=', title);
+  // console.log('내용=', content)
+  // console.log('직군=', jobGroup);
+  // console.log('이미지=', image);
   useEffect(() => {
     setTitle(detail.title);
     setContent(detail.content);
     setJobGroup(detail.jobGroup);
+    setImage(detail.image);
   }, [detail]);
-  useEffect(() => {
-    dispatch(__getPost(id));
-  }, [dispatch]);
-  const [memberPost, setMemberpost] = useState("");
-  const [image, setImage] = useState("");
+
+
   const goToCommunity = () => {
     navigate("/community");
   };
@@ -73,6 +84,7 @@ const PostEdit = () => {
   const deleteImage = () => {
     setImage("");
   };
+
   //지우기버튼 띄우기
   const display = (str) => {
     if (str) {
@@ -104,6 +116,7 @@ const PostEdit = () => {
         <SectionLine />
         <SelectJob>
           <select
+            value={jobGroup}
             onChange={(ev) => {
               const { value } = ev.target;
               setJobGroup(ev.target.value);
