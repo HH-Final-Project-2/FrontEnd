@@ -24,6 +24,10 @@ const PostEdit = () => {
   // textarea 세로길이 자동 조정
   const textRef = useRef();
   const handleResizeHeight = useCallback(() => {
+    if (textRef === null || textRef.current === null) {
+      return;
+    }
+    textRef.current.style.height = '46px'
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 

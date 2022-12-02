@@ -31,6 +31,7 @@ export const EditSection1Title = styled.div`
 
 export const SelectJob = styled.div`
   select {
+    padding-left: 6px;
     width: 375px;
     height: 56px;
     border: none;
@@ -46,13 +47,14 @@ export const EditTitle = styled.div`
   textarea {
     padding: 10px;
     margin-top: 6px;
-
-    width: 375px;
     height: 45px;
+    width: 375px;
+
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
     resize: none;
+    overflow: hidden;
 
     font-size: 16px;
   }
@@ -69,11 +71,11 @@ export const EditBody = styled.div`
     padding: 10px;
     margin-top: 6px;
     width: 375px;
-    height: 190px;
+    height: 45px;
     border: none;
     outline: none;
     resize: none;
-
+    overflow: hidden;
     font-size: 16px;
   }
   textarea:focus {
