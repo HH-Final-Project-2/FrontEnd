@@ -11,6 +11,7 @@ import {
 } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
 import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+import { ReactComponent as SelectArrow } from '../../../images/selectBox.svg';
 import {
   CommunityLayout,
   Section1,
@@ -38,7 +39,6 @@ const PostList = () => {
   const { postTopFive } = useSelector((state) => state.PostSlice);
 
   // 인기글 슬라이드
-
   const settings = {
     dots: true, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: true, // loop를 만들지
@@ -61,7 +61,7 @@ const PostList = () => {
 
   // 검색
   useEffect(() => {
-    if (searchQuery == null) dispatch(__getPostAll());
+    if (searchQuery === null) dispatch(__getPostAll());
     else dispatch(__searchPost(searchQuery));
   }, [dispatch]);
 
@@ -79,8 +79,8 @@ const PostList = () => {
 
   const [currentPosts, setCurrentPosts] = useState([]); // 보여줄 게시글
   const [postPerPage] = useState(20); //페이지당 게시글 개수
-  const indexOfLastPost = page * postPerPage; // 1 - 20
-  const indexOfFirstPost = indexOfLastPost - postPerPage; // 1 - 0
+  const indexOfLastPost = page * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -132,8 +132,9 @@ const PostList = () => {
           <option hidden>정렬</option>
           <option value="news">최신순</option>
           <option value="hits">조회순</option>
-          <option value="likes">좋아요순</option>
+          <option value="likes">좋아요</option>
         </select>
+        <SelectArrow />
       </SortPost>
       <Section3>
         {currentPosts.map((post) => {

@@ -48,6 +48,15 @@ const CommentEdit = () => {
     setContent(commentArr[0]?.content);
   }, [comments]);
 
+
+  const { isLoading } = useSelector((state) => state.comments);
+
+  useEffect(() => {
+    // 아랫줄 주석하고 submit 하자마자 이동하는 로직으로 테스트하면
+    // Walterfall 부분이 겹친다.
+    if (isLoading) navigate(`/detail/${id}`);
+  }, [isLoading]);
+
   return (
     <CommentEditBox>
       <Section1>
@@ -81,7 +90,6 @@ const CommentEdit = () => {
                   content: content,
                 })
               );
-              navigate(`/detail/${id}`);
             }}
           >
             등록

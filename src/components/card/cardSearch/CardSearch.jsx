@@ -5,37 +5,45 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Layout from "../../layout/Layout";
-import { __searchGet, __companyInfo } from "../../../redux/modules/CardsSlice";
+import { __CardSearchGet } from "../../../redux/modules/CardsSlice";
 import {
-  ComInfor,
-  Company,
-  Address,
   St_Header,
   St_Title,
   SearchBox,
   Icon,
   Input,
   Button,
-} from "./CompanySearchStyle";
-import Pagination from "react-js-pagination";
+  Card,
+  CardInfo,
+  CardName,
+  CardInfoDetail,
+  Position,
+  Department,
+  CardInCard,
+  CardInCardDetail1,
+  CardInCardDetail1Name,
+  CardInCardDetail1Position,
+  CardInCardDetail2,
+  CardInCardDetail2Email,
+  CardInCardDetail2Phone,
+} from "./CardSearchStyle";
 
-const CompanySearch = () => {
+const CardSearch = () => {
   const [search, setSearch] = useState();
-  const searched = useSelector(
-    (state) => state.PostReducer.searchCompanyInfo.data
-  );
+  const searched = useSelector((state) => state.PostReducer.searchCard);
+
   console.log(searched);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const searchChangeHandler = (e) => {
     setSearch(e.target.value);
     console.log(search);
   };
 
   const searchClickHandler = () => {
-    dispatch(__searchGet(search));
+    dispatch(__CardSearchGet(search));
   };
-
   return (
     <Layout>
       <St_Header>
@@ -57,7 +65,7 @@ const CompanySearch = () => {
             strokeLinecap="round"
           />
         </svg>
-        <St_Title>회사 검색</St_Title>
+        <St_Title>명함 검색</St_Title>
       </St_Header>
 
       <SearchBox>
@@ -85,55 +93,50 @@ const CompanySearch = () => {
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
       <div style={{ overflowY: "auto" }}>
-        {searched &&
-          searched.map((x) => (
-            <ComInfor
-              key={x.id}
-              onClick={() => {
-                dispatch(
-                  __companyInfo({
-                    companyName: x.companyName,
-                    companyAddress: x.companyAddress,
-                  })
-                );
-                navigate(-1);
-              }}
-            >
-              <Company>{x.companyName}</Company>
-              <Address>{x.companyAddress}</Address>
-            </ComInfor>
-          ))}
+        {searched !== undefined
+          ? searched.map((main) => {
+              return (
+                <div>
+                  <Card
+                    key={main.id}
+                    onClick={() => {
+                      navigate(`/posts/get/${main.id}`);
+                    }}
+                  >
+                    <CardInfo>
+                      <CardName>{main.cardName}</CardName>
+                      <CardInfoDetail>
+                        <Position>{main.position}</Position>
+                        <Department>{main.department}</Department>
+                      </CardInfoDetail>
+                    </CardInfo>
+                    <CardInCard>
+                      <CardInCardDetail1>
+                        <CardInCardDetail1Name>
+                          {main.cardName}
+                        </CardInCardDetail1Name>
+                        <CardInCardDetail1Position>
+                          {main.position}
+                        </CardInCardDetail1Position>
+                      </CardInCardDetail1>
+
+                      <CardInCardDetail2>
+                        <CardInCardDetail2Email>
+                          {main.email}
+                        </CardInCardDetail2Email>
+                        <CardInCardDetail2Phone>
+                          {main.phoneNum}
+                        </CardInCardDetail2Phone>
+                      </CardInCardDetail2>
+                    </CardInCard>
+                  </Card>
+                </div>
+              );
+            })
+          : null}
       </div>
     </Layout>
-    // <div>
-    //   <div>
-    //     <input
-    //       type="text"
-    //       value={search}
-    //       onChange={searchChangeHandler}
-    //     ></input>
-    //     <button onClick={searchClickHandler}>회사검색</button>
-    //   </div>
-    //   {searched &&
-    //     searched.map((x) => (
-    //       <div
-    //         key={x.id}
-    //         onClick={() => {
-    //           dispatch(
-    //             __companyInfo({
-    //               companyName: x.companyName,
-    //               companyAddress: x.companyAddress,
-    //             })
-    //           );
-    //           navigate(-1);
-    //         }}
-    //       >
-    //         <p>{x.companyName}</p>
-    //         <p>{x.companyAddress}</p>
-    //       </div>
-    //     ))}
-    // </div>
   );
 };
 
-export default CompanySearch;
+export default CardSearch;

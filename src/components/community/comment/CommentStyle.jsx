@@ -105,7 +105,6 @@ export const LikeButton = styled.div`
   margin-left: 13px;
   margin-top: 15px;
   margin-bottom: 10px;
-
   cursor: pointer;
 `;
 

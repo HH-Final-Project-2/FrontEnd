@@ -52,7 +52,7 @@ export const St_Key = styled.div`
 export const St_value = styled.input`
   width: 100%;
   max-width: 320px;
-  height: 52px;
+  height: 30px;
   border-radius: 4px;
   border: 1px solid #cccccc;
   padding-left: 10px;
@@ -87,7 +87,7 @@ export const SearchAddress = styled.div`
 
 //각 수정 목록의 div
 export const Item = styled.div`
-  margin-top: 32px;
+  margin-top: 10px;
   font-size: 12px;
   color: #6b6b6b;
 `;
@@ -169,4 +169,3 @@ export const RadioDetail = styled.div`
     font-size: 14px;
   }
 `;
-export const PrevImg = styled.img``;
