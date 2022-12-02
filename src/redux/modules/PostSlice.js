@@ -77,7 +77,6 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get('/api/posting');
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -103,7 +102,7 @@ export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.post('/api/posting', payload, {
+      const { data } = await axios.post('https://bkyungkeem.shop/api/posting', payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
           authorization: accessToken,
@@ -121,13 +120,13 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
-    console.log(payload)
-    for (var pair of payload.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    // console.log(payload)
+    // for (var pair of payload.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
     try {
-      const { data } = await instance.put(
-        `/api/posting/${payload.id}`,
+      const { data } = await axios.put(
+        `https://bkyungkeem.shop/api/posting/${payload.id}`,
         payload.formData,
         {
           headers: {
@@ -250,12 +249,13 @@ export const PostSlice = createSlice({
     //게시글 작성
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = true;
+      console.log('글작성 리듀서 이즈로딩', state.isLoading)
       state.post = [action.payload, ...state.post];
     },
 
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = true;
 
       // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
       // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
@@ -294,5 +294,5 @@ export const PostSlice = createSlice({
   },
 });
 
-export const {} = PostSlice.actions;
+export const { } = PostSlice.actions;
 export default PostSlice.reducer;
