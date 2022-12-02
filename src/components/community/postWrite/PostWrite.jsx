@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -13,7 +13,7 @@ import {
   WriteSection1Title,
   WriteTitle,
 } from './PostWriteStyle';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 import { SectionLine } from '../postList/PostListStyle';
@@ -30,16 +30,6 @@ const PostWrite = () => {
   const handleResizeHeight = useCallback(() => {
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
-
-  // 이미지 파일 초기화
-
-  // const { isLoading } = useSelector((state) => state.PostSlice);
-
-  // console.log(isLoading);
-
-  // useEffect(() => {
-  //   if (isLoading === false);
-  // }, [isLoading]);
 
   const goToCommunity = () => {
     navigate('/community');

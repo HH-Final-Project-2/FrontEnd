@@ -9,7 +9,6 @@ import {
   EditCancelBtn,
 } from './CommentEditStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { __getPost } from '../../../redux/modules/PostSlice';
 import {
   getCommentList,
   putComment,
