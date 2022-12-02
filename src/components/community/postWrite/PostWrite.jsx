@@ -28,20 +28,20 @@ const PostWrite = () => {
   // textarea 세로길이 자동 조정
   const textRef = useRef();
   const handleResizeHeight = useCallback(() => {
+    if (textRef === null || textRef.current === null) {
+      return;
+    }
+    textRef.current.style.height = '46px'
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
-
 
   const { isLoading } = useSelector((state) => state.PostSlice);
 
   useEffect(() => {
-    if (isLoading) goToCommunity();
+    // 아랫줄 주석하고 submit 하자마자 이동하는 로직으로 테스트하면
+    // Walterfall 부분이 겹친다.
+    if (isLoading) navigate('/community');
   }, [isLoading]);
-
-
-  const goToCommunity = () => {
-    navigate('/community');
-  };
 
   //이미지 미리보기
   const encodeFileToBase64 = (fileBlob) => {
@@ -92,8 +92,18 @@ const PostWrite = () => {
   return (
     <form
       onSubmit={(e) => {
+        // form을 submit 하면, <form action="제출주소"> 제출주소로 이동하게된다.
+        // 현재 form에는 action이 없다 = 자기 자신() 이기 때문에
+        // /write 주소가 다시 호출되어, 새로고침 되는 것처럼 보인다.
+        // 이런 현상을 막으려면, 반드시 이벤트(e) 파라메터의 preventDefault() 함수를
+        // 호출해준다.
+        e.preventDefault();
+
         writeHandler(memberPost);
-        goToCommunity(e);
+        // onSubmit에서 navigate('/community')를 호출하면,
+        // 글 등록 전에 게시글 목록으로 이동한다.
+        // 게시글 목록으로 이동하면 게시글 목록 API를 호출할 테고
+        // 방금 쓴 글이 없는 상태의 게시글 목록이 응답으로 온다.
       }}
     >
       <WriteBox>

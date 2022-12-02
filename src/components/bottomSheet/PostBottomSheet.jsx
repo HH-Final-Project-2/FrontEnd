@@ -49,7 +49,6 @@ export default function PostBottomSheet({ detail, id }) {
                 const confirm = window.confirm("게시글을 지우시겠습니까?");
                 if (confirm) {
                   dispatch(__deletePost(detail.id));
-                  navigate("/community");
                 } else {
                   return;
                 }

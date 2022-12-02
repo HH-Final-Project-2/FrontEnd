@@ -71,12 +71,11 @@ export const WriteBody = styled.div`
     padding: 10px;
     margin-top: 6px;
     width: 375px;
-
+    height: 45px;
     border: none;
     outline: none;
     resize: none;
     overflow: hidden;
-
     font-size: 16px;
   }
   textarea:focus {
