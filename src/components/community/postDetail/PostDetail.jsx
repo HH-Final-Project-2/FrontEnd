@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
-import {
-  __deletePost,
-  __getPost,
-  __likePost,
-} from '../../../redux/modules/PostSlice';
+import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 
@@ -43,7 +39,6 @@ const PostDetail = () => {
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
-  
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
@@ -196,7 +191,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment detailAuthor={detail.author}/>
+      <Comment detailAuthor={detail.author} />
     </DetailBox>
   );
 };

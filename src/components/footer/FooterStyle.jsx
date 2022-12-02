@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const FooterBox = styled.div`
-  z-index: 2;
   display: flex;
   position: fixed;
   bottom: 0;

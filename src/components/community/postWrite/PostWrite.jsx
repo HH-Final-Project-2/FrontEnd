@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -31,7 +31,7 @@ const PostWrite = () => {
     if (textRef === null || textRef.current === null) {
       return;
     }
-    textRef.current.style.height = '46px'
+    textRef.current.style.height = '46px';
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 
@@ -57,7 +57,7 @@ const PostWrite = () => {
 
   //지우기버튼 띄우기
   const deleteImage = () => {
-    memberPost.image = null
+    memberPost.image = null;
     setImage('');
   };
 
@@ -186,7 +186,6 @@ const PostWrite = () => {
               });
             }}
           />
-
         </WriteBody>
         <ImageUpload>
           {/* 이미지 미리보기 제거 버튼 */}
@@ -199,7 +198,6 @@ const PostWrite = () => {
           </DeleteImage>
           {/* 이미지 미리보기 */}
           {image && <img src={image} alt="preview-img" />}
-
 
           {/* 이미지 업로드 */}
           {display(image) ? (
@@ -239,7 +237,7 @@ const PostWrite = () => {
         </ImageUpload>
         <WriteBtn>작성</WriteBtn>
       </WriteBox>
-    </form >
+    </form>
   );
 };
 

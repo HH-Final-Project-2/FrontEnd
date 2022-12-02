@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import {
   Comment,
   Content,
@@ -19,11 +18,9 @@ import {
 } from './TopFiveStyle';
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
-import { topFivePost } from '../../../redux/modules/PostSlice';
 
 const TopFive = ({ topPost }) => {
-  const dispatch = useDispatch();
-    function displayedAt(postCreatedAt) {
+  function displayedAt(postCreatedAt) {
     const milliSeconds = new window.Date() - postCreatedAt;
     const seconds = milliSeconds / 1000;
     if (seconds < 60) return `방금 전`;

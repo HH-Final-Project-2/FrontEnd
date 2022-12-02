@@ -1,17 +1,11 @@
-import axios from "axios";
-
-// const authorization = localStorage.getItem('authorization')
-// const refreshToken = localStorage.getItem('refresh-Token')
-
-// axios.defaults.headers.common["authorization"] = `${authorization}`;
-// axios.defaults.headers.common["refresh-Token"] = `${refreshToken}`;
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "https://bkyungkeem.shop",
+  baseURL: 'https://bkyungkeem.shop/',
   headers: {
-    "Content-Type": "application/json",
-    authorization: localStorage.getItem("authorization"),
-    "refresh-Token": localStorage.getItem("refresh-Token"),
+    'Content-Type': 'application/json',
+    authorization: localStorage.getItem('authorization'),
+    'refresh-Token': localStorage.getItem('refresh-Token'),
   },
 });
 
