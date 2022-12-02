@@ -45,22 +45,26 @@ export const SectionLine = styled.div`
 `;
 
 export const SortPost = styled.div`
+  display: flex;
+  align-items: center;
   margin-top: 16px;
   margin-left: 20px;
   select {
-    padding-left: 7px;
-    width: 73px;
+    padding-left: 9px;
+    width: 77px;
     height: 36px;
 
     outline: none;
     border: 1px solid #e2e6ef;
     border-radius: 8px;
 
+    appearance: none;
     color: #1a1f27;
   }
 
-  .sort {
-    margin-right: 13px;
+  svg {
+    position: relative;
+    right: 18px;
   }
 `;
 

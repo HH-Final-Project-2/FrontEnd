@@ -11,6 +11,7 @@ import {
 } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
 import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+import { ReactComponent as SelectArrow } from '../../../images/selectBox.svg';
 import {
   CommunityLayout,
   Section1,
@@ -131,8 +132,9 @@ const PostList = () => {
           <option hidden>정렬</option>
           <option value="news">최신순</option>
           <option value="hits">조회순</option>
-          <option value="likes">좋아요순</option>
+          <option value="likes">좋아요</option>
         </select>
+        <SelectArrow />
       </SortPost>
       <Section3>
         {currentPosts.map((post) => {

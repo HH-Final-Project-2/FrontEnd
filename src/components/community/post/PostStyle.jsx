@@ -30,18 +30,6 @@ export const Date = styled.div`
   color: #8892a0;
 `;
 
-export const PostTitle = styled.div`
-  margin-left: 13px;
-  margin-top: 16px;
-  font-weight: 600;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  color: #1a1f27;
-`;
-
 export const PostSection3 = styled.div`
   display: flex;
   justify-content: space-between;
@@ -79,8 +67,8 @@ export const PostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
+  /* width: 200px; */
   padding: 5px;
-  
   margin-left: 5px;
   margin-top: 15px;
   font-size: 12px;
@@ -88,6 +76,19 @@ export const JobPosition = styled.div`
   color: #3425de;
   background: #eeecff;
   border-radius: 4px;
+`;
+
+export const PostTitle = styled.div`
+  max-width: 200px;
+  margin-left: 13px;
+  margin-top: 16px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #1a1f27;
 `;
 
 export const PostSection4 = styled.div`
