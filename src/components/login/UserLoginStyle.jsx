@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const JoinForm = styled.form`
   max-width: 500px;
   margin: 0 auto;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const InputJoin = styled.input`
