@@ -137,7 +137,7 @@ const PostWrite = () => {
               });
             }}
           >
-            <option hidden>직군을 선택해 주세요.</option>
+            <option hidden>관심 직군을 선택해주세요.</option>
             <option>전체</option>
             <option>기획·전략</option>
             <option>마케팅·홍보·조사</option>
