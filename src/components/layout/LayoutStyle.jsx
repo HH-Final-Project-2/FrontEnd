@@ -17,5 +17,5 @@ export const DivLayout = styled.div`
   flex-direction: column;
   border: 1px solid #e2e6ef;
 
-  margin-left: 120px;
+  margin-left: 100px;
 `;
