@@ -48,7 +48,7 @@ const PostList = () => {
     centerMode: false,
     arrows: false,
     vertical: false,
-    autoplay: true,
+    // autoplay: true,
   };
 
   const [selectBox, setSelectBox] = useState('');
