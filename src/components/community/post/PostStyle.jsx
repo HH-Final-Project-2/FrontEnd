@@ -67,7 +67,6 @@ export const PostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
-  /* width: 200px; */
   padding: 5px;
   margin-left: 5px;
   margin-top: 15px;

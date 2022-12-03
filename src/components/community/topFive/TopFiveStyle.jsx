@@ -38,8 +38,6 @@ export const TopFiveSection4 = styled.div`
 `;
 
 export const NickName = styled.div`
-  margin-left: 20px;
-
   font-weight: 600;
   font-size: 12px;
 
@@ -47,8 +45,6 @@ export const NickName = styled.div`
 `;
 
 export const Date = styled.div`
-  margin-left: 7px;
-
   font-weight: 400;
   font-size: 12px;
 
@@ -57,8 +53,6 @@ export const Date = styled.div`
 
 export const Job = styled.div`
   padding: 3px 8px 3px 8px;
-
-  margin-left: 16px;
 
   font-weight: 400;
   font-size: 12px;
@@ -69,14 +63,22 @@ export const Job = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-left: 10px;
+  max-width: 180px;
   color: #1a1f27;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Content = styled.div`
-  margin-left: 20px;
+  max-width: 190px;
   font-weight: 400;
   font-size: 14px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   color: #52596b;
 `;
@@ -94,8 +96,7 @@ export const Image = styled.div`
 
 export const Line = styled.div`
   margin-top: 16px;
-  margin-left: 12px;
-  width: 311px;
+  width: 318px;
   height: 1px;
 
   background: #e2e6ef;
