@@ -13,7 +13,7 @@
 
   width: 375px;
   max-width: 100%;
-  border-bottom: 1px solid rgb(213, 213, 213);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
 }
@@ -146,12 +146,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  border-bottom: 1px solid rgb(213, 213, 213);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 .addBtn {
-  height: 30px;
-  width: 30px;
   margin-top: 10px;
   cursor: pointer;
 }
