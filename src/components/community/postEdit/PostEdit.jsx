@@ -31,39 +31,50 @@ const PostEdit = () => {
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 
-  const [memberPost, setMemberpost] = useState('');
+  const [memberPost, setMemberpost] = useState({
+    title: detail.title,
+    content: detail.content,
+    jobGroup: detail.jobGroup,
+    imageDelete: false,
+    image: null
+  });
 
-
-  //이미지 미리보기 스테이트
+  //이미지 미리보기 스테이트 url
   const [image, setImage] = useState(detail.image);
 
-  //게시글 제목, 내용, 직군 수정용
-  const [title, setTitle] = useState(detail.title);
-  const [content, setContent] = useState(detail.content);
-  const [jobGroup, setJobGroup] = useState(detail.jobGroup);
+  //지우기버튼 띄우기
+  const onDeleteImage = () => {
+    setImage('');
+    setMemberpost({
+      ...memberPost,
+      imageDelete: true,
+      image: null,
+    });
+  };
 
   //기존값 불러오기
   useEffect(() => {
-    setTitle(detail.title);
-    setContent(detail.content);
-    setJobGroup(detail.jobGroup);
-    setImage(detail.image);
+    setMemberpost({
+      title: detail.title,
+      content: detail.content,
+      jobGroup: detail.jobGroup,
+      imageDelete: false,
+      image: null
+    })
   }, [detail]);
 
+  // 디테일 api 호출
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
 
+
+  // 랜더 이슈 해결(isLoading)
   const { isLoading } = useSelector((state) => state.PostSlice);
 
   useEffect(() => {
     if (isLoading) navigate('/community');
   }, [isLoading]);
-
-
-  useEffect(() => {
-    dispatch(__getPost(id));
-  }, [dispatch, id]);
 
   //이미지 미리보기
   const encodeFileToBase64 = (fileBlob) => {
@@ -76,6 +87,7 @@ const PostEdit = () => {
       };
     });
   };
+
   // 데이터 전송
   const onSubmitHandler = () => {
     const formData = new FormData();
@@ -85,9 +97,10 @@ const PostEdit = () => {
       new Blob(
         [
           JSON.stringify({
-            title: title,
-            content: content,
-            jobGroup: jobGroup,
+            title: memberPost.title,
+            content: memberPost.content,
+            jobGroup: memberPost.jobGroup,
+            imageDelete: memberPost.imageDelete,
             image: memberPost.image,
           }),
         ],
@@ -100,11 +113,6 @@ const PostEdit = () => {
         formData,
       })
     );
-  };
-
-  //지우기버튼 띄우기
-  const deleteImage = () => {
-    setImage('');
   };
 
   const display = (str) => {
@@ -144,17 +152,16 @@ const PostEdit = () => {
         <SectionLine />
         <SelectJob>
           <select
-            value={jobGroup}
+            value={memberPost.jobGroup}
             onChange={(ev) => {
               const { value } = ev.target;
-              setJobGroup(ev.target.value);
               setMemberpost({
                 ...memberPost,
                 jobGroup: value,
               });
             }}
           >
-            <option hidden>직군을 선택해주세요.</option>
+            <option hidden>관심 직군을 선택해주세요.</option>
             <option>전체</option>
             <option>기획·전략</option>
             <option>마케팅·홍보·조사</option>
@@ -181,11 +188,10 @@ const PostEdit = () => {
         </SelectJob>
         <EditTitle>
           <textarea
-            value={title}
+            value={memberPost.title}
             type="text"
             placeholder="제목"
             onChange={(ev) => {
-              setTitle(ev.target.value);
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -196,7 +202,7 @@ const PostEdit = () => {
         </EditTitle>
         <EditBody>
           <textarea
-            value={content}
+            value={memberPost.content}
             ref={textRef}
             onInput={handleResizeHeight}
             type="text"
@@ -204,7 +210,6 @@ const PostEdit = () => {
             maxLength={500}
             onChange={(ev) => {
               const { value } = ev.target;
-              setContent(ev.target.value);
               setMemberpost({
                 ...memberPost,
                 content: value,
@@ -218,7 +223,7 @@ const PostEdit = () => {
             <Xbutton
               display={display(image) ? 'block' : 'none'}
               type="button"
-              onClick={deleteImage}
+              onClick={onDeleteImage}
             />
           </DeleteImage>
           {/* 이미지 미리보기 */}
@@ -228,6 +233,12 @@ const PostEdit = () => {
             ''
           ) : (
             <ImgUploadButton>
+
+              {/* 
+              input file은 value가 읽기전용(readonly) onChange로 처리한다. 
+              기본값을 설정할 수 없는 문제가 있어 imageDelete 변수를 
+              활용해 첨부 이미지를 유지하거나, 삭제 하거나 한다.  
+              */}
               <input
                 style={{ display: 'none' }}
                 id="file-input"
@@ -237,6 +248,7 @@ const PostEdit = () => {
                   encodeFileToBase64(e.target.files[0]);
                   setMemberpost({
                     ...memberPost,
+                    imageDelete: false,
                     image: e.target.files[0],
                   });
                 }}
