@@ -22,10 +22,9 @@ export const St_Title = styled.div`
 
 export const MyChatBox = styled.div`
   display: flex;
-  margin: auto;
+  margin: 10px auto;
   align-items: center;
   width: 100%;
-  height: 50px;
   background-color: cadetblue;
 `;
 export const MyChat = styled.div`
@@ -33,6 +32,7 @@ export const MyChat = styled.div`
   margin-right: 10px;
   border-radius: 8px;
   display: inline-block;
+  max-width: 220px;
   align-items: center;
   justify-content: center;
   font-size: 13px;
@@ -116,9 +116,7 @@ export const ChatRoomBox = styled.div`
 
 export const MyChatTime = styled.div`
   display: flex;
-  width: 100%;
-  max-width: 53px;
-  height: 20px;
+  justify-content: end;
   font-size: 12px;
   background-color: darksalmon;
 `;
