@@ -10,12 +10,6 @@ export const AddBtn = styled.div`
 
   margin-right: 15px;
 
-  opacity: 0.5;
-
-  :hover {
-    opacity: 1;
-  }
-
   color: #277dff;
   cursor: pointer;
 `;

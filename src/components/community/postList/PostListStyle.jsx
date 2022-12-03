@@ -6,7 +6,6 @@ import Slider from 'react-slick';
 export const CommunityLayout = styled.div`
   width: 375px;
   margin: 0 auto;
-  background-color: white;
 `;
 
 export const Section1 = styled.div`
@@ -165,6 +164,8 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const ListSectionLine = styled.div`
+  width: 373px;
+
   margin-top: 30px;
   height: 12px;
   background: #f5f5f5;
