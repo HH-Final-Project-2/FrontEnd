@@ -108,7 +108,11 @@ const PostWrite = () => {
     >
       <WriteBox>
         <WriteSection1>
-          <div type="button" onClick={() => navigate('/community')}>
+          <div
+            className="backBtn"
+            type="button"
+            onClick={() => navigate('/community')}
+          >
             <svg
               width="10"
               height="17"

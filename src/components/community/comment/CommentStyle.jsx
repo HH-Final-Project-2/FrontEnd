@@ -86,7 +86,7 @@ export const CommentWirteButton = styled.button`
   width: 50px;
   border: none;
   outline: none;
-  background: #bbb5ff;
+  background: #5546ff;
   color: #ffffff;
   font-size: 14px;
   border-top-right-radius: 8px;

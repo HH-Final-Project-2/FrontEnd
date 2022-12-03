@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CommentEditBox = styled.div`
-  width: 375px;
+  width: 373px;
   height: 100vh;
   background-color: white;
   margin: 0 auto;
