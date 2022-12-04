@@ -40,6 +40,7 @@ const MainCards = () => {
   const imgGet = useSelector((state) => state.PostReducer.img);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
   console.log(companyGet);
+  console.log(imgGet);
   //state생성
 
   const [cardName, setCardName] = useState(
@@ -170,6 +171,7 @@ const MainCards = () => {
       );
       alert("명함 작성 완료!");
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
+      window.location.reload();
     } else {
       alert("입력한 내용을 확인해주세요");
     }
@@ -210,7 +212,7 @@ const MainCards = () => {
                 id="own"
                 name="companyType"
                 value={"own"}
-                checked={companyType}
+                checked={companyType === "own"}
                 onChange={(e) => {
                   setCompanyType(e.target.value);
                 }}
@@ -223,7 +225,7 @@ const MainCards = () => {
                 id="other"
                 name="companyType"
                 value={"other"}
-                checked={companyType}
+                checked={companyType === "other"}
                 onChange={(e) => {
                   setCompanyType(e.target.value);
                 }}
@@ -239,31 +241,33 @@ const MainCards = () => {
             <div>명함 사진 등록은 예시 이미지와 유사한 형태만 가능합니다.</div>
           </ImgBox>
           <St_Card>
-            {imgGet !== undefined
-              ? imgGet.imgUrl && (
-                  <PrevImg
-                    src={imgGet.imgUrl}
-                    alt="preview-img"
-                    style={{ margin: "auto" }}
+            {imgGet.imgUrl === undefined ? (
+              <St_Plus htmlFor="card">
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M14.9997 0.333496C6.89967 0.333496 0.333008 6.90016 0.333008 15.0002C0.333008 23.1002 6.89967 29.6668 14.9997 29.6668C23.0997 29.6668 29.6663 23.1002 29.6663 15.0002C29.6663 6.90016 23.0997 0.333496 14.9997 0.333496ZM16.333 20.3335C16.333 20.6871 16.1925 21.0263 15.9425 21.2763C15.6924 21.5264 15.3533 21.6668 14.9997 21.6668C14.6461 21.6668 14.3069 21.5264 14.0569 21.2763C13.8068 21.0263 13.6663 20.6871 13.6663 20.3335V16.3335H9.66634C9.31272 16.3335 8.97358 16.193 8.72353 15.943C8.47348 15.6929 8.33301 15.3538 8.33301 15.0002C8.33301 14.6465 8.47348 14.3074 8.72353 14.0574C8.97358 13.8073 9.31272 13.6668 9.66634 13.6668H13.6663V9.66683C13.6663 9.31321 13.8068 8.97407 14.0569 8.72402C14.3069 8.47397 14.6461 8.3335 14.9997 8.3335C15.3533 8.3335 15.6924 8.47397 15.9425 8.72402C16.1925 8.97407 16.333 9.31321 16.333 9.66683V13.6668H20.333C20.6866 13.6668 21.0258 13.8073 21.2758 14.0574C21.5259 14.3074 21.6663 14.6465 21.6663 15.0002C21.6663 15.3538 21.5259 15.6929 21.2758 15.943C21.0258 16.193 20.6866 16.3335 20.333 16.3335H16.333V20.3335Z"
+                    fill="#8892A0"
                   />
-                )
-              : null}
-            <St_Plus htmlFor="card">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M14.9997 0.333496C6.89967 0.333496 0.333008 6.90016 0.333008 15.0002C0.333008 23.1002 6.89967 29.6668 14.9997 29.6668C23.0997 29.6668 29.6663 23.1002 29.6663 15.0002C29.6663 6.90016 23.0997 0.333496 14.9997 0.333496ZM16.333 20.3335C16.333 20.6871 16.1925 21.0263 15.9425 21.2763C15.6924 21.5264 15.3533 21.6668 14.9997 21.6668C14.6461 21.6668 14.3069 21.5264 14.0569 21.2763C13.8068 21.0263 13.6663 20.6871 13.6663 20.3335V16.3335H9.66634C9.31272 16.3335 8.97358 16.193 8.72353 15.943C8.47348 15.6929 8.33301 15.3538 8.33301 15.0002C8.33301 14.6465 8.47348 14.3074 8.72353 14.0574C8.97358 13.8073 9.31272 13.6668 9.66634 13.6668H13.6663V9.66683C13.6663 9.31321 13.8068 8.97407 14.0569 8.72402C14.3069 8.47397 14.6461 8.3335 14.9997 8.3335C15.3533 8.3335 15.6924 8.47397 15.9425 8.72402C16.1925 8.97407 16.333 9.31321 16.333 9.66683V13.6668H20.333C20.6866 13.6668 21.0258 13.8073 21.2758 14.0574C21.5259 14.3074 21.6663 14.6465 21.6663 15.0002C21.6663 15.3538 21.5259 15.6929 21.2758 15.943C21.0258 16.193 20.6866 16.3335 20.333 16.3335H16.333V20.3335Z"
-                  fill="#8892A0"
+                </svg>
+              </St_Plus>
+            ) : (
+              imgGet.imgUrl && (
+                <PrevImg
+                  src={imgGet.imgUrl}
+                  alt="preview-img"
+                  id="card"
+                  style={{ margin: "auto" }}
                 />
-              </svg>
-            </St_Plus>
+              )
+            )}
 
             <Input
               type="file"
@@ -282,8 +286,8 @@ const MainCards = () => {
             placeholder="이름"
             name="cardName"
             value={cardName || ""}
-            minLength="2"
-            maxLength="5"
+            minLength="1"
+            maxLength="6"
             onChange={(e) => {
               setCardName(e.target.value);
             }}
@@ -295,7 +299,7 @@ const MainCards = () => {
           </St_Key>
           <St_value
             type="text"
-            placeholder="이메일"
+            placeholder="Ex) abc@gmail.com"
             name="email"
             value={email || ""}
             minLength="10"
@@ -304,9 +308,9 @@ const MainCards = () => {
               setEmail(e.target.value);
             }}
           ></St_value>
-          {isValidEmail === false && email ? (
+          {/* {isValidEmail === false && email ? (
             <SearchAddress>이메일을 확인하세요</SearchAddress>
-          ) : null}
+          ) : null} */}
         </Item>
         <Item>
           <St_Key>
@@ -314,7 +318,7 @@ const MainCards = () => {
           </St_Key>
           <St_value
             type="text"
-            placeholder="연락처"
+            placeholder="Ex) 010-0000-0000"
             name="phoneNum"
             value={phoneNum || ""}
             maxLength="13"
@@ -322,9 +326,9 @@ const MainCards = () => {
               setPhoneNum(e.target.value);
             }}
           ></St_value>
-          {phoneNum && phoneNum.includes("-") === false ? (
+          {/* {phoneNum && phoneNum.includes("-") === false ? (
             <SearchAddress>-을 포함해주세요</SearchAddress>
-          ) : null}
+          ) : null} */}
         </Item>
         <Item>
           <St_Key>
@@ -334,6 +338,7 @@ const MainCards = () => {
             <St_value
               name="company"
               placeholder="회사 검색"
+              readOnly
               value={company || ""}
               onChange={(e) => {
                 setCompany(e.target.value);
@@ -394,7 +399,7 @@ const MainCards = () => {
           {showPopup ? (
             <div>
               <St_value
-                placeholder="회사명"
+                placeholder="회사명을 입력하세요"
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
@@ -411,7 +416,7 @@ const MainCards = () => {
           </St_Key>
           <St_value
             type="text"
-            placeholder="직책"
+            placeholder="Ex) 팀장"
             name="position"
             value={position || ""}
             onChange={(e) => {
@@ -425,7 +430,7 @@ const MainCards = () => {
           </St_Key>
           <St_value
             type="text"
-            placeholder="부서"
+            placeholder="Ex) 영업"
             name="department"
             value={department || ""}
             onChange={(e) => {
@@ -437,7 +442,7 @@ const MainCards = () => {
           <St_Key>회사번호</St_Key>
           <St_value
             type="text"
-            placeholder="회사번호"
+            placeholder="Ex) 02-000-0000"
             name="tel"
             maxLength="13"
             value={tel || ""}
@@ -453,7 +458,7 @@ const MainCards = () => {
           <St_Key>팩스</St_Key>
           <St_value
             type="text"
-            placeholder="팩스"
+            placeholder="Ex) 02-000-0000"
             name="fax"
             maxLength="13"
             value={fax || ""}

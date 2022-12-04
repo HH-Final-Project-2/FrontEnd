@@ -52,7 +52,7 @@ export const St_Key = styled.div`
 export const St_value = styled.input`
   width: 100%;
   max-width: 320px;
-  height: 30px;
+  height: 52px;
   border-radius: 4px;
   border: 1px solid #cccccc;
   padding-left: 10px;
@@ -168,4 +168,35 @@ export const RadioDetail = styled.div`
     margin-left: 6px;
     font-size: 14px;
   }
+`;
+
+export const AddressSearch = styled.div`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: grey;
+  margin-left: 30px;
+  margin-top: 10px;
+`;
+
+export const CompanyBtn = styled.button`
+  width: 100%;
+  max-width: 160px;
+  height: 52px;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  padding-left: 10px;
+  display: flex;
+  color: #1a1f27;
+  letter-spacing: 0.15px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #e5e5e5;
+  color: grey;
+  padding: 15px 35px;
+  margin: 20px 0px 10px 30px;
 `;
