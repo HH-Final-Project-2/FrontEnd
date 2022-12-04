@@ -1,9 +1,9 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { __mainGet } from '../../../redux/modules/CardsSlice';
-import Header from '../../header/Header';
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { __mainGet } from "../../../redux/modules/CardsSlice";
+import Header from "../../header/Header";
 
 import {
   CategoryBtnBox,
@@ -37,8 +37,6 @@ const MainView = () => {
   useEffect(() => {
     dispatch(__mainGet());
   }, [dispatch]);
-
-  if (mainpost === undefined) return null;
 
   return (
     <div>
@@ -87,9 +85,12 @@ const MainView = () => {
         </CategoryBtnBox>
       </div>
       <CardList>
-        {mainpost !== '명함을 등록해주세요' || mainpost !== null
-          ? mainpost.map((main) => {
-              if (main.companyType === 'own') {
+        {[mainpost].includes("명") ||
+        mainpost === undefined ||
+        mainpost === "명함을 등록해주세요"
+          ? null
+          : mainpost.map((main) => {
+              if (main.companyType === "own") {
                 return (
                   <div>
                     <Card
@@ -140,8 +141,7 @@ const MainView = () => {
                   </div>
                 );
               }
-            })
-          : null}
+            })}
       </CardList>
       <WriteButton onClick={() => navigate('/posts')}>
         <img src="images/cardAdd.png" alt="" />
