@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import '../App.css';
 
 const GlobalStyle = createGlobalStyle`
   
@@ -6,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+
   }
   p,
   ol,
@@ -31,7 +33,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-
   // List
   ul{
       list-style: none;
@@ -40,14 +41,16 @@ const GlobalStyle = createGlobalStyle`
   // Form
   button,
   input,
+  textarea,
   select{
     margin: 0;
+    font-family: 'Pretendard';
   }
     
   // Box sizing
   html{
     box-sizing: border-box;
-    font-family: segoe-ui;
+    font-family: 'Pretendard';
   }
     
   *{

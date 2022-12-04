@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { __mainGet } from '../../../redux/modules/CardsSlice';
-import Layout from '../../layout/Layout';
 import Header from '../../header/Header';
 
 import {
@@ -126,7 +125,7 @@ const MainView = () => {
           : null}
       </CardList>
       <WriteButton onClick={() => navigate('/posts')}>
-        <img src="images/작성.png" alt="" />
+        <img src="images/cardAdd.png" alt="" />
       </WriteButton>
     </div>
   );
