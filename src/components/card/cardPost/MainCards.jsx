@@ -7,9 +7,7 @@ import {
   __writePost,
   __imgPost,
   __cardInfo,
-  // __cardInfoGet,
 } from '../../../redux/modules/CardsSlice';
-import ExImg from '../../../images/KakaoTalk_Photo_2022-11-17-03-38-44 001.png';
 import { Link } from 'react-router-dom';
 import {
   St_Header,
@@ -32,7 +30,6 @@ import {
   Essential,
   CompanyBtn,
   AddressSearch,
-  SearchCompanyBtn,
   SectionLine,
   AssistiveText,
 } from './cardPostStyle';
@@ -168,8 +165,8 @@ const MainCards = () => {
         })
       );
 
-      alert("명함 작성 완료!");
-      companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
+      alert('명함 작성 완료!');
+      companyType === 'own' ? navigate('/cards') : navigate('/otherCategory');
       window.location.reload();
     } else {
       alert('입력한 내용을 확인해주세요');
@@ -282,7 +279,7 @@ const MainCards = () => {
                   src={imgGet.imgUrl}
                   alt="preview-img"
                   id="card"
-                  style={{ margin: "auto" }}
+                  style={{ margin: 'auto' }}
                 />
               )
             )}
@@ -303,7 +300,7 @@ const MainCards = () => {
             type="text"
             placeholder="이름"
             name="cardName"
-            value={cardName || ""}
+            value={cardName || ''}
             minLength="1"
             maxLength="6"
             onChange={(e) => {
@@ -320,13 +317,13 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 010-0000-0000"
             name="phoneNum"
-            value={phoneNum || ""}
+            value={phoneNum || ''}
             maxLength="13"
             onChange={(e) => {
               setPhoneNum(e.target.value);
             }}
           />
-          
+
           {phoneNum && phoneNum.includes('-') === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
@@ -340,11 +337,11 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) abc@gmail.com"
             name="email"
-            value={email || ""}
+            value={email || ''}
             minLength="10"
             maxLength="30"
             onChange={(e) => {
-              setPhoneNum(e.target.value);
+              setEmail(e.target.value);
             }}
           />
           {isValidEmail === false && email ? (
@@ -365,7 +362,7 @@ const MainCards = () => {
               name="company"
               placeholder="회사 검색"
               readOnly
-              value={company || ""}
+              value={company || ''}
               onChange={(e) => {
                 setCompany(e.target.value);
               }}
