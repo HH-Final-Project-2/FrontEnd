@@ -108,11 +108,6 @@ const MainCards = () => {
   useEffect(() => setCompany(companyGet.company), [companyGet]);
   useEffect(() => setCompanyAddress(companyGet.companyAddress), [companyGet]);
 
-  // useEffect(() => {
-  //   dispatch(__cardInfoGet());
-  // }, [dispatch]);
-  // 필수 value값 조건 걸어주고 이메일 유효성 검사
-
   const isValidEmail =
     email !== undefined && email !== null
       ? email.includes("@") && email.includes(".")
@@ -188,6 +183,7 @@ const MainCards = () => {
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: "pointer" }}
           onClick={() => {
+            // window.location.reload();
             navigate(-1);
           }}
         >
