@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Layout from "../../layout/Layout";
-import { __writePost, __imgPost } from "../../../redux/modules/CardsSlice";
+import {
+  __writePost,
+  __imgPost,
+  __cardInfo,
+  // __cardInfoGet,
+} from "../../../redux/modules/CardsSlice";
 import ExImg from "../../../images/KakaoTalk_Photo_2022-11-17-03-38-44 001.png";
 import { Link } from "react-router-dom";
 import {
@@ -24,6 +29,9 @@ import {
   RadioDetail,
   ImgBox,
   PrevImg,
+  Essential,
+  CompanyBtn,
+  AddressSearch,
 } from "./cardPostStyle";
 
 const MainCards = () => {
@@ -31,61 +39,101 @@ const MainCards = () => {
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
-
+  console.log(companyGet);
   //state생성
-  const [inputValue, setInputValue] = useState({
-    cardName: "",
-    companyType: "",
-    department: "",
-    position: "",
-  });
+
+  const [cardName, setCardName] = useState(
+    companyGet.cardName ? companyGet.cardName : ""
+  );
+  const [companyType, setCompanyType] = useState(
+    companyGet.companyType ? companyGet.companyType : ""
+  );
+  const [department, setDepartment] = useState(
+    companyGet.department ? companyGet.department : ""
+  );
+  const [position, setPosition] = useState(
+    companyGet.position ? companyGet.position : ""
+  );
   const [email, setEmail] = useState(
-    imgGet.email ? imgGet.email : inputValue.email
+    imgGet.email ? imgGet.email : companyGet.email
   );
   const [phoneNum, setPhoneNum] = useState(
-    imgGet.phoneNum ? imgGet.phoneNum : inputValue.phoneNum
+    imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum
   );
-  const [tel, setTel] = useState(imgGet.tel ? imgGet.tel : inputValue.tel);
-  const [fax, setFax] = useState(imgGet.fax ? imgGet.fax : inputValue.fax);
+  const [tel, setTel] = useState(imgGet.tel ? imgGet.tel : companyGet.tel);
+  const [fax, setFax] = useState(imgGet.fax ? imgGet.fax : companyGet.fax);
   const [company, setCompany] = useState(
-    companyGet.companyName ? companyGet.companyName : null
+    companyGet.company ? companyGet.company : null
   );
   const [companyAddress, setCompanyAddress] = useState(
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
   const [showPopup, setShowPopup] = useState(false);
+  console.log(
+    cardName,
+    companyType,
+    department,
+    position,
+    email,
+    phoneNum,
+    tel,
+    fax,
+    company,
+    companyAddress
+  );
   //
-
   //state에 불러온 값 넣어주는 useEffect
-  useEffect(() => setEmail(imgGet.email), [imgGet]);
-  useEffect(() => setPhoneNum(imgGet.phoneNum), [imgGet]);
-  useEffect(() => setTel(imgGet.tel), [imgGet]);
-  useEffect(() => setFax(imgGet.fax), [imgGet]);
-  useEffect(() => setCompany(companyGet.companyName), [companyGet]);
+
+  useEffect(() => setCardName(companyGet.cardName), [companyGet]);
+  useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
+  useEffect(() => setDepartment(companyGet.department), [companyGet]);
+  useEffect(() => setPosition(companyGet.position), [companyGet]);
+  useEffect(
+    () => setEmail(imgGet.email ? imgGet.email : companyGet.email),
+    [imgGet, companyGet]
+  );
+  useEffect(
+    () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
+    [imgGet, companyGet]
+  );
+  useEffect(
+    () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
+    [imgGet, companyGet]
+  );
+  useEffect(
+    () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
+    [imgGet, companyGet]
+  );
+  useEffect(() => setCompany(companyGet.company), [companyGet]);
   useEffect(() => setCompanyAddress(companyGet.companyAddress), [companyGet]);
 
+  // useEffect(() => {
+  //   dispatch(__cardInfoGet());
+  // }, [dispatch]);
   // 필수 value값 조건 걸어주고 이메일 유효성 검사
 
   const isValidEmail =
-    email !== undefined ? email.includes("@") && email.includes(".") : false;
+    email !== undefined && email !== null
+      ? email.includes("@") && email.includes(".")
+      : false;
 
   const isValidInput =
-    inputValue.cardName &&
+    cardName &&
     email &&
     company &&
     companyAddress &&
-    inputValue.companyType &&
+    companyType &&
     phoneNum &&
-    inputValue.department &&
-    inputValue.position !== undefined
-      ? inputValue.cardName.length >= 1 &&
+    department &&
+    position !== undefined
+      ? cardName.length >= 1 &&
         email.length >= 1 &&
         company.length >= 1 &&
         companyAddress.length >= 1 &&
-        inputValue.companyType.length >= 1 &&
+        companyType.length >= 1 &&
         phoneNum.length >= 1 &&
-        inputValue.department.length >= 1 &&
-        inputValue.position.length >= 1
+        department.length >= 1 &&
+        position.length >= 1
       : false;
   //
 
@@ -97,11 +145,6 @@ const MainCards = () => {
     dispatch(__imgPost(file));
   };
 
-  const valueChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setInputValue({ ...inputValue, [name]: value });
-    console.log(inputValue);
-  };
   const togglePopup = (event) => {
     setShowPopup(event.target.value);
   };
@@ -113,22 +156,20 @@ const MainCards = () => {
     if (isValidEmail && isValidInput === true) {
       dispatch(
         __writePost({
-          cardName: inputValue.cardName,
+          cardName: cardName,
           email: email,
           phoneNum: phoneNum,
-          department: inputValue.department,
-          position: inputValue.position,
+          department: department,
+          position: position,
           tel: tel,
           fax: fax,
           company: company,
           companyAddress: companyAddress,
-          companyType: inputValue.companyType,
+          companyType: companyType,
         })
       );
       alert("명함 작성 완료!");
-      inputValue.companyType === "own"
-        ? navigate("/cards")
-        : navigate("/otherCategory");
+      companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
     } else {
       alert("입력한 내용을 확인해주세요");
     }
@@ -169,7 +210,10 @@ const MainCards = () => {
                 id="own"
                 name="companyType"
                 value={"own"}
-                onChange={valueChangeHandler}
+                checked={companyType}
+                onChange={(e) => {
+                  setCompanyType(e.target.value);
+                }}
               ></input>
               <label htmlFor="own">자사</label>
             </RadioDetail>
@@ -179,7 +223,10 @@ const MainCards = () => {
                 id="other"
                 name="companyType"
                 value={"other"}
-                onChange={valueChangeHandler}
+                checked={companyType}
+                onChange={(e) => {
+                  setCompanyType(e.target.value);
+                }}
               ></input>
               <label htmlFor="other">타사</label>
             </RadioDetail>
@@ -192,6 +239,15 @@ const MainCards = () => {
             <div>명함 사진 등록은 예시 이미지와 유사한 형태만 가능합니다.</div>
           </ImgBox>
           <St_Card>
+            {imgGet !== undefined
+              ? imgGet.imgUrl && (
+                  <PrevImg
+                    src={imgGet.imgUrl}
+                    alt="preview-img"
+                    style={{ margin: "auto" }}
+                  />
+                )
+              : null}
             <St_Plus htmlFor="card">
               <svg
                 width="30"
@@ -207,39 +263,41 @@ const MainCards = () => {
                   fill="#8892A0"
                 />
               </svg>
-              {imgGet !== undefined
-                ? imgGet.imgUrl && (
-                    <PrevImg
-                      src={imgGet.imgUrl}
-                      alt="preview-img"
-                      style={{ margin: "auto" }}
-                    />
-                  )
-                : null}
             </St_Plus>
-            <Input type="file" id="card" onChange={mediaChangeHandler}></Input>
+
+            <Input
+              type="file"
+              id="card"
+              accept="image/*"
+              onChange={mediaChangeHandler}
+            ></Input>
           </St_Card>
         </Item>
         <Item>
-          <St_Key>이름</St_Key>
+          <St_Key>
+            이름<Essential>*</Essential>
+          </St_Key>
           <St_value
             type="text"
             placeholder="이름"
             name="cardName"
+            value={cardName || ""}
             minLength="2"
             maxLength="5"
-            onChange={valueChangeHandler}
+            onChange={(e) => {
+              setCardName(e.target.value);
+            }}
           ></St_value>
         </Item>
         <Item>
-          <St_Key>이메일</St_Key>
+          <St_Key>
+            이메일<Essential>*</Essential>
+          </St_Key>
           <St_value
             type="text"
             placeholder="이메일"
             name="email"
-            defaultValue={imgGet.email ? imgGet.email : inputValue.email}
             value={email || ""}
-            key={imgGet.email ? imgGet.email : inputValue.email}
             minLength="10"
             maxLength="30"
             onChange={(e) => {
@@ -251,16 +309,14 @@ const MainCards = () => {
           ) : null}
         </Item>
         <Item>
-          <St_Key>연락처</St_Key>
+          <St_Key>
+            연락처<Essential>*</Essential>
+          </St_Key>
           <St_value
             type="text"
             placeholder="연락처"
             name="phoneNum"
-            defaultValue={
-              imgGet.phoneNum ? imgGet.phoneNum : inputValue.phoneNum
-            }
             value={phoneNum || ""}
-            key={imgGet.phoneNum ? imgGet.phoneNum : inputValue.phoneNum}
             maxLength="13"
             onChange={(e) => {
               setPhoneNum(e.target.value);
@@ -271,40 +327,37 @@ const MainCards = () => {
           ) : null}
         </Item>
         <Item>
-          <St_Key>회사</St_Key>
+          <St_Key>
+            회사<Essential>*</Essential>
+          </St_Key>
           <div>
             <St_value
               name="company"
-              defaultValue={
-                companyGet.companyName
-                  ? companyGet.companyName
-                  : inputValue.company
-              }
+              placeholder="회사 검색"
               value={company || ""}
-              key={
-                companyGet.companyName
-                  ? companyGet.companyName
-                  : inputValue.company
-              }
               onChange={(e) => {
                 setCompany(e.target.value);
               }}
-              onClick={() => navigate("/posts/companySearch")}
+              onClick={() => {
+                dispatch(
+                  __cardInfo({
+                    cardName: cardName ? cardName : "",
+                    email: email,
+                    phoneNum: phoneNum,
+                    department: department ? department : "",
+                    position: position ? position : "",
+                    tel: tel,
+                    fax: fax,
+                    companyType: companyType ? companyType : "",
+                  })
+                );
+                navigate("/posts/companySearch");
+              }}
             ></St_value>
           </div>
           <St_Address
             name="companyAddress"
-            defaultValue={
-              companyGet.companyAddress
-                ? companyGet.companyAddress
-                : inputValue.companyAddress
-            }
             value={companyAddress || ""}
-            key={
-              companyGet.companyAddress
-                ? companyGet.companyAddress
-                : inputValue.companyAddress
-            }
             onChange={(e) => {
               setCompanyAddress(e.target.value);
             }}
@@ -330,42 +383,54 @@ const MainCards = () => {
               <SearchAddress>
                 {companyGet.companyAddress
                   ? companyGet.companyAddress
-                  : inputValue.companyAddress}
+                  : companyAddress}
               </SearchAddress>
             </AddressBox>
           </St_Address>
-          <button onClick={togglePopup} value="false">
+          <CompanyBtn onClick={togglePopup} value="false">
             회사 직접 입력
-          </button>
-          <button onClick={togglePopup}>닫기</button>
+          </CompanyBtn>
+          {/* <button onClick={togglePopup}>닫기</button> */}
           {showPopup ? (
             <div>
-              <input
-                placeholder="회사를 입력하세요"
+              <St_value
+                placeholder="회사명"
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
-              ></input>
-              <Link to="/posts/companyOtherSearch">회사주소검색</Link>
+              ></St_value>
+              <AddressSearch>
+                <Link to="/posts/companyOtherSearch">회사주소검색</Link>
+              </AddressSearch>
             </div>
           ) : null}
         </Item>
         <Item>
-          <St_Key>직책</St_Key>
+          <St_Key>
+            직책<Essential>*</Essential>
+          </St_Key>
           <St_value
             type="text"
             placeholder="직책"
             name="position"
-            onChange={valueChangeHandler}
+            value={position || ""}
+            onChange={(e) => {
+              setPosition(e.target.value);
+            }}
           ></St_value>
         </Item>
         <Item>
-          <St_Key>부서</St_Key>
+          <St_Key>
+            부서<Essential>*</Essential>
+          </St_Key>
           <St_value
             type="text"
             placeholder="부서"
             name="department"
-            onChange={valueChangeHandler}
+            value={department || ""}
+            onChange={(e) => {
+              setDepartment(e.target.value);
+            }}
           ></St_value>
         </Item>
         <Item>
@@ -374,9 +439,8 @@ const MainCards = () => {
             type="text"
             placeholder="회사번호"
             name="tel"
-            defaultValue={imgGet.tel ? imgGet.tel : inputValue.tel}
+            maxLength="13"
             value={tel || ""}
-            key={imgGet.tel ? imgGet.tel : inputValue.tel}
             onChange={(e) => {
               setTel(e.target.value);
             }}
@@ -391,9 +455,8 @@ const MainCards = () => {
             type="text"
             placeholder="팩스"
             name="fax"
-            defaultValue={imgGet.fax ? imgGet.fax : inputValue.fax}
+            maxLength="13"
             value={fax || ""}
-            key={imgGet.fax ? imgGet.fax : inputValue.fax}
             onChange={(e) => {
               setFax(e.target.value);
             }}

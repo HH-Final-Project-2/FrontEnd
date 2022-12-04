@@ -92,7 +92,7 @@ const CardSearch = () => {
         </svg>
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
-      <div style={{ overflowY: "auto" }}>
+      <div>
         {searched !== undefined
           ? searched.map((main) => {
               return (

@@ -47,11 +47,25 @@ export const St_MidHeader = styled.div`
 
 //명함 정보의 key값 박스
 export const Detail_Title_Box = styled.div`
-  width: 50px;
+  width: 100%;
+  max-width: 350px;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
   float: left;
+`;
+
+export const Detail_Div = styled.div`
+  display: flex;
+  text-align: left;
+  justify-content: left;
+`;
+export const HR = styled.hr`
+  margin-top: 40px;
+  margin-bottom: 20px;
+  background: #e5e5e5;
+  height: 1px;
+  border: 0;
 `;
 
 //명함 정보의 key값
@@ -59,6 +73,7 @@ export const St_Detail_Title = styled.div`
   margin-top: 28px;
   color: gray;
   font-size: 14px;
+  width: 60px;
 `;
 
 //명함 정보의 value값 박스
@@ -71,10 +86,10 @@ export const Detail_Body_Box = styled.div`
 
 //명함 정보의 value값
 export const St_Detail_Body = styled.div`
-  margin-left: 15px;
   margin-top: 28px;
+  margin-left: 10px;
   font-size: 14px;
-  align-items: center;
+  width: 270px;
 `;
 
 //지도 div
@@ -82,9 +97,9 @@ export const MapBox = styled.div`
   position: relative;
   z-index: 1;
   margin: 24px auto;
-  margin-bottom: 50px;
-  /* margin-left: 20px;
-  margin-right: 20px; */
+  margin-bottom: 70px;
+  margin-left: 20px;
+  margin-right: 20px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -172,4 +187,26 @@ export const MoreButton = styled.div`
   bottom: 10px;
   left: 230px;
   cursor: pointer;
+`;
+
+export const CardInfoDetail = styled.div`
+  margin: 26px 0px 0px 0px;
+  display: flex;
+`;
+
+export const Position2 = styled.div`
+  font-size: 8px;
+  font-weight: 400;
+  padding: 6px 16px 6px 16px;
+  margin-right: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+`;
+
+export const Department = styled.div`
+  font-size: 8px;
+  font-weight: 400;
+  padding: 6px 16px 6px 16px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 `;

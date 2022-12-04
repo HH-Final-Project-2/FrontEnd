@@ -47,6 +47,7 @@ const CompanySearch = () => {
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: "pointer" }}
           onClick={() => {
+            dispatch(__companyInfo({ companyName: "", companyAddress: "" }));
             navigate(-1);
           }}
         >
@@ -105,34 +106,6 @@ const CompanySearch = () => {
           ))}
       </div>
     </Layout>
-    // <div>
-    //   <div>
-    //     <input
-    //       type="text"
-    //       value={search}
-    //       onChange={searchChangeHandler}
-    //     ></input>
-    //     <button onClick={searchClickHandler}>회사검색</button>
-    //   </div>
-    //   {searched &&
-    //     searched.map((x) => (
-    //       <div
-    //         key={x.id}
-    //         onClick={() => {
-    //           dispatch(
-    //             __companyInfo({
-    //               companyName: x.companyName,
-    //               companyAddress: x.companyAddress,
-    //             })
-    //           );
-    //           navigate(-1);
-    //         }}
-    //       >
-    //         <p>{x.companyName}</p>
-    //         <p>{x.companyAddress}</p>
-    //       </div>
-    //     ))}
-    // </div>
   );
 };
 
