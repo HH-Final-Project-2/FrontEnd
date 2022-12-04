@@ -152,6 +152,11 @@
 .addBtn {
   margin-top: 10px;
   cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 
 .todos {
@@ -163,11 +168,6 @@
   align-items: center;
   justify-content: left;
   padding-left: 15px;
-}
-
-.addBtn {
-  margin-right: 10px;
-  margin-bottom: 10px;
 }
 
 /* 일정 리스트 부분  start*/
