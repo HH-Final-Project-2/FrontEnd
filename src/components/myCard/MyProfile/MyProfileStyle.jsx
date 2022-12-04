@@ -31,11 +31,9 @@ export const St_Info = styled.div`
   margin-top: 7px;
   margin-right: 8px;
   font-size: 13px;
-  font-weight: 400;
   color: gray;
   background-color: #ecebeb;
   padding: 5px;
   border-radius: 5px;
-  font-weight: 500;
   align-items: center;
 `;

@@ -6,13 +6,12 @@ export const LayoutBox = styled.div`
 
   .banner {
     position: relative;
-    bottom: 100px;
+    bottom: 80px;
   }
 `;
 
 export const DivLayout = styled.div`
   width: 375px;
-  min-height: 1000px;
   display: flex;
   flex-direction: column;
   border: 1px solid #e2e6ef;

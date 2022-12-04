@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import Layout from "../../layout/Layout";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Layout from '../../layout/Layout';
 import {
   __writePost,
   __imgPost,
   __cardInfo,
   // __cardInfoGet,
-} from "../../../redux/modules/CardsSlice";
-import ExImg from "../../../images/KakaoTalk_Photo_2022-11-17-03-38-44 001.png";
-import { Link } from "react-router-dom";
+} from '../../../redux/modules/CardsSlice';
+import ExImg from '../../../images/KakaoTalk_Photo_2022-11-17-03-38-44 001.png';
+import { Link } from 'react-router-dom';
 import {
   St_Header,
   PatchBox,
@@ -32,7 +32,10 @@ import {
   Essential,
   CompanyBtn,
   AddressSearch,
-} from "./cardPostStyle";
+  SearchCompanyBtn,
+  SectionLine,
+  AssistiveText,
+} from './cardPostStyle';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -44,16 +47,16 @@ const MainCards = () => {
   //state생성
 
   const [cardName, setCardName] = useState(
-    companyGet.cardName ? companyGet.cardName : ""
+    companyGet.cardName ? companyGet.cardName : ''
   );
   const [companyType, setCompanyType] = useState(
-    companyGet.companyType ? companyGet.companyType : ""
+    companyGet.companyType ? companyGet.companyType : ''
   );
   const [department, setDepartment] = useState(
-    companyGet.department ? companyGet.department : ""
+    companyGet.department ? companyGet.department : ''
   );
   const [position, setPosition] = useState(
-    companyGet.position ? companyGet.position : ""
+    companyGet.position ? companyGet.position : ''
   );
   const [email, setEmail] = useState(
     imgGet.email ? imgGet.email : companyGet.email
@@ -110,7 +113,7 @@ const MainCards = () => {
 
   const isValidEmail =
     email !== undefined && email !== null
-      ? email.includes("@") && email.includes(".")
+      ? email.includes('@') && email.includes('.')
       : false;
 
   const isValidInput =
@@ -137,7 +140,7 @@ const MainCards = () => {
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
-    file.append("cardImg", e.target.files[0]);
+    file.append('cardImg', e.target.files[0]);
     dispatch(__imgPost(file));
   };
 
@@ -164,11 +167,12 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
+
       alert("명함 작성 완료!");
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();
     } else {
-      alert("입력한 내용을 확인해주세요");
+      alert('입력한 내용을 확인해주세요');
     }
   };
   //
@@ -181,7 +185,7 @@ const MainCards = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
             // window.location.reload();
             navigate(-1);
@@ -197,7 +201,7 @@ const MainCards = () => {
 
         <St_Title>명함작성</St_Title>
 
-        <SaveButton onClick={cardsSubmitHandler}>저장</SaveButton>
+        <SaveButton onClick={cardsSubmitHandler}>등록</SaveButton>
       </St_Header>
       <PatchBox>
         <Item>
@@ -207,12 +211,12 @@ const MainCards = () => {
                 type="radio"
                 id="own"
                 name="companyType"
-                value={"own"}
-                checked={companyType === "own"}
+                value={'own'}
+                checked={companyType === 'own'}
                 onChange={(e) => {
                   setCompanyType(e.target.value);
                 }}
-              ></input>
+              />
               <label htmlFor="own">자사</label>
             </RadioDetail>
             <RadioDetail>
@@ -220,21 +224,39 @@ const MainCards = () => {
                 type="radio"
                 id="other"
                 name="companyType"
-                value={"other"}
-                checked={companyType === "other"}
+                value={'other'}
+                checked={companyType === 'other'}
                 onChange={(e) => {
                   setCompanyType(e.target.value);
                 }}
-              ></input>
+              />
               <label htmlFor="other">타사</label>
             </RadioDetail>
           </RadioBox>
         </Item>
         <Item>
-          <St_Key>명함사진</St_Key>
+          <St_Key>
+            명함사진<Essential>*</Essential>
+          </St_Key>
           <ImgBox>
-            <img src={ExImg} alt="" />
-            <div>명함 사진 등록은 예시 이미지와 유사한 형태만 가능합니다.</div>
+            {/* <img src={ExImg} alt="" /> */}
+            <svg
+              width="71"
+              height="39"
+              viewBox="0 0 71 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="71" height="39" rx="2" fill="white" />
+              <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
+              <rect x="4" y="29" width="28" height="2" rx="1" fill="#E2E6EF" />
+              <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
+            </svg>
+
+            <div>
+              명함 사진 등록은 예시 이미지와 <p />
+              유사한 형태만 인식 가능합니다.
+            </div>
           </ImgBox>
           <St_Card>
             {imgGet.imgUrl === undefined ? (
@@ -270,7 +292,7 @@ const MainCards = () => {
               id="card"
               accept="image/*"
               onChange={mediaChangeHandler}
-            ></Input>
+            />
           </St_Card>
         </Item>
         <Item>
@@ -287,27 +309,9 @@ const MainCards = () => {
             onChange={(e) => {
               setCardName(e.target.value);
             }}
-          ></St_value>
+          />
         </Item>
-        <Item>
-          <St_Key>
-            이메일<Essential>*</Essential>
-          </St_Key>
-          <St_value
-            type="text"
-            placeholder="Ex) abc@gmail.com"
-            name="email"
-            value={email || ""}
-            minLength="10"
-            maxLength="30"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></St_value>
-          {/* {isValidEmail === false && email ? (
-            <SearchAddress>이메일을 확인하세요</SearchAddress>
-          ) : null} */}
-        </Item>
+
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>
@@ -321,17 +325,43 @@ const MainCards = () => {
             onChange={(e) => {
               setPhoneNum(e.target.value);
             }}
-          ></St_value>
-          {/* {phoneNum && phoneNum.includes("-") === false ? (
-            <SearchAddress>-을 포함해주세요</SearchAddress>
-          ) : null} */}
+          />
+          
+          {phoneNum && phoneNum.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
+          ) : null}
         </Item>
+
+        <Item>
+          <St_Key>
+            이메일<Essential>*</Essential>
+          </St_Key>
+          <St_value
+            type="text"
+            placeholder="Ex) abc@gmail.com"
+            name="email"
+            value={email || ""}
+            minLength="10"
+            maxLength="30"
+            onChange={(e) => {
+              setPhoneNum(e.target.value);
+            }}
+          />
+          {isValidEmail === false && email ? (
+            <AssistiveText>이메일을 확인하세요</AssistiveText>
+          ) : null}
+        </Item>
+
+        <SectionLine />
+
         <Item>
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
           <div>
             <St_value
+              readOnly
+              type="text"
               name="company"
               placeholder="회사 검색"
               readOnly
@@ -342,23 +372,23 @@ const MainCards = () => {
               onClick={() => {
                 dispatch(
                   __cardInfo({
-                    cardName: cardName ? cardName : "",
+                    cardName: cardName ? cardName : '',
                     email: email,
                     phoneNum: phoneNum,
-                    department: department ? department : "",
-                    position: position ? position : "",
+                    department: department ? department : '',
+                    position: position ? position : '',
                     tel: tel,
                     fax: fax,
-                    companyType: companyType ? companyType : "",
+                    companyType: companyType ? companyType : '',
                   })
                 );
-                navigate("/posts/companySearch");
+                navigate('/posts/companySearch');
               }}
             ></St_value>
           </div>
           <St_Address
             name="companyAddress"
-            value={companyAddress || ""}
+            value={companyAddress || ''}
             onChange={(e) => {
               setCompanyAddress(e.target.value);
             }}
@@ -371,7 +401,7 @@ const MainCards = () => {
                   viewBox="0 0 12 15"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  style={{ marginRight: "8px" }}
+                  style={{ marginRight: '8px' }}
                 >
                   <path
                     fillRule="evenodd"
@@ -399,9 +429,9 @@ const MainCards = () => {
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
-              ></St_value>
+              />
               <AddressSearch>
-                <Link to="/posts/companyOtherSearch">회사주소검색</Link>
+                <Link to="/posts/companyOtherSearch">회사 주소 검색</Link>
               </AddressSearch>
             </div>
           ) : null}
@@ -414,11 +444,11 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 팀장"
             name="position"
-            value={position || ""}
+            value={position || ''}
             onChange={(e) => {
               setPosition(e.target.value);
             }}
-          ></St_value>
+          />
         </Item>
         <Item>
           <St_Key>
@@ -428,26 +458,26 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 영업"
             name="department"
-            value={department || ""}
+            value={department || ''}
             onChange={(e) => {
               setDepartment(e.target.value);
             }}
-          ></St_value>
+          />
         </Item>
         <Item>
-          <St_Key>회사번호</St_Key>
+          <St_Key>유선전화</St_Key>
           <St_value
             type="text"
             placeholder="Ex) 02-000-0000"
             name="tel"
             maxLength="13"
-            value={tel || ""}
+            value={tel || ''}
             onChange={(e) => {
               setTel(e.target.value);
             }}
           ></St_value>
-          {tel && tel.includes("-") === false ? (
-            <SearchAddress>-을 포함해주세요</SearchAddress>
+          {tel && tel.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
         <Item>
@@ -457,13 +487,13 @@ const MainCards = () => {
             placeholder="Ex) 02-000-0000"
             name="fax"
             maxLength="13"
-            value={fax || ""}
+            value={fax || ''}
             onChange={(e) => {
               setFax(e.target.value);
             }}
-          ></St_value>
-          {fax && fax.includes("-") === false ? (
-            <SearchAddress>-을 포함해주세요</SearchAddress>
+          />
+          {fax && fax.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
       </PatchBox>

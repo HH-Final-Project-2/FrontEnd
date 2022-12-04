@@ -1,11 +1,11 @@
-import Layout from "../../layout/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { __viewGet } from "../../../../src/redux/modules/CardsSlice";
-import { useNavigate, useParams } from "react-router";
-import React, { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
-import CardsFooter from "../../footer/CardsFooter";
-import CardBottomSheet from "../../bottomSheet/CardBottomSheet";
+import Layout from '../../layout/Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { __viewGet } from '../../../../src/redux/modules/CardsSlice';
+import { useNavigate, useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import CardsFooter from '../../footer/CardsFooter';
+import CardBottomSheet from '../../bottomSheet/CardBottomSheet';
 import {
   St_Title,
   St_Header,
@@ -33,10 +33,15 @@ import {
   CardInfoDetail,
   Position2,
   Department,
-} from "./ViewMainDetailStyle";
+  CompanyAd,
+  Name2,
+  Address2,
+  SectionLine,
+  St_Detail_Mobile,
+} from './ViewMainDetailStyle';
 
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+const accessToken = localStorage.getItem('authorization');
+const refreshToken = localStorage.getItem('refresh-Token');
 
 const ViewMainDetailPost = () => {
   const navigate = useNavigate();
@@ -85,9 +90,9 @@ const ViewMainDetailPost = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            navigate("/cards");
+            navigate('/cards');
           }}
         >
           <path
@@ -111,26 +116,30 @@ const ViewMainDetailPost = () => {
               <Position>{view.position}</Position>
             </NameBox>
             <NameEng>{view.engName}</NameEng>
+            <CompanyAd>주소 </CompanyAd>
             <Company>{view.company}</Company>
             <AddressBox>
               <Address>{view.companyAddress}</Address>
             </AddressBox>
             <NumBox
               style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "8px",
+                display: 'flex',
+                alignItems: 'center',
+                marginTop: '8px',
               }}
             >
-              <Name>M.</Name>
-              <Address>{view.phoneNum}</Address>
-              <Name>T.</Name>
-              <Address>{view.tel}</Address>
+              <Name2>
+                M.<Address2>{view.phoneNum}</Address2>
+              </Name2>
+
+              <Name2>
+                T.<Address2>{view.tel}</Address2>
+              </Name2>
             </NumBox>
           </OutLine>
         </St_Card>
       </Mycard>
-
+      <SectionLine />
       <St_CardInfo>
         <St_MidHeader>
           <div>{view.cardName}</div>
@@ -142,10 +151,10 @@ const ViewMainDetailPost = () => {
 
         {/* 명함정보의 각 개체에 대한 div */}
         <Detail_Title_Box>
-          <HR></HR>
+          <HR />
           <Detail_Div>
             <St_Detail_Title>연락처</St_Detail_Title>
-            <St_Detail_Body>{view.phoneNum}</St_Detail_Body>
+            <St_Detail_Mobile>{view.phoneNum}</St_Detail_Mobile>
           </Detail_Div>
           <Detail_Div>
             <St_Detail_Title>이메일</St_Detail_Title>
@@ -203,8 +212,8 @@ const ViewMainDetailPost = () => {
           center={map.center}
           isPanto={map.isPanto}
           style={{
-            width: " 335px",
-            height: "192px",
+            width: ' 335px',
+            height: '192px',
           }}
         >
           <MapMarker
