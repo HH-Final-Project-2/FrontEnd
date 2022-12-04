@@ -169,4 +169,54 @@ export const RadioDetail = styled.div`
     font-size: 14px;
   }
 `;
-export const PrevImg = styled.img``;
+export const PrevImg = styled.img`
+  width: 100%;
+  max-width: 311px;
+  height: 176px;
+  margin: 32px auto;
+  border-radius: 8px;
+  padding: 0px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #cecece;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Essential = styled.a`
+  margin-left: 3px;
+  color: #5546ff;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+`;
+export const CompanyBtn = styled.button`
+  width: 100%;
+  max-width: 160px;
+  height: 52px;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  padding-left: 10px;
+  display: flex;
+  color: #1a1f27;
+  letter-spacing: 0.15px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #e5e5e5;
+  color: grey;
+  padding: 15px 35px;
+  margin: 20px 0px 10px 30px;
+`;
+
+export const AddressSearch = styled.div`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: grey;
+  margin-left: 30px;
+  margin-top: 10px;
+`;

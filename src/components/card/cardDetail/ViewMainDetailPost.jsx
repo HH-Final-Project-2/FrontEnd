@@ -28,6 +28,11 @@ import {
   Address,
   NumBox,
   MoreButton,
+  Detail_Div,
+  HR,
+  CardInfoDetail,
+  Position2,
+  Department,
 } from "./ViewMainDetailStyle";
 
 const accessToken = localStorage.getItem("authorization");
@@ -130,20 +135,59 @@ const ViewMainDetailPost = () => {
         <St_MidHeader>
           <div>{view.cardName}</div>
         </St_MidHeader>
+        <CardInfoDetail>
+          <Position2>{view.position}</Position2>
+          <Department>{view.department}</Department>
+        </CardInfoDetail>
 
         {/* 명함정보의 각 개체에 대한 div */}
         <Detail_Title_Box>
-          <St_Detail_Title>연락처</St_Detail_Title>
+          <HR></HR>
+          <Detail_Div>
+            <St_Detail_Title>연락처</St_Detail_Title>
+            <St_Detail_Body>{view.phoneNum}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>이메일</St_Detail_Title>
+            <St_Detail_Body>{view.email}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>유선전화</St_Detail_Title>
+            <St_Detail_Body>{view.tel}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>팩스</St_Detail_Title>
+            <St_Detail_Body>{view.fax}</St_Detail_Body>
+          </Detail_Div>
+          <HR></HR>
+          <Detail_Div>
+            <St_Detail_Title>회사</St_Detail_Title>
+            <St_Detail_Body>{view.company}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>직책</St_Detail_Title>
+            <St_Detail_Body>{view.position}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>부서</St_Detail_Title>
+            <St_Detail_Body>{view.department}</St_Detail_Body>
+          </Detail_Div>
+          <Detail_Div>
+            <St_Detail_Title>주소</St_Detail_Title>
+            <St_Detail_Body>{view.companyAddress}</St_Detail_Body>
+          </Detail_Div>
+
+          {/* <St_Detail_Title>연락처</St_Detail_Title>
           <St_Detail_Title>이메일</St_Detail_Title>
           <St_Detail_Title>유선전화</St_Detail_Title>
           <St_Detail_Title>팩스</St_Detail_Title>
           <St_Detail_Title>회사</St_Detail_Title>
           <St_Detail_Title>직책</St_Detail_Title>
           <St_Detail_Title>부서</St_Detail_Title>
-          <St_Detail_Title>주소</St_Detail_Title>
+          <St_Detail_Title>주소</St_Detail_Title> */}
         </Detail_Title_Box>
         {/* 명함정보의 각 개체의 정보에 대한 div */}
-        <Detail_Body_Box>
+        {/* <Detail_Body_Box>
           <St_Detail_Body>{view.phoneNum}</St_Detail_Body>
           <St_Detail_Body>{view.email}</St_Detail_Body>
           <St_Detail_Body>{view.tel}</St_Detail_Body>
@@ -152,22 +196,22 @@ const ViewMainDetailPost = () => {
           <St_Detail_Body>{view.position}</St_Detail_Body>
           <St_Detail_Body>{view.department}</St_Detail_Body>
           <St_Detail_Body>{view.companyAddress}</St_Detail_Body>
-        </Detail_Body_Box>
-        <MapBox>
-          <Map
-            center={map.center}
-            isPanto={map.isPanto}
-            style={{
-              width: " 335px",
-              height: "192px",
-            }}
-          >
-            <MapMarker
-              position={{ lat: map.center.lat, lng: map.center.lng }}
-            ></MapMarker>
-          </Map>
-        </MapBox>
+        </Detail_Body_Box> */}
       </St_CardInfo>
+      <MapBox>
+        <Map
+          center={map.center}
+          isPanto={map.isPanto}
+          style={{
+            width: " 335px",
+            height: "192px",
+          }}
+        >
+          <MapMarker
+            position={{ lat: map.center.lat, lng: map.center.lng }}
+          ></MapMarker>
+        </Map>
+      </MapBox>
       <CardsFooter />
     </Layout>
   );
