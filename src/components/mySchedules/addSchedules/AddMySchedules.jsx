@@ -23,20 +23,72 @@ import {
 } from "./AddMySchedulesStyle";
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
 
+// const filterStartDate = startDate
+// .toISOString()
+// .replace("T", " ")
+// .split(" ")[0];
+// const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
+// const filterEndDate = endDate.toISOString().replace("T", " ").split(" ")[0];
+// const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
+// const dayday =
+// new Date(+startDate + 3240 * 10000)
+//   .toISOString()
+//   .replace("T", " ")
+//   .replace(/\..*/, "") + filterStartTime.slice(0, 0);
+// const dayday2 =
+// new Date(+endDate + 3240 * 10000)
+//   .toISOString()
+//   .replace("T", " ")
+//   .replace(/\..*/, "") + filterEndTime.slice(0, 0);
+
+// const dateFilterFunction = (dayday, dayday2) => {
+// let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+// if (!(regex.test(dayday) && regex.test(dayday2))) return "Not Date Format";
+// let result = [];
+// let curDate = new Date(dayday);
+// while (curDate <= new Date(dayday2)) {
+//   result.push(curDate.toISOString().split("T")[0]);
+//   curDate.setDate(curDate.getDate() + 1);
+// }
+// return result.join();
+// };
+// let filteredDate = dateFilterFunction(dayday, dayday2, startDate);
+
+// console.log(dayday, dayday2);
+
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
   const [title, setTitle] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const filterStartDate = startDate
+  const startPlusNine = Number(startDate.toISOString().slice(11, 13));
+  const endPlusNine = Number(endDate.toISOString().slice(11, 13));
+
+  const dayday = new Date(+startDate + 3240 * 10000)
     .toISOString()
     .replace("T", " ")
-    .split(" ")[0];
-  const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
-  const filterEndDate = endDate.toISOString().replace("T", " ").split(" ")[0];
-  const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
+    .replace(/\..*/, "")
+    .slice(0, 10);
+  const dayday2 = new Date(+endDate + 3240 * 10000)
+    .toISOString()
+    .replace("T", " ")
+    .replace(/\..*/, "")
+    .slice(0, 10);
 
+  console.log(startPlusNine, endPlusNine, dayday, dayday2);
+
+  const filterStartDate =
+    startPlusNine <= 9
+      ? dayday
+      : startDate.toISOString().replace("T", " ").split(" ")[0];
+  const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
+  const filterEndDate =
+    endPlusNine <= 9
+      ? dayday2
+      : endDate.toISOString().replace("T", " ").split(" ")[0];
+  const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
+  console.log(filterStartDate, filterEndDate);
   const dateFilterFunction = (filterStartDate, filterEndDate) => {
     let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
     if (!(regex.test(filterStartDate) && regex.test(filterEndDate)))
@@ -50,7 +102,6 @@ const AddMySchedules = () => {
     return result.join();
   };
   let filteredDate = dateFilterFunction(filterStartDate, filterEndDate);
-  console.log(filteredDate);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

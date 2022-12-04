@@ -39,7 +39,7 @@ const MainView = () => {
     dispatch(__mainGet());
   }, [dispatch]);
 
-  if (mainpost === undefined) return null;
+  // if ([mainpost].includes("명") || mainpost === undefined) return null;
 
   return (
     <div>
@@ -88,7 +88,7 @@ const MainView = () => {
         </CategoryBtnBox>
       </div>
       <CardList>
-        {mainpost !== "명함을 등록해주세요" || mainpost !== null
+        {[mainpost].includes("명") || mainpost !== undefined
           ? mainpost.map((main) => {
               if (main.companyType === "own") {
                 return (

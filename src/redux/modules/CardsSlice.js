@@ -134,7 +134,7 @@ export const __fixPost = createAsyncThunk(
         payload
       );
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
     }
