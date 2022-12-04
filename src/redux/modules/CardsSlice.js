@@ -34,7 +34,7 @@ export const __imgPost = createAsyncThunk(
         config
       );
       console.log(data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +47,7 @@ export const __mainGet = createAsyncThunk(
     try {
       const data = await instance.get("/api/businessCards");
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -178,7 +178,7 @@ const initialState = {
     },
   ],
   searchCompanyInfo: [{}],
-  searchCard: [{}],
+  searchCard: undefined,
   viewList: [{}],
   companyInfo: [{}],
 };
