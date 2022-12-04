@@ -86,7 +86,7 @@ export const CommentWirteButton = styled.button`
   width: 50px;
   border: none;
   outline: none;
-  background: #bbb5ff;
+  background: #5546ff;
   color: #ffffff;
   font-size: 14px;
   border-top-right-radius: 8px;
@@ -105,7 +105,6 @@ export const LikeButton = styled.div`
   margin-left: 13px;
   margin-top: 15px;
   margin-bottom: 10px;
-
   cursor: pointer;
 `;
 

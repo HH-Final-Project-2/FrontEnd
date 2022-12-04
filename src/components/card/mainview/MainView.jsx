@@ -42,7 +42,7 @@ const MainView = () => {
   if (mainpost === undefined) return null;
 
   return (
-    <Layout>
+    <div>
       <Header />
       <div>
         <div>
@@ -147,7 +147,7 @@ const MainView = () => {
       <WriteButton onClick={() => navigate("/posts")}>
         <img src="images/작성.png" alt="" />
       </WriteButton>
-    </Layout>
+    </div>
   );
 };
 

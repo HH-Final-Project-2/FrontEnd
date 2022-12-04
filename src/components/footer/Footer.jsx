@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { FooterBox } from './FooterStyle';
-import { __getPostAll } from '../../redux/modules/PostSlice';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ const Footer = () => {
   return (
     <FooterBox>
       {/* 명함첩으로 이동 */}
-
       <svg
         onClick={() => navigate('/cards')}
         width="72"

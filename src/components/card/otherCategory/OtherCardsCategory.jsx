@@ -1,10 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { __mainGet } from "../../../redux/modules/CardsSlice";
-import Layout from "../../layout/Layout";
-import Header from "../../header/Header";
+import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { __mainGet } from '../../../redux/modules/CardsSlice';
+import Layout from '../../layout/Layout';
+import Header from '../../header/Header';
 
 import {
   CategoryBtnBox,
@@ -27,7 +27,7 @@ import {
   CardInCardDetail1Position,
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
-} from "./OtherCardsStyle";
+} from './OtherCardsStyle';
 
 const MainView = () => {
   const mainpost = useSelector((state) => state.PostReducer.list.data);
@@ -42,7 +42,7 @@ const MainView = () => {
   if (mainpost === undefined) return null;
 
   return (
-    <Layout>
+    <div>
       <Header />
       <div>
         <div>
@@ -66,14 +66,14 @@ const MainView = () => {
         <CategoryBtnBox>
           <CategoryBtn1
             onClick={() => {
-              navigate("/cards");
+              navigate('/cards');
             }}
           >
             자사
           </CategoryBtn1>
           <CategoryBtn2
             onClick={() => {
-              navigate("/otherCategory");
+              navigate('/otherCategory');
             }}
           >
             타사
@@ -81,9 +81,9 @@ const MainView = () => {
         </CategoryBtnBox>
       </div>
       <CardList>
-        {mainpost !== "명함을 등록해주세요"
+        {mainpost !== '명함을 등록해주세요'
           ? mainpost.map((main) => {
-              if (main.companyType === "other") {
+              if (main.companyType === 'other') {
                 return (
                   <div>
                     <Card
@@ -125,10 +125,10 @@ const MainView = () => {
             })
           : null}
       </CardList>
-      <WriteButton onClick={() => navigate("/posts")}>
+      <WriteButton onClick={() => navigate('/posts')}>
         <img src="images/작성.png" alt="" />
       </WriteButton>
-    </Layout>
+    </div>
   );
 };
 

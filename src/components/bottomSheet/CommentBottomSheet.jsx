@@ -40,6 +40,7 @@ export default function CommentBottomSheet({ commentList, id }) {
                     commentId: commentList.id,
                   })
                 );
+                setOpen(false)
               } else {
                 return;
               }

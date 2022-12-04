@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
@@ -11,6 +11,7 @@ import {
 } from '../../../redux/modules/PostSlice';
 import Post from '../post/Post';
 import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+import { ReactComponent as SelectArrow } from '../../../images/selectBox.svg';
 import {
   CommunityLayout,
   Section1,
@@ -38,16 +39,6 @@ const PostList = () => {
   const { postTopFive } = useSelector((state) => state.PostSlice);
 
   // 인기글 슬라이드
-  // const [dragging, setDragging] = useState(false);
-
-  // const handleBeforeChange = useCallback(() => {
-  //   setDragging(true);
-  // }, []);
-
-  // const handleAfterChange = useCallback((i: number) => {
-  //   setDragging(false);
-  // }, []);
-
   const settings = {
     dots: true, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: true, // loop를 만들지
@@ -57,10 +48,7 @@ const PostList = () => {
     centerMode: false,
     arrows: false,
     vertical: false,
-    autoplay: true,
-    //touchThreshold: 100,
-    // beforeChange: handleBeforeChange,
-    // afterChange: handleAfterChange,
+    // autoplay: true,
   };
 
   const [selectBox, setSelectBox] = useState('');
@@ -73,7 +61,7 @@ const PostList = () => {
 
   // 검색
   useEffect(() => {
-    if (searchQuery == null) dispatch(__getPostAll());
+    if (searchQuery === null) dispatch(__getPostAll());
     else dispatch(__searchPost(searchQuery));
   }, [dispatch]);
 
@@ -91,15 +79,15 @@ const PostList = () => {
 
   const [currentPosts, setCurrentPosts] = useState([]); // 보여줄 게시글
   const [postPerPage] = useState(20); //페이지당 게시글 개수
-  const indexOfLastPost = page * postPerPage; // 1 - 20
-  const indexOfFirstPost = indexOfLastPost - postPerPage; // 1 - 0
+  const indexOfLastPost = page * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
 
   const handlePageChange = (page) => {
     setPage(page);
   };
 
   useEffect(() => {
-    setCurrentPosts(post.slice(indexOfFirstPost, indexOfLastPost)); // 1페이지 - 게시글 20개를 자른다
+    setCurrentPosts(post.slice(indexOfFirstPost, indexOfLastPost));
     window.scrollTo(0, 0);
   }, [indexOfFirstPost, indexOfLastPost, page, post]);
 
@@ -109,15 +97,6 @@ const PostList = () => {
     <CommunityLayout>
       <Section1>
         <Section2>
-          {/* <svg
-            width="10"
-            height="17"
-            viewBox="0 0 10 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
-          </svg> */}
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
         <SearchButton onClick={() => navigate('/search')}>
@@ -153,13 +132,9 @@ const PostList = () => {
           <option hidden>정렬</option>
           <option value="news">최신순</option>
           <option value="hits">조회순</option>
-          <option value="likes">좋아요순</option>
+          <option value="likes">좋아요</option>
         </select>
-        <select>
-          <option>전체</option>
-          <option>전체</option>
-          <option>전체</option>
-        </select>
+        <SelectArrow />
       </SortPost>
       <Section3>
         {currentPosts.map((post) => {
@@ -181,8 +156,28 @@ const PostList = () => {
           itemsCountPerPage={postPerPage}
           totalItemsCount={post.length}
           pageRangeDisplayed={5}
-          prevPageText={'‹'}
-          nextPageText={'›'}
+          prevPageText={
+            <svg
+              width="6"
+              height="10"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M5 1L1 5L5 9" stroke="#8892A0" />
+            </svg>
+          }
+          nextPageText={
+            <svg
+              width="6"
+              height="10"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 9L5 5L1 1" stroke="#8892A0" />
+            </svg>
+          }
           onChange={handlePageChange}
         />
       </PaginationBox>
