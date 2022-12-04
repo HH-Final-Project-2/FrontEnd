@@ -88,8 +88,11 @@ const MainView = () => {
         </CategoryBtnBox>
       </div>
       <CardList>
-        {[mainpost].includes("명") || mainpost !== undefined
-          ? mainpost.map((main) => {
+        {[mainpost].includes("명") ||
+        mainpost === undefined ||
+        mainpost === "명함을 등록해주세요"
+          ? null
+          : mainpost.map((main) => {
               if (main.companyType === "own") {
                 return (
                   <div>
@@ -141,8 +144,7 @@ const MainView = () => {
                   </div>
                 );
               }
-            })
-          : null}
+            })}
       </CardList>
       <WriteButton onClick={() => navigate("/posts")}>
         <img src="images/작성.png" alt="" />
