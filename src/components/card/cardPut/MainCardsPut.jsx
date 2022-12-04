@@ -200,9 +200,7 @@ const MainCards = () => {
               <St_value
                 name="company"
                 value={
-                  companyGet.companyName
-                    ? companyGet.companyName
-                    : inputValue.company
+                  companyGet.company ? companyGet.company : inputValue.company
                 }
                 onChange={valueChangeHandler}
                 onClick={() => navigate("/posts/companySearch")}
@@ -251,7 +249,7 @@ const MainCards = () => {
                 <St_value
                   placeholder="회사명"
                   onChange={(e) => {
-                    setInputValue(e.target.value);
+                    setInputValue.company(e.target.value);
                   }}
                 ></St_value>
                 <AddressSearch>

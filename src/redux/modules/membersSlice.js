@@ -6,25 +6,60 @@ const initialState = {
   members: [],
   isLoading: false,
   error: null,
+  check: [
+    {
+      success: "",
+      data: "",
+      error: "",
+    },
+  ],
+  auth: [
+    {
+      success: "",
+      data: "",
+      error: "",
+    },
+  ],
 };
 
 // 이메일 중복체크
-export const emailCheck = createAsyncThunk("SIGNUP", async (payload) => {
-  try {
-    await axios
-      .post("https://bkyungkeem.shop/api/members/check", payload)
-      .then((res) => {
-        // 사용가능한 이메일 alert
-        if (res.data.success === true) alert(res.data.data);
+export const emailCheck = createAsyncThunk(
+  "SIGNUP",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/mail/auth",
+        payload
+      );
+      // 사용가능한 이메일 alert
+      if (data.data.success === true)
+        return alert(data.data.data), thunkAPI.fulfillWithValue(data.data);
+      // 중복되는 이메일 alert
+      if (data.data.success === false) alert(data.data.error.message);
+    } catch (error) {}
+  }
+);
+// 이메일 인증
+export const emailAuth = createAsyncThunk(
+  "AUTH_EMAIL",
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.post(
+        "https://bkyungkeem.shop/api/mail/confirm",
+        payload
+      );
+      // 사용가능한 이메일 alert
+      if (data.data.success === true)
+        return alert(data.data.data), thunkAPI.fulfillWithValue(data.data);
 
-        // 중복되는 이메일 alert
-        if (res.data.success === false) alert(res.data.error.message);
-      });
-  } catch (error) {}
-});
+      // 중복되는 이메일 alert
+      if (data.data.success === false) alert(data.data.error.message);
+    } catch (error) {}
+  }
+);
 
 // 회원가입
-export const signUp = createAsyncThunk("SIGNUP", async (payload) => {
+export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
   try {
     await axios.post("https://bkyungkeem.shop/api/members/signup", payload);
     alert("회원가입 성공");
@@ -110,7 +145,14 @@ const memberSlice = createSlice({
   name: "members",
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    [emailCheck.fulfilled]: (state, action) => {
+      state.check = action.payload;
+    },
+    [emailAuth.fulfilled]: (state, action) => {
+      state.auth = action.payload;
+    },
+  },
 });
-
+export const {} = memberSlice.actions;
 export default memberSlice.reducer;
