@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getCookie } from '../../shared/Cookie';
 import instance from '../../shared/Request';
 const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
+
 
 // 인기 게시글 top5
 export const topFivePost = createAsyncThunk(
@@ -121,10 +123,6 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
-    // console.log(payload)
-    // for (var pair of payload.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
     try {
       const { data } = await axios.put(
         `https://bkyungkeem.shop/api/posting/${payload.id}`,
@@ -250,7 +248,6 @@ export const PostSlice = createSlice({
     //게시글 작성
     [__writePost.fulfilled]: (state, action) => {
       state.isLoading = true;
-      console.log('글작성 리듀서 이즈로딩', state.isLoading)
       state.post = [action.payload, ...state.post];
     },
 
