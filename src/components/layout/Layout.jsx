@@ -5,9 +5,9 @@ import { ReactComponent as Banner } from "../../images/banner.svg";
 const Layout = ({ children }) => {
   return (
     <LayoutBox>
-      <div className="banner">
+      {/* <div className="banner">
         <Banner />
-      </div>
+      </div> */}
       <DivLayout>{children}</DivLayout>
     </LayoutBox>
   );

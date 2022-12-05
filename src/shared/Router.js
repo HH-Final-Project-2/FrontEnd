@@ -40,8 +40,6 @@ import OtherSearchModal from "../components/card/companySearch/OtherSearchModal"
 const Router = () => {
   const access = localStorage.getItem("authorization");
   const refresh = localStorage.getItem("refresh-Token");
-  // const access = getCookie("authorization");
-  // const refresh = getCookie("refresh-Token");
 
   return (
     <BrowserRouter>
