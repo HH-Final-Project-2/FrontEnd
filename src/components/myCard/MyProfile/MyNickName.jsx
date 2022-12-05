@@ -3,8 +3,16 @@ import { useNavigate } from 'react-router';
 import Layout from '../../layout/Layout';
 import MyCardFooter from '../../footer/MyCardFooter';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
-import { St_Header, St_Title, InputBox, ButtonX } from './MyNickNameStyle';
-import { St_value } from '../MyCardPatch/MyCardPatchStyle';
+import {
+  St_Header,
+  St_Title,
+  InputBox,
+  ButtonX,
+  St_value,
+  Btns,
+  CancelBtn,
+  SaveBtn,
+} from './MyNickNameStyle';
 import { ReactComponent as Icx } from '../../../images/ic-x.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getProfile, _PutPorfile } from '../../../redux/modules/profileSlice';
@@ -64,22 +72,18 @@ const MyNickName = () => {
             nav('/mypage');
           }}
         />
-
         <St_Title>닉네임 변경</St_Title>
       </St_Header>
       <InputBox>
-        <St_value
-          name="nickname"
-          value={nickname || ''}
-          onChange={onChange}
-        ></St_value>
+        <St_value name="nickname" value={nickname || ''} onChange={onChange} />
       </InputBox>
       <ButtonX onClick={cancel}>
         <Icx />
       </ButtonX>
-      <div>
-        <button onClick={updateHandler}>저장</button>
-      </div>
+      <Btns>
+        <CancelBtn onClick={() => nav('/mypage')}>취소</CancelBtn>
+        <SaveBtn onClick={updateHandler}>저장</SaveBtn>
+      </Btns>
       <MyCardFooter />
     </Layout>
   );

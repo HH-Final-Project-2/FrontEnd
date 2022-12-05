@@ -149,7 +149,6 @@ const PostEdit = () => {
           </div>
           <EditSection1Title>게시글 수정</EditSection1Title>
         </EditSection1>
-        <SectionLine />
         <SelectJob>
           <select
             value={memberPost.jobGroup}

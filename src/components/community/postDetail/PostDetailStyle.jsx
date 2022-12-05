@@ -6,15 +6,17 @@ export const DetailBox = styled.div`
 `;
 
 export const Section1 = styled.div`
-  position: relative;
-  top: 37px;
+  width: 373px;
+  height: 56px;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #e2e6ef;
 
   .moreBtn {
-    margin-right: 13px;
-    margin-top: -5px;
+    margin-bottom: 14px;
   }
 `;
 

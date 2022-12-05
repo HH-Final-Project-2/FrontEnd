@@ -7,15 +7,12 @@ export const St_Profile = styled.div`
   margin: 24px 0px 0px 21px;
 `;
 export const PutButton = styled.a`
-  margin: auto;
-  margin-right: 20px;
+  margin-right: 24px;
   color: #277dff;
   cursor: pointer;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.15px;
 `;
 export const St_Header = styled.div`
   display: flex;
