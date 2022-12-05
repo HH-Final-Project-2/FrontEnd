@@ -26,73 +26,84 @@ import {
   getChatRoom,
   getMessage,
   getUserinfo,
+  subscribeId,
   _postId,
 } from '../../redux/modules/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Icbefore } from '../../images/ic-before.svg';
-import { compose } from 'redux';
 
 const Chatroom = () => {
   const headers = {
     Authorization: localStorage.getItem('authorization'),
     'Refresh-Token': localStorage.getItem('refresh-Token'),
   };
+  const socket = new SockJS('http://13.124.142.195/stomp/chat');
+  const client = Stomp.over(socket);
   const scrollRef = useRef();
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const socket = new SockJS('http://13.124.142.195/stomp/chat');
-  const client = Stomp.over(socket);
 
-  const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey == false) {
-      sendMessage();
-    }
-  };
-
-  //현재 채팅방의 아이디를 가져옴
+  //게시글에서 가져오는 채팅방 ID
   const id = useSelector((state) => state.chat.roomId);
-  console.log(id);
-  //채팅방 전체를 불러옴
-  // const chatRoom = useSelector((state) => state.chat.chatRoom);
-  // console.log(chatRoom);
+  // console.log(id);
+  //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
-  console.log(chatlistid);
+  // console.log(chatlistid);
+  //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
   console.log(userinfo);
+  //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
+  // console.log(chatList);
+  // console.log(client.ws.readyState);
 
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    onConneted();
-    return () => {
-      onConneted();
-    };
-  }, [id, chatlistid]);
-
-  useEffect(() => {
-    window.setTimeout(() => {
-      dispatch(getUserinfo(id === '' ? chatlistid : id));
-      dispatch(getMessage(id === '' ? chatlistid : id));
-      dispatch(getChatRoom());
-    }, 200);
-  }, [id, chatlistid]);
+  // if (client.ws.readyState === 0) {
+  //   setInterval(() => {
+  //     console.log(client.ws.readyState);
+  //   }, 500);
+  // }
 
   const onConneted = () => {
     try {
       client.connect(headers, () => {
-        client.subscribe(
-          `/sub/chat/room/${id === '' ? chatlistid : id}`,
-          (data) => {
-            const newMessage = JSON.parse(data.body);
-            dispatch(addMessage(newMessage));
-          },
-          headers
-        );
+        // console.log(client.ws.readyState);
+        // console.log(client.connected);
+        if (client.ws.readyState === 1 && client.connected === true) {
+          console.log(client.ws.readyState);
+          return client.subscribe(
+            `/sub/chat/room/${id === '' ? chatlistid : id}`,
+            (data) => {
+              // dispatch(subscribeId(data.headers.subscription));
+              const newMessage = JSON.parse(data.body);
+              dispatch(addMessage(newMessage));
+            },
+            headers
+          );
+        }
       });
     } catch (error) {}
   };
-  console.log(client === undefined);
+
+  useEffect(() => {
+    onConneted();
+    return () => {
+      unSubscribe();
+    };
+  }, [id, chatlistid]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(getUserinfo(id === '' ? chatlistid : id));
+      dispatch(getMessage(id === '' ? chatlistid : id));
+    }, 200);
+  }, [id, chatlistid]);
+
+  // const waitForConnection =(stompClient:Stomp.Client, callback :any) =>{
+
+  // }
+
   const sendMessage = () => {
     client.send(
       '/pub/chat/message',
@@ -102,21 +113,48 @@ const Chatroom = () => {
         message: message,
       })
     );
+
     setMessage('');
   };
 
-  //disconnect
-  const disConnected = () => {
-    try {
-      client.disconnect(() => {
-        client.unsubscribe(`/sub/chat/room/${id === '' ? chatlistid : id}`);
-      }, headers);
-    } catch (error) {}
+  const unSubscribe = () => {
+    client
+      .subscribe(
+        `/sub/chat/room/${id === '' ? chatlistid : id}`,
+        (data) => {},
+        headers
+      )
+      .unsubscribe();
   };
 
-  // const unSubscribe =() =>{
-  //   if(client)
+  const handleEnterPress = (e) => {
+    if (e.keyCode === 13 && e.shiftKey == false) {
+      sendMessage();
+    }
+  };
+
+  // function waitForConnection(callback) {
+  //   setTimeout(
+  //     function () {
+  //       // 연결되었을 때 콜백함수 실행
+  //       if (client.ws.readyState === 1) {
+  //         callback();
+  //         // 연결이 안 되었으면 재호출
+  //       } else {
+  //         waitForConnection(client, callback);
+  //       }
+  //     },
+  //     1 // 밀리초 간격으로 실행
+  //   );
   // }
+
+  // const disConneted = () => {
+  //   try {
+  //     client.disconnect(() => {
+  //       client.unsubscribe();
+  //     }, headers);
+  //   } catch (error) {}
+  // };
 
   useEffect(() => {
     // 현재 스크롤 위치 === scrollRef.current.scrollTop
@@ -124,7 +162,13 @@ const Chatroom = () => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [chatList]);
 
-  if (chatList === undefined || userinfo === undefined) return;
+  // if (
+  //   chatList === undefined &&
+  //   userinfo === undefined &&
+  //   id === undefined &&
+  //   chatlistid === undefined
+  // )
+  //   return;
 
   return (
     <Layout>

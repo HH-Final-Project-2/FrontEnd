@@ -8,16 +8,10 @@ const refreshToken = localStorage.getItem("refresh-Token");
 const initialState = {
   roomId: "",
   chat: [],
-  userinfo:
-  [{
-    myId: "",
-    myNickname: "",
-    otherNickname: "",
-    otherUserId: "",
-  }],
-
+  userinfo:"",
   chatRoom: "",
   chatListroomId: "",
+  subscribeId:"",
   isLoading: false,
   error: null,
 };
@@ -42,10 +36,30 @@ export const getChatRoom = createAsyncThunk(
   }
 );
 
+//채팅방 삭제
+export const deleteChatroom = createAsyncThunk(
+  "post/delete",
+  async (payload, thunkAPI) => {
+    try {
+      const {data} = await axios.delete(
+        `http://13.124.142.195/chat/rooms/${payload}`,
+        {
+          headers: {
+            contentType: "application/json",
+            "Authorization":accessToken,
+            "Refresh-Token":refreshToken
+          },
+        }
+      );
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
+  }
+);
+
+
 export const _postId = createAsyncThunk(
   "post/chatid",
   async (payload, thunkAPI) => {
-
     try {
       const {data} = await axios.post(
         "http://13.124.142.195/chat/rooms",
@@ -66,18 +80,20 @@ export const _postId = createAsyncThunk(
 //메시지 불러오기
 export const getMessage = createAsyncThunk(
   "get/chat",
-  async (payload, { rejectWithValue }) => {
+  async (payload, thunkAPI ) => {
+    console.log(payload)
     try {
-      const response = await axios.get(`http://13.124.142.195/chat/rooms/${payload}/messages`, {
+      const data = await axios.get(`http://13.124.142.195/chat/rooms/${payload}/messages`, {
         headers: {
           contentType: "application/json",
           "authorization": accessToken,
           "refresh-Token": refreshToken,
         },
       });
-      return response.data;
+      return thunkAPI.fulfillWithValue(data.data);
+
     } catch (error) {
-      return rejectWithValue(error.response.data);
+
     }
   }
 );
@@ -87,7 +103,7 @@ export const getMessage = createAsyncThunk(
 export const getUserinfo = createAsyncThunk(
   "get/userinfo",
   async (payload, thunkAPI) => {
-    // console.log("유저정보페이로드",payload)
+    console.log(payload)
     try {
       const { data } = await axios.get(`http://13.124.142.195/chat/rooms/userInfo/${payload}`, {
         headers: {
@@ -100,11 +116,6 @@ export const getUserinfo = createAsyncThunk(
     } catch (error) {}
   }
 );
-
-
-
-
-
 
 
 export const chatSlice = createSlice({

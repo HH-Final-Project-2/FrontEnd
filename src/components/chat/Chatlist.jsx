@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import { getChatRoom, roomIdSave } from '../../redux/modules/chatSlice';
+import {
+  deleteChatroom,
+  getChatRoom,
+  roomIdSave,
+} from '../../redux/modules/chatSlice';
 
 const Chatlist = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
   const { chatRoom } = useSelector((state) => state.chat);
-  console.log(chatRoom);
 
   useEffect(() => {
     dispatch(getChatRoom());
@@ -36,6 +39,15 @@ const Chatlist = () => {
                 <ChatName>{x.roomName}</ChatName>
                 <LastChat>{x.lastMessage}</LastChat>
               </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(deleteChatroom(x.chatRoomUuid));
+                  window.location.reload();
+                }}
+              >
+                나가기
+              </button>
             </ChatsBox>
           );
         })}
