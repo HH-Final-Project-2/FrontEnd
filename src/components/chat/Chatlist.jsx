@@ -1,33 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import {
+  deleteChatroom,
+  getChatRoom,
+  roomIdSave,
+} from '../../redux/modules/chatSlice';
 
 const Chatlist = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
+
+  const { chatRoom } = useSelector((state) => state.chat);
+
+  useEffect(() => {
+    dispatch(getChatRoom());
+  }, []);
+
+  // if (chatRoom === undefined) return;
+
   return (
     <div>
-      <ChatsBox
-        onClick={() => {
-          nav('/chat/chatroom/');
-        }}
-      >
-        <ProBox>
-          <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
-        </ProBox>
-        <div>
-          <ChatName>김승재</ChatName>
-          <LastChat>마지막 채팅</LastChat>
-        </div>
-      </ChatsBox>
-      <ChatsBox>
-        <ProBox>
-          <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
-        </ProBox>
-        <div>
-          <ChatName>김승재</ChatName>
-          <LastChat>마지막 채팅</LastChat>
-        </div>
-      </ChatsBox>
+      {chatRoom &&
+        chatRoom.map((x) => {
+          return (
+            <ChatsBox
+              key={chatRoom.id}
+              onClick={() => {
+                dispatch(roomIdSave(x.chatRoomUuid));
+                nav('/chat/chatroom/');
+              }}
+            >
+              <ProBox>
+                <Profile />
+              </ProBox>
+              <div>
+                <ChatName>{x.roomName}</ChatName>
+                <LastChat>{x.lastMessage}</LastChat>
+              </div>
+              <div className="chatSection">
+                <ChatAt>오전 11:57</ChatAt>
+                <ChatAlarm>1</ChatAlarm>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(deleteChatroom(x.chatRoomUuid));
+                  window.location.reload();
+                }}
+              >
+                나가기
+              </button>
+            </ChatsBox>
+          );
+        })}
     </div>
   );
 };
@@ -35,45 +62,80 @@ export default Chatlist;
 
 const ChatsBox = styled.div`
   display: flex;
-  margin: auto;
   align-items: center;
-  //width: 50vw;
-  width: 500px;
-  height: 70px;
+
+  width: 373px;
+  height: 76px;
+
   cursor: pointer;
+
+  .chatSection {
+    margin-left: 26px;
+  }
 `;
+
 const ProBox = styled.div`
-  border-radius: 18px;
   width: 100%;
-  max-width: 50px;
+  max-width: 48px;
   height: 100%;
-  max-height: 50px;
-  margin-left: 10px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-`;
-const PorImg = styled.img`
-  width: 100%;
-  max-width: 50px;
-  height: 100%;
-  max-height: 50px;
-  border-radius: 18px;
+  max-height: 48px;
+  margin-left: 16px;
 `;
 
 const ChatName = styled.h4`
-  display: flex;
-  margin: auto;
+  width: 200px;
   margin-bottom: 5px;
   margin-left: 15px;
-  align-items: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  color: #1a1f27;
 `;
 
 const LastChat = styled.div`
-  display: flex;
-  margin: auto;
+  width: 200px;
   margin-bottom: 5px;
   margin-left: 15px;
   align-items: center;
   font-size: 13px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #8892a0;
+`;
+
+const ChatAt = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  color: #8892a0;
+
+  margin-bottom: 8px;
+`;
+
+const ChatAlarm = styled.div`
+  width: 20px;
+  height: 20px;
+
+  margin-left: auto;
+
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #ffffff;
+  background: #ff4b4b;
 `;

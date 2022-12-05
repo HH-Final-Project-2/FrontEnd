@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Calendar from 'react-calendar';
-import './mySchedulesItme.css';
-import moment from 'moment';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { __schedulesGet } from '../../../redux/modules/SchedulesSlice';
-import { useNavigate } from 'react-router-dom';
-import addimg from '../../../images/Property 1=default.svg';
-import Footer from '../../footer/Footer';
-import Delete from '../../../images/ic-close-fill-wh-32px.svg';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Calendar from "react-calendar";
+import "./mySchedulesItme.css";
+import moment from "moment";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
+import { useNavigate } from "react-router-dom";
+import addimg from "../../../images/Property 1=default.svg";
+import Footer from "../../footer/Footer";
+import Delete from "../../../images/ic-close-fill-wh-32px.svg";
 
-const accessToken = localStorage.getItem('authorization');
-const refreshToken = localStorage.getItem('refresh-Token');
+const accessToken = localStorage.getItem("authorization");
+const refreshToken = localStorage.getItem("refresh-Token");
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
@@ -26,10 +26,6 @@ const MySchedulesItem = () => {
     dispatch(__schedulesGet());
   }, [dispatch]);
 
-  const addClickHandler = (e) => {
-    e.preventDefault();
-    navigate('/addSchedules');
-  };
   if (marks === null) return;
 
   return (
@@ -40,13 +36,16 @@ const MySchedulesItem = () => {
           <img
             src={addimg}
             className="addBtn"
-            onClick={addClickHandler}
+            onClick={() => {
+              navigate("/addSchedules");
+            }}
             alt=""
           />
         </div>
+
         <Calendar
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
-          formatDay={(locale, date) => moment(date).format('DD')} // 날'일' 제외하고 숫자만 보이도록 설정
+          formatDay={(locale, date) => moment(date).format("DD")} // 날'일' 제외하고 숫자만 보이도록 설정
           value={value}
           minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           maxDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
@@ -54,7 +53,7 @@ const MySchedulesItem = () => {
           showNeighboringMonth={false} //  이전, 이후 달의 날짜는 보이지 않도록 설정
           className="mx-auto w-full text-sm border-b"
           tileContent={({ date, view }) => {
-            const ddate = moment(date).format('YYYY-MM-DD');
+            const ddate = moment(date).format("YYYY-MM-DD");
 
             let html = [];
 
@@ -71,11 +70,12 @@ const MySchedulesItem = () => {
           }}
         />
         <div className="detailTodo">
-          {moment(value).format('MM월 DD일 일정')}
+          {moment(value).format("MM월 DD일 일정")}
           {marks !== null
             ? marks.map((x) => {
                 if (
-                  x.filteredDate.includes(moment(value).format('YYYY-MM-DD'))
+                  x.filteredDate !== undefined &&
+                  x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (
                     <div className="todoBox">
@@ -107,7 +107,7 @@ const MySchedulesItem = () => {
                             const config = {
                               headers: {
                                 Authorization: accessToken,
-                                'Refresh-Token': refreshToken,
+                                "Refresh-Token": refreshToken,
                               },
                             };
                             axios
@@ -125,7 +125,7 @@ const MySchedulesItem = () => {
                               .then(function () {
                                 // always executed
                               });
-                            alert('DELETE SECCESS');
+                            alert("DELETE SECCESS");
                             window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
                           }}
                         />

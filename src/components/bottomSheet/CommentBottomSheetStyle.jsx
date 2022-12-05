@@ -20,6 +20,6 @@ export const SheetButton = styled.div`
   align-items: center;
   height: 10px;
   margin-top: 17px;
-  margin-right: 3px;
+  margin-right: 16px;
   cursor: pointer;
 `;

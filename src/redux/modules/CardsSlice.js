@@ -83,6 +83,20 @@ export const __CardSearchGet = createAsyncThunk(
     }
   }
 );
+export const __cardInfo = createAsyncThunk(
+  "DEFAULT_CARD",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const data = await instance.post(`/api/cardInfo`, payload);
+      console.log(data.data.data);
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 export const __companyInfo = createAsyncThunk(
   "COMPANY_INFO",
   async (payload, thunkAPI) => {
@@ -120,7 +134,7 @@ export const __fixPost = createAsyncThunk(
         payload
       );
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
     }
@@ -151,8 +165,20 @@ const initialState = {
       imgUrl: "",
     },
   ],
+  defaultCard: [
+    {
+      name: "",
+      email: "",
+      phoneNum: "",
+      department: "",
+      position: "",
+      tel: "",
+      fax: "",
+      companyType: "",
+    },
+  ],
   searchCompanyInfo: [{}],
-  searchCard: [{}],
+  searchCard: undefined,
   viewList: [{}],
   companyInfo: [{}],
 };
@@ -186,6 +212,10 @@ export const CardsSlice = createSlice({
     [__CardSearchGet.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.searchCard = action.payload;
+    },
+    [__cardInfo.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.defaultCard = action.payload;
     },
     [__companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);

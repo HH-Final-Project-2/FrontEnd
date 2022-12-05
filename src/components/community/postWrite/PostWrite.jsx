@@ -125,7 +125,6 @@ const PostWrite = () => {
           </div>
           <WriteSection1Title>게시글 작성</WriteSection1Title>
         </WriteSection1>
-        <SectionLine />
 
         <SelectJob>
           <select

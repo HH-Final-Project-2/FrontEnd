@@ -1,46 +1,46 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CategoryBtnBox = styled.div`
-  margin: 14px 275px 0px 20px;
-  padding: 14px 0px 0px 20px;
+  margin: 18px 0px 0px 20px;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
   gap: 8px;
-  width: 150px;
   height: 30px;
-  left: 20px;
-  top: 14px;
 `;
 
 export const SearchSvg = styled.svg`
   display: flex;
   position: relative;
-  bottom: -43px;
+  bottom: -32px;
   left: 320px;
   cursor: pointer;
 `;
 export const CardSearchInput = styled.input`
-  margin: 12px 20px 12px 20px;
-  width: 100%;
-  max-width: 335px;
+  margin: 0px 0px 12px 20px;
+  width: 335px;
   height: 40px;
-  border-radius: 5px;
+
   border: none;
-  background-color: #f1f1f1;
+  outline: none;
+  background: #f5f5f5;
+  border-radius: 8px;
 `;
 
 export const CategoryBtn1 = styled.button`
-  font-size: 16px;
   background-color: white;
   border: none;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #bdbdbd;
 `;
 export const CategoryBtn2 = styled.button`
-  font-size: 16px;
   background-color: white;
   border: none;
   border-bottom: 3px solid #5546ff;
+
+  font-weight: 600;
+  font-size: 16px;
+  color: #222222;
 `;
 
 export const CardList = styled.div`
@@ -51,11 +51,12 @@ export const CardList = styled.div`
 
 export const Card = styled.div`
   display: flex;
-  background-color: white;
-  margin: 12px 20px 0px 20px;
-  border-radius: 10px;
+  background: #ffffff;
+  margin: 6px 0px 12px 20px;
+  border-radius: 8px;
   width: 335px;
   height: 96px;
+  cursor: pointer;
 `;
 
 export const CardInfo = styled.div`
@@ -65,39 +66,52 @@ export const CardInfo = styled.div`
 `;
 
 export const CardInfoDetail = styled.div`
-  margin: 26px 0px 0px 0px;
+  margin-top: 20px;
   display: flex;
-  justify-content: left;
 `;
 
 export const CardName = styled.div`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
+
+  color: #1a1f27;
 `;
 
 export const Position = styled.div`
-  font-size: 8px;
-  font-weight: 400;
-  padding: 6px 16px 6px 16px;
+  display: flex;
+  align-items: center;
+
+  padding: 3px 8px 3px 8px;
   margin-right: 10px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+  background: #f5f6fa;
+  border-radius: 4px;
+
+  font-weight: 400;
+  font-size: 12px;
+
+  color: #52596b;
 `;
 
 export const Department = styled.div`
-  font-size: 8px;
+  display: flex;
+  align-items: center;
+
+  padding: 3px 8px 3px 8px;
+  background: #f5f6fa;
+  border-radius: 4px;
+
   font-weight: 400;
-  padding: 6px 16px 6px 16px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+  font-size: 12px;
+
+  color: #52596b;
 `;
 
 export const CardInCard = styled.div`
-  margin: 20px 10px 0px 30px;
-  height: 60px;
-  width: 120px;
-  border: 1px solid #e3e3e3;
-  border-radius: 5px;
+  margin: 16px 10px 0px 26px;
+  height: 66px;
+  width: 130px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 `;
 
 export const WriteButton = styled.div`
@@ -116,27 +130,31 @@ export const WriteButton = styled.div`
 `;
 
 export const CardInCardDetail1 = styled.div`
-  font-size: 8px;
   display: flex;
-  justify-content: left;
   margin-left: 10px;
   margin-top: 5px;
 `;
 
 export const CardInCardDetail2 = styled.div`
-  font-size: 8px;
+  font-size: 10px;
   margin-left: 10px;
-  margin-top: 13px;
+  margin-top: 10px;
 `;
 export const CardInCardDetail1Name = styled.div`
   font-size: 12px;
+  font-weight: 500;
+
+  color: #1a1f27;
 `;
 export const CardInCardDetail1Position = styled.div`
   margin-left: 10px;
-  font-weight: 300;
   margin-top: 2px;
+
+  font-weight: 500;
+  font-size: 10px;
+  color: #5546ff;
 `;
 export const CardInCardDetail2Email = styled.div`
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 `;
 export const CardInCardDetail2Phone = styled.div``;

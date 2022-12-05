@@ -15,7 +15,10 @@ import {
   AddressBox,
   SearchAddress,
   Item,
+  AddressSearch,
+  CompanyBtn,
 } from "./MainCardsPutStyle";
+import { Link } from "react-router-dom";
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ const MainCards = () => {
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
   console.log(companyGet);
   console.log(cardFix);
-  // console.log(cardFix);
+  const [showPopup, setShowPopup] = useState(false);
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
@@ -59,40 +62,70 @@ const MainCards = () => {
     fax: cardFix.fax,
   });
 
+  const isValidEmail =
+    inputValue.email !== undefined && inputValue.email !== null
+      ? inputValue.email.includes("@") && inputValue.email.includes(".")
+      : false;
+
+  const isValidInput =
+    inputValue.cardName &&
+    inputValue.email &&
+    inputValue.company &&
+    inputValue.companyAddress &&
+    inputValue.companyType &&
+    inputValue.phoneNum &&
+    inputValue.department &&
+    inputValue.position !== undefined
+      ? inputValue.cardName.length >= 1 &&
+        inputValue.email.length >= 1 &&
+        inputValue.company.length >= 1 &&
+        inputValue.companyAddress.length >= 1 &&
+        inputValue.companyType.length >= 1 &&
+        inputValue.phoneNum.length >= 1 &&
+        inputValue.department.length >= 1 &&
+        inputValue.position.length >= 1
+      : false;
+
+  const togglePopup = (event) => {
+    setShowPopup(event.target.value);
+  };
+
   const valueChangeHandler = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
     console.log(inputValue);
   };
   useEffect(() => setInputValue(cardFix), [cardFix]);
-  // useEffect(() => setInputValue(companyGet), [companyGet]);
-  //   const radioChangeHandler = (e) => {
-  //     setCompanyType(e.target.value);
-  //     console.log(companyType);
-  //   };
+
+  const companyChangeHandler = (e) => {
+    setInputValue({ company: e.target.value });
+    console.log(inputValue.company);
+  };
 
   const cardsSubmitHandler = () => {
-    dispatch(
-      __fixPost({
-        id: id,
-        cardName: inputValue.cardName,
-        email: inputValue.email,
-        phoneNum: inputValue.phoneNum,
-        department: inputValue.department,
-        position: inputValue.position,
-        tel: inputValue.tel,
-        fax: inputValue.fax,
-        company:
-          companyGet.companyName !== undefined
-            ? companyGet.companyName
-            : inputValue.company,
-        companyAddress:
-          companyGet.companyAddress !== undefined
-            ? companyGet.companyAddress
-            : inputValue.companyAddress,
-        companyType: inputValue.companyType,
-      })
-    );
+    if (isValidEmail && isValidInput === true) {
+      dispatch(
+        __fixPost({
+          id: id,
+          cardName: inputValue.cardName,
+          email: inputValue.email,
+          phoneNum: inputValue.phoneNum,
+          department: inputValue.department,
+          position: inputValue.position,
+          tel: inputValue.tel,
+          fax: inputValue.fax,
+          company:
+            companyGet.companyName !== undefined
+              ? companyGet.companyName
+              : inputValue.company,
+          companyAddress:
+            companyGet.companyAddress !== undefined
+              ? companyGet.companyAddress
+              : inputValue.companyAddress,
+          companyType: inputValue.companyType,
+        })
+      );
+    }
     alert("수정완료!");
     navigate(`/posts/get/${id}`);
   };
@@ -129,6 +162,8 @@ const MainCards = () => {
               type="text"
               placeholder="이름"
               name="cardName"
+              minLength="2"
+              maxLength="5"
               value={inputValue.cardName || ""}
               onChange={valueChangeHandler}
             ></St_value>
@@ -139,9 +174,14 @@ const MainCards = () => {
               type="text"
               placeholder="이메일"
               name="email"
+              minLength="10"
+              maxLength="30"
               value={inputValue.email}
               onChange={valueChangeHandler}
             ></St_value>
+            {isValidEmail === false && inputValue.email ? (
+              <SearchAddress>이메일을 확인하세요</SearchAddress>
+            ) : null}
           </Item>
           <Item>
             <St_Key>연락처</St_Key>
@@ -149,9 +189,14 @@ const MainCards = () => {
               type="text"
               placeholder="연락처"
               name="phoneNum"
+              maxLength="13"
               value={inputValue.phoneNum}
               onChange={valueChangeHandler}
             ></St_value>
+            {inputValue.phoneNum &&
+            inputValue.phoneNum.includes("-") === false ? (
+              <SearchAddress>-을 포함해주세요</SearchAddress>
+            ) : null}
           </Item>
           <Item>
             <St_Key>회사</St_Key>
@@ -159,9 +204,7 @@ const MainCards = () => {
               <St_value
                 name="company"
                 value={
-                  companyGet.companyName
-                    ? companyGet.companyName
-                    : inputValue.company
+                  companyGet.company ? companyGet.company : inputValue.company
                 }
                 onChange={valueChangeHandler}
                 onClick={() => navigate("/posts/companySearch")}
@@ -201,6 +244,24 @@ const MainCards = () => {
                 </SearchAddress>
               </AddressBox>
             </St_Address>
+            <CompanyBtn onClick={togglePopup} value="false">
+              회사 직접 입력
+            </CompanyBtn>
+            {/* <button onClick={togglePopup}>닫기</button> */}
+            {showPopup ? (
+              <div>
+                <St_value
+                  placeholder="회사명"
+                  value={
+                    companyGet.company ? companyGet.company : inputValue.company
+                  }
+                  onChange={companyChangeHandler}
+                ></St_value>
+                <AddressSearch>
+                  <Link to="/posts/companyOtherSearch">회사주소검색</Link>
+                </AddressSearch>
+              </div>
+            ) : null}
           </Item>
           <Item>
             <St_Key>직책</St_Key>
@@ -228,6 +289,7 @@ const MainCards = () => {
               type="text"
               placeholder="회사번호"
               name="tel"
+              maxLength="13"
               value={inputValue.tel || ""}
               onChange={valueChangeHandler}
             ></St_value>
@@ -238,6 +300,7 @@ const MainCards = () => {
               type="text"
               placeholder="팩스"
               name="fax"
+              maxLength="13"
               value={inputValue.fax || ""}
               onChange={valueChangeHandler}
             ></St_value>

@@ -1,6 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -27,9 +25,10 @@ import {
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
 } from "./CardSearchStyle";
+import CardsFooter from "../../footer/CardsFooter";
 
 const CardSearch = () => {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const searched = useSelector((state) => state.PostReducer.searchCard);
 
   console.log(searched);
@@ -92,49 +91,60 @@ const CardSearch = () => {
         </svg>
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
-      <div style={{ overflowY: "auto" }}>
-        {searched !== undefined
-          ? searched.map((main) => {
-              return (
-                <div>
-                  <Card
-                    key={main.id}
-                    onClick={() => {
-                      navigate(`/posts/get/${main.id}`);
-                    }}
-                  >
-                    <CardInfo>
-                      <CardName>{main.cardName}</CardName>
-                      <CardInfoDetail>
-                        <Position>{main.position}</Position>
-                        <Department>{main.department}</Department>
-                      </CardInfoDetail>
-                    </CardInfo>
-                    <CardInCard>
-                      <CardInCardDetail1>
-                        <CardInCardDetail1Name>
-                          {main.cardName}
-                        </CardInCardDetail1Name>
-                        <CardInCardDetail1Position>
-                          {main.position}
-                        </CardInCardDetail1Position>
-                      </CardInCardDetail1>
+      {searched !== undefined
+        ? searched.map((main) => {
+            return (
+              <div>
+                <Card
+                  key={main.id}
+                  onClick={() => {
+                    navigate(`/posts/get/${main.id}`);
+                  }}
+                >
+                  <CardInfo>
+                    <CardName>{main.cardName}</CardName>
+                    <CardInfoDetail>
+                      <Position>
+                        {main.position.length > 5
+                          ? main.position.slice(0, 5) + "..."
+                          : main.position}
+                      </Position>
+                      <Department>
+                        {main.department.length > 5
+                          ? main.department.slice(0, 5) + "..."
+                          : main.department}
+                      </Department>
+                    </CardInfoDetail>
+                  </CardInfo>
+                  <CardInCard>
+                    <CardInCardDetail1>
+                      <CardInCardDetail1Name>
+                        {main.cardName}
+                      </CardInCardDetail1Name>
+                      <CardInCardDetail1Position>
+                        {main.position.length > 5
+                          ? main.position.slice(0, 5) + "..."
+                          : main.position}
+                      </CardInCardDetail1Position>
+                    </CardInCardDetail1>
 
-                      <CardInCardDetail2>
-                        <CardInCardDetail2Email>
-                          {main.email}
-                        </CardInCardDetail2Email>
-                        <CardInCardDetail2Phone>
-                          {main.phoneNum}
-                        </CardInCardDetail2Phone>
-                      </CardInCardDetail2>
-                    </CardInCard>
-                  </Card>
-                </div>
-              );
-            })
-          : null}
-      </div>
+                    <CardInCardDetail2>
+                      <CardInCardDetail2Email>
+                        {main.email.length > 20
+                          ? main.email.slice(0, 20) + "..."
+                          : main.email}
+                      </CardInCardDetail2Email>
+                      <CardInCardDetail2Phone>
+                        {main.phoneNum}
+                      </CardInCardDetail2Phone>
+                    </CardInCardDetail2>
+                  </CardInCard>
+                </Card>
+              </div>
+            );
+          })
+        : null}
+      <CardsFooter />
     </Layout>
   );
 };

@@ -37,7 +37,7 @@ const MyProfile = () => {
             nav('/mynicknamepatch');
           }}
         >
-          수정
+          편집
         </PutButton>
       </St_Header>
 

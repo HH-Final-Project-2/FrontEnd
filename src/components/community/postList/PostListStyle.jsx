@@ -9,11 +9,13 @@ export const CommunityLayout = styled.div`
 `;
 
 export const Section1 = styled.div`
-  position: relative;
-  top: 20px;
-
+  width: 373px;
+  height: 56px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #e2e6ef;
 `;
 
 export const Section1Title = styled.div`
@@ -24,11 +26,12 @@ export const Section1Title = styled.div`
 
 export const Section2 = styled.div`
   display: flex;
+  align-items: center;
 
   margin-left: 13px;
-  svg {
+  /* svg {
     margin-top: 2.7px;
-  }
+  } */
   cursor: pointer;
 `;
 

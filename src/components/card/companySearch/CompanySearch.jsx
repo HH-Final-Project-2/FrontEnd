@@ -16,6 +16,8 @@ import {
   Icon,
   Input,
   Button,
+  PaginationBox,
+  Section3,
 } from "./CompanySearchStyle";
 import Pagination from "react-js-pagination";
 
@@ -24,17 +26,36 @@ const CompanySearch = () => {
   const searched = useSelector(
     (state) => state.PostReducer.searchCompanyInfo.data
   );
-  console.log(searched);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const searchChangeHandler = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   };
+
+  const [page, setPage] = useState(1); //현재 페이지
+
+  const [currentPosts, setCurrentPosts] = useState(searched); // 보여줄 게시글
+  const [postPerPage] = useState(20); //페이지당 게시글 개수
+  const indexOfLastPost = page * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
+  useEffect(() => {
+    setCurrentPosts(
+      searched !== undefined
+        ? searched.slice(indexOfFirstPost, indexOfLastPost)
+        : null
+    );
+    window.scrollTo(0, 0);
+  }, [indexOfFirstPost, indexOfLastPost, page, searched]);
 
   const searchClickHandler = () => {
     dispatch(__searchGet(search));
   };
+  console.log(searched, currentPosts);
 
   return (
     <Layout>
@@ -47,6 +68,7 @@ const CompanySearch = () => {
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: "pointer" }}
           onClick={() => {
+            dispatch(__companyInfo({ companyName: "", companyAddress: "" }));
             navigate(-1);
           }}
         >
@@ -84,7 +106,7 @@ const CompanySearch = () => {
         </svg>
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
-      <div style={{ overflowY: "auto" }}>
+      {/* <div style={{ overflowY: "auto" }}>
         {searched &&
           searched.map((x) => (
             <ComInfor
@@ -103,36 +125,61 @@ const CompanySearch = () => {
               <Address>{x.companyAddress}</Address>
             </ComInfor>
           ))}
-      </div>
+      </div> */}
+      <Section3>
+        {currentPosts &&
+          currentPosts.map((post) => {
+            return (
+              <ComInfor
+                key={post.id}
+                onClick={() => {
+                  dispatch(
+                    __companyInfo({
+                      companyName: post.companyName,
+                      companyAddress: post.companyAddress,
+                    })
+                  );
+                  navigate(-1);
+                }}
+              >
+                <Company>{post.companyName}</Company>
+                <Address>{post.companyAddress}</Address>
+              </ComInfor>
+            );
+          })}
+        <PaginationBox>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={postPerPage}
+            totalItemsCount={searched !== undefined ? searched.length : null}
+            pageRangeDisplayed={5}
+            prevPageText={
+              <svg
+                width="6"
+                height="10"
+                viewBox="0 0 6 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M5 1L1 5L5 9" stroke="#8892A0" />
+              </svg>
+            }
+            nextPageText={
+              <svg
+                width="6"
+                height="10"
+                viewBox="0 0 6 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 9L5 5L1 1" stroke="#8892A0" />
+              </svg>
+            }
+            onChange={handlePageChange}
+          />
+        </PaginationBox>
+      </Section3>
     </Layout>
-    // <div>
-    //   <div>
-    //     <input
-    //       type="text"
-    //       value={search}
-    //       onChange={searchChangeHandler}
-    //     ></input>
-    //     <button onClick={searchClickHandler}>회사검색</button>
-    //   </div>
-    //   {searched &&
-    //     searched.map((x) => (
-    //       <div
-    //         key={x.id}
-    //         onClick={() => {
-    //           dispatch(
-    //             __companyInfo({
-    //               companyName: x.companyName,
-    //               companyAddress: x.companyAddress,
-    //             })
-    //           );
-    //           navigate(-1);
-    //         }}
-    //       >
-    //         <p>{x.companyName}</p>
-    //         <p>{x.companyAddress}</p>
-    //       </div>
-    //     ))}
-    // </div>
   );
 };
 
