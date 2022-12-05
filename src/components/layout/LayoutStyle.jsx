@@ -17,7 +17,6 @@ export const DivLayout = styled.div`
   width: 375px;
   min-height: 100vh;
   height: auto;
-  margin-left: 470px;
 
   display: flex;
   flex-direction: column;

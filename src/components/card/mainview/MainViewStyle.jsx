@@ -157,3 +157,8 @@ export const CardInCardDetail2Email = styled.div`
   margin-bottom: 4px;
 `;
 export const CardInCardDetail2Phone = styled.div``;
+
+export const SectionWall = styled.div`
+  height: 80px;
+  background: white;
+`;

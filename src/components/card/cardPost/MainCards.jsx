@@ -32,6 +32,7 @@ import {
   SectionLine,
   AssistiveText,
   CompanyInput,
+  SectionHeader,
 } from './cardPostStyle';
 
 const MainCards = () => {
@@ -124,7 +125,7 @@ const MainCards = () => {
       : false;
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
-      ? phoneNum.includes("-")
+      ? phoneNum.includes('-')
       : false;
 
   const isValidInput =
@@ -189,6 +190,7 @@ const MainCards = () => {
   //
   return (
     <Layout>
+      <SectionHeader />
       <St_Header>
         <svg
           width="24"
@@ -403,7 +405,7 @@ const MainCards = () => {
             <div>
               <CompanyInput
                 placeholder="회사명을 입력하세요"
-                value={company || ""}
+                value={company || ''}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
@@ -413,18 +415,18 @@ const MainCards = () => {
                   onClick={() => {
                     dispatch(
                       __cardInfo({
-                        cardName: cardName ? cardName : "",
+                        cardName: cardName ? cardName : '',
                         email: email,
                         phoneNum: phoneNum,
-                        department: department ? department : "",
-                        position: position ? position : "",
+                        department: department ? department : '',
+                        position: position ? position : '',
                         tel: tel,
                         fax: fax,
-                        companyType: companyType ? companyType : "",
-                        company: company ? company : "",
+                        companyType: companyType ? companyType : '',
+                        company: company ? company : '',
                       })
                     );
-                    navigate("/posts/companyOtherSearch");
+                    navigate('/posts/companyOtherSearch');
                   }}
                 >
                   회사 주소 검색
