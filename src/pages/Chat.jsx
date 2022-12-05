@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Chatlist from '../components/chat/Chatlist';
-import ReactModal from 'react-modal';
-import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/layout/Layout';
 import ChatFooter from '../components/footer/ChatFooter';
 
@@ -12,48 +10,6 @@ const Chat = () => {
       <St_Header>
         <St_Title>채팅</St_Title>
         <div>
-          <button onClick={handleModal}>채팅방 만들기</button>
-          <ReactModal
-            isOpen={modal}
-            onRequestClose={() => setModal(false)}
-            ariaHideApp={false}
-            style={{
-              overlay: {
-                position: 'fixed',
-                backgroundColor: 'rgba(255, 255, 255, 0.75)',
-              },
-              content: {
-                margin: 'auto',
-                position: 'fixed',
-                width: '400px',
-                height: '500px',
-                border: '1px solid #ccc',
-                background: '#fff',
-                overflow: 'auto',
-                WebkitOverflowScrolling: 'touch',
-                borderRadius: '4px',
-                outline: 'none',
-                padding: '20px',
-              },
-            }}
-          >
-            <St_Input>
-              <input
-                placeholder="채팅방 이름..."
-                value={addRoom}
-                onChange={(e) => setAddRoom(e.target.value)}
-              />
-              <button
-                onClick={() => {
-                  dispatch(addChatroom());
-                  console.log('디스페치');
-                  handleModal();
-                }}
-              >
-                생성
-              </button>
-            </St_Input>
-          </ReactModal>
           {/* 나가기 svg */}
           <svg
             width="18"
@@ -67,7 +23,7 @@ const Chat = () => {
               fill="#52596B"
             />
           </svg>
-          {/*  */}
+          {/* */}
         </div>
       </St_Header>
       <Chatlist />
@@ -80,32 +36,33 @@ export default Chat;
 
 //헤더 박스 div
 const St_Header = styled.div`
-  height: 56px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #d6d6d6;
-  justify-content: space-between;
-  margin-bottom: 15px;
+height: 56px;
+display: flex;
+justify-content: space-between;
+align-items: center;
 
-  svg {
-    margin-right: 20px;
-  }
+border-bottom: 1px solid #e2e6ef;
+margin-bottom: 15px;
+
+svg {
+margin-right: 20px;
+}
 `;
 //헤더 타이틀의 의미
 const St_Title = styled.div`
-  font-weight: 600;
-  width: 100%;
-  max-width: 80px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-left: 13px;
+font-weight: 600;
+width: 100%;
+max-width: 80px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: left;
+padding-left: 20px;
 `;
 
 const St_Input = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
+display: flex;
+margin: auto;
+align-items: center;
+justify-content: center;
 `;

@@ -36,7 +36,6 @@ import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
 import CardSearch from "../components/card/cardSearch/CardSearch";
 import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
-import { getCookie } from "./Cookie";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
