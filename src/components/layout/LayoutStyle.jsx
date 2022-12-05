@@ -12,6 +12,9 @@ export const LayoutBox = styled.div`
 
 export const DivLayout = styled.div`
   width: 375px;
+  min-height: 100vh;
+  height: auto;
+
   display: flex;
   flex-direction: column;
   border: 1px solid #e2e6ef;
