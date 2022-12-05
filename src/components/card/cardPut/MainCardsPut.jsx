@@ -28,7 +28,6 @@ const MainCards = () => {
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
   console.log(companyGet);
   console.log(cardFix);
-  // console.log(cardFix);
   const [showPopup, setShowPopup] = useState(false);
 
   const preventClose = (e = BeforeUnloadEvent) => {
@@ -97,6 +96,11 @@ const MainCards = () => {
     console.log(inputValue);
   };
   useEffect(() => setInputValue(cardFix), [cardFix]);
+
+  const companyChangeHandler = (e) => {
+    setInputValue({ company: e.target.value });
+    console.log(inputValue.company);
+  };
 
   const cardsSubmitHandler = () => {
     if (isValidEmail && isValidInput === true) {
@@ -248,9 +252,10 @@ const MainCards = () => {
               <div>
                 <St_value
                   placeholder="회사명"
-                  onChange={(e) => {
-                    setInputValue.company(e.target.value);
-                  }}
+                  value={
+                    companyGet.company ? companyGet.company : inputValue.company
+                  }
+                  onChange={companyChangeHandler}
                 ></St_value>
                 <AddressSearch>
                   <Link to="/posts/companyOtherSearch">회사주소검색</Link>

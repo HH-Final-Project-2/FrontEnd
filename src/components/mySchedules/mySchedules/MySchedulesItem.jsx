@@ -74,6 +74,7 @@ const MySchedulesItem = () => {
           {marks !== null
             ? marks.map((x) => {
                 if (
+                  x.filteredDate !== undefined &&
                   x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (

@@ -147,7 +147,7 @@ const memberSlice = createSlice({
   reducers: {},
   extraReducers: {
     [emailCheck.fulfilled]: (state, action) => {
-      state.check = action.payload;
+      state.check = action.payload.success;
     },
     [emailAuth.fulfilled]: (state, action) => {
       state.auth = action.payload;
