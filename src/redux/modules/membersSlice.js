@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import instance from "../../shared/Request";
 
 const initialState = {
@@ -35,7 +36,7 @@ export const emailCheck = createAsyncThunk(
         return alert(data.data.data), thunkAPI.fulfillWithValue(data.data);
       // 중복되는 이메일 alert
       if (data.data.success === false) alert(data.data.error.message);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 // 이메일 인증
@@ -53,7 +54,7 @@ export const emailAuth = createAsyncThunk(
 
       // 중복되는 이메일 alert
       if (data.data.success === false) alert(data.data.error.message);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -134,5 +135,5 @@ const memberSlice = createSlice({
     },
   },
 });
-export const {} = memberSlice.actions;
+export const { } = memberSlice.actions;
 export default memberSlice.reducer;

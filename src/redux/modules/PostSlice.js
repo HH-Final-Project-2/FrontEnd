@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getCookie } from '../../shared/Cookie';
 import instance from '../../shared/Request';
 const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
