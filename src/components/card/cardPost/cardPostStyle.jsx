@@ -77,6 +77,31 @@ export const St_value = styled.input`
   }
 `;
 
+export const CompanyInput = styled.input`
+  width: 335px;
+  height: 52px;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
+  display: flex;
+
+  font-weight: 400;
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
+`;
+
 //회사 주소 div
 export const St_Address = styled.div`
   margin-top: 5px;
@@ -97,7 +122,7 @@ export const SearchAddress = styled.div`
 `;
 
 export const AssistiveText = styled.div`
-  color: #5546ff;
+  color: #f82323;
 
   font-weight: 400;
   font-size: 12px;

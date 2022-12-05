@@ -103,7 +103,7 @@ const PostList = () => {
           <SearchIcon />
         </SearchButton>
       </Section1>
-      <SectionLine />
+      {/* <SectionLine /> */}
       <Container>
         <div className="topFive">인기글</div>
         <StyledSlider {...settings}>
