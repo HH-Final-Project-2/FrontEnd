@@ -23,7 +23,7 @@ const Chat = () => {
               fill="#52596B"
             />
           </svg>
-          {/* */}
+          {/*  */}
         </div>
       </St_Header>
       <Chatlist />
@@ -36,33 +36,35 @@ export default Chat;
 
 //헤더 박스 div
 const St_Header = styled.div`
-height: 56px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-border-bottom: 1px solid #e2e6ef;
-margin-bottom: 15px;
+  border-bottom: 1px solid #e2e6ef;
+  margin-bottom: 15px;
 
-svg {
-margin-right: 20px;
-}
+  svg {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
 `;
 //헤더 타이틀의 의미
 const St_Title = styled.div`
-font-weight: 600;
-width: 100%;
-max-width: 80px;
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: left;
-padding-left: 20px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 20px;
 `;
 
 const St_Input = styled.div`
-display: flex;
-margin: auto;
-align-items: center;
-justify-content: center;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
 `;

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
 
-import { __getPost, __likePost } from "../../../redux/modules/PostSlice";
-import { _postId } from "../../../redux/modules/chatSlice";
-import PostBottomSheet from "../../bottomSheet/PostBottomSheet";
-import Comment from "../comment/Comment";
+import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
+import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
+import Comment from '../comment/Comment';
 
-import { ReactComponent as Like } from "../../../images/noneLike.svg";
-import { ReactComponent as FillLike } from "../../../images/fillLike.svg";
-import { ReactComponent as Chat } from "../../../images/ic-chat.svg";
+import { ReactComponent as Like } from '../../../images/noneLike.svg';
+import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
+import { ReactComponent as Chat } from '../../../images/ic-chat.svg';
+import { _postId } from '../../../redux/modules/chatSlice';
+
 import {
   CommentBox,
   CommentNum,
@@ -44,6 +45,10 @@ const PostDetail = () => {
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
+
+  const [postid, setPostId] = useState({
+    postId: id,
+  });
 
   //스크롤 최상단으로 이동
   useEffect(() => {
@@ -130,8 +135,8 @@ const PostDetail = () => {
         {/* 채팅하기 버튼 svg start*/}
         <Chat
           onClick={() => {
-            dispatch(_postId(id));
-            navigate("/chat/chatroom/");
+            dispatch(_postId(postid));
+            navigate('/chat/chatroom/');
           }}
         />
         {/* 채팅하기 버튼 svg end*/}

@@ -20,6 +20,8 @@ import {
   Button,
   ChatRoomBox,
   MyChatTime,
+  UserChatTime,
+  SectionWall,
 } from './ChatroomStyle';
 import {
   addMessage,
@@ -31,6 +33,9 @@ import {
 } from '../../redux/modules/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Icbefore } from '../../images/ic-before.svg';
+import { ReactComponent as SendDm } from '../../images/sendMessage.svg';
+import { ReactComponent as SendDmFill } from '../../images/sendMessageFill.svg';
+import { ReactComponent as More } from '../../images/ic-more.svg';
 
 const Chatroom = () => {
   const headers = {
@@ -173,13 +178,18 @@ const Chatroom = () => {
   return (
     <Layout>
       <St_Header>
-        <Icbefore
-          style={{ cursor: 'pointer' }}
-          onClick={() => {
-            nav(-1);
-          }}
-        />
-        <St_Title>{userinfo.otherNickname}</St_Title>
+        <div className="headerTitle">
+          <Icbefore
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              nav(-1);
+            }}
+          />
+          <St_Title>{userinfo.otherNickname}</St_Title>
+        </div>
+        <div className="headerSvg">
+          <More />
+        </div>
       </St_Header>
 
       <ChatRoomBox ref={scrollRef}>
@@ -200,21 +210,27 @@ const Chatroom = () => {
               return (
                 <UserChatBox key={message.id}>
                   <UserChat>{chat.message}</UserChat>
-                  <MyChatTime>{time[1]}</MyChatTime>
+                  <UserChatTime>{time[1]}</UserChatTime>
                 </UserChatBox>
               );
             }
           })}
+        <SectionWall />
 
         <Footer>
           <Input
-            placeholder="채팅입력..."
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleEnterPress}
           />
-          {/* <Button onClick={sendMessage}>보내기</Button> */}
+          <div className="dm">
+            {message.length > 0 ? (
+              <SendDmFill onClick={sendMessage} />
+            ) : (
+              <SendDm onClick={sendMessage} />
+            )}
+          </div>
         </Footer>
       </ChatRoomBox>
     </Layout>

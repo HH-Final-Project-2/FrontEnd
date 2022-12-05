@@ -44,7 +44,7 @@ const Chatlist = () => {
                 <ChatAt>오전 11:57</ChatAt>
                 <ChatAlarm>1</ChatAlarm>
               </div>
-              <button
+              {/* <button
                 onClick={(e) => {
                   e.stopPropagation();
                   dispatch(deleteChatroom(x.chatRoomUuid));
@@ -52,7 +52,7 @@ const Chatlist = () => {
                 }}
               >
                 나가기
-              </button>
+              </button> */}
             </ChatsBox>
           );
         })}
