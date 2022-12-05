@@ -1,25 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Chatlist from '../components/chat/Chatlist';
 import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { addChatroom } from '../redux/modules/chatSlice';
 import Layout from '../components/layout/Layout';
 import ChatFooter from '../components/footer/ChatFooter';
 
 const Chat = () => {
-  const [modal, setModal] = useState(false);
-  const [addRoom, setAddRoom] = useState('');
-
-  const dispatch = useDispatch();
-
-  const handleModal = () => {
-    setModal(!modal);
-  };
-
-  const chatRoom = useSelector((state) => state.chat.chatRoom);
-  console.log(chatRoom);
-
   return (
     <Layout>
       <St_Header>
@@ -83,7 +70,7 @@ const Chat = () => {
           {/*  */}
         </div>
       </St_Header>
-      <Chatlist></Chatlist>
+      <Chatlist />
       <ChatFooter />
     </Layout>
   );
