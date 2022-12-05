@@ -10,6 +10,7 @@ import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 import { ReactComponent as Chat } from '../../../images/ic-chat.svg';
 import { _postId } from '../../../redux/modules/chatSlice';
+
 import {
   CommentBox,
   CommentNum,
@@ -33,7 +34,7 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
-} from './PostDetailStyle';
+} from "./PostDetailStyle";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem('nickname');
+  const nickname = localStorage.getItem("nickname");
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -103,7 +104,7 @@ const PostDetail = () => {
   return (
     <DetailBox>
       <Section1>
-        <Section2 onClick={() => navigate('/community')}>
+        <Section2 onClick={() => navigate("/community")}>
           <svg
             width="10"
             height="17"
@@ -120,7 +121,7 @@ const PostDetail = () => {
             <PostBottomSheet id={id} detail={detail} />
           </div>
         ) : (
-          ''
+          ""
         )}
       </Section1>
 

@@ -24,10 +24,7 @@ const OtherSearchModal = () => {
     }
     console.log(fullAddress);
     console.log(companyName);
-    dispatch(
-      __companyInfo({ company: "", companyAddress: fullAddress }),
-      navigate("/posts")
-    );
+    dispatch(__companyInfo({ companyAddress: fullAddress }), navigate(-2));
   };
 
   const handleSearch = (data) => {};

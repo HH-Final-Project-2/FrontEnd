@@ -208,7 +208,7 @@ const UserJoin = () => {
         </EmailCheckButton>
       </EmailBox>
       {errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>}
-      {email.success === true ? (
+      {email === true ? (
         <EmailBox>
           <InputContainer>
             <LabelText>이메일 인증코드</LabelText>
