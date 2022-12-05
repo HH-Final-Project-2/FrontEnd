@@ -5,8 +5,6 @@ const KakaoLogin = () => {
   let params = new URL(window.location.href).searchParams;
   let code = params.get('code');
 
-
-
   useEffect(() => {
     if (code) {
       axios.get(`https://bkyungkeem.shop/oauth/kakao?code=${code}`)

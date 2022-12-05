@@ -30,8 +30,6 @@ const UserJoin = () => {
   const [auth, setAuth] = useState("");
   const email = useSelector((state) => state.memberSlice.check);
   const authEmail = useSelector((state) => state.memberSlice.auth);
-  console.log(email);
-  console.log(authEmail);
 
   // useForm 시작
   const {
@@ -53,10 +51,11 @@ const UserJoin = () => {
   // 이메일,패스워드,이름,닉네임,연락처 버튼 초기값
   const [stateXButtonEmail, setStateXButtonEmail] = useState("none");
   const [stateXButtonPassword, setStateXButtonPassword] = useState("none");
-  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] =
-    useState("none");
+  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] = useState("none");
   const [stateXButtonUserName, setStateXButtonUserName] = useState("none");
   const [stateXButtonNickName, setStateXButtonNickName] = useState("none");
+
+
 
   // 이메일,패스워드,이름,닉네임,연락처 watch
   const watchForEmail = watch("email");
@@ -145,6 +144,15 @@ const UserJoin = () => {
     setStateXButtonNickName("none");
   };
 
+  // 인증번호 X버튼
+  const display = (str) => {
+    if (str.length >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // 폼 데이터 전송
   const onSubmit = (data) => {
     authEmail.success === true
@@ -208,6 +216,8 @@ const UserJoin = () => {
         </EmailCheckButton>
       </EmailBox>
       {errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>}
+
+      {/* 작업중 */}
       {email === true ? (
         <EmailBox>
           <InputContainer>
@@ -215,6 +225,7 @@ const UserJoin = () => {
             <InputJoin2
               name="auth"
               type="text"
+              value={auth}
               placeholder="인증번호를 입력하세요"
               onChange={(e) => {
                 setAuth(e.target.value);
@@ -225,11 +236,12 @@ const UserJoin = () => {
                 width="20"
                 height="20"
                 fill="#BCC2CC"
-                display={stateXButtonEmail}
-                onClick={xButtonEmail}
+                display={display(auth) ? "block" : "none"}
+                onClick={() => setAuth("")}
               />
             </InputButtonEmail>
           </InputContainer>
+
           <EmailCheckButton
             type="button"
             onClick={() => {
