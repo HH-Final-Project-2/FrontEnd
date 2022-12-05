@@ -20,7 +20,6 @@ export const likeComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post(`/api/auth/comment/heart/${payload}`);
-      console.log('나는 댓글 좋아요입니다', data)
       return thunkAPI.fulfillWithValue({ data, payload });
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -148,18 +147,7 @@ export const commentSlice = createSlice({
 
     // 댓글 수정
     [putComment.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      let modComment = action.payload;
-      let newComment = [];
-
-      for (let i = 0; i < state.comments.length; i++) {
-        if (state.comments[i].id === modComment.id) {
-          newComment.push(modComment);
-        } else {
-          newComment.push(state.comments[i]);
-        }
-      }
-      state.comments = newComment;
+      state.isLoading = true;
     },
   },
 });

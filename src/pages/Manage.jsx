@@ -33,14 +33,14 @@ const Mypage = () => {
         <St_Title>계정</St_Title>
       </St_Header>
       <OutLine>
-        <List
+        <Logout
           onClick={() => {
             dispatch(signOut({}));
           }}
         >
           로그아웃
-        </List>
-        <List
+        </Logout>
+        <Joinout
           type="button"
           onClick={() => {
             const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
@@ -52,44 +52,67 @@ const Mypage = () => {
           }}
         >
           회원탈퇴
-        </List>
+        </Joinout>
       </OutLine>
     </Layout>
   );
 };
 export default Mypage;
 const St_Header = styled.div`
-  font-weight: 600;
-  width: 100%;
-  height: 50px;
+  width: 373px;
+  height: 56px;
+
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 12px;
+
+  padding-left: 16px;
+
   color: #1a1f27;
-  border-bottom: 1px solid #d6d6d6;
+
+  border-bottom: 1px solid #e2e6ef;
 `;
 const St_Title = styled.div`
-  font-weight: 600;
-  width: 100%;
-  max-width: 85px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-left: 4px;
-`;
-const OutLine = styled.div`
-  margin: 16px 20px 16px 20px;
-`;
-const List = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.15px;
-  color: #222222;
+  font-weight: 500;
   font-size: 16px;
+
+  margin-left: 8px;
+`;
+
+const OutLine = styled.div``;
+
+const Logout = styled.div`
+  width: 100%;
+  height: 56px;
+  padding-left: 24px;
+
+  display: flex;
+  align-items: center;
+
+  color: #222222;
   font-weight: 400;
-  margin-bottom: 16px;
+  font-size: 16px;
   cursor: pointer;
+
+  :hover {
+    background: #eeecff;
+  }
+`;
+
+const Joinout = styled.div`
+  width: 100%;
+  height: 56px;
+  padding-left: 24px;
+
+  display: flex;
+  align-items: center;
+
+  color: #222222;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+
+  :hover {
+    background: #eeecff;
+  }
 `;

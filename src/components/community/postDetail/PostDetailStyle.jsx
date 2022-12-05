@@ -6,15 +6,17 @@ export const DetailBox = styled.div`
 `;
 
 export const Section1 = styled.div`
-  position: relative;
-  top: 37px;
+  width: 373px;
+  height: 56px;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #e2e6ef;
 
   .moreBtn {
-    margin-right: 13px;
-    margin-top: -5px;
+    margin-bottom: 14px;
   }
 `;
 
@@ -33,7 +35,7 @@ export const DetailPostSection1 = styled.div`
 
   svg {
     margin-top: 16px;
-    margin-right: 18px;
+    margin-right: 20px;
   }
 
   g:hover {
@@ -51,7 +53,7 @@ export const DetailPostSection1 = styled.div`
 `;
 
 export const NickName = styled.div`
-  margin-left: 13px;
+  margin-left: 20px;
   margin-top: 25px;
   font-weight: 600;
   font-size: 14px;
@@ -60,7 +62,7 @@ export const NickName = styled.div`
 `;
 
 export const Date = styled.div`
-  margin-left: 7px;
+  margin-left: 8px;
   margin-top: 27px;
   font-size: 12px;
   color: #8892a0;
@@ -87,8 +89,9 @@ export const DetailPostSection2 = styled.div`
 `;
 
 export const JobPosition = styled.div`
+  max-height: 25px;
   padding: 5px;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-top: 15px;
   font-size: 12px;
 
@@ -98,12 +101,15 @@ export const JobPosition = styled.div`
 `;
 
 export const PostTitle = styled.div`
-  margin-left: 13px;
+  max-width: 200px;
+  margin-left: 8px;
+  margin-right: 20px;
   margin-top: 16px;
   font-weight: 600;
   font-size: 18px;
 
   word-break: break-all;
+  white-space: pre-line;
 
   color: #1a1f27;
 `;
@@ -114,7 +120,8 @@ export const DetailPostSection3 = styled.div`
 `;
 
 export const DetailPostBody = styled.div`
-  margin-left: 13px;
+  margin-left: 20px;
+  margin-right: 13px;
   margin-top: 25px;
 
   font-size: 16px;
@@ -126,7 +133,7 @@ export const DetailPostBody = styled.div`
 `;
 
 export const DetailPostImg = styled.div`
-  margin-left: 20px;
+  margin-left: 19px;
   margin-top: 32px;
   margin-bottom: 40px;
 
@@ -194,7 +201,6 @@ export const HeartNum = styled.div`
   color: #52596b;
   margin-left: 7px;
 `;
-
 
 //
 export const CommentListLayout = styled.div`

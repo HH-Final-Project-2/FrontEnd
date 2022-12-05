@@ -83,11 +83,14 @@ const MyCard = () => {
 export default MyCard;
 //header
 const St_Header = styled.div`
+  width: 373px;
+  height: 56px;
+
   display: flex;
-  width: 100%;
-  align-items: center;
-  border-bottom: 1px solid #d6d6d6;
   justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #e2e6ef;
 `;
 //header title
 const St_title = styled.div`
@@ -98,12 +101,12 @@ const St_title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 21px;
+  margin-left: 20px;
   color: #1a1f27;
 `;
 
 const Mycard = styled.div`
-  width: 375px;
+  width: 373px;
   height: 240px;
   background-color: #f5f5f5;
 `;

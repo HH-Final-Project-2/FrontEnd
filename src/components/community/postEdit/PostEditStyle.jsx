@@ -1,41 +1,47 @@
 import styled from 'styled-components';
 
 export const EditBox = styled.div`
-  width: 375px;
-  height: 100vh;
   background: white;
   margin: 0 auto;
 `;
 
 export const EditSection1 = styled.div`
-  position: relative;
-
-  top: 37px;
+  width: 373px;
+  height: 56px;
   display: flex;
+  align-items: center;
 
-  margin-left: 13px;
-  svg {
-    margin-top: 2.7px;
+  .backBtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    margin-left: 10px;
   }
+
+  border-bottom: 1px solid #e2e6ef;
 `;
 
 export const EditSection1Title = styled.div`
-  position: relative;
-  margin-bottom: 8px;
-  left: 18px;
-  font-weight: 600;
+  margin-left: 14px;
+  font-weight: 500;
+  font-size: 16px;
+
+  color: #1a1f27;
 `;
 
 export const SelectJob = styled.div`
   select {
-    width: 375px;
+    padding-left: 6px;
+    width: 373px;
     height: 56px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
-  }
-  select:after {
-    color: red;
+
+    font-weight: 400;
+    font-size: 16px;
+    color: #52596b;
   }
 `;
 
@@ -44,13 +50,15 @@ export const EditTitle = styled.div`
     padding: 10px;
     margin-top: 6px;
 
-    width: 375px;
+    width: 373px;
     height: 45px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
     outline: none;
     resize: none;
+    overflow: hidden;
 
+    font-weight: 400;
     font-size: 16px;
   }
   textarea:focus {
@@ -65,12 +73,14 @@ export const EditBody = styled.div`
   textarea {
     padding: 10px;
     margin-top: 6px;
-    width: 375px;
-    height: 190px;
+    width: 373px;
+    height: 45px;
     border: none;
     outline: none;
     resize: none;
+    overflow: hidden;
 
+    font-weight: 400;
     font-size: 16px;
   }
   textarea:focus {
@@ -100,11 +110,11 @@ export const EditBtn = styled.button`
   margin-left: 20px;
   margin-bottom: 50px;
 
-  background: #f5f6fa;
+  background: #5546ff;
   border-radius: 8px;
   border: none;
 
-  color: #bcc2cc;
+  color: white;
   font-size: 16px;
 
   :hover {

@@ -19,7 +19,11 @@ import {
   Detail_Body_Box,
   St_Detail_Body,
   MapBox,
+  SectionLine,
+  St_Detail_Phone,
+  MidLine,
 } from '../MyCardInfo/MyCardInfoStyle';
+import { HR } from '../../card/cardDetail/ViewMainDetailStyle';
 
 const MyCardInfo = () => {
   //명함 상세보기 페이지 컴포넌트
@@ -75,7 +79,7 @@ const MyCardInfo = () => {
       <Mycard>
         <MycardItem />
       </Mycard>
-
+      <SectionLine />
       <St_CardInfo>
         <St_MidHeader>
           <div>명함정보</div>
@@ -91,16 +95,21 @@ const MyCardInfo = () => {
         <Detail_Title_Box>
           <St_Detail_Title>연락처</St_Detail_Title>
           <St_Detail_Title>이메일</St_Detail_Title>
+          <St_Detail_Title>유선전화</St_Detail_Title>
+          <St_Detail_Title>팩스</St_Detail_Title>
+          <MidLine />
           <St_Detail_Title>회사</St_Detail_Title>
           <St_Detail_Title>직책</St_Detail_Title>
           <St_Detail_Title>부서</St_Detail_Title>
           <St_Detail_Title>주소</St_Detail_Title>
         </Detail_Title_Box>
-
         {/* 명함정보의 각 개체의 정보에 대한 div */}
         <Detail_Body_Box>
-          <St_Detail_Body>{cardinfo.phoneNum}</St_Detail_Body>
+          <St_Detail_Phone>{cardinfo.phoneNum}</St_Detail_Phone>
           <St_Detail_Body>{cardinfo.email}</St_Detail_Body>
+          <St_Detail_Body>유선전화 넣어주세요</St_Detail_Body>
+          <St_Detail_Body>팩스 넣어주세요</St_Detail_Body>
+          <MidLine />
           <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.position}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.department}</St_Detail_Body>

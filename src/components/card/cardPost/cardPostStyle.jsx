@@ -1,12 +1,28 @@
-import styled from "styled-components";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import styled from 'styled-components';
+import LogoSrc from '../../../images/Frame 2317.svg';
 
 //헤더 박스 div
 export const St_Header = styled.div`
+  position: fixed;
+  top: 0;
+  width: 373px;
+  height: 56px;
   display: flex;
-  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid;
+
+  border-bottom: 1px solid #e2e6ef;
+
+  svg {
+    margin-left: 14px;
+  }
+
+  background: white;
+`;
+
+export const SectionHeader = styled.div`
+  height: 56px;
+  background: white;
 `;
 //명함 정보 편집 박스
 export const PatchBox = styled.div`
@@ -18,60 +34,93 @@ export const PatchBox = styled.div`
 
 //헤더 타이틀의 의미
 export const St_Title = styled.div`
-  font-weight: 600;
   width: 100%;
   max-width: 150px;
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding-left: 15px;
+  padding-left: 8px;
+
+  font-weight: 500;
+  font-size: 16px;
 `;
 //저장버튼
 export const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   color: #277dff;
   cursor: pointer;
-  font-style: normal;
-  font-weight: 500;
+
+  font-weight: 600;
   font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.15px;
 `;
 //input key 제목
 export const St_Key = styled.div`
   color: #52596b;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
+
   margin-left: 22px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+
   display: flex;
   align-items: center;
 `;
 //input value 값
 export const St_value = styled.input`
-  width: 100%;
-  max-width: 320px;
-  height: 30px;
-  border-radius: 4px;
-  border: 1px solid #cccccc;
-  padding-left: 10px;
-  margin: auto;
+  width: 335px;
+  height: 52px;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
   display: flex;
-  color: #1a1f27;
-  letter-spacing: 0.15px;
-  font-family: "Pretendard";
-  font-style: normal;
+
   font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* background-image: '/images/ic-company.png'; */
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
+`;
+
+export const CompanyInput = styled.input`
+  width: 335px;
+  height: 52px;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
+  display: flex;
+
+  font-weight: 400;
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 //회사 주소 div
 export const St_Address = styled.div`
   margin-top: 5px;
-  padding-left: 25px;
+  padding-left: 13px;
 `;
 
 export const AddressBox = styled.div`
@@ -81,26 +130,37 @@ export const AddressBox = styled.div`
 `;
 
 export const SearchAddress = styled.div`
-  display: flex;
-  width: 250px;
+  color: #5546ff;
+
+  font-weight: 400;
+  font-size: 12px;
+`;
+
+export const AssistiveText = styled.div`
+  color: #f82323;
+
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 26px;
 `;
 
 //각 수정 목록의 div
 export const Item = styled.div`
-  margin-top: 10px;
+  margin-top: 32px;
   font-size: 12px;
-  color: #6b6b6b;
+  color: #1a1f27;
 `;
 
 export const St_Card = styled.label`
-  width: 100%;
+  width: 335px;
+  height: 184px;
   max-width: 311px;
-  height: 176px;
   margin: 32px auto;
+
+  border: 1px solid #e2e6ef;
   border-radius: 8px;
+
   padding: 0px;
-  background-color: white;
-  box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
   flex-direction: column;
 `;
@@ -110,8 +170,7 @@ export const St_Plus = styled.label`
   max-width: 50px;
   height: 50px;
   color: #d6d6d6;
-  /* border: 2px solid; */
-  /* border-radius: 50px; */
+
   margin: auto;
   align-items: center;
   display: flex;
@@ -131,42 +190,116 @@ export const Input = styled.input`
 `;
 
 export const ImgBox = styled.div`
-  width: 375px;
-  height: 120px;
-  background-color: #f5f5f5;
+  width: 373px;
+  height: 64px;
+  background: #f5f6fa;
   display: flex;
-  img {
-    margin: 15px 15px 10px 30px;
-    width: 162px;
-    height: 89px;
-    border-radius: 8px;
-    padding: 0px;
-    background-color: white;
-    box-shadow: 0px 0px 5px 0px #cecece;
+  svg {
+    margin: 13px 15px 10px 20px;
+    width: 90px;
+    height: 39px;
   }
   div {
-    margin: 40px 24px 10px 0px;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 17px 24px 10px 0px;
+
+    color: #52596b;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
   }
 `;
 
 export const RadioBox = styled.div`
   display: flex;
-  justify-content: left;
 `;
 export const RadioDetail = styled.div`
   display: flex;
   justify-content: left;
-  margin: 10px 15px 30px 25px;
-  input[type="radio"]:checked:after {
+  margin: 0 0 20px 20px;
+  /* input[type="radio"]:checked:after {
     background: $white no-repeat center center;
     background-image: url("/src/images/Property 1=deselected.png");
     cursor: pointer;
     outline: none;
     appearance: none;
-  }
+  } */
   label {
-    margin-left: 6px;
+    margin-left: 8px;
     font-size: 14px;
   }
+
+  font-weight: 500;
+  font-size: 14px;
 `;
-export const PrevImg = styled.img``;
+export const PrevImg = styled.img`
+  width: 335px;
+  height: 182px;
+  border-radius: 8px;
+
+  object-fit: cover;
+`;
+
+export const Essential = styled.a`
+  margin-left: 3px;
+  color: #5546ff;
+  font-weight: 600;
+  font-size: 14px;
+`;
+export const CompanyBtn = styled.button`
+  width: 335px;
+  height: 52px;
+
+  color: #1a1f27;
+
+  border: 1px solid #e2e6ef;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  margin: 20px 0px 10px 20px;
+
+  cursor: pointer;
+`;
+
+export const AddressSearch = styled.div`
+  font-size: 13px;
+  color: grey;
+  margin-left: 30px;
+  margin-top: 16px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+export const SearchCompanyBtn = styled.input`
+  width: 335px;
+  height: 52px;
+
+  border: 1px solid #e2e6ef;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  font-weight: 500;
+  font-size: 16px;
+
+  color: #1a1f27;
+
+  margin-left: 20px;
+  cursor: pointer;
+`;
+
+export const SectionLine = styled.div`
+  height: 1px;
+  background: #e2e6ef;
+
+  margin-top: 48px;
+  margin-bottom: 20px;
+`;

@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
-import {
-  __deletePost,
-  __getPost,
-  __likePost,
-} from '../../../redux/modules/PostSlice';
-import { _postId } from '../../../redux/modules/chatSlice';
-
+import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
 import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
 import Comment from '../comment/Comment';
 
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
 import { ReactComponent as Chat } from '../../../images/ic-chat.svg';
+import { _postId } from '../../../redux/modules/chatSlice';
+
 import {
   CommentBox,
   CommentNum,
@@ -42,7 +38,8 @@ import {
 
 const PostDetail = () => {
   const dispatch = useDispatch();
-  const nav = useNavigate();
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
 
@@ -55,6 +52,7 @@ const PostDetail = () => {
 
   useEffect(() => {
     dispatch(__getPost(id));
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   useEffect(() => {
@@ -105,7 +103,7 @@ const PostDetail = () => {
   return (
     <DetailBox>
       <Section1>
-        <Section2>
+        <Section2 onClick={() => navigate('/community')}>
           <svg
             width="10"
             height="17"
@@ -125,7 +123,6 @@ const PostDetail = () => {
           ''
         )}
       </Section1>
-      <SectionLine />
 
       {/*  */}
       <DetailPostSection1>
@@ -139,7 +136,7 @@ const PostDetail = () => {
           onClick={() => {
             console.log('게시글아이디', postid);
             dispatch(_postId(postid));
-            nav('/chat/chatroom/');
+            navigate('/chat/chatroom/');
           }}
         />
         {/* 채팅하기 버튼 svg end*/}
@@ -186,7 +183,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment />
+      <Comment detailAuthor={detail.author} />
     </DetailBox>
   );
 };

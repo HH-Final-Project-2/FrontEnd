@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CommentEditBox = styled.div`
-  width: 375px;
+  width: 373px;
   height: 100vh;
   background-color: white;
   margin: 0 auto;
@@ -32,27 +32,21 @@ export const CommentEditInputBox = styled.div`
 `;
 
 export const CommentBtns = styled.div`
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 40px;
 
   display: flex;
   flex-direction: row-reverse;
-  justify-content: end;
-
-  margin-top: 16px;
-  margin-right: 40px;
+  justify-content: center;
 `;
 
 export const CommentEditBtn = styled.button`
-  padding: 4px 20px;
-  gap: 8px;
-
-  width: 70px;
-  height: 40px;
-
+  width: 160px;
+  height: 52px;
   background: #5546ff;
   color: #ffffff;
   font-size: 14px;
-
   border: 1px solid #e2e6ef;
   border-radius: 8px;
 
@@ -60,13 +54,10 @@ export const CommentEditBtn = styled.button`
 `;
 
 export const EditCancelBtn = styled.button`
-  padding: 4px 20px;
-  gap: 8px;
-  margin-right: 12px;
+  margin-right: 14px;
 
-  width: 70px;
-  height: 40px;
-
+  width: 160px;
+  height: 52px;
   background: #ffffff;
   color: #52596b;
 

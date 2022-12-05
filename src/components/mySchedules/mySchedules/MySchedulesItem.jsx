@@ -26,10 +26,6 @@ const MySchedulesItem = () => {
     dispatch(__schedulesGet());
   }, [dispatch]);
 
-  const addClickHandler = (e) => {
-    e.preventDefault();
-    navigate("/addSchedules");
-  };
   if (marks === null) return;
 
   return (
@@ -40,10 +36,13 @@ const MySchedulesItem = () => {
           <img
             src={addimg}
             className="addBtn"
-            onClick={addClickHandler}
+            onClick={() => {
+              navigate("/addSchedules");
+            }}
             alt=""
           />
         </div>
+
         <Calendar
           onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
           formatDay={(locale, date) => moment(date).format("DD")} // 날'일' 제외하고 숫자만 보이도록 설정
@@ -59,7 +58,7 @@ const MySchedulesItem = () => {
             let html = [];
 
             if (marks.find((x) => x.filteredDate.includes(ddate))) {
-              html.push(<div className="dot"></div>);
+              html.push(<div className="dot" />);
             } else return null;
             return (
               <>
@@ -75,6 +74,7 @@ const MySchedulesItem = () => {
           {marks !== null
             ? marks.map((x) => {
                 if (
+                  x.filteredDate !== undefined &&
                   x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (
