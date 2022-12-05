@@ -61,7 +61,7 @@ export const emailAuth = createAsyncThunk(
 // 회원가입
 export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
   try {
-    await axios.post("http://13.124.142.195/api/members/signup", payload);
+    await axios.post("https://bkyungkeem.shop/api/members/signup", payload);
     alert("회원가입 성공");
     window.location.replace("/login");
   } catch (error) {}
@@ -77,7 +77,7 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
       },
     };
     await axios
-      .post("http://13.124.142.195/api/members/login", payload, config)
+      .post("https://bkyungkeem.shop/api/members/login", payload, config)
       .then((res) => {
         // 로그인 성공
         if (res.data.success) {
@@ -115,7 +115,7 @@ export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
       },
     };
     await axios.post(
-      "http://13.124.142.195/api/members/logout",
+      "https://bkyungkeem.shop/api/members/logout",
       payload,
       config
     );
@@ -147,7 +147,7 @@ const memberSlice = createSlice({
   reducers: {},
   extraReducers: {
     [emailCheck.fulfilled]: (state, action) => {
-      state.check = action.payload;
+      state.check = action.payload.success;
     },
     [emailAuth.fulfilled]: (state, action) => {
       state.auth = action.payload;

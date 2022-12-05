@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
 
+import { __getPost, __likePost } from "../../../redux/modules/PostSlice";
+import { _postId } from "../../../redux/modules/chatSlice";
+import PostBottomSheet from "../../bottomSheet/PostBottomSheet";
+import Comment from "../comment/Comment";
 
-import { __getPost, __likePost } from '../../../redux/modules/PostSlice';
-import PostBottomSheet from '../../bottomSheet/PostBottomSheet';
-import Comment from '../comment/Comment';
-
-import { ReactComponent as Like } from '../../../images/noneLike.svg';
-import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
-import { ReactComponent as Chat } from '../../../images/ic-chat.svg';
+import { ReactComponent as Like } from "../../../images/noneLike.svg";
+import { ReactComponent as FillLike } from "../../../images/fillLike.svg";
+import { ReactComponent as Chat } from "../../../images/ic-chat.svg";
 import {
   CommentBox,
   CommentNum,
@@ -33,7 +33,7 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
-} from './PostDetailStyle';
+} from "./PostDetailStyle";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,6 @@ const PostDetail = () => {
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
-
 
   //스크롤 최상단으로 이동
   useEffect(() => {
@@ -67,7 +66,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem('nickname');
+  const nickname = localStorage.getItem("nickname");
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -100,7 +99,7 @@ const PostDetail = () => {
   return (
     <DetailBox>
       <Section1>
-        <Section2 onClick={() => navigate('/community')}>
+        <Section2 onClick={() => navigate("/community")}>
           <svg
             width="10"
             height="17"
@@ -117,7 +116,7 @@ const PostDetail = () => {
             <PostBottomSheet id={id} detail={detail} />
           </div>
         ) : (
-          ''
+          ""
         )}
       </Section1>
 
@@ -131,8 +130,8 @@ const PostDetail = () => {
         {/* 채팅하기 버튼 svg start*/}
         <Chat
           onClick={() => {
-            dispatch(_postId(postid));
-            nav('/chat/chatroom/');
+            dispatch(_postId(id));
+            navigate("/chat/chatroom/");
           }}
         />
         {/* 채팅하기 버튼 svg end*/}

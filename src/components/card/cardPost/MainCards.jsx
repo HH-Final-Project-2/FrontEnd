@@ -39,8 +39,12 @@ const MainCards = () => {
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
+  const companyOnly = useSelector(
+    (state) => state.PostReducer.defaultCard.company
+  );
   console.log(companyGet);
   console.log(imgGet);
+  console.log(companyOnly);
   //state생성
 
   const [radioStatae, setRadioState] = useState(false);
@@ -66,7 +70,7 @@ const MainCards = () => {
   const [tel, setTel] = useState(imgGet.tel ? imgGet.tel : companyGet.tel);
   const [fax, setFax] = useState(imgGet.fax ? imgGet.fax : companyGet.fax);
   const [company, setCompany] = useState(
-    companyGet.company ? companyGet.company : null
+    companyGet.company ? companyGet.company : companyOnly
   );
   const [companyAddress, setCompanyAddress] = useState(
     companyGet.companyAddress ? companyGet.companyAddress : null
@@ -108,12 +112,19 @@ const MainCards = () => {
     () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
     [imgGet, companyGet]
   );
-  useEffect(() => setCompany(companyGet.company), [companyGet]);
+  useEffect(
+    () => setCompany(companyGet.company ? companyGet.company : companyOnly),
+    [companyGet, companyOnly]
+  );
   useEffect(() => setCompanyAddress(companyGet.companyAddress), [companyGet]);
 
   const isValidEmail =
     email !== undefined && email !== null
       ? email.includes('@') && email.includes('.')
+      : false;
+  const isValidPhone =
+    phoneNum !== undefined && phoneNum !== null
+      ? phoneNum.includes("-")
       : false;
 
   const isValidInput =
@@ -152,7 +163,7 @@ const MainCards = () => {
   //작성버튼 클릭시 발동되는 함수
   const cardsSubmitHandler = (e) => {
     e.preventDefault();
-    if (isValidEmail && isValidInput === true) {
+    if (isValidEmail && isValidInput && isValidPhone === true) {
       dispatch(
         __writePost({
           cardName: cardName,
@@ -392,12 +403,32 @@ const MainCards = () => {
             <div>
               <CompanyInput
                 placeholder="회사명을 입력하세요"
+                value={company || ""}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
               />
               <AddressSearch>
-                <Link to="/posts/companyOtherSearch">회사 주소 검색</Link>
+                <p
+                  onClick={() => {
+                    dispatch(
+                      __cardInfo({
+                        cardName: cardName ? cardName : "",
+                        email: email,
+                        phoneNum: phoneNum,
+                        department: department ? department : "",
+                        position: position ? position : "",
+                        tel: tel,
+                        fax: fax,
+                        companyType: companyType ? companyType : "",
+                        company: company ? company : "",
+                      })
+                    );
+                    navigate("/posts/companyOtherSearch");
+                  }}
+                >
+                  회사 주소 검색
+                </p>
               </AddressSearch>
             </div>
           ) : (

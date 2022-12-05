@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import {
   heartSort,
   hitsSort,
   topFivePost,
   __getPostAll,
   __searchPost,
-} from '../../../redux/modules/PostSlice';
-import Post from '../post/Post';
-import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
-import { ReactComponent as SelectArrow } from '../../../images/selectBox.svg';
+} from "../../../redux/modules/PostSlice";
+import Post from "../post/Post";
+import { ReactComponent as SearchIcon } from "../../../images/ic-search.svg";
+import { ReactComponent as SelectArrow } from "../../../images/selectBox.svg";
 import {
   CommunityLayout,
   Section1,
@@ -26,15 +26,15 @@ import {
   Container,
   StyledSlider,
   ListSectionLine,
-} from './PostListStyle';
-import Pagination from 'react-js-pagination';
-import TopFive from '../topFive/TopFive';
+} from "./PostListStyle";
+import Pagination from "react-js-pagination";
+import TopFive from "../topFive/TopFive";
 
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
-  let searchQuery = query.get('keyword');
+  let searchQuery = query.get("keyword");
   const { post } = useSelector((state) => state.PostSlice);
   const { postTopFive } = useSelector((state) => state.PostSlice);
 
@@ -51,12 +51,12 @@ const PostList = () => {
     autoplay: true,
   };
 
-  const [selectBox, setSelectBox] = useState('');
+  const [selectBox, setSelectBox] = useState("");
   // 최신순, 조회순, 좋아요순 정렬
   const selectHandler = (value) => {
-    if (value === 'news') dispatch(__getPostAll());
-    if (value === 'hits') dispatch(hitsSort());
-    if (value === 'likes') dispatch(heartSort());
+    if (value === "news") dispatch(__getPostAll());
+    if (value === "hits") dispatch(hitsSort());
+    if (value === "likes") dispatch(heartSort());
   };
 
   // 검색
@@ -71,7 +71,7 @@ const PostList = () => {
 
   // 작성 페이지로 이동
   const writeHandler = () => {
-    navigate('/write');
+    navigate("/write");
   };
 
   // 페이징 처리
@@ -99,7 +99,7 @@ const PostList = () => {
         <Section2>
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
-        <SearchButton onClick={() => navigate('/search')}>
+        <SearchButton onClick={() => navigate("/search")}>
           <SearchIcon />
         </SearchButton>
       </Section1>

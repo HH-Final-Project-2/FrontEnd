@@ -91,7 +91,7 @@ export const __cardInfo = createAsyncThunk(
       const data = await instance.post(`/api/cardInfo`, payload);
       console.log(data.data.data);
       console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data.data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
     }

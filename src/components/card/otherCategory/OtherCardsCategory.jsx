@@ -1,10 +1,9 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { __mainGet } from '../../../redux/modules/CardsSlice';
-import Header from '../../header/Header';
-
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { __mainGet } from "../../../redux/modules/CardsSlice";
+import Header from "../../header/Header";
 
 import {
   CategoryBtnBox,
@@ -61,7 +60,12 @@ const MainView = () => {
               strokeLinecap="round"
             />
           </SearchSvg>
-          <CardSearchInput type="text"></CardSearchInput>
+          <CardSearchInput
+            type="text"
+            onClick={() => {
+              navigate("/cardSearch");
+            }}
+          ></CardSearchInput>
         </div>
         <CategoryBtnBox>
           <CategoryBtn1
@@ -139,7 +143,7 @@ const MainView = () => {
               }
             })}
       </CardList>
-      <WriteButton onClick={() => navigate('/posts')}>
+      <WriteButton onClick={() => navigate("/posts")}>
         <img src="images/cardAdd.png" alt="" />
       </WriteButton>
     </div>
