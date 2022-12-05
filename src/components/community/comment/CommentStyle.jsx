@@ -15,19 +15,20 @@ export const CommentTitle = styled.div`
 `;
 
 export const CommentNickName = styled.div`
-  margin-left: 13px;
-  margin-top: 13px;
-  font-weight: 600;
-  font-size: 12px;
+  margin-left: 16px;
+  margin-top: 11px;
+
+  font-weight: 500;
+  font-size: 14px;
 `;
 
 export const CommentNickName2 = styled.div`
   padding: 2px 4px 2px 4px;
 
-  margin-left: 13px;
-  margin-top: 11px;
-  font-weight: 600;
-  font-size: 12px;
+  margin-left: 16px;
+  margin-top: 9px;
+  font-weight: 500;
+  font-size: 14px;
 
   color: #3425de;
   background: #eeecff;
@@ -45,7 +46,7 @@ export const CommentBody = styled.div`
   width: 355px;
   white-space: pre-line;
   word-break: break-all;
-  margin-left: 13px;
+  padding-left: 16px;
   margin-top: 15px;
   font-size: 14px;
 `;
@@ -62,6 +63,8 @@ export const CommentTextarea = styled.textarea`
   width: 290px;
   height: 44px;
   padding-left: 12px;
+  padding-right: 12px;
+
   padding-top: 14px;
   resize: none;
   outline: none;
@@ -102,7 +105,7 @@ export const CommentWirteButton = styled.button`
 export const LikeButton = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 13px;
+  margin-left: 18px;
   margin-top: 15px;
   margin-bottom: 10px;
   cursor: pointer;

@@ -117,7 +117,6 @@ const PostDetail = () => {
           ''
         )}
       </Section1>
-      <SectionLine />
 
       {/*  */}
       <DetailPostSection1>

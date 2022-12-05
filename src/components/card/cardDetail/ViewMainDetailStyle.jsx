@@ -8,7 +8,7 @@ export const St_Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 15px;
+  padding-left: 8px;
 
   font-weight: 500;
   font-size: 16px;
@@ -19,6 +19,7 @@ export const St_Header = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  margin-left: 16px;
 `;
 
 export const Mycard = styled.div`
@@ -217,10 +218,9 @@ export const NumBox = styled.div`
 //bottom sheet
 
 export const MoreButton = styled.div`
-  display: flex;
-  position: relative;
-  bottom: 10px;
-  left: 230px;
+  width: 65px;
+  margin-bottom: 12px;
+  margin-left: auto;
   cursor: pointer;
 `;
 
