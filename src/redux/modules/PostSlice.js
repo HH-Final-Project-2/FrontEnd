@@ -4,13 +4,52 @@ import instance from '../../shared/Request';
 const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
 
+// 인기 게시글 top5
+export const topFivePost = createAsyncThunk(
+  'topfive/topFivePost',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/five');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 좋아요순 정렬
+export const heartSort = createAsyncThunk(
+  'heart/heartSort',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/hearts');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// 조회순 정렬
+export const hitsSort = createAsyncThunk(
+  'sort/viewSort',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/api/posting/hits');
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 // 게시글 검색
 export const __searchPost = createAsyncThunk(
   'search/searchPost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `https://bkyungkeem.shop/api/posting/search?keyword=${payload}`
+      const { data } = await instance.get(
+        `/api/posting/search?keyword=${payload}`
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -23,7 +62,6 @@ export const __searchPost = createAsyncThunk(
 export const __likePost = createAsyncThunk(
   'post/likePost',
   async (payload, thunkAPI) => {
-    // console.log(payload)
     try {
       const { data } = await instance.post(`/api/auth/post/heart/${payload}`);
       return thunkAPI.fulfillWithValue(data);
@@ -65,17 +103,13 @@ export const __writePost = createAsyncThunk(
   'post/writePost',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        'http://13.124.142.195/api/posting',
-        payload,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: accessToken,
-            'refresh-Token': refreshToken,
-          },
-        }
-      );
+      const { data } = await axios.post('https://bkyungkeem.shop/api/posting', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: accessToken,
+          'refresh-Token': refreshToken,
+        },
+      });
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -87,6 +121,10 @@ export const __writePost = createAsyncThunk(
 export const __putPost = createAsyncThunk(
   'post/putPost',
   async (payload, thunkAPI) => {
+    // console.log(payload)
+    // for (var pair of payload.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
     try {
       const { data } = await axios.put(
         `https://bkyungkeem.shop/api/posting/${payload.id}`,
@@ -150,6 +188,21 @@ const initialState = {
     modifiedAt: '',
     like: false,
   },
+  postTopFive: [
+    {
+      id: 0,
+      author: '',
+      jobGroup: '',
+      title: '',
+      content: '',
+      hit: '',
+      postHeartCnt: '',
+      commentCnt: '',
+      image: '',
+      createdAt: '',
+      modifiedAt: '',
+    },
+  ],
   isLoading: false,
   error: null,
 };
@@ -161,6 +214,23 @@ export const PostSlice = createSlice({
   extraReducers: {
     //게시글 검색
     [__searchPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.post = action.payload;
+    },
+
+    // 인기글 top5
+    [topFivePost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.postTopFive = action.payload;
+    },
+
+    // 조회순 정렬
+    [hitsSort.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.post = action.payload;
+    },
+    // 좋아요순 정렬
+    [heartSort.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.post = action.payload;
     },
@@ -179,13 +249,14 @@ export const PostSlice = createSlice({
 
     //게시글 작성
     [__writePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = true;
+      console.log('글작성 리듀서 이즈로딩', state.isLoading)
       state.post = [action.payload, ...state.post];
     },
 
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = true;
 
       // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
       // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
@@ -215,15 +286,14 @@ export const PostSlice = createSlice({
 
     // 게시글 삭제
     [__deletePost.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      //console.log('필터전이구', state.post.length);
+      state.isLoading = true;
       state.post = state.post.filter(
         (postList) => postList.id !== action.payload
       );
-      //console.log('필터후', state.post.length);
+
     },
   },
 });
 
-export const {} = PostSlice.actions;
+export const { } = PostSlice.actions;
 export default PostSlice.reducer;

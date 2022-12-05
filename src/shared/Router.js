@@ -20,7 +20,7 @@ import MyCardPatch from "../components/myCard/MyCardPatch/MyCardPatch";
 import MyCardMake from "../components/myCard/MyCardMake/MyCardMake";
 import MyCardCompanySerach from "../components/myCard/MyCardCompanySerach/MyCardCompanySerach";
 import Manage from "../pages/Manage";
-import MyNickName from '../components/myCard/MyProfile/MyNickName';
+import MyNickName from "../components/myCard/MyProfile/MyNickName";
 import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
@@ -33,6 +33,8 @@ import Search from "../pages/Search";
 import PrivateRoute from "./PrivateRoute";
 import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
+import CardSearch from "../components/card/cardSearch/CardSearch";
+import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -53,10 +55,15 @@ const Router = () => {
           }
         />
         <Route path="/cards" element={<Cards />} />
+        <Route path="/cardSearch" element={<CardSearch />} />
         <Route path="/otherCategory" element={<OtherCards />} />
         <Route path="/posts" element={<MainCards />} />
         <Route path="/posts/:id/put" element={<MainCardsPut />} />
         <Route path="/posts/companySearch" element={<CompanySearch />} />
+        <Route
+          path="/posts/companyOtherSearch"
+          element={<OtherSearchModal />}
+        />
         <Route path="/posts/get/:id" element={<ViewMainDetailPost />} />
 
         {/* 내 일정 */}

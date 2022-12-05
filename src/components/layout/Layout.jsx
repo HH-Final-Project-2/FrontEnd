@@ -1,11 +1,15 @@
-import React from 'react';
-import { DivLayout } from './LayoutStyle';
+import React from "react";
+import { DivLayout, LayoutBox } from "./LayoutStyle";
+import { ReactComponent as Banner } from "../../images/banner.svg";
 
 const Layout = ({ children }) => {
   return (
-    <DivLayout>
-      {children}
-    </DivLayout>
+    <LayoutBox>
+      <div className="banner">
+        <Banner />
+      </div>
+      <DivLayout>{children}</DivLayout>
+    </LayoutBox>
   );
 };
 

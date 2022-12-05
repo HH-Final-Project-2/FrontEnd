@@ -103,7 +103,7 @@ const St_title = styled.div`
 `;
 
 const Mycard = styled.div`
-  width: 375px;
+  width: 373px;
   height: 240px;
   background-color: #f5f5f5;
 `;
