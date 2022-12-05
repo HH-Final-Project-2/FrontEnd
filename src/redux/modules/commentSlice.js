@@ -148,17 +148,6 @@ export const commentSlice = createSlice({
     // 댓글 수정
     [putComment.fulfilled]: (state, action) => {
       state.isLoading = true;
-      /*let modComment = action.payload;
-      let newComment = [];
-
-      for (let i = 0; i < state.comments.length; i++) {
-        if (state.comments[i].id === modComment.id) {
-          newComment.push(modComment);
-        } else {
-          newComment.push(state.comments[i]);
-        }
-      }
-      state.comments = newComment;*/
     },
   },
 });

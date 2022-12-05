@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../shared/Request";
 
 const initialState = {
@@ -11,8 +10,8 @@ const initialState = {
 // 이메일 중복체크
 export const emailCheck = createAsyncThunk("SIGNUP", async (payload) => {
   try {
-    await axios
-      .post("https://bkyungkeem.shop/api/members/check", payload)
+    await instance
+      .post("/api/members/check", payload)
       .then((res) => {
         // 사용가능한 이메일 alert
         if (res.data.success === true) alert(res.data.data);
@@ -20,29 +19,24 @@ export const emailCheck = createAsyncThunk("SIGNUP", async (payload) => {
         // 중복되는 이메일 alert
         if (res.data.success === false) alert(res.data.error.message);
       });
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // 회원가입
 export const signUp = createAsyncThunk("SIGNUP", async (payload) => {
   try {
-    await axios.post("https://bkyungkeem.shop/api/members/signup", payload);
+    await instance.post("/api/members/signup", payload);
     alert("회원가입 성공");
     window.location.replace("/login");
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // 로그인
 
 export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    await axios
-      .post("https://bkyungkeem.shop/api/members/login", payload, config)
+    await instance
+      .post("/api/members/login", payload)
       .then((res) => {
         // 로그인 성공
         if (res.data.success) {
@@ -54,8 +48,9 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
             "refresh-Token",
             res.request.getResponseHeader("refresh-Token")
           );
+
           localStorage.setItem("nickname", res.data.data.nickname);
-          alert("로그인 성공");
+          alert("로그인 되었습니다.");
           window.location.replace("/cards");
         }
         // 이메일 확인
@@ -72,38 +67,22 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
 // 로그아웃
 export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("authorization"),
-        "refresh-Token": localStorage.getItem("refresh-Token"),
-      },
-    };
-    await axios.post(
-      "https://bkyungkeem.shop/api/members/logout",
-      payload,
-      config
+    await instance.post(
+      "/api/members/logout",
+      payload
     );
-
     localStorage.clear();
     window.location.replace("/login");
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // 회원탈퇴
 export const withDraw = createAsyncThunk("WITHDRAW", async () => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("authorization"),
-        "refresh-Token": localStorage.getItem("refresh-Token"),
-      },
-    };
-    await axios.delete("https://bkyungkeem.shop/api/members/withdraw", config);
+    await instance.delete("/api/members/withdraw");
     localStorage.clear();
     window.location.replace("/login");
-  } catch (error) {}
+  } catch (error) { }
 });
 
 const memberSlice = createSlice({

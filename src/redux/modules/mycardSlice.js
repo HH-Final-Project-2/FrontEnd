@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../shared/Request";
 const accessToken = localStorage.getItem("authorization");
 const refreshToken = localStorage.getItem("refresh-Token");
@@ -8,19 +7,10 @@ export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post(
-        "https://bkyungkeem.shop/api/mypages",
-        payload,
-        {
-          headers: {
-            contentType: "application/json",
-            Authorization:accessToken,
-            "Refresh-Token":refreshToken
-          },
-        }
-      );
+      const data = await instance.post(
+        "/api/mypages", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //get
@@ -28,16 +18,9 @@ export const _getMakeCard = createAsyncThunk(
   "get/card",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("https://bkyungkeem.shop/api/mypages", {
-        headers: {
-          contentType: "application/json",
-          Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-        },
-      });
-
+      const { data } = await instance.get("/api/mypages");
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //put
@@ -45,20 +28,9 @@ export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(
-        `https:/bkyungkeem.shop/api/mypages/${payload.id}`,
-        payload,
-        {
-          headers: {
-            contentType: "application/json",
-            Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-
-          },
-        }
-      );
+      const { data } = await instance.put(`/api/mypages/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //검색
@@ -66,22 +38,9 @@ export const _searchGet = createAsyncThunk(
   "SEARCH_GET",
   async (payload, thunkAPI) => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-        },
-      };
-      const data = await axios.post(
-        "https://bkyungkeem.shop/api/companySearch",
-        payload,
-        config
-      );
+      const data = await instance.post("/api/companySearch", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) { }
   }
 );
 //회사명, 주소 저장
@@ -89,25 +48,9 @@ export const _companyInfo = createAsyncThunk(
   "COMPANY_INFO",
   async (payload, thunkAPI) => {
     try {
-
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: accessToken,
-          "Refresh-Token": refreshToken,
-        },
-      };
-      const { data } = await axios.post(
-        "https://bkyungkeem.shop/api/companyInfo",
-        payload,
-        config
-      );
-
-      console.log(data.data);
+      const { data } = await instance.post("/api/companyInfo", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) { }
   }
 );
 
@@ -159,5 +102,5 @@ export const mycardSlice = createSlice({
 
   },
 });
-export const {} = mycardSlice.actions;
+export const { } = mycardSlice.actions;
 export default mycardSlice.reducer;

@@ -25,6 +25,7 @@ import Chat from "../pages/Chat";
 import Chatroom from "../components/chat/Chatroom";
 
 import Login from "../pages/Login";
+import Kakao from "../pages/Kakao";
 import Join from "../pages/Join";
 
 import CommentEditPage from "../pages/CommentEditPage";
@@ -35,10 +36,13 @@ import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
 import CardSearch from "../components/card/cardSearch/CardSearch";
 import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
+import { getCookie } from "./Cookie";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
   const refresh = localStorage.getItem("refresh-Token");
+  // const access = getCookie("authorization");
+  // const refresh = getCookie("refresh-Token");
 
   return (
     <BrowserRouter>
@@ -98,6 +102,7 @@ const Router = () => {
         {/* 회원관리(회원가입,로그인)*/}
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/oauth/kakao" element={<Kakao />} />
       </Routes>
     </BrowserRouter>
   );
