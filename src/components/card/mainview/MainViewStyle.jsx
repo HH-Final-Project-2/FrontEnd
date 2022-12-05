@@ -46,7 +46,6 @@ export const CategoryBtn2 = styled.button`
 export const CardList = styled.div`
   background-color: #f5f5f5;
   padding-top: 32px;
-  height: 100vh;
 `;
 
 export const Card = styled.div`
