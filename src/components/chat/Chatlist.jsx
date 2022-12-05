@@ -1,33 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import {
+  deleteChatroom,
+  getChatRoom,
+  roomIdSave,
+} from '../../redux/modules/chatSlice';
 
 const Chatlist = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
+
+  const { chatRoom } = useSelector((state) => state.chat);
+
+  useEffect(() => {
+    dispatch(getChatRoom());
+  }, []);
+
+  // if (chatRoom === undefined) return;
+
   return (
     <div>
-      <ChatsBox
-        onClick={() => {
-          nav('/chat/chatroom/');
-        }}
-      >
-        <ProBox>
-          <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
-        </ProBox>
-        <div>
-          <ChatName>김승재</ChatName>
-          <LastChat>마지막 채팅</LastChat>
-        </div>
-      </ChatsBox>
-      <ChatsBox>
-        <ProBox>
-          <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
-        </ProBox>
-        <div>
-          <ChatName>김승재</ChatName>
-          <LastChat>마지막 채팅</LastChat>
-        </div>
-      </ChatsBox>
+      {chatRoom &&
+        chatRoom.map((x) => {
+          return (
+            <ChatsBox
+              key={chatRoom.id}
+              onClick={() => {
+                dispatch(roomIdSave(x.chatRoomUuid));
+                nav('/chat/chatroom/');
+              }}
+            >
+              <ProBox>
+                <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
+              </ProBox>
+              <div>
+                <ChatName>{x.roomName}</ChatName>
+                <LastChat>{x.lastMessage}</LastChat>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(deleteChatroom(x.chatRoomUuid));
+                  window.location.reload();
+                }}
+              >
+                나가기
+              </button>
+            </ChatsBox>
+          );
+        })}
     </div>
   );
 };
