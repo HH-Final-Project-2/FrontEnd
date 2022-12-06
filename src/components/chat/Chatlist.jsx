@@ -36,7 +36,7 @@ const Chatlist = () => {
               }}
             >
               <ProBox>
-                <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
+                <Profile />
               </ProBox>
               <div>
                 <ChatName>{x.roomName}</ChatName>
