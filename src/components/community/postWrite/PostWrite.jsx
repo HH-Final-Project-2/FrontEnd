@@ -9,7 +9,6 @@ import {
   WriteBody,
   WriteBox,
   WriteBtn,
-  WriteBtnFill,
   WriteSection1,
   WriteSection1Title,
   WriteTitle,
@@ -25,6 +24,10 @@ const PostWrite = () => {
 
   const [memberPost, setMemberpost] = useState();
   const [image, setImage] = useState('');
+
+  const [titleTest, setTitleTest] = useState('');
+  const [joupGroupTest, setJoupGroup] = useState('');
+  const [contentTest, setContentTest] = useState('');
 
   // textarea 세로길이 자동 조정
   const textRef = useRef();
@@ -70,6 +73,23 @@ const PostWrite = () => {
     }
   };
 
+  const checkJobGroup = joupGroupTest.length >= 1;
+  const checkTitle = titleTest.length >= 1;
+  const checkContent = contentTest.length >= 1;
+
+
+  //유효성 통과시 버튼&폰트 색상 변경
+  let setColor = '';
+  let setFontColor = '';
+
+  if (checkJobGroup && checkTitle && checkContent) {
+    setColor = '#5546ff';
+    setFontColor = 'white';
+  } else {
+    setColor = '#bbb5ff;';
+    setFontColor = 'white';
+  }
+
   //작성한 데이터 전송
   const writeHandler = (memberPost) => {
     const formData = new FormData();
@@ -90,6 +110,8 @@ const PostWrite = () => {
     dispatch(__writePost(formData));
   };
 
+
+
   return (
     <form
       onSubmit={(e) => {
@@ -99,6 +121,29 @@ const PostWrite = () => {
         // 이런 현상을 막으려면, 반드시 이벤트(e) 파라메터의 preventDefault() 함수를
         // 호출해준다.
         e.preventDefault();
+
+        // if (joupGroupTest.trim() === ''
+        //   || titleTest.trim() === ''
+        //   || contentTest.trim() === ''
+        // ) return alert('게시글은 빈칸없이 작성해주세요');
+
+        if (joupGroupTest.trim() === '' && titleTest.trim() === '' && contentTest.trim() === '') {
+          alert('게시글을 확인 해주세요');
+          return;
+        }
+
+        if (joupGroupTest.trim() === '') {
+          alert('직군을 선택해 주세요');
+          return;
+        }
+        if (titleTest.trim() === '') {
+          alert('제목을 입력해 주세요');
+          return;
+        }
+        if (contentTest.trim() === '') {
+          alert('내용을 입력해 주세요');
+          return;
+        }
 
         writeHandler(memberPost);
         // onSubmit에서 navigate('/community')를 호출하면,
@@ -129,7 +174,9 @@ const PostWrite = () => {
 
         <SelectJob>
           <select
+            value={joupGroupTest}
             onChange={(ev) => {
+              setJoupGroup(ev.target.value);
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -164,9 +211,11 @@ const PostWrite = () => {
         </SelectJob>
         <WriteTitle>
           <textarea
+            value={titleTest}
             type="text"
             placeholder="제목"
             onChange={(ev) => {
+              setTitleTest(ev.target.value)
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -177,12 +226,14 @@ const PostWrite = () => {
         </WriteTitle>
         <WriteBody>
           <textarea
+            value={contentTest}
             ref={textRef}
             onInput={handleResizeHeight}
             type="text"
             placeholder="내용(500자 이내)"
             maxLength={500}
             onChange={(ev) => {
+              setContentTest(ev.target.value)
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -239,14 +290,7 @@ const PostWrite = () => {
             </ImgUploadButton>
           )}
         </ImageUpload>
-        {/* {{
-          ...memberPost.title.length,
-        } > 0 ? (
-          <WriteBtnFill>작성</WriteBtnFill>
-        ) : (
-          <WriteBtn>작성</WriteBtn>
-        )} */}
-        <WriteBtn>작성</WriteBtn>
+        <WriteBtn fontColor={setFontColor} color={setColor}>작성</WriteBtn>
       </WriteBox>
     </form>
   );

@@ -30,6 +30,7 @@ import {
 import Pagination from "react-js-pagination";
 import TopFive from "../topFive/TopFive";
 import SearchNone from "../../searchNone/SearchNone";
+import Spinner from '../../loading/Loading'
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ const PostList = () => {
   let searchQuery = query.get("keyword");
   const { post } = useSelector((state) => state.PostSlice);
   const { postTopFive } = useSelector((state) => state.PostSlice);
+
+  const [loading, setLoading] = useState(false);
 
   // 인기글 슬라이드
   const settings = {
@@ -62,8 +65,14 @@ const PostList = () => {
 
   // 검색
   useEffect(() => {
-    if (searchQuery === null) dispatch(__getPostAll());
-    else dispatch(__searchPost(searchQuery));
+    if (searchQuery === null) {
+      dispatch(__getPostAll());
+      setLoading(true);
+    }
+    else {
+      dispatch(__searchPost(searchQuery));
+      setLoading(true);
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -92,7 +101,9 @@ const PostList = () => {
     window.scrollTo(0, 0);
   }, [indexOfFirstPost, indexOfLastPost, page, post]);
 
-  if (post === undefined) return;
+  if (post === undefined) return null;
+
+  if (loading === false) return (<Spinner />);
 
   return (
     <CommunityLayout>
@@ -138,7 +149,7 @@ const PostList = () => {
         <SelectArrow />
       </SortPost>
       <Section3>
-        {currentPosts.length === 0 ? <SearchNone /> : (
+        {currentPosts.length == 0 ? <SearchNone /> : (
           <Section3>
             {currentPosts.map((post) => {
               return (
