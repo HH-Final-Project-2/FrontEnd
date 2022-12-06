@@ -78,7 +78,6 @@ export const __getPostAll = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get('/api/posting');
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);

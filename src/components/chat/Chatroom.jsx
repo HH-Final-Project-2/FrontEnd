@@ -42,26 +42,23 @@ const Chatroom = () => {
     Authorization: localStorage.getItem('authorization'),
     'Refresh-Token': localStorage.getItem('refresh-Token'),
   };
-  const socket = new SockJS('http://13.124.142.195/stomp/chat');
-  const client = Stomp.over(socket);
   const scrollRef = useRef();
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   //게시글에서 가져오는 채팅방 ID
+
   const id = useSelector((state) => state.chat.roomId);
-  // console.log(id);
+
   //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
-  // console.log(chatlistid);
   //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
-  console.log(userinfo);
+
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
-  // console.log(chatList);
-  // console.log(client.ws.readyState);
 
+  // console.log(client.ws.readyState);
   const [message, setMessage] = useState('');
 
   // if (client.ws.readyState === 0) {
@@ -69,57 +66,63 @@ const Chatroom = () => {
   //     console.log(client.ws.readyState);
   //   }, 500);
   // }
+  const socket = new SockJS('http://13.124.142.195/stomp/chat');
+  const client = Stomp.over(socket);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('디스페치액션', id === '' ? chatlistid : id);
+      dispatch(getUserinfo(id === '' ? chatlistid : id));
+      dispatch(getMessage(id === '' ? chatlistid : id));
+      console.log('유저정보', userinfo);
+      console.log('이전채팅', chatList);
+      console.log('게시글로부터 리스폰스로 받은 ID', id);
+      console.log(client.ws.readyState);
+    }, 300);
+  }, [id, chatlistid]);
+
+  // if (id !== undefined) {
+  // }
+
+  useEffect(() => {
+    onConneted();
+    console.log(socket.readyState);
+    return () => {
+      unSubscribe();
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(getUserinfo(id === '' ? chatlistid : id));
+  //     dispatch(getMessage(id === '' ? chatlistid : id));
+  //   }, 200);
+  // }, [id, chatlistid]);
 
   const onConneted = () => {
     try {
       client.connect(headers, () => {
-        // console.log(client.ws.readyState);
-        // console.log(client.connected);
-        if (client.ws.readyState === 1 && client.connected === true) {
-          console.log(client.ws.readyState);
-          return client.subscribe(
-            `/sub/chat/room/${id === '' ? chatlistid : id}`,
-            (data) => {
-              // dispatch(subscribeId(data.headers.subscription));
-              const newMessage = JSON.parse(data.body);
-              dispatch(addMessage(newMessage));
-            },
-            headers
-          );
-        }
+        console.log(client.connected);
+        console.log(socket.readyState);
+        console.log(id);
+        // if (client.ws.readyState === 1 && client.connected === true) {
+        setTimeout(() => {
+          subsCribe();
+        }, 300);
       });
     } catch (error) {}
   };
 
-  useEffect(() => {
-    onConneted();
-    return () => {
-      unSubscribe();
-    };
-  }, [id, chatlistid]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(getUserinfo(id === '' ? chatlistid : id));
-      dispatch(getMessage(id === '' ? chatlistid : id));
-    }, 200);
-  }, [id, chatlistid]);
-
-  // const waitForConnection =(stompClient:Stomp.Client, callback :any) =>{
-
-  // }
-
-  const sendMessage = () => {
-    client.send(
-      '/pub/chat/message',
-      headers,
-      JSON.stringify({
-        roomId: id === '' ? chatlistid : id,
-        message: message,
-      })
+  const subsCribe = () => {
+    client.subscribe(
+      `/sub/chat/room/${id === '' ? chatlistid : id}`,
+      (data) => {
+        // dispatch(subscribeId(data.headers.subscription));
+        const newMessage = JSON.parse(data.body);
+        dispatch(addMessage(newMessage));
+      },
+      headers
     );
-
-    setMessage('');
   };
 
   const unSubscribe = () => {
@@ -130,6 +133,18 @@ const Chatroom = () => {
         headers
       )
       .unsubscribe();
+  };
+
+  const sendMessage = () => {
+    client.send(
+      '/pub/chat/message',
+      headers,
+      JSON.stringify({
+        roomId: id === '' ? chatlistid : id,
+        message: message,
+      })
+    );
+    setMessage('');
   };
 
   const handleEnterPress = (e) => {
@@ -167,14 +182,14 @@ const Chatroom = () => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [chatList]);
 
-  // if (
-  //   chatList === undefined &&
-  //   userinfo === undefined &&
-  //   id === undefined &&
-  //   chatlistid === undefined
-  // )
-  //   return;
-
+  if (
+    chatList === undefined &&
+    userinfo === undefined &&
+    id === undefined &&
+    chatlistid === undefined
+  )
+    return;
+  // if (chatList === undefined || userinfo === undefined) return;
   return (
     <Layout>
       <St_Header>

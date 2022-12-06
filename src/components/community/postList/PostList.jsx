@@ -29,6 +29,7 @@ import {
 } from "./PostListStyle";
 import Pagination from "react-js-pagination";
 import TopFive from "../topFive/TopFive";
+import SearchNone from "../../searchNone/SearchNone";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -137,17 +138,22 @@ const PostList = () => {
         <SelectArrow />
       </SortPost>
       <Section3>
-        {currentPosts.map((post) => {
-          return (
-            <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
-              <Post post={post} />
-            </div>
-          );
-        })}
+        {currentPosts.length === 0 ? <SearchNone /> : (
+          <Section3>
+            {currentPosts.map((post) => {
+              return (
+                <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
+                  <Post post={post} />
+                </div>
+              );
+            })}
+          </Section3>
+        )}
       </Section3>
       <WriteButton onClick={writeHandler}>
         <img src="images/작성.png" alt="" />
       </WriteButton>
+
 
       {/* 페이징 처리 */}
       <PaginationBox>

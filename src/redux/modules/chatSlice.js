@@ -7,7 +7,12 @@ const refreshToken = localStorage.getItem("refresh-Token");
 
 const initialState = {
   roomId: "",
-  chat: [],
+  chat: [{
+    userId: 0, 
+    nickname: '', 
+    message: '', 
+    createdAt: ''
+  }],
   userinfo:"",
   chatRoom: "",
   chatListroomId: "",
@@ -56,10 +61,11 @@ export const deleteChatroom = createAsyncThunk(
   }
 );
 
-
+//request: 게시글ID reponse: 채팅방ID
 export const _postId = createAsyncThunk(
   "post/chatid",
   async (payload, thunkAPI) => {
+    console.log("pay",payload)
     try {
       const {data} = await axios.post(
         "http://13.124.142.195/chat/rooms",
@@ -72,6 +78,7 @@ export const _postId = createAsyncThunk(
           },
         }
       );
+      console.log("응답",data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -81,7 +88,7 @@ export const _postId = createAsyncThunk(
 export const getMessage = createAsyncThunk(
   "get/chat",
   async (payload, thunkAPI ) => {
-    console.log(payload)
+    console.log("이전메시지 pay ",payload)
     try {
       const data = await axios.get(`http://13.124.142.195/chat/rooms/${payload}/messages`, {
         headers: {
@@ -103,7 +110,7 @@ export const getMessage = createAsyncThunk(
 export const getUserinfo = createAsyncThunk(
   "get/userinfo",
   async (payload, thunkAPI) => {
-    console.log(payload)
+    console.log("유저정보 pay",payload)
     try {
       const { data } = await axios.get(`http://13.124.142.195/chat/rooms/userInfo/${payload}`, {
         headers: {

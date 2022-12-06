@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
 import {
   deleteChatroom,
   getChatRoom,
   roomIdSave,
-} from '../../redux/modules/chatSlice';
+} 
+from '../../redux/modules/chatSlice';
 import { ReactComponent as Profile } from '../../images/profile.svg';
+
 
 const Chatlist = () => {
   const dispatch = useDispatch();
@@ -30,11 +32,11 @@ const Chatlist = () => {
               key={chatRoom.id}
               onClick={() => {
                 dispatch(roomIdSave(x.chatRoomUuid));
-                nav('/chat/chatroom/');
+                nav("/chat/chatroom/");
               }}
             >
               <ProBox>
-                <Profile />
+                <PorImg src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" />
               </ProBox>
               <div>
                 <ChatName>{x.roomName}</ChatName>
@@ -62,6 +64,7 @@ const Chatlist = () => {
 export default Chatlist;
 
 const ChatsBox = styled.div`
+
 display: flex;
 align-items: center;
 
@@ -73,8 +76,8 @@ cursor: pointer;
 .chatSection {
 margin-left: 26px;
 }
-`;
 
+`;
 const ProBox = styled.div`
 width: 100%;
 max-width: 48px;
@@ -140,3 +143,4 @@ align-items: center;
 color: #ffffff;
 background: #ff4b4b;
 `;
+
