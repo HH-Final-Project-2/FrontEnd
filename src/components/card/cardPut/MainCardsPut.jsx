@@ -1,8 +1,8 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
-import Layout from '../../layout/Layout';
+import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
+import Layout from "../../layout/Layout";
 import {
   __viewGet,
   __fixPost,
@@ -45,16 +45,16 @@ const MainCards = () => {
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
-    e.returnValue = '';
+    e.returnValue = "";
   };
 
   useEffect(() => {
     (() => {
-      window.addEventListener('beforeunload', preventClose);
+      window.addEventListener("beforeunload", preventClose);
     })();
 
     return () => {
-      window.removeEventListener('beforeunload', preventClose);
+      window.removeEventListener("beforeunload", preventClose);
     };
   }, []);
 
@@ -75,12 +75,12 @@ const MainCards = () => {
     fax: cardFix.fax,
   });
   const [company, setCompany] = useState(
-    cardFix.company ? cardFix.company : companyOnly
+    companyOnly !== undefined ? companyOnly : cardFix.company
   );
 
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
-      ? inputValue.email.includes('@') && inputValue.email.includes('.')
+      ? inputValue.email.includes("@") && inputValue.email.includes(".")
       : false;
 
   const isValidInput =
@@ -146,7 +146,6 @@ const MainCards = () => {
   return (
     <div>
       <Layout>
-        <SectionHeader />
         <St_Header>
           <svg
             width="24"
@@ -154,7 +153,7 @@ const MainCards = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               navigate(-1);
             }}
@@ -169,7 +168,6 @@ const MainCards = () => {
           <St_Title>명함수정</St_Title>
           <SaveButton onClick={cardsSubmitHandler}>저장</SaveButton>
         </St_Header>
-
         <PatchBox>
           <Item>
             <St_Key>
@@ -181,7 +179,7 @@ const MainCards = () => {
               name="cardName"
               minLength="2"
               maxLength="5"
-              value={inputValue.cardName || ''}
+              value={inputValue.cardName || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -394,7 +392,7 @@ const MainCards = () => {
               placeholder="회사번호"
               name="tel"
               maxLength="13"
-              value={inputValue.tel || ''}
+              value={inputValue.tel || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -405,7 +403,7 @@ const MainCards = () => {
               placeholder="팩스"
               name="fax"
               maxLength="13"
-              value={inputValue.fax || ''}
+              value={inputValue.fax || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>

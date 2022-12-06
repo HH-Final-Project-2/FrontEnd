@@ -180,6 +180,7 @@
 }
 
 .todoBox {
+  cursor: pointer;
   height: 68px;
   margin-top: 28px;
 }
