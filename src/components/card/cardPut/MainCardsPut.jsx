@@ -23,6 +23,8 @@ import {
   RadioBox,
   RadioDetail,
   Essential,
+  AssistiveText,
+  CompanyInput,
 } from "./MainCardsPutStyle";
 
 const MainCards = () => {
@@ -31,6 +33,11 @@ const MainCards = () => {
   const { id } = useParams();
   const cardFix = useSelector((state) => state.PostReducer.viewList);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
+  const companyOnly = useSelector(
+    (state) => state.PostReducer.defaultCard.company
+  );
+  console.log(companyGet);
+  console.log(companyOnly);
   const [companyHow, setCompanyHow] = useState();
 
   const preventClose = (e = BeforeUnloadEvent) => {
@@ -55,7 +62,7 @@ const MainCards = () => {
   const [inputValue, setInputValue] = useState({
     cardName: cardFix.cardName,
     email: cardFix.email,
-    company: cardFix.company,
+    // company: cardFix.company ? cardFix.company : companyOnly,
     companyAddress: cardFix.companyAddress,
     companyType: cardFix.companyType,
     phoneNum: cardFix.phoneNum,
@@ -64,6 +71,9 @@ const MainCards = () => {
     tel: cardFix.tel,
     fax: cardFix.fax,
   });
+  const [company, setCompany] = useState(
+    cardFix.company ? cardFix.company : companyOnly
+  );
 
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
@@ -73,7 +83,7 @@ const MainCards = () => {
   const isValidInput =
     inputValue.cardName &&
     inputValue.email &&
-    inputValue.company &&
+    company &&
     inputValue.companyAddress &&
     inputValue.companyType &&
     inputValue.phoneNum &&
@@ -81,7 +91,7 @@ const MainCards = () => {
     inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
         inputValue.email.length >= 1 &&
-        inputValue.company.length >= 1 &&
+        company.length >= 1 &&
         inputValue.companyAddress.length >= 1 &&
         inputValue.companyType.length >= 1 &&
         inputValue.phoneNum.length >= 1 &&
@@ -95,6 +105,10 @@ const MainCards = () => {
     console.log(inputValue);
   };
   useEffect(() => setInputValue(cardFix), [cardFix]);
+  useEffect(
+    () => setCompany(cardFix.company ? cardFix.company : companyOnly),
+    [cardFix, companyOnly]
+  );
 
   const companyChangeHandler = (e) => {
     setInputValue({ company: e.target.value });
@@ -113,10 +127,7 @@ const MainCards = () => {
           position: inputValue.position,
           tel: inputValue.tel,
           fax: inputValue.fax,
-          company:
-            companyGet.companyName !== undefined
-              ? companyGet.companyName
-              : inputValue.company,
+          company: company,
           companyAddress:
             companyGet.companyAddress !== undefined
               ? companyGet.companyAddress
@@ -125,7 +136,7 @@ const MainCards = () => {
         })
       );
     }
-    alert("수정완료!");
+    alert("명함 수정완료!");
     navigate(`/posts/get/${id}`);
   };
 
@@ -183,7 +194,7 @@ const MainCards = () => {
             ></St_value>
             {inputValue.phoneNum &&
             inputValue.phoneNum.includes("-") === false ? (
-              <SearchAddress>-을 포함해주세요</SearchAddress>
+              <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
           <Item>
@@ -200,7 +211,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {isValidEmail === false && inputValue.email ? (
-              <SearchAddress>이메일을 확인하세요</SearchAddress>
+              <AssistiveText>이메일을 확인하세요</AssistiveText>
             ) : null}
           </Item>
           <Item>
@@ -238,11 +249,14 @@ const MainCards = () => {
 
             {companyHow === "myself" ? (
               <div>
-                <St_value
-                  placeholder="회사명"
-                  value={inputValue.company}
-                  onChange={companyChangeHandler}
-                ></St_value>
+                <CompanyInput
+                  name="company"
+                  placeholder="회사명을 입력하세요"
+                  value={company || ""}
+                  onChange={(e) => {
+                    setCompany(e.target.value);
+                  }}
+                />
                 <AddressSearch>
                   <p
                     onClick={() => {
@@ -264,7 +278,7 @@ const MainCards = () => {
                           companyType: inputValue.companyType
                             ? inputValue.companyType
                             : "",
-                          company: inputValue.company ? inputValue.company : "",
+                          company: company ? company : "",
                         })
                       );
                       navigate("/posts/companyOtherSearch");
@@ -278,16 +292,16 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  value={
-                    companyGet.company ? companyGet.company : inputValue.company
-                  }
-                  onChange={valueChangeHandler}
+                  value={company || ""}
+                  onChange={(e) => {
+                    setCompany(e.target.value);
+                  }}
                   onClick={() => {
                     dispatch(
                       __cardInfo({
                         cardName: inputValue.cardName
                           ? inputValue.cardName
-                          : "",
+                          : cardFix.cardName,
                         email: inputValue.email,
                         phoneNum: inputValue.phoneNum,
                         department: inputValue.department

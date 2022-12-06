@@ -178,13 +178,38 @@ export const RadioDetail = styled.div`
 `;
 
 export const AddressSearch = styled.div`
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   color: grey;
   margin-left: 30px;
-  margin-top: 10px;
+  margin-top: 16px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+export const CompanyInput = styled.input`
+  width: 335px;
+  height: 52px;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
+  display: flex;
+
+  font-weight: 400;
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 export const CompanyBtn = styled.button`
@@ -213,4 +238,12 @@ export const Essential = styled.a`
   color: #5546ff;
   font-weight: 600;
   font-size: 14px;
+`;
+
+export const AssistiveText = styled.div`
+  color: #f82323;
+
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 26px;
 `;
