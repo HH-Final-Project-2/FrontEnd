@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
-import Loading from '../loading/Loading';
+import LoadingPage from '../../pages/LoadingPage';
 
 const KakaoLogin = () => {
   let params = new URL(window.location.href).searchParams;
@@ -12,16 +12,18 @@ const KakaoLogin = () => {
         .then((res) => {
           localStorage.setItem("authorization", res.request.getResponseHeader("authorization"));
           localStorage.setItem("refresh-Token", res.request.getResponseHeader("refresh-Token"));
+          localStorage.setItem('userid', res.data.id);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('nickname', res.data.nickname);
+          alert('Businus에 오신걸 환영합니다');
           window.location.replace('/cards');
         })
     }
   })
   return (
-    <div>
-      <Loading />
-    </div>
+    <>
+      <LoadingPage />
+    </>
   )
 }
 

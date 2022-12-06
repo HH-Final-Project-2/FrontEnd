@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "../App.css";
+import { createGlobalStyle } from 'styled-components';
+import '../App.css';
 
 const GlobalStyle = createGlobalStyle`
   
@@ -48,10 +48,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Pretendard';
     outline: none;
-
-    :focus {
-    border: 1px solid #bbb5ff;
-  }
   }
     
   // Box sizing
@@ -119,7 +115,12 @@ const GlobalStyle = createGlobalStyle`
   --rsbs-mr: env(safe-area-inset-right);
   --rsbs-overlay-rounded: 16px;
 } */
-    
+
+/* :root {
+    --rsbs-max-w: 375px;
+    --rsbs-ml: auto;
+    --rsbs-mr: auto;
+  } */
 `;
 
 export default GlobalStyle;

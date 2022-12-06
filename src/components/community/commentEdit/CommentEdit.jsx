@@ -48,7 +48,6 @@ const CommentEdit = () => {
     setContent(commentArr[0]?.content);
   }, [comments]);
 
-
   const { isLoading } = useSelector((state) => state.comments);
 
   useEffect(() => {
@@ -67,6 +66,9 @@ const CommentEdit = () => {
             viewBox="0 0 10 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              navigate(`/detail/${id}`);
+            }}
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
           </svg>

@@ -7,7 +7,7 @@ import {
   __viewGet,
   __fixPost,
   __cardInfo,
-} from "../../../redux/modules/CardsSlice";
+} from '../../../redux/modules/CardsSlice';
 import {
   St_Header,
   PatchBox,
@@ -25,7 +25,10 @@ import {
   Essential,
   AssistiveText,
   CompanyInput,
-} from "./MainCardsPutStyle";
+} from './MainCardsPutStyle';
+
+import { SectionFooter } from '../../footer/FooterStyle';
+import { SectionHeader } from '../cardPost/cardPostStyle';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -136,7 +139,7 @@ const MainCards = () => {
         })
       );
     }
-    alert("명함 수정완료!");
+    alert('명함 수정완료!');
     navigate(`/posts/get/${id}`);
   };
 
@@ -193,7 +196,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+            inputValue.phoneNum.includes('-') === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -224,8 +227,8 @@ const MainCards = () => {
                   type="radio"
                   id="find"
                   name="companyType"
-                  value={"find"}
-                  checked={companyHow === "find"}
+                  value={'find'}
+                  checked={companyHow === 'find'}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -237,8 +240,8 @@ const MainCards = () => {
                   type="radio"
                   id="myself"
                   name="companyHow"
-                  value={"myself"}
-                  checked={companyHow === "myself"}
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -247,12 +250,12 @@ const MainCards = () => {
               </RadioDetail>
             </RadioBox>
 
-            {companyHow === "myself" ? (
+            {companyHow === 'myself' ? (
               <div>
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={company || ""}
+                  value={company || ''}
                   onChange={(e) => {
                     setCompany(e.target.value);
                   }}
@@ -264,24 +267,24 @@ const MainCards = () => {
                         __cardInfo({
                           cardName: inputValue.cardName
                             ? inputValue.cardName
-                            : "",
+                            : '',
                           email: inputValue.email,
                           phoneNum: inputValue.phoneNum,
                           department: inputValue.department
                             ? inputValue.department
-                            : "",
+                            : '',
                           position: inputValue.position
                             ? inputValue.position
-                            : "",
+                            : '',
                           tel: inputValue.tel,
                           fax: inputValue.fax,
                           companyType: inputValue.companyType
                             ? inputValue.companyType
-                            : "",
-                          company: company ? company : "",
+                            : '',
+                          company: company ? company : '',
                         })
                       );
-                      navigate("/posts/companyOtherSearch");
+                      navigate('/posts/companyOtherSearch');
                     }}
                   >
                     회사 주소 검색
@@ -292,7 +295,7 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  value={company || ""}
+                  value={company || ''}
                   onChange={(e) => {
                     setCompany(e.target.value);
                   }}
@@ -306,19 +309,19 @@ const MainCards = () => {
                         phoneNum: inputValue.phoneNum,
                         department: inputValue.department
                           ? inputValue.department
-                          : "",
+                          : '',
                         position: inputValue.position
                           ? inputValue.position
-                          : "",
+                          : '',
                         tel: inputValue.tel,
                         fax: inputValue.fax,
                         companyType: inputValue.companyType
                           ? inputValue.companyType
-                          : "",
-                        company: inputValue.company ? inputValue.company : "",
+                          : '',
+                        company: inputValue.company ? inputValue.company : '',
                       })
                     );
-                    navigate("/posts/companySearch");
+                    navigate('/posts/companySearch');
                   }}
                 ></St_value>
                 <St_Address
@@ -338,7 +341,7 @@ const MainCards = () => {
                         viewBox="0 0 12 15"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        style={{ marginRight: "8px" }}
+                        style={{ marginRight: '8px' }}
                       >
                         <path
                           fillRule="evenodd"
@@ -405,6 +408,7 @@ const MainCards = () => {
             ></St_value>
           </Item>
         </PatchBox>
+        <SectionFooter />
       </Layout>
     </div>
   );

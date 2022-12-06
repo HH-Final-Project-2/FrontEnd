@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   DivLayout,
   LayoutBox,
   BannerLayout,
   Box,
   DivLayout2,
-} from "./LayoutStyle";
-import { ReactComponent as Banner } from "../../images/banner.svg";
+} from './LayoutStyle';
+import { ReactComponent as Banner } from '../../images/banner.svg';
 
 const Layout = ({ children }) => {
   //화면크기 인식
@@ -16,9 +16,9 @@ const Layout = ({ children }) => {
     setWindowWidth(window.innerWidth);
   };
   useEffect(() => {
-    window.addEventListener("resize", resizeWidth);
+    window.addEventListener('resize', resizeWidth);
     return () => {
-      window.removeEventListener("resize", resizeWidth);
+      window.removeEventListener('resize', resizeWidth);
     };
   }, []);
 

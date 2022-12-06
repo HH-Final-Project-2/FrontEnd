@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import {
   heartSort,
   hitsSort,
   topFivePost,
   __getPostAll,
   __searchPost,
-} from "../../../redux/modules/PostSlice";
-import Post from "../post/Post";
-import { ReactComponent as SearchIcon } from "../../../images/ic-search.svg";
-import { ReactComponent as SelectArrow } from "../../../images/selectBox.svg";
+} from '../../../redux/modules/PostSlice';
+import Post from '../post/Post';
+import { ReactComponent as SearchIcon } from '../../../images/ic-search.svg';
+import { ReactComponent as SelectArrow } from '../../../images/selectBox.svg';
 import {
   CommunityLayout,
   Section1,
   Section1Title,
   Section2,
   Section3,
-  SectionLine,
   WriteButton,
   SearchButton,
   SortPost,
@@ -30,14 +29,17 @@ import {
 import Pagination from "react-js-pagination";
 import TopFive from "../topFive/TopFive";
 import SearchNone from "../../searchNone/SearchNone";
+import LoadingPage from "../../../pages/LoadingPage";
 
 const PostList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
-  let searchQuery = query.get("keyword");
+  let searchQuery = query.get('keyword');
   const { post } = useSelector((state) => state.PostSlice);
   const { postTopFive } = useSelector((state) => state.PostSlice);
+
+  const [loading, setLoading] = useState(false);
 
   // 인기글 슬라이드
   const settings = {
@@ -52,18 +54,23 @@ const PostList = () => {
     autoplay: true,
   };
 
-  const [selectBox, setSelectBox] = useState("");
+  const [selectBox, setSelectBox] = useState('');
   // 최신순, 조회순, 좋아요순 정렬
   const selectHandler = (value) => {
-    if (value === "news") dispatch(__getPostAll());
-    if (value === "hits") dispatch(hitsSort());
-    if (value === "likes") dispatch(heartSort());
+    if (value === 'news') dispatch(__getPostAll());
+    if (value === 'hits') dispatch(hitsSort());
+    if (value === 'likes') dispatch(heartSort());
   };
 
   // 검색
   useEffect(() => {
-    if (searchQuery === null) dispatch(__getPostAll());
-    else dispatch(__searchPost(searchQuery));
+    if (searchQuery === null) {
+      dispatch(__getPostAll());
+      setLoading(true);
+    } else {
+      dispatch(__searchPost(searchQuery));
+      setLoading(true);
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -72,7 +79,7 @@ const PostList = () => {
 
   // 작성 페이지로 이동
   const writeHandler = () => {
-    navigate("/write");
+    navigate('/write');
   };
 
   // 페이징 처리
@@ -92,7 +99,9 @@ const PostList = () => {
     window.scrollTo(0, 0);
   }, [indexOfFirstPost, indexOfLastPost, page, post]);
 
-  if (post === undefined) return;
+  if (post === undefined) return null;
+
+  if (loading === false) return (<LoadingPage />);
 
   return (
     <CommunityLayout>
@@ -100,7 +109,7 @@ const PostList = () => {
         <Section2>
           <Section1Title>커뮤니티</Section1Title>
         </Section2>
-        <SearchButton onClick={() => navigate("/search")}>
+        <SearchButton onClick={() => navigate('/search')}>
           <SearchIcon />
         </SearchButton>
       </Section1>
@@ -138,11 +147,16 @@ const PostList = () => {
         <SelectArrow />
       </SortPost>
       <Section3>
-        {currentPosts.length === 0 ? <SearchNone /> : (
+        {currentPosts.length == 0 ? (
+          <SearchNone />
+        ) : (
           <Section3>
             {currentPosts.map((post) => {
               return (
-                <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
+                <div
+                  key={post.id}
+                  onClick={() => navigate(`/detail/${post.id}`)}
+                >
                   <Post post={post} />
                 </div>
               );
@@ -153,7 +167,6 @@ const PostList = () => {
       <WriteButton onClick={writeHandler}>
         <img src="images/작성.png" alt="" />
       </WriteButton>
-
 
       {/* 페이징 처리 */}
       <PaginationBox>
