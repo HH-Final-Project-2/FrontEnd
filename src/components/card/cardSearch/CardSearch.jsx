@@ -1,9 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import Layout from '../../layout/Layout';
-import { __CardSearchGet } from '../../../redux/modules/CardsSlice';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import Layout from "../../layout/Layout";
+import SearchNone from "../../searchNone/SearchNone";
+import { __CardSearchGet } from "../../../redux/modules/CardsSlice";
 import {
   St_Header,
   St_Title,
@@ -24,12 +25,12 @@ import {
   CardInCardDetail2,
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
-} from './CardSearchStyle';
-import CardsFooter from '../../footer/CardsFooter';
-import { SectionFooter } from '../../footer/FooterStyle';
+} from "./CardSearchStyle";
+import CardsFooter from "../../footer/CardsFooter";
+import { SectionFooter } from "../../footer/FooterStyle";
 
 const CardSearch = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const searched = useSelector((state) => state.PostReducer.searchCard);
 
   console.log(searched);
@@ -53,8 +54,9 @@ const CardSearch = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
+            dispatch(__CardSearchGet(null));
             navigate(-1);
           }}
         >
@@ -92,56 +94,57 @@ const CardSearch = () => {
         </svg>
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
-      {searched !== undefined
-        ? searched.map((main) => {
-            return (
-              <Card
-                key={main.id}
-                onClick={() => {
-                  navigate(`/posts/get/${main.id}`);
-                }}
-              >
-                <CardInfo>
-                  <CardName>{main.cardName}</CardName>
-                  <CardInfoDetail>
-                    <Position>
-                      {main.position.length > 5
-                        ? main.position.slice(0, 5) + '...'
-                        : main.position}
-                    </Position>
-                    <Department>
-                      {main.department.length > 5
-                        ? main.department.slice(0, 5) + '...'
-                        : main.department}
-                    </Department>
-                  </CardInfoDetail>
-                </CardInfo>
-                <CardInCard>
-                  <CardInCardDetail1>
-                    <CardInCardDetail1Name>
-                      {main.cardName}
-                    </CardInCardDetail1Name>
-                    <CardInCardDetail1Position>
-                      {main.position.length > 5
-                        ? main.position.slice(0, 5) + '...'
-                        : main.position}
-                    </CardInCardDetail1Position>
-                  </CardInCardDetail1>
-                  <CardInCardDetail2>
-                    <CardInCardDetail2Email>
-                      {main.email.length > 20
-                        ? main.email.slice(0, 20) + '...'
-                        : main.email}
-                    </CardInCardDetail2Email>
-                    <CardInCardDetail2Phone>
-                      {main.phoneNum}
-                    </CardInCardDetail2Phone>
-                  </CardInCardDetail2>
-                </CardInCard>
-              </Card>
-            );
-          })
-        : null}
+      {searched !== undefined && searched.length >= 1 ? (
+        searched.map((main) => {
+          return (
+            <Card
+              key={main.id}
+              onClick={() => {
+                dispatch(__CardSearchGet(null));
+                navigate(`/posts/get/${main.id}`);
+              }}
+            >
+              <CardInfo>
+                <CardName>{main.cardName}</CardName>
+                <CardInfoDetail>
+                  <Position>
+                    {main.position.length > 5
+                      ? main.position.slice(0, 5) + "..."
+                      : main.position}
+                  </Position>
+                  <Department>
+                    {main.department.length > 5
+                      ? main.department.slice(0, 5) + "..."
+                      : main.department}
+                  </Department>
+                </CardInfoDetail>
+              </CardInfo>
+              <CardInCard>
+                <CardInCardDetail1>
+                  <CardInCardDetail1Name>{main.cardName}</CardInCardDetail1Name>
+                  <CardInCardDetail1Position>
+                    {main.position.length > 5
+                      ? main.position.slice(0, 5) + "..."
+                      : main.position}
+                  </CardInCardDetail1Position>
+                </CardInCardDetail1>
+                <CardInCardDetail2>
+                  <CardInCardDetail2Email>
+                    {main.email.length > 20
+                      ? main.email.slice(0, 20) + "..."
+                      : main.email}
+                  </CardInCardDetail2Email>
+                  <CardInCardDetail2Phone>
+                    {main.phoneNum}
+                  </CardInCardDetail2Phone>
+                </CardInCardDetail2>
+              </CardInCard>
+            </Card>
+          );
+        })
+      ) : (
+        <SearchNone />
+      )}
       <CardsFooter />
       <SectionFooter />
     </Layout>

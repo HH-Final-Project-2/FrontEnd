@@ -32,10 +32,8 @@ import {
   AssistiveText,
   CompanyInput,
   SectionHeader,
-} from './cardPostStyle';
-import { SectionFooter } from '../../footer/FooterStyle';
-
-
+} from "./cardPostStyle";
+import { SectionFooter } from "../../footer/FooterStyle";
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -175,7 +173,6 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
-
       alert("명함 작성 완료!");
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();

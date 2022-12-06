@@ -1,9 +1,9 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { __mainGet } from '../../../redux/modules/CardsSlice';
-import Header from '../../header/Header';
+import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { __mainGet } from "../../../redux/modules/CardsSlice";
+import Header from "../../header/Header";
 
 import {
   CategoryBtnBox,
@@ -26,8 +26,8 @@ import {
   CardInCardDetail1Position,
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
-} from './MainViewStyle';
-import { ReactComponent as NoneCard } from '../../../images/noneCard.svg';
+} from "./MainViewStyle";
+import { ReactComponent as NoneCard } from "../../../images/noneCard.svg";
 
 const MainView = () => {
   const mainpost = useSelector((state) => state.PostReducer.list.data);
@@ -51,7 +51,7 @@ const MainView = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              navigate('/cardSearch');
+              navigate("/cardSearch");
             }}
           >
             <path
@@ -64,21 +64,21 @@ const MainView = () => {
           <CardSearchInput
             type="text"
             onClick={() => {
-              navigate('/cardSearch');
+              navigate("/cardSearch");
             }}
           />
         </div>
         <CategoryBtnBox>
           <CategoryBtn1
             onClick={() => {
-              navigate('/cards');
+              navigate("/cards");
             }}
           >
             자사
           </CategoryBtn1>
           <CategoryBtn2
             onClick={() => {
-              navigate('/otherCategory');
+              navigate("/otherCategory");
             }}
           >
             타사
@@ -86,12 +86,12 @@ const MainView = () => {
         </CategoryBtnBox>
       </div>
       <CardList>
-        {[mainpost].includes('명') ||
+        {[mainpost].includes("명") ||
         mainpost === undefined ||
-        mainpost === '명함을 등록해주세요'
+        mainpost === "명함을 등록해주세요"
           ? null
           : mainpost.map((main) => {
-              if (main.companyType === 'own') {
+              if (main.companyType === "own") {
                 return (
                   <Card
                     key={main.id}
@@ -104,12 +104,12 @@ const MainView = () => {
                       <CardInfoDetail>
                         <Position>
                           {main.position.length > 5
-                            ? main.position.slice(0, 5) + '...'
+                            ? main.position.slice(0, 5) + "..."
                             : main.position}
                         </Position>
                         <Department>
                           {main.department.length > 5
-                            ? main.department.slice(0, 5) + '...'
+                            ? main.department.slice(0, 5) + "..."
                             : main.department}
                         </Department>
                       </CardInfoDetail>
@@ -121,7 +121,7 @@ const MainView = () => {
                         </CardInCardDetail1Name>
                         <CardInCardDetail1Position>
                           {main.position.length > 5
-                            ? main.position.slice(0, 5) + '...'
+                            ? main.position.slice(0, 5) + "..."
                             : main.position}
                         </CardInCardDetail1Position>
                       </CardInCardDetail1>
@@ -129,7 +129,7 @@ const MainView = () => {
                       <CardInCardDetail2>
                         <CardInCardDetail2Email>
                           {main.email.length > 20
-                            ? main.email.slice(0, 20) + '...'
+                            ? main.email.slice(0, 20) + "..."
                             : main.email}
                         </CardInCardDetail2Email>
                         <CardInCardDetail2Phone>
@@ -142,7 +142,7 @@ const MainView = () => {
               }
             })}
       </CardList>
-      <WriteButton onClick={() => navigate('/posts')}>
+      <WriteButton onClick={() => navigate("/posts")}>
         <img src="images/cardAdd.png" alt="" />
       </WriteButton>
     </div>
