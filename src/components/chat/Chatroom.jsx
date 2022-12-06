@@ -46,7 +46,7 @@ import { ReactComponent as Exit } from '../../images/ic-exit.svg';
 import { Board } from '../myCard/SharebottomSheet/ShareBottomSheetStyle';
 
 const Chatroom = () => {
-  const socket = new SockJS('http://13.124.142.195/stomp/chat');
+  const socket = new SockJS('https://bkyungkeem.shop/stomp/chat');
   const client = Stomp.over(socket);
 
   const headers = {

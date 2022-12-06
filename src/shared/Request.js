@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://13.124.142.195',
+  baseURL: 'https://bkyungkeem.shop',
   headers: {
     'Content-Type': 'application/json',
     authorization: localStorage.getItem('authorization'),
