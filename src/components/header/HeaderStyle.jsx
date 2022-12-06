@@ -8,6 +8,7 @@ export const HeaderStyle = styled.div`
 
 export const LogoSvg = styled.svg`
   margin: 20px 0px 0px 20px;
+  cursor: pointer;
 `;
 
 export const AlarmSvg = styled.svg`
