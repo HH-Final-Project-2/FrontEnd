@@ -30,7 +30,7 @@ export const TopFiveSection3 = styled.div`
 export const TopFiveSection4 = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 16px;
 
   .section4 {
     display: flex;
@@ -111,6 +111,8 @@ export const Heart = styled.div`
   color: #52596b;
 
   .heart {
+    display: flex;
+    align-items: center;
     margin-left: 7px;
   }
 `;
@@ -124,6 +126,8 @@ export const Comment = styled.div`
   color: #52596b;
 
   .comment {
+    display: flex;
+    align-items: center;
     margin-left: 7px;
   }
 `;

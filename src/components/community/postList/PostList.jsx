@@ -29,6 +29,7 @@ import {
 } from "./PostListStyle";
 import Pagination from "react-js-pagination";
 import TopFive from "../topFive/TopFive";
+import SearchNone from "../../searchNone/SearchNone";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const PostList = () => {
   const [page, setPage] = useState(1); //현재 페이지
 
   const [currentPosts, setCurrentPosts] = useState([]); // 보여줄 게시글
-  const [postPerPage] = useState(20); //페이지당 게시글 개수
+  const [postPerPage] = useState(10); //페이지당 게시글 개수
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
@@ -137,17 +138,22 @@ const PostList = () => {
         <SelectArrow />
       </SortPost>
       <Section3>
-        {currentPosts.map((post) => {
-          return (
-            <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
-              <Post post={post} />
-            </div>
-          );
-        })}
+        {currentPosts.length === 0 ? <SearchNone /> : (
+          <Section3>
+            {currentPosts.map((post) => {
+              return (
+                <div key={post.id} onClick={() => navigate(`/detail/${post.id}`)}>
+                  <Post post={post} />
+                </div>
+              );
+            })}
+          </Section3>
+        )}
       </Section3>
       <WriteButton onClick={writeHandler}>
         <img src="images/작성.png" alt="" />
       </WriteButton>
+
 
       {/* 페이징 처리 */}
       <PaginationBox>

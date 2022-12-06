@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import styled from 'styled-components';
+import LogoSrc from '../../../images/Frame 2317.svg';
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -32,13 +32,14 @@ export const St_Title = styled.div`
 //저장버튼
 export const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   color: #277dff;
   cursor: pointer;
 
   font-weight: 500;
   font-size: 14px;
 `;
+
 //input key 제목
 export const St_Key = styled.div`
   color: #52596b;
@@ -166,6 +167,7 @@ export const RadioBox = styled.div`
 export const RadioDetail = styled.div`
   display: flex;
   justify-content: left;
+
   margin: 0 0 20px 20px;
   cursor: pointer;
   label {
@@ -222,7 +224,7 @@ export const CompanyBtn = styled.button`
   display: flex;
   color: #1a1f27;
   letter-spacing: 0.15px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
+import Loading from '../loading/Loading';
 
 const KakaoLogin = () => {
   let params = new URL(window.location.href).searchParams;
@@ -13,13 +14,14 @@ const KakaoLogin = () => {
           localStorage.setItem("refresh-Token", res.request.getResponseHeader("refresh-Token"));
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('nickname', res.data.nickname);
-          window.location.replace('/cards')
+          window.location.replace('/cards');
         })
-        .catch((error) => { })
     }
-  }, [])
+  })
   return (
-    <div></div>
+    <div>
+      <Loading />
+    </div>
   )
 }
 

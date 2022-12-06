@@ -75,6 +75,10 @@ export const Input = styled.input`
   background: #f5f5f5;
   margin: auto;
   padding-left: 40px;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const Button = styled.a`

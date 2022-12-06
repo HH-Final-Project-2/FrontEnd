@@ -23,6 +23,10 @@ export const CardSearchInput = styled.input`
   outline: none;
   background: #f5f5f5;
   border-radius: 8px;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const CategoryBtn1 = styled.button`
@@ -32,6 +36,10 @@ export const CategoryBtn1 = styled.button`
   font-size: 16px;
   font-weight: 500;
   color: #bdbdbd;
+
+  :focus {
+    border: none;
+  }
 `;
 export const CategoryBtn2 = styled.button`
   background-color: white;
@@ -41,6 +49,10 @@ export const CategoryBtn2 = styled.button`
   font-weight: 600;
   font-size: 16px;
   color: #222222;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const CardList = styled.div`

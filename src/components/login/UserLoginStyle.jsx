@@ -18,8 +18,10 @@ export const InputJoin = styled.input`
   border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
+  font-weight: 400;
   font-size: 14px;
   border-radius: 8px;
+
   ::placeholder {
     color: #bcc2cc;
   }
@@ -49,7 +51,7 @@ export const ButtonJoin = styled.button`
   outline: none;
   background: #5546ff;
   border-radius: 8px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
@@ -69,6 +71,7 @@ export const SignUpBox = styled.div`
   margin-top: 24px;
   color: #52596b;
 `;
+
 export const LogoBox = styled.div`
   width: 335px;
   display: flex;
