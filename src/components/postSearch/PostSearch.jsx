@@ -10,7 +10,6 @@ import {
 } from './PostSearchStyle';
 
 const PostSearch = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const search = (event) => {

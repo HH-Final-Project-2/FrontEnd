@@ -7,7 +7,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-
+    ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
   }
   p,
   ol,
@@ -45,6 +47,7 @@ const GlobalStyle = createGlobalStyle`
   select{
     margin: 0;
     font-family: 'Pretendard';
+    outline: none;
   }
     
   // Box sizing
@@ -112,7 +115,12 @@ const GlobalStyle = createGlobalStyle`
   --rsbs-mr: env(safe-area-inset-right);
   --rsbs-overlay-rounded: 16px;
 } */
-    
+
+/* :root {
+    --rsbs-max-w: 375px;
+    --rsbs-ml: auto;
+    --rsbs-mr: auto;
+  } */
 `;
 
 export default GlobalStyle;

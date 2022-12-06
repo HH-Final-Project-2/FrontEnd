@@ -36,7 +36,7 @@ export const emailCheck = createAsyncThunk(
         return alert(data.data.data), thunkAPI.fulfillWithValue(data.data);
       // 중복되는 이메일 alert
       if (data.data.success === false) alert(data.data.error.message);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 // 이메일 인증
@@ -54,7 +54,7 @@ export const emailAuth = createAsyncThunk(
 
       // 중복되는 이메일 alert
       if (data.data.success === false) alert(data.data.error.message);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -62,9 +62,9 @@ export const emailAuth = createAsyncThunk(
 export const signUp = createAsyncThunk('SIGNAUTH', async (payload) => {
   try {
     await instance.post('/api/members/signup', payload);
-    alert('회원가입 성공');
+    alert('회원가입을 축하드립니다');
     window.location.replace('/login');
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // 로그인
@@ -72,6 +72,8 @@ export const signUp = createAsyncThunk('SIGNAUTH', async (payload) => {
 export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
   try {
     await instance.post('/api/members/login', payload).then((res) => {
+
+      console.log(res)
       // 로그인 성공
       if (res.data.success) {
         localStorage.setItem(
@@ -83,8 +85,10 @@ export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
           res.request.getResponseHeader('refresh-Token')
         );
 
+        localStorage.setItem('userid', res.data.data.id);
         localStorage.setItem('nickname', res.data.data.nickname);
-        alert('로그인 되었습니다.');
+
+        alert('Businus에 오신걸 환영합니다');
         window.location.replace('/cards');
       }
       // 이메일 확인
@@ -104,16 +108,17 @@ export const signOut = createAsyncThunk('SIGHNOUT', async (payload) => {
     await instance.post('/api/members/logout', payload);
     localStorage.clear();
     window.location.replace('/login');
-  } catch (error) {}
+  } catch (error) { }
 });
 
 // 회원탈퇴
 export const withDraw = createAsyncThunk('WITHDRAW', async () => {
   try {
     await instance.delete('/api/members/withdraw');
+    alert('회원탈퇴 되었습니다');
     localStorage.clear();
     window.location.replace('/login');
-  } catch (error) {}
+  } catch (error) { }
 });
 
 const memberSlice = createSlice({
@@ -129,5 +134,5 @@ const memberSlice = createSlice({
     },
   },
 });
-export const {} = memberSlice.actions;
+export const { } = memberSlice.actions;
 export default memberSlice.reducer;

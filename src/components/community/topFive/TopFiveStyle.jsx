@@ -30,7 +30,7 @@ export const TopFiveSection3 = styled.div`
 export const TopFiveSection4 = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 16px;
 
   .section4 {
     display: flex;
@@ -38,7 +38,7 @@ export const TopFiveSection4 = styled.div`
 `;
 
 export const NickName = styled.div`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
 
   color: #52596b;
@@ -64,6 +64,8 @@ export const Job = styled.div`
 
 export const Title = styled.div`
   max-width: 180px;
+  font-weight: 500;
+  font-size: 16px;
   color: #1a1f27;
 
   white-space: nowrap;
@@ -111,6 +113,8 @@ export const Heart = styled.div`
   color: #52596b;
 
   .heart {
+    display: flex;
+    align-items: center;
     margin-left: 7px;
   }
 `;
@@ -124,6 +128,8 @@ export const Comment = styled.div`
   color: #52596b;
 
   .comment {
+    display: flex;
+    align-items: center;
     margin-left: 7px;
   }
 `;
@@ -131,6 +137,6 @@ export const Comment = styled.div`
 export const Hit = styled.div`
   margin-right: 20px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   color: #8892a0;
 `;

@@ -62,22 +62,13 @@ const KakaoShare = () => {
 export default KakaoShare;
 
 export const Kakaoshare = styled.div`
-  width: 375px;
   height: 52px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   display: flex;
   cursor: pointer;
-`;
 
-// useEffect(() => {
-//   const script = document.createElement('script');
-//   script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js';
-//   script.integrity =
-//     'sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/';
-//   script.crossOrigin = 'anonymous';
-//   script.async = true;
-//   // console.log(script);
-//   document.body.appendChild(script);
-//   return () => document.body.removeChild(script);
-// }, []);
+  svg {
+    margin-left: 14px;
+  }
+`;

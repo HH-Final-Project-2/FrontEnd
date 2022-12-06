@@ -9,7 +9,7 @@ export const St_Title = styled.div`
 
 //헤더 박스 div
 export const St_Header = styled.div`
-  width: 373px;
+  width: 100%;
   height: 56px;
 
   display: flex;
@@ -28,7 +28,7 @@ export const St_value = styled.input`
   height: 52px;
   padding: 14px 40px 14px 14px;
 
-  border: 1px solid #bcc2cc;
+  border: 1px solid #e2e6ef;
   border-radius: 8px;
   outline: none;
 
@@ -36,6 +36,10 @@ export const St_value = styled.input`
 
   font-weight: 400;
   font-size: 16px;
+
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 export const InputBox = styled.div`

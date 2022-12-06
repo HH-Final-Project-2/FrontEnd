@@ -6,7 +6,7 @@ export const WriteBox = styled.div`
 `;
 
 export const WriteSection1 = styled.div`
-  width: 373px;
+  width: 375px;
   height: 56px;
   display: flex;
   align-items: center;
@@ -33,7 +33,7 @@ export const WriteSection1Title = styled.div`
 export const SelectJob = styled.div`
   select {
     padding-left: 6px;
-    width: 373px;
+    width: 375px;
     height: 56px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
@@ -43,6 +43,10 @@ export const SelectJob = styled.div`
     font-size: 16px;
     color: #52596b;
   }
+
+  select:focus {
+    border-bottom: 1px solid #bbb5ff;
+  }
 `;
 
 export const WriteTitle = styled.div`
@@ -50,7 +54,7 @@ export const WriteTitle = styled.div`
     padding: 10px;
     margin-top: 6px;
 
-    width: 373px;
+    width: 375px;
     height: 45px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
@@ -60,9 +64,12 @@ export const WriteTitle = styled.div`
 
     font-weight: 400;
     font-size: 16px;
+    line-height: 24px;
+
+    color: #1a1f27;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;
@@ -73,7 +80,7 @@ export const WriteBody = styled.div`
   textarea {
     padding: 10px;
     margin-top: 6px;
-    width: 373px;
+    width: 375px;
     height: 45px;
     border: none;
     outline: none;
@@ -82,9 +89,12 @@ export const WriteBody = styled.div`
 
     font-weight: 400;
     font-size: 16px;
+    line-height: 24px;
+
+    color: #1a1f27;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;
@@ -110,17 +120,34 @@ export const WriteBtn = styled.button`
   margin-left: 20px;
   margin-bottom: 50px;
 
+
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
+
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+
+  transition: 0.2s;
+  cursor: pointer;
+`;
+
+export const WriteBtnFill = styled.button`
+  position: fixed;
+  bottom: 0;
+
+  width: 335px;
+  height: 52px;
+
+  margin-left: 20px;
+  margin-bottom: 50px;
+
   background: #5546ff;
   border-radius: 8px;
   border: none;
 
   color: white;
   font-size: 16px;
-
-  /* :hover {
-    background: #5546ff;
-    color: #ffffff;
-  } */
 
   transition: 0.2s;
   cursor: pointer;

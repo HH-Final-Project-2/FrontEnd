@@ -23,12 +23,16 @@ import {
   CommentWirteButton,
   LikeButton,
   LikeButtonText,
+  CommentWirteButtonFill,
 } from './CommentStyle';
 
-const Comment = ({ detailAuthor }) => {
+const Comment = ({ detailAuthorId }) => {
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
 
+
+
+  const userid = localStorage.getItem('userid');
   const nickname = localStorage.getItem('nickname');
 
   const { id } = useParams();
@@ -64,6 +68,7 @@ const Comment = ({ detailAuthor }) => {
   }
 
   if (comments === undefined) return null;
+
   return (
     <div>
       {/* 댓글 작성 */}
@@ -76,22 +81,42 @@ const Comment = ({ detailAuthor }) => {
             setCommentForm(e.target.value);
           }}
           placeholder="댓글을 입력해주세요"
-        ></CommentTextarea>
-        <CommentWirteButton
-          onClick={() => {
-            if (commentForm.trim() === '') return alert('댓글을 입력해 주세요');
-            dispatch(
-              addComment({
-                postId: id,
-                content: commentForm,
-                nickname: nickname,
-              })
-            );
-            setCommentForm('');
-          }}
-        >
-          등록
-        </CommentWirteButton>
+        />
+        {commentForm.length > 0 ? (
+          <CommentWirteButtonFill
+            onClick={() => {
+              if (commentForm.trim() === '')
+                return alert('댓글을 입력해 주세요');
+              dispatch(
+                addComment({
+                  postId: id,
+                  content: commentForm,
+                  nickname: nickname,
+                })
+              );
+              setCommentForm('');
+            }}
+          >
+            등록
+          </CommentWirteButtonFill>
+        ) : (
+          <CommentWirteButton
+            onClick={() => {
+              if (commentForm.trim() === '')
+                return alert('댓글을 입력해 주세요');
+              dispatch(
+                addComment({
+                  postId: id,
+                  content: commentForm,
+                  nickname: nickname,
+                })
+              );
+              setCommentForm('');
+            }}
+          >
+            등록
+          </CommentWirteButton>
+        )}
       </CommentWriteBox>
 
       <CommentListLayout>
@@ -100,7 +125,7 @@ const Comment = ({ detailAuthor }) => {
             <div key={commentList.id}>
               <CommentSection1>
                 <CommentTitle>
-                  {commentList.author === detailAuthor ? (
+                  {commentList.authorId === detailAuthorId ? (
                     <CommentNickName2>{commentList.author}</CommentNickName2>
                   ) : (
                     <CommentNickName>{commentList.author}</CommentNickName>
@@ -112,7 +137,7 @@ const Comment = ({ detailAuthor }) => {
                 </CommentTitle>
 
                 {/* 댓글 더보기 바텀시트 */}
-                {nickname === commentList.author ? (
+                {+userid === commentList.authorId ? (
                   <div>
                     <CommentBottomSheet id={id} commentList={commentList} />
                   </div>

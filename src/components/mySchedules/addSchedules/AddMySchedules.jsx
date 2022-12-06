@@ -9,7 +9,6 @@ import {
   Section1,
   Section1Title,
   Section2,
-  SectionLine,
 } from "../../community/postList/PostListStyle";
 import {
   AddBtn,
@@ -22,39 +21,7 @@ import {
   TitleTextArea,
 } from "./AddMySchedulesStyle";
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
-
-// const filterStartDate = startDate
-// .toISOString()
-// .replace("T", " ")
-// .split(" ")[0];
-// const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
-// const filterEndDate = endDate.toISOString().replace("T", " ").split(" ")[0];
-// const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
-// const dayday =
-// new Date(+startDate + 3240 * 10000)
-//   .toISOString()
-//   .replace("T", " ")
-//   .replace(/\..*/, "") + filterStartTime.slice(0, 0);
-// const dayday2 =
-// new Date(+endDate + 3240 * 10000)
-//   .toISOString()
-//   .replace("T", " ")
-//   .replace(/\..*/, "") + filterEndTime.slice(0, 0);
-
-// const dateFilterFunction = (dayday, dayday2) => {
-// let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
-// if (!(regex.test(dayday) && regex.test(dayday2))) return "Not Date Format";
-// let result = [];
-// let curDate = new Date(dayday);
-// while (curDate <= new Date(dayday2)) {
-//   result.push(curDate.toISOString().split("T")[0]);
-//   curDate.setDate(curDate.getDate() + 1);
-// }
-// return result.join();
-// };
-// let filteredDate = dateFilterFunction(dayday, dayday2, startDate);
-
-// console.log(dayday, dayday2);
+import { EndTime } from "../mySchedulesDetail/myShedulesDetailStyle";
 
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
@@ -76,17 +43,23 @@ const AddMySchedules = () => {
     .replace(/\..*/, "")
     .slice(0, 10);
 
-  console.log(startPlusNine, endPlusNine, dayday, dayday2);
+  console.log(
+    startDate.toISOString(),
+    startPlusNine,
+    endPlusNine,
+    dayday,
+    dayday2
+  );
 
   const filterStartDate =
     startPlusNine <= 9
-      ? dayday
-      : startDate.toISOString().replace("T", " ").split(" ")[0];
+      ? startDate.toISOString().replace("T", " ").split(" ")[0]
+      : dayday;
   const filterStartTime = startDate.toTimeString().split(" ")[0].slice(0, 5);
   const filterEndDate =
     endPlusNine <= 9
-      ? dayday2
-      : endDate.toISOString().replace("T", " ").split(" ")[0];
+      ? endDate.toISOString().replace("T", " ").split(" ")[0]
+      : dayday2;
   const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
   console.log(filterStartDate, filterEndDate);
   const dateFilterFunction = (filterStartDate, filterEndDate) => {
@@ -103,23 +76,33 @@ const AddMySchedules = () => {
   };
   let filteredDate = dateFilterFunction(filterStartDate, filterEndDate);
 
+  const access =
+    filterStartDate !== undefined &&
+    filterStartTime !== undefined &&
+    filterEndTime !== undefined &&
+    filterEndDate !== undefined &&
+    title !== undefined;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      __writeSchedules({
-        filteredDate: filteredDate,
-        startDate: filterStartDate,
-        startTime: filterStartTime,
-        endDate: filterEndDate,
-        endTime: filterEndTime,
-        title: title,
-        todo: todo,
-      })
-    );
-    alert("일정 추가되었습니다");
-    navigate("/mySchedules");
+  const submitHandler = () => {
+    if (access === true) {
+      dispatch(
+        __writeSchedules({
+          filteredDate: filteredDate,
+          startDate: filterStartDate,
+          startTime: filterStartTime,
+          endDate: filterEndDate,
+          endTime: filterEndTime,
+          title: title,
+          todo: todo,
+        })
+      );
+      alert("일정 추가되었습니다");
+      navigate("/mySchedules");
+    } else {
+      alert("작성한 내용을 확인해주세요");
+    }
   };
 
   return (

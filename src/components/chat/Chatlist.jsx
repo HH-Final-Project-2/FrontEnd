@@ -79,7 +79,6 @@ const ChatsBox = styled.div`
     margin-left: 33px;
   }
 `;
-
 const ProBox = styled.div`
   width: 100%;
   max-width: 48px;

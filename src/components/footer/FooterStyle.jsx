@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterBox = styled.div`
   display: flex;
@@ -18,4 +18,9 @@ export const FooterBox = styled.div`
     fill: #5546ff;
     cursor: pointer;
   }
+`;
+
+export const SectionFooter = styled.div`
+  height: 100px;
+  background: white;
 `;

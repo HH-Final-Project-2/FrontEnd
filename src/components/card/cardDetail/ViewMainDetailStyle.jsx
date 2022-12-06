@@ -23,7 +23,7 @@ export const St_Header = styled.div`
 `;
 
 export const Mycard = styled.div`
-  width: 373px;
+  width: 100%;
   height: 248px;
   background-color: #f5f5f5;
 `;
@@ -115,35 +115,37 @@ export const St_Detail_Body = styled.div`
 //지도 div
 export const MapBox = styled.div`
   margin: 24px auto;
-  margin-bottom: 130px;
 `;
 
 // 카드 info
 export const St_Card = styled.div`
-  width: 100%;
-  max-width: 311px;
+  width: 311px;
   height: 176px;
+  margin: 32px auto;
 
-  margin: 32px;
-  border-radius: 8px;
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
   display: flex;
   flex-direction: column;
 `;
 
 export const OutLine = styled.div`
-  margin: 16px 20px 16px 20px;
+  padding: 16px 0px 0px 20px;
+  display: flex;
+  flex-direction: column;
 `;
 export const NameBox = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const Name = styled.div`
-  display: flex;
-  font-size: 14px;
-  font-weight: 600;
   margin-right: 5px;
+  font-weight: 500;
+  font-size: 14px;
+
   color: #1a1f27;
 `;
 
@@ -166,27 +168,20 @@ export const NameEng = styled.div`
 `;
 
 export const Position = styled.div`
+  margin-top: 1px;
   font-size: 12px;
   font-weight: 500;
-  color: #5546ff;
-
-  margin-top: 1.5px;
-  margin-left: 5px;
-`;
-
-export const CompanyAd = styled.div`
-  color: #231a27;
-  font-weight: 600;
-  font-size: 12px;
-
-  margin-top: 20px;
+  color: #8892a0;
 `;
 
 export const Company = styled.div`
-  margin-top: 6px;
-  color: #1a1f27;
-  font-size: 12px;
+  max-width: 250px;
+  margin-top: 60px;
+  margin-bottom: 3px;
+
+  color: #8892a0;
   font-weight: 500;
+  font-size: 12px;
 `;
 
 export const AddressBox = styled.div`
@@ -194,24 +189,33 @@ export const AddressBox = styled.div`
 `;
 
 export const Address = styled.div`
-  margin-top: 2px;
-  margin-bottom: 10px;
-  font-size: 10px;
-  font-weight: 400;
-  color: #52596b;
+  max-width: 270px;
+  height: 22px;
+
+  font-weight: 500;
+  font-size: 12px;
+  color: #1a1f27;
+
+  display: inline-block;
+  align-items: center;
 `;
 
 export const Address2 = styled.div`
-  margin-top: 2px;
-  margin-left: 8px;
-  font-size: 10px;
   font-weight: 500;
-  color: #52596b;
+  font-size: 12px;
+  line-height: 16px;
+  color: #1a1f27;
+
+  margin-right: 10px;
+
+  display: inline-block;
+  align-items: center;
 `;
 
 export const NumBox = styled.div`
   display: flex;
-  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
 `;
 
 //

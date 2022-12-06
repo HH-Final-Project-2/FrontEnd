@@ -23,7 +23,7 @@ export const St_Header = styled.div`
 `;
 
 export const Mycard = styled.div`
-  width: 373px;
+  width: 100%;
   height: 248px;
   background-color: #f5f5f5;
 `;
@@ -102,7 +102,6 @@ export const MapBox = styled.div`
   display: flex;
   justify-content: center;
   margin: 24px auto;
-  margin-bottom: 130px;
 `;
 
 export const MidLine = styled.div`

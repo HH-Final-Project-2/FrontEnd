@@ -44,7 +44,7 @@ export const Textshare = styled.div`
   width: 375px;
   height: 52px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   display: flex;
   cursor: pointer;
 `;

@@ -35,6 +35,8 @@ import {
   DivHeart,
   HeartNum,
 } from './PostDetailStyle';
+import LoadingPage from "../../../pages/LoadingPage";
+
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const PostDetail = () => {
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+  const userid = localStorage.getItem('userid');
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
@@ -50,10 +53,11 @@ const PostDetail = () => {
     postId: id,
   });
 
+  //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
     window.scrollTo(0, 0);
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setIsHeart(detail.postHeartYn);
@@ -70,7 +74,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem('nickname');
+
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -99,7 +103,10 @@ const PostDetail = () => {
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
-  if (detail === undefined) return;
+  if (detail === undefined) return null;
+
+  if (parseInt(id) !== detail.id) return (<LoadingPage />);
+
   return (
     <DetailBox>
       <Section1>
@@ -115,7 +122,7 @@ const PostDetail = () => {
           </svg>
         </Section2>
         {/* 게시글 더보기 바텀 시트 */}
-        {nickname === detail.author ? (
+        {+userid === detail.authorId ? (
           <div className="moreBtn">
             <PostBottomSheet id={id} detail={detail} />
           </div>
@@ -124,7 +131,6 @@ const PostDetail = () => {
         )}
       </Section1>
 
-      {/*  */}
       <DetailPostSection1>
         <div className="nickdate">
           <NickName>{detail.author}</NickName>
@@ -144,19 +150,19 @@ const PostDetail = () => {
         {/* 채팅하기 버튼 svg end*/}
       </DetailPostSection1>
       <PostLine />
-      {/*  */}
+
       <DetailPostSection2>
         <JobPosition>{detail.jobGroup}</JobPosition>
         <PostTitle>{detail.title}</PostTitle>
       </DetailPostSection2>
-      {/*  */}
+
       <DetailPostSection3>
         <DetailPostBody>{detail.content}</DetailPostBody>
         <DetailPostImg>
           <img src={detail.image} alt="" />
         </DetailPostImg>
       </DetailPostSection3>
-      {/*  */}
+
       <DetailSectionLine />
       <DetailPostSection4>
         <div>
@@ -185,7 +191,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment detailAuthor={detail.author} />
+      <Comment detailAuthorId={detail.authorId} />
     </DetailBox>
   );
 };

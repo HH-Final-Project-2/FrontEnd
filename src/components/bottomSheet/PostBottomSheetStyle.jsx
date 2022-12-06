@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Board = styled.div`
   display: flex;
@@ -23,4 +23,5 @@ export const SheetButton = styled.div`
   cursor: pointer;
 `;
 
-export const DivSheet = styled.div``;
+export const DivSheet = styled.div`
+`;
