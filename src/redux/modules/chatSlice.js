@@ -27,7 +27,7 @@ export const getChatRoom = createAsyncThunk(
   "get/chatroom",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://13.124.142.195/chat/rooms', {
+      const response = await axios.get('https://bkyungkeem.shop/chat/rooms', {
         headers: {
           contentType: "application/json",
           "authorization": accessToken,
@@ -47,7 +47,7 @@ export const deleteChatroom = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const {data} = await axios.delete(
-        `http://13.124.142.195/chat/rooms/${payload}`,
+        `https://bkyungkeem.shop/chat/rooms/${payload}`,
         {
           headers: {
             contentType: "application/json",
@@ -68,7 +68,7 @@ export const _postId = createAsyncThunk(
     console.log("pay",payload)
     try {
       const {data} = await axios.post(
-        "http://13.124.142.195/chat/rooms",
+        "https://bkyungkeem.shop/chat/rooms",
         payload,
         {
           headers: {
@@ -89,7 +89,7 @@ export const getMessage = createAsyncThunk(
   async (payload, thunkAPI ) => {
     if(payload){
       try {
-        const data = await axios.get(`http://13.124.142.195/chat/rooms/${payload}/messages`, {
+        const data = await axios.get(`https://bkyungkeem.shop/chat/rooms/${payload}/messages`, {
           headers: {
             contentType: "application/json",
             "authorization": accessToken,
@@ -113,7 +113,7 @@ export const getUserinfo = createAsyncThunk(
   async (payload, thunkAPI) => {
     if(payload){
       try {
-        const { data } = await axios.get(`http://13.124.142.195/chat/rooms/userInfo/${payload}`, {
+        const { data } = await axios.get(`https://bkyungkeem.shop/chat/rooms/userInfo/${payload}`, {
           headers: {
             contentType: "application/json",
             "authorization": accessToken,
