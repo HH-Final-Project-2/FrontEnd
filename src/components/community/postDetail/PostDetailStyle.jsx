@@ -101,7 +101,7 @@ export const JobPosition = styled.div`
 `;
 
 export const PostTitle = styled.div`
-  max-width: 200px;
+  max-width: 210px;
   margin-left: 8px;
   margin-right: 20px;
   margin-top: 16px;

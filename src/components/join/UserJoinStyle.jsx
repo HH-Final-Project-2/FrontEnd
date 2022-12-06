@@ -1,18 +1,18 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const JoinForm = styled.form`
   max-width: 500px;
   margin: 0 auto;
-`
+`;
 
 export const EmailBox = styled.div`
   display: flex;
-`
+`;
 export const Section1 = styled.div`
   display: flex;
   margin-top: 20px;
   margin-bottom: 27px;
-`
+`;
 
 export const Section2 = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const Section2 = styled.div`
     margin-top: 2.7px;
   }
   cursor: pointer;
-`
+`;
 
 export const JoinTitle = styled.p`
   margin-bottom: 12px;
@@ -29,7 +29,7 @@ export const JoinTitle = styled.p`
   line-height: 28px;
   letter-spacing: 0.15px;
   color: #222222;
-`
+`;
 
 export const EmailCheckButton = styled.button`
   width: 80px;
@@ -38,16 +38,16 @@ export const EmailCheckButton = styled.button`
   margin-left: 15px;
   border: none;
   outline: none;
-  border: 1px solid #5546FF;
+  border: 1px solid #5546ff;
   border-radius: 8px;
   background-color: transparent;
-  color: #5546FF;
+  color: #5546ff;
   cursor: pointer;
-  &:hover{
-    background-color: #5546FF;
+  &:hover {
+    background-color: #5546ff;
     color: #fff;
   }
-`
+`;
 
 export const LabelText = styled.label`
   text-align: left;
@@ -56,55 +56,48 @@ export const LabelText = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #52596B;
+  color: #52596b;
   letter-spacing: 0.15px;
   margin-bottom: 8px;
-`
+`;
 
 export const InputJoin = styled.input`
   display: block;
   box-sizing: border-box;
-  width:335px;
+  width: 335px;
   height: 52px;
   border-radius: 4px;
-  border: 1px solid #E2E6EF;
+  border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
   font-size: 14px;
   border-radius: 8px;
-  ::placeholder{
-    color: #BCC2CC;
+  ::placeholder {
+    color: #bcc2cc;
   }
-  &:focus{
-    border: 1px solid #BCC2CC;
-    outline:#BCC2CC;;
-  }
-`
+`;
 export const InputJoin2 = styled.input`
   display: block;
   box-sizing: border-box;
-  width:239px;
+  width: 239px;
   height: 52px;
   border-radius: 4px;
-  border: 1px solid #E2E6EF;
+  border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
   font-size: 14px;
   border-radius: 8px;
-  ::placeholder{
-    color: #BCC2CC;
+  ::placeholder {
+    color: #bcc2cc;
   }
-  &:focus{
-    border: 1px solid #BCC2CC;
-    outline:#BCC2CC;;
-  }
-`
+ 
+`;
 
 export const ErrorText = styled.p`
-  color: #F82323;
+  color: #f82323;
   margin: 0 0 15px 0;
   font-size: 14px;
-`
+`;
 
 export const ButtonJoin = styled.button`
   display: block;
@@ -118,26 +111,26 @@ export const ButtonJoin = styled.button`
   height: 52px;
   border: none;
   outline: none;
-  background: #5546FF;
+  background: #5546ff;
   border-radius: 8px;
   color: #fff;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-`
+`;
 
 export const InputContainer = styled.div`
   position: relative;
-`
+`;
 
 export const InputButton = styled.div`
   position: absolute;
   bottom: 16px;
   left: 300px;
-`
+`;
 
 export const InputButtonEmail = styled.div`
   position: absolute;
   bottom: 28px;
   left: 205px;
-`
+`;

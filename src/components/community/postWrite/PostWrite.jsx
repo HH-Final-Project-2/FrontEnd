@@ -239,13 +239,6 @@ const PostWrite = () => {
             </ImgUploadButton>
           )}
         </ImageUpload>
-        {/* {{
-          ...memberPost.title.length,
-        } > 0 ? (
-          <WriteBtnFill>작성</WriteBtnFill>
-        ) : (
-          <WriteBtn>작성</WriteBtn>
-        )} */}
         <WriteBtn>작성</WriteBtn>
       </WriteBox>
     </form>

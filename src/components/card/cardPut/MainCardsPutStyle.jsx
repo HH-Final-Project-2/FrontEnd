@@ -1,12 +1,22 @@
 import styled from 'styled-components';
-import LogoSrc from '../../../images/Frame 2317.svg';
 
 //헤더 박스 div
 export const St_Header = styled.div`
+  position: fixed;
+  top: 0;
+  width: 375px;
+  height: 56px;
   display: flex;
-  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid;
+
+  border-bottom: 1px solid #e2e6ef;
+
+  svg {
+    margin-left: 14px;
+  }
+  opacity: 0.9;
+  background: white;
 `;
 //명함 정보 편집 박스
 export const PatchBox = styled.div`
@@ -23,8 +33,7 @@ export const St_Title = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding-left: 15px;
+  padding-left: 8px;
 
   font-weight: 500;
   font-size: 16px;
@@ -36,7 +45,7 @@ export const SaveButton = styled.a`
   color: #277dff;
   cursor: pointer;
 
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
 `;
 
