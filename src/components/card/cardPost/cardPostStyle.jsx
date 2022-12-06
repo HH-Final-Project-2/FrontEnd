@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import LogoSrc from '../../../images/Frame 2317.svg';
+import styled from "styled-components";
+import LogoSrc from "../../../images/Frame 2317.svg";
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -199,19 +199,15 @@ export const ImgBox = styled.div`
 
 export const RadioBox = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 export const RadioDetail = styled.div`
   display: flex;
   justify-content: left;
   margin: 0 0 20px 20px;
-  /* input[type="radio"]:checked:after {
-    background: $white no-repeat center center;
-    background-image: url("/src/images/Property 1=deselected.png");
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-  } */
+  cursor: pointer;
   label {
+    cursor: pointer;
     margin-left: 8px;
     font-size: 14px;
   }
