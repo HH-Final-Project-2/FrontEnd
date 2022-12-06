@@ -36,7 +36,7 @@ import {
   HeartNum,
 } from './PostDetailStyle';
 
-import Spinner from '../../loading/Loading'
+import LoadingPage from "../../../pages/LoadingPage";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const PostDetail = () => {
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+  const userid = localStorage.getItem('userid');
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
@@ -53,11 +54,9 @@ const PostDetail = () => {
   });
 
 
-
   //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
-
     window.scrollTo(0, 0);
   }, []);
 
@@ -76,7 +75,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem('nickname');
+
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -105,13 +104,9 @@ const PostDetail = () => {
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
-
-  // console.log("PostDetail > id=", id);
-  // console.log("PostDetail > detail.id=", detail.id);
-
   if (detail === undefined) return null;
 
-  if (parseInt(id) !== detail.id) return (<Spinner />);
+  if (parseInt(id) !== detail.id) return (<LoadingPage />);
 
 
   return (
@@ -129,7 +124,7 @@ const PostDetail = () => {
           </svg>
         </Section2>
         {/* 게시글 더보기 바텀 시트 */}
-        {nickname === detail.author ? (
+        {+userid === detail.authorId ? (
           <div className="moreBtn">
             <PostBottomSheet id={id} detail={detail} />
           </div>
@@ -196,7 +191,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment detailAuthor={detail.author} />
+      <Comment detailAuthorId={detail.authorId} />
     </DetailBox>
   );
 };

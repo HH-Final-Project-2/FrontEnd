@@ -64,6 +64,17 @@ const UserJoin = () => {
   const watchForUserName = watch("username");
   const watchForNickName = watch("nickname");
 
+
+  //인풋 값 입력시 버튼&폰트 색상 변경
+  //const checkEmail = watchForEmail.length >= 1;
+
+  let setColor = '';
+  let setFontColor = '';
+
+
+
+
+
   // 이메일 X버튼 디스플레이
   useEffect(() => {
     if (watchForEmail === undefined) {
@@ -316,6 +327,7 @@ const UserJoin = () => {
           placeholder="이름"
           {...register("username", {
             required: true,
+            pattern: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
             minLength: 2,
             maxLength: 5,
           })}
@@ -333,11 +345,14 @@ const UserJoin = () => {
       {errors.username && errors.username.type === "required" && (
         <ErrorText>이름을 입력해주세요</ErrorText>
       )}
+      {errors.username && errors.username.type === "pattern" && (
+        <ErrorText>이름은(한글) 최소2~5자 입니다</ErrorText>
+      )}
       {errors.username && errors.username.type === "minLength" && (
-        <ErrorText>이름은 최소2~5자 입니다</ErrorText>
+        <ErrorText>이름은(한글) 최소2~5자 입니다</ErrorText>
       )}
       {errors.username && errors.username.type === "maxLength" && (
-        <ErrorText>이름은 최소2~5자 입니다</ErrorText>
+        <ErrorText>이름은(한글) 최소2~5자 입니다</ErrorText>
       )}
 
       {/* 닉네임 */}
@@ -346,11 +361,11 @@ const UserJoin = () => {
         <InputJoin
           name="nickname"
           type="text"
-          placeholder="2~5자 이내"
+          placeholder="2~10자 이내"
           {...register("nickname", {
             required: true,
             minLength: 2,
-            maxLength: 5,
+            maxLength: 10,
           })}
         />
         <InputButton>
@@ -367,10 +382,10 @@ const UserJoin = () => {
         <ErrorText>닉네임 입력해주세요</ErrorText>
       )}
       {errors.nickname && errors.nickname.type === "minLength" && (
-        <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
+        <ErrorText>닉네임은 최소2~10자 입니다</ErrorText>
       )}
       {errors.nickname && errors.nickname.type === "maxLength" && (
-        <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
+        <ErrorText>닉네임은 최소2~10자 입니다</ErrorText>
       )}
 
       {/* 가입하기 버튼 */}
