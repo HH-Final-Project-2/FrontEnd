@@ -40,6 +40,5 @@ export const DivLayout2 = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin: auto;
 `;

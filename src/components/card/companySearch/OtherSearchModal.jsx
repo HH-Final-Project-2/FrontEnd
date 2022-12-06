@@ -9,7 +9,7 @@ const OtherSearchModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleComplete = (data, companyName) => {
+  const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
     if (data.addressType === "R") {
@@ -22,8 +22,6 @@ const OtherSearchModal = () => {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    console.log(fullAddress);
-    console.log(companyName);
     dispatch(__companyInfo({ companyAddress: fullAddress }), navigate(-2));
   };
 
