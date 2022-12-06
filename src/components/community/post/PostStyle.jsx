@@ -15,7 +15,7 @@ export const PostSection1 = styled.div`
 export const NickName = styled.div`
   margin-left: 6px;
   margin-top: 13px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.15px;
 
@@ -26,6 +26,7 @@ export const Date = styled.div`
   margin-left: 7px;
   margin-top: 13px;
 
+  font-weight: 400;
   font-size: 12px;
   color: #8892a0;
 `;
@@ -40,7 +41,10 @@ export const PostBody = styled.div`
   margin-top: 16px;
   width: 183px;
 
+  font-weight: 400;
   font-size: 14px;
+  line-height: 20px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -70,8 +74,8 @@ export const JobPosition = styled.div`
   padding: 5px;
   margin-left: 5px;
   margin-top: 15px;
+  font-weight: 400;
   font-size: 12px;
-
   color: #3425de;
   background: #eeecff;
   border-radius: 4px;
@@ -81,7 +85,9 @@ export const PostTitle = styled.div`
   max-width: 200px;
   margin-left: 13px;
   margin-top: 16px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
 
   white-space: nowrap;
   overflow: hidden;
@@ -99,11 +105,12 @@ export const Heart = styled.div`
   display: flex;
   margin-left: 5px;
   margin-top: 15px;
+  font-weight: 400;
   font-size: 12px;
-
   color: #52596b;
 
   .heart {
+    margin-top: 1px;
     margin-left: 7px;
   }
 `;
@@ -112,11 +119,12 @@ export const Comment = styled.div`
   display: flex;
   margin-left: 13px;
   margin-top: 15px;
+  font-weight: 400;
   font-size: 12px;
-
   color: #52596b;
 
   .comment {
+    margin-top: 1px;
     margin-left: 7px;
   }
 `;
@@ -125,8 +133,9 @@ export const Hits = styled.div`
   text-align: right;
   margin-top: -18px;
   margin-right: 5px;
+  font-weight: 500;
   font-size: 12px;
-  color: #969696;
+  color: #8892a0;
 `;
 
 export const PostLine = styled.div`

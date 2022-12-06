@@ -25,14 +25,8 @@ import {
   Essential,
   AssistiveText,
   CompanyInput,
-} from "./MainCardsPutStyle";
+} from './MainCardsPutStyle';
 
-import { Link } from 'react-router-dom';
-import {
-  Section1,
-  Section1Title,
-  Section2,
-} from '../../community/postList/PostListStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
 import { SectionHeader } from '../cardPost/cardPostStyle';
 
@@ -145,7 +139,7 @@ const MainCards = () => {
         })
       );
     }
-    alert("명함 수정완료!");
+    alert('명함 수정완료!');
     navigate(`/posts/get/${id}`);
   };
 
@@ -204,7 +198,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+            inputValue.phoneNum.includes('-') === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -263,7 +257,7 @@ const MainCards = () => {
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={company || ""}
+                  value={company || ''}
                   onChange={(e) => {
                     setCompany(e.target.value);
                   }}
@@ -288,8 +282,8 @@ const MainCards = () => {
                           fax: inputValue.fax,
                           companyType: inputValue.companyType
                             ? inputValue.companyType
-                            : "",
-                          company: company ? company : "",
+                            : '',
+                          company: company ? company : '',
                         })
                       );
                       navigate('/posts/companyOtherSearch');
@@ -303,7 +297,7 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  value={company || ""}
+                  value={company || ''}
                   onChange={(e) => {
                     setCompany(e.target.value);
                   }}

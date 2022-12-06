@@ -24,7 +24,7 @@ export const Section2 = styled.div`
 
 export const JoinTitle = styled.p`
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   line-height: 28px;
   letter-spacing: 0.15px;
@@ -38,15 +38,14 @@ export const EmailCheckButton = styled.button`
   margin-left: 15px;
   border: none;
   outline: none;
-  border: 1px solid #5546ff;
+  border: 1px solid #bbb5ff;
   border-radius: 8px;
   background-color: transparent;
   color: #5546ff;
   cursor: pointer;
-  &:hover {
-    background-color: #5546ff;
-    color: #fff;
-  }
+
+  font-weight: 500;
+  font-size: 14px;
 `;
 
 export const LabelText = styled.label`
@@ -66,31 +65,41 @@ export const InputJoin = styled.input`
   box-sizing: border-box;
   width: 335px;
   height: 52px;
-  border-radius: 4px;
   border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
-  font-size: 14px;
+
+  font-weight: 400;
+  font-size: 16px;
+
   border-radius: 8px;
   ::placeholder {
     color: #bcc2cc;
   }
+
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
+
 export const InputJoin2 = styled.input`
   display: block;
   box-sizing: border-box;
   width: 239px;
   height: 52px;
-  border-radius: 4px;
   border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 16px;
   border-radius: 8px;
   ::placeholder {
     color: #bcc2cc;
   }
- 
+
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 export const ErrorText = styled.p`

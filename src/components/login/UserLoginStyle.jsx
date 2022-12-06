@@ -19,11 +19,15 @@ export const InputJoin = styled.input`
   padding: 10px 15px;
   margin-bottom: 12px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 8px;
 
   ::placeholder {
     color: #bcc2cc;
+  }
+
+  :focus {
+    border: 1px solid #bbb5ff;
   }
 `;
 
@@ -63,7 +67,6 @@ export const SignUpBox = styled.div`
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
-  line-height: 20px;
   margin-top: 24px;
   color: #52596b;
 `;

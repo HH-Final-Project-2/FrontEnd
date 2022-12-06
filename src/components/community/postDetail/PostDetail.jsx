@@ -36,7 +36,7 @@ import {
   HeartNum,
 } from './PostDetailStyle';
 
-import Spinner from '../../loading/Loading'
+import Spinner from '../../loading/Loading';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -51,8 +51,6 @@ const PostDetail = () => {
   const [postid, setPostId] = useState({
     postId: id,
   });
-
-
 
   //스크롤 최상단으로 이동
   useEffect(() => {
@@ -105,14 +103,9 @@ const PostDetail = () => {
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
-
-  // console.log("PostDetail > id=", id);
-  // console.log("PostDetail > detail.id=", detail.id);
-
   if (detail === undefined) return null;
 
-  if (parseInt(id) !== detail.id) return (<Spinner />);
-
+  if (parseInt(id) !== detail.id) return <Spinner />;
 
   return (
     <DetailBox>
