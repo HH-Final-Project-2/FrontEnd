@@ -28,7 +28,7 @@ export const St_value = styled.input`
   height: 52px;
   padding: 14px 40px 14px 14px;
 
-  border: 1px solid #bcc2cc;
+  border: 1px solid #e2e6ef;
   border-radius: 8px;
   outline: none;
 

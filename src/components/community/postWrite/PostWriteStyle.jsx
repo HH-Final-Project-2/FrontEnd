@@ -62,7 +62,7 @@ export const WriteTitle = styled.div`
     font-size: 16px;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;
@@ -84,7 +84,7 @@ export const WriteBody = styled.div`
     font-size: 16px;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;
@@ -110,6 +110,7 @@ export const WriteBtn = styled.button`
   margin-left: 20px;
   margin-bottom: 50px;
 
+
   background-color: ${(props) => props.color || '#eeee'};
   color: ${(props) => props.fontColor || 'gray'};
 
@@ -117,10 +118,26 @@ export const WriteBtn = styled.button`
   border: none;
   font-size: 16px;
 
-  /* :hover {
-    background: #5546ff;
-    color: #ffffff;
-  } */
+  transition: 0.2s;
+  cursor: pointer;
+`;
+
+export const WriteBtnFill = styled.button`
+  position: fixed;
+  bottom: 0;
+
+  width: 335px;
+  height: 52px;
+
+  margin-left: 20px;
+  margin-bottom: 50px;
+
+  background: #5546ff;
+  border-radius: 8px;
+  border: none;
+
+  color: white;
+  font-size: 16px;
 
   transition: 0.2s;
   cursor: pointer;

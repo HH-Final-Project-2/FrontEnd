@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CategoryBtnBox = styled.div`
   margin: 18px 0px 0px 20px;
@@ -23,37 +23,49 @@ export const CardSearchInput = styled.input`
   outline: none;
   background: #f5f5f5;
   border-radius: 8px;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const CategoryBtn1 = styled.button`
+  cursor: pointer;
   background-color: white;
   border: none;
   border-bottom: 3px solid #5546ff;
-
   font-weight: 600;
   font-size: 16px;
   color: #222222;
+
+  :focus {
+    border: none;
+  }
 `;
 export const CategoryBtn2 = styled.button`
+  cursor: pointer;
   background-color: white;
   border: none;
-
   font-size: 16px;
   font-weight: 500;
   color: #bdbdbd;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const CardList = styled.div`
-  background-color: #f5f5f5;
   padding-top: 32px;
 `;
 
 export const Card = styled.div`
   display: flex;
-  background: #ffffff;
-  margin: 6px 0px 12px 20px;
-  border-radius: 8px;
-  width: 335px;
+  border-bottom: 1px solid #e2e6ef;
+  margin: auto;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  width: 90%;
   height: 96px;
   cursor: pointer;
 `;

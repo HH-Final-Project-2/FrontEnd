@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import '../App.css';
+import { createGlobalStyle } from "styled-components";
+import "../App.css";
 
 const GlobalStyle = createGlobalStyle`
   
@@ -7,7 +7,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-
+    ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
   }
   p,
   ol,
@@ -45,6 +47,11 @@ const GlobalStyle = createGlobalStyle`
   select{
     margin: 0;
     font-family: 'Pretendard';
+    outline: none;
+
+    :focus {
+    border: 1px solid #bbb5ff;
+  }
   }
     
   // Box sizing

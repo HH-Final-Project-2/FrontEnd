@@ -1,8 +1,11 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import Chatlist from '../components/chat/Chatlist';
 import Layout from '../components/layout/Layout';
 import ChatFooter from '../components/footer/ChatFooter';
+import { SectionFooter } from '../components/footer/FooterStyle';
+
 
 const Chat = () => {
   return (
@@ -10,6 +13,7 @@ const Chat = () => {
       <St_Header>
         <St_Title>채팅</St_Title>
         <div>
+
           {/* 나가기 svg */}
           <svg
             width="18"
@@ -24,10 +28,12 @@ const Chat = () => {
             />
           </svg>
           {/*  */}
+
         </div>
       </St_Header>
       <Chatlist />
       <ChatFooter />
+      <SectionFooter />
     </Layout>
   );
 };
@@ -36,8 +42,12 @@ export default Chat;
 
 //헤더 박스 div
 const St_Header = styled.div`
-  height: 56px;
   display: flex;
+
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid #d6d6d6;
+
   justify-content: space-between;
   align-items: center;
 
@@ -49,6 +59,7 @@ const St_Header = styled.div`
     align-items: center;
     margin-right: 20px;
   }
+
 `;
 //헤더 타이틀의 의미
 const St_Title = styled.div`

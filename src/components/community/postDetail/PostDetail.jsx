@@ -34,7 +34,7 @@ import {
   SectionLine,
   DivHeart,
   HeartNum,
-} from "./PostDetailStyle";
+} from './PostDetailStyle';
 
 import Spinner from '../../loading/Loading'
 
@@ -51,6 +51,7 @@ const PostDetail = () => {
   const [postid, setPostId] = useState({
     postId: id,
   });
+
 
 
   //스크롤 최상단으로 이동
@@ -75,7 +76,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem("nickname");
+  const nickname = localStorage.getItem('nickname');
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -133,7 +134,7 @@ const PostDetail = () => {
             <PostBottomSheet id={id} detail={detail} />
           </div>
         ) : (
-          ""
+          ''
         )}
       </Section1>
 
@@ -146,6 +147,7 @@ const PostDetail = () => {
         {/* 채팅하기 버튼 svg start*/}
         <Chat
           onClick={() => {
+            console.log('게시글아이디', postid);
             dispatch(_postId(postid));
             navigate('/chat/chatroom/');
           }}

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import styled from 'styled-components';
+import LogoSrc from '../../../images/Frame 2317.svg';
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -18,7 +18,6 @@ export const PatchBox = styled.div`
 
 //헤더 타이틀의 의미
 export const St_Title = styled.div`
-  font-weight: 600;
   width: 100%;
   max-width: 150px;
   height: 50px;
@@ -26,52 +25,63 @@ export const St_Title = styled.div`
   align-items: center;
   justify-content: left;
   padding-left: 15px;
+
+  font-weight: 500;
+  font-size: 16px;
 `;
 //저장버튼
 export const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   color: #277dff;
   cursor: pointer;
-  font-style: normal;
+
   font-weight: 500;
   font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.15px;
 `;
+
 //input key 제목
 export const St_Key = styled.div`
   color: #52596b;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
+
   margin-left: 22px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+
   display: flex;
   align-items: center;
 `;
 //input value 값
 export const St_value = styled.input`
-  width: 100%;
-  max-width: 320px;
+  width: 335px;
   height: 52px;
-  border-radius: 4px;
-  border: 1px solid #cccccc;
-  padding-left: 10px;
-  margin: auto;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
   display: flex;
-  color: #1a1f27;
-  letter-spacing: 0.15px;
-  font-family: "Pretendard";
-  font-style: normal;
+
   font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* background-image: '/images/ic-company.png'; */
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 //회사 주소 div
 export const St_Address = styled.div`
   margin-top: 5px;
-  padding-left: 25px;
+  padding-left: 13px;
 `;
 
 export const AddressBox = styled.div`
@@ -81,26 +91,29 @@ export const AddressBox = styled.div`
 `;
 
 export const SearchAddress = styled.div`
-  display: flex;
-  width: 250px;
+  color: #5546ff;
+
+  font-weight: 400;
+  font-size: 12px;
 `;
 
 //각 수정 목록의 div
 export const Item = styled.div`
-  margin-top: 10px;
+  margin-top: 32px;
   font-size: 12px;
-  color: #6b6b6b;
+  color: #1a1f27;
 `;
 
 export const St_Card = styled.label`
-  width: 100%;
+  width: 335px;
+  height: 184px;
   max-width: 311px;
-  height: 176px;
   margin: 32px auto;
+
+  border: 1px solid #e2e6ef;
   border-radius: 8px;
+
   padding: 0px;
-  background-color: white;
-  box-shadow: 0px 0px 5px 0px #cecece;
   display: flex;
   flex-direction: column;
 `;
@@ -110,8 +123,7 @@ export const St_Plus = styled.label`
   max-width: 50px;
   height: 50px;
   color: #d6d6d6;
-  /* border: 2px solid; */
-  /* border-radius: 50px; */
+
   margin: auto;
   align-items: center;
   display: flex;
@@ -129,7 +141,6 @@ export const Input = styled.input`
   clip: rect(0, 0, 0, 0);
   border: 0;
 `;
-
 export const ImgBox = styled.div`
   width: 375px;
   height: 120px;
@@ -151,33 +162,56 @@ export const ImgBox = styled.div`
 
 export const RadioBox = styled.div`
   display: flex;
-  justify-content: left;
+  cursor: pointer;
 `;
 export const RadioDetail = styled.div`
   display: flex;
   justify-content: left;
-  margin: 10px 15px 30px 25px;
-  input[type="radio"]:checked:after {
-    background: $white no-repeat center center;
-    background-image: url("/src/images/Property 1=deselected.png");
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-  }
+
+  margin: 0 0 20px 20px;
+  cursor: pointer;
   label {
-    margin-left: 6px;
+    cursor: pointer;
+    margin-left: 8px;
     font-size: 14px;
   }
+  font-weight: 500;
+  font-size: 14px;
 `;
 
 export const AddressSearch = styled.div`
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   color: grey;
   margin-left: 30px;
-  margin-top: 10px;
+  margin-top: 16px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+export const CompanyInput = styled.input`
+  width: 335px;
+  height: 52px;
+
+  border-radius: 8px;
+  border: 1px solid #e2e6ef;
+  outline: none;
+
+  padding-left: 16px;
+  margin: 8px auto;
+  display: flex;
+
+  font-weight: 400;
+  font-size: 15px;
+
+  color: #1a1f27;
+
+  ::placeholder {
+    color: #bcc2cc;
+  }
+  :focus {
+    border: 1px solid #bbb5ff;
+  }
 `;
 
 export const CompanyBtn = styled.button`
@@ -190,7 +224,7 @@ export const CompanyBtn = styled.button`
   display: flex;
   color: #1a1f27;
   letter-spacing: 0.15px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -199,4 +233,19 @@ export const CompanyBtn = styled.button`
   color: grey;
   padding: 15px 35px;
   margin: 20px 0px 10px 30px;
+`;
+
+export const Essential = styled.a`
+  margin-left: 3px;
+  color: #5546ff;
+  font-weight: 600;
+  font-size: 14px;
+`;
+
+export const AssistiveText = styled.div`
+  color: #f82323;
+
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 26px;
 `;

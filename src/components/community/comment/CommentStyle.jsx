@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-export const CommentListLayout = styled.div`
-  width: 375px;
-  height: 100vh;
-`;
+export const CommentListLayout = styled.div``;
 
 export const CommentSection1 = styled.div`
   display: flex;
@@ -60,7 +57,7 @@ export const CommentWriteBox = styled.div`
 `;
 
 export const CommentTextarea = styled.textarea`
-  width: 290px;
+  width: 270px;
   height: 44px;
   padding-left: 12px;
   padding-right: 12px;
@@ -80,24 +77,42 @@ export const CommentTextarea = styled.textarea`
   }
 
   ::placeholder {
+    font-weight: 400;
+    font-size: 14px;
     color: #bcc2cc;
   }
 `;
 
 export const CommentWirteButton = styled.button`
+  width: 65px;
   height: 44px;
-  width: 50px;
   border: none;
   outline: none;
-  background: #5546ff;
+  background: #bbb5ff;
+
   color: #ffffff;
+  font-weight: 500;
   font-size: 14px;
+
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 
-  :hover {
-    background: #5546ff;
-  }
+  cursor: pointer;
+`;
+
+export const CommentWirteButtonFill = styled.button`
+  width: 65px;
+  height: 44px;
+  border: none;
+  outline: none;
+  background: #5546ff;
+
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   cursor: pointer;
 `;
@@ -107,7 +122,7 @@ export const LikeButton = styled.div`
   align-items: center;
   margin-left: 18px;
   margin-top: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 36px;
   cursor: pointer;
 `;
 

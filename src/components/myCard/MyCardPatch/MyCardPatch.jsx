@@ -21,8 +21,10 @@ import {
   CompanyIcon,
   AddressIcon,
   Essential,
+  SectionHeader,
 } from '../MyCardPatch/MyCardPatchStyle';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardPatch = () => {
   //내 명함 수정 페이지 컴포넌트
@@ -118,8 +120,9 @@ const MyCardPatch = () => {
 
         <SaveButton onClick={updateHandler}>저장</SaveButton>
       </St_Header>
+      <SectionHeader />
       <PatchBox>
-        <Item>
+        {/* <Item>
           <St_Key>
             이름<Essential>*</Essential>
           </St_Key>
@@ -137,6 +140,16 @@ const MyCardPatch = () => {
             value={engName || ''}
             onChange={onChage}
           ></St_value>
+        </Item> */}
+        <Item>
+          <St_Key>
+            연락처<Essential>*</Essential>
+          </St_Key>
+          <St_value
+            name="phoneNum"
+            value={phoneNum || ''}
+            onChange={onChage}
+          ></St_value>
         </Item>
 
         <Item>
@@ -151,20 +164,7 @@ const MyCardPatch = () => {
         </Item>
 
         <Item>
-          <St_Key>
-            연락처<Essential>*</Essential>
-          </St_Key>
-          <St_value
-            name="phoneNum"
-            value={phoneNum || ''}
-            onChange={onChage}
-          ></St_value>
-        </Item>
-
-        <Item>
-          <St_Key>
-            회사<Essential>*</Essential>
-          </St_Key>
+          <St_Key>회사</St_Key>
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
@@ -174,7 +174,7 @@ const MyCardPatch = () => {
               name="company"
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
-              style={{ paddingLeft: '35px' }}
+              style={{ paddingLeft: '42px' }}
               onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
             ></St_value>
           </div>
@@ -225,18 +225,17 @@ const MyCardPatch = () => {
         </Item>
 
         <Item>
-          <St_Key>
-            Tel<Essential>*</Essential>
-          </St_Key>
+          <St_Key>유선전화</St_Key>
           <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
         </Item>
 
         <Item>
-          <St_Key>Fax</St_Key>
+          <St_Key>팩스</St_Key>
           <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
       <MyCardFooter />
+      <SectionFooter />
     </Layout>
   );
 };
