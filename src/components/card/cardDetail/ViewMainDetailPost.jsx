@@ -39,6 +39,7 @@ import {
   SectionLine,
   St_Detail_Mobile,
 } from './ViewMainDetailStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
@@ -116,25 +117,13 @@ const ViewMainDetailPost = () => {
               <Position>{view.position}</Position>
             </NameBox>
             <NameEng>{view.engName}</NameEng>
-            <CompanyAd>주소 </CompanyAd>
             <Company>{view.company}</Company>
             <AddressBox>
               <Address>{view.companyAddress}</Address>
             </AddressBox>
-            <NumBox
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginTop: '8px',
-              }}
-            >
-              <Name2>
-                M.<Address2>{view.phoneNum}</Address2>
-              </Name2>
-
-              <Name2>
-                T.<Address2>{view.tel}</Address2>
-              </Name2>
+            <NumBox>
+              <Address2> M. {view.phoneNum}</Address2>
+              <Address2>T. {view.tel}</Address2>
             </NumBox>
           </OutLine>
         </St_Card>
@@ -187,7 +176,7 @@ const ViewMainDetailPost = () => {
           </Detail_Div>
         </Detail_Title_Box>
       </St_CardInfo>
-      
+
       <MapBox>
         <Map
           center={map.center}
@@ -203,6 +192,7 @@ const ViewMainDetailPost = () => {
         </Map>
       </MapBox>
       <CardsFooter />
+      <SectionFooter />
     </Layout>
   );
 };

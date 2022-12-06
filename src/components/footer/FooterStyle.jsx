@@ -19,3 +19,8 @@ export const FooterBox = styled.div`
     cursor: pointer;
   }
 `;
+
+export const SectionFooter = styled.div`
+  height: 100px;
+  background: white;
+`;

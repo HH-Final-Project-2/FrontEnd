@@ -169,6 +169,6 @@ export const UserChatTime = styled.div`
 `;
 
 export const SectionWall = styled.div`
-  height: 28px;
+  height: 30px;
   background: white;
 `;

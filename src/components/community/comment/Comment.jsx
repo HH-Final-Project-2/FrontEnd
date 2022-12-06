@@ -23,6 +23,7 @@ import {
   CommentWirteButton,
   LikeButton,
   LikeButtonText,
+  CommentWirteButtonFill,
 } from './CommentStyle';
 
 const Comment = ({ detailAuthor }) => {
@@ -76,22 +77,42 @@ const Comment = ({ detailAuthor }) => {
             setCommentForm(e.target.value);
           }}
           placeholder="댓글을 입력해주세요"
-        ></CommentTextarea>
-        <CommentWirteButton
-          onClick={() => {
-            if (commentForm.trim() === '') return alert('댓글을 입력해 주세요');
-            dispatch(
-              addComment({
-                postId: id,
-                content: commentForm,
-                nickname: nickname,
-              })
-            );
-            setCommentForm('');
-          }}
-        >
-          등록
-        </CommentWirteButton>
+        />
+        {commentForm.length > 0 ? (
+          <CommentWirteButtonFill
+            onClick={() => {
+              if (commentForm.trim() === '')
+                return alert('댓글을 입력해 주세요');
+              dispatch(
+                addComment({
+                  postId: id,
+                  content: commentForm,
+                  nickname: nickname,
+                })
+              );
+              setCommentForm('');
+            }}
+          >
+            등록
+          </CommentWirteButtonFill>
+        ) : (
+          <CommentWirteButton
+            onClick={() => {
+              if (commentForm.trim() === '')
+                return alert('댓글을 입력해 주세요');
+              dispatch(
+                addComment({
+                  postId: id,
+                  content: commentForm,
+                  nickname: nickname,
+                })
+              );
+              setCommentForm('');
+            }}
+          >
+            등록
+          </CommentWirteButton>
+        )}
       </CommentWriteBox>
 
       <CommentListLayout>

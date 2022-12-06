@@ -16,7 +16,6 @@ const KakaoLogin = () => {
           localStorage.setItem('nickname', res.data.nickname);
           window.location.replace('/cards');
         })
-        .catch((error) => { })
     }
   })
   return (

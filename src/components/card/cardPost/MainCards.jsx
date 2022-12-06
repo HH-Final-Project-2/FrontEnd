@@ -33,6 +33,7 @@ import {
   CompanyInput,
   SectionHeader,
 } from './cardPostStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 
 const MainCards = () => {
@@ -561,6 +562,7 @@ const MainCards = () => {
           ) : null}
         </Item>
       </PatchBox>
+      <SectionFooter />
     </Layout>
   );
 };

@@ -95,7 +95,7 @@ const Logout = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #eeecff;
+    background: #F5F5F6;
   }
 `;
 
@@ -113,6 +113,6 @@ const Joinout = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #eeecff;
+    background: #F5F5F6;
   }
 `;

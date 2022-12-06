@@ -102,7 +102,6 @@ export const MapBox = styled.div`
   display: flex;
   justify-content: center;
   margin: 24px auto;
-  margin-bottom: 130px;
 `;
 
 export const MidLine = styled.div`
