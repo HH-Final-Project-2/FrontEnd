@@ -120,11 +120,12 @@ export const WriteBtn = styled.button`
   margin-left: 20px;
   margin-bottom: 50px;
 
-  background: #bbb5ff;
+
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
+
   border-radius: 8px;
   border: none;
-
-  color: white;
   font-size: 16px;
 
   transition: 0.2s;
