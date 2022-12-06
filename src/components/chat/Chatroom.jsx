@@ -8,6 +8,8 @@ import Layout from '../layout/Layout';
 import { useNavigate, useParams } from 'react-router';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
 import {
   St_Header,
   St_Title,
@@ -22,9 +24,13 @@ import {
   MyChatTime,
   UserChatTime,
   SectionWall,
+  ChatExit,
 } from './ChatroomStyle';
+
 import {
   addMessage,
+  chatEnter,
+  deleteChatroom,
   getChatRoom,
   getMessage,
   getUserinfo,
@@ -36,8 +42,13 @@ import { ReactComponent as Icbefore } from '../../images/ic-before.svg';
 import { ReactComponent as SendDm } from '../../images/sendMessage.svg';
 import { ReactComponent as SendDmFill } from '../../images/sendMessageFill.svg';
 import { ReactComponent as More } from '../../images/ic-more.svg';
+import { ReactComponent as Exit } from '../../images/ic-exit.svg';
+import { Board } from '../myCard/SharebottomSheet/ShareBottomSheetStyle';
 
 const Chatroom = () => {
+  const socket = new SockJS('http://13.124.142.195/stomp/chat');
+  const client = Stomp.over(socket);
+
   const headers = {
     Authorization: localStorage.getItem('authorization'),
     'Refresh-Token': localStorage.getItem('refresh-Token'),
@@ -47,83 +58,74 @@ const Chatroom = () => {
   const dispatch = useDispatch();
 
   //게시글에서 가져오는 채팅방 ID
-
   const id = useSelector((state) => state.chat.roomId);
-
+  console.log(id);
   //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
+  console.log(chatlistid);
   //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
-
+  console.log(userinfo);
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
-
-  // console.log(client.ws.readyState);
+  console.log(chatList);
   const [message, setMessage] = useState('');
-
-  // if (client.ws.readyState === 0) {
-  //   setInterval(() => {
-  //     console.log(client.ws.readyState);
-  //   }, 500);
-  // }
-  const socket = new SockJS('http://13.124.142.195/stomp/chat');
-  const client = Stomp.over(socket);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log('디스페치액션', id === '' ? chatlistid : id);
-      dispatch(getUserinfo(id === '' ? chatlistid : id));
-      dispatch(getMessage(id === '' ? chatlistid : id));
-      console.log('유저정보', userinfo);
-      console.log('이전채팅', chatList);
-      console.log('게시글로부터 리스폰스로 받은 ID', id);
-      console.log(client.ws.readyState);
-    }, 300);
+    dispatch(getUserinfo(id === '' ? chatlistid : id));
+    dispatch(getMessage(id === '' ? chatlistid : id));
   }, [id, chatlistid]);
-
-  // if (id !== undefined) {
-  // }
 
   useEffect(() => {
     onConneted();
-    console.log(socket.readyState);
+    // console.log(socket.readyState);
     return () => {
       unSubscribe();
     };
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(getUserinfo(id === '' ? chatlistid : id));
-  //     dispatch(getMessage(id === '' ? chatlistid : id));
-  //   }, 200);
-  // }, [id, chatlistid]);
+  useEffect(() => {
+    // 현재 스크롤 위치 === scrollRef.current.scrollTop
+    // 스크롤 길이 === scrollRef.current.scrollHeight
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [chatList]);
 
   const onConneted = () => {
-    try {
-      client.connect(headers, () => {
-        console.log(client.connected);
-        console.log(socket.readyState);
-        console.log(id);
-        // if (client.ws.readyState === 1 && client.connected === true) {
-        setTimeout(() => {
-          subsCribe();
-        }, 300);
-      });
-    } catch (error) {}
+    client.connect(headers, () => {
+      // client.debug === null
+      setTimeout(() => {
+        client.subscribe(
+          `/sub/chat/room/${id === '' ? chatlistid : id}`,
+          (data) => {
+            // dispatch(subscribeId(data.headers.subscription));
+            const newMessage = JSON.parse(data.body);
+            dispatch(addMessage(newMessage));
+          },
+          headers
+        );
+        client.send(
+          '/pub/chat/enter',
+          headers,
+          JSON.stringify({
+            roomId: id === '' ? chatlistid : id,
+          })
+        );
+      }, 100);
+    });
   };
 
-  const subsCribe = () => {
-    client.subscribe(
-      `/sub/chat/room/${id === '' ? chatlistid : id}`,
-      (data) => {
-        // dispatch(subscribeId(data.headers.subscription));
-        const newMessage = JSON.parse(data.body);
-        dispatch(addMessage(newMessage));
-      },
-      headers
-    );
-  };
+  // const subsCribe = () => {
+  //   client.subscribe(
+  //     `/sub/chat/room/${id === '' ? chatlistid : id}`,
+  //     (data) => {
+  //       // dispatch(subscribeId(data.headers.subscription));
+  //       const newMessage = JSON.parse(data.body);
+  //       dispatch(addMessage(newMessage));
+  //     },
+  //     headers
+  //   );
+  // };
 
   const unSubscribe = () => {
     client
@@ -133,6 +135,7 @@ const Chatroom = () => {
         headers
       )
       .unsubscribe();
+    client.disconnect();
   };
 
   const sendMessage = () => {
@@ -148,48 +151,19 @@ const Chatroom = () => {
   };
 
   const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey == false) {
-      sendMessage();
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      sendMessage('');
     }
   };
 
-  // function waitForConnection(callback) {
-  //   setTimeout(
-  //     function () {
-  //       // 연결되었을 때 콜백함수 실행
-  //       if (client.ws.readyState === 1) {
-  //         callback();
-  //         // 연결이 안 되었으면 재호출
-  //       } else {
-  //         waitForConnection(client, callback);
-  //       }
-  //     },
-  //     1 // 밀리초 간격으로 실행
-  //   );
-  // }
+  const disConneted = () => {
+    try {
+      client.disconnect(() => {
+        client.unsubscribe();
+      }, headers);
+    } catch (error) {}
+  };
 
-  // const disConneted = () => {
-  //   try {
-  //     client.disconnect(() => {
-  //       client.unsubscribe();
-  //     }, headers);
-  //   } catch (error) {}
-  // };
-
-  useEffect(() => {
-    // 현재 스크롤 위치 === scrollRef.current.scrollTop
-    // 스크롤 길이 === scrollRef.current.scrollHeight
-    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [chatList]);
-
-  if (
-    chatList === undefined &&
-    userinfo === undefined &&
-    id === undefined &&
-    chatlistid === undefined
-  )
-    return;
-  // if (chatList === undefined || userinfo === undefined) return;
   return (
     <Layout>
       <St_Header>
@@ -200,12 +174,33 @@ const Chatroom = () => {
               nav(-1);
             }}
           />
-          <St_Title>{userinfo.otherNickname}</St_Title>
+          <St_Title>{userinfo?.otherNickname}</St_Title>
         </div>
         <div className="headerSvg">
-          <More />
+          <More onClick={() => setOpen(true)} />
         </div>
       </St_Header>
+      <BottomSheet
+        open={open}
+        onDismiss={() => {
+          setOpen(false);
+        }}
+      >
+        {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
+        <Board>
+          <ChatExit
+            onClick={() => {
+              disConneted();
+              dispatch(deleteChatroom(id === '' ? chatlistid : id));
+            }}
+          >
+            채팅방 나가기
+            <div>
+              <Exit />
+            </div>
+          </ChatExit>
+        </Board>
+      </BottomSheet>
 
       <ChatRoomBox ref={scrollRef}>
         {chatList &&
@@ -213,19 +208,28 @@ const Chatroom = () => {
             const createdAt = chat.createdAt;
             const time = createdAt.split(' ');
 
-            if (chat.userId === userinfo.myId) {
+            if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
-                  <MyChatTime>{time[1]}</MyChatTime>
+                  {time[1] === 'AM' ? (
+                    <MyChatTime>{'오전 ' + time[2]}</MyChatTime>
+                  ) : (
+                    <MyChatTime>{'오후 ' + time[2]}</MyChatTime>
+                  )}
+
                   <MyChat>{chat.message}</MyChat>
                 </MyChatBox>
               );
             }
-            if (chat.userId !== userinfo.myId) {
+            if (chat.userId !== userinfo?.myId) {
               return (
                 <UserChatBox key={message.id}>
                   <UserChat>{chat.message}</UserChat>
-                  <UserChatTime>{time[1]}</UserChatTime>
+                  {time[1] === 'AM' ? (
+                    <UserChatTime>{'오전 ' + time[2]}</UserChatTime>
+                  ) : (
+                    <UserChatTime>{'오후 ' + time[2]}</UserChatTime>
+                  )}
                 </UserChatBox>
               );
             }

@@ -172,3 +172,12 @@ export const SectionWall = styled.div`
   height: 30px;
   background: white;
 `;
+
+export const ChatExit = styled.div`
+  width: 375px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+`;
