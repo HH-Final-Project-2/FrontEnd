@@ -48,9 +48,6 @@ const PostDetail = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
 
-  // 화면 깜빡임
-  const [loading, setLoading] = useState(false);
-
   const [postid, setPostId] = useState({
     postId: id,
   });
@@ -59,9 +56,9 @@ const PostDetail = () => {
   //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
-    setLoading(true);
+
     window.scrollTo(0, 0);
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setIsHeart(detail.postHeartYn);
@@ -107,18 +104,19 @@ const PostDetail = () => {
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
+
+  // console.log("PostDetail > id=", id);
+  // console.log("PostDetail > detail.id=", detail.id);
+
   if (detail === undefined) return null;
-  if (loading === false) return null;
+
+  if (parseInt(id) !== detail.id) return (<Spinner />);
+
+
   return (
     <DetailBox>
-      {/* <button onClick={() => {
-        dispatch(__getPost(id));
-        window.scrollTo(0, 0);
-      }
-
-      }>게시글 로드</button> */}
       <Section1>
-        <Section2 onClick={() => navigate("/community")}>
+        <Section2 onClick={() => navigate('/community')}>
           <svg
             width="10"
             height="17"
