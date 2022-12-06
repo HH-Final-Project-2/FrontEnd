@@ -85,7 +85,7 @@ const MyCard = () => {
 export default MyCard;
 //header
 const St_Header = styled.div`
-  width: 373px;
+  width: 100%;
   height: 56px;
 
   display: flex;
@@ -107,7 +107,7 @@ const St_title = styled.div`
 `;
 
 const Mycard = styled.div`
-  width: 373px;
+  width: 100%;
   height: 240px;
   background-color: #f5f5f5;
 `;
@@ -115,7 +115,6 @@ const Mycard = styled.div`
 const PutButton = styled.div`
   display: flex;
   justify-content: end;
-  /* background-color: orange; */
   position: relative;
   bottom: 50px;
   right: 20px;

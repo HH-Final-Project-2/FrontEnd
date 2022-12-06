@@ -35,8 +35,8 @@ import {
   DivHeart,
   HeartNum,
 } from './PostDetailStyle';
-
 import LoadingPage from "../../../pages/LoadingPage";
+
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,6 @@ const PostDetail = () => {
   const [postid, setPostId] = useState({
     postId: id,
   });
-
 
   //스크롤 최상단으로 이동
   useEffect(() => {
@@ -107,7 +106,6 @@ const PostDetail = () => {
   if (detail === undefined) return null;
 
   if (parseInt(id) !== detail.id) return (<LoadingPage />);
-
 
   return (
     <DetailBox>

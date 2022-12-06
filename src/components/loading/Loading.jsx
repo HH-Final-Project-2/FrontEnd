@@ -2,8 +2,6 @@ import React from 'react';
 import { Background, LoadingText } from './LoadingStyle';
 import Spinner from '../../images/spinner.gif'
 
-
-
 const Loading = () => {
   return (
     <Background>
@@ -11,6 +9,6 @@ const Loading = () => {
       <LoadingText>잠시만 기다려 주세요</LoadingText>
     </Background>
   );
-}
+};
 
 export default Loading;

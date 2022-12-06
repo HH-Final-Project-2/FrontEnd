@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
 import {
   deleteChatroom,
   getChatRoom,
   roomIdSave,
-} from "../../redux/modules/chatSlice";
-import { ReactComponent as Profile } from "../../images/profile.svg";
+} from '../../redux/modules/chatSlice';
+import { ReactComponent as Profile } from '../../images/profile.svg';
+
 
 const Chatlist = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Chatlist = () => {
               key={chatRoom.id}
               onClick={() => {
                 dispatch(roomIdSave(x.chatRoomUuid));
-                nav("/chat/chatroom/");
+                nav('/chat/chatroom/');
               }}
             >
               <ProBox>

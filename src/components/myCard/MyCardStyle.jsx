@@ -22,7 +22,7 @@ export const St_title = styled.div`
 `;
 
 export const Mycard = styled.div`
-  width: 375px;
+  width: 100%;
   height: 240px;
   background-color: #f5f5f5;
 `;

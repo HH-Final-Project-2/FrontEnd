@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router';
 import { __deletePost } from '../../redux/modules/PostSlice';
 import { DivSheet } from './PostBottomSheetStyle';
 
-
 export default function PostBottomSheet({ detail, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,19 +20,35 @@ export default function PostBottomSheet({ detail, id }) {
     if (isLoading) navigate('/community');
   }, [isLoading]);
 
+  //화면크기 인식
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const resizeWidth = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', resizeWidth);
+    return () => {
+      window.removeEventListener('resize', resizeWidth);
+    };
+  }, []);
+
   return (
     <>
       <SheetButton>
         <More onClick={() => setOpen(true)} />
       </SheetButton>
 
-      <DivSheet>
+      {windowWidth < 1200 ? (
         <BottomSheet
           open={open}
           onDismiss={() => {
             setOpen(false);
           }}
-        // snapPoints={({ maxHeight }) => [maxHeight / 4, maxHeight * 0.6]}
+          style={{
+            '--rsbs-max-w': '375px',
+            '--rsbs-ml': 'auto',
+            '--rsbs-mr': 'auto',
+          }}
         >
           <Board>
             <ul
@@ -44,9 +59,9 @@ export default function PostBottomSheet({ detail, id }) {
               수정
             </ul>
             <ul
-              style={{ color: "#F82323" }}
+              style={{ color: '#F82323' }}
               onClick={() => {
-                const confirm = window.confirm("게시글을 지우시겠습니까?");
+                const confirm = window.confirm('게시글을 지우시겠습니까?');
                 if (confirm) {
                   dispatch(__deletePost(detail.id));
                 } else {
@@ -58,7 +73,42 @@ export default function PostBottomSheet({ detail, id }) {
             </ul>
           </Board>
         </BottomSheet>
-      </DivSheet>
+      ) : (
+        <BottomSheet
+          open={open}
+          onDismiss={() => {
+            setOpen(false);
+          }}
+          style={{
+            '--rsbs-max-w': '375px',
+            '--rsbs-ml': 'auto',
+            '--rsbs-mr': '537px',
+          }}
+        >
+          <Board>
+            <ul
+              onClick={() => {
+                navigate(`/edit/${id}`);
+              }}
+            >
+              수정
+            </ul>
+            <ul
+              style={{ color: '#F82323' }}
+              onClick={() => {
+                const confirm = window.confirm('게시글을 지우시겠습니까?');
+                if (confirm) {
+                  dispatch(__deletePost(detail.id));
+                } else {
+                  return;
+                }
+              }}
+            >
+              삭제
+            </ul>
+          </Board>
+        </BottomSheet>
+      )}
     </>
   );
 }

@@ -23,7 +23,6 @@ import {
   St_Detail_Phone,
   MidLine,
 } from '../MyCardInfo/MyCardInfoStyle';
-import { HR } from '../../card/cardDetail/ViewMainDetailStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardInfo = () => {

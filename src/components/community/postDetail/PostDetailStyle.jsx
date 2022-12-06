@@ -43,10 +43,6 @@ export const DetailPostSection1 = styled.div`
     cursor: pointer;
   }
 
-  g rect:hover {
-    stroke: #5546ff;
-  }
-
   .nickdate {
     display: flex;
   }
@@ -55,7 +51,7 @@ export const DetailPostSection1 = styled.div`
 export const NickName = styled.div`
   margin-left: 20px;
   margin-top: 25px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 
   color: #52596b;
@@ -64,6 +60,7 @@ export const NickName = styled.div`
 export const Date = styled.div`
   margin-left: 8px;
   margin-top: 27px;
+  font-weight: 400;
   font-size: 12px;
   color: #8892a0;
 `;
@@ -93,19 +90,19 @@ export const JobPosition = styled.div`
   padding: 5px;
   margin-left: 20px;
   margin-top: 15px;
+  font-weight: 400;
   font-size: 12px;
-
   color: #3425de;
   background: #eeecff;
   border-radius: 4px;
 `;
 
 export const PostTitle = styled.div`
-  max-width: 200px;
+  max-width: 210px;
   margin-left: 8px;
   margin-right: 20px;
   margin-top: 16px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
 
   word-break: break-all;
@@ -124,8 +121,9 @@ export const DetailPostBody = styled.div`
   margin-right: 13px;
   margin-top: 25px;
 
+  font-weight: 400;
   font-size: 16px;
-
+  line-height: 24px;
   white-space: pre-line;
   word-break: break-all;
 
@@ -156,15 +154,15 @@ export const DetailPostSection4 = styled.div`
 
 export const CommentBox = styled.div`
   display: flex;
-  font-size: 12px;
   color: #52596b;
 `;
 
 export const CommentNum = styled.div`
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 14px;
   color: #52596b;
 
-  margin-left: 7px;
+  margin-left: 6px;
 `;
 
 export const HitBox = styled.div`
@@ -178,6 +176,7 @@ export const HitBox = styled.div`
 export const HitNum = styled.div`
   margin-left: 3px;
   color: #8892a0;
+  font-weight: 500;
   font-size: 12px;
 `;
 
@@ -197,7 +196,8 @@ export const DivHeart = styled.div`
 `;
 
 export const HeartNum = styled.div`
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 14px;
   color: #52596b;
   margin-left: 7px;
 `;
