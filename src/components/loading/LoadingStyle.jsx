@@ -1,20 +1,15 @@
 import styled from 'styled-components';
 
 export const Background = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: #ffffffb7;
-  z-index: 999;
+  width: 375px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-top: 420px;
+  
 `;
 
 export const LoadingText = styled.div`
   margin-top: 20px;
-  text-align: center;
 `;

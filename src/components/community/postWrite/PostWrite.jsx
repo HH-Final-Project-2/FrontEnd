@@ -73,12 +73,11 @@ const PostWrite = () => {
     }
   };
 
+  //유효성 통과시 버튼&폰트 색상 변경
   const checkJobGroup = joupGroupTest.length >= 1;
   const checkTitle = titleTest.length >= 1;
   const checkContent = contentTest.length >= 1;
 
-
-  //유효성 통과시 버튼&폰트 색상 변경
   let setColor = '';
   let setFontColor = '';
 

@@ -25,11 +25,11 @@ import {
   Container,
   StyledSlider,
   ListSectionLine,
-} from './PostListStyle';
-import Pagination from 'react-js-pagination';
-import TopFive from '../topFive/TopFive';
-import SearchNone from '../../searchNone/SearchNone';
-import Spinner from '../../loading/Loading';
+} from "./PostListStyle";
+import Pagination from "react-js-pagination";
+import TopFive from "../topFive/TopFive";
+import SearchNone from "../../searchNone/SearchNone";
+import LoadingPage from "../../../pages/LoadingPage";
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -101,7 +101,7 @@ const PostList = () => {
 
   if (post === undefined) return null;
 
-  if (loading === false) return <Spinner />;
+  if (loading === false) return (<LoadingPage />);
 
   return (
     <CommunityLayout>
