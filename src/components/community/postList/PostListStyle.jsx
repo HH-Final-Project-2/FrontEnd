@@ -23,6 +23,8 @@ export const Section1Title = styled.div`
   left: 10px;
   font-weight: 500;
   font-size: 16px;
+
+  color: #1a1f27;
 `;
 
 export const Section2 = styled.div`
@@ -139,8 +141,8 @@ export const PaginationBox = styled.div`
 export const Container = styled.div`
   margin-top: 32px;
   height: 250px;
+  font-weight: 400;
   font-size: 16px;
-  font-weight: 600;
   color: #1a1f27;
 
   .topFive {

@@ -1,13 +1,13 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { ReactComponent as Xbutton } from "../../images/x-circle-fill.svg";
+import React, { useRef, useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { ReactComponent as Xbutton } from '../../images/x-circle-fill.svg';
 import {
   emailCheck,
   signUp,
   emailAuth,
-} from "../../redux/modules/membersSlice";
+} from '../../redux/modules/membersSlice';
 import {
   JoinForm,
   LabelText,
@@ -23,11 +23,11 @@ import {
   JoinTitle,
   Section2,
   Section1,
-} from "./UserJoinStyle";
-import { useSelector } from "react-redux";
+} from './UserJoinStyle';
+import { useSelector } from 'react-redux';
 
 const UserJoin = () => {
-  const [auth, setAuth] = useState("");
+  const [auth, setAuth] = useState('');
   const email = useSelector((state) => state.memberSlice.check);
   const authEmail = useSelector((state) => state.memberSlice.auth);
 
@@ -42,106 +42,105 @@ const UserJoin = () => {
 
   // 패스워드 같은지 검사
   const password = useRef();
-  password.current = watch("password");
+  password.current = watch('password');
 
   // 디스패치
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // 이메일,패스워드,이름,닉네임,연락처 버튼 초기값
-  const [stateXButtonEmail, setStateXButtonEmail] = useState("none");
-  const [stateXButtonPassword, setStateXButtonPassword] = useState("none");
-  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] = useState("none");
-  const [stateXButtonUserName, setStateXButtonUserName] = useState("none");
-  const [stateXButtonNickName, setStateXButtonNickName] = useState("none");
-
-
+  const [stateXButtonEmail, setStateXButtonEmail] = useState('none');
+  const [stateXButtonPassword, setStateXButtonPassword] = useState('none');
+  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] =
+    useState('none');
+  const [stateXButtonUserName, setStateXButtonUserName] = useState('none');
+  const [stateXButtonNickName, setStateXButtonNickName] = useState('none');
 
   // 이메일,패스워드,이름,닉네임,연락처 watch
-  const watchForEmail = watch("email");
-  const watchForPassword = watch("password");
-  const watchForPasswordCheck = watch("passwordCheck");
-  const watchForUserName = watch("username");
-  const watchForNickName = watch("nickname");
+  const watchForEmail = watch('email');
+  const watchForPassword = watch('password');
+  const watchForPasswordCheck = watch('passwordCheck');
+  const watchForUserName = watch('username');
+  const watchForNickName = watch('nickname');
 
   // 이메일 X버튼 디스플레이
   useEffect(() => {
     if (watchForEmail === undefined) {
-      setStateXButtonEmail("none");
+      setStateXButtonEmail('none');
     } else if (watchForEmail.length === 0) {
-      setStateXButtonEmail("none");
+      setStateXButtonEmail('none');
     } else {
-      setStateXButtonEmail("block");
+      setStateXButtonEmail('block');
     }
   });
 
   const xButtonEmail = () => {
-    resetField("email");
-    setStateXButtonEmail("none");
+    resetField('email');
+    setStateXButtonEmail('none');
   };
 
   // 패스워드 X버튼 디스플레이
   useEffect(() => {
     if (watchForPassword === undefined) {
-      setStateXButtonPassword("none");
+      setStateXButtonPassword('none');
     } else if (watchForPassword.length === 0) {
-      setStateXButtonPassword("none");
+      setStateXButtonPassword('none');
     } else {
-      setStateXButtonPassword("block");
+      setStateXButtonPassword('block');
     }
   });
 
   const xButtonPassword = () => {
-    resetField("password");
-    setStateXButtonEmail("none");
+    resetField('password');
+    setStateXButtonEmail('none');
   };
 
   // 패스워드 확인 X버튼 디스플레이
   useEffect(() => {
     if (watchForPasswordCheck === undefined) {
-      setStateXButtonPasswordCheck("none");
+      setStateXButtonPasswordCheck('none');
     } else if (watchForPasswordCheck.length === 0) {
-      setStateXButtonPasswordCheck("none");
+      setStateXButtonPasswordCheck('none');
     } else {
-      setStateXButtonPasswordCheck("block");
+      setStateXButtonPasswordCheck('block');
     }
   });
 
   const xButtonPasswordCheck = () => {
-    resetField("passwordcheck");
-    setStateXButtonEmail("none");
+    resetField('passwordcheck');
+    setStateXButtonEmail('none');
   };
 
   // 이름 확인 X버튼 디스플레이
   useEffect(() => {
     if (watchForUserName === undefined) {
-      setStateXButtonUserName("none");
+      setStateXButtonUserName('none');
     } else if (watchForUserName.length === 0) {
-      setStateXButtonUserName("none");
+      setStateXButtonUserName('none');
     } else {
-      setStateXButtonUserName("block");
+      setStateXButtonUserName('block');
     }
   });
 
   const xButtonUserName = () => {
-    resetField("username");
-    setStateXButtonUserName("none");
+    resetField('username');
+    setStateXButtonUserName('none');
   };
 
   // 닉네임 확인 X버튼 디스플레이
   useEffect(() => {
     if (watchForNickName === undefined) {
-      setStateXButtonNickName("none");
+      setStateXButtonNickName('none');
     } else if (watchForNickName.length === 0) {
-      setStateXButtonNickName("none");
+      setStateXButtonNickName('none');
     } else {
-      setStateXButtonNickName("block");
+      setStateXButtonNickName('block');
     }
   });
 
   const xButtonNickName = () => {
-    resetField("nickname");
-    setStateXButtonNickName("none");
+    resetField('nickname');
+    setStateXButtonNickName('none');
   };
 
   // 인증번호 X버튼
@@ -151,13 +150,13 @@ const UserJoin = () => {
     } else {
       return false;
     }
-  }
+  };
 
   // 폼 데이터 전송
   const onSubmit = (data) => {
     authEmail.success === true
       ? dispatch(signUp(data))
-      : alert("이메일 인증이 필요합니다");
+      : alert('이메일 인증이 필요합니다');
   };
   return (
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
@@ -187,7 +186,7 @@ const UserJoin = () => {
             name="email"
             type="text"
             placeholder="이메일"
-            {...register("email", {
+            {...register('email', {
               required: true,
               pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
             })}
@@ -212,7 +211,7 @@ const UserJoin = () => {
             );
           }}
         >
-          이메일 인증
+          인증하기
         </EmailCheckButton>
       </EmailBox>
       {errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>}
@@ -236,8 +235,8 @@ const UserJoin = () => {
                 width="20"
                 height="20"
                 fill="#BCC2CC"
-                display={display(auth) ? "block" : "none"}
-                onClick={() => setAuth("")}
+                display={display(auth) ? 'block' : 'none'}
+                onClick={() => setAuth('')}
               />
             </InputButtonEmail>
           </InputContainer>
@@ -265,7 +264,7 @@ const UserJoin = () => {
           name="password"
           type="password"
           placeholder="6~15자, 영문, 숫자"
-          {...register("password", {
+          {...register('password', {
             required: true,
             pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/,
           })}
@@ -288,7 +287,7 @@ const UserJoin = () => {
           name="passwordCheck"
           type="password"
           placeholder="비밀번호를 한번 더 입력해주세요"
-          {...register("passwordCheck", {
+          {...register('passwordCheck', {
             required: true,
             validate: (value) => value === password.current,
           })}
@@ -303,7 +302,7 @@ const UserJoin = () => {
           />
         </InputButton>
       </InputContainer>
-      {errors.passwordCheck && errors.passwordCheck.type === "validate" && (
+      {errors.passwordCheck && errors.passwordCheck.type === 'validate' && (
         <ErrorText>비밀번호가 같지 않습니다</ErrorText>
       )}
 
@@ -314,7 +313,7 @@ const UserJoin = () => {
           name="username"
           type="text"
           placeholder="이름"
-          {...register("username", {
+          {...register('username', {
             required: true,
             minLength: 2,
             maxLength: 5,
@@ -330,13 +329,13 @@ const UserJoin = () => {
           />
         </InputButton>
       </InputContainer>
-      {errors.username && errors.username.type === "required" && (
+      {errors.username && errors.username.type === 'required' && (
         <ErrorText>이름을 입력해주세요</ErrorText>
       )}
-      {errors.username && errors.username.type === "minLength" && (
+      {errors.username && errors.username.type === 'minLength' && (
         <ErrorText>이름은 최소2~5자 입니다</ErrorText>
       )}
-      {errors.username && errors.username.type === "maxLength" && (
+      {errors.username && errors.username.type === 'maxLength' && (
         <ErrorText>이름은 최소2~5자 입니다</ErrorText>
       )}
 
@@ -346,8 +345,8 @@ const UserJoin = () => {
         <InputJoin
           name="nickname"
           type="text"
-          placeholder="2~5자 이내"
-          {...register("nickname", {
+          placeholder="2~5자 이내 , 한글"
+          {...register('nickname', {
             required: true,
             minLength: 2,
             maxLength: 5,
@@ -363,13 +362,13 @@ const UserJoin = () => {
           />
         </InputButton>
       </InputContainer>
-      {errors.nickname && errors.nickname.type === "required" && (
+      {errors.nickname && errors.nickname.type === 'required' && (
         <ErrorText>닉네임 입력해주세요</ErrorText>
       )}
-      {errors.nickname && errors.nickname.type === "minLength" && (
+      {errors.nickname && errors.nickname.type === 'minLength' && (
         <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
       )}
-      {errors.nickname && errors.nickname.type === "maxLength" && (
+      {errors.nickname && errors.nickname.type === 'maxLength' && (
         <ErrorText>닉네임은 최소2~5자 입니다</ErrorText>
       )}
 
