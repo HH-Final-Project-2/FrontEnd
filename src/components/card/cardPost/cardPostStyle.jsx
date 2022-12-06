@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import styled from 'styled-components';
 
 //헤더 박스 div
 export const St_Header = styled.div`
   position: fixed;
   top: 0;
-  width: 373px;
+  width: 375px;
   height: 56px;
   display: flex;
   justify-content: space-between;
@@ -16,7 +15,7 @@ export const St_Header = styled.div`
   svg {
     margin-left: 14px;
   }
-
+  opacity: 0.9;
   background: white;
 `;
 
@@ -190,7 +189,7 @@ export const Input = styled.input`
 `;
 
 export const ImgBox = styled.div`
-  width: 373px;
+  width: 100%;
   height: 64px;
   background: #f5f6fa;
   display: flex;

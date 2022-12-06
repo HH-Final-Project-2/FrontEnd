@@ -25,10 +25,6 @@ export const InputJoin = styled.input`
   ::placeholder {
     color: #bcc2cc;
   }
-  &:focus {
-    border: 1px solid #bcc2cc;
-    outline: #bcc2cc;
-  }
 `;
 
 export const ErrorText = styled.p`
