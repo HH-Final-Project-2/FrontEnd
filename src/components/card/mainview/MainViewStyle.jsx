@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CategoryBtnBox = styled.div`
   margin: 18px 0px 0px 20px;
@@ -151,7 +151,7 @@ export const CardInCardDetail2 = styled.div`
   -webkit-transform: scale(0.8);
 
   margin-top: 17px;
-  margin-right: 59px;
+  margin-right: 30px;
 `;
 export const CardInCardDetail1Name = styled.div`
   font-weight: 500;
@@ -162,7 +162,6 @@ export const CardInCardDetail1Name = styled.div`
   -webkit-transform: scale(0.8);
 `;
 export const CardInCardDetail1Position = styled.div`
-
   font-weight: 500;
   font-size: 10px;
   -webkit-transform: scale(0.65);
@@ -181,5 +180,4 @@ export const CardInCardDetail2Phone = styled.div`
 // 명함 없을 때 보여주는 페이지
 export const NoneCardPage = styled.div`
   height: 100px;
-  background: red;
 `;
