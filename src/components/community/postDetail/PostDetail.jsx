@@ -36,6 +36,8 @@ import {
   HeartNum,
 } from "./PostDetailStyle";
 
+import Spinner from '../../loading/Loading'
+
 const PostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,13 +48,18 @@ const PostDetail = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
 
+  // 화면 깜빡임
+  const [loading, setLoading] = useState(false);
+
   const [postid, setPostId] = useState({
     postId: id,
   });
 
+
   //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
+    setLoading(true);
     window.scrollTo(0, 0);
   }, [dispatch]);
 
@@ -100,9 +107,16 @@ const PostDetail = () => {
 
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
-  if (detail === undefined) return;
+  if (detail === undefined) return null;
+  if (loading === false) return null;
   return (
     <DetailBox>
+      {/* <button onClick={() => {
+        dispatch(__getPost(id));
+        window.scrollTo(0, 0);
+      }
+
+      }>게시글 로드</button> */}
       <Section1>
         <Section2 onClick={() => navigate("/community")}>
           <svg
@@ -125,7 +139,6 @@ const PostDetail = () => {
         )}
       </Section1>
 
-      {/*  */}
       <DetailPostSection1>
         <div className="nickdate">
           <NickName>{detail.author}</NickName>
@@ -142,19 +155,19 @@ const PostDetail = () => {
         {/* 채팅하기 버튼 svg end*/}
       </DetailPostSection1>
       <PostLine />
-      {/*  */}
+
       <DetailPostSection2>
         <JobPosition>{detail.jobGroup}</JobPosition>
         <PostTitle>{detail.title}</PostTitle>
       </DetailPostSection2>
-      {/*  */}
+
       <DetailPostSection3>
         <DetailPostBody>{detail.content}</DetailPostBody>
         <DetailPostImg>
           <img src={detail.image} alt="" />
         </DetailPostImg>
       </DetailPostSection3>
-      {/*  */}
+
       <DetailSectionLine />
       <DetailPostSection4>
         <div>
