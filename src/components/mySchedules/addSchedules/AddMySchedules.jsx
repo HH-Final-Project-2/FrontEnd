@@ -143,7 +143,6 @@ const AddMySchedules = () => {
         </Section2>
         <AddBtn onClick={submitHandler}>등록</AddBtn>
       </Section1>
-      <SectionLine />
 
       {/* body */}
       <TitleTextArea

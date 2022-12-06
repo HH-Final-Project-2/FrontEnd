@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../redux/modules/membersSlice';
 import logo from '../../images/login-logo.png';
-import { ReactComponent as KakaoLogin } from '../../images/kakaoLogin.svg';
-
+import { ReactComponent as KakaotalkLogin } from '../../images/kakaoLogin.svg';
+import { REST_API_KEY, REDIRECT_URI } from '../../shared/KakaoLoginData'
 import {
   JoinForm,
   InputJoin,
@@ -17,6 +17,12 @@ import {
 } from './UserLoginStyle';
 
 const UserLogin = () => {
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
+
+  const onKakaoLogin = () => {
+    window.location.href = KAKAO_AUTH_URL;
+  }
+
   const {
     register,
     watch,
@@ -62,7 +68,7 @@ const UserLogin = () => {
       </InputContainer>
       {errors.password && <ErrorText>비밀번호는 영문/숫자 6~15자</ErrorText>}
       <ButtonJoin>로그인</ButtonJoin>
-      <KakaoLogin />
+      <KakaotalkLogin type='button' onClick={onKakaoLogin} />
 
       {/* 회원가입 이동 */}
       <SignUpBox>

@@ -91,6 +91,20 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  ::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 8%; /* 스크롤바의 길이 */
+    background: #E2E6EF; /* 스크롤바의 색상 */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+     /*스크롤바 뒷 배경 색상*/
+  }
+
   /* :root {
   --rsbs-backdrop-bg: rgba(0, 0, 0, 0.6);
   --rsbs-bg: #fff;

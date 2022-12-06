@@ -23,9 +23,11 @@ export const DivLayout = styled.div`
   width: 375px;
   min-height: 100vh;
   height: auto;
+
   position: static;
   margin-left: 470px;
   background-color: white;
+
   display: flex;
   flex-direction: column;
 `;

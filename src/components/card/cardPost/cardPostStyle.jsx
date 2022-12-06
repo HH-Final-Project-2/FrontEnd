@@ -3,10 +3,26 @@ import LogoSrc from "../../../images/Frame 2317.svg";
 
 //헤더 박스 div
 export const St_Header = styled.div`
+  position: fixed;
+  top: 0;
+  width: 373px;
+  height: 56px;
   display: flex;
-  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid;
+
+  border-bottom: 1px solid #e2e6ef;
+
+  svg {
+    margin-left: 14px;
+  }
+
+  background: white;
+`;
+
+export const SectionHeader = styled.div`
+  height: 56px;
+  background: white;
 `;
 //명함 정보 편집 박스
 export const PatchBox = styled.div`
@@ -23,8 +39,7 @@ export const St_Title = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  padding-left: 15px;
+  padding-left: 8px;
 
   font-weight: 500;
   font-size: 16px;
@@ -32,11 +47,11 @@ export const St_Title = styled.div`
 //저장버튼
 export const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   color: #277dff;
   cursor: pointer;
 
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
 `;
 //input key 제목

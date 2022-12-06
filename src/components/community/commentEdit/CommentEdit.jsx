@@ -73,7 +73,6 @@ const CommentEdit = () => {
           <Section1Title>댓글 수정</Section1Title>
         </Section2>
       </Section1>
-      <SectionLine />
       <CommentEditInputBox>
         <textarea
           type="text"
