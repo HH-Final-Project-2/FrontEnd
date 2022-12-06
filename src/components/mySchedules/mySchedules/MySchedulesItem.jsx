@@ -74,62 +74,58 @@ const MySchedulesItem = () => {
           {marks !== null
             ? marks.map((x) => {
                 if (
-                  x.filteredDate !== undefined &&
+                  x.filteredDate !== null &&
                   x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (
-                    <div className="todoBox">
-                      <div key={x.id} className="todoOneBox">
-                        <div className="todoBoxSection">
-                          <div className="titleBox">
-                            <div className="titleSection">
-                              <div className="todoDot" />
-                              <div className="title">{x.title}</div>
-                            </div>
-
-                            <div className="todo">{x.todo}</div>
+                    <div className="todoBox" key={x.id}>
+                      <div className="todoBoxSection">
+                        <div className="titleBox">
+                          <div className="titleSection">
+                            <div className="todoDot" />
+                            <div className="title">{x.title}</div>
                           </div>
-
-                          <div className="dateTime">
-                            <div className="startDate">
-                              {x.startDate} {x.startTime}
-                            </div>
-                            <div className="endDate">
-                              {x.endDate} {x.endTime}
-                            </div>
-                          </div>
+                          <div className="todo">{x.todo}</div>
                         </div>
 
-                        <img
-                          className="deleteBtn"
-                          src={Delete}
-                          onClick={() => {
-                            const config = {
-                              headers: {
-                                Authorization: accessToken,
-                                "Refresh-Token": refreshToken,
-                              },
-                            };
-                            axios
-                              .delete(
-                                `https://bkyungkeem.shop/api/calendar/${x.id}`,
-                                config
-                              )
-                              .then(function (response) {
-                                console.log(response);
-                                marks.filter((x) => x.id !== response);
-                              })
-                              .catch(function (error) {
-                                console.log(error);
-                              })
-                              .then(function () {
-                                // always executed
-                              });
-                            alert("DELETE SECCESS");
-                            window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
-                          }}
-                        />
+                        <div className="dateTime">
+                          <div className="startDate">
+                            {x.startDate} {x.startTime}
+                          </div>
+                          <div className="endDate">
+                            {x.endDate} {x.endTime}
+                          </div>
+                        </div>
                       </div>
+                      <img
+                        className="deleteBtn"
+                        src={Delete}
+                        onClick={() => {
+                          const config = {
+                            headers: {
+                              Authorization: accessToken,
+                              "Refresh-Token": refreshToken,
+                            },
+                          };
+                          axios
+                            .delete(
+                              `https://bkyungkeem.shop/api/calendar/${x.id}`,
+                              config
+                            )
+                            .then(function (response) {
+                              console.log(response);
+                              marks.filter((x) => x.id !== response);
+                            })
+                            .catch(function (error) {
+                              console.log(error);
+                            })
+                            .then(function () {
+                              // always executed
+                            });
+                          alert("일정이 삭제되었습니다");
+                          window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
+                        }}
+                      />
                     </div>
                   );
                 } else return null;

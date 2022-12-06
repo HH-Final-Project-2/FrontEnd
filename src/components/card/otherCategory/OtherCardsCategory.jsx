@@ -93,53 +93,50 @@ const MainView = () => {
           : mainpost.map((main) => {
               if (main.companyType === 'other') {
                 return (
-                  <div>
-                    <Card
-                      key={main.id}
-                      onClick={() => {
-                        navigate(`/posts/get/${main.id}`);
-                      }}
-                    >
-                      <CardInfo>
-                        <CardName>{main.cardName}</CardName>
-                        <CardInfoDetail>
-                          <Position>
-                            {main.position.length > 5
-                              ? main.position.slice(0, 5) + '...'
-                              : main.position}
-                          </Position>
-                          <Department>
-                            {main.department.length > 5
-                              ? main.department.slice(0, 5) + '...'
-                              : main.department}
-                          </Department>
-                        </CardInfoDetail>
-                      </CardInfo>
-                      <CardInCard>
-                        <CardInCardDetail1>
-                          <CardInCardDetail1Name>
-                            {main.cardName}
-                          </CardInCardDetail1Name>
-                          <CardInCardDetail1Position>
-                            {main.position.length > 5
-                              ? main.position.slice(0, 5) + '...'
-                              : main.position}
-                          </CardInCardDetail1Position>
-                        </CardInCardDetail1>
-
-                        <CardInCardDetail2>
-                          <CardInCardDetail2Email>
-                            {main.email.length > 20
-                              ? main.email.slice(0, 20) + '...'
-                              : main.email}
-                          </CardInCardDetail2Email>
-                          <CardInCardDetail2Phone>
-                            {main.phoneNum}
-                          </CardInCardDetail2Phone>
-                        </CardInCardDetail2>
-                      </CardInCard>
-                    </Card>
-                  </div>
+                  <Card
+                    key={main.id}
+                    onClick={() => {
+                      navigate(`/posts/get/${main.id}`);
+                    }}
+                  >
+                    <CardInfo>
+                      <CardName>{main.cardName}</CardName>
+                      <CardInfoDetail>
+                        <Position>
+                          {main.position.length > 5
+                            ? main.position.slice(0, 5) + "..."
+                            : main.position}
+                        </Position>
+                        <Department>
+                          {main.department.length > 5
+                            ? main.department.slice(0, 5) + "..."
+                            : main.department}
+                        </Department>
+                      </CardInfoDetail>
+                    </CardInfo>
+                    <CardInCard>
+                      <CardInCardDetail1>
+                        <CardInCardDetail1Name>
+                          {main.cardName}
+                        </CardInCardDetail1Name>
+                        <CardInCardDetail1Position>
+                          {main.position.length > 5
+                            ? main.position.slice(0, 5) + "..."
+                            : main.position}
+                        </CardInCardDetail1Position>
+                      </CardInCardDetail1>
+                      <CardInCardDetail2>
+                        <CardInCardDetail2Email>
+                          {main.email.length > 20
+                            ? main.email.slice(0, 20) + "..."
+                            : main.email}
+                        </CardInCardDetail2Email>
+                        <CardInCardDetail2Phone>
+                          {main.phoneNum}
+                        </CardInCardDetail2Phone>
+                      </CardInCardDetail2>
+                    </CardInCard>
+                  </Card>
                 );
               }
             })}
