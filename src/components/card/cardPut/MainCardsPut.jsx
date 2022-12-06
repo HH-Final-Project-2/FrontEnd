@@ -1,9 +1,9 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
-import Layout from "../../layout/Layout";
-import { __viewGet, __fixPost } from "../../../redux/modules/CardsSlice";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import Layout from '../../layout/Layout';
+import { __viewGet, __fixPost } from '../../../redux/modules/CardsSlice';
 import {
   St_Header,
   PatchBox,
@@ -17,8 +17,13 @@ import {
   Item,
   AddressSearch,
   CompanyBtn,
-} from "./MainCardsPutStyle";
-import { Link } from "react-router-dom";
+} from './MainCardsPutStyle';
+import { Link } from 'react-router-dom';
+import {
+  Section1,
+  Section1Title,
+  Section2,
+} from '../../community/postList/PostListStyle';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -32,16 +37,16 @@ const MainCards = () => {
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
-    e.returnValue = "";
+    e.returnValue = '';
   };
 
   useEffect(() => {
     (() => {
-      window.addEventListener("beforeunload", preventClose);
+      window.addEventListener('beforeunload', preventClose);
     })();
 
     return () => {
-      window.removeEventListener("beforeunload", preventClose);
+      window.removeEventListener('beforeunload', preventClose);
     };
   }, []);
 
@@ -64,7 +69,7 @@ const MainCards = () => {
 
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
-      ? inputValue.email.includes("@") && inputValue.email.includes(".")
+      ? inputValue.email.includes('@') && inputValue.email.includes('.')
       : false;
 
   const isValidInput =
@@ -126,35 +131,38 @@ const MainCards = () => {
         })
       );
     }
-    alert("수정완료!");
+    alert('수정완료!');
     navigate(`/posts/get/${id}`);
   };
 
   return (
     <div>
       <Layout>
-        <St_Header>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            <path
-              d="M15 4L8 11.5L15 19"
-              stroke="#1A1F27"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-          <St_Title>명함수정</St_Title>
+        <Section1>
+          <Section2>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <path
+                d="M15 4L8 11.5L15 19"
+                stroke="#1A1F27"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+            <Section1Title>명함수정</Section1Title>
+          </Section2>
           <SaveButton onClick={cardsSubmitHandler}>저장</SaveButton>
-        </St_Header>
+        </Section1>
+
         <PatchBox>
           <Item>
             <St_Key>이름</St_Key>
@@ -164,7 +172,7 @@ const MainCards = () => {
               name="cardName"
               minLength="2"
               maxLength="5"
-              value={inputValue.cardName || ""}
+              value={inputValue.cardName || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -194,7 +202,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+            inputValue.phoneNum.includes('-') === false ? (
               <SearchAddress>-을 포함해주세요</SearchAddress>
             ) : null}
           </Item>
@@ -207,7 +215,7 @@ const MainCards = () => {
                   companyGet.company ? companyGet.company : inputValue.company
                 }
                 onChange={valueChangeHandler}
-                onClick={() => navigate("/posts/companySearch")}
+                onClick={() => navigate('/posts/companySearch')}
               ></St_value>
             </div>
             <St_Address
@@ -227,7 +235,7 @@ const MainCards = () => {
                     viewBox="0 0 12 15"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    style={{ marginRight: "8px" }}
+                    style={{ marginRight: '8px' }}
                   >
                     <path
                       fillRule="evenodd"
@@ -290,7 +298,7 @@ const MainCards = () => {
               placeholder="회사번호"
               name="tel"
               maxLength="13"
-              value={inputValue.tel || ""}
+              value={inputValue.tel || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -301,7 +309,7 @@ const MainCards = () => {
               placeholder="팩스"
               name="fax"
               maxLength="13"
-              value={inputValue.fax || ""}
+              value={inputValue.fax || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>

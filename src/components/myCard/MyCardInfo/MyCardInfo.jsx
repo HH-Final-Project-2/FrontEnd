@@ -24,6 +24,7 @@ import {
   MidLine,
 } from '../MyCardInfo/MyCardInfoStyle';
 import { HR } from '../../card/cardDetail/ViewMainDetailStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardInfo = () => {
   //명함 상세보기 페이지 컴포넌트
@@ -133,6 +134,7 @@ const MyCardInfo = () => {
         </MapBox>
       </St_CardInfo>
       <MyCardFooter />
+      <SectionFooter />
     </Layout>
   );
 };

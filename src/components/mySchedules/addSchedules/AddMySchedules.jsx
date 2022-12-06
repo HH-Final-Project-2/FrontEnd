@@ -9,7 +9,6 @@ import {
   Section1,
   Section1Title,
   Section2,
-  SectionLine,
 } from "../../community/postList/PostListStyle";
 import {
   AddBtn,

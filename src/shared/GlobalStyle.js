@@ -45,6 +45,11 @@ const GlobalStyle = createGlobalStyle`
   select{
     margin: 0;
     font-family: 'Pretendard';
+    outline: none;
+
+    :focus {
+    border: 1px solid #bbb5ff;
+  }
   }
     
   // Box sizing

@@ -40,4 +40,8 @@ export const SearchInput = styled.input`
   ::placeholder {
     color: #bcc2cc;
   }
+
+  :focus {
+    border: none;
+  }
 `;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Chatlist from '../components/chat/Chatlist';
 import Layout from '../components/layout/Layout';
 import ChatFooter from '../components/footer/ChatFooter';
+import { SectionFooter } from '../components/footer/FooterStyle';
 
 const Chat = () => {
   return (
@@ -28,6 +29,7 @@ const Chat = () => {
       </St_Header>
       <Chatlist />
       <ChatFooter />
+      <SectionFooter />
     </Layout>
   );
 };

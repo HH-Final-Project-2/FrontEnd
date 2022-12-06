@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ComInfor = styled.div`
   cursor: pointer;
@@ -75,6 +75,10 @@ export const Input = styled.input`
   background: #f5f5f5;
   margin: auto;
   padding-left: 40px;
+
+  :focus {
+    border: none;
+  }
 `;
 
 export const Button = styled.a`
@@ -88,10 +92,6 @@ export const Button = styled.a`
   font-size: 14px;
 `;
 
-//
-//
-//
-//
 export const CategoryBtnBox = styled.div`
   margin: 14px 275px 0px 20px;
   padding: 14px 0px 0px 20px;

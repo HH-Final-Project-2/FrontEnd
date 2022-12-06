@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import LogoSrc from "../../../images/Frame 2317.svg";
+import styled from 'styled-components';
+import LogoSrc from '../../../images/Frame 2317.svg';
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -30,11 +30,11 @@ export const St_Title = styled.div`
 //저장버튼
 export const SaveButton = styled.a`
   margin: auto;
-  margin-right: 10px;
+  margin-right: 16px;
   color: #277dff;
   cursor: pointer;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.15px;
@@ -60,7 +60,7 @@ export const St_value = styled.input`
   display: flex;
   color: #1a1f27;
   letter-spacing: 0.15px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -82,7 +82,7 @@ export const AddressBox = styled.div`
 
 export const SearchAddress = styled.div`
   display: flex;
-  width: 250px;
+  width: 280px;
 `;
 
 //각 수정 목록의 div
@@ -157,9 +157,9 @@ export const RadioDetail = styled.div`
   display: flex;
   justify-content: left;
   margin: 10px 15px 30px 25px;
-  input[type="radio"]:checked:after {
+  input[type='radio']:checked:after {
     background: $white no-repeat center center;
-    background-image: url("/src/images/Property 1=deselected.png");
+    background-image: url('/src/images/Property 1=deselected.png');
     cursor: pointer;
     outline: none;
     appearance: none;
@@ -171,7 +171,7 @@ export const RadioDetail = styled.div`
 `;
 
 export const AddressSearch = styled.div`
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -190,7 +190,7 @@ export const CompanyBtn = styled.button`
   display: flex;
   color: #1a1f27;
   letter-spacing: 0.15px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

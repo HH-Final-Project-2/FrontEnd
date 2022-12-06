@@ -78,7 +78,7 @@ const PostList = () => {
   const [page, setPage] = useState(1); //현재 페이지
 
   const [currentPosts, setCurrentPosts] = useState([]); // 보여줄 게시글
-  const [postPerPage] = useState(20); //페이지당 게시글 개수
+  const [postPerPage] = useState(10); //페이지당 게시글 개수
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 

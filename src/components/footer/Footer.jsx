@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { FooterBox } from './FooterStyle';
+import { FooterBox, SectionFooter } from './FooterStyle';
 
 const Footer = () => {
   const navigate = useNavigate();

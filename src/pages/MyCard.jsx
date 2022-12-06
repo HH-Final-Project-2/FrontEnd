@@ -12,6 +12,7 @@ import BottomSheet from '../components/myCard/SharebottomSheet/ShareBottomSheet'
 import { ReactComponent as Icputpan } from '../images/ic-putpan.svg';
 import { ReactComponent as Icmanage } from '../images/ic-manage.svg';
 import MyCardFooter from '../components/footer/MyCardFooter';
+import { SectionFooter } from '../components/footer/FooterStyle';
 
 const MyCard = () => {
   const nav = useNavigate();
@@ -76,6 +77,7 @@ const MyCard = () => {
           <MyCardNoneItem />
         </Mycard>
         <MyCardFooter />
+        <SectionFooter />
       </Layout>
     );
   }
@@ -94,14 +96,13 @@ const St_Header = styled.div`
 `;
 //header title
 const St_title = styled.div`
-  font-weight: 600;
-  width: 100%;
   max-width: 80px;
-  height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
   margin-left: 20px;
+
+  font-weight: 500;
+  font-size: 16px;
   color: #1a1f27;
 `;
 

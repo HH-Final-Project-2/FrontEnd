@@ -13,9 +13,12 @@ const KakaoLogin = () => {
           localStorage.setItem("refresh-Token", res.request.getResponseHeader("refresh-Token"));
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('nickname', res.data.nickname);
-          window.location.replace('/cards')
+          alert('카카오로 로그인 되었습니다.');
+          window.location.replace('/cards');
         })
-        .catch((error) => { })
+        .catch((error) => { 
+          console.log(error)
+        })
     }
   }, [])
   return (

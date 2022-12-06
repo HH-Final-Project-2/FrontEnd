@@ -34,6 +34,7 @@ import {
   CompanyInput,
   SectionHeader,
 } from './cardPostStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -560,6 +561,7 @@ const MainCards = () => {
           ) : null}
         </Item>
       </PatchBox>
+      <SectionFooter />
     </Layout>
   );
 };

@@ -26,7 +26,6 @@ import {
   CardInCardDetail1Position,
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
-  SectionWall,
 } from './MainViewStyle';
 
 const MainView = () => {
@@ -147,7 +146,6 @@ const MainView = () => {
       <WriteButton onClick={() => navigate('/posts')}>
         <img src="images/cardAdd.png" alt="" />
       </WriteButton>
-      <SectionWall />
     </div>
   );
 };

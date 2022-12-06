@@ -21,7 +21,8 @@ export const Section1 = styled.div`
 export const Section1Title = styled.div`
   position: relative;
   left: 10px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
 `;
 
 export const Section2 = styled.div`
@@ -95,7 +96,6 @@ export const SearchButton = styled.button`
 
 //페이지네이션
 export const PaginationBox = styled.div`
-  margin-bottom: 200px;
   .pagination {
     display: flex;
     justify-content: center;
@@ -113,6 +113,7 @@ export const PaginationBox = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    cursor: pointer;
   }
 
   ul.pagination li a {
