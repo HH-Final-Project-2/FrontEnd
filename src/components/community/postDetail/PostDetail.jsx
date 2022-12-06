@@ -136,7 +136,9 @@ const PostDetail = () => {
           onClick={() => {
             console.log('게시글아이디', postid);
             dispatch(_postId(postid));
-            navigate('/chat/chatroom/');
+            setTimeout(() => {
+              navigate('/chat/chatroom/');
+            }, 100);
           }}
         />
         {/* 채팅하기 버튼 svg end*/}
