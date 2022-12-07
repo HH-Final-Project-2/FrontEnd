@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import instance from '../../shared/Request';
+import swal from 'sweetalert';
 
 const initialState = {
   members: [],
@@ -84,7 +85,10 @@ export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
         );
 
         localStorage.setItem('nickname', res.data.data.nickname);
-        alert('로그인 되었습니다.');
+        // alert('로그인 되었습니다.');
+        swal({
+          text: '로그인 되었습니다.',
+        });
         window.location.replace('/cards');
       }
       // 이메일 확인

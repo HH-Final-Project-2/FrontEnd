@@ -43,10 +43,10 @@ const PostList = () => {
 
   // 인기글 슬라이드
   const settings = {
-    dots: true, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
+    dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: true, // loop를 만들지
     speed: 500, // 애미메이션의 속도, 단위는 milliseconds
-    slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄 지
+    slidesToShow: 1.3, // 한번에 몇개의 슬라이드를 보여줄 지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     centerMode: false,
     arrows: false,
@@ -113,7 +113,7 @@ const PostList = () => {
           <SearchIcon />
         </SearchButton>
       </Section1>
-      {/* <SectionLine /> */}
+
       <Container>
         <div className="topFive">인기글</div>
         <StyledSlider {...settings}>
