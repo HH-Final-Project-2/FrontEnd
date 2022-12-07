@@ -123,11 +123,16 @@ export const LikeButton = styled.div`
   margin-left: 18px;
   margin-top: 15px;
   margin-bottom: 36px;
-  cursor: pointer;
 `;
 
 export const LikeButtonText = styled.label`
   font-size: 12px;
   color: #52596b;
   margin-left: 7px;
+`;
+
+export const LikeBox = styled.div`
+  width: 18px;
+  height: 16px;
+  cursor: pointer;
 `;

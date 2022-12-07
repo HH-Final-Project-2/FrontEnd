@@ -24,13 +24,12 @@ import {
   LikeButton,
   LikeButtonText,
   CommentWirteButtonFill,
+  LikeBox
 } from './CommentStyle';
 
 const Comment = ({ detailAuthorId }) => {
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
-
-
 
   const userid = localStorage.getItem('userid');
   const nickname = localStorage.getItem('nickname');
@@ -68,7 +67,6 @@ const Comment = ({ detailAuthorId }) => {
   }
 
   if (comments === undefined) return null;
-
   return (
     <div>
       {/* 댓글 작성 */}
@@ -148,13 +146,18 @@ const Comment = ({ detailAuthorId }) => {
               <CommentBody>{commentList.content}</CommentBody>
 
               {/* 댓글 좋아요 */}
-              <LikeButton
-                onClick={() => {
-                  dispatch(likeComment(commentList.id));
-                }}
-              >
-                {commentList.commentHeartYn ? <FillLike /> : <Like />}
+              <LikeButton>
+
+                <LikeBox>
+                  {commentList.commentHeartYn ? <FillLike onClick={() => {
+                    dispatch(likeComment(commentList.id));
+                  }} /> : <Like onClick={() => {
+                    dispatch(likeComment(commentList.id));
+                  }} />}
+                </LikeBox>
+
                 <LikeButtonText>{commentList.commentHeartCnt}</LikeButtonText>
+
               </LikeButton>
             </div>
           );

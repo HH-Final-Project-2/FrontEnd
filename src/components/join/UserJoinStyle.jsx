@@ -38,15 +38,14 @@ export const EmailCheckButton = styled.button`
   margin-left: 15px;
   border: none;
   outline: none;
-  border: 1px solid #5546FF;
   border-radius: 8px;
-  background-color: transparent;
-  color: #5546FF;
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
   cursor: pointer;
-  &:hover{
+  /* &:hover{
     background-color: #5546FF;
     color: #fff;
-  }
+  } */
 `
 
 export const LabelText = styled.label`
@@ -118,9 +117,10 @@ export const ButtonJoin = styled.button`
   height: 52px;
   border: none;
   outline: none;
-  background: #5546FF;
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
   border-radius: 8px;
-  color: #fff;
+  
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;

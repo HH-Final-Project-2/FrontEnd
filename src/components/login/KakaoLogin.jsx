@@ -12,9 +12,8 @@ const KakaoLogin = () => {
         .then((res) => {
           localStorage.setItem("authorization", res.request.getResponseHeader("authorization"));
           localStorage.setItem("refresh-Token", res.request.getResponseHeader("refresh-Token"));
-          localStorage.setItem('userid', res.data.id);
-          localStorage.setItem('email', res.data.email);
-          localStorage.setItem('nickname', res.data.nickname);
+          localStorage.setItem('userid', res.data.data.id);
+          localStorage.setItem('nickname', res.data.data.nickname);
           alert('Businus에 오신걸 환영합니다');
           window.location.replace('/cards');
         })
