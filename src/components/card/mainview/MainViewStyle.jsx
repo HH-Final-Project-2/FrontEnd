@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CategoryBtnBox = styled.div`
   margin: 18px 0px 0px 20px;
