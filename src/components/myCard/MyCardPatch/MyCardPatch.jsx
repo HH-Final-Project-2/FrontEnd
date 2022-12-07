@@ -23,6 +23,7 @@ import {
   Essential,
   SectionHeader,
 } from '../MyCardPatch/MyCardPatchStyle';
+import Swal from 'sweetalert2';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 import { SectionFooter } from '../../footer/FooterStyle';
 import { AssistiveText } from '../../card/cardPost/cardPostStyle';
@@ -92,6 +93,13 @@ const MyCardPatch = () => {
         id,
       })
     );
+
+    Swal.fire({
+      text: '수정이 완료되었습니다.',
+      showConfirmButton: false,
+      timer: 1000,
+      width: '300px',
+    });
     nav('/mypage/cardinfo');
   };
 

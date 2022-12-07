@@ -36,6 +36,12 @@ const Mypage = () => {
       <OutLine>
         <Logout
           onClick={() => {
+            Swal.fire({
+              text: `로그아웃 되었습니다.`,
+              showConfirmButton: false,
+              timer: 1000,
+              width: '300px',
+            });
             dispatch(signOut({}));
           }}
         >
@@ -45,37 +51,35 @@ const Mypage = () => {
           type="button"
           onClick={() => {
             Swal.fire({
-              text: "정말로 탈퇴하시겠습니까?",
+              text: '정말로 탈퇴하시겠습니까?',
               showCancelButton: true,
               confirmButtonColor: '#5546FF',
               cancelButtonColor: '#BBB5FF',
               confirmButtonText: '확인',
               cancelButtonText: '취소',
               width: '300px',
-
             }).then((result) => {
-              if (result.isConfirmed) { // 확인 버튼 누를시 동작
+              if (result.isConfirmed) {
+                // 확인 버튼 누를시 동작
                 Swal.fire({
                   text: '탈퇴되었습니다',
                   width: '300px',
                   timer: 1000,
                   showConfirmButton: false,
-                }
-                )
+                });
                 dispatch(withDraw());
               }
-            })
+            });
           }}
 
-
-        // onClick={() => {
-        //   const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
-        //   if (confirm) {
-        //     dispatch(withDraw());
-        //   } else {
-        //     return;
-        //   }
-        // }}
+          // onClick={() => {
+          //   const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
+          //   if (confirm) {
+          //     dispatch(withDraw());
+          //   } else {
+          //     return;
+          //   }
+          // }}
         >
           회원탈퇴
         </Joinout>
@@ -121,7 +125,7 @@ const Logout = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #F5F5F6;
+    background: #f5f5f6;
   }
 `;
 
@@ -139,6 +143,6 @@ const Joinout = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #F5F5F6;
+    background: #f5f5f6;
   }
 `;
