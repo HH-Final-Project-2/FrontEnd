@@ -9,6 +9,7 @@ import {
   roomIdSave,
 } from '../../redux/modules/chatSlice';
 import { ReactComponent as Profile } from '../../images/profile.svg';
+import { ReactComponent as Icon } from '../../images/ic-icon.svg';
 import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
 
 const Chatlist = () => {
@@ -32,35 +33,44 @@ const Chatlist = () => {
 
   return (
     <div>
-      {chatRoom &&
-        chatRoom.map((x) => {
-          return (
-            <ChatsBox
-              key={x.chatRoomUuid}
-              onClick={() => {
-                dispatch(roomIdSave(x.chatRoomUuid));
-                nav('/chat/chatroom/');
-              }}
-            >
-              <ProBox>
-                <Profile />
-              </ProBox>
-              <div>
-                <ChatName key={x.roomName}>{x.roomName}</ChatName>
-                <LastChat key={x.lastMessage}>{x.lastMessage}</LastChat>
-              </div>
+      {chatRoom.length === 0 ? (
+        <NonChat>
+          <Icon />
+          <div className="text">채팅방이 없습니다.</div>
+        </NonChat>
+      ) : (
+        <>
+          {chatRoom &&
+            chatRoom.map((x) => {
+              return (
+                <ChatsBox
+                  key={x.chatRoomUuid}
+                  onClick={() => {
+                    dispatch(roomIdSave(x.chatRoomUuid));
+                    nav('/chat/chatroom/');
+                  }}
+                >
+                  <ProBox>
+                    <Profile />
+                  </ProBox>
+                  <div>
+                    <ChatName key={x.roomName}>{x.roomName}</ChatName>
+                    <LastChat key={x.lastMessage}>{x.lastMessage}</LastChat>
+                  </div>
 
-              <div className="chatSection">
-                <ChatAt>{x.dayBefore}</ChatAt>
-                {x.unreadCount === 0 ? (
-                  <></>
-                ) : (
-                  <ChatAlarm>{x.unreadCount}</ChatAlarm>
-                )}
-              </div>
-            </ChatsBox>
-          );
-        })}
+                  <div className="chatSection">
+                    <ChatAt>{x.dayBefore}</ChatAt>
+                    {x.unreadCount === 0 ? (
+                      <></>
+                    ) : (
+                      <ChatAlarm>{x.unreadCount}</ChatAlarm>
+                    )}
+                  </div>
+                </ChatsBox>
+              );
+            })}
+        </>
+      )}
     </div>
   );
 };
@@ -143,4 +153,15 @@ const ChatAlarm = styled.div`
 
   color: #ffffff;
   background: #ff4b4b;
+`;
+
+const NonChat = styled.div`
+  display: flex;
+  margin: 250px auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .text {
+    margin-top: 20px;
+  }
 `;
