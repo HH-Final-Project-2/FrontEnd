@@ -95,9 +95,9 @@ export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
 
 // 로그인
 
-export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
+export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
   try {
-    await axios.post('https://bkyungkeem.shop/api/members/login', payload).then((res) => {
+    const { data } = await axios.post('https://bkyungkeem.shop/api/members/login', payload).then((res) => {
       // 로그인 성공
       if (res.data.success) {
         localStorage.setItem(
@@ -118,18 +118,14 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
           confirmButtonColor: '#5546FF',
           confirmButtonText: '확인',
           width: '300px',
+          customClass: {
+            popup: 'popup-class'
+          }
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.replace('/cards');
           }
         })
-
-        // Swal.fire({
-        //   text: 'Businus에 오신걸 환영합니다', showConfirmButton: false,
-        //   timer: 1000,
-        //   width: '300px',
-        //   height: '300px'
-        // });
 
       }
       // 이메일 확인
@@ -147,7 +143,11 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
           timer: 1000,
           width: '300px',
         });
+      //console.log(res.data)
+
     });
+
+    return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     console.log(error);
   }
@@ -182,6 +182,12 @@ const memberSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [signIn.fulfilled]: (state, action) => {
+      console.log(action.payload)
+      state.members = action.payload
+    },
+
+
     [emailCheck.fulfilled]: (state, action) => {
       state.check = action.payload.success;
     },
