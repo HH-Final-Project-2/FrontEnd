@@ -9,27 +9,27 @@ const initialState = {
   error: null,
   check: [
     {
-      success: '',
-      data: '',
-      error: '',
+      success: "",
+      data: "",
+      error: "",
     },
   ],
   auth: [
     {
-      success: '',
-      data: '',
-      error: '',
+      success: "",
+      data: "",
+      error: "",
     },
   ],
 };
 
 // 이메일 중복체크
 export const emailCheck = createAsyncThunk(
-  'SIGNUP',
+  "SIGNUP",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.post(
-        'https://bkyungkeem.shop/api/mail/auth',
+        "https://bkyungkeem.shop/api/mail/auth",
         payload
       );
       // 사용가능한 이메일 alert
@@ -47,15 +47,16 @@ export const emailCheck = createAsyncThunk(
         width: '300px',
       });
     } catch (error) { }
+
   }
 );
 // 이메일 인증
 export const emailAuth = createAsyncThunk(
-  'AUTH_EMAIL',
+  "AUTH_EMAIL",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.post(
-        'https://bkyungkeem.shop/api/mail/confirm',
+        "https://bkyungkeem.shop/api/mail/confirm",
         payload
       );
       // 사용가능한 이메일 alert
@@ -73,11 +74,12 @@ export const emailAuth = createAsyncThunk(
         width: '300px',
       });
     } catch (error) { }
+
   }
 );
 
 // 회원가입
-export const signUp = createAsyncThunk('SIGNAUTH', async (payload) => {
+export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
   try {
     await axios.post('https://bkyungkeem.shop/api/members/signup', payload);
     Swal.fire({
@@ -87,11 +89,12 @@ export const signUp = createAsyncThunk('SIGNAUTH', async (payload) => {
     });
     window.location.replace('/login');
   } catch (error) { }
+
 });
 
 // 로그인
 
-export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
+export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
   try {
     await axios.post('https://bkyungkeem.shop/api/members/login', payload).then((res) => {
       // 로그인 성공
@@ -137,16 +140,16 @@ export const signIn = createAsyncThunk('SIGNIN', async (payload) => {
 });
 
 // 로그아웃
-export const signOut = createAsyncThunk('SIGHNOUT', async (payload) => {
+export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
   try {
-    await instance.post('/api/members/logout', payload);
+    await instance.post("/api/members/logout", payload);
     localStorage.clear();
-    window.location.replace('/login');
-  } catch (error) { }
+    window.location.replace("/login");
+  } catch (error) {}
 });
 
 // 회원탈퇴
-export const withDraw = createAsyncThunk('WITHDRAW', async () => {
+export const withDraw = createAsyncThunk("WITHDRAW", async () => {
   try {
     await instance.delete('/api/members/withdraw');
     Swal.fire({
@@ -154,13 +157,14 @@ export const withDraw = createAsyncThunk('WITHDRAW', async () => {
       timer: 1000,
       width: '300px',
     });
+
     localStorage.clear();
-    window.location.replace('/login');
-  } catch (error) { }
+    window.location.replace("/login");
+  } catch (error) {}
 });
 
 const memberSlice = createSlice({
-  name: 'members',
+  name: "members",
   initialState,
   reducers: {},
   extraReducers: {
@@ -172,5 +176,5 @@ const memberSlice = createSlice({
     },
   },
 });
-export const { } = memberSlice.actions;
+export const {} = memberSlice.actions;
 export default memberSlice.reducer;

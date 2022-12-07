@@ -139,43 +139,28 @@ export const PaginationBox = styled.div`
 `;
 
 export const Container = styled.div`
+  padding-left: 21px;
   margin-top: 32px;
   height: 250px;
   font-weight: 400;
   font-size: 16px;
   color: #1a1f27;
-
-  .topFive {
-    margin-left: 21px;
-  }
 `;
 
 export const StyledSlider = styled(Slider)`
   margin-top: 16px;
 
-  .slick-slide div {
-    margin-left: 7px;
+  .slick-slide .topPost {
+    margin-left: 83px;
 
     outline: none;
-  }
-
-  .slick-dots li button:before {
-    margin-top: 16px;
-    content: '•';
-
-    opacity: 0.25;
-    color: #bcc2cc;
-  }
-  .slick-dots li.slick-active button:before {
-    opacity: 0.75;
-    color: #5546ff;
   }
 `;
 
 export const ListSectionLine = styled.div`
-  width: 373px;
+  width: 100%;
 
-  margin-top: 30px;
+  margin-top: 13px;
   height: 12px;
   background: #f5f5f5;
 `;

@@ -104,25 +104,7 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar-track {
      /*스크롤바 뒷 배경 색상*/
-  }
-
-
-
-  /* :root {
-  --rsbs-backdrop-bg: rgba(0, 0, 0, 0.6);
-  --rsbs-bg: #fff;
-  --rsbs-handle-bg: hsla(0, 0%, 0%, 0.14);
-  --rsbs-max-w: 375px;
-  --rsbs-ml: env(safe-area-inset-left);
-  --rsbs-mr: env(safe-area-inset-right);
-  --rsbs-overlay-rounded: 16px;
-} */
-
-/* :root {
-    --rsbs-max-w: 375px;
-    --rsbs-ml: auto;
-    --rsbs-mr: auto;
-  } */
+  } 
 `;
 
 export default GlobalStyle;

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const AddSchedulesBox = styled.div``;
 
 export const AddBtn = styled.div`
+  display: flex;
+  align-items: center;
   width: 30px;
   height: 20px;
   font-size: 14px;
@@ -29,6 +31,11 @@ export const TitleTextArea = styled.textarea`
   outline: none;
   border: 1px solid #e2e6ef;
   border-radius: 8px;
+
+  font-weight: 400;
+  font-size: 16px;
+
+  color: #52596b;
 
   ::placeholder {
     font-weight: 400;
@@ -58,6 +65,11 @@ export const ContentTextArea = styled.textarea`
   border: 1px solid #e2e6ef;
   border-radius: 8px;
 
+  font-weight: 400;
+  font-size: 16px;
+
+  color: #52596b;
+
   ::placeholder {
     color: #bcc2cc;
   }
@@ -76,8 +88,8 @@ export const BottomSection = styled.div`
 export const BottomSectionTitle = styled.div`
   margin-top: 40px;
   margin-left: 20px;
+  font-weight: 500;
   font-size: 14px;
-  font-weight: 600;
   color: #52596b;
 `;
 
@@ -88,6 +100,7 @@ export const DateStart = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  font-weight: 500;
   font-size: 14px;
 
   .datePicker {
@@ -100,6 +113,9 @@ export const DateStart = styled.div`
 
     color: #52596b;
     background: #f5f6fa;
+
+    font-weight: 400;
+    font-size: 14px;
   }
 
   .startDate {
@@ -108,6 +124,9 @@ export const DateStart = styled.div`
     width: 30px;
     height: 20px;
     color: #bcc2cc;
+
+    font-weight: 500;
+    font-size: 14px;
   }
 `;
 
@@ -118,8 +137,6 @@ export const DateEnd = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  font-size: 14px;
-
   .datePicker {
     margin-right: 20px;
 
@@ -131,6 +148,9 @@ export const DateEnd = styled.div`
 
     color: #52596b;
     background: #f5f6fa;
+
+    font-weight: 400;
+    font-size: 14px;
   }
 
   .endDate {
@@ -139,5 +159,8 @@ export const DateEnd = styled.div`
     width: 30px;
     height: 20px;
     color: #bcc2cc;
+
+    font-weight: 500;
+    font-size: 14px;
   }
 `;
