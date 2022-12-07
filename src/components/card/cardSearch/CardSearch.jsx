@@ -113,8 +113,8 @@ const CardSearch = () => {
                       : main.position}
                   </Position>
                   <Department>
-                    {main.department.length > 5
-                      ? main.department.slice(0, 5) + "..."
+                    {main.department.length > 6
+                      ? main.department.slice(0, 6) + "..."
                       : main.department}
                   </Department>
                 </CardInfoDetail>
@@ -123,15 +123,15 @@ const CardSearch = () => {
                 <CardInCardDetail1>
                   <CardInCardDetail1Name>{main.cardName}</CardInCardDetail1Name>
                   <CardInCardDetail1Position>
-                    {main.position.length > 5
-                      ? main.position.slice(0, 5) + "..."
+                    {main.position.length > 10
+                      ? main.position.slice(0, 10) + "..."
                       : main.position}
                   </CardInCardDetail1Position>
                 </CardInCardDetail1>
                 <CardInCardDetail2>
                   <CardInCardDetail2Email>
-                    {main.email.length > 20
-                      ? main.email.slice(0, 20) + "..."
+                    {main.email.length > 30
+                      ? main.email.slice(0, 30) + "..."
                       : main.email}
                   </CardInCardDetail2Email>
                   <CardInCardDetail2Phone>
