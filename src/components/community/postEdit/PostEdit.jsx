@@ -15,6 +15,7 @@ import {
   ImageUpload,
   SelectJob,
 } from './PostEditStyle';
+
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

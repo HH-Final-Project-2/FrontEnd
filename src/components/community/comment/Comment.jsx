@@ -24,12 +24,14 @@ import {
   LikeButton,
   LikeButtonText,
   CommentWirteButtonFill,
+  LikeBox
 } from './CommentStyle';
 
-const Comment = ({ detailAuthor }) => {
+const Comment = ({ detailAuthorId }) => {
   const dispatch = useDispatch();
   const [commentForm, setCommentForm] = useState('');
 
+  const userid = localStorage.getItem('userid');
   const nickname = localStorage.getItem('nickname');
 
   const { id } = useParams();
@@ -121,7 +123,7 @@ const Comment = ({ detailAuthor }) => {
             <div key={commentList.id}>
               <CommentSection1>
                 <CommentTitle>
-                  {commentList.author === detailAuthor ? (
+                  {commentList.authorId === detailAuthorId ? (
                     <CommentNickName2>{commentList.author}</CommentNickName2>
                   ) : (
                     <CommentNickName>{commentList.author}</CommentNickName>
@@ -133,7 +135,7 @@ const Comment = ({ detailAuthor }) => {
                 </CommentTitle>
 
                 {/* 댓글 더보기 바텀시트 */}
-                {nickname === commentList.author ? (
+                {+userid === commentList.authorId ? (
                   <div>
                     <CommentBottomSheet id={id} commentList={commentList} />
                   </div>
@@ -144,13 +146,18 @@ const Comment = ({ detailAuthor }) => {
               <CommentBody>{commentList.content}</CommentBody>
 
               {/* 댓글 좋아요 */}
-              <LikeButton
-                onClick={() => {
-                  dispatch(likeComment(commentList.id));
-                }}
-              >
-                {commentList.commentHeartYn ? <FillLike /> : <Like />}
+              <LikeButton>
+
+                <LikeBox>
+                  {commentList.commentHeartYn ? <FillLike onClick={() => {
+                    dispatch(likeComment(commentList.id));
+                  }} /> : <Like onClick={() => {
+                    dispatch(likeComment(commentList.id));
+                  }} />}
+                </LikeBox>
+
                 <LikeButtonText>{commentList.commentHeartCnt}</LikeButtonText>
+
               </LikeButton>
             </div>
           );

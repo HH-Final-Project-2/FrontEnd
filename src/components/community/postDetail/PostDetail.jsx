@@ -35,8 +35,8 @@ import {
   DivHeart,
   HeartNum,
 } from './PostDetailStyle';
+import LoadingPage from "../../../pages/LoadingPage";
 
-import Spinner from '../../loading/Loading';
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const PostDetail = () => {
 
   const { id } = useParams();
   const { detail } = useSelector((state) => state.PostSlice);
+  const userid = localStorage.getItem('userid');
 
   const [isHeart, setIsHeart] = useState(false);
   const [countHeart, setCountHeart] = useState(detail.postHeartCnt);
@@ -55,9 +56,8 @@ const PostDetail = () => {
   //스크롤 최상단으로 이동
   useEffect(() => {
     dispatch(__getPost(id));
-
     window.scrollTo(0, 0);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setIsHeart(detail.postHeartYn);
@@ -74,7 +74,7 @@ const PostDetail = () => {
     }
   };
 
-  const nickname = localStorage.getItem('nickname');
+
 
   // 시간 카운팅
   function displayedAt(postCreatedAt) {
@@ -100,12 +100,15 @@ const PostDetail = () => {
     const years = days / 365;
     return `${Math.floor(years)}년 전`;
   }
-
   const nowAt = displayedAt(new window.Date(detail.createdAt));
 
   if (detail === undefined) return null;
 
-  if (parseInt(id) !== detail.id) return <Spinner />;
+  // 게시글 상세조회시 이전에 봤던 게시글이 잠깐 나타났다가 사라지는 이슈
+  // 스토어에 이전 데이터(방금전/좀전에 조회했던)가 남아있어 
+  // 이전 데이터의 아이디값과 현재 아이디값이 같지 않을때
+  // 로딩페이지컴포넌트를 리턴하여 해결
+  if (parseInt(id) !== detail.id) return (<LoadingPage />);
 
   return (
     <DetailBox>
@@ -122,7 +125,7 @@ const PostDetail = () => {
           </svg>
         </Section2>
         {/* 게시글 더보기 바텀 시트 */}
-        {nickname === detail.author ? (
+        {+userid === detail.authorId ? (
           <div className="moreBtn">
             <PostBottomSheet id={id} detail={detail} />
           </div>
@@ -142,7 +145,9 @@ const PostDetail = () => {
           onClick={() => {
             console.log('게시글아이디', postid);
             dispatch(_postId(postid));
-            navigate('/chat/chatroom/');
+            setTimeout(() => {
+              navigate('/chat/chatroom/');
+            }, 100);
           }}
         />
         {/* 채팅하기 버튼 svg end*/}
@@ -189,7 +194,7 @@ const PostDetail = () => {
           조회수<HitNum>{detail.hit}</HitNum>
         </HitBox>
       </DetailPostSection4>
-      <Comment detailAuthor={detail.author} />
+      <Comment detailAuthorId={detail.authorId} />
     </DetailBox>
   );
 };

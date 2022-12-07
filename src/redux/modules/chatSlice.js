@@ -27,7 +27,7 @@ export const getChatRoom = createAsyncThunk(
   "get/chatroom",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://13.124.142.195/chat/rooms', {
+      const response = await axios.get('https://bkyungkeem.shop/chat/rooms', {
         headers: {
           contentType: "application/json",
           "authorization": accessToken,
@@ -47,7 +47,7 @@ export const deleteChatroom = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const {data} = await axios.delete(
-        `http://13.124.142.195/chat/rooms/${payload}`,
+        `https://bkyungkeem.shop/chat/rooms/${payload}`,
         {
           headers: {
             contentType: "application/json",
@@ -68,7 +68,7 @@ export const _postId = createAsyncThunk(
     console.log("pay",payload)
     try {
       const {data} = await axios.post(
-        "http://13.124.142.195/chat/rooms",
+        "https://bkyungkeem.shop/chat/rooms",
         payload,
         {
           headers: {
@@ -78,7 +78,6 @@ export const _postId = createAsyncThunk(
           },
         }
       );
-      console.log("응답",data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -88,20 +87,22 @@ export const _postId = createAsyncThunk(
 export const getMessage = createAsyncThunk(
   "get/chat",
   async (payload, thunkAPI ) => {
-    console.log("이전메시지 pay ",payload)
-    try {
-      const data = await axios.get(`http://13.124.142.195/chat/rooms/${payload}/messages`, {
-        headers: {
-          contentType: "application/json",
-          "authorization": accessToken,
-          "refresh-Token": refreshToken,
-        },
-      });
-      return thunkAPI.fulfillWithValue(data.data);
-
-    } catch (error) {
-
+    if(payload){
+      try {
+        const data = await axios.get(`https://bkyungkeem.shop/chat/rooms/${payload}/messages`, {
+          headers: {
+            contentType: "application/json",
+            "authorization": accessToken,
+            "refresh-Token": refreshToken,
+          },
+        });
+        return thunkAPI.fulfillWithValue(data.data);
+  
+      } catch (error) {
+  
+      }
     }
+   
   }
 );
 
@@ -110,17 +111,19 @@ export const getMessage = createAsyncThunk(
 export const getUserinfo = createAsyncThunk(
   "get/userinfo",
   async (payload, thunkAPI) => {
-    console.log("유저정보 pay",payload)
-    try {
-      const { data } = await axios.get(`http://13.124.142.195/chat/rooms/userInfo/${payload}`, {
-        headers: {
-          contentType: "application/json",
-          "authorization": accessToken,
-          "refresh-Token": refreshToken,
-        },
-      });
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+    if(payload){
+      try {
+        const { data } = await axios.get(`https://bkyungkeem.shop/chat/rooms/userInfo/${payload}`, {
+          headers: {
+            contentType: "application/json",
+            "authorization": accessToken,
+            "refresh-Token": refreshToken,
+          },
+        });
+        return thunkAPI.fulfillWithValue(data);
+      } catch (error) {}
+    }
+    
   }
 );
 
@@ -152,18 +155,7 @@ export const chatSlice = createSlice({
     [getChatRoom.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.chatRoom = payload;
-    },
-
-    // [addChatroom.fulfilled]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.chat = payload;
-    // },
-
-
-    // [memberInfo.fulfilled]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.users = payload;
-    // },
+    }
   },
 });
 

@@ -1,11 +1,12 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../../redux/modules/membersSlice';
-import logo from '../../images/login-logo.png';
-import { ReactComponent as KakaotalkLogin } from '../../images/kakaoLogin.svg';
-import { REST_API_KEY, REDIRECT_URI } from '../../shared/KakaoLoginData';
+
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/modules/membersSlice";
+import logo from "../../images/login-logo.png";
+import { ReactComponent as KakaotalkLogin } from "../../images/kakaoLogin.svg";
+import { REST_API_KEY, REDIRECT_URI } from "../../shared/KakaoLoginData";
 import {
   JoinForm,
   InputJoin,
@@ -14,8 +15,7 @@ import {
   InputContainer,
   SignUpBox,
   LogoBox,
-} from './UserLoginStyle';
-import swal from 'sweetalert';
+} from "./UserLoginStyle";
 
 const UserLogin = () => {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
@@ -47,7 +47,7 @@ const UserLogin = () => {
           name="email"
           type="text"
           placeholder="이메일"
-          {...register('email', {
+          {...register("email", {
             required: true,
             pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
           })}
@@ -61,7 +61,7 @@ const UserLogin = () => {
           name="password"
           type="password"
           placeholder="비밀번호"
-          {...register('password', {
+          {...register("password", {
             required: true,
             pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/,
           })}
@@ -73,7 +73,7 @@ const UserLogin = () => {
 
       {/* 회원가입 이동 */}
       <SignUpBox>
-        <p onClick={() => navigate('/join')}>회원가입</p>
+        <p onClick={() => navigate("/join")}>회원가입</p>
       </SignUpBox>
     </JoinForm>
   );

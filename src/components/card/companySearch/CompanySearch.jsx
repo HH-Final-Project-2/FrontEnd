@@ -20,6 +20,7 @@ import {
   Section3,
 } from "./CompanySearchStyle";
 import Pagination from "react-js-pagination";
+import SearchNone from "../../searchNone/SearchNone";
 
 const CompanySearch = () => {
   const [search, setSearch] = useState();
@@ -39,6 +40,7 @@ const CompanySearch = () => {
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
+  console.log(currentPosts);
   const handlePageChange = (page) => {
     setPage(page);
   };
@@ -106,28 +108,8 @@ const CompanySearch = () => {
         </svg>
       </Icon>
       <Button onClick={searchClickHandler}>검색</Button>
-      {/* <div style={{ overflowY: "auto" }}>
-        {searched &&
-          searched.map((x) => (
-            <ComInfor
-              key={x.id}
-              onClick={() => {
-                dispatch(
-                  __companyInfo({
-                    companyName: x.companyName,
-                    companyAddress: x.companyAddress,
-                  })
-                );
-                navigate(-1);
-              }}
-            >
-              <Company>{x.companyName}</Company>
-              <Address>{x.companyAddress}</Address>
-            </ComInfor>
-          ))}
-      </div> */}
       <Section3>
-        {currentPosts &&
+        {currentPosts && currentPosts !== undefined ? (
           currentPosts.map((post) => {
             return (
               <ComInfor
@@ -146,7 +128,10 @@ const CompanySearch = () => {
                 <Address>{post.companyAddress}</Address>
               </ComInfor>
             );
-          })}
+          })
+        ) : (
+          <SearchNone />
+        )}
         <PaginationBox>
           <Pagination
             activePage={page}

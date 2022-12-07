@@ -252,31 +252,34 @@ export const PostSlice = createSlice({
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
       state.isLoading = true;
+      // 게시글 수정 후 상세 조회를 하면 이전 데이터가 깜빡였다 사라지는 이슈
+      // state.post가 아닌 state.detail로 값을 전달하고 상태변경이 발생하도록 수정
+      state.detail = action.payload;
 
-      // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
-      // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
+      // // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
+      // // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
 
-      // 1. 게시글 id 확인
-      // let id = action.payload.id;
+      // // 1. 게시글 id 확인
+      // // let id = action.payload.id;
 
-      // 1.1. 수정된 게시글
-      let modPost = action.payload;
+      // // 1.1. 수정된 게시글
+      // let modPost = action.payload;
 
-      // 2. 새로 저장할 게시글 배열 생성
-      //    불변성 때문에 state.post[수정된게시글]을 수정하면 렌더링이 안된다.
-      let newPosts = [];
+      // // 2. 새로 저장할 게시글 배열 생성
+      // //    불변성 때문에 state.post[수정된게시글]을 수정하면 렌더링이 안된다.
+      // let newPosts = [];
 
-      // 3. for 루프를 이용, state.post를 반복(iteration)한다
-      for (let i = 0; i < state.post.length; i++) {
-        if (state.post[i].id === modPost.id)
-          // 수정된 게시글 id와 동일하다. 새로 전송받은 게시글 객체로 저장
-          newPosts.push(modPost);
-        // 수정된 게시글 id와 다르다. 기존 데이터 저장
-        else newPosts.push(state.post[i]);
-      }
+      // // 3. for 루프를 이용, state.post를 반복(iteration)한다
+      // for (let i = 0; i < state.post.length; i++) {
+      //   if (state.post[i].id === modPost.id)
+      //     // 수정된 게시글 id와 동일하다. 새로 전송받은 게시글 객체로 저장
+      //     newPosts.push(modPost);
+      //   // 수정된 게시글 id와 다르다. 기존 데이터 저장
+      //   else newPosts.push(state.post[i]);
+      // }
 
-      // 4. state.post를 새로 만든 배열로 변경 시켜준다
-      state.post = newPosts;
+      // // 4. state.post를 새로 만든 배열로 변경 시켜준다
+      // state.post = newPosts;
     },
 
     // 게시글 삭제
