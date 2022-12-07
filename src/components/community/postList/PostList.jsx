@@ -101,6 +101,10 @@ const PostList = () => {
 
   if (post === undefined) return null;
 
+
+  // 게시글 최초 조회시 NaN(원인 파악중)
+  if (post === null && postTopFive === null && currentPosts === null && page === null) return (<LoadingPage />);
+
   // 게시글 렌더링 이슈(상세페이지 -> 게시글 목록 조회 이동시)
   // 화면에 불필요한 내용들이 잠깐 깜빡였다가 사라짐
   // 상태를 만들어서 false일때 로딩페이지컴포넌트 리턴하여 해결

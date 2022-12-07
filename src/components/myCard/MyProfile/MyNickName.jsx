@@ -16,6 +16,7 @@ import {
 import { ReactComponent as Icx } from '../../../images/ic-x.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getProfile, _PutPorfile } from '../../../redux/modules/profileSlice';
+import Swal from 'sweetalert2';
 
 const MyNickName = () => {
   const nav = useNavigate();
@@ -58,7 +59,12 @@ const MyNickName = () => {
   const updateHandler = () => {
     dispatch(_PutPorfile(userinfo));
     // console.log(userinfo);
-    alert(`닉네임이 ${nickname}으로 변경되었습니다.`);
+    Swal.fire({
+      text: `닉네임이 ${nickname}으로 변경되었습니다`,
+      showConfirmButton: false,
+      timer: 1000,
+      width: '300px',
+    });
     nav('/mypage');
   };
 
