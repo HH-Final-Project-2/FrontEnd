@@ -1,13 +1,13 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
-import Layout from "../../layout/Layout";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import Layout from '../../layout/Layout';
 import {
   __viewGet,
   __fixPost,
   __cardInfo,
-} from "../../../redux/modules/CardsSlice";
+} from '../../../redux/modules/CardsSlice';
 import {
   St_Header,
   PatchBox,
@@ -25,10 +25,10 @@ import {
   Essential,
   AssistiveText,
   CompanyInput,
-} from "./MainCardsPutStyle";
+} from './MainCardsPutStyle';
 
-import { SectionFooter } from "../../footer/FooterStyle";
-import { SectionHeader } from "../cardPost/cardPostStyle";
+import { SectionFooter } from '../../footer/FooterStyle';
+import { SectionHeader } from '../cardPost/cardPostStyle';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -45,16 +45,16 @@ const MainCards = () => {
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
-    e.returnValue = "";
+    e.returnValue = '';
   };
 
   useEffect(() => {
     (() => {
-      window.addEventListener("beforeunload", preventClose);
+      window.addEventListener('beforeunload', preventClose);
     })();
 
     return () => {
-      window.removeEventListener("beforeunload", preventClose);
+      window.removeEventListener('beforeunload', preventClose);
     };
   }, []);
 
@@ -81,7 +81,7 @@ const MainCards = () => {
 
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
-      ? inputValue.email.includes("@") && inputValue.email.includes(".")
+      ? inputValue.email.includes('@') && inputValue.email.includes('.')
       : false;
 
   const isValidInput =
@@ -137,13 +137,14 @@ const MainCards = () => {
         })
       );
     }
-    alert("명함 수정완료!");
+    alert('명함 수정완료!');
     navigate(`/posts/get/${id}`);
   };
 
   return (
     <div>
       <Layout>
+        <SectionHeader />
         <St_Header>
           <svg
             width="24"
@@ -151,7 +152,7 @@ const MainCards = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             onClick={() => {
               navigate(-1);
             }}
@@ -177,7 +178,7 @@ const MainCards = () => {
               name="cardName"
               minLength="2"
               maxLength="5"
-              value={inputValue.cardName || ""}
+              value={inputValue.cardName || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -194,7 +195,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+            inputValue.phoneNum.includes('-') === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -225,8 +226,8 @@ const MainCards = () => {
                   type="radio"
                   id="find"
                   name="companyType"
-                  value={"find"}
-                  checked={companyHow === "find"}
+                  value={'find'}
+                  checked={companyHow === 'find'}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -238,8 +239,8 @@ const MainCards = () => {
                   type="radio"
                   id="myself"
                   name="companyHow"
-                  value={"myself"}
-                  checked={companyHow === "myself"}
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -248,12 +249,12 @@ const MainCards = () => {
               </RadioDetail>
             </RadioBox>
 
-            {companyHow === "myself" ? (
+            {companyHow === 'myself' ? (
               <div>
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={inputValue.company || ""}
+                  value={inputValue.company || ''}
                   onChange={(e) => {
                     setInputValue({ company: e.target.value });
                   }}
@@ -265,24 +266,24 @@ const MainCards = () => {
                         __cardInfo({
                           cardName: inputValue.cardName
                             ? inputValue.cardName
-                            : "",
+                            : '',
                           email: inputValue.email,
                           phoneNum: inputValue.phoneNum,
                           department: inputValue.department
                             ? inputValue.department
-                            : "",
+                            : '',
                           position: inputValue.position
                             ? inputValue.position
-                            : "",
+                            : '',
                           tel: inputValue.tel,
                           fax: inputValue.fax,
                           companyType: inputValue.companyType
                             ? inputValue.companyType
-                            : "",
-                          company: inputValue.company ? inputValue.company : "",
+                            : '',
+                          company: inputValue.company ? inputValue.company : '',
                         })
                       );
-                      navigate("/posts/companyOtherSearch");
+                      navigate('/posts/companyOtherSearch');
                     }}
                   >
                     회사 주소 검색
@@ -296,7 +297,7 @@ const MainCards = () => {
                   value={
                     companyGet.company
                       ? companyGet.company
-                      : inputValue.company || ""
+                      : inputValue.company || ''
                   }
                   onChange={(e) => {
                     setInputValue({ company: e.target.value });
@@ -311,18 +312,18 @@ const MainCards = () => {
                         phoneNum: inputValue.phoneNum,
                         department: inputValue.department
                           ? inputValue.department
-                          : "",
+                          : '',
                         position: inputValue.position
                           ? inputValue.position
-                          : "",
+                          : '',
                         tel: inputValue.tel,
                         fax: inputValue.fax,
                         companyType: inputValue.companyType
                           ? inputValue.companyType
-                          : "",
+                          : '',
                       })
                     );
-                    navigate("/posts/companySearch");
+                    navigate('/posts/companySearch');
                   }}
                 ></St_value>
                 <St_Address
@@ -342,7 +343,7 @@ const MainCards = () => {
                         viewBox="0 0 12 15"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        style={{ marginRight: "8px" }}
+                        style={{ marginRight: '8px' }}
                       >
                         <path
                           fillRule="evenodd"
@@ -393,7 +394,7 @@ const MainCards = () => {
               placeholder="회사번호"
               name="tel"
               maxLength="13"
-              value={inputValue.tel || ""}
+              value={inputValue.tel || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -404,7 +405,7 @@ const MainCards = () => {
               placeholder="팩스"
               name="fax"
               maxLength="13"
-              value={inputValue.fax || ""}
+              value={inputValue.fax || ''}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
