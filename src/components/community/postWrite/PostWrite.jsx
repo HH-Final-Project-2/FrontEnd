@@ -126,38 +126,54 @@ const PostWrite = () => {
           contentTest.trim() === ''
         ) {
           Swal.fire({
-            text: '게시글을 확인 해주세요',
+            title: '게시글을 확인 해주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
 
         if (joupGroupTest.trim() === '') {
           Swal.fire({
-            text: '직군을 선택해 주세요',
+            title: '직군을 선택해 주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
         if (titleTest.trim() === '') {
           Swal.fire({
-            text: '제목을 입력해 주세요',
+            title: '제목을 입력해 주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
         if (contentTest.trim() === '') {
           Swal.fire({
-            text: '내용을 입력해 주세요',
+            title: '내용을 입력해 주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }

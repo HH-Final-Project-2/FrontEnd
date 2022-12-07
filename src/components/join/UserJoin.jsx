@@ -202,9 +202,13 @@ const UserJoin = () => {
     authEmail.success === true
       ? dispatch(signUp(data))
       : Swal.fire({
-        text: '이메일 인증이 필요합니다', showConfirmButton: false,
+        title: '이메일 인증이 필요합니다', showConfirmButton: false,
         timer: 1000,
         width: '300px',
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
   };
   return (

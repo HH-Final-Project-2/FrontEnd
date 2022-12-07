@@ -134,21 +134,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-    email &&
-    company &&
-    companyAddress &&
-    companyType &&
-    phoneNum &&
-    department &&
-    position !== undefined
+      email &&
+      company &&
+      companyAddress &&
+      companyType &&
+      phoneNum &&
+      department &&
+      position !== undefined
       ? cardName.length >= 1 &&
-        email.length >= 1 &&
-        company.length >= 1 &&
-        companyAddress.length >= 1 &&
-        companyType.length >= 1 &&
-        phoneNum.length >= 1 &&
-        department.length >= 1 &&
-        position.length >= 1
+      email.length >= 1 &&
+      company.length >= 1 &&
+      companyAddress.length >= 1 &&
+      companyType.length >= 1 &&
+      phoneNum.length >= 1 &&
+      department.length >= 1 &&
+      position.length >= 1
       : false;
   //
 
@@ -190,19 +190,27 @@ const MainCards = () => {
       );
 
       Swal.fire({
-        text: "명함 작성 완료!",
+        title: "명함 작성 완료!",
         showConfirmButton: false,
         timer: 1000,
         width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();
     } else {
       Swal.fire({
-        text: "입력한 내용을 확인해주세요",
+        title: "입력한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
         width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
       setPop(true);
     }
@@ -221,13 +229,16 @@ const MainCards = () => {
           style={{ cursor: 'pointer' }}
           onClick={() => {
             Swal.fire({
-              text: "뒤로가기를 하시겠습니까?",
+              title: "뒤로가기를 하시겠습니까?",
               showCancelButton: true,
-              confirmButtonColor: "#5546FF",
-              confirmButtonText: "확인",
+              confirmButtonColor: '#5546FF',
+              cancelButtonColor: '#BBB5FF',
+              confirmButtonText: '확인',
+              cancelButtonText: '취소',
               width: "300px",
               customClass: {
-                popup: "popup-class",
+                popup: 'login-class',
+                title: 'title-class',
               },
             }).then((result) => {
               if (result.isConfirmed) {

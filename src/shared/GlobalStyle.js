@@ -10,10 +10,32 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
-  .popup-class {
-    
+}
+  
+  .login-class {
+    color: #1A1F27;
+    margin-bottom: 100px;
   }
+  
+  .title-class{
+    margin-top: 9px;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
   }
+
+  .allAlret-class{
+    border-radius: 40px;
+    opacity: 0.9;
+    margin-bottom: 800px;
+  }
+  .allTitle-class{
+    margin-top: 9px;
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  
   p,
   ol,
   ul,
@@ -108,10 +130,7 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-track {
      /*스크롤바 뒷 배경 색상*/
   } 
-
-
 `;
-
 
 
 export default GlobalStyle;

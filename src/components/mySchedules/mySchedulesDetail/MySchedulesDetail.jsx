@@ -78,10 +78,14 @@ const MySchedulesDetail = () => {
                 // always executed
               });
             Swal.fire({
-              text: '일정이 삭제되었습니다',
+              title: '일정이 삭제되었습니다',
               showConfirmButton: false,
               timer: 1000,
               width: '300px',
+              customClass: {
+                popup: 'allAlret-class',
+                title: 'allTitle-class',
+              },
             });
             navigate('/MySchedules');
           }}

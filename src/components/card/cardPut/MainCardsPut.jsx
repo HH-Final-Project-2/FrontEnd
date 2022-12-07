@@ -72,21 +72,21 @@ const MainCards = () => {
 
   const isValidInput =
     inputValue.cardName &&
-    inputValue.email &&
-    inputValue.company &&
-    inputValue.companyAddress &&
-    inputValue.companyType &&
-    inputValue.phoneNum &&
-    inputValue.department &&
-    inputValue.position !== undefined
+      inputValue.email &&
+      inputValue.company &&
+      inputValue.companyAddress &&
+      inputValue.companyType &&
+      inputValue.phoneNum &&
+      inputValue.department &&
+      inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
-        inputValue.email.length >= 1 &&
-        inputValue.company.length >= 1 &&
-        inputValue.companyAddress.length >= 1 &&
-        inputValue.companyType.length >= 1 &&
-        inputValue.phoneNum.length >= 1 &&
-        inputValue.department.length >= 1 &&
-        inputValue.position.length >= 1
+      inputValue.email.length >= 1 &&
+      inputValue.company.length >= 1 &&
+      inputValue.companyAddress.length >= 1 &&
+      inputValue.companyType.length >= 1 &&
+      inputValue.phoneNum.length >= 1 &&
+      inputValue.department.length >= 1 &&
+      inputValue.position.length >= 1
       : false;
 
   const valueChangeHandler = (e) => {
@@ -137,10 +137,14 @@ const MainCards = () => {
       );
     }
     Swal.fire({
-      text: "명함 수정 완료!",
+      title: "명함 수정 완료!",
       showConfirmButton: false,
       timer: 1000,
       width: "300px",
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
     });
     navigate(`/posts/get/${id}`);
   };
@@ -172,13 +176,16 @@ const MainCards = () => {
                 })
               );
               Swal.fire({
-                text: "뒤로가기를 하시겠습니까?",
+                title: "뒤로가기를 하시겠습니까?",
                 showCancelButton: true,
-                confirmButtonColor: "#5546FF",
-                confirmButtonText: "확인",
-                width: "300px",
+                confirmButtonColor: '#5546FF',
+                cancelButtonColor: '#BBB5FF',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소',
+                width: '300px',
                 customClass: {
-                  popup: "popup-class",
+                  popup: 'login-class',
+                  title: 'title-class',
                 },
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -225,7 +232,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+              inputValue.phoneNum.includes("-") === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>

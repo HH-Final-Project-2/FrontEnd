@@ -144,7 +144,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => {},
+        (data) => { },
         headers
       )
       .unsubscribe();
@@ -179,27 +179,35 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const removeCheck = () => {
     setOpen(false);
     Swal.fire({
-      text: '채팅방을 나가시겠습니까?',
+      title: '채팅방을 나가시겠습니까?',
       showCancelButton: true,
       confirmButtonColor: '#5546FF',
       cancelButtonColor: '#BBB5FF',
       confirmButtonText: '확인',
       cancelButtonText: '취소',
       width: '300px',
+      customClass: {
+        popup: 'login-class',
+        title: 'title-class',
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         // 확인 버튼 누를시 동작
         Swal.fire({
-          text: '채팅방 나가기 완료',
+          title: '채팅방 나가기 완료',
           width: '300px',
           timer: 1000,
           showConfirmButton: false,
+          customClass: {
+            popup: 'allAlret-class',
+            title: 'allTitle-class',
+          },
         });
         dispatch(deleteChatroom(id === '' ? chatlistid : id));
         setTimeout(() => {
