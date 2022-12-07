@@ -208,18 +208,6 @@ const Chatroom = () => {
       }
     });
   };
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const resizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeWidth);
-    return () => {
-      window.removeEventListener('resize', resizeWidth);
-    };
-  }, []);
 
   console.log(message.trim() === '');
 

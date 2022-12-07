@@ -96,7 +96,7 @@ const MainView = () => {
             <div className="noneCard">
               <NoneCard />
             </div>
-            <div className="nonePageText">등록 된 명함이 없습니다</div>
+            <div className="nonePageText">등록된 명함이 없습니다</div>
           </NoneCardPage>
         ) : (
           mainpost.map((main) => {
