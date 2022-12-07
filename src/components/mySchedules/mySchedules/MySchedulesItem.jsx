@@ -12,8 +12,6 @@ import Footer from '../../footer/Footer';
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
   const marks = useSelector((state) => state.ScheduleSlice.date);
-  console.log(marks);
-  console.log(value);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -72,6 +70,7 @@ const MySchedulesItem = () => {
           {moment(value).format('MM월 DD일 일정')}
           {marks !== null
             ? marks.map((x) => {
+
                 if (
                   x.filteredDate !== null &&
                   x.filteredDate.includes(moment(value).format('YYYY-MM-DD'))
@@ -91,18 +90,21 @@ const MySchedulesItem = () => {
                             <div className="title">{x.title}</div>
                           </div>
                           <div className="todo">{x.todo}</div>
-                        </div>
 
-                        <div className="dateTime">
-                          <div className="startDate">
-                            {x.startDate} {x.startTime}
-                          </div>
-                          <div className="endDate">
-                            {x.endDate} {x.endTime}
-                          </div>
+                        </div>
+                        <div className="todo">{x.todo}</div>
+                      </div>
+
+                      <div className="dateTime">
+                        <div className="startDate">
+                          {x.startDate} {x.startTime}
+                        </div>
+                        <div className="endDate">
+                          {x.endDate} {x.endTime}
                         </div>
                       </div>
-                      {/* <img
+                    </div>
+                    {/* <img
                         className="deleteBtn"
                         src={Delete}
                         onClick={() => {
@@ -131,10 +133,10 @@ const MySchedulesItem = () => {
                           window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
                         }}
                       /> */}
-                    </div>
-                  );
-                } else return null;
-              })
+                  </div>
+                );
+              } else return null;
+            })
             : null}
         </div>
       </div>

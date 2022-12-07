@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
+  .popup-class {
+    
+  }
   }
   p,
   ol,
@@ -105,6 +108,10 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-track {
      /*스크롤바 뒷 배경 색상*/
   } 
+
+
 `;
+
+
 
 export default GlobalStyle;
