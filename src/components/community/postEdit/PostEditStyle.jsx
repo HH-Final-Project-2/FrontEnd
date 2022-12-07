@@ -81,7 +81,7 @@ export const EditBody = styled.div`
     padding: 10px;
     margin-top: 6px;
     width: 100%;
-    height: 45px;
+    height: 200px;
     border: none;
     outline: none;
     resize: none;

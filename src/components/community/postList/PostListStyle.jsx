@@ -154,11 +154,16 @@ export const StyledSlider = styled(Slider)`
     outline: none;
   }
 
+  .slick-dots li {
+    margin: 0.5px;
+  }
+
   .slick-dots li button:before {
     width: 4px;
     display: flex;
+    justify-content: center;
     text-align: center;
-    margin-top: 16px;
+    margin-top: 17px;
     content: '•';
     color: gray;
 
