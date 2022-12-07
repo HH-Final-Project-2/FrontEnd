@@ -295,8 +295,8 @@ const MainCards = () => {
             </svg>
 
             <div onClick={openModal} style={{ cursor: "pointer" }}>
-              여기를 눌러{" "}
-              <span style={{ color: "red" }}>등록 가이드를 확인</span>해주세요{" "}
+              <span style={{ color: "red" }}>여기</span>를 눌러{" "}
+              <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
