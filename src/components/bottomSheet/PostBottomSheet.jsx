@@ -6,6 +6,7 @@ import { ReactComponent as More } from '../../images/ic-more.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { __deletePost } from '../../redux/modules/PostSlice';
+import Swal from 'sweetalert2';
 import { DivSheet } from './PostBottomSheetStyle';
 
 export default function PostBottomSheet({ detail, id }) {
@@ -32,46 +33,65 @@ export default function PostBottomSheet({ detail, id }) {
     };
   }, []);
 
+  const onAlertHandler = () => {
+    setOpen(false);
+    Swal.fire({
+      text: "게시글을 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: '#5546FF',
+      cancelButtonColor: '#BBB5FF',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      width: '300px',
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          text: '삭제되었습니다',
+          width: '300px',
+          timer: 1000,
+          showConfirmButton: false,
+        }
+        )
+        dispatch(__deletePost(detail.id));
+      }
+    })
+  }
+
   return (
     <>
       <SheetButton>
         <More onClick={() => setOpen(true)} />
       </SheetButton>
 
-      <BottomSheet
-        open={open}
-        onDismiss={() => {
-          setOpen(false);
-        }}
-        style={{
-          '--rsbs-max-w': '375px',
-          '--rsbs-ml': 'auto',
-          '--rsbs-mr': 'auto',
-        }}
-      >
-        <Board>
-          <ul
-            onClick={() => {
-              navigate(`/edit/${id}`);
-            }}
-          >
-            수정
-          </ul>
-          <ul
-            style={{ color: '#F82323' }}
-            onClick={() => {
-              const confirm = window.confirm('게시글을 지우시겠습니까?');
-              if (confirm) {
-                dispatch(__deletePost(detail.id));
-              } else {
-                return;
-              }
-            }}
-          >
-            삭제
-          </ul>
-        </Board>
-      </BottomSheet>
+        <BottomSheet
+          open={open}
+          onDismiss={() => {
+            setOpen(false);
+          }}
+          style={{
+            '--rsbs-max-w': '375px',
+            '--rsbs-ml': 'auto',
+            '--rsbs-mr': 'auto',
+          }}
+        >
+          <Board>
+            <ul
+              onClick={() => {
+                navigate(`/edit/${id}`);
+              }}
+            >
+              수정
+            </ul>
+            <ul
+              style={{ color: '#F82323' }}
+              onClick={onAlertHandler}
+            >
+              삭제
+            </ul>
+          </Board>
+        </BottomSheet>
+     
     </>
   );
 }

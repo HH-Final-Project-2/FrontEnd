@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ComInfor = styled.div`
   cursor: pointer;
@@ -137,7 +137,6 @@ export const CategoryBtn2 = styled.button`
 
 export const CardList = styled.div`
   padding-top: 32px;
-  height: 100vh;
 `;
 
 export const Card = styled.div`
@@ -222,30 +221,37 @@ export const WriteButton = styled.div`
 
 export const CardInCardDetail1 = styled.div`
   display: flex;
-  margin-left: 10px;
   margin-top: 5px;
+  margin-left: 5px;
 `;
 
 export const CardInCardDetail2 = styled.div`
   font-size: 10px;
-  margin-left: 10px;
-  margin-top: 10px;
+  -webkit-transform: scale(0.8);
+
+  margin-top: 17px;
+  margin-right: 30px;
 `;
 export const CardInCardDetail1Name = styled.div`
-  font-size: 12px;
   font-weight: 500;
 
   color: #1a1f27;
+
+  font-size: 10px;
+  -webkit-transform: scale(0.8);
 `;
 export const CardInCardDetail1Position = styled.div`
-  margin-left: 10px;
-  margin-top: 2px;
-
   font-weight: 500;
   font-size: 10px;
-  color: #5546ff;
+  -webkit-transform: scale(0.65);
+
+  color: #8892a0;
 `;
 export const CardInCardDetail2Email = styled.div`
-  margin-bottom: 4px;
+  color: #1a1f27;
 `;
-export const CardInCardDetail2Phone = styled.div``;
+export const CardInCardDetail2Phone = styled.div`
+  margin-top: 2px;
+
+  color: #1a1f27;
+`;

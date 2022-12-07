@@ -31,7 +31,10 @@ import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
-import { SectionHeader } from '../../card/cardPost/cardPostStyle';
+import {
+  AssistiveText,
+  SectionHeader,
+} from '../../card/cardPost/cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardMake = () => {
@@ -51,7 +54,6 @@ const MyCardMake = () => {
     // email: '',
     // phoneNum: '',
     cardName: localStorage.getItem('cardName'),
-    engName: localStorage.getItem('engName'),
     email: localStorage.getItem('email'),
     phoneNum: localStorage.getItem('phoneNum'),
     company: '',
@@ -64,7 +66,6 @@ const MyCardMake = () => {
 
   const {
     cardName,
-    engName,
     email,
     phoneNum,
     company,
@@ -94,7 +95,6 @@ const MyCardMake = () => {
     dispatch(
       _MakeCard({
         cardName,
-        engName,
         email: imgGet.email !== undefined ? imgGet.email : email,
         phoneNum: imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
         company:
@@ -112,10 +112,17 @@ const MyCardMake = () => {
     nav('/mypage');
   };
 
-  useEffect(() => {}, []);
+  const isValidEmail =
+    email !== undefined && email !== null
+      ? email.includes('@') && email.includes('.')
+      : false;
+
+  const isValidPhone =
+    phoneNum !== undefined && phoneNum !== null
+      ? phoneNum.includes('-')
+      : false;
 
   localStorage.setItem('cardName', cardName);
-  localStorage.setItem('engName', engName);
   localStorage.setItem('email', email);
   localStorage.setItem('phoneNum', phoneNum);
 
@@ -127,7 +134,6 @@ const MyCardMake = () => {
           style={{ cursor: 'pointer' }}
           onClick={() => {
             localStorage.removeItem('cardName');
-            localStorage.removeItem('engName');
             localStorage.removeItem('email');
             localStorage.removeItem('phoneNum');
             nav(-1);
@@ -138,9 +144,27 @@ const MyCardMake = () => {
 
         <SaveButton
           onClick={() => {
+            if (
+              cardName.trim() === '' ||
+              company.trim() === '' ||
+              department.trim() === '' ||
+              email.trim() === '' ||
+              phoneNum.trim() === '' ||
+              position.trim() === ''
+            ) {
+              alert('필수란을 작성해주세요.');
+              return;
+            }
+            if (isValidEmail === false) {
+              alert('이메일 형식이 맞지 않습니다.');
+              return;
+            }
+            if (isValidPhone === false) {
+              alert('연락처 형식이 맞지 않습니다.');
+              return;
+            }
             PostHandler();
             localStorage.removeItem('cardName');
-            localStorage.removeItem('engName');
             localStorage.removeItem('email');
             localStorage.removeItem('phoneNum');
           }}
@@ -188,15 +212,7 @@ const MyCardMake = () => {
           <St_value
             name="cardName"
             value={cardName}
-            onChange={onChage}
-          ></St_value>
-        </Item>
-
-        <Item>
-          <St_Key>영문이름</St_Key>
-          <St_value
-            name="engName"
-            value={engName}
+            placeholder="이름"
             onChange={onChage}
           ></St_value>
         </Item>
@@ -208,8 +224,12 @@ const MyCardMake = () => {
           <St_value
             name="email"
             value={imgGet.email !== undefined ? imgGet.email : email}
+            placeholder="Ex) abc@gmail.com"
             onChange={onChage}
           ></St_value>
+          {isValidEmail === false && email ? (
+            <AssistiveText>이메일을 확인하세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
@@ -219,17 +239,21 @@ const MyCardMake = () => {
           <St_value
             name="phoneNum"
             value={imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum}
+            placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
+          {phoneNum && phoneNum.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
-          {/* <CompanyIcon>
+          <CompanyIcon>
             <Iccompany />
-          </CompanyIcon> */}
+          </CompanyIcon>
           <St_value
             name="company"
             value={searchinfo.company ? searchinfo.company : company}

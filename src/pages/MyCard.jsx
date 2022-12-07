@@ -21,12 +21,12 @@ const MyCard = () => {
 
   useEffect(() => {
     dispatch(_getMakeCard());
-  }, [dispatch]);
+  }, []);
 
-  if (cardinfo === undefined) return;
+  // if (cardinfo === undefined) return;
 
   //명함이 있을 때
-  if (cardinfo.id !== undefined) {
+  if (cardinfo !== '명함을 등록해주세요') {
     return (
       <Layout>
         <St_Header>

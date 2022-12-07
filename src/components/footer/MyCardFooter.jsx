@@ -61,10 +61,10 @@ const MyCardFooter = () => {
       {/* 커뮤니티로 이동 */}
       <svg
         onClick={() => {
-          // dispatch(__getPostAll()); // 일단 dispatch로 해결
-          // navigate('/community');
+          dispatch(__getPostAll()); // 일단 dispatch로 해결
+          navigate('/community');
           //navigate('/community', { replace: true });
-          window.location = '/community';
+          //window.location = '/community';
           //navigate 동일한 주소로 이동시 컴포넌트가 랜더링 되지않음
           //url은 바뀌어도 화면은 그대로..(원인은 모르겠음 찾는중)
         }}

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -96,7 +96,7 @@ export const AddressBox = styled.div`
 export const SearchAddress = styled.div`
   display: flex;
   width: 250px;
-  padding-left: 20px;
+  padding-left: 28px;
   margin-bottom: 20px;
 `;
 export const St_Card = styled.label`
@@ -141,14 +141,14 @@ export const CompanyIcon = styled.div`
   height: 0px;
   position: relative;
   display: flex;
-  top: 10px;
-  left: 18px;
+  top: 25px;
+  left: 30px;
 `;
 export const AddressIcon = styled.div`
   height: 0px;
   position: relative;
   display: flex;
-  left: 12px;
+  left: 22px;
 `;
 export const Essential = styled.a`
   margin-left: 3px;

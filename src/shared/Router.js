@@ -37,6 +37,7 @@ import AddSchedulesPage from "../pages/AddSchedulesPage";
 import CardSearch from "../components/card/cardSearch/CardSearch";
 import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
 import MySchedulesDetailPage from "../pages/MySchedulesDetailPage";
+import FindPassword from "../components/login/FindPassword";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -46,7 +47,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {/* 메인 */}
-        <Route
+        {/* <Route
           path="/"
           element={
             <PrivateRoute
@@ -55,7 +56,8 @@ const Router = () => {
               component={<Main />}
             />
           }
-        />
+        /> */}
+        <Route path="/" element={<Main />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/cardSearch" element={<CardSearch />} />
         <Route path="/otherCategory" element={<OtherCards />} />
@@ -104,6 +106,7 @@ const Router = () => {
         {/* 회원관리(회원가입,로그인)*/}
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/findPassword" element={<FindPassword />} />
         <Route path="/oauth/kakao" element={<Kakao />} />
       </Routes>
     </BrowserRouter>

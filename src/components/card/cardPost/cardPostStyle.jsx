@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //헤더 박스 div
 export const St_Header = styled.div`

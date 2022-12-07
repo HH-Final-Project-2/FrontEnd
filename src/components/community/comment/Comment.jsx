@@ -26,6 +26,7 @@ import {
   CommentWirteButtonFill,
   LikeBox
 } from './CommentStyle';
+import Swal from 'sweetalert2';
 
 const Comment = ({ detailAuthorId }) => {
   const dispatch = useDispatch();
@@ -67,8 +68,10 @@ const Comment = ({ detailAuthorId }) => {
   }
 
   if (comments === undefined) return null;
+
   return (
     <div>
+
       {/* 댓글 작성 */}
       <CommentWriteBox>
         <CommentTextarea
@@ -84,7 +87,11 @@ const Comment = ({ detailAuthorId }) => {
           <CommentWirteButtonFill
             onClick={() => {
               if (commentForm.trim() === '')
-                return alert('댓글을 입력해 주세요');
+                return Swal.fire({
+                  text: '댓글을 입력해 주세요', showConfirmButton: false,
+                  timer: 1000,
+                  width: '300px',
+                });
               dispatch(
                 addComment({
                   postId: id,
@@ -101,7 +108,11 @@ const Comment = ({ detailAuthorId }) => {
           <CommentWirteButton
             onClick={() => {
               if (commentForm.trim() === '')
-                return alert('댓글을 입력해 주세요');
+                return Swal.fire({
+                  text: '댓글을 입력해 주세요', showConfirmButton: false,
+                  timer: 1000,
+                  width: '300px',
+                });
               dispatch(
                 addComment({
                   postId: id,
