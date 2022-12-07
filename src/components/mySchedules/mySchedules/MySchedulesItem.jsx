@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Calendar from "react-calendar";
 import "./mySchedulesItme.css";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {
-  __schedulesDetailGet,
-  __schedulesGet,
-} from "../../../redux/modules/SchedulesSlice";
+import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
 import addimg from "../../../images/Property 1=default.svg";
 import Footer from "../../footer/Footer";
-import Delete from "../../../images/ic-close-fill-wh-32px.svg";
-
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
 
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
   const marks = useSelector((state) => state.ScheduleSlice.date);
   console.log(marks);
+  console.log(value);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +23,8 @@ const MySchedulesItem = () => {
   }, [dispatch]);
 
   if (marks === null) return;
+
+  console.log(moment()._d);
 
   return (
     <div className="page">
@@ -53,6 +48,7 @@ const MySchedulesItem = () => {
           minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           maxDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
           navigationLabel={null}
+          calendarType="US"
           showNeighboringMonth={false} //  이전, 이후 달의 날짜는 보이지 않도록 설정
           className="mx-auto w-full text-sm border-b"
           tileContent={({ date, view }) => {

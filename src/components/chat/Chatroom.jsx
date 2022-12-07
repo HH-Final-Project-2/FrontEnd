@@ -190,7 +190,9 @@ const Chatroom = () => {
           showConfirmButton: false,
         });
         dispatch(deleteChatroom(id === '' ? chatlistid : id));
-        nav('/chat');
+        setTimeout(() => {
+          nav('/chat');
+        }, 100);
       }
     });
   };

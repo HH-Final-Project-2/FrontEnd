@@ -75,6 +75,11 @@ const CardSearch = () => {
           type="text"
           value={search}
           onChange={searchChangeHandler}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              dispatch(__CardSearchGet(search));
+            }
+          }}
         ></Input>
       </SearchBox>
       <Icon>
@@ -113,9 +118,9 @@ const CardSearch = () => {
                       : main.position}
                   </Position>
                   <Department>
-                    {main.department.length > 6
-                      ? main.department.slice(0, 6) + "..."
-                      : main.department}
+                    {main.company.length > 6
+                      ? main.company.slice(0, 6) + "..."
+                      : main.company}
                   </Department>
                 </CardInfoDetail>
               </CardInfo>

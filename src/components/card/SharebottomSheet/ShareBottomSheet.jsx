@@ -1,19 +1,30 @@
-import { useEffect, useState } from 'react';
-import { BottomSheet } from 'react-spring-bottom-sheet';
-import 'react-spring-bottom-sheet/dist/style.css';
-import { Board, St_share, Share, Textshare } from './ShareBottomSheetStyle';
-import { useSelector } from 'react-redux';
-import KakaoShare from '../kakaoshare/KakaoShare';
+import { useEffect, useState } from "react";
+import { BottomSheet } from "react-spring-bottom-sheet";
+import "react-spring-bottom-sheet/dist/style.css";
+import { Board, St_share, Share, Textshare } from "./ShareBottomSheetStyle";
+import { useSelector } from "react-redux";
+import KakaoShare from "../kakaoshare/KakaoShare";
+import Swal from "sweetalert2";
 export default function Bottom() {
   const [open, setOpen] = useState(false);
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  const cardinfo = useSelector((state) => state.PostReducer.viewList);
 
   const copyHandler = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
-      alert('클립보드 복사');
+      Swal.fire({
+        text: "클립보드 복사",
+        showConfirmButton: false,
+        timer: 1000,
+        width: "300px",
+      });
     } catch (error) {
-      alert('error 명함을 확인 해주세요');
+      Swal.fire({
+        text: "명함을 확인해주세요",
+        showConfirmButton: false,
+        timer: 1000,
+        width: "300px",
+      });
     }
   };
 
@@ -23,9 +34,9 @@ export default function Bottom() {
     setWindowWidth(window.innerWidth);
   };
   useEffect(() => {
-    window.addEventListener('resize', resizeWidth);
+    window.addEventListener("resize", resizeWidth);
     return () => {
-      window.removeEventListener('resize', resizeWidth);
+      window.removeEventListener("resize", resizeWidth);
     };
   }, []);
 
@@ -42,9 +53,9 @@ export default function Bottom() {
             setOpen(false);
           }}
           style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': 'auto',
+            "--rsbs-max-w": "375px",
+            "--rsbs-ml": "auto",
+            "--rsbs-mr": "auto",
           }}
         >
           <Board>
@@ -52,17 +63,17 @@ export default function Bottom() {
               <Textshare
                 onClick={() => {
                   copyHandler(
-                    '[' +
+                    "[" +
                       cardinfo.company +
-                      ']' +
-                      '\n이름 : ' +
+                      "]" +
+                      "\n이름 : " +
                       cardinfo.cardName +
-                      ' (' +
+                      " (" +
                       cardinfo.position +
-                      ')' +
-                      '\n전화번호 : ' +
+                      ")" +
+                      "\n전화번호 : " +
                       cardinfo.phoneNum +
-                      '\n이메일 : ' +
+                      "\n이메일 : " +
                       cardinfo.email
                   );
                   setOpen(false);
@@ -97,9 +108,9 @@ export default function Bottom() {
             setOpen(false);
           }}
           style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': '537px',
+            "--rsbs-max-w": "375px",
+            "--rsbs-ml": "auto",
+            "--rsbs-mr": "537px",
           }}
         >
           <Board>
@@ -107,17 +118,17 @@ export default function Bottom() {
               <Textshare
                 onClick={() => {
                   copyHandler(
-                    '[' +
+                    "[" +
                       cardinfo.company +
-                      ']' +
-                      '\n이름 : ' +
+                      "]" +
+                      "\n이름 : " +
                       cardinfo.cardName +
-                      ' (' +
+                      " (" +
                       cardinfo.position +
-                      ')' +
-                      '\n전화번호 : ' +
+                      ")" +
+                      "\n전화번호 : " +
                       cardinfo.phoneNum +
-                      '\n이메일 : ' +
+                      "\n이메일 : " +
                       cardinfo.email
                   );
                   setOpen(false);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const JoinForm = styled.form`
   max-width: 500px;
@@ -62,13 +62,16 @@ export const InputContainer = styled.div`
 `;
 
 export const SignUpBox = styled.div`
-  width: 335px;
+  max-width: 60%;
+  display: flex;
   text-align: center;
+  justify-content: space-between;
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
-  margin-top: 24px;
   color: #52596b;
+  margin: auto;
+  margin-top: 24px;
 `;
 
 export const LogoBox = styled.div`

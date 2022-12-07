@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -74,6 +73,7 @@ const UserLogin = () => {
       {/* 회원가입 이동 */}
       <SignUpBox>
         <p onClick={() => navigate("/join")}>회원가입</p>
+        <p onClick={() => navigate("/findPassword")}>비밀번호재설정</p>
       </SignUpBox>
     </JoinForm>
   );

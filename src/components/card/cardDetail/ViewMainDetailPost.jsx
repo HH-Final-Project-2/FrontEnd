@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import CardsFooter from "../../footer/CardsFooter";
 import CardBottomSheet from "../../bottomSheet/CardBottomSheet";
+import BottomSheet from "../SharebottomSheet/ShareBottomSheet";
 import {
   St_Title,
   St_Header,
@@ -186,6 +187,7 @@ const ViewMainDetailPost = () => {
         </Map>
       </MapBox>
       <CardsFooter />
+      <BottomSheet />
       <SectionFooter />
     </Layout>
   );
