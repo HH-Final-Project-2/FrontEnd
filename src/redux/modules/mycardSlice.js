@@ -18,6 +18,7 @@ export const _getMakeCard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("/api/mypages");
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -37,22 +38,22 @@ export const _PutCard = createAsyncThunk(
 );
 //검색
 export const _searchGet = createAsyncThunk(
-  "SEARCH_get",
+  "get/SEARCH",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post(
-        `/api/companySearch/?keyword=${payload}`
-      );
+      const data = await instance.post(`/api/companySearch/?keyword=${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
 );
 //회사명, 주소 저장
 export const _companyInfo = createAsyncThunk(
-  "COMPANY_info",
+  "post/COMPANY_info",
   async (payload, thunkAPI) => {
+    console.log(payload)
     try {
       const { data } = await instance.post("/api/companyInfo", payload);
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -62,7 +63,6 @@ const initialState = {
   cardinfo: [
     {
       cardName: "",
-      engName: "",
       email: "",
       phoneNum: "",
       company: "",

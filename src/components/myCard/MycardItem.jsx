@@ -26,7 +26,6 @@ const MycardItem = () => {
           <Position>{cardinfo.position}</Position>
         </NameBox>
 
-        <NameEng>{cardinfo.engName}</NameEng>
         <Company>{cardinfo.company}</Company>
 
         <AddressBox>
