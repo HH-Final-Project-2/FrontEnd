@@ -40,9 +40,8 @@ const MyProfile = () => {
           편집
         </PutButton>
       </St_Header>
-
-      <St_Info>{cardinfo.position}</St_Info>
-      <St_Info>{cardinfo.department}</St_Info>
+      <St_Info>{cardinfo === undefined ? '직책' : cardinfo.position}</St_Info>
+      <St_Info>{cardinfo === undefined ? '부서' : cardinfo.department}</St_Info>
     </St_Profile>
   );
 };

@@ -122,7 +122,7 @@ const MyCardPatch = () => {
       </St_Header>
       <SectionHeader />
       <PatchBox>
-        {/* <Item>
+        <Item>
           <St_Key>
             이름<Essential>*</Essential>
           </St_Key>
@@ -140,7 +140,7 @@ const MyCardPatch = () => {
             value={engName || ''}
             onChange={onChage}
           ></St_value>
-        </Item> */}
+        </Item>
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>

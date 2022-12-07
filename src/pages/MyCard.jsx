@@ -18,15 +18,18 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log(cardinfo);
 
   useEffect(() => {
-    dispatch(_getMakeCard());
-  }, [dispatch]);
+    if (cardinfo !== undefined) {
+      dispatch(_getMakeCard());
+    }
+  }, [cardinfo]);
 
-  if (cardinfo === undefined) return;
+  // if (cardinfo === undefined) return;
 
   //명함이 있을 때
-  if (cardinfo.id !== undefined) {
+  if (cardinfo !== undefined) {
     return (
       <Layout>
         <St_Header>

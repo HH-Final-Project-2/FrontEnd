@@ -38,7 +38,7 @@ export const _searchGet = createAsyncThunk(
   "SEARCH_GET",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post("/api/companySearch", payload);
+      const data = await instance.post(`/api/companySearch/?keyword=${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) { }
   }
