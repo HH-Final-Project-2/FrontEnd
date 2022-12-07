@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TopFiveContainer = styled.div`
   padding-top: 16px;
 
-  width: 256px;
+  width: 335px;
   height: 188px;
 
   background: #f5f6fa;
@@ -94,7 +94,7 @@ export const Content = styled.div`
 export const Image = styled.div`
   margin-right: 16px;
   img {
-    width: 54px;
+    width: 72px;
     height: 50px;
     border-radius: 8px;
 
@@ -105,7 +105,7 @@ export const Image = styled.div`
 export const Line = styled.div`
   margin-top: 16px;
   margin-left: 12px;
-  width: 232px;
+  width: 308px;
   height: 1px;
 
   background: #e2e6ef;

@@ -141,7 +141,7 @@ export const PaginationBox = styled.div`
 export const Container = styled.div`
   padding-left: 21px;
   margin-top: 32px;
-  height: 250px;
+  height: 276px;
   font-weight: 400;
   font-size: 16px;
   color: #1a1f27;
@@ -151,9 +151,23 @@ export const StyledSlider = styled(Slider)`
   margin-top: 16px;
 
   .slick-slide .topPost {
-    margin-left: 83px;
-
     outline: none;
+  }
+
+  .slick-dots li button:before {
+    width: 4px;
+    display: flex;
+    text-align: center;
+    margin-top: 16px;
+    content: '•';
+    color: gray;
+
+    opacity: 0.15;
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: 0.75;
+    color: #bbb5ff;
   }
 `;
 
