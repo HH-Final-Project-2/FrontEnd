@@ -59,7 +59,6 @@ export default function CommentBottomSheet({ commentList, id }) {
         <More onClick={() => setOpen(true)} />
       </SheetButton>
 
-      {windowWidth < 1200 ? (
         <BottomSheet
           open={open}
           onDismiss={() => {
@@ -89,35 +88,7 @@ export default function CommentBottomSheet({ commentList, id }) {
           </Board>
 
         </BottomSheet>
-      ) : (
-        <BottomSheet
-          open={open}
-          onDismiss={() => {
-            setOpen(false);
-          }}
-          style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': '537px',
-          }}
-        >
-          <Board>
-            <ul
-              onClick={() => {
-                navigate(`/commentedit/${id}/${commentList.id}`);
-              }}
-            >
-              수정
-            </ul>
-            <ul
-              style={{ color: '#F82323' }}
-              onClick={onAlertHandler}
-            >
-              삭제
-            </ul>
-          </Board>
-        </BottomSheet>
-      )}
+     
     </>
   );
 }

@@ -176,10 +176,12 @@ export const SectionWall = styled.div`
 `;
 
 export const ChatExit = styled.div`
-  width: 375px;
-  height: 52px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 250px;
+  height: 42px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+
   cursor: pointer;
 `;

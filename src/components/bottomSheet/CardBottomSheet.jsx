@@ -32,7 +32,6 @@ export default function PostBottomSheet({ view, id }) {
         <More onClick={() => setOpen(true)} />
       </SheetButton>
 
-      {windowWidth < 1200 ? (
         <BottomSheet
           open={open}
           onDismiss={() => {
@@ -109,167 +108,13 @@ export default function PostBottomSheet({ view, id }) {
                 })
               }}
 
-            //onClick={() => {
-            // const confirm = window.confirm('명함을 지우시겠습니까?');
-            // if (confirm) {
-            //   const config = {
-            //     headers: {
-            //       Authorization: accessToken,
-            //       'Refresh-Token': refreshToken,
-            //     },
-            //   };
-            //   axios
-            //     .delete(
-            //       `https://bkyungkeem.shop/api/businessCards/${id}`,
-            //       config
-            //     )
-            //     .then(function (response) {
-            //       console.log(response);
-            //       view.filter((x) => x.id !== response);
-            //     })
-            //     .catch(function (error) {
-            //       console.log(error);
-            //     })
-            //     .then(function () {
-            //       // always executed
-            //     });
-            //   Swal.fire({
-            //     text: '삭제되었습니다',
-            //     showConfirmButton: false,
-            //     timer: 1000,
-            //     width: '300px',
-            //   });
-            //   navigate('/cards');
-            // } else {
-            //   return;
-            // }
-
-            // }}
+            
             >
               삭제
             </ul>
           </Board>
         </BottomSheet>
-      ) : (
-        <BottomSheet
-          open={open}
-          onDismiss={() => {
-            setOpen(false);
-          }}
-          style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': '537px',
-          }}
-        >
-          <Board>
-            <ul
-              onClick={() => {
-                navigate(`/posts/${id}/put`);
-              }}
-            >
-              수정
-            </ul>
-            <ul
-              style={{ color: '#F82323' }}
-              onClick={() => {
-                setOpen(false);
-                Swal.fire({
-                  text: "명함을 삭제하시겠습니까?",
-                  showCancelButton: true,
-                  confirmButtonColor: '#5546FF',
-                  cancelButtonColor: '#BBB5FF',
-                  confirmButtonText: '확인',
-                  cancelButtonText: '취소',
-                  width: '300px',
-
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    Swal.fire({
-                      text: '삭제되었습니다',
-                      width: '300px',
-                      timer: 1000,
-                      showConfirmButton: false,
-                    }
-                    )
-                    //if result.isConfirmed true면 실행됨(확인버튼)
-                    const config = {
-                      headers: {
-                        Authorization: accessToken,
-                        'Refresh-Token': refreshToken,
-                      },
-                    };
-                    axios
-                      .delete(
-                        `https://bkyungkeem.shop/api/businessCards/${id}`,
-                        config
-                      )
-                      .then(function (response) {
-                        console.log(response);
-                        view.filter((x) => x.id !== response);
-                      })
-                      .catch(function (error) {
-                        console.log(error);
-                      })
-                      .then(function () {
-                        // always executed
-                      });
-                    Swal.fire({
-                      text: '삭제되었습니다',
-                      showConfirmButton: false,
-                      timer: 1000,
-                      width: '300px',
-                    });
-                    navigate('/cards');
-                  } else {
-                    return;
-                  }
-                })
-              }}
-
-
-
-            // onClick={() => {
-            //   const confirm = window.confirm('명함을 지우시겠습니까?');
-            //   if (confirm) {
-            //     const config = {
-            //       headers: {
-            //         Authorization: accessToken,
-            //         'Refresh-Token': refreshToken,
-            //       },
-            //     };
-            //     axios
-            //       .delete(
-            //         `https://bkyungkeem.shop/api/businessCards/${id}`,
-            //         config
-            //       )
-            //       .then(function (response) {
-            //         console.log(response);
-            //         view.filter((x) => x.id !== response);
-            //       })
-            //       .catch(function (error) {
-            //         console.log(error);
-            //       })
-            //       .then(function () {
-            //         // always executed
-            //       });
-            //     Swal.fire({
-            //       text: '삭제되었습니다',
-            //       showConfirmButton: false,
-            //       timer: 1000,
-            //       width: '300px',
-            //     });
-            //     navigate('/cards');
-            //   } else {
-            //     return;
-            //   }
-            // }}
-            >
-              삭제
-            </ul>
-          </Board>
-        </BottomSheet>
-      )}
+     
     </>
   );
 }
