@@ -6,6 +6,7 @@ import { ReactComponent as More } from '../../images/ic-more.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { __deletePost } from '../../redux/modules/PostSlice';
+import Swal from 'sweetalert2';
 import { DivSheet } from './PostBottomSheetStyle';
 
 export default function PostBottomSheet({ detail, id }) {
@@ -31,6 +32,31 @@ export default function PostBottomSheet({ detail, id }) {
       window.removeEventListener('resize', resizeWidth);
     };
   }, []);
+
+  const onAlertHandler = () => {
+    setOpen(false);
+    Swal.fire({
+      text: "게시글을 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: '#5546FF',
+      cancelButtonColor: '#BBB5FF',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      width: '300px',
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          text: '삭제되었습니다',
+          width: '300px',
+          timer: 1000,
+          showConfirmButton: false,
+        }
+        )
+        dispatch(__deletePost(detail.id));
+      }
+    })
+  }
 
   return (
     <>
@@ -60,14 +86,7 @@ export default function PostBottomSheet({ detail, id }) {
             </ul>
             <ul
               style={{ color: '#F82323' }}
-              onClick={() => {
-                const confirm = window.confirm('게시글을 지우시겠습니까?');
-                if (confirm) {
-                  dispatch(__deletePost(detail.id));
-                } else {
-                  return;
-                }
-              }}
+              onClick={onAlertHandler}
             >
               삭제
             </ul>
@@ -95,14 +114,7 @@ export default function PostBottomSheet({ detail, id }) {
             </ul>
             <ul
               style={{ color: '#F82323' }}
-              onClick={() => {
-                const confirm = window.confirm('게시글을 지우시겠습니까?');
-                if (confirm) {
-                  dispatch(__deletePost(detail.id));
-                } else {
-                  return;
-                }
-              }}
+              onClick={onAlertHandler}
             >
               삭제
             </ul>

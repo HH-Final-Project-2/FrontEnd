@@ -46,7 +46,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {/* 메인 */}
-        <Route
+        {/* <Route
           path="/"
           element={
             <PrivateRoute
@@ -55,7 +55,8 @@ const Router = () => {
               component={<Main />}
             />
           }
-        />
+        /> */}
+        <Route path="/" element={<Main />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/cardSearch" element={<CardSearch />} />
         <Route path="/otherCategory" element={<OtherCards />} />

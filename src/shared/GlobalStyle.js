@@ -106,6 +106,8 @@ const GlobalStyle = createGlobalStyle`
      /*스크롤바 뒷 배경 색상*/
   }
 
+
+
   /* :root {
   --rsbs-backdrop-bg: rgba(0, 0, 0, 0.6);
   --rsbs-bg: #fff;

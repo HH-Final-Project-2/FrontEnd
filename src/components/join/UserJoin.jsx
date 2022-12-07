@@ -25,6 +25,7 @@ import {
   Section1,
 } from "./UserJoinStyle";
 import { useSelector } from "react-redux";
+import Swal from 'sweetalert2';
 
 const UserJoin = () => {
   const [auth, setAuth] = useState("");
@@ -200,7 +201,11 @@ const UserJoin = () => {
   const onSubmit = (data) => {
     authEmail.success === true
       ? dispatch(signUp(data))
-      : alert("이메일 인증이 필요합니다");
+      : Swal.fire({
+        text: '이메일 인증이 필요합니다', showConfirmButton: false,
+        timer: 1000,
+        width: '300px',
+      });
   };
   return (
     <JoinForm onSubmit={handleSubmit(onSubmit)}>

@@ -29,6 +29,7 @@ import {
 
 import { SectionFooter } from '../../footer/FooterStyle';
 import { SectionHeader } from '../cardPost/cardPostStyle';
+import Swal from 'sweetalert2';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -85,21 +86,21 @@ const MainCards = () => {
 
   const isValidInput =
     inputValue.cardName &&
-    inputValue.email &&
-    company &&
-    inputValue.companyAddress &&
-    inputValue.companyType &&
-    inputValue.phoneNum &&
-    inputValue.department &&
-    inputValue.position !== undefined
+      inputValue.email &&
+      company &&
+      inputValue.companyAddress &&
+      inputValue.companyType &&
+      inputValue.phoneNum &&
+      inputValue.department &&
+      inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
-        inputValue.email.length >= 1 &&
-        company.length >= 1 &&
-        inputValue.companyAddress.length >= 1 &&
-        inputValue.companyType.length >= 1 &&
-        inputValue.phoneNum.length >= 1 &&
-        inputValue.department.length >= 1 &&
-        inputValue.position.length >= 1
+      inputValue.email.length >= 1 &&
+      company.length >= 1 &&
+      inputValue.companyAddress.length >= 1 &&
+      inputValue.companyType.length >= 1 &&
+      inputValue.phoneNum.length >= 1 &&
+      inputValue.department.length >= 1 &&
+      inputValue.position.length >= 1
       : false;
 
   const valueChangeHandler = (e) => {
@@ -139,7 +140,12 @@ const MainCards = () => {
         })
       );
     }
-    alert('명함 수정완료!');
+    Swal.fire({
+      text: '명함 수정 완료!',
+      showConfirmButton: false,
+      timer: 1000,
+      width: '300px',
+    });
     navigate(`/posts/get/${id}`);
   };
 
@@ -196,7 +202,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes('-') === false ? (
+              inputValue.phoneNum.includes('-') === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>

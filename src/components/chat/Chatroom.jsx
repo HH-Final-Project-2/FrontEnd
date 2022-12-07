@@ -131,7 +131,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => {},
+        (data) => { },
         headers
       )
       .unsubscribe();
@@ -161,7 +161,7 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
