@@ -4,6 +4,7 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import { Board, St_share, Share, Textshare } from './ShareBottomSheetStyle';
 import { useSelector } from 'react-redux';
 import KakaoShare from '../kakaoshare/KakaoShare';
+import Swal from 'sweetalert2';
 export default function Bottom() {
   const [open, setOpen] = useState(false);
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
@@ -11,9 +12,19 @@ export default function Bottom() {
   const copyHandler = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
-      alert('클립보드 복사');
+      Swal.fire({
+        text: '클립보드 복사',
+        showConfirmButton: false,
+        timer: 1000,
+        width: '300px',
+      });
     } catch (error) {
-      alert('error 명함을 확인 해주세요');
+      Swal.fire({
+        text: '명함을 확인해주세요',
+        showConfirmButton: false,
+        timer: 1000,
+        width: '300px',
+      });
     }
   };
 
@@ -53,17 +64,17 @@ export default function Bottom() {
                 onClick={() => {
                   copyHandler(
                     '[' +
-                      cardinfo.company +
-                      ']' +
-                      '\n이름 : ' +
-                      cardinfo.cardName +
-                      ' (' +
-                      cardinfo.position +
-                      ')' +
-                      '\n전화번호 : ' +
-                      cardinfo.phoneNum +
-                      '\n이메일 : ' +
-                      cardinfo.email
+                    cardinfo.company +
+                    ']' +
+                    '\n이름 : ' +
+                    cardinfo.cardName +
+                    ' (' +
+                    cardinfo.position +
+                    ')' +
+                    '\n전화번호 : ' +
+                    cardinfo.phoneNum +
+                    '\n이메일 : ' +
+                    cardinfo.email
                   );
                   setOpen(false);
                 }}
@@ -108,17 +119,17 @@ export default function Bottom() {
                 onClick={() => {
                   copyHandler(
                     '[' +
-                      cardinfo.company +
-                      ']' +
-                      '\n이름 : ' +
-                      cardinfo.cardName +
-                      ' (' +
-                      cardinfo.position +
-                      ')' +
-                      '\n전화번호 : ' +
-                      cardinfo.phoneNum +
-                      '\n이메일 : ' +
-                      cardinfo.email
+                    cardinfo.company +
+                    ']' +
+                    '\n이름 : ' +
+                    cardinfo.cardName +
+                    ' (' +
+                    cardinfo.position +
+                    ')' +
+                    '\n전화번호 : ' +
+                    cardinfo.phoneNum +
+                    '\n이메일 : ' +
+                    cardinfo.email
                   );
                   setOpen(false);
                 }}
