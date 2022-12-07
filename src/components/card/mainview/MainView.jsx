@@ -112,8 +112,8 @@ const MainView = () => {
                           : main.position}
                       </Position>
                       <Department>
-                        {main.department.length > 8
-                          ? main.department.slice(0, 8) + "..."
+                        {main.department.length > 6
+                          ? main.department.slice(0, 6) + "..."
                           : main.department}
                       </Department>
                     </CardInfoDetail>

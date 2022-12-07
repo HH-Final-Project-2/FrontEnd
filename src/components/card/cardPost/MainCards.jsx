@@ -36,7 +36,7 @@ import {
 } from "./cardPostStyle";
 import { SectionFooter } from "../../footer/FooterStyle";
 import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
-import information from "../../../images/스크린샷 2022-12-07 오후 8.22.22.png";
+import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -268,8 +268,10 @@ const MainCards = () => {
               <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
             </svg>
 
-            <div>
-              사진을 눌러 입력 가이드를 확인해주세요 <p />
+            <div onClick={openModal} style={{ cursor: "pointer" }}>
+              여기를 눌러{" "}
+              <span style={{ color: "red" }}>등록 가이드를 확인</span>해주세요{" "}
+              <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
             <Modal

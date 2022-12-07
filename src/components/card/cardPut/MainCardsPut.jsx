@@ -65,7 +65,7 @@ const MainCards = () => {
   const [inputValue, setInputValue] = useState({
     cardName: cardFix.cardName,
     email: cardFix.email,
-    company: companyOnly ? companyOnly : cardFix.company,
+    company: cardFix.company ? cardFix.company : companyOnly,
     companyAddress: cardFix.companyAddress,
     companyType: cardFix.companyType,
     phoneNum: cardFix.phoneNum,
@@ -128,7 +128,7 @@ const MainCards = () => {
           position: inputValue.position,
           tel: inputValue.tel,
           fax: inputValue.fax,
-          company: companyGet.company ? companyGet.company : inputValue.company,
+          company: companyGet.company ? companyGet.company : companyOnly,
           companyAddress:
             companyGet.companyAddress !== undefined
               ? companyGet.companyAddress
@@ -253,10 +253,10 @@ const MainCards = () => {
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={inputValue.company || ""}
-                  onChange={(e) => {
-                    setInputValue({ company: e.target.value });
-                  }}
+                  value={
+                    inputValue.company ? inputValue.company : companyGet.company
+                  }
+                  onChange={valueChangeHandler}
                 />
                 <AddressSearch>
                   <p
@@ -293,14 +293,10 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  value={
-                    companyGet.company
-                      ? companyGet.company
-                      : inputValue.company || ""
-                  }
-                  onChange={(e) => {
-                    setInputValue({ company: e.target.value });
-                  }}
+                  value={companyGet.company ? companyGet.company : companyOnly}
+                  // onChange={(e) => {
+                  //   setInputValue({ company: e.target.value });
+                  // }}
                   onClick={() => {
                     dispatch(
                       __cardInfo({
@@ -320,6 +316,7 @@ const MainCards = () => {
                         companyType: inputValue.companyType
                           ? inputValue.companyType
                           : "",
+                        company: inputValue.company ? inputValue.company : "",
                       })
                     );
                     navigate("/posts/companySearch");
