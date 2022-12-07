@@ -91,7 +91,10 @@ const MainView = () => {
         mainpost === undefined ||
         mainpost === "명함을 등록해주세요" ? (
           <NoneCardPage>
-            <NoneCard />
+            <div className="noneCard">
+              <NoneCard />
+            </div>
+            <div className="nonePageText">등록 된 명함이 없습니다</div>
           </NoneCardPage>
         ) : (
           mainpost.map((main) => {
@@ -124,16 +127,16 @@ const MainView = () => {
                         {main.cardName}
                       </CardInCardDetail1Name>
                       <CardInCardDetail1Position>
-                        {main.position.length > 5
-                          ? main.position.slice(0, 5) + "..."
+                        {main.position.length > 10
+                          ? main.position.slice(0, 10) + "..."
                           : main.position}
                       </CardInCardDetail1Position>
                     </CardInCardDetail1>
 
                     <CardInCardDetail2>
                       <CardInCardDetail2Email>
-                        {main.email.length > 20
-                          ? main.email.slice(0, 20) + "..."
+                        {main.email.length > 30
+                          ? main.email.slice(0, 30) + "..."
                           : main.email}
                       </CardInCardDetail2Email>
                       <CardInCardDetail2Phone>

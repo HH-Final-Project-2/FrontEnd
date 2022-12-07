@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Layout from "../../layout/Layout";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from 'react';
+import Layout from '../../layout/Layout';
+import { useNavigate } from 'react-router';
 import {
   _getMakeCard,
   _MakeCard,
   _PutCard,
-} from "../../../redux/modules/mycardSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { __imgPost } from "../../../redux/modules/CardsSlice";
+} from '../../../redux/modules/mycardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { __imgPost } from '../../../redux/modules/CardsSlice';
 import {
   St_Header,
   PatchBox,
@@ -26,11 +26,16 @@ import {
   AddressIcon,
   Essential,
   PrevImg,
-} from "../MyCardMake/MyCardMakeStyle";
-import { ReactComponent as Icplus } from "../../../images/ic-plus.svg";
-import { ReactComponent as Iccompany } from "../../../images/ic-company.svg";
-import { ReactComponent as Icaddress } from "../../../images/ic-address.svg";
-import { ReactComponent as Icbefore } from "../../../images/ic-before.svg";
+} from '../MyCardMake/MyCardMakeStyle';
+import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
+import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
+import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
+import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import {
+  AssistiveText,
+  SectionHeader,
+} from '../../card/cardPost/cardPostStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -40,29 +45,27 @@ const MyCardMake = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const imgGet = useSelector((state) => state.PostReducer.img);
 
-  console.log("이미지", imgGet);
-  console.log("search", searchinfo);
+  console.log('이미지', imgGet);
+  console.log('search', searchinfo);
 
   const [makeinfo, setMakeinfo] = useState({
     // cardName: '',
     // engName: '',
     // email: '',
     // phoneNum: '',
-    cardName: localStorage.getItem("cardName"),
-    engName: localStorage.getItem("engName"),
-    email: localStorage.getItem("email"),
-    phoneNum: localStorage.getItem("phoneNum"),
-    company: "",
-    companyAddress: "",
-    department: "",
-    position: "",
-    tel: "",
-    fax: "",
+    cardName: localStorage.getItem('cardName'),
+    email: localStorage.getItem('email'),
+    phoneNum: localStorage.getItem('phoneNum'),
+    company: '',
+    companyAddress: '',
+    department: '',
+    position: '',
+    tel: '',
+    fax: '',
   });
 
   const {
     cardName,
-    engName,
     email,
     phoneNum,
     company,
@@ -84,7 +87,7 @@ const MyCardMake = () => {
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
-    file.append("cardImg", e.target.files[0]);
+    file.append('cardImg', e.target.files[0]);
     dispatch(__imgPost(file));
   };
 
@@ -92,7 +95,6 @@ const MyCardMake = () => {
     dispatch(
       _MakeCard({
         cardName,
-        engName,
         email: imgGet.email !== undefined ? imgGet.email : email,
         phoneNum: imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
         company:
@@ -107,26 +109,33 @@ const MyCardMake = () => {
         fax: imgGet.fax !== undefined ? imgGet.fax : fax,
       })
     );
-    nav("/mypage");
+    nav('/mypage');
   };
 
-  useEffect(() => {}, []);
+  const isValidEmail =
+    email !== undefined && email !== null
+      ? email.includes('@') && email.includes('.')
+      : false;
 
-  localStorage.setItem("cardName", cardName);
-  localStorage.setItem("engName", engName);
-  localStorage.setItem("email", email);
-  localStorage.setItem("phoneNum", phoneNum);
+  const isValidPhone =
+    phoneNum !== undefined && phoneNum !== null
+      ? phoneNum.includes('-')
+      : false;
+
+  localStorage.setItem('cardName', cardName);
+  localStorage.setItem('email', email);
+  localStorage.setItem('phoneNum', phoneNum);
 
   return (
     <Layout>
+      <SectionHeader />
       <St_Header>
         <Icbefore
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            localStorage.removeItem("cardName");
-            localStorage.removeItem("engName");
-            localStorage.removeItem("email");
-            localStorage.removeItem("phoneNum");
+            localStorage.removeItem('cardName');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phoneNum');
             nav(-1);
           }}
         />
@@ -135,11 +144,29 @@ const MyCardMake = () => {
 
         <SaveButton
           onClick={() => {
+            if (
+              cardName.trim() === '' ||
+              company.trim() === '' ||
+              department.trim() === '' ||
+              email.trim() === '' ||
+              phoneNum.trim() === '' ||
+              position.trim() === ''
+            ) {
+              alert('필수 작성란을 작성해 주세요.');
+              return;
+            }
+            if (isValidEmail === false) {
+              alert('이메일 형식이 맞지 않습니다.');
+              return;
+            }
+            if (isValidPhone === false) {
+              alert('연락처 형식이 맞지 않습니다.');
+              return;
+            }
             PostHandler();
-            localStorage.removeItem("cardName");
-            localStorage.removeItem("engName");
-            localStorage.removeItem("email");
-            localStorage.removeItem("phoneNum");
+            localStorage.removeItem('cardName');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phoneNum');
           }}
         >
           저장
@@ -171,7 +198,7 @@ const MyCardMake = () => {
                 src={imgGet.imgUrl}
                 alt="preview-img"
                 id="card"
-                style={{ margin: "auto" }}
+                style={{ margin: 'auto' }}
               />
             )
           )}
@@ -185,15 +212,7 @@ const MyCardMake = () => {
           <St_value
             name="cardName"
             value={cardName}
-            onChange={onChage}
-          ></St_value>
-        </Item>
-
-        <Item>
-          <St_Key>영문이름</St_Key>
-          <St_value
-            name="engName"
-            value={engName}
+            placeholder="이름"
             onChange={onChage}
           ></St_value>
         </Item>
@@ -205,8 +224,12 @@ const MyCardMake = () => {
           <St_value
             name="email"
             value={imgGet.email !== undefined ? imgGet.email : email}
+            placeholder="Ex) abc@gmail.com"
             onChange={onChage}
           ></St_value>
+          {isValidEmail === false && email ? (
+            <AssistiveText>이메일을 확인하세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
@@ -216,23 +239,27 @@ const MyCardMake = () => {
           <St_value
             name="phoneNum"
             value={imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum}
+            placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
+          {phoneNum && phoneNum.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
-          {/* <CompanyIcon>
+          <CompanyIcon>
             <Iccompany />
-          </CompanyIcon> */}
+          </CompanyIcon>
           <St_value
             name="company"
             value={searchinfo.company ? searchinfo.company : company}
             onChange={onChage}
-            style={{ paddingLeft: "35px" }}
-            onClick={() => nav("/mypage/cardpatch/MyCardCompanySerach")}
+            style={{ paddingLeft: '35px' }}
+            onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
           ></St_value>
 
           <St_Address
@@ -299,6 +326,7 @@ const MyCardMake = () => {
           ></St_value>
         </Item>
       </PatchBox>
+      <SectionFooter />
     </Layout>
   );
 };

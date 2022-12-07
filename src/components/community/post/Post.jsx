@@ -18,6 +18,7 @@ import {
 } from './PostStyle';
 import { ReactComponent as Like } from '../../../images/noneLike.svg';
 import { ReactComponent as FillLike } from '../../../images/fillLike.svg';
+import LoadingPage from "../../../pages/LoadingPage";
 
 const Post = ({ post }) => {
   // 시간 카운팅
@@ -46,6 +47,8 @@ const Post = ({ post }) => {
   }
 
   const nowAt = displayedAt(new window.Date(post.createdAt));
+
+  if (post === null) return (<LoadingPage />);
 
   return (
     <PostBox>

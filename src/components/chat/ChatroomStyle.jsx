@@ -178,6 +178,6 @@ export const ChatExit = styled.div`
   height: 52px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   cursor: pointer;
 `;

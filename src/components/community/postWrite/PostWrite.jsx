@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 import { SectionLine } from '../postList/PostListStyle';
+import Swal from 'sweetalert2';
+
 
 const PostWrite = () => {
   const dispatch = useDispatch();
@@ -120,27 +122,41 @@ const PostWrite = () => {
         // 이런 현상을 막으려면, 반드시 이벤트(e) 파라메터의 preventDefault() 함수를
         // 호출해준다.
         e.preventDefault();
-
-        // if (joupGroupTest.trim() === ''
-        //   || titleTest.trim() === ''
-        //   || contentTest.trim() === ''
-        // ) return alert('게시글은 빈칸없이 작성해주세요');
-
+        //import Swal from 'sweetalert2';
         if (joupGroupTest.trim() === '' && titleTest.trim() === '' && contentTest.trim() === '') {
-          alert('게시글을 확인 해주세요');
+          Swal.fire({
+            text: '게시글을 확인 해주세요',
+            showConfirmButton: false,
+            timer: 1000,
+            width: '300px',
+          });
           return;
         }
 
         if (joupGroupTest.trim() === '') {
-          alert('직군을 선택해 주세요');
+          Swal.fire({
+            text: '직군을 선택해 주세요',
+            showConfirmButton: false,
+            timer: 1000,
+            width: '300px',
+          });
           return;
         }
         if (titleTest.trim() === '') {
-          alert('제목을 입력해 주세요');
+          Swal.fire({
+            text: '제목을 입력해 주세요', showConfirmButton: false,
+            timer: 1000,
+            width: '300px',
+          });
           return;
         }
         if (contentTest.trim() === '') {
-          alert('내용을 입력해 주세요');
+          Swal.fire({
+            text: '내용을 입력해 주세요',
+            showConfirmButton: false,
+            timer: 1000,
+            width: '300px',
+          });
           return;
         }
 

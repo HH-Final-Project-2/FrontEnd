@@ -29,6 +29,7 @@ import {
 
 import { SectionFooter } from "../../footer/FooterStyle";
 import { SectionHeader } from "../cardPost/cardPostStyle";
+import Swal from "sweetalert2";
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -136,14 +137,33 @@ const MainCards = () => {
           companyType: inputValue.companyType,
         })
       );
+      dispatch(
+        __cardInfo({
+          cardName: "",
+          email: "",
+          phoneNum: "",
+          department: "",
+          position: "",
+          tel: "",
+          fax: "",
+          companyType: "",
+          company: "",
+        })
+      );
     }
-    alert("명함 수정완료!");
+    Swal.fire({
+      text: "명함 수정 완료!",
+      showConfirmButton: false,
+      timer: 1000,
+      width: "300px",
+    });
     navigate(`/posts/get/${id}`);
   };
 
   return (
     <div>
       <Layout>
+        <SectionHeader />
         <St_Header>
           <svg
             width="24"

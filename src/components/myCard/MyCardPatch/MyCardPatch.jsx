@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Layout from "../../layout/Layout";
-import MyCardFooter from "../../footer/MyCardFooter";
-import { useNavigate } from "react-router";
-import { _getMakeCard, _PutCard } from "../../../redux/modules/mycardSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as Iccompany } from "../../../images/ic-company.svg";
-import { ReactComponent as Icaddress } from "../../../images/ic-address.svg";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Layout from '../../layout/Layout';
+import MyCardFooter from '../../footer/MyCardFooter';
+import { useNavigate } from 'react-router';
+import { _getMakeCard, _PutCard } from '../../../redux/modules/mycardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
+import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import {
   St_Header,
   PatchBox,
@@ -22,9 +22,10 @@ import {
   AddressIcon,
   Essential,
   SectionHeader,
-} from "../MyCardPatch/MyCardPatchStyle";
-import { ReactComponent as Icbefore } from "../../../images/ic-before.svg";
-import { SectionFooter } from "../../footer/FooterStyle";
+} from '../MyCardPatch/MyCardPatchStyle';
+import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { SectionFooter } from '../../footer/FooterStyle';
+import { AssistiveText } from '../../card/cardPost/cardPostStyle';
 
 const MyCardPatch = () => {
   //내 명함 수정 페이지 컴포넌트
@@ -38,7 +39,6 @@ const MyCardPatch = () => {
   console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
-    engName: cardinfo.engName,
     email: cardinfo.email,
     phoneNum: cardinfo.phoneNum,
     company: cardinfo.company,
@@ -52,7 +52,6 @@ const MyCardPatch = () => {
 
   const {
     cardName,
-    engName,
     email,
     phoneNum,
     company,
@@ -71,12 +70,11 @@ const MyCardPatch = () => {
       [name]: value,
     });
   };
-
+  console.log(phoneNum.trim() === '');
   const updateHandler = () => {
     dispatch(
       _PutCard({
         cardName,
-        engName,
         email,
         phoneNum,
         company:
@@ -94,7 +92,7 @@ const MyCardPatch = () => {
         id,
       })
     );
-    nav("/mypage/cardinfo");
+    nav('/mypage/cardinfo');
   };
 
   useEffect(() => {
@@ -105,13 +103,23 @@ const MyCardPatch = () => {
     setMakeinfo(cardinfo);
   }, [cardinfo]);
 
+  const isValidEmail =
+    email !== undefined && email !== null
+      ? email.includes('@') && email.includes('.')
+      : false;
+
+  const isValidPhone =
+    phoneNum !== undefined && phoneNum !== null
+      ? phoneNum.includes('-')
+      : false;
+
   if (cardinfo === undefined) return;
 
   return (
     <Layout>
       <St_Header>
         <Icbefore
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
             nav(-1);
           }}
@@ -119,19 +127,60 @@ const MyCardPatch = () => {
 
         <St_Title>명함 정보 편집</St_Title>
 
-        <SaveButton onClick={updateHandler}>저장</SaveButton>
+        <SaveButton
+          onClick={() => {
+            if (
+              cardName.trim() === '' ||
+              company.trim() === '' ||
+              department.trim() === '' ||
+              email.trim() === '' ||
+              phoneNum.trim() === '' ||
+              position.trim() === ''
+            ) {
+              alert('필수 작성란을 작성해 주세요.');
+              return;
+            }
+            if (isValidEmail === false) {
+              alert('이메일 형식이 맞지 않습니다.');
+              return;
+            }
+            if (isValidPhone === false) {
+              alert('연락처 형식이 맞지 않습니다.');
+              return;
+            }
+            updateHandler();
+          }}
+        >
+          저장
+        </SaveButton>
       </St_Header>
       <SectionHeader />
       <PatchBox>
+        <Item>
+          <St_Key>
+            이름<Essential>*</Essential>
+          </St_Key>
+          <St_value
+            name="cardName"
+            value={cardName || ''}
+            placeholder="이름"
+            onChange={onChage}
+          ></St_value>
+        </Item>
+
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>
           </St_Key>
           <St_value
             name="phoneNum"
-            value={phoneNum || ""}
+            value={phoneNum || ''}
+            placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
+          {phoneNum && phoneNum.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
@@ -140,13 +189,19 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="email"
-            value={email || ""}
+            value={email || ''}
+            placeholder="Ex) abc@gmail.com"
             onChange={onChage}
           ></St_value>
+          {isValidEmail === false && email ? (
+            <AssistiveText>이메일을 확인하세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
-          <St_Key>회사</St_Key>
+          <St_Key>
+            회사<Essential>*</Essential>
+          </St_Key>
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
@@ -155,8 +210,8 @@ const MyCardPatch = () => {
               name="company"
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
-              style={{ paddingLeft: "42px" }}
-              onClick={() => nav("/mypage/cardpatch/MyCardCompanySerach")}
+              style={{ paddingLeft: '42px' }}
+              onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
             ></St_value>
           </div>
 
@@ -172,7 +227,7 @@ const MyCardPatch = () => {
           >
             <AddressBox>
               <AddressIcon>
-                <Icaddress style={{ marginRight: "8px" }} />
+                <Icaddress style={{ marginRight: '8px' }} />
               </AddressIcon>
               <SearchAddress>
                 {searchinfo.companyAddress
@@ -189,7 +244,7 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="position"
-            value={position || ""}
+            value={position || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -200,19 +255,19 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="department"
-            value={department || ""}
+            value={department || ''}
             onChange={onChage}
           ></St_value>
         </Item>
 
         <Item>
           <St_Key>유선전화</St_Key>
-          <St_value name="tel" value={tel || ""} onChange={onChage}></St_value>
+          <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
         </Item>
 
         <Item>
           <St_Key>팩스</St_Key>
-          <St_value name="fax" value={fax || ""} onChange={onChage}></St_value>
+          <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
       <MyCardFooter />

@@ -35,6 +35,7 @@ import {
   SectionHeader,
 } from "./cardPostStyle";
 import { SectionFooter } from "../../footer/FooterStyle";
+import Swal from "sweetalert2";
 import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
 import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
 const MainCards = () => {
@@ -180,11 +181,21 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
-      alert("명함 작성 완료!");
+      Swal.fire({
+        text: "명함 작성 완료!",
+        showConfirmButton: false,
+        timer: 1000,
+        width: "300px",
+      });
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();
     } else {
-      alert("입력한 내용을 확인해주세요");
+      Swal.fire({
+        text: "입력한 내용을 확인해주세요",
+        showConfirmButton: false,
+        timer: 1000,
+        width: "300px",
+      });
     }
   };
   //

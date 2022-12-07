@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { __schedulesDetailGet } from "../../../redux/modules/SchedulesSlice";
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const accessToken = localStorage.getItem("authorization");
 const refreshToken = localStorage.getItem("refresh-Token");
@@ -76,7 +77,12 @@ const MySchedulesDetail = () => {
               .then(function () {
                 // always executed
               });
-            alert("일정이 삭제되었습니다");
+            Swal.fire({
+              text: '일정이 삭제되었습니다',
+              showConfirmButton: false,
+              timer: 1000,
+              width: '300px',
+            });
             navigate("/MySchedules");
           }}
         >

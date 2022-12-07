@@ -131,7 +131,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => {},
+        (data) => { },
         headers
       )
       .unsubscribe();
@@ -161,8 +161,28 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) {}
+    } catch (error) { }
   };
+
+  const removeCheck = () => {
+    if (window.confirm('채팅방을 나가시겠습니까?') === true) {
+      // disConneted();
+      // dispatch(deleteChatroom(id === '' ? chatlistid : id));
+      nav('/chat');
+    } else {
+      return;
+    }
+  };
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const resizeWidth = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', resizeWidth);
+    return () => {
+      window.removeEventListener('resize', resizeWidth);
+    };
+  }, []);
 
   return (
     <Layout>
@@ -180,27 +200,59 @@ const Chatroom = () => {
           <More onClick={() => setOpen(true)} />
         </div>
       </St_Header>
-      <BottomSheet
-        open={open}
-        onDismiss={() => {
-          setOpen(false);
-        }}
-      >
-        {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
-        <Board>
-          <ChatExit
-            onClick={() => {
-              disConneted();
-              dispatch(deleteChatroom(id === '' ? chatlistid : id));
-            }}
-          >
-            채팅방 나가기
-            <div>
-              <Exit />
-            </div>
-          </ChatExit>
-        </Board>
-      </BottomSheet>
+      {windowWidth < 1200 ? (
+        <BottomSheet
+          open={open}
+          onDismiss={() => {
+            setOpen(false);
+          }}
+          style={{
+            '--rsbs-max-w': '375px',
+            '--rsbs-ml': 'auto',
+            '--rsbs-mr': 'auto',
+          }}
+        >
+          {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
+          <Board>
+            <ChatExit
+              onClick={() => {
+                removeCheck();
+              }}
+            >
+              채팅방 나가기
+              <div>
+                <Exit />
+              </div>
+            </ChatExit>
+          </Board>
+        </BottomSheet>
+      ) : (
+        <BottomSheet
+          open={open}
+          onDismiss={() => {
+            setOpen(false);
+          }}
+          style={{
+            '--rsbs-max-w': '375px',
+            '--rsbs-ml': 'auto',
+            '--rsbs-mr': '537px',
+          }}
+        >
+          {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
+          <Board>
+            <ChatExit
+              onClick={() => {
+                removeCheck();
+              }}
+            >
+              채팅방 나가기
+              <div>
+                <Exit />
+              </div>
+            </ChatExit>
+          </Board>
+        </BottomSheet>
+      )}
 
       <ChatRoomBox ref={scrollRef}>
         {chatList &&
