@@ -140,19 +140,24 @@ const Chatroom = () => {
   };
 
   const sendMessage = () => {
-    client.send(
-      '/pub/chat/message',
-      headers,
-      JSON.stringify({
-        roomId: id === '' ? chatlistid : id,
-        message: message,
-      })
-    );
+    if (message.trim() === '') {
+      return setMessage('');
+    } else {
+      client.send(
+        '/pub/chat/message',
+        headers,
+        JSON.stringify({
+          roomId: id === '' ? chatlistid : id,
+          message: message,
+        })
+      );
+    }
+
     setMessage('');
   };
 
   const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey === false && message.trim !== '') {
+    if (e.keyCode === 13 && e.shiftKey === false) {
       sendMessage('');
     }
   };
