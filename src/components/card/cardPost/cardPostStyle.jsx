@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 //헤더 박스 div
 export const St_Header = styled.div`
@@ -365,82 +365,6 @@ export const FormCheckOther = styled.input.attrs({ type: 'radio' })`
     color: #bdbdbd;
   }
   &:checked + ${CheckOther} {
-    border: 1px solid #e2e2e2;
-
-    background: #ffffff;
-    color: #222222;
-  }
-  display: none;
-`;
-
-//회사 검색 라디오 버튼
-export const CheckSearch = styled.span`
-  font-weight: 400;
-  font-size: 14px;
-  width: 160px;
-  height: 48px;
-  background: #e6e6e6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #777;
-  border-radius: 4px 0px 0px 4px;
-`;
-
-export const FormCheckSearch = styled.div`
-  &:checked {
-    display: inline-block;
-    text-align: center;
-    height: 35px;
-    line-height: 33px;
-    font-weight: 500;
-    display: none;
-
-    border: 1px solid #e2e2e2;
-
-    background: #f5f5f5;
-    color: #bdbdbd;
-  }
-  &:checked + ${CheckSearch} {
-    border: 1px solid #e2e2e2;
-
-    background: #ffffff;
-    color: #222222;
-  }
-  display: none;
-`;
-
-//직접 입력 라디오 버튼
-export const CheckTyping = styled.span`
-  font-weight: 400;
-  font-size: 14px;
-  width: 160px;
-  height: 48px;
-  background: #e6e6e6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #777;
-  border-radius: 0px 4px 4px 0px;
-`;
-
-export const FormCheckTyping = styled.div`
-  &:checked {
-    display: inline-block;
-    text-align: center;
-    height: 35px;
-    line-height: 33px;
-    font-weight: 500;
-    display: none;
-
-    border: 1px solid #e2e2e2;
-
-    background: #f5f5f5;
-    color: #bdbdbd;
-  }
-  &:checked + ${CheckSearch} {
     border: 1px solid #e2e2e2;
 
     background: #ffffff;

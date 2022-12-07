@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
   Section1,
   Section1Title,
   Section2,
-} from "../../community/postList/PostListStyle";
+} from '../../community/postList/PostListStyle';
 import {
   ContentSection,
   TitieBox,
@@ -17,15 +17,15 @@ import {
   ContentBox,
   Content,
   DeleteBtn,
-} from "./myShedulesDetailStyle";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { __schedulesDetailGet } from "../../../redux/modules/SchedulesSlice";
-import { useParams } from "react-router-dom";
+} from './myShedulesDetailStyle';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { __schedulesDetailGet } from '../../../redux/modules/SchedulesSlice';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+const accessToken = localStorage.getItem('authorization');
+const refreshToken = localStorage.getItem('refresh-Token');
 
 const MySchedulesDetail = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const MySchedulesDetail = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={() => {
-              navigate("/mySchedules");
+              navigate('/mySchedules');
             }}
           >
             <path d="M9 1L2 8.5L9 16" stroke="#1A1F27" />
@@ -62,7 +62,7 @@ const MySchedulesDetail = () => {
             const config = {
               headers: {
                 Authorization: accessToken,
-                "Refresh-Token": refreshToken,
+                'Refresh-Token': refreshToken,
               },
             };
             axios
@@ -83,7 +83,7 @@ const MySchedulesDetail = () => {
               timer: 1000,
               width: '300px',
             });
-            navigate("/MySchedules");
+            navigate('/MySchedules');
           }}
         >
           삭제
