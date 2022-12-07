@@ -1,13 +1,13 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router';
-import Layout from '../../layout/Layout';
+import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router";
+import Layout from "../../layout/Layout";
 import {
   __viewGet,
   __fixPost,
   __cardInfo,
-} from '../../../redux/modules/CardsSlice';
+} from "../../../redux/modules/CardsSlice";
 import {
   St_Header,
   PatchBox,
@@ -25,11 +25,11 @@ import {
   Essential,
   AssistiveText,
   CompanyInput,
-} from './MainCardsPutStyle';
+} from "./MainCardsPutStyle";
 
-import { SectionFooter } from '../../footer/FooterStyle';
-import { SectionHeader } from '../cardPost/cardPostStyle';
-import Swal from 'sweetalert2';
+import { SectionFooter } from "../../footer/FooterStyle";
+import { SectionHeader } from "../cardPost/cardPostStyle";
+import Swal from "sweetalert2";
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -46,16 +46,16 @@ const MainCards = () => {
 
   const preventClose = (e = BeforeUnloadEvent) => {
     e.preventDefault();
-    e.returnValue = '';
+    e.returnValue = "";
   };
 
   useEffect(() => {
     (() => {
-      window.addEventListener('beforeunload', preventClose);
+      window.addEventListener("beforeunload", preventClose);
     })();
 
     return () => {
-      window.removeEventListener('beforeunload', preventClose);
+      window.removeEventListener("beforeunload", preventClose);
     };
   }, []);
 
@@ -66,7 +66,7 @@ const MainCards = () => {
   const [inputValue, setInputValue] = useState({
     cardName: cardFix.cardName,
     email: cardFix.email,
-    company: companyOnly ? companyOnly : cardFix.company,
+    company: cardFix.company ? cardFix.company : companyOnly,
     companyAddress: cardFix.companyAddress,
     companyType: cardFix.companyType,
     phoneNum: cardFix.phoneNum,
@@ -82,7 +82,7 @@ const MainCards = () => {
 
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
-      ? inputValue.email.includes('@') && inputValue.email.includes('.')
+      ? inputValue.email.includes("@") && inputValue.email.includes(".")
       : false;
 
   const isValidInput =
@@ -129,7 +129,7 @@ const MainCards = () => {
           position: inputValue.position,
           tel: inputValue.tel,
           fax: inputValue.fax,
-          company: companyGet.company ? companyGet.company : inputValue.company,
+          company: companyGet.company ? companyGet.company : companyOnly,
           companyAddress:
             companyGet.companyAddress !== undefined
               ? companyGet.companyAddress
@@ -137,12 +137,25 @@ const MainCards = () => {
           companyType: inputValue.companyType,
         })
       );
+      dispatch(
+        __cardInfo({
+          cardName: "",
+          email: "",
+          phoneNum: "",
+          department: "",
+          position: "",
+          tel: "",
+          fax: "",
+          companyType: "",
+          company: "",
+        })
+      );
     }
     Swal.fire({
-      text: '명함 수정 완료!',
+      text: "명함 수정 완료!",
       showConfirmButton: false,
       timer: 1000,
-      width: '300px',
+      width: "300px",
     });
     navigate(`/posts/get/${id}`);
   };
@@ -158,7 +171,7 @@ const MainCards = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               navigate(-1);
             }}
@@ -184,7 +197,7 @@ const MainCards = () => {
               name="cardName"
               minLength="2"
               maxLength="5"
-              value={inputValue.cardName || ''}
+              value={inputValue.cardName || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -201,7 +214,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-              inputValue.phoneNum.includes('-') === false ? (
+            inputValue.phoneNum.includes("-") === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -232,8 +245,8 @@ const MainCards = () => {
                   type="radio"
                   id="find"
                   name="companyType"
-                  value={'find'}
-                  checked={companyHow === 'find'}
+                  value={"find"}
+                  checked={companyHow === "find"}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -245,8 +258,8 @@ const MainCards = () => {
                   type="radio"
                   id="myself"
                   name="companyHow"
-                  value={'myself'}
-                  checked={companyHow === 'myself'}
+                  value={"myself"}
+                  checked={companyHow === "myself"}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -255,15 +268,15 @@ const MainCards = () => {
               </RadioDetail>
             </RadioBox>
 
-            {companyHow === 'myself' ? (
+            {companyHow === "myself" ? (
               <div>
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={inputValue.company || ''}
-                  onChange={(e) => {
-                    setInputValue({ company: e.target.value });
-                  }}
+                  value={
+                    inputValue.company ? inputValue.company : companyGet.company
+                  }
+                  onChange={valueChangeHandler}
                 />
                 <AddressSearch>
                   <p
@@ -272,24 +285,24 @@ const MainCards = () => {
                         __cardInfo({
                           cardName: inputValue.cardName
                             ? inputValue.cardName
-                            : '',
+                            : "",
                           email: inputValue.email,
                           phoneNum: inputValue.phoneNum,
                           department: inputValue.department
                             ? inputValue.department
-                            : '',
+                            : "",
                           position: inputValue.position
                             ? inputValue.position
-                            : '',
+                            : "",
                           tel: inputValue.tel,
                           fax: inputValue.fax,
                           companyType: inputValue.companyType
                             ? inputValue.companyType
-                            : '',
-                          company: inputValue.company ? inputValue.company : '',
+                            : "",
+                          company: inputValue.company ? inputValue.company : "",
                         })
                       );
-                      navigate('/posts/companyOtherSearch');
+                      navigate("/posts/companyOtherSearch");
                     }}
                   >
                     회사 주소 검색
@@ -300,14 +313,10 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  value={
-                    companyGet.company
-                      ? companyGet.company
-                      : inputValue.company || ''
-                  }
-                  onChange={(e) => {
-                    setInputValue({ company: e.target.value });
-                  }}
+                  value={companyGet.company ? companyGet.company : companyOnly}
+                  // onChange={(e) => {
+                  //   setInputValue({ company: e.target.value });
+                  // }}
                   onClick={() => {
                     dispatch(
                       __cardInfo({
@@ -318,18 +327,19 @@ const MainCards = () => {
                         phoneNum: inputValue.phoneNum,
                         department: inputValue.department
                           ? inputValue.department
-                          : '',
+                          : "",
                         position: inputValue.position
                           ? inputValue.position
-                          : '',
+                          : "",
                         tel: inputValue.tel,
                         fax: inputValue.fax,
                         companyType: inputValue.companyType
                           ? inputValue.companyType
-                          : '',
+                          : "",
+                        company: inputValue.company ? inputValue.company : "",
                       })
                     );
-                    navigate('/posts/companySearch');
+                    navigate("/posts/companySearch");
                   }}
                 ></St_value>
                 <St_Address
@@ -349,7 +359,7 @@ const MainCards = () => {
                         viewBox="0 0 12 15"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        style={{ marginRight: '8px' }}
+                        style={{ marginRight: "8px" }}
                       >
                         <path
                           fillRule="evenodd"
@@ -400,7 +410,7 @@ const MainCards = () => {
               placeholder="회사번호"
               name="tel"
               maxLength="13"
-              value={inputValue.tel || ''}
+              value={inputValue.tel || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
@@ -411,7 +421,7 @@ const MainCards = () => {
               placeholder="팩스"
               name="fax"
               maxLength="13"
-              value={inputValue.fax || ''}
+              value={inputValue.fax || ""}
               onChange={valueChangeHandler}
             ></St_value>
           </Item>
