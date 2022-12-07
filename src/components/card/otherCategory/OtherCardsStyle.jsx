@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CategoryBtnBox = styled.div`
   margin: 18px 0px 0px 20px;
@@ -172,5 +172,18 @@ export const CardInCardDetail2Email = styled.div`
 export const CardInCardDetail2Phone = styled.div``;
 
 export const NoneCardPage = styled.div`
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .noneCard {
+    border-bottom: 1px solid #f5f6fa;
+  }
+
+  .nonePageText {
+    margin-top: 32px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #8892a0;
+  }
 `;
