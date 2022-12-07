@@ -15,10 +15,10 @@ const Chatlist = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  const chatList = useSelector((state) => state.chat.chat);
-  console.log(chatList);
+  // const chatList = useSelector((state) => state.chat.chat);
+  // console.log(chatList);
   const { chatRoom } = useSelector((state) => state.chat);
-  console.log(chatRoom);
+  console.log(chatRoom.length);
 
   useEffect(() => {
     dispatch(getChatRoom());
@@ -28,7 +28,7 @@ const Chatlist = () => {
   //   chatRoom[0].id;
   // }, [chatRoom]);
 
-  if (chatRoom === undefined && chatList === undefined) return;
+  if (chatRoom === undefined) return;
 
   return (
     <div>
