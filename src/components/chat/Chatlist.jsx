@@ -163,5 +163,8 @@ const NonChat = styled.div`
   flex-direction: column;
   .text {
     margin-top: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #8892a0;
   }
 `;
