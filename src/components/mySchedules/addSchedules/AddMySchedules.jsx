@@ -22,8 +22,7 @@ import {
 } from "./AddMySchedulesStyle";
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
 import { EndTime } from "../mySchedulesDetail/myShedulesDetailStyle";
-import Swal from 'sweetalert2';
-import { set } from "react-hook-form";
+import Swal from "sweetalert2";
 
 
 const AddMySchedules = () => {
@@ -31,6 +30,7 @@ const AddMySchedules = () => {
   const [title, setTitle] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  console.log(startDate);
 
   const { isLoading } = useSelector((state) => state.ScheduleSlice);
 
@@ -102,17 +102,17 @@ const AddMySchedules = () => {
       );
 
       Swal.fire({
-        text: '일정이 추가 되었습니다',
+        text: "일정이 추가 되었습니다",
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
+        width: "300px",
       });
     } else {
       Swal.fire({
-        text: '작성한 내용을 확인해주세요',
+        text: "작성한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
+        width: "300px",
       });
     }
   };
@@ -142,11 +142,13 @@ const AddMySchedules = () => {
       {/* body */}
       <TitleTextArea
         type="text"
+        maxLength="30"
         onChange={(e) => setTitle(e.target.value)}
         placeholder="제목을 입력해 주세요."
       />
       <ContentTextArea
         type="text"
+        maxLength="80"
         onChange={(e) => setTodo(e.target.value)}
         placeholder="내용을 입력해 주세요."
       />

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CategoryBtnBox = styled.div`
   margin: 18px 0px 0px 20px;
@@ -37,10 +37,6 @@ export const CategoryBtn1 = styled.button`
   font-weight: 600;
   font-size: 16px;
   color: #222222;
-
-  :focus {
-    border: none;
-  }
 `;
 export const CategoryBtn2 = styled.button`
   cursor: pointer;
@@ -49,10 +45,6 @@ export const CategoryBtn2 = styled.button`
   font-size: 16px;
   font-weight: 500;
   color: #bdbdbd;
-
-  :focus {
-    border: none;
-  }
 `;
 
 export const CardList = styled.div`

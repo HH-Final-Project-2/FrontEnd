@@ -94,6 +94,7 @@ export const UserChat = styled.div`
 `;
 
 export const Footer = styled.div`
+  display: flex;
   width: 373px;
   height: 80px;
   position: fixed;
@@ -108,10 +109,11 @@ export const Footer = styled.div`
   }
 `;
 
-export const Input = styled.textarea`
+export const Input = styled.input`
   display: flex;
   width: 335px;
   height: 40px;
+  min-height: 40px;
   border: none;
   border-radius: 40px;
   outline: none;
@@ -174,10 +176,14 @@ export const SectionWall = styled.div`
 `;
 
 export const ChatExit = styled.div`
-  width: 375px;
-  height: 52px;
+  padding-top: 6px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 250px;
+  height: 42px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+
   cursor: pointer;
 `;

@@ -89,7 +89,22 @@ const MyNickName = () => {
       </ButtonX>
       <Btns>
         <CancelBtn onClick={() => nav('/mypage')}>취소</CancelBtn>
-        <SaveBtn onClick={updateHandler}>저장</SaveBtn>
+        <SaveBtn
+          onClick={() => {
+            if (nickname.trim() === '') {
+              Swal.fire({
+                text: '닉네임을 입력해주세요.',
+                showConfirmButton: false,
+                timer: 1000,
+                width: '300px',
+              });
+              return;
+            }
+            updateHandler();
+          }}
+        >
+          저장
+        </SaveBtn>
       </Btns>
       <MyCardFooter />
     </Layout>

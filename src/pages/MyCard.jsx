@@ -18,10 +18,6 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  const test = useSelector((state) => state.cardinfo);
-  console.log('콘솔', cardinfo === '명함을 등록해주세요');
-
-  console.log(cardinfo);
 
   useEffect(() => {
     dispatch(_getMakeCard());

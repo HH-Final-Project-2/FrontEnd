@@ -44,6 +44,7 @@ import { ReactComponent as SendDmFill } from '../../images/sendMessageFill.svg';
 import { ReactComponent as More } from '../../images/ic-more.svg';
 import { ReactComponent as Exit } from '../../images/ic-exit.svg';
 import { Board } from '../myCard/SharebottomSheet/ShareBottomSheetStyle';
+import Swal from 'sweetalert2';
 
 const Chatroom = () => {
   const socket = new SockJS('https://bkyungkeem.shop/stomp/chat');
@@ -71,6 +72,18 @@ const Chatroom = () => {
   console.log(chatList);
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
+
+  //반응형 바텀시트
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const resizeWidth = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', resizeWidth);
+    return () => {
+      window.removeEventListener('resize', resizeWidth);
+    };
+  }, []);
 
   useEffect(() => {
     dispatch(getUserinfo(id === '' ? chatlistid : id));
@@ -131,7 +144,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => { },
+        (data) => {},
         headers
       )
       .unsubscribe();
@@ -139,20 +152,25 @@ const Chatroom = () => {
   };
 
   const sendMessage = () => {
-    client.send(
-      '/pub/chat/message',
-      headers,
-      JSON.stringify({
-        roomId: id === '' ? chatlistid : id,
-        message: message,
-      })
-    );
+    if (message.trim() === '') {
+      return setMessage('');
+    } else {
+      client.send(
+        '/pub/chat/message',
+        headers,
+        JSON.stringify({
+          roomId: id === '' ? chatlistid : id,
+          message: message,
+        })
+      );
+    }
+
     setMessage('');
   };
 
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
-      sendMessage('');
+      sendMessage();
     }
   };
 
@@ -161,28 +179,37 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const removeCheck = () => {
-    if (window.confirm('채팅방을 나가시겠습니까?') === true) {
-      // disConneted();
-      // dispatch(deleteChatroom(id === '' ? chatlistid : id));
-      nav('/chat');
-    } else {
-      return;
-    }
+    setOpen(false);
+    Swal.fire({
+      text: '채팅방을 나가시겠습니까?',
+      showCancelButton: true,
+      confirmButtonColor: '#5546FF',
+      cancelButtonColor: '#BBB5FF',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      width: '300px',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼 누를시 동작
+        Swal.fire({
+          text: '채팅방 나가기 완료',
+          width: '300px',
+          timer: 1000,
+          showConfirmButton: false,
+        });
+        dispatch(deleteChatroom(id === '' ? chatlistid : id));
+        setTimeout(() => {
+          nav('/chat');
+        }, 100);
+      }
+    });
   };
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const resizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', resizeWidth);
-    return () => {
-      window.removeEventListener('resize', resizeWidth);
-    };
-  }, []);
+
+  if (chatList === undefined) return;
 
   return (
     <Layout>
@@ -200,73 +227,58 @@ const Chatroom = () => {
           <More onClick={() => setOpen(true)} />
         </div>
       </St_Header>
-      {windowWidth < 1200 ? (
-        <BottomSheet
-          open={open}
-          onDismiss={() => {
-            setOpen(false);
-          }}
-          style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': 'auto',
-          }}
-        >
-          {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
-          <Board>
-            <ChatExit
-              onClick={() => {
-                removeCheck();
-              }}
-            >
-              채팅방 나가기
-              <div>
-                <Exit />
-              </div>
-            </ChatExit>
-          </Board>
-        </BottomSheet>
-      ) : (
-        <BottomSheet
-          open={open}
-          onDismiss={() => {
-            setOpen(false);
-          }}
-          style={{
-            '--rsbs-max-w': '375px',
-            '--rsbs-ml': 'auto',
-            '--rsbs-mr': '537px',
-          }}
-        >
-          {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
-          <Board>
-            <ChatExit
-              onClick={() => {
-                removeCheck();
-              }}
-            >
-              채팅방 나가기
-              <div>
-                <Exit />
-              </div>
-            </ChatExit>
-          </Board>
-        </BottomSheet>
-      )}
+      <BottomSheet
+        open={open}
+        onDismiss={() => {
+          setOpen(false);
+        }}
+        style={{
+          '--rsbs-max-w': '375px',
+          '--rsbs-ml': 'auto',
+          '--rsbs-mr': 'auto',
+        }}
+      >
+        <Board>
+          <ChatExit
+            onClick={() => {
+              disConneted();
+              dispatch(deleteChatroom(id === '' ? chatlistid : id));
+            }}
+          >
+            나가기
+            <div>
+              <Exit />
+            </div>
+          </ChatExit>
+        </Board>
+      </BottomSheet>
 
       <ChatRoomBox ref={scrollRef}>
         {chatList &&
-          chatList.map((chat) => {
+          chatList.map((chat, index) => {
             const createdAt = chat.createdAt;
-            const time = createdAt.split(' ');
+            const ampm = createdAt.split(' ')[1];
+            const time = createdAt.split(' ')[2];
+
+            // let displayTime = true;
+
+            // if (index !== chat.length - 1) {
+            //   const lastsender = chatList[index + 1]?.userId;
+
+            //   if (lastsender === chat[index + 1]?.userId) {
+            //     const lastTime = chatList[index + 1]?.createdAt.split(' ')[2];
+
+            //     if (lastTime === time) displayTime = false; // 다음 메시지와 시간이 같을 경우 false
+            //   }
+            // }
 
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
-                  {time[1] === 'AM' ? (
-                    <MyChatTime>{'오전 ' + time[2]}</MyChatTime>
+                  {ampm === 'AM' ? (
+                    <MyChatTime>{'오전 ' + time}</MyChatTime>
                   ) : (
-                    <MyChatTime>{'오후 ' + time[2]}</MyChatTime>
+                    <MyChatTime>{'오후 ' + time}</MyChatTime>
                   )}
 
                   <MyChat>{chat.message}</MyChat>
@@ -277,10 +289,10 @@ const Chatroom = () => {
               return (
                 <UserChatBox key={message.id}>
                   <UserChat>{chat.message}</UserChat>
-                  {time[1] === 'AM' ? (
-                    <UserChatTime>{'오전 ' + time[2]}</UserChatTime>
+                  {ampm === 'AM' ? (
+                    <UserChatTime>{'오전 ' + time}</UserChatTime>
                   ) : (
-                    <UserChatTime>{'오후 ' + time[2]}</UserChatTime>
+                    <UserChatTime>{'오후 ' + time}</UserChatTime>
                   )}
                 </UserChatBox>
               );
@@ -297,9 +309,17 @@ const Chatroom = () => {
           />
           <div className="dm">
             {message.length > 0 ? (
-              <SendDmFill onClick={sendMessage} />
+              <SendDmFill
+                onClick={() => {
+                  sendMessage();
+                }}
+              />
             ) : (
-              <SendDm onClick={sendMessage} />
+              <SendDm
+                onClick={() => {
+                  sendMessage();
+                }}
+              />
             )}
           </div>
         </Footer>

@@ -152,7 +152,7 @@ const MyCardMake = () => {
               phoneNum.trim() === '' ||
               position.trim() === ''
             ) {
-              alert('필수 작성란을 작성해 주세요.');
+              alert('필수란을 작성해주세요.');
               return;
             }
             if (isValidEmail === false) {

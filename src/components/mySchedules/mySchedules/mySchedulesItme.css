@@ -208,10 +208,10 @@
 }
 
 .title {
-  width: 246px;
+  width: 190px;
   margin-left: 8px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 
   white-space: nowrap;
   overflow: hidden;
@@ -220,7 +220,7 @@
 }
 
 .todo {
-  width: 262px;
+  width: 210px;
   margin-top: 7px;
   font-size: 14px;
   font-weight: 400;
@@ -232,12 +232,14 @@
 }
 
 .dateTime {
+  margin-top: 4px;
+  margin-left: 22px;
   display: flex;
   flex-direction: column;
-  margin-left: 0px;
 }
 
 .startDate {
+  width: 114px;
   font-size: 12px;
   font-weight: 400;
   color: #52596b;
@@ -253,7 +255,4 @@
 
 .deleteBtn {
   margin-left: 320px;
-}
-
-.todoOneBox {
 }
