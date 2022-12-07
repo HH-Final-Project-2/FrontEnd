@@ -163,20 +163,24 @@ const FindPassword = () => {
   const onSubmit = (data) => {
     authEmail.success === true
       ? dispatch(
-          passwordFind({
-            email: watchForEmail,
-            code: auth,
-            password: watchForPassword,
-            passwordCheck: watchForPasswordCheck,
-          }),
-          navigate("/login")
-        )
+        passwordFind({
+          email: watchForEmail,
+          code: auth,
+          password: watchForPassword,
+          passwordCheck: watchForPasswordCheck,
+        }),
+        navigate("/login")
+      )
       : Swal.fire({
-          text: "이메일 인증이 필요합니다",
-          showConfirmButton: false,
-          timer: 1000,
-          width: "300px",
-        });
+        title: "이메일 인증이 필요합니다",
+        showConfirmButton: false,
+        timer: 1000,
+        width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
   };
   return (
     <JoinForm onSubmit={handleSubmit(onSubmit)}>

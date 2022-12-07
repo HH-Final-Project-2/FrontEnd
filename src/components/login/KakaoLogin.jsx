@@ -16,11 +16,15 @@ const KakaoLogin = () => {
           localStorage.setItem('nickname', res.data.data.nickname);
 
           Swal.fire({
-            text: "Businus에 오신걸 환영합니다",
+            title: "Businus에 오신걸 환영합니다",
             showCancelButton: false,
             confirmButtonColor: '#5546FF',
             confirmButtonText: '확인',
             width: '300px',
+            customClass: {
+              popup: 'login-class',
+              title: 'title-class',
+            },
           }).then((result) => {
             if (result.isConfirmed) {
               window.location.replace('/cards');
