@@ -22,7 +22,7 @@ export const Box = styled.div`
 `;
 export const BannerLayout = styled.div`
   position: fixed;
-  bottom: -100px;
+  bottom: -80px;
   margin-right: 1000px;
 `;
 
@@ -52,7 +52,7 @@ export const DivLayout2 = styled.div`
 export const Version = styled.div`
   position: fixed;
   margin-right: 858px;
-  bottom: 372px;
+  bottom: 392px;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 1px;

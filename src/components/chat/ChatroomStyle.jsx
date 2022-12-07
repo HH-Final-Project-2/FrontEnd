@@ -176,6 +176,8 @@ export const SectionWall = styled.div`
 `;
 
 export const ChatExit = styled.div`
+  padding-top: 6px;
+  margin-bottom: 6px;
   font-size: 16px;
   font-weight: 500;
   width: 250px;
