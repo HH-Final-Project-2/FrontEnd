@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TopFiveContainer = styled.div`
   padding-top: 16px;
 
-  width: 335px;
+  width: 256px;
   height: 188px;
 
   background: #f5f6fa;
@@ -14,16 +14,19 @@ export const TopFiveContainer = styled.div`
 
 export const TopFiveSection1 = styled.div`
   display: flex;
+  margin-left: 15px;
 `;
 
 export const TopFiveSection2 = styled.div`
   display: flex;
+  margin-left: 15px;
   margin-top: 12px;
 `;
 
 export const TopFiveSection3 = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-left: 15px;
   margin-top: 12px;
 `;
 
@@ -48,6 +51,8 @@ export const Date = styled.div`
   font-weight: 400;
   font-size: 12px;
 
+  margin-left: 4px;
+
   color: #8892a0;
 `;
 
@@ -63,6 +68,7 @@ export const Job = styled.div`
 `;
 
 export const Title = styled.div`
+  margin-left: 8px;
   max-width: 180px;
   font-weight: 500;
   font-size: 16px;
@@ -86,9 +92,9 @@ export const Content = styled.div`
 `;
 
 export const Image = styled.div`
-  margin-right: 20px;
+  margin-right: 16px;
   img {
-    width: 72px;
+    width: 54px;
     height: 50px;
     border-radius: 8px;
 
@@ -98,7 +104,8 @@ export const Image = styled.div`
 
 export const Line = styled.div`
   margin-top: 16px;
-  width: 318px;
+  margin-left: 12px;
+  width: 232px;
   height: 1px;
 
   background: #e2e6ef;

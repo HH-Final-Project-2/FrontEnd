@@ -151,7 +151,7 @@ export const CardInCardDetail2 = styled.div`
   -webkit-transform: scale(0.8);
 
   margin-top: 17px;
-  margin-right: 59px;
+  margin-right: 30px;
 `;
 export const CardInCardDetail1Name = styled.div`
   font-weight: 500;
@@ -162,7 +162,6 @@ export const CardInCardDetail1Name = styled.div`
   -webkit-transform: scale(0.8);
 `;
 export const CardInCardDetail1Position = styled.div`
-
   font-weight: 500;
   font-size: 10px;
   -webkit-transform: scale(0.65);
@@ -180,6 +179,18 @@ export const CardInCardDetail2Phone = styled.div`
 
 // 명함 없을 때 보여주는 페이지
 export const NoneCardPage = styled.div`
-  height: 100px;
-  background: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .noneCard {
+    border-bottom: 1px solid #f5f6fa;
+  }
+
+  .nonePageText {
+    margin-top: 32px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #8892a0;
+  }
 `;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ComInfor = styled.div`
   cursor: pointer;
@@ -82,4 +82,47 @@ export const Button = styled.a`
   left: 310px;
   cursor: pointer;
   font-size: 14px;
+`;
+
+export const PaginationBox = styled.div`
+  margin-bottom: 200px;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  ul.pagination li a {
+    text-decoration: none;
+    color: #bcc2cc;
+    font-size: 12px;
+  }
+  ul.pagination li.active a {
+    color: white;
+  }
+  ul.pagination li.active {
+    background: #5546ff;
+    border-radius: 50%;
+  }
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+  }
+`;
+
+export const Section3 = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

@@ -7,10 +7,9 @@ export const _MakeCard = createAsyncThunk(
   "post/card",
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post(
-        "/api/mypages", payload);
+      const data = await instance.post("/api/mypages", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 //get
@@ -20,7 +19,7 @@ export const _getMakeCard = createAsyncThunk(
     try {
       const { data } = await instance.get("/api/mypages");
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 //put
@@ -28,29 +27,32 @@ export const _PutCard = createAsyncThunk(
   "put/card",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.put(`/api/mypages/${payload.id}`, payload);
+      const { data } = await instance.put(
+        `/api/mypages/${payload.id}`,
+        payload
+      );
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 //검색
 export const _searchGet = createAsyncThunk(
-  "SEARCH_GET",
+  "SEARCH_get",
   async (payload, thunkAPI) => {
     try {
       const data = await instance.post(`/api/companySearch/?keyword=${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 //회사명, 주소 저장
 export const _companyInfo = createAsyncThunk(
-  "COMPANY_INFO",
+  "COMPANY_info",
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post("/api/companyInfo", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 
@@ -98,9 +100,8 @@ export const mycardSlice = createSlice({
     [_companyInfo.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.companyInfo = { ...action.payload };
-    }
-
+    },
   },
 });
-export const { } = mycardSlice.actions;
+export const {} = mycardSlice.actions;
 export default mycardSlice.reducer;

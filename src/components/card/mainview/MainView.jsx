@@ -26,6 +26,7 @@ import {
   CardInCardDetail1Position,
   CardInCardDetail2Email,
   CardInCardDetail2Phone,
+  NoneCardPage,
 } from './MainViewStyle';
 import { ReactComponent as NoneCard } from '../../../images/noneCard.svg';
 
@@ -88,59 +89,66 @@ const MainView = () => {
       <CardList>
         {[mainpost].includes('명') ||
         mainpost === undefined ||
-        mainpost === '명함을 등록해주세요'
-          ? null
-          : mainpost.map((main) => {
-              if (main.companyType === 'own') {
-                return (
-                  <Card
-                    key={main.id}
-                    onClick={() => {
-                      navigate(`/posts/get/${main.id}`);
-                    }}
-                  >
-                    <CardInfo>
-                      <CardName>{main.cardName}</CardName>
-                      <CardInfoDetail>
-                        <Position>
-                          {main.position.length > 5
-                            ? main.position.slice(0, 5) + '...'
-                            : main.position}
-                        </Position>
-                        <Department>
-                          {main.department.length > 5
-                            ? main.department.slice(0, 5) + '...'
-                            : main.department}
-                        </Department>
-                      </CardInfoDetail>
-                    </CardInfo>
-                    <CardInCard>
-                      <CardInCardDetail1>
-                        <CardInCardDetail1Name>
-                          {main.cardName}
-                        </CardInCardDetail1Name>
-                        <CardInCardDetail1Position>
-                          {main.position.length > 5
-                            ? main.position.slice(0, 5) + '...'
-                            : main.position}
-                        </CardInCardDetail1Position>
-                      </CardInCardDetail1>
+        mainpost === '명함을 등록해주세요' ? (
+          <NoneCardPage>
+            <div className="noneCard">
+              <NoneCard />
+            </div>
+            <div className="nonePageText">등록 된 명함이 없습니다</div>
+          </NoneCardPage>
+        ) : (
+          mainpost.map((main) => {
+            if (main.companyType === 'own') {
+              return (
+                <Card
+                  key={main.id}
+                  onClick={() => {
+                    navigate(`/posts/get/${main.id}`);
+                  }}
+                >
+                  <CardInfo>
+                    <CardName>{main.cardName}</CardName>
+                    <CardInfoDetail>
+                      <Position>
+                        {main.position.length > 5
+                          ? main.position.slice(0, 5) + '...'
+                          : main.position}
+                      </Position>
+                      <Department>
+                        {main.department.length > 5
+                          ? main.department.slice(0, 5) + '...'
+                          : main.department}
+                      </Department>
+                    </CardInfoDetail>
+                  </CardInfo>
+                  <CardInCard>
+                    <CardInCardDetail1>
+                      <CardInCardDetail1Name>
+                        {main.cardName}
+                      </CardInCardDetail1Name>
+                      <CardInCardDetail1Position>
+                        {main.position.length > 5
+                          ? main.position.slice(0, 5) + '...'
+                          : main.position}
+                      </CardInCardDetail1Position>
+                    </CardInCardDetail1>
 
-                      <CardInCardDetail2>
-                        <CardInCardDetail2Email>
-                          {main.email.length > 20
-                            ? main.email.slice(0, 20) + '...'
-                            : main.email}
-                        </CardInCardDetail2Email>
-                        <CardInCardDetail2Phone>
-                          {main.phoneNum}
-                        </CardInCardDetail2Phone>
-                      </CardInCardDetail2>
-                    </CardInCard>
-                  </Card>
-                );
-              }
-            })}
+                    <CardInCardDetail2>
+                      <CardInCardDetail2Email>
+                        {main.email.length > 20
+                          ? main.email.slice(0, 20) + '...'
+                          : main.email}
+                      </CardInCardDetail2Email>
+                      <CardInCardDetail2Phone>
+                        {main.phoneNum}
+                      </CardInCardDetail2Phone>
+                    </CardInCardDetail2>
+                  </CardInCard>
+                </Card>
+              );
+            }
+          })
+        )}
       </CardList>
       <WriteButton onClick={() => navigate('/posts')}>
         <img src="images/cardAdd.png" alt="" />

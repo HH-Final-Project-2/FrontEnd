@@ -25,11 +25,14 @@ import {
   CompanyIcon,
   AddressIcon,
   Essential,
+  PrevImg,
 } from '../MyCardMake/MyCardMakeStyle';
 import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { SectionHeader } from '../../card/cardPost/cardPostStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -40,6 +43,7 @@ const MyCardMake = () => {
   const imgGet = useSelector((state) => state.PostReducer.img);
 
   console.log('이미지', imgGet);
+  console.log('search', searchinfo);
 
   const [makeinfo, setMakeinfo] = useState({
     // cardName: '',
@@ -94,9 +98,7 @@ const MyCardMake = () => {
         email: imgGet.email !== undefined ? imgGet.email : email,
         phoneNum: imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
         company:
-          searchinfo.companyName !== undefined
-            ? searchinfo.companyName
-            : company,
+          searchinfo.company !== undefined ? searchinfo.company : company,
         department,
         companyAddress:
           searchinfo.companyAddress !== undefined
@@ -119,6 +121,7 @@ const MyCardMake = () => {
 
   return (
     <Layout>
+      <SectionHeader />
       <St_Header>
         <Icbefore
           style={{ cursor: 'pointer' }}
@@ -148,13 +151,33 @@ const MyCardMake = () => {
 
       <PatchBox>
         <St_Card>
-          <St_Plus htmlFor="card">
-            {imgGet.imgUrl !== undefined ? (
-              <img src={imgGet.imgUrl} alt="preview-img" />
-            ) : (
-              <Icplus />
-            )}
-          </St_Plus>
+          {imgGet.imgUrl === undefined ? (
+            <St_Plus htmlFor="card">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M14.9997 0.333496C6.89967 0.333496 0.333008 6.90016 0.333008 15.0002C0.333008 23.1002 6.89967 29.6668 14.9997 29.6668C23.0997 29.6668 29.6663 23.1002 29.6663 15.0002C29.6663 6.90016 23.0997 0.333496 14.9997 0.333496ZM16.333 20.3335C16.333 20.6871 16.1925 21.0263 15.9425 21.2763C15.6924 21.5264 15.3533 21.6668 14.9997 21.6668C14.6461 21.6668 14.3069 21.5264 14.0569 21.2763C13.8068 21.0263 13.6663 20.6871 13.6663 20.3335V16.3335H9.66634C9.31272 16.3335 8.97358 16.193 8.72353 15.943C8.47348 15.6929 8.33301 15.3538 8.33301 15.0002C8.33301 14.6465 8.47348 14.3074 8.72353 14.0574C8.97358 13.8073 9.31272 13.6668 9.66634 13.6668H13.6663V9.66683C13.6663 9.31321 13.8068 8.97407 14.0569 8.72402C14.3069 8.47397 14.6461 8.3335 14.9997 8.3335C15.3533 8.3335 15.6924 8.47397 15.9425 8.72402C16.1925 8.97407 16.333 9.31321 16.333 9.66683V13.6668H20.333C20.6866 13.6668 21.0258 13.8073 21.2758 14.0574C21.5259 14.3074 21.6663 14.6465 21.6663 15.0002C21.6663 15.3538 21.5259 15.6929 21.2758 15.943C21.0258 16.193 20.6866 16.3335 20.333 16.3335H16.333V20.3335Z"
+                  fill="#8892A0"
+                />
+              </svg>
+            </St_Plus>
+          ) : (
+            imgGet.imgUrl && (
+              <PrevImg
+                src={imgGet.imgUrl}
+                alt="preview-img"
+                id="card"
+                style={{ margin: 'auto' }}
+              />
+            )
+          )}
           <Input type="file" id="card" onChange={mediaChangeHandler}></Input>
         </St_Card>
 
@@ -204,12 +227,12 @@ const MyCardMake = () => {
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
-          <CompanyIcon>
+          {/* <CompanyIcon>
             <Iccompany />
-          </CompanyIcon>
+          </CompanyIcon> */}
           <St_value
             name="company"
-            value={searchinfo.companyName ? searchinfo.companyName : company}
+            value={searchinfo.company ? searchinfo.company : company}
             onChange={onChage}
             style={{ paddingLeft: '35px' }}
             onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
@@ -279,6 +302,7 @@ const MyCardMake = () => {
           ></St_value>
         </Item>
       </PatchBox>
+      <SectionFooter />
     </Layout>
   );
 };

@@ -35,6 +35,7 @@ const MyCardPatch = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
 
+  console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
     engName: cardinfo.engName,
@@ -168,7 +169,6 @@ const MyCardPatch = () => {
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
-
           <div>
             <St_value
               name="company"
