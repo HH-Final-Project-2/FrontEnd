@@ -13,17 +13,25 @@ export default function Bottom() {
     try {
       await navigator.clipboard.writeText(text);
       Swal.fire({
-        text: "클립보드 복사",
+        title: "클립보드 복사",
         showConfirmButton: false,
         timer: 1000,
         width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
     } catch (error) {
       Swal.fire({
-        text: "명함을 확인해주세요",
+        title: "명함을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
         width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
     }
   };
@@ -64,17 +72,17 @@ export default function Bottom() {
                 onClick={() => {
                   copyHandler(
                     "[" +
-                      cardinfo.company +
-                      "]" +
-                      "\n이름 : " +
-                      cardinfo.cardName +
-                      " (" +
-                      cardinfo.position +
-                      ")" +
-                      "\n전화번호 : " +
-                      cardinfo.phoneNum +
-                      "\n이메일 : " +
-                      cardinfo.email
+                    cardinfo.company +
+                    "]" +
+                    "\n이름 : " +
+                    cardinfo.cardName +
+                    " (" +
+                    cardinfo.position +
+                    ")" +
+                    "\n전화번호 : " +
+                    cardinfo.phoneNum +
+                    "\n이메일 : " +
+                    cardinfo.email
                   );
                   setOpen(false);
                 }}
@@ -119,17 +127,17 @@ export default function Bottom() {
                 onClick={() => {
                   copyHandler(
                     "[" +
-                      cardinfo.company +
-                      "]" +
-                      "\n이름 : " +
-                      cardinfo.cardName +
-                      " (" +
-                      cardinfo.position +
-                      ")" +
-                      "\n전화번호 : " +
-                      cardinfo.phoneNum +
-                      "\n이메일 : " +
-                      cardinfo.email
+                    cardinfo.company +
+                    "]" +
+                    "\n이름 : " +
+                    cardinfo.cardName +
+                    " (" +
+                    cardinfo.position +
+                    ")" +
+                    "\n전화번호 : " +
+                    cardinfo.phoneNum +
+                    "\n이메일 : " +
+                    cardinfo.email
                   );
                   setOpen(false);
                 }}
