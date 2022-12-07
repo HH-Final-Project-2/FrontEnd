@@ -70,7 +70,7 @@ const ChatsBox = styled.div`
   display: flex;
   align-items: center;
 
-  width: 373px;
+  width: 375px;
   height: 76px;
 
   cursor: pointer;

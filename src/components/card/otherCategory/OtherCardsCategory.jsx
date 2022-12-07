@@ -141,7 +141,6 @@ const MainView = () => {
                           : main.email}
                       </CardInCardDetail2Email>
                       <CardInCardDetail2Phone>
-                        NoneCardPage
                         {main.phoneNum}
                       </CardInCardDetail2Phone>
                     </CardInCardDetail2>

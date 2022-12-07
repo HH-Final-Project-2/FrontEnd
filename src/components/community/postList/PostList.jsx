@@ -25,11 +25,11 @@ import {
   Container,
   StyledSlider,
   ListSectionLine,
-} from "./PostListStyle";
-import Pagination from "react-js-pagination";
-import TopFive from "../topFive/TopFive";
-import SearchNone from "../../searchNone/SearchNone";
-import LoadingPage from "../../../pages/LoadingPage";
+} from './PostListStyle';
+import Pagination from 'react-js-pagination';
+import TopFive from '../topFive/TopFive';
+import SearchNone from '../../searchNone/SearchNone';
+import LoadingPage from '../../../pages/LoadingPage';
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -43,10 +43,10 @@ const PostList = () => {
 
   // 인기글 슬라이드
   const settings = {
-    dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
+    dots: true, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: true, // loop를 만들지
     speed: 500, // 애미메이션의 속도, 단위는 milliseconds
-    slidesToShow: 1.3, // 한번에 몇개의 슬라이드를 보여줄 지
+    slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄 지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     centerMode: false,
     arrows: false,
@@ -104,7 +104,7 @@ const PostList = () => {
   // 게시글 렌더링 이슈(상세페이지 -> 게시글 목록 조회 이동시)
   // 화면에 불필요한 내용들이 잠깐 깜빡였다가 사라짐
   // 상태를 만들어서 false일때 로딩페이지컴포넌트 리턴하여 해결
-  if (loading === false) return (<LoadingPage />);
+  if (loading === false) return <LoadingPage />;
 
   return (
     <CommunityLayout>

@@ -72,6 +72,18 @@ const Chatroom = () => {
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
 
+  //반응형 바텀시트
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const resizeWidth = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', resizeWidth);
+    return () => {
+      window.removeEventListener('resize', resizeWidth);
+    };
+  }, []);
+
   useEffect(() => {
     dispatch(getUserinfo(id === '' ? chatlistid : id));
     dispatch(getMessage(id === '' ? chatlistid : id));
@@ -139,20 +151,24 @@ const Chatroom = () => {
   };
 
   const sendMessage = () => {
-    client.send(
-      '/pub/chat/message',
-      headers,
-      JSON.stringify({
-        roomId: id === '' ? chatlistid : id,
-        message: message,
-      })
-    );
+    if (message.trim() === '') {
+    } else {
+      client.send(
+        '/pub/chat/message',
+        headers,
+        JSON.stringify({
+          roomId: id === '' ? chatlistid : id,
+          message: message,
+        })
+      );
+    }
+
     setMessage('');
   };
 
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
-      sendMessage('');
+      setMessage('');
     }
   };
 
@@ -185,8 +201,12 @@ const Chatroom = () => {
         onDismiss={() => {
           setOpen(false);
         }}
+        style={{
+          '--rsbs-max-w': '375px',
+          '--rsbs-ml': 'auto',
+          '--rsbs-mr': 'auto',
+        }}
       >
-        {/* dispatch(deleteChatroom(chatList.chatRoomUuid)); */}
         <Board>
           <ChatExit
             onClick={() => {
@@ -194,7 +214,7 @@ const Chatroom = () => {
               dispatch(deleteChatroom(id === '' ? chatlistid : id));
             }}
           >
-            채팅방 나가기
+            나가기
             <div>
               <Exit />
             </div>
