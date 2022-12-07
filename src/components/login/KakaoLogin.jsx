@@ -14,12 +14,25 @@ const KakaoLogin = () => {
           localStorage.setItem("refresh-Token", res.request.getResponseHeader("refresh-Token"));
           localStorage.setItem('userid', res.data.data.id);
           localStorage.setItem('nickname', res.data.data.nickname);
+
           Swal.fire({
-            text: 'Businus에 오신걸 환영합니다', showConfirmButton: false,
-            timer: 1000,
+            text: "Businus에 오신걸 환영합니다",
+            showCancelButton: false,
+            confirmButtonColor: '#5546FF',
+            confirmButtonText: '확인',
             width: '300px',
-          });
-          window.location.replace('/cards');
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.replace('/cards');
+            }
+          })
+
+          // Swal.fire({
+          //   text: 'Businus에 오신걸 환영합니다', showConfirmButton: false,
+          //   timer: 1000,
+          //   width: '300px',
+          // });
+          // window.location.replace('/cards');
         })
     }
   })
