@@ -8,7 +8,7 @@ import {
   __writePost,
   __imgPost,
   __cardInfo,
-} from "../../../redux/modules/CardsSlice";
+} from '../../../redux/modules/CardsSlice';
 import {
   St_Header,
   PatchBox,
@@ -33,11 +33,16 @@ import {
   AssistiveText,
   CompanyInput,
   SectionHeader,
-} from "./cardPostStyle";
-import { SectionFooter } from "../../footer/FooterStyle";
+  FormCheckOther,
+  FormCheckOwn,
+  CheckOwn,
+  CheckOther,
+} from './cardPostStyle';
+import { SectionFooter } from '../../footer/FooterStyle';
 import Swal from "sweetalert2";
 import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
 import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
+
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,16 +54,16 @@ const MainCards = () => {
 
   //state생성
   const [cardName, setCardName] = useState(
-    companyGet.cardName ? companyGet.cardName : ""
+    companyGet.cardName ? companyGet.cardName : ''
   );
   const [companyType, setCompanyType] = useState(
-    companyGet.companyType ? companyGet.companyType : ""
+    companyGet.companyType ? companyGet.companyType : ''
   );
   const [department, setDepartment] = useState(
-    companyGet.department ? companyGet.department : ""
+    companyGet.department ? companyGet.department : ''
   );
   const [position, setPosition] = useState(
-    companyGet.position ? companyGet.position : ""
+    companyGet.position ? companyGet.position : ''
   );
   const [email, setEmail] = useState(
     imgGet.email ? imgGet.email : companyGet.email
@@ -74,7 +79,7 @@ const MainCards = () => {
   const [companyAddress, setCompanyAddress] = useState(
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
-  const [companyHow, setCompanyHow] = useState("");
+  const [companyHow, setCompanyHow] = useState('');
   console.log(
     cardName,
     companyType,
@@ -87,6 +92,8 @@ const MainCards = () => {
     company,
     companyAddress
   );
+  const [pop, setPop] = useState(false);
+  const [companyPop, setCompanyPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
 
@@ -118,11 +125,11 @@ const MainCards = () => {
 
   const isValidEmail =
     email !== undefined && email !== null
-      ? email.includes("@") && email.includes(".")
+      ? email.includes('@') && email.includes('.')
       : false;
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
-      ? phoneNum.includes("-")
+      ? phoneNum.includes('-')
       : false;
 
   const isValidInput =
@@ -149,7 +156,7 @@ const MainCards = () => {
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
-    file.append("cardImg", e.target.files[0]);
+    file.append('cardImg', e.target.files[0]);
     dispatch(__imgPost(file));
   };
 
@@ -181,6 +188,7 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
+
       Swal.fire({
         text: "명함 작성 완료!",
         showConfirmButton: false,
@@ -196,6 +204,7 @@ const MainCards = () => {
         timer: 1000,
         width: "300px",
       });
+      setPop(true);
     }
   };
   //
@@ -209,10 +218,22 @@ const MainCards = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            // window.location.reload();
-            navigate(-1);
+            Swal.fire({
+              text: "뒤로가기를 하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonColor: "#5546FF",
+              confirmButtonText: "확인",
+              width: "300px",
+              customClass: {
+                popup: "popup-class",
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.replace("/cards");
+              }
+            });
           }}
         >
           <path
@@ -231,30 +252,34 @@ const MainCards = () => {
         <Item>
           <RadioBox>
             <RadioDetail>
-              <input
-                type="radio"
-                id="own"
-                name="companyType"
-                value={"own"}
-                checked={companyType === "own"}
-                onChange={(e) => {
-                  setCompanyType(e.target.value);
-                }}
-              />
-              <label htmlFor="own">자사</label>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="own"
+                  name="companyType"
+                  value={'own'}
+                  checked={companyType === 'own'}
+                  onChange={(e) => {
+                    setCompanyType(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="own">자사</CheckOwn>
+              </label>
             </RadioDetail>
             <RadioDetail>
-              <input
-                type="radio"
-                id="other"
-                name="companyType"
-                value={"other"}
-                checked={companyType === "other"}
-                onChange={(e) => {
-                  setCompanyType(e.target.value);
-                }}
-              />
-              <label htmlFor="other">타사</label>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="other"
+                  name="companyType"
+                  value={'other'}
+                  checked={companyType === 'other'}
+                  onChange={(e) => {
+                    setCompanyType(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="other">타사</CheckOther>
+              </label>
             </RadioDetail>
           </RadioBox>
         </Item>
@@ -280,8 +305,8 @@ const MainCards = () => {
             </svg>
 
             <div onClick={openModal} style={{ cursor: "pointer" }}>
-              여기를 눌러{" "}
-              <span style={{ color: "red" }}>등록 가이드를 확인</span>해주세요{" "}
+              <span style={{ color: "red" }}>여기</span>를 눌러{" "}
+              <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
@@ -320,7 +345,7 @@ const MainCards = () => {
                   src={imgGet.imgUrl}
                   alt="preview-img"
                   id="card"
-                  style={{ margin: "auto" }}
+                  style={{ margin: 'auto' }}
                 />
               )
             )}
@@ -341,7 +366,7 @@ const MainCards = () => {
             type="text"
             placeholder="이름"
             name="cardName"
-            value={cardName || ""}
+            value={cardName || ''}
             minLength="1"
             maxLength="6"
             onChange={(e) => {
@@ -358,14 +383,14 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 010-0000-0000"
             name="phoneNum"
-            value={phoneNum || ""}
+            value={phoneNum || ''}
             maxLength="13"
             onChange={(e) => {
               setPhoneNum(e.target.value);
             }}
           />
 
-          {phoneNum && phoneNum.includes("-") === false ? (
+          {phoneNum && phoneNum.includes('-') === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
@@ -378,7 +403,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) abc@gmail.com"
             name="email"
-            value={email || ""}
+            value={email || ''}
             minLength="10"
             maxLength="30"
             onChange={(e) => {
@@ -398,66 +423,97 @@ const MainCards = () => {
 
           <RadioBox>
             <RadioDetail>
-              <input
-                type="radio"
-                id="find"
-                name="companyType"
-                value={"find"}
-                checked={companyHow === "find"}
-                onChange={(e) => {
-                  setCompanyHow(e.target.value);
-                }}
-              />
-              <label htmlFor="find">회사 검색</label>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="find"
+                  name="companyType"
+                  value={'find'}
+                  checked={companyHow === 'find'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+              </label>
             </RadioDetail>
+
             <RadioDetail>
-              <input
-                type="radio"
-                id="myself"
-                name="companyHow"
-                value={"myself"}
-                checked={companyHow === "myself"}
-                onChange={(e) => {
-                  setCompanyHow(e.target.value);
-                }}
-              />
-              <label htmlFor="myself">직접 입력</label>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="myself"
+                  name="companyHow"
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="myself">직접 입력</CheckOther>
+              </label>
             </RadioDetail>
           </RadioBox>
 
           {/* {radioState ?
 ( */}
-          {companyHow === "myself" ? (
+          {companyHow === 'myself' ? (
             <div>
               <CompanyInput
                 placeholder="회사명을 입력하세요"
-                value={company || ""}
+                value={company || ''}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
               />
-              <AddressSearch>
-                <p
-                  onClick={() => {
-                    dispatch(
-                      __cardInfo({
-                        cardName: cardName ? cardName : "",
-                        email: email,
-                        phoneNum: phoneNum,
-                        department: department ? department : "",
-                        position: position ? position : "",
-                        tel: tel,
-                        fax: fax,
-                        companyType: companyType ? companyType : "",
-                        company: company ? company : "",
-                      })
-                    );
-                    navigate("/posts/companyOtherSearch");
-                  }}
-                >
-                  회사 주소 검색
-                </p>
-              </AddressSearch>
+
+              {pop === true ? (
+                <AddressSearch style={{ color: "red" }}>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : "",
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : "",
+                          position: position ? position : "",
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
+                        })
+                      );
+                      navigate("/posts/companyOtherSearch");
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              ) : (
+                <AddressSearch>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : "",
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : "",
+                          position: position ? position : "",
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
+                        })
+                      );
+                      navigate("/posts/companyOtherSearch");
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              )}
             </div>
           ) : (
             <div>
@@ -466,29 +522,29 @@ const MainCards = () => {
                 type="text"
                 name="company"
                 placeholder="회사 검색"
-                value={company || ""}
+                value={company || ''}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
                 onClick={() => {
                   dispatch(
                     __cardInfo({
-                      cardName: cardName ? cardName : "",
+                      cardName: cardName ? cardName : '',
                       email: email,
                       phoneNum: phoneNum,
-                      department: department ? department : "",
-                      position: position ? position : "",
+                      department: department ? department : '',
+                      position: position ? position : '',
                       tel: tel,
                       fax: fax,
-                      companyType: companyType ? companyType : "",
+                      companyType: companyType ? companyType : '',
                     })
                   );
-                  navigate("/posts/companySearch");
+                  navigate('/posts/companySearch');
                 }}
               />
               <St_Address
                 name="companyAddress"
-                value={companyAddress || ""}
+                value={companyAddress || ''}
                 onChange={(e) => {
                   setCompanyAddress(e.target.value);
                 }}
@@ -501,7 +557,7 @@ const MainCards = () => {
                       viewBox="0 0 12 15"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      style={{ marginRight: "8px" }}
+                      style={{ marginRight: '8px' }}
                     >
                       <path
                         fillRule="evenodd"
@@ -533,7 +589,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 팀장"
             name="position"
-            value={position || ""}
+            value={position || ''}
             onChange={(e) => {
               setPosition(e.target.value);
             }}
@@ -547,7 +603,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 영업"
             name="department"
-            value={department || ""}
+            value={department || ''}
             onChange={(e) => {
               setDepartment(e.target.value);
             }}
@@ -560,12 +616,12 @@ const MainCards = () => {
             placeholder="Ex) 02-000-0000"
             name="tel"
             maxLength="13"
-            value={tel || ""}
+            value={tel || ''}
             onChange={(e) => {
               setTel(e.target.value);
             }}
           ></St_value>
-          {tel && tel.includes("-") === false ? (
+          {tel && tel.includes('-') === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
@@ -576,12 +632,12 @@ const MainCards = () => {
             placeholder="Ex) 02-000-0000"
             name="fax"
             maxLength="13"
-            value={fax || ""}
+            value={fax || ''}
             onChange={(e) => {
               setFax(e.target.value);
             }}
           />
-          {fax && fax.includes("-") === false ? (
+          {fax && fax.includes('-') === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>

@@ -36,10 +36,6 @@ export const CategoryBtn1 = styled.button`
   font-size: 16px;
   font-weight: 500;
   color: #bdbdbd;
-
-  :focus {
-    border: none;
-  }
 `;
 export const CategoryBtn2 = styled.button`
   background-color: white;
@@ -49,10 +45,6 @@ export const CategoryBtn2 = styled.button`
   font-weight: 600;
   font-size: 16px;
   color: #222222;
-
-  :focus {
-    border: none;
-  }
 `;
 
 export const CardList = styled.div`
@@ -142,8 +134,8 @@ export const WriteButton = styled.div`
 
 export const CardInCardDetail1 = styled.div`
   display: flex;
-  margin-left: 10px;
   margin-top: 5px;
+  margin-left: 5px;
 `;
 
 export const CardInCardDetail2 = styled.div`
@@ -176,6 +168,7 @@ export const CardInCardDetail2Phone = styled.div`
 
   color: #1a1f27;
 `;
+
 export const NoneCardPage = styled.div`
   display: flex;
   flex-direction: column;

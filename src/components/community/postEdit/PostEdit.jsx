@@ -28,7 +28,7 @@ const PostEdit = () => {
     if (textRef === null || textRef.current === null) {
       return;
     }
-    textRef.current.style.height = '46px'
+    textRef.current.style.height = '46px';
     textRef.current.style.height = textRef.current.scrollHeight + 'px';
   }, []);
 
@@ -37,7 +37,7 @@ const PostEdit = () => {
     content: detail.content,
     jobGroup: detail.jobGroup,
     imageDelete: false,
-    image: null
+    image: null,
   });
 
   //이미지 미리보기 스테이트 url
@@ -60,15 +60,14 @@ const PostEdit = () => {
       content: detail.content,
       jobGroup: detail.jobGroup,
       imageDelete: false,
-      image: null
-    })
+      image: null,
+    });
   }, [detail]);
 
   // 디테일 api 호출
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);
-
 
   // 랜더 이슈 해결(isLoading)
   const { isLoading } = useSelector((state) => state.PostSlice);
@@ -191,6 +190,7 @@ const PostEdit = () => {
             value={memberPost.title}
             type="text"
             placeholder="제목"
+            maxLength={50}
             onChange={(ev) => {
               const { value } = ev.target;
               setMemberpost({
@@ -233,7 +233,6 @@ const PostEdit = () => {
             ''
           ) : (
             <ImgUploadButton>
-
               {/* 
               input file은 value가 읽기전용(readonly) onChange로 처리한다. 
               기본값을 설정할 수 없는 문제가 있어 imageDelete 변수를 

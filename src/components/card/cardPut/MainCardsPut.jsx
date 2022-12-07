@@ -44,21 +44,6 @@ const MainCards = () => {
   console.log(companyOnly);
   const [companyHow, setCompanyHow] = useState();
 
-  const preventClose = (e = BeforeUnloadEvent) => {
-    e.preventDefault();
-    e.returnValue = "";
-  };
-
-  useEffect(() => {
-    (() => {
-      window.addEventListener("beforeunload", preventClose);
-    })();
-
-    return () => {
-      window.removeEventListener("beforeunload", preventClose);
-    };
-  }, []);
-
   useEffect(() => {
     dispatch(__viewGet(id));
   }, [dispatch]);
@@ -173,7 +158,33 @@ const MainCards = () => {
             xmlns="http://www.w3.org/2000/svg"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              navigate(-1);
+              dispatch(
+                __cardInfo({
+                  cardName: "",
+                  email: "",
+                  phoneNum: "",
+                  department: "",
+                  position: "",
+                  tel: "",
+                  fax: "",
+                  companyType: "",
+                  company: "",
+                })
+              );
+              Swal.fire({
+                text: "뒤로가기를 하시겠습니까?",
+                showCancelButton: true,
+                confirmButtonColor: "#5546FF",
+                confirmButtonText: "확인",
+                width: "300px",
+                customClass: {
+                  popup: "popup-class",
+                },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.replace(`/posts/get/${id}`);
+                }
+              });
             }}
           >
             <path
@@ -313,6 +324,9 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
+                  defaultValue={
+                    inputValue.company ? inputValue.company : companyOnly
+                  }
                   value={companyGet.company ? companyGet.company : companyOnly}
                   // onChange={(e) => {
                   //   setInputValue({ company: e.target.value });

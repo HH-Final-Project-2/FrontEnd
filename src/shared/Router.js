@@ -31,12 +31,12 @@ import Join from "../pages/Join";
 import CommentEditPage from "../pages/CommentEditPage";
 import Search from "../pages/Search";
 
-import PrivateRoute from "./PrivateRoute";
 import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
 import CardSearch from "../components/card/cardSearch/CardSearch";
 import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
 import MySchedulesDetailPage from "../pages/MySchedulesDetailPage";
+import PasswordSearch from "../pages/PasswordSearch";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -105,6 +105,7 @@ const Router = () => {
         {/* 회원관리(회원가입,로그인)*/}
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/findPassword" element={<PasswordSearch />} />
         <Route path="/oauth/kakao" element={<Kakao />} />
       </Routes>
     </BrowserRouter>

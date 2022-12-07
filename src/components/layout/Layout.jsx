@@ -5,6 +5,7 @@ import {
   BannerLayout,
   Box,
   DivLayout2,
+  Version,
 } from './LayoutStyle';
 import { ReactComponent as Banner } from '../../images/banner.svg';
 
@@ -28,9 +29,11 @@ const Layout = ({ children }) => {
         <DivLayout2>{children}</DivLayout2>
       ) : (
         <Box>
+          <Version>V 1.0.0</Version>
           <BannerLayout>
             <Banner />
           </BannerLayout>
+
           <DivLayout>{children}</DivLayout>
         </Box>
       )}
