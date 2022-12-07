@@ -87,6 +87,8 @@ const MainCards = () => {
     company,
     companyAddress
   );
+  const [pop, setPop] = useState(false);
+  const [companyPop, setCompanyPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
 
@@ -196,6 +198,7 @@ const MainCards = () => {
         timer: 1000,
         width: "300px",
       });
+      setPop(true);
     }
   };
   //
@@ -211,8 +214,20 @@ const MainCards = () => {
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: "pointer" }}
           onClick={() => {
-            // window.location.reload();
-            navigate(-1);
+            Swal.fire({
+              text: "뒤로가기를 하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonColor: "#5546FF",
+              confirmButtonText: "확인",
+              width: "300px",
+              customClass: {
+                popup: "popup-class",
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.replace("/cards");
+              }
+            });
           }}
         >
           <path
@@ -436,28 +451,53 @@ const MainCards = () => {
                   setCompany(e.target.value);
                 }}
               />
-              <AddressSearch>
-                <p
-                  onClick={() => {
-                    dispatch(
-                      __cardInfo({
-                        cardName: cardName ? cardName : "",
-                        email: email,
-                        phoneNum: phoneNum,
-                        department: department ? department : "",
-                        position: position ? position : "",
-                        tel: tel,
-                        fax: fax,
-                        companyType: companyType ? companyType : "",
-                        company: company ? company : "",
-                      })
-                    );
-                    navigate("/posts/companyOtherSearch");
-                  }}
-                >
-                  회사 주소 검색
-                </p>
-              </AddressSearch>
+              {pop === true ? (
+                <AddressSearch style={{ color: "red" }}>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : "",
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : "",
+                          position: position ? position : "",
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
+                        })
+                      );
+                      navigate("/posts/companyOtherSearch");
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              ) : (
+                <AddressSearch>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : "",
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : "",
+                          position: position ? position : "",
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
+                        })
+                      );
+                      navigate("/posts/companyOtherSearch");
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              )}
             </div>
           ) : (
             <div>
