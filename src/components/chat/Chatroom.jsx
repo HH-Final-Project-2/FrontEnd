@@ -170,7 +170,7 @@ const Chatroom = () => {
 
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
-      setMessage('');
+      sendMessage();
     }
   };
 
@@ -209,7 +209,7 @@ const Chatroom = () => {
     });
   };
 
-  console.log(message.trim() === '');
+  if (chatList === undefined) return;
 
   return (
     <Layout>
@@ -255,17 +255,30 @@ const Chatroom = () => {
 
       <ChatRoomBox ref={scrollRef}>
         {chatList &&
-          chatList.map((chat) => {
+          chatList.map((chat, index) => {
             const createdAt = chat.createdAt;
-            const time = createdAt.split(' ');
+            const ampm = createdAt.split(' ')[1];
+            const time = createdAt.split(' ')[2];
+
+            // let displayTime = true;
+
+            // if (index !== chat.length - 1) {
+            //   const lastsender = chatList[index + 1]?.userId;
+
+            //   if (lastsender === chat[index + 1]?.userId) {
+            //     const lastTime = chatList[index + 1]?.createdAt.split(' ')[2];
+
+            //     if (lastTime === time) displayTime = false; // 다음 메시지와 시간이 같을 경우 false
+            //   }
+            // }
 
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
-                  {time[1] === 'AM' ? (
-                    <MyChatTime>{'오전 ' + time[2]}</MyChatTime>
+                  {ampm === 'AM' ? (
+                    <MyChatTime>{'오전 ' + time}</MyChatTime>
                   ) : (
-                    <MyChatTime>{'오후 ' + time[2]}</MyChatTime>
+                    <MyChatTime>{'오후 ' + time}</MyChatTime>
                   )}
 
                   <MyChat>{chat.message}</MyChat>
@@ -276,10 +289,10 @@ const Chatroom = () => {
               return (
                 <UserChatBox key={message.id}>
                   <UserChat>{chat.message}</UserChat>
-                  {time[1] === 'AM' ? (
-                    <UserChatTime>{'오전 ' + time[2]}</UserChatTime>
+                  {ampm === 'AM' ? (
+                    <UserChatTime>{'오전 ' + time}</UserChatTime>
                   ) : (
-                    <UserChatTime>{'오후 ' + time[2]}</UserChatTime>
+                    <UserChatTime>{'오후 ' + time}</UserChatTime>
                   )}
                 </UserChatBox>
               );
