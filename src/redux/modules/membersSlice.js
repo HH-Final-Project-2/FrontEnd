@@ -180,7 +180,7 @@ export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
 
 // 로그인
 
-export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
+export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
   try {
     await axios
       .post("https://bkyungkeem.shop/api/members/login", payload)
@@ -195,7 +195,6 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
             "refresh-Token",
             res.request.getResponseHeader("refresh-Token")
           );
-
           localStorage.setItem("userid", res.data.data.id);
           localStorage.setItem("nickname", res.data.data.nickname);
 
@@ -236,6 +235,7 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
             width: "300px",
           });
       });
+
   } catch (error) {
     console.log(error);
   }
@@ -271,6 +271,12 @@ const memberSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [signIn.fulfilled]: (state, action) => {
+      console.log(action.payload)
+      state.members = action.payload
+    },
+
+
     [emailCheck.fulfilled]: (state, action) => {
       state.check = action.payload.success;
     },
