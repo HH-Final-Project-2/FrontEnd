@@ -8,7 +8,7 @@ export const _getProfile = createAsyncThunk(
   'get/profille',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get('/api/members/profiles');
+      const { data } = await instance.get("/api/members/profiles");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -17,19 +17,27 @@ export const _getProfile = createAsyncThunk(
 export const _PutPorfile = createAsyncThunk(
   'put/profille',
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.patch('/api/members/profiles', payload);
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+      const { data } = await instance.patch(`/api/members/profiles`, payload);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) { }
   }
 );
 
 const initialState = {
-  userprofile: [{}],
+  userprofile: {
+    createdAt: "",
+    email: "",
+    id: 0,
+    modifiedAt: null,
+    nickname: "",
+    username: ""
+  },
   isLoading: false,
   error: null,
+
 };
+
 
 export const porfileSlice = createSlice({
   name: 'userprofile', //모듈
@@ -37,12 +45,14 @@ export const porfileSlice = createSlice({
   reducers: {},
   extraReducers: {
     [_getProfile.fulfilled]: (state, action) => {
+      state.isLoading = false;
       state.userprofile = action.payload;
     },
-
     [_PutPorfile.fulfilled]: (state, action) => {
-      state.userprofile = [{ ...state.userprofile }, action.userprofile];
-    },
+      state.isLoading = false;
+      state.userprofile =  action.payload
+    }
+
   },
 });
 export const {} = porfileSlice.actions;

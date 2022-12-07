@@ -170,3 +170,7 @@ export const CardInCardDetail2Email = styled.div`
   margin-bottom: 4px;
 `;
 export const CardInCardDetail2Phone = styled.div``;
+
+export const NoneCardPage = styled.div`
+  height: 100px;
+`;

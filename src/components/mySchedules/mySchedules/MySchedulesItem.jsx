@@ -5,7 +5,10 @@ import "./mySchedulesItme.css";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { __schedulesGet } from "../../../redux/modules/SchedulesSlice";
+import {
+  __schedulesDetailGet,
+  __schedulesGet,
+} from "../../../redux/modules/SchedulesSlice";
 import { useNavigate } from "react-router-dom";
 import addimg from "../../../images/Property 1=default.svg";
 import Footer from "../../footer/Footer";
@@ -78,7 +81,13 @@ const MySchedulesItem = () => {
                   x.filteredDate.includes(moment(value).format("YYYY-MM-DD"))
                 ) {
                   return (
-                    <div className="todoBox" key={x.id}>
+                    <div
+                      className="todoBox"
+                      key={x.id}
+                      onClick={() => {
+                        navigate(`/mySchedulesDetail/${x.id}`);
+                      }}
+                    >
                       <div className="todoBoxSection">
                         <div className="titleBox">
                           <div className="titleSection">
@@ -97,7 +106,7 @@ const MySchedulesItem = () => {
                           </div>
                         </div>
                       </div>
-                      <img
+                      {/* <img
                         className="deleteBtn"
                         src={Delete}
                         onClick={() => {
@@ -125,7 +134,7 @@ const MySchedulesItem = () => {
                           alert("일정이 삭제되었습니다");
                           window.location.reload(); //쓰면 안좋음.. 이거 수정할 수 있는 방법 찾아보자
                         }}
-                      />
+                      /> */}
                     </div>
                   );
                 } else return null;

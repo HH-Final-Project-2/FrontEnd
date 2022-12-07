@@ -36,6 +36,7 @@ import MySchedules from "../pages/MySchedules";
 import AddSchedulesPage from "../pages/AddSchedulesPage";
 import CardSearch from "../components/card/cardSearch/CardSearch";
 import OtherSearchModal from "../components/card/companySearch/OtherSearchModal";
+import MySchedulesDetailPage from "../pages/MySchedulesDetailPage";
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -70,6 +71,10 @@ const Router = () => {
         {/* 내 일정 */}
         <Route path="/mySchedules" element={<MySchedules />} />
         <Route path="/addSchedules" element={<AddSchedulesPage />} />
+        <Route
+          path="/mySchedulesDetail/:id"
+          element={<MySchedulesDetailPage />}
+        />
 
         {/* 커뮤니티 */}
         <Route path="/community" element={<Community />} />

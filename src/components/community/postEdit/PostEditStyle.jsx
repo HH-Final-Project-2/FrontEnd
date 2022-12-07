@@ -6,7 +6,7 @@ export const EditBox = styled.div`
 `;
 
 export const EditSection1 = styled.div`
-  width: 373px;
+  width: 100%;
   height: 56px;
   display: flex;
   align-items: center;
@@ -33,7 +33,7 @@ export const EditSection1Title = styled.div`
 export const SelectJob = styled.div`
   select {
     padding-left: 6px;
-    width: 373px;
+    width: 100%;
     height: 56px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
@@ -43,6 +43,10 @@ export const SelectJob = styled.div`
     font-size: 16px;
     color: #52596b;
   }
+
+  select:focus {
+    border-bottom: 1px solid #bbb5ff;
+  }
 `;
 
 export const EditTitle = styled.div`
@@ -50,7 +54,7 @@ export const EditTitle = styled.div`
     padding: 10px;
     margin-top: 6px;
 
-    width: 373px;
+    width: 100%;
     height: 45px;
     border: none;
     border-bottom: 1px solid #e2e2e2;
@@ -60,9 +64,12 @@ export const EditTitle = styled.div`
 
     font-weight: 400;
     font-size: 16px;
+    line-height: 24px;
+
+    color: #1a1f27;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;
@@ -73,7 +80,7 @@ export const EditBody = styled.div`
   textarea {
     padding: 10px;
     margin-top: 6px;
-    width: 373px;
+    width: 100%;
     height: 45px;
     border: none;
     outline: none;
@@ -82,9 +89,12 @@ export const EditBody = styled.div`
 
     font-weight: 400;
     font-size: 16px;
+    line-height: 24px;
+
+    color: #1a1f27;
   }
   textarea:focus {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #bbb5ff;
   }
   textarea::placeholder {
     color: #bcc2cc;

@@ -19,14 +19,14 @@ const MyProfile = () => {
   const dispatch = useDispatch();
   const profille = useSelector((state) => state.userprofile.userprofile);
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  console.log('test', profille);
+  //console.log('수정후 프로필 컴포넌트', profille.nickname);
 
   useEffect(() => {
     dispatch(_getProfile());
     dispatch(_getMakeCard());
   }, []);
 
-  if (profille === undefined && cardinfo === undefined) return;
+  if (profille === undefined && cardinfo === undefined) return null;
 
   return (
     <St_Profile>

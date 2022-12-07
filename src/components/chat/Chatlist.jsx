@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
 import {
   deleteChatroom,
   getChatRoom,
+  getMessage,
   roomIdSave,
-} from "../../redux/modules/chatSlice";
-import { ReactComponent as Profile } from "../../images/profile.svg";
+} from '../../redux/modules/chatSlice';
+import { ReactComponent as Profile } from '../../images/profile.svg';
+import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
 
 const Chatlist = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
+  const chatList = useSelector((state) => state.chat.chat);
+  console.log(chatList);
   const { chatRoom } = useSelector((state) => state.chat);
+  console.log(chatRoom);
 
   useEffect(() => {
     dispatch(getChatRoom());
   }, []);
 
-  // if (chatRoom === undefined) return;
+  // useEffect(() => {
+  //   chatRoom[0].id;
+  // }, [chatRoom]);
+
+  if (chatRoom === undefined && chatList === undefined) return;
 
   return (
     <div>
@@ -27,32 +36,28 @@ const Chatlist = () => {
         chatRoom.map((x) => {
           return (
             <ChatsBox
-              key={chatRoom.id}
+              key={x.chatRoomUuid}
               onClick={() => {
                 dispatch(roomIdSave(x.chatRoomUuid));
-                nav("/chat/chatroom/");
+                nav('/chat/chatroom/');
               }}
             >
               <ProBox>
                 <Profile />
               </ProBox>
               <div>
-                <ChatName>{x.roomName}</ChatName>
-                <LastChat>{x.lastMessage}</LastChat>
+                <ChatName key={x.roomName}>{x.roomName}</ChatName>
+                <LastChat key={x.lastMessage}>{x.lastMessage}</LastChat>
               </div>
+
               <div className="chatSection">
-                <ChatAt>오전 11:57</ChatAt>
-                <ChatAlarm>1</ChatAlarm>
+                <ChatAt>{x.dayBefore}</ChatAt>
+                {x.unreadCount === 0 ? (
+                  <></>
+                ) : (
+                  <ChatAlarm>{x.unreadCount}</ChatAlarm>
+                )}
               </div>
-              {/* <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dispatch(deleteChatroom(x.chatRoomUuid));
-                  window.location.reload();
-                }}
-              >
-                나가기
-              </button> */}
             </ChatsBox>
           );
         })}
@@ -71,7 +76,7 @@ const ChatsBox = styled.div`
   cursor: pointer;
 
   .chatSection {
-    margin-left: 26px;
+    margin-left: 33px;
   }
 `;
 const ProBox = styled.div`

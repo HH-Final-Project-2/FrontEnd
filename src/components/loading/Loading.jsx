@@ -2,8 +2,6 @@ import React from 'react';
 import { Background, LoadingText } from './LoadingStyle';
 import Spinner from '../../images/spinner.gif'
 
-
-
 const Loading = () => {
   return (
     <Background>

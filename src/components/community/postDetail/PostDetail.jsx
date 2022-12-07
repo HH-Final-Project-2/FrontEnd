@@ -35,8 +35,8 @@ import {
   DivHeart,
   HeartNum,
 } from './PostDetailStyle';
-
 import LoadingPage from "../../../pages/LoadingPage";
+
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,6 @@ const PostDetail = () => {
   const [postid, setPostId] = useState({
     postId: id,
   });
-
 
   //스크롤 최상단으로 이동
   useEffect(() => {
@@ -146,7 +145,9 @@ const PostDetail = () => {
           onClick={() => {
             console.log('게시글아이디', postid);
             dispatch(_postId(postid));
-            navigate('/chat/chatroom/');
+            setTimeout(() => {
+              navigate('/chat/chatroom/');
+            }, 100);
           }}
         />
         {/* 채팅하기 버튼 svg end*/}

@@ -51,11 +51,13 @@ const UserJoin = () => {
   // 이메일,패스워드,이름,닉네임,연락처 버튼 초기값
   const [stateXButtonEmail, setStateXButtonEmail] = useState("none");
   const [stateXButtonPassword, setStateXButtonPassword] = useState("none");
-  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] = useState("none");
+  const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] =
+    useState("none");
   const [stateXButtonUserName, setStateXButtonUserName] = useState("none");
   const [stateXButtonNickName, setStateXButtonNickName] = useState("none");
 
-
+  // 이메일 인증버튼 비활성화
+  const [disable, setDisable] = React.useState(false);
 
   // 이메일,패스워드,이름,닉네임,연락처 watch
   const watchForEmail = watch("email");
@@ -63,6 +65,7 @@ const UserJoin = () => {
   const watchForPasswordCheck = watch("passwordCheck");
   const watchForUserName = watch("username");
   const watchForNickName = watch("nickname");
+
 
 
   // 인풋 값 입력시 버튼&폰트 색상 변경
@@ -102,6 +105,7 @@ const UserJoin = () => {
     setColor3 = '#bbb5ff;';
     setFontColor3 = 'white';
   }
+
 
   // 이메일 X버튼 디스플레이
   useEffect(() => {
@@ -190,7 +194,7 @@ const UserJoin = () => {
     } else {
       return false;
     }
-  }
+  };
 
   // 폼 데이터 전송
   const onSubmit = (data) => {
@@ -243,6 +247,7 @@ const UserJoin = () => {
         </InputContainer>
         <EmailCheckButton
           fontColor={setFontColor} color={setColor}
+          disabled={disable}
           type="button"
           onClick={() => {
             dispatch(
@@ -252,7 +257,7 @@ const UserJoin = () => {
             );
           }}
         >
-          이메일 인증
+          인증하기
         </EmailCheckButton>
       </EmailBox>
       {errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>}
@@ -284,6 +289,7 @@ const UserJoin = () => {
           <EmailCheckButton
             fontColor={setFontColor2} color={setColor2}
             type="button"
+            disabled={disable}
             onClick={() => {
               dispatch(
                 emailAuth({
@@ -291,6 +297,7 @@ const UserJoin = () => {
                   code: auth,
                 })
               );
+              setDisable(true);
             }}
           >
             인증하기

@@ -23,7 +23,6 @@ import {
   St_Detail_Phone,
   MidLine,
 } from '../MyCardInfo/MyCardInfoStyle';
-import { HR } from '../../card/cardDetail/ViewMainDetailStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
 
 const MyCardInfo = () => {
@@ -32,7 +31,7 @@ const MyCardInfo = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-
+  console.log(cardinfo);
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
@@ -108,8 +107,8 @@ const MyCardInfo = () => {
         <Detail_Body_Box>
           <St_Detail_Phone>{cardinfo.phoneNum}</St_Detail_Phone>
           <St_Detail_Body>{cardinfo.email}</St_Detail_Body>
-          <St_Detail_Body>유선전화 넣어주세요</St_Detail_Body>
-          <St_Detail_Body>팩스 넣어주세요</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.tel}</St_Detail_Body>
+          <St_Detail_Body>{cardinfo.fax}</St_Detail_Body>
           <MidLine />
           <St_Detail_Body>{cardinfo.company}</St_Detail_Body>
           <St_Detail_Body>{cardinfo.position}</St_Detail_Body>

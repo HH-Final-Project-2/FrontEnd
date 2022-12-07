@@ -9,7 +9,7 @@ export const CommunityLayout = styled.div`
 `;
 
 export const Section1 = styled.div`
-  width: 373px;
+  width: 375px;
   height: 56px;
   display: flex;
   justify-content: space-between;
@@ -23,6 +23,8 @@ export const Section1Title = styled.div`
   left: 10px;
   font-weight: 500;
   font-size: 16px;
+
+  color: #1a1f27;
 `;
 
 export const Section2 = styled.div`
@@ -128,7 +130,10 @@ export const PaginationBox = styled.div`
     background: #5546ff;
     border-radius: 50%;
   }
-  ul.pagination li a:hover,
+  ul.pagination li:hover {
+    background: #f5f5f5;
+    border-radius: 50%;
+  }
   ul.pagination li a.active {
   }
 `;
@@ -136,8 +141,8 @@ export const PaginationBox = styled.div`
 export const Container = styled.div`
   margin-top: 32px;
   height: 250px;
+  font-weight: 400;
   font-size: 16px;
-  font-weight: 600;
   color: #1a1f27;
 
   .topFive {

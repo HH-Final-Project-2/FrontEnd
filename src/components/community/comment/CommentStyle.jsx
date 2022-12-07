@@ -17,6 +17,8 @@ export const CommentNickName = styled.div`
 
   font-weight: 500;
   font-size: 14px;
+
+  color: #1a1f27;
 `;
 
 export const CommentNickName2 = styled.div`
@@ -35,8 +37,9 @@ export const CommentNickName2 = styled.div`
 export const CommentDate = styled.div`
   margin-left: 8px;
   margin-top: 13px;
+  font-weight: 400;
   font-size: 12px;
-  color: #969696;
+  color: #8892a0;
 `;
 
 export const CommentBody = styled.div`
@@ -45,7 +48,10 @@ export const CommentBody = styled.div`
   word-break: break-all;
   padding-left: 16px;
   margin-top: 15px;
+  font-weight: 400;
   font-size: 14px;
+
+  color: #1a1f27;
 `;
 
 export const CommentWriteBox = styled.div`
@@ -71,14 +77,17 @@ export const CommentTextarea = styled.textarea`
   border-bottom-left-radius: 8px;
   border-right: none;
 
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #1a1f27;
+
   :focus {
     border: 1px solid #bbb5ff;
     border-right: none;
   }
 
   ::placeholder {
-    font-weight: 400;
-    font-size: 14px;
     color: #bcc2cc;
   }
 `;
@@ -126,6 +135,7 @@ export const LikeButton = styled.div`
 `;
 
 export const LikeButtonText = styled.label`
+  font-weight: 400;
   font-size: 12px;
   color: #52596b;
   margin-left: 7px;

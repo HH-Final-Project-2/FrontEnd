@@ -1,11 +1,11 @@
-import Layout from '../../layout/Layout';
-import { useDispatch, useSelector } from 'react-redux';
-import { __viewGet } from '../../../../src/redux/modules/CardsSlice';
-import { useNavigate, useParams } from 'react-router';
-import React, { useEffect, useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import CardsFooter from '../../footer/CardsFooter';
-import CardBottomSheet from '../../bottomSheet/CardBottomSheet';
+import Layout from "../../layout/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { __viewGet } from "../../../../src/redux/modules/CardsSlice";
+import { useNavigate, useParams } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import CardsFooter from "../../footer/CardsFooter";
+import CardBottomSheet from "../../bottomSheet/CardBottomSheet";
 import {
   St_Title,
   St_Header,
@@ -14,7 +14,6 @@ import {
   St_MidHeader,
   Detail_Title_Box,
   St_Detail_Title,
-  Detail_Body_Box,
   St_Detail_Body,
   MapBox,
   St_Card,
@@ -33,16 +32,11 @@ import {
   CardInfoDetail,
   Position2,
   Department,
-  CompanyAd,
-  Name2,
   Address2,
   SectionLine,
   St_Detail_Mobile,
-} from './ViewMainDetailStyle';
-import { SectionFooter } from '../../footer/FooterStyle';
-
-const accessToken = localStorage.getItem('authorization');
-const refreshToken = localStorage.getItem('refresh-Token');
+} from "./ViewMainDetailStyle";
+import { SectionFooter } from "../../footer/FooterStyle";
 
 const ViewMainDetailPost = () => {
   const navigate = useNavigate();
@@ -91,9 +85,9 @@ const ViewMainDetailPost = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
-            navigate('/cards');
+            navigate("/cards");
           }}
         >
           <path
@@ -182,8 +176,8 @@ const ViewMainDetailPost = () => {
           center={map.center}
           isPanto={map.isPanto}
           style={{
-            width: ' 335px',
-            height: '192px',
+            width: " 335px",
+            height: "192px",
           }}
         >
           <MapMarker
