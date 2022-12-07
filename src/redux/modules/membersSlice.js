@@ -85,10 +85,8 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload) => {
             "refresh-Token",
             res.request.getResponseHeader("refresh-Token")
           );
-
           localStorage.setItem("userid", res.data.data.id);
           localStorage.setItem("nickname", res.data.data.nickname);
-
           alert("Businus에 오신걸 환영합니다");
           window.location.replace("/cards");
         }

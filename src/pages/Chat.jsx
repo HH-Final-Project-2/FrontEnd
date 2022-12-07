@@ -42,7 +42,8 @@ const St_Header = styled.div`
 `;
 //헤더 타이틀의 의미
 const St_Title = styled.div`
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
   width: 100%;
   max-width: 80px;
   height: 50px;
