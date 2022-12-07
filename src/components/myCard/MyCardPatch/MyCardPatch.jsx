@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Layout from '../../layout/Layout';
-import MyCardFooter from '../../footer/MyCardFooter';
-import { useNavigate } from 'react-router';
-import { _getMakeCard, _PutCard } from '../../../redux/modules/mycardSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
-import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Layout from "../../layout/Layout";
+import MyCardFooter from "../../footer/MyCardFooter";
+import { useNavigate } from "react-router";
+import { _getMakeCard, _PutCard } from "../../../redux/modules/mycardSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ReactComponent as Iccompany } from "../../../images/ic-company.svg";
+import { ReactComponent as Icaddress } from "../../../images/ic-address.svg";
 import {
   St_Header,
   PatchBox,
@@ -22,9 +22,9 @@ import {
   AddressIcon,
   Essential,
   SectionHeader,
-} from '../MyCardPatch/MyCardPatchStyle';
-import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
-import { SectionFooter } from '../../footer/FooterStyle';
+} from "../MyCardPatch/MyCardPatchStyle";
+import { ReactComponent as Icbefore } from "../../../images/ic-before.svg";
+import { SectionFooter } from "../../footer/FooterStyle";
 
 const MyCardPatch = () => {
   //내 명함 수정 페이지 컴포넌트
@@ -35,6 +35,7 @@ const MyCardPatch = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
 
+  console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
     engName: cardinfo.engName,
@@ -93,7 +94,7 @@ const MyCardPatch = () => {
         id,
       })
     );
-    nav('/mypage/cardinfo');
+    nav("/mypage/cardinfo");
   };
 
   useEffect(() => {
@@ -110,7 +111,7 @@ const MyCardPatch = () => {
     <Layout>
       <St_Header>
         <Icbefore
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
             nav(-1);
           }}
@@ -122,32 +123,13 @@ const MyCardPatch = () => {
       </St_Header>
       <SectionHeader />
       <PatchBox>
-        {/* <Item>
-          <St_Key>
-            이름<Essential>*</Essential>
-          </St_Key>
-          <St_value
-            name="cardName"
-            value={cardName || ''}
-            onChange={onChage}
-          ></St_value>
-        </Item>
-
-        <Item>
-          <St_Key>영문이름</St_Key>
-          <St_value
-            name="engName"
-            value={engName || ''}
-            onChange={onChage}
-          ></St_value>
-        </Item> */}
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>
           </St_Key>
           <St_value
             name="phoneNum"
-            value={phoneNum || ''}
+            value={phoneNum || ""}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -158,7 +140,7 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="email"
-            value={email || ''}
+            value={email || ""}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -168,14 +150,13 @@ const MyCardPatch = () => {
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
-
           <div>
             <St_value
               name="company"
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
-              style={{ paddingLeft: '42px' }}
-              onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
+              style={{ paddingLeft: "42px" }}
+              onClick={() => nav("/mypage/cardpatch/MyCardCompanySerach")}
             ></St_value>
           </div>
 
@@ -191,7 +172,7 @@ const MyCardPatch = () => {
           >
             <AddressBox>
               <AddressIcon>
-                <Icaddress style={{ marginRight: '8px' }} />
+                <Icaddress style={{ marginRight: "8px" }} />
               </AddressIcon>
               <SearchAddress>
                 {searchinfo.companyAddress
@@ -208,7 +189,7 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="position"
-            value={position || ''}
+            value={position || ""}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -219,19 +200,19 @@ const MyCardPatch = () => {
           </St_Key>
           <St_value
             name="department"
-            value={department || ''}
+            value={department || ""}
             onChange={onChage}
           ></St_value>
         </Item>
 
         <Item>
           <St_Key>유선전화</St_Key>
-          <St_value name="tel" value={tel || ''} onChange={onChage}></St_value>
+          <St_value name="tel" value={tel || ""} onChange={onChage}></St_value>
         </Item>
 
         <Item>
           <St_Key>팩스</St_Key>
-          <St_value name="fax" value={fax || ''} onChange={onChage}></St_value>
+          <St_value name="fax" value={fax || ""} onChange={onChage}></St_value>
         </Item>
       </PatchBox>
       <MyCardFooter />

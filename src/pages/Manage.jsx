@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { signOut, withDraw } from '../redux/modules/membersSlice';
+import Swal from 'sweetalert2';
 
 const Mypage = () => {
   const nav = useNavigate();
@@ -43,13 +44,38 @@ const Mypage = () => {
         <Joinout
           type="button"
           onClick={() => {
-            const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
-            if (confirm) {
-              dispatch(withDraw());
-            } else {
-              return;
-            }
+            Swal.fire({
+              text: "정말로 탈퇴하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonColor: '#5546FF',
+              cancelButtonColor: '#BBB5FF',
+              confirmButtonText: '확인',
+              cancelButtonText: '취소',
+              width: '300px',
+
+            }).then((result) => {
+              if (result.isConfirmed) { // 확인 버튼 누를시 동작
+                Swal.fire({
+                  text: '탈퇴되었습니다',
+                  width: '300px',
+                  timer: 1000,
+                  showConfirmButton: false,
+                }
+                )
+                dispatch(withDraw());
+              }
+            })
           }}
+
+
+        // onClick={() => {
+        //   const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
+        //   if (confirm) {
+        //     dispatch(withDraw());
+        //   } else {
+        //     return;
+        //   }
+        // }}
         >
           회원탈퇴
         </Joinout>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Layout from "../../layout/Layout";
+import Modal from "./CardImgModal/Modal";
 import {
   __writePost,
   __imgPost,
@@ -34,6 +35,9 @@ import {
   SectionHeader,
 } from "./cardPostStyle";
 import { SectionFooter } from "../../footer/FooterStyle";
+import Swal from 'sweetalert2';
+import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
+import information from "../../../images/스크린샷 2022-12-07 오후 8.22.22.png";
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -124,21 +128,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-    email &&
-    company &&
-    companyAddress &&
-    companyType &&
-    phoneNum &&
-    department &&
-    position !== undefined
+      email &&
+      company &&
+      companyAddress &&
+      companyType &&
+      phoneNum &&
+      department &&
+      position !== undefined
       ? cardName.length >= 1 &&
-        email.length >= 1 &&
-        company.length >= 1 &&
-        companyAddress.length >= 1 &&
-        companyType.length >= 1 &&
-        phoneNum.length >= 1 &&
-        department.length >= 1 &&
-        position.length >= 1
+      email.length >= 1 &&
+      company.length >= 1 &&
+      companyAddress.length >= 1 &&
+      companyType.length >= 1 &&
+      phoneNum.length >= 1 &&
+      department.length >= 1 &&
+      position.length >= 1
       : false;
   //
 
@@ -150,10 +154,15 @@ const MainCards = () => {
     dispatch(__imgPost(file));
   };
 
-  // const togglePopup = (event) => {
-  //   setShowPopup(event.target.value);
-  // };
-  // //
+  //모달 사용하기위한 state
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   //작성버튼 클릭시 발동되는 함수
   const cardsSubmitHandler = (e) => {
@@ -173,11 +182,21 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
-      alert("명함 작성 완료!");
+      Swal.fire({
+        text: '명함 작성 완료!',
+        showConfirmButton: false,
+        timer: 1000,
+        width: '300px',
+      });
       companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();
     } else {
-      alert("입력한 내용을 확인해주세요");
+      Swal.fire({
+        text: '입력한 내용을 확인해주세요',
+        showConfirmButton: false,
+        timer: 1000,
+        width: '300px',
+      });
     }
   };
   //
@@ -252,6 +271,8 @@ const MainCards = () => {
               viewBox="0 0 71 39"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              onClick={openModal}
+              style={{ cursor: "pointer" }}
             >
               <rect width="71" height="39" rx="2" fill="white" />
               <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
@@ -260,9 +281,19 @@ const MainCards = () => {
             </svg>
 
             <div>
-              명함 사진 등록은 예시 이미지와 <p />
-              유사한 형태만 인식 가능합니다.
+              사진을 눌러 입력 가이드를 확인해주세요 <p />
+              형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
+            <Modal
+              open={modalOpen}
+              close={closeModal}
+              header="명함 이미지 예시"
+            >
+              <main>
+                <img src={cardImg} alt="" />
+                <img src={information} alt="" />
+              </main>
+            </Modal>
           </ImgBox>
           <St_Card>
             {imgGet.imgUrl === undefined ? (
