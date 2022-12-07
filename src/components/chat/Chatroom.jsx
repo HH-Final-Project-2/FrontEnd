@@ -44,6 +44,7 @@ import { ReactComponent as SendDmFill } from '../../images/sendMessageFill.svg';
 import { ReactComponent as More } from '../../images/ic-more.svg';
 import { ReactComponent as Exit } from '../../images/ic-exit.svg';
 import { Board } from '../myCard/SharebottomSheet/ShareBottomSheetStyle';
+import Swal from 'sweetalert2';
 
 const Chatroom = () => {
   const socket = new SockJS('https://bkyungkeem.shop/stomp/chat');
@@ -131,7 +132,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => { },
+        (data) => {},
         headers
       )
       .unsubscribe();
@@ -151,7 +152,7 @@ const Chatroom = () => {
   };
 
   const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
+    if (e.keyCode === 13 && e.shiftKey === false && message.trim !== '') {
       sendMessage('');
     }
   };
@@ -161,28 +162,47 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const removeCheck = () => {
-    if (window.confirm('채팅방을 나가시겠습니까?') === true) {
-      // disConneted();
-      // dispatch(deleteChatroom(id === '' ? chatlistid : id));
-      nav('/chat');
-    } else {
-      return;
-    }
+    setOpen(false);
+    Swal.fire({
+      text: '채팅방을 나가시겠습니까?',
+      showCancelButton: true,
+      confirmButtonColor: '#5546FF',
+      cancelButtonColor: '#BBB5FF',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      width: '300px',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼 누를시 동작
+        Swal.fire({
+          text: '채팅방 나가기 완료',
+          width: '300px',
+          timer: 1000,
+          showConfirmButton: false,
+        });
+        dispatch(deleteChatroom(id === '' ? chatlistid : id));
+        nav('/chat');
+      }
+    });
   };
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const resizeWidth = () => {
     setWindowWidth(window.innerWidth);
   };
+
   useEffect(() => {
     window.addEventListener('resize', resizeWidth);
     return () => {
       window.removeEventListener('resize', resizeWidth);
     };
   }, []);
+
+  console.log(message.trim() === '');
 
   return (
     <Layout>
@@ -297,9 +317,17 @@ const Chatroom = () => {
           />
           <div className="dm">
             {message.length > 0 ? (
-              <SendDmFill onClick={sendMessage} />
+              <SendDmFill
+                onClick={() => {
+                  sendMessage();
+                }}
+              />
             ) : (
-              <SendDm onClick={sendMessage} />
+              <SendDm
+                onClick={() => {
+                  sendMessage();
+                }}
+              />
             )}
           </div>
         </Footer>
