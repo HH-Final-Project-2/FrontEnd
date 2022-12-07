@@ -25,6 +25,7 @@ import {
 } from '../MyCardPatch/MyCardPatchStyle';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 import { SectionFooter } from '../../footer/FooterStyle';
+import { AssistiveText } from '../../card/cardPost/cardPostStyle';
 
 const MyCardPatch = () => {
   //내 명함 수정 페이지 컴포넌트
@@ -38,7 +39,6 @@ const MyCardPatch = () => {
   console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
-    engName: cardinfo.engName,
     email: cardinfo.email,
     phoneNum: cardinfo.phoneNum,
     company: cardinfo.company,
@@ -52,7 +52,6 @@ const MyCardPatch = () => {
 
   const {
     cardName,
-    engName,
     email,
     phoneNum,
     company,
@@ -71,12 +70,11 @@ const MyCardPatch = () => {
       [name]: value,
     });
   };
-
+  console.log(phoneNum.trim() === '');
   const updateHandler = () => {
     dispatch(
       _PutCard({
         cardName,
-        engName,
         email,
         phoneNum,
         company:
@@ -105,6 +103,16 @@ const MyCardPatch = () => {
     setMakeinfo(cardinfo);
   }, [cardinfo]);
 
+  const isValidEmail =
+    email !== undefined && email !== null
+      ? email.includes('@') && email.includes('.')
+      : false;
+
+  const isValidPhone =
+    phoneNum !== undefined && phoneNum !== null
+      ? phoneNum.includes('-')
+      : false;
+
   if (cardinfo === undefined) return;
 
   return (
@@ -119,7 +127,32 @@ const MyCardPatch = () => {
 
         <St_Title>명함 정보 편집</St_Title>
 
-        <SaveButton onClick={updateHandler}>저장</SaveButton>
+        <SaveButton
+          onClick={() => {
+            if (
+              cardName.trim() === '' ||
+              company.trim() === '' ||
+              department.trim() === '' ||
+              email.trim() === '' ||
+              phoneNum.trim() === '' ||
+              position.trim() === ''
+            ) {
+              alert('필수 작성란을 작성해 주세요.');
+              return;
+            }
+            if (isValidEmail === false) {
+              alert('이메일 형식이 맞지 않습니다.');
+              return;
+            }
+            if (isValidPhone === false) {
+              alert('연락처 형식이 맞지 않습니다.');
+              return;
+            }
+            updateHandler();
+          }}
+        >
+          저장
+        </SaveButton>
       </St_Header>
       <SectionHeader />
       <PatchBox>
@@ -130,18 +163,11 @@ const MyCardPatch = () => {
           <St_value
             name="cardName"
             value={cardName || ''}
+            placeholder="이름"
             onChange={onChage}
           ></St_value>
         </Item>
 
-        <Item>
-          <St_Key>영문이름</St_Key>
-          <St_value
-            name="engName"
-            value={engName || ''}
-            onChange={onChage}
-          ></St_value>
-        </Item>
         <Item>
           <St_Key>
             연락처<Essential>*</Essential>
@@ -149,8 +175,12 @@ const MyCardPatch = () => {
           <St_value
             name="phoneNum"
             value={phoneNum || ''}
+            placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
+          {phoneNum && phoneNum.includes('-') === false ? (
+            <AssistiveText>- 을 포함해주세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
@@ -160,12 +190,18 @@ const MyCardPatch = () => {
           <St_value
             name="email"
             value={email || ''}
+            placeholder="Ex) abc@gmail.com"
             onChange={onChage}
           ></St_value>
+          {isValidEmail === false && email ? (
+            <AssistiveText>이메일을 확인하세요</AssistiveText>
+          ) : null}
         </Item>
 
         <Item>
-          <St_Key>회사</St_Key>
+          <St_Key>
+            회사<Essential>*</Essential>
+          </St_Key>
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>

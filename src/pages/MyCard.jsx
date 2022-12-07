@@ -18,18 +18,19 @@ const MyCard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  const test = useSelector((state) => state.cardinfo);
+  console.log('콘솔', cardinfo === '명함을 등록해주세요');
+
   console.log(cardinfo);
 
   useEffect(() => {
-    if (cardinfo !== undefined) {
-      dispatch(_getMakeCard());
-    }
-  }, [cardinfo]);
+    dispatch(_getMakeCard());
+  }, []);
 
   // if (cardinfo === undefined) return;
 
   //명함이 있을 때
-  if (cardinfo !== undefined) {
+  if (cardinfo !== '명함을 등록해주세요') {
     return (
       <Layout>
         <St_Header>

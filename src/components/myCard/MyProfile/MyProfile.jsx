@@ -19,7 +19,6 @@ const MyProfile = () => {
   const dispatch = useDispatch();
   const profille = useSelector((state) => state.userprofile.userprofile);
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  //console.log('수정후 프로필 컴포넌트', profille.nickname);
 
   useEffect(() => {
     dispatch(_getProfile());
@@ -40,8 +39,12 @@ const MyProfile = () => {
           편집
         </PutButton>
       </St_Header>
-      <St_Info>{cardinfo === undefined ? '직책' : cardinfo.position}</St_Info>
-      <St_Info>{cardinfo === undefined ? '부서' : cardinfo.department}</St_Info>
+      <St_Info>
+        {cardinfo === '명함을 등록해주세요' ? '직책' : cardinfo?.position}
+      </St_Info>
+      <St_Info>
+        {cardinfo === '명함을 등록해주세요' ? '부서' : cardinfo?.department}
+      </St_Info>
     </St_Profile>
   );
 };
