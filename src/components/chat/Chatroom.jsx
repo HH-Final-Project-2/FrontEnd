@@ -191,6 +191,7 @@ const Chatroom = () => {
         });
         dispatch(deleteChatroom(id === '' ? chatlistid : id));
         nav('/chat');
+        window.location.reload();
       }
     });
   };
