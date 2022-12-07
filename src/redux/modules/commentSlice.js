@@ -31,11 +31,13 @@ export const likeComment = createAsyncThunk(
 export const addComment = createAsyncThunk(
   "ADDCOMMENT",
   async (payload, thunkAPI) => {
+    console.log('request', payload)
     try {
       const { data } = await instance.post(
         `/api/comment/${payload.postId}`,
         payload
       );
+      console.log('response', data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -83,7 +85,8 @@ const initialState = {
       content: '',
       createdAt: '',
       modifiedAt: '',
-      author: ''
+      author: '',
+      authorId: 0,
     }
   ],
   comment: {
@@ -93,7 +96,8 @@ const initialState = {
     content: '',
     createdAt: '',
     modifiedAt: '',
-    author: ''
+    author: '',
+    authorId: 0,
   },
   isLoading: false,
   error: null,

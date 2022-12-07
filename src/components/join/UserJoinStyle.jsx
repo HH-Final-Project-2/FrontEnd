@@ -38,14 +38,10 @@ export const EmailCheckButton = styled.button`
   margin-left: 15px;
   border: none;
   outline: none;
-  border: 1px solid #bbb5ff;
   border-radius: 8px;
-  background-color: transparent;
-  color: #5546ff;
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
   cursor: pointer;
-
-  font-weight: 500;
-  font-size: 14px;
 `;
 
 export const LabelText = styled.label`
@@ -68,15 +64,12 @@ export const InputJoin = styled.input`
   border: 1px solid #e2e6ef;
   padding: 10px 15px;
   margin-bottom: 12px;
-
   font-weight: 400;
   font-size: 16px;
-
   border-radius: 8px;
   ::placeholder {
     color: #bcc2cc;
   }
-
   :focus {
     border: 1px solid #bbb5ff;
   }
@@ -96,7 +89,6 @@ export const InputJoin2 = styled.input`
   ::placeholder {
     color: #bcc2cc;
   }
-
   :focus {
     border: 1px solid #bbb5ff;
   }
@@ -120,9 +112,9 @@ export const ButtonJoin = styled.button`
   height: 52px;
   border: none;
   outline: none;
-  background: #5546ff;
+  background-color: ${(props) => props.color || '#eeee'};
+  color: ${(props) => props.fontColor || 'gray'};
   border-radius: 8px;
-  color: #fff;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;

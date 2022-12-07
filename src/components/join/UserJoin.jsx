@@ -66,11 +66,46 @@ const UserJoin = () => {
   const watchForUserName = watch("username");
   const watchForNickName = watch("nickname");
 
-  //인풋 값 입력시 버튼&폰트 색상 변경
-  //const checkEmail = watchForEmail.length >= 1;
 
-  let setColor = "";
-  let setFontColor = "";
+
+  // 인풋 값 입력시 버튼&폰트 색상 변경
+  // 이메일 인증버튼
+  let setColor = '';
+  let setFontColor = '';
+
+  // 인증번호 버튼
+  let setColor2 = '';
+  let setFontColor2 = '';
+
+  // 가입하기 버튼
+  let setColor3 = '';
+  let setFontColor3 = '';
+
+  if (watchForEmail) {
+    setColor = '#5546ff';
+    setFontColor = 'white';
+  } else {
+    setColor = '#bbb5ff;';
+    setFontColor = 'white';
+  }
+
+  if (auth) {
+    setColor2 = '#5546ff';
+    setFontColor2 = 'white';
+  } else {
+    setColor2 = '#bbb5ff;';
+    setFontColor2 = 'white';
+  }
+
+  if (watchForEmail && watchForPassword && watchForPasswordCheck &&
+    watchForUserName && watchForNickName && auth) {
+    setColor3 = '#5546ff';
+    setFontColor3 = 'white';
+  } else {
+    setColor3 = '#bbb5ff;';
+    setFontColor3 = 'white';
+  }
+
 
   // 이메일 X버튼 디스플레이
   useEffect(() => {
@@ -211,6 +246,7 @@ const UserJoin = () => {
           </InputButtonEmail>
         </InputContainer>
         <EmailCheckButton
+          fontColor={setFontColor} color={setColor}
           disabled={disable}
           type="button"
           onClick={() => {
@@ -226,7 +262,6 @@ const UserJoin = () => {
       </EmailBox>
       {errors.email && <ErrorText>이메일 형식이 아닙니다</ErrorText>}
 
-      {/* 작업중 */}
       {email === true ? (
         <EmailBox>
           <InputContainer>
@@ -252,6 +287,7 @@ const UserJoin = () => {
           </InputContainer>
 
           <EmailCheckButton
+            fontColor={setFontColor2} color={setColor2}
             type="button"
             disabled={disable}
             onClick={() => {
@@ -389,7 +425,7 @@ const UserJoin = () => {
       )}
 
       {/* 가입하기 버튼 */}
-      <ButtonJoin>완료</ButtonJoin>
+      <ButtonJoin fontColor={setFontColor3} color={setColor3}>완료</ButtonJoin>
     </JoinForm>
   );
 };
