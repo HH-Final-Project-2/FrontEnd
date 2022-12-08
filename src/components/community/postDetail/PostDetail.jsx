@@ -31,7 +31,6 @@ import {
   PostTitle,
   Section1,
   Section2,
-  SectionLine,
   DivHeart,
   HeartNum,
 } from './PostDetailStyle';

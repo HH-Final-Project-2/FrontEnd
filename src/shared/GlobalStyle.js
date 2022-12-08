@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    display: none;
   }
 }
   
@@ -131,6 +131,5 @@ const GlobalStyle = createGlobalStyle`
      /*스크롤바 뒷 배경 색상*/
   } 
 `;
-
 
 export default GlobalStyle;

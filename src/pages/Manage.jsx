@@ -83,15 +83,6 @@ const Mypage = () => {
               }
             });
           }}
-
-        // onClick={() => {
-        //   const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
-        //   if (confirm) {
-        //     dispatch(withDraw());
-        //   } else {
-        //     return;
-        //   }
-        // }}
         >
           회원탈퇴
         </Joinout>

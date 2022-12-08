@@ -1,37 +1,39 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import instance from "../../shared/Request";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+const accessToken = localStorage.getItem('authorization');
+const refreshToken = localStorage.getItem('refresh-Token');
 
 const initialState = {
-  roomId: "",
-  chat: [{
-    userId: 0,
-    nickname: '',
-    message: '',
-    createdAt: ''
-  }],
-  userinfo: "",
-  chatRoom: "",
-  chatListroomId: "",
-  subscribeId: "",
+
+  roomId: '',
+  chat: [
+    {
+      userId: 0,
+      nickname: '',
+      message: '',
+      createdAt: '',
+    },
+  ],
+  userinfo: '',
+  chatRoom: '',
+  chatListroomId: '',
+  subscribeId: '',
+
   isLoading: false,
   error: null,
 };
 
-
 // 채팅방 전체 불러오기
 export const getChatRoom = createAsyncThunk(
-  "get/chatroom",
+  'get/chatroom',
   async (payload, { rejectWithValue }) => {
     try {
       const response = await axios.get('https://bkyungkeem.shop/chat/rooms', {
         headers: {
-          contentType: "application/json",
-          "authorization": accessToken,
-          "refresh-Token": refreshToken,
+          contentType: 'application/json',
+          authorization: accessToken,
+          'refresh-Token': refreshToken,
         },
       });
       return response.data;
@@ -43,16 +45,17 @@ export const getChatRoom = createAsyncThunk(
 
 //채팅방 삭제
 export const deleteChatroom = createAsyncThunk(
-  "post/delete",
+  'post/delete',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.delete(
         `https://bkyungkeem.shop/chat/rooms/${payload}`,
         {
           headers: {
-            contentType: "application/json",
-            "Authorization": accessToken,
-            "Refresh-Token": refreshToken
+            contentType: 'application/json',
+            Authorization: accessToken,
+            'Refresh-Token': refreshToken,
+
           },
         }
       );
@@ -63,17 +66,17 @@ export const deleteChatroom = createAsyncThunk(
 
 //request: 게시글ID reponse: 채팅방ID
 export const _postId = createAsyncThunk(
-  "post/chatid",
+  'post/chatid',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        "https://bkyungkeem.shop/chat/rooms",
+        'https://bkyungkeem.shop/chat/rooms',
         payload,
         {
           headers: {
-            contentType: "application/json",
-            "Authorization": accessToken,
-            "Refresh-Token": refreshToken
+            contentType: 'application/json',
+            Authorization: accessToken,
+            'Refresh-Token': refreshToken,
           },
         }
       );
@@ -84,51 +87,52 @@ export const _postId = createAsyncThunk(
 
 //메시지 불러오기
 export const getMessage = createAsyncThunk(
-  "get/chat",
+  'get/chat',
   async (payload, thunkAPI) => {
     if (payload) {
       try {
-        const data = await axios.get(`https://bkyungkeem.shop/chat/rooms/${payload}/messages`, {
-          headers: {
-            contentType: "application/json",
-            "authorization": accessToken,
-            "refresh-Token": refreshToken,
-          },
-        });
+        const data = await axios.get(
+          `https://bkyungkeem.shop/chat/rooms/${payload}/messages`,
+          {
+            headers: {
+              contentType: 'application/json',
+              authorization: accessToken,
+              'refresh-Token': refreshToken,
+            },
+          }
+        );
         return thunkAPI.fulfillWithValue(data.data);
 
-      } catch (error) {
-
-      }
+      } catch (error) {}
     }
 
   }
 );
-
 
 //유정정보(아이디)
 export const getUserinfo = createAsyncThunk(
-  "get/userinfo",
+  'get/userinfo',
   async (payload, thunkAPI) => {
     if (payload) {
       try {
-        const { data } = await axios.get(`https://bkyungkeem.shop/chat/rooms/userInfo/${payload}`, {
-          headers: {
-            contentType: "application/json",
-            "authorization": accessToken,
-            "refresh-Token": refreshToken,
-          },
-        });
+        const { data } = await axios.get(
+          `https://bkyungkeem.shop/chat/rooms/userInfo/${payload}`,
+          {
+            headers: {
+              contentType: 'application/json',
+              authorization: accessToken,
+              'refresh-Token': refreshToken,
+            },
+          }
+        );
         return thunkAPI.fulfillWithValue(data);
       } catch (error) { }
     }
-
   }
 );
 
-
 export const chatSlice = createSlice({
-  name: "chat",
+  name: 'chat',
   initialState,
   reducers: {
     addMessage: (state, action) => {
@@ -136,7 +140,7 @@ export const chatSlice = createSlice({
     },
     roomIdSave: (state, action) => {
       state.chatListroomId = action.payload;
-    }
+    },
   },
   extraReducers: {
     [_postId.fulfilled]: (state, action) => {
@@ -154,7 +158,7 @@ export const chatSlice = createSlice({
     [getChatRoom.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.chatRoom = payload;
-    }
+    },
   },
 });
 

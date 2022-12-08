@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Layout from '../../layout/Layout';
 import MyCardFooter from '../../footer/MyCardFooter';
 import { useNavigate } from 'react-router';

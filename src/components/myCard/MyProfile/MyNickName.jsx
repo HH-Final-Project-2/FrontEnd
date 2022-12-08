@@ -43,10 +43,6 @@ const MyNickName = () => {
     });
   };
 
-  // const onChange = (e) => {
-  //   setUserinfo(e.target.value);
-  // };
-
   useEffect(() => {
     dispatch(_getProfile());
   }, []);

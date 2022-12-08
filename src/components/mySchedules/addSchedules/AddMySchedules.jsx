@@ -21,7 +21,6 @@ import {
   TitleTextArea,
 } from "./AddMySchedulesStyle";
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
-import { EndTime } from "../mySchedulesDetail/myShedulesDetailStyle";
 import Swal from "sweetalert2";
 
 

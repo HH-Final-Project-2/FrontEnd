@@ -6,7 +6,6 @@ import MyCardNoneItem from '../components/myCard/MyCardNoneItem';
 import MyProfile from '../components/myCard/MyProfile/MyProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import { _getMakeCard } from '../redux/modules/mycardSlice';
-import KakaoShare from '../components/myCard/kakaoshare/KakaoShare';
 import Layout from '../components/layout/Layout';
 import BottomSheet from '../components/myCard/SharebottomSheet/ShareBottomSheet';
 import { ReactComponent as Icputpan } from '../images/ic-putpan.svg';
@@ -22,8 +21,6 @@ const MyCard = () => {
   useEffect(() => {
     dispatch(_getMakeCard());
   }, []);
-
-  // if (cardinfo === undefined) return;
 
   //명함이 있을 때
   if (cardinfo !== '명함을 등록해주세요') {
