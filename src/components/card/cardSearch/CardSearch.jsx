@@ -33,13 +33,11 @@ const CardSearch = () => {
   const [search, setSearch] = useState("");
   const searched = useSelector((state) => state.PostReducer.searchCard);
 
-  console.log(searched);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const searchChangeHandler = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   };
 
   const searchClickHandler = () => {

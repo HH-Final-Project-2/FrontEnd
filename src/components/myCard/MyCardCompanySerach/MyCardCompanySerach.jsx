@@ -7,6 +7,7 @@ import { _searchGet, _companyInfo } from '../../../redux/modules/mycardSlice';
 import Pagination from 'react-js-pagination';
 import Layout from '../../layout/Layout';
 import SearchNone from '../../searchNone/SearchNone';
+
 import {
   ComInfor,
   Company,
@@ -42,7 +43,7 @@ const MyCardCompanySerach = () => {
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
-  console.log(currentPosts);
+
   const handlePageChange = (page) => {
     setPage(page);
   };

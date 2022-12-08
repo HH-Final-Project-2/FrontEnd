@@ -32,7 +32,6 @@ import { ReactComponent as NoneCard } from "../../../images/noneCard.svg";
 
 const MainView = () => {
   const mainpost = useSelector((state) => state.PostReducer.list.data);
-  console.log(mainpost);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -88,8 +87,8 @@ const MainView = () => {
       </div>
       <CardList>
         {[mainpost].includes("명") ||
-        mainpost === undefined ||
-        mainpost === "명함을 등록해주세요" ? (
+          mainpost === undefined ||
+          mainpost === "명함을 등록해주세요" ? (
           <NoneCardPage>
             <div className="noneCard">
               <NoneCard />
