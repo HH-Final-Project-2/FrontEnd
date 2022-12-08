@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __writeSchedules } from "../../../redux/modules/SchedulesSlice";
 import {
@@ -21,14 +21,21 @@ import {
   TitleTextArea,
 } from "./AddMySchedulesStyle";
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
-import { EndTime } from "../mySchedulesDetail/myShedulesDetailStyle";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+
 
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
   const [title, setTitle] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  console.log(startDate);
+
+  const { isLoading } = useSelector((state) => state.ScheduleSlice);
+
+  useEffect(() => {
+    if (isLoading) navigate('/mySchedules');
+  }, [isLoading]);
 
   const startPlusNine = Number(startDate.toISOString().slice(11, 13));
   const endPlusNine = Number(endDate.toISOString().slice(11, 13));
@@ -44,13 +51,6 @@ const AddMySchedules = () => {
     .replace(/\..*/, "")
     .slice(0, 10);
 
-  console.log(
-    startDate.toISOString(),
-    startPlusNine,
-    endPlusNine,
-    dayday,
-    dayday2
-  );
 
   const filterStartDate =
     startPlusNine <= 9
@@ -62,7 +62,7 @@ const AddMySchedules = () => {
       ? endDate.toISOString().replace("T", " ").split(" ")[0]
       : dayday2;
   const filterEndTime = endDate.toTimeString().split(" ")[0].slice(0, 5);
-  console.log(filterStartDate, filterEndDate);
+
   const dateFilterFunction = (filterStartDate, filterEndDate) => {
     let regex = RegExp(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
     if (!(regex.test(filterStartDate) && regex.test(filterEndDate)))
@@ -99,19 +99,27 @@ const AddMySchedules = () => {
           todo: todo,
         })
       );
+
       Swal.fire({
-        text: '일정이 추가 되었습니다',
+        title: "일정이 추가 되었습니다",
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
+        width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
-      navigate("/mySchedules");
     } else {
       Swal.fire({
-        text: '작성한 내용을 확인해주세요',
+        title: "작성한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
+        width: "300px",
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
     }
   };
@@ -141,11 +149,13 @@ const AddMySchedules = () => {
       {/* body */}
       <TitleTextArea
         type="text"
+        maxLength="30"
         onChange={(e) => setTitle(e.target.value)}
         placeholder="제목을 입력해 주세요."
       />
       <ContentTextArea
         type="text"
+        maxLength="80"
         onChange={(e) => setTodo(e.target.value)}
         placeholder="내용을 입력해 주세요."
       />

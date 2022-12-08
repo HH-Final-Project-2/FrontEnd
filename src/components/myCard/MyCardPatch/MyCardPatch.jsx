@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Layout from '../../layout/Layout';
 import MyCardFooter from '../../footer/MyCardFooter';
 import { useNavigate } from 'react-router';
@@ -95,10 +94,14 @@ const MyCardPatch = () => {
     );
 
     Swal.fire({
-      text: '수정이 완료되었습니다.',
+      title: '수정이 완료되었습니다.',
       showConfirmButton: false,
       timer: 1000,
       width: '300px',
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
     });
     nav('/mypage/cardinfo');
   };

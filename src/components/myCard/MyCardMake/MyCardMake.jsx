@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../layout/Layout';
 import { useNavigate } from 'react-router';
 import {
@@ -34,12 +34,12 @@ import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-
 import {
   AssistiveText,
   SectionHeader,
 } from '../../card/cardPost/cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
+import { useEffect } from 'react';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트

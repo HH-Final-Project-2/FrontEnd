@@ -16,9 +16,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-import { SectionLine } from '../postList/PostListStyle';
 import Swal from 'sweetalert2';
-
 
 const PostWrite = () => {
   const dispatch = useDispatch();
@@ -111,8 +109,6 @@ const PostWrite = () => {
     dispatch(__writePost(formData));
   };
 
-
-
   return (
     <form
       onSubmit={(e) => {
@@ -123,39 +119,60 @@ const PostWrite = () => {
         // 호출해준다.
         e.preventDefault();
         //import Swal from 'sweetalert2';
-        if (joupGroupTest.trim() === '' && titleTest.trim() === '' && contentTest.trim() === '') {
+        if (
+          joupGroupTest.trim() === '' &&
+          titleTest.trim() === '' &&
+          contentTest.trim() === ''
+        ) {
           Swal.fire({
-            text: '게시글을 확인 해주세요',
+            title: '게시글을 확인 해주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
 
         if (joupGroupTest.trim() === '') {
           Swal.fire({
-            text: '직군을 선택해 주세요',
+            title: '직군을 선택해 주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
         if (titleTest.trim() === '') {
           Swal.fire({
-            text: '제목을 입력해 주세요', showConfirmButton: false,
+            title: '제목을 입력해 주세요',
+            showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
         if (contentTest.trim() === '') {
           Swal.fire({
-            text: '내용을 입력해 주세요',
+            title: '내용을 입력해 주세요',
             showConfirmButton: false,
             timer: 1000,
             width: '300px',
+            customClass: {
+              popup: 'allAlret-class',
+              title: 'allTitle-class',
+            },
           });
           return;
         }
@@ -229,8 +246,9 @@ const PostWrite = () => {
             value={titleTest}
             type="text"
             placeholder="제목"
+            maxLength={50}
             onChange={(ev) => {
-              setTitleTest(ev.target.value)
+              setTitleTest(ev.target.value);
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -248,7 +266,7 @@ const PostWrite = () => {
             placeholder="내용(500자 이내)"
             maxLength={500}
             onChange={(ev) => {
-              setContentTest(ev.target.value)
+              setContentTest(ev.target.value);
               const { value } = ev.target;
               setMemberpost({
                 ...memberPost,
@@ -305,7 +323,9 @@ const PostWrite = () => {
             </ImgUploadButton>
           )}
         </ImageUpload>
-        <WriteBtn fontColor={setFontColor} color={setColor}>작성</WriteBtn>
+        <WriteBtn fontColor={setFontColor} color={setColor}>
+          작성
+        </WriteBtn>
       </WriteBox>
     </form>
   );

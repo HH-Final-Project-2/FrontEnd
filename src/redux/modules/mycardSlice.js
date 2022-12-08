@@ -1,31 +1,30 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "../../shared/Request";
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import instance from '../../shared/Request';
+
 //post
 export const _MakeCard = createAsyncThunk(
-  "post/card",
+  'post/card',
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post("/api/mypages", payload);
+      const data = await instance.post('/api/mypages', payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
 );
 //get
 export const _getMakeCard = createAsyncThunk(
-  "get/card",
+  'get/card',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/api/mypages");
-      console.log(data)
+      const { data } = await instance.get('/api/mypages');
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
 );
 //put
 export const _PutCard = createAsyncThunk(
-  "put/card",
+  'put/card',
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.put(
@@ -38,22 +37,24 @@ export const _PutCard = createAsyncThunk(
 );
 //검색
 export const _searchGet = createAsyncThunk(
-  "get/SEARCH",
+  'get/SEARCH',
   async (payload, thunkAPI) => {
     try {
-      const data = await instance.post(`/api/companySearch/?keyword=${payload}`);
+      const data = await instance.post(
+        `/api/companySearch/?keyword=${payload}`
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
 );
 //회사명, 주소 저장
 export const _companyInfo = createAsyncThunk(
-  "post/COMPANY_info",
+  'post/COMPANY_info',
   async (payload, thunkAPI) => {
-    console.log(payload)
+    console.log(payload);
     try {
-      const { data } = await instance.post("/api/companyInfo", payload);
-      console.log(data)
+      const { data } = await instance.post('/api/companyInfo', payload);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -71,15 +72,15 @@ const initialState = {
   }],
   cardinfo: [
     {
-      cardName: "",
-      email: "",
-      phoneNum: "",
-      company: "",
-      companyAddress: "",
-      department: "",
-      position: "",
-      tel: "",
-      fax: "",
+      cardName: '',
+      email: '',
+      phoneNum: '',
+      company: '',
+      companyAddress: '',
+      department: '',
+      position: '',
+      tel: '',
+      fax: '',
     },
   ],
   companyInfo: [{}],
@@ -88,7 +89,7 @@ const initialState = {
   error: null,
 };
 export const mycardSlice = createSlice({
-  name: "cardinfo", //모듈
+  name: 'cardinfo', //모듈
   initialState,
   reducers: {
     saveInfo : (state, action) =>{

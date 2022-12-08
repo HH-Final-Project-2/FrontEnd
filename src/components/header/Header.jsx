@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { HeaderStyle, AlarmSvg, LogoSvg } from "./HeaderStyle";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { HeaderStyle, LogoSvg } from './HeaderStyle';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const Header = () => {
     <HeaderStyle>
       <LogoSvg
         onClick={() => {
-          navigate("/cards");
+          navigate('/cards');
         }}
         width="120"
         height="28"
@@ -57,18 +57,6 @@ const Header = () => {
           fill="#BCC2CC"
         />
       </LogoSvg>
-      <AlarmSvg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 23C12.6881 23.0009 13.3594 22.7895 13.9205 22.3952C14.4817 22.0009 14.9048 21.4433 15.1311 20.8H8.86889C9.09518 21.4433 9.51831 22.0009 10.0795 22.3952C10.6406 22.7895 11.3119 23.0009 12 23ZM19.7778 14.8446V9.8C19.7778 6.2613 17.35 3.2803 14.0611 2.3838C13.7356 1.572 12.94 1 12 1C11.06 1 10.2644 1.572 9.93889 2.3838C6.65 3.2814 4.22222 6.2613 4.22222 9.8V14.8446L2.32556 16.7223C2.22218 16.8243 2.14019 16.9455 2.08432 17.079C2.02844 17.2124 1.99979 17.3555 2 17.5V18.6C2 18.8917 2.11706 19.1715 2.32544 19.3778C2.53381 19.5841 2.81643 19.7 3.11111 19.7H20.8889C21.1836 19.7 21.4662 19.5841 21.6746 19.3778C21.8829 19.1715 22 18.8917 22 18.6V17.5C22.0002 17.3555 21.9716 17.2124 21.9157 17.079C21.8598 16.9455 21.7778 16.8243 21.6744 16.7223L19.7778 14.8446Z"
-          fill="#52596B"
-        />
-      </AlarmSvg>
     </HeaderStyle>
   );
 };

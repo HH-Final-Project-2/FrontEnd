@@ -37,10 +37,14 @@ const Mypage = () => {
         <Logout
           onClick={() => {
             Swal.fire({
-              text: `로그아웃 되었습니다.`,
+              title: `로그아웃 되었습니다.`,
               showConfirmButton: false,
               timer: 1000,
               width: '300px',
+              customClass: {
+                popup: 'allAlret-class',
+                title: 'allTitle-class',
+              },
             });
             dispatch(signOut({}));
           }}
@@ -51,35 +55,34 @@ const Mypage = () => {
           type="button"
           onClick={() => {
             Swal.fire({
-              text: '정말로 탈퇴하시겠습니까?',
+              title: '정말로 탈퇴하시겠습니까?',
               showCancelButton: true,
               confirmButtonColor: '#5546FF',
               cancelButtonColor: '#BBB5FF',
               confirmButtonText: '확인',
               cancelButtonText: '취소',
               width: '300px',
+              customClass: {
+                popup: 'login-class',
+                title: 'title-class',
+              },
             }).then((result) => {
               if (result.isConfirmed) {
                 // 확인 버튼 누를시 동작
                 Swal.fire({
-                  text: '탈퇴되었습니다',
+                  title: '탈퇴되었습니다',
                   width: '300px',
                   timer: 1000,
                   showConfirmButton: false,
+                  customClass: {
+                    popup: 'allAlret-class',
+                    title: 'allTitle-class',
+                  },
                 });
                 dispatch(withDraw());
               }
             });
           }}
-
-          // onClick={() => {
-          //   const confirm = window.confirm('정말로 탈퇴하시겠습니까?');
-          //   if (confirm) {
-          //     dispatch(withDraw());
-          //   } else {
-          //     return;
-          //   }
-          // }}
         >
           회원탈퇴
         </Joinout>

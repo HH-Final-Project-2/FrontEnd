@@ -8,9 +8,34 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    display: none;
   }
+}
+  
+  .login-class {
+    color: #1A1F27;
+    margin-bottom: 100px;
   }
+  
+  .title-class{
+    margin-top: 9px;
+    font-weight: 500;
+    font-size: 17px;
+    color: black;
+  }
+
+  .allAlret-class{
+    border-radius: 40px;
+    opacity: 0.9;
+    margin-bottom: 800px;
+  }
+  .allTitle-class{
+    margin-top: 9px;
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  
   p,
   ol,
   ul,

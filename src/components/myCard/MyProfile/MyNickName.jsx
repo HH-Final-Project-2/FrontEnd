@@ -23,7 +23,6 @@ const MyNickName = () => {
   const dispatch = useDispatch();
 
   const profille = useSelector((state) => state.userprofile.userprofile);
-  // console.log('test', profille);
 
   const [userinfo, setUserinfo] = useState({
     nickname: profille.nickname,
@@ -44,10 +43,6 @@ const MyNickName = () => {
     });
   };
 
-  // const onChange = (e) => {
-  //   setUserinfo(e.target.value);
-  // };
-
   useEffect(() => {
     dispatch(_getProfile());
   }, []);
@@ -60,10 +55,14 @@ const MyNickName = () => {
     dispatch(_PutPorfile(userinfo));
     // console.log(userinfo);
     Swal.fire({
-      text: `닉네임이 ${nickname}으로 변경되었습니다`,
+      title: `닉네임이 ${nickname}으로 변경되었습니다`,
       showConfirmButton: false,
       timer: 1000,
       width: '300px',
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
     });
     nav('/mypage');
   };
@@ -93,10 +92,14 @@ const MyNickName = () => {
           onClick={() => {
             if (nickname.trim() === '') {
               Swal.fire({
-                text: '닉네임을 입력해주세요.',
+                title: '닉네임을 입력해주세요.',
                 showConfirmButton: false,
                 timer: 1000,
                 width: '300px',
+                customClass: {
+                  popup: 'allAlret-class',
+                  title: 'allTitle-class',
+                },
               });
               return;
             }

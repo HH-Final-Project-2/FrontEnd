@@ -44,21 +44,6 @@ const MainCards = () => {
   console.log(companyOnly);
   const [companyHow, setCompanyHow] = useState();
 
-  const preventClose = (e = BeforeUnloadEvent) => {
-    e.preventDefault();
-    e.returnValue = "";
-  };
-
-  useEffect(() => {
-    (() => {
-      window.addEventListener("beforeunload", preventClose);
-    })();
-
-    return () => {
-      window.removeEventListener("beforeunload", preventClose);
-    };
-  }, []);
-
   useEffect(() => {
     dispatch(__viewGet(id));
   }, [dispatch]);
@@ -87,21 +72,21 @@ const MainCards = () => {
 
   const isValidInput =
     inputValue.cardName &&
-    inputValue.email &&
-    inputValue.company &&
-    inputValue.companyAddress &&
-    inputValue.companyType &&
-    inputValue.phoneNum &&
-    inputValue.department &&
-    inputValue.position !== undefined
+      inputValue.email &&
+      inputValue.company &&
+      inputValue.companyAddress &&
+      inputValue.companyType &&
+      inputValue.phoneNum &&
+      inputValue.department &&
+      inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
-        inputValue.email.length >= 1 &&
-        inputValue.company.length >= 1 &&
-        inputValue.companyAddress.length >= 1 &&
-        inputValue.companyType.length >= 1 &&
-        inputValue.phoneNum.length >= 1 &&
-        inputValue.department.length >= 1 &&
-        inputValue.position.length >= 1
+      inputValue.email.length >= 1 &&
+      inputValue.company.length >= 1 &&
+      inputValue.companyAddress.length >= 1 &&
+      inputValue.companyType.length >= 1 &&
+      inputValue.phoneNum.length >= 1 &&
+      inputValue.department.length >= 1 &&
+      inputValue.position.length >= 1
       : false;
 
   const valueChangeHandler = (e) => {
@@ -152,10 +137,14 @@ const MainCards = () => {
       );
     }
     Swal.fire({
-      text: "명함 수정 완료!",
+      title: "명함 수정 완료!",
       showConfirmButton: false,
       timer: 1000,
       width: "300px",
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
     });
     navigate(`/posts/get/${id}`);
   };
@@ -173,7 +162,36 @@ const MainCards = () => {
             xmlns="http://www.w3.org/2000/svg"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              navigate(-1);
+              dispatch(
+                __cardInfo({
+                  cardName: "",
+                  email: "",
+                  phoneNum: "",
+                  department: "",
+                  position: "",
+                  tel: "",
+                  fax: "",
+                  companyType: "",
+                  company: "",
+                })
+              );
+              Swal.fire({
+                title: "뒤로가기를 하시겠습니까?",
+                showCancelButton: true,
+                confirmButtonColor: '#5546FF',
+                cancelButtonColor: '#BBB5FF',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소',
+                width: '300px',
+                customClass: {
+                  popup: 'login-class',
+                  title: 'title-class',
+                },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.replace(`/posts/get/${id}`);
+                }
+              });
             }}
           >
             <path
@@ -214,7 +232,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+              inputValue.phoneNum.includes("-") === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -313,6 +331,9 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
+                  defaultValue={
+                    inputValue.company ? inputValue.company : companyOnly
+                  }
                   value={companyGet.company ? companyGet.company : companyOnly}
                   // onChange={(e) => {
                   //   setInputValue({ company: e.target.value });

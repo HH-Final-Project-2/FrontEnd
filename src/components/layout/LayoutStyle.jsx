@@ -17,13 +17,11 @@ export const Box = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  /* max-width: 1000px;
-  width: 100%; */
 `;
 export const BannerLayout = styled.div`
   position: fixed;
-  bottom: -100px;
-  margin-right: 500px;
+  bottom: -80px;
+  margin-right: 1000px;
 `;
 
 export const DivLayout = styled.div`
@@ -32,7 +30,6 @@ export const DivLayout = styled.div`
   height: auto;
 
   position: static;
-  margin-left: 470px;
   background-color: white;
 
   display: flex;
@@ -48,4 +45,15 @@ export const DivLayout2 = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
+`;
+
+export const Version = styled.div`
+  position: fixed;
+  margin-right: 858px;
+  bottom: 392px;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+
+  color: white;
 `;

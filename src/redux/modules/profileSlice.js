@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import instance from '../../shared/Request';
-const accessToken = localStorage.getItem('authorization');
-const refreshToken = localStorage.getItem('refresh-Token');
 
 //프로필 get
 export const _getProfile = createAsyncThunk(
   'get/profille',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/api/members/profiles");
+      const { data } = await instance.get('/api/members/profiles');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -20,24 +18,22 @@ export const _PutPorfile = createAsyncThunk(
     try {
       const { data } = await instance.patch(`/api/members/profiles`, payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) { }
+    } catch (error) {}
   }
 );
 
 const initialState = {
   userprofile: {
-    createdAt: "",
-    email: "",
+    createdAt: '',
+    email: '',
     id: 0,
     modifiedAt: null,
-    nickname: "",
-    username: ""
+    nickname: '',
+    username: '',
   },
   isLoading: false,
   error: null,
-
 };
-
 
 export const porfileSlice = createSlice({
   name: 'userprofile', //모듈
@@ -50,9 +46,8 @@ export const porfileSlice = createSlice({
     },
     [_PutPorfile.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.userprofile =  action.payload
-    }
-
+      state.userprofile = action.payload;
+    },
   },
 });
 export const {} = porfileSlice.actions;

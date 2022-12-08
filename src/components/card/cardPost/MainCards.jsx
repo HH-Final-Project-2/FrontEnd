@@ -88,6 +88,8 @@ const MainCards = () => {
     company,
     companyAddress
   );
+  const [pop, setPop] = useState(false);
+  const [companyPop, setCompanyPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
 
@@ -182,6 +184,7 @@ const MainCards = () => {
           companyType: companyType,
         })
       );
+
       Swal.fire({
         text: '명함 작성 완료!',
         showConfirmButton: false,
@@ -197,6 +200,7 @@ const MainCards = () => {
         timer: 1000,
         width: '300px',
       });
+      setPop(true);
     }
   };
   //
@@ -212,8 +216,23 @@ const MainCards = () => {
           xmlns="http://www.w3.org/2000/svg"
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            // window.location.reload();
-            navigate(-1);
+            Swal.fire({
+              title: '뒤로가기를 하시겠습니까?',
+              showCancelButton: true,
+              confirmButtonColor: '#5546FF',
+              cancelButtonColor: '#BBB5FF',
+              confirmButtonText: '확인',
+              cancelButtonText: '취소',
+              width: '300px',
+              customClass: {
+                popup: 'login-class',
+                title: 'title-class',
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.replace('/cards');
+              }
+            });
           }}
         >
           <path
@@ -411,6 +430,7 @@ const MainCards = () => {
               />
               <label htmlFor="find">회사 검색</label>
             </RadioDetail>
+
             <RadioDetail>
               <input
                 type="radio"

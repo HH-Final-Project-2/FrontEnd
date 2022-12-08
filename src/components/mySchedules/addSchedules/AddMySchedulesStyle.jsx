@@ -105,7 +105,7 @@ export const DateStart = styled.div`
 
   .datePicker {
     padding: 9px 9px 9px 13px;
-    width: 170px;
+    width: 175px;
     margin-right: 20px;
     border: none;
     outline: none;
@@ -141,7 +141,7 @@ export const DateEnd = styled.div`
     margin-right: 20px;
 
     padding: 9px 9px 9px 13px;
-    width: 170px;
+    width: 175px;
     border: none;
     outline: none;
     border-radius: 4px;

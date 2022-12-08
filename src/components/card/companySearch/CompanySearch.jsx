@@ -89,6 +89,11 @@ const CompanySearch = () => {
           type="text"
           value={search}
           onChange={searchChangeHandler}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              dispatch(__searchGet(search));
+            }
+          }}
         ></Input>
       </SearchBox>
       <Icon>
