@@ -33,17 +33,21 @@ import {
   AssistiveText,
   CompanyInput,
   SectionHeader,
+  FormCheckOther,
+  FormCheckOwn,
+  CheckOwn,
+  CheckOther,
 } from './cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
 import Swal from 'sweetalert2';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
 import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
+
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
-  console.log(companyGet.cardName);
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
   );
@@ -188,10 +192,14 @@ const MainCards = () => {
       window.location.reload();
     } else {
       Swal.fire({
-        text: '입력한 내용을 확인해주세요',
+        title: '입력한 내용을 확인해주세요',
         showConfirmButton: false,
         timer: 1000,
         width: '300px',
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
       });
       setPop(true);
     }
@@ -244,30 +252,34 @@ const MainCards = () => {
         <Item>
           <RadioBox>
             <RadioDetail>
-              <input
-                type="radio"
-                id="own"
-                name="companyType"
-                value={'own'}
-                checked={companyType === 'own'}
-                onChange={(e) => {
-                  setCompanyType(e.target.value);
-                }}
-              />
-              <label htmlFor="own">자사</label>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="own"
+                  name="companyType"
+                  value={'own'}
+                  checked={companyType === 'own'}
+                  onChange={(e) => {
+                    setCompanyType(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="own">자사</CheckOwn>
+              </label>
             </RadioDetail>
             <RadioDetail>
-              <input
-                type="radio"
-                id="other"
-                name="companyType"
-                value={'other'}
-                checked={companyType === 'other'}
-                onChange={(e) => {
-                  setCompanyType(e.target.value);
-                }}
-              />
-              <label htmlFor="other">타사</label>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="other"
+                  name="companyType"
+                  value={'other'}
+                  checked={companyType === 'other'}
+                  onChange={(e) => {
+                    setCompanyType(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="other">타사</CheckOther>
+              </label>
             </RadioDetail>
           </RadioBox>
         </Item>
@@ -293,8 +305,8 @@ const MainCards = () => {
             </svg>
 
             <div onClick={openModal} style={{ cursor: 'pointer' }}>
-              여기를 눌러{' '}
-              <span style={{ color: 'red' }}>등록 가이드를 확인</span>해주세요{' '}
+              <span style={{ color: 'red' }}>여기</span>를 눌러{' '}
+              <span style={{ color: 'red' }}>등록 가이드</span>를 확인해주세요{' '}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
@@ -411,31 +423,35 @@ const MainCards = () => {
 
           <RadioBox>
             <RadioDetail>
-              <input
-                type="radio"
-                id="find"
-                name="companyType"
-                value={'find'}
-                checked={companyHow === 'find'}
-                onChange={(e) => {
-                  setCompanyHow(e.target.value);
-                }}
-              />
-              <label htmlFor="find">회사 검색</label>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="find"
+                  name="companyType"
+                  value={'find'}
+                  checked={companyHow === 'find'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+              </label>
             </RadioDetail>
 
             <RadioDetail>
-              <input
-                type="radio"
-                id="myself"
-                name="companyHow"
-                value={'myself'}
-                checked={companyHow === 'myself'}
-                onChange={(e) => {
-                  setCompanyHow(e.target.value);
-                }}
-              />
-              <label htmlFor="myself">직접 입력</label>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="myself"
+                  name="companyHow"
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="myself">직접 입력</CheckOther>
+              </label>
             </RadioDetail>
           </RadioBox>
 
@@ -450,28 +466,54 @@ const MainCards = () => {
                   setCompany(e.target.value);
                 }}
               />
-              <AddressSearch>
-                <p
-                  onClick={() => {
-                    dispatch(
-                      __cardInfo({
-                        cardName: cardName ? cardName : '',
-                        email: email,
-                        phoneNum: phoneNum,
-                        department: department ? department : '',
-                        position: position ? position : '',
-                        tel: tel,
-                        fax: fax,
-                        companyType: companyType ? companyType : '',
-                        company: company ? company : '',
-                      })
-                    );
-                    navigate('/posts/companyOtherSearch');
-                  }}
-                >
-                  회사 주소 검색
-                </p>
-              </AddressSearch>
+
+              {pop === true ? (
+                <AddressSearch style={{ color: 'red' }}>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : '',
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : '',
+                          position: position ? position : '',
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : '',
+                          company: company ? company : '',
+                        })
+                      );
+                      navigate('/posts/companyOtherSearch');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              ) : (
+                <AddressSearch>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        __cardInfo({
+                          cardName: cardName ? cardName : '',
+                          email: email,
+                          phoneNum: phoneNum,
+                          department: department ? department : '',
+                          position: position ? position : '',
+                          tel: tel,
+                          fax: fax,
+                          companyType: companyType ? companyType : '',
+                          company: company ? company : '',
+                        })
+                      );
+                      navigate('/posts/companyOtherSearch');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              )}
             </div>
           ) : (
             <div>
