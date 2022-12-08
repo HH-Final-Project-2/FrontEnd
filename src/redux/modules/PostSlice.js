@@ -13,7 +13,7 @@ export const topFivePost = createAsyncThunk(
       const { data } = await instance.get('/api/posting/five');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -26,7 +26,7 @@ export const heartSort = createAsyncThunk(
       const { data } = await instance.get('/api/posting/hearts');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -39,7 +39,7 @@ export const hitsSort = createAsyncThunk(
       const { data } = await instance.get('/api/posting/hits');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -54,7 +54,7 @@ export const __searchPost = createAsyncThunk(
       );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -80,7 +80,7 @@ export const __getPostAll = createAsyncThunk(
       const { data } = await instance.get('/api/posting');
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -93,7 +93,7 @@ export const __getPost = createAsyncThunk(
       const { data } = await instance.get(`/api/posting/${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -112,7 +112,7 @@ export const __writePost = createAsyncThunk(
       });
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );

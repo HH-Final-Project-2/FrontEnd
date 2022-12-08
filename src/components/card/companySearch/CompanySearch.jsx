@@ -40,7 +40,6 @@ const CompanySearch = () => {
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
-  console.log(currentPosts);
   const handlePageChange = (page) => {
     setPage(page);
   };
@@ -57,7 +56,6 @@ const CompanySearch = () => {
   const searchClickHandler = () => {
     dispatch(__searchGet(search));
   };
-  console.log(searched, currentPosts);
 
   return (
     <Layout>

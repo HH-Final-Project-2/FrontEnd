@@ -53,7 +53,7 @@ const MyCardMake = () => {
   console.log(searchinfo);
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const imgGet = useSelector((state) => state.PostReducer.img);
-  console.log(savemake);
+
   const [makeinfo, setMakeinfo] = useState({
     cardName: savemake.cardName ? savemake.cardName : '',
     email: savemake.email ? savemake.email : '',
