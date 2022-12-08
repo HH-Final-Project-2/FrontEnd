@@ -122,6 +122,8 @@ const MyCardMake = () => {
     });
   };
 
+  console.log(cardName.length);
+
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
@@ -208,12 +210,18 @@ const MyCardMake = () => {
         <SaveButton
           onClick={() => {
             if (
-              cardName.trim() === '' &&
-              email.trim() === '' &&
-              phoneNum.trim() === '' &&
-              company.trim() === '' &&
-              department.trim() === '' &&
-              position.trim() === ''
+              cardName.trim() === '' ||
+              email.trim() === '' ||
+              phoneNum.trim() === '' ||
+              company.trim() === '' ||
+              department.trim() === '' ||
+              position.trim() === '' ||
+              cardName.length === 0 ||
+              email.length === 0 ||
+              phoneNum.length === 0 ||
+              company.length === 0 ||
+              department.length() === 0 ||
+              position.length() === 0
             ) {
               alert('필수란을 작성해주세요.');
               return;
