@@ -65,10 +65,8 @@ const Chatroom = () => {
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
   //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
-  console.log('채팅방유저정보', userinfo);
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
-  console.log('이전채팅내용', chatList);
 
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
@@ -142,7 +140,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => { },
+        (data) => {},
         headers
       )
       .unsubscribe();
@@ -177,7 +175,7 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const removeCheck = () => {
