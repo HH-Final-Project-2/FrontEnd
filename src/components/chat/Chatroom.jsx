@@ -68,8 +68,6 @@ const Chatroom = () => {
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
 
-  // const lastAt = chatList[chatList.length - 1].createdAt.split(' ')[2];
-
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -207,10 +205,11 @@ const Chatroom = () => {
             title: 'allTitle-class',
           },
         });
-        dispatch(deleteChatroom(id === '' ? chatlistid : id));
+
         setTimeout(() => {
           nav('/chat');
-        }, 100);
+        }, 200);
+        dispatch(deleteChatroom(id === '' ? chatlistid : id));
       }
     });
   };
@@ -258,6 +257,7 @@ const Chatroom = () => {
             onClick={() => {
               disConneted();
               dispatch(deleteChatroom(id === '' ? chatlistid : id));
+              removeCheck();
             }}
           >
             나가기
@@ -274,7 +274,8 @@ const Chatroom = () => {
             const createdAt = chat.createdAt;
             const ampm = createdAt.split(' ')[1];
             const time = createdAt.split(' ')[2];
-
+            const lastAt =
+              chatList[chatList.length - 1].createdAt.split(' ')[2];
             // let displayTime = true;
 
             // if (index !== chatList.length - 1) {
@@ -295,38 +296,38 @@ const Chatroom = () => {
             //마지막 채팅 시간과 이전 채팅의 시간이 같으면 시간 안보이게
             // console.log(chat.createdAt.split(' ')[2] === lastAt);
 
-            // if (chat.userId === userinfo?.myId) {
-            //   return (
-            //     <MyChatBox key={message.id}>
-            //       {index === chatList.length - 1 ? (
-            //         // 마지막 인덱스가 아닐때만 실행
-            //         // => 마지막 채팅은 무조건 시간이 보여야함
-            //         <MyChatTime>
-            //           {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
-            //         </MyChatTime>
-            //       ) : chat.createdAt.split(' ')[2] === lastAt ? (
-            //         <MyChatTime></MyChatTime>
-            //       ) : (
-            //         <MyChatTime>
-            //           {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
-            //         </MyChatTime>
-            //       )}
-
-            //       <MyChat>{chat.message}</MyChat>
-            //     </MyChatBox>
-            //   );
-            // }
-
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
-                  <MyChatTime>
-                    {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
-                  </MyChatTime>
+                  {index === chatList.length - 1 ? (
+                    // 마지막 인덱스가 아닐때만 실행
+                    // => 마지막 채팅은 무조건 시간이 보여야함
+                    <MyChatTime>
+                      {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+                    </MyChatTime>
+                  ) : chat.createdAt.split(' ')[2] === lastAt ? (
+                    <MyChatTime></MyChatTime>
+                  ) : (
+                    <MyChatTime>
+                      {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+                    </MyChatTime>
+                  )}
+
                   <MyChat>{chat.message}</MyChat>
                 </MyChatBox>
               );
             }
+
+            // if (chat.userId === userinfo?.myId) {
+            //   return (
+            //     <MyChatBox key={message.id}>
+            //       <MyChatTime>
+            //         {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+            //       </MyChatTime>
+            //       <MyChat>{chat.message}</MyChat>
+            //     </MyChatBox>
+            //   );
+            // }
 
             if (chat.userId !== userinfo?.myId) {
               return (
