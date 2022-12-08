@@ -123,21 +123,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-    email &&
-    company &&
-    companyAddress &&
-    companyType &&
-    phoneNum &&
-    department &&
-    position !== undefined
+      email &&
+      company &&
+      companyAddress &&
+      companyType &&
+      phoneNum &&
+      department &&
+      position !== undefined
       ? cardName.length >= 1 &&
-        email.length >= 1 &&
-        company.length >= 1 &&
-        companyAddress.length >= 1 &&
-        companyType.length >= 1 &&
-        phoneNum.length >= 1 &&
-        department.length >= 1 &&
-        position.length >= 1
+      email.length >= 1 &&
+      company.length >= 1 &&
+      companyAddress.length >= 1 &&
+      companyType.length >= 1 &&
+      phoneNum.length >= 1 &&
+      department.length >= 1 &&
+      position.length >= 1
       : false;
   //
 
@@ -179,7 +179,7 @@ const MainCards = () => {
       );
 
       Swal.fire({
-        title: '명함 작성 완료!',
+        text: '명함이 등록되었습니다',
         showConfirmButton: false,
         timer: 1000,
         width: '300px',

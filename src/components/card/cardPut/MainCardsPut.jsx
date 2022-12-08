@@ -129,7 +129,7 @@ const MainCards = () => {
       );
     }
     Swal.fire({
-      title: "명함 수정 완료!",
+      title: "명함이 수정되었습니다",
       showConfirmButton: false,
       timer: 1000,
       width: "300px",
