@@ -284,7 +284,7 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
 // 로그아웃
 export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
   try {
-    await instance.post("/api/members/logout", payload);
+    await instance.post("/api/members/logout", payload)
     localStorage.clear();
     window.location.replace("/login");
   } catch (error) { }
@@ -294,17 +294,6 @@ export const signOut = createAsyncThunk("SIGHNOUT", async (payload) => {
 export const withDraw = createAsyncThunk("WITHDRAW", async () => {
   try {
     await instance.delete("/api/members/withdraw");
-    Swal.fire({
-      title: "회원탈퇴 되었습니다",
-      showConfirmButton: false,
-      timer: 1000,
-      width: "300px",
-      customClass: {
-        popup: 'allAlret-class',
-        title: 'allTitle-class',
-      },
-    });
-
     localStorage.clear();
     window.location.replace("/login");
   } catch (error) { }
