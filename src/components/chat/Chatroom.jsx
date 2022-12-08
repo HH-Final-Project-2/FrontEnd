@@ -60,16 +60,14 @@ const Chatroom = () => {
 
   //게시글에서 가져오는 채팅방 ID
   const id = useSelector((state) => state.chat.roomId);
-  console.log(id);
   //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
-  console.log(chatlistid);
   //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
-  console.log(userinfo);
+  console.log('채팅방유저정보', userinfo);
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
-  console.log(chatList);
+  console.log('이전채팅내용', chatList);
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -106,7 +104,6 @@ const Chatroom = () => {
 
   const onConneted = () => {
     client.connect(headers, () => {
-      // client.debug === null
       setTimeout(() => {
         client.subscribe(
           `/sub/chat/room/${id === '' ? chatlistid : id}`,
@@ -217,6 +214,16 @@ const Chatroom = () => {
     });
   };
 
+  // const chattime = ()=>{
+  //   for (let i =0; i < chatList.length; i ++){
+
+  //   }
+  // }
+
+  const lastAt = chatList[chatList.length - 1].createdAt.split(' ')[2];
+  // const test = chatList[chatList.length - 1].createdAt.split(' ')[2];
+  // console.log(test)
+
   if (chatList === undefined) return;
 
   return (
@@ -270,23 +277,39 @@ const Chatroom = () => {
 
             // let displayTime = true;
 
-            // if (index !== chat.length - 1) {
-            //   const lastsender = chatList[index + 1]?.userId;
+            // if (index !== chatList.length - 1) {
+            //   const lastsender = chatList[index]?.userId;
 
-            //   if (lastsender === chat[index + 1]?.userId) {
-            //     const lastTime = chatList[index + 1]?.createdAt.split(' ')[2];
+            //   if (lastsender === chat[index]?.userId) {
+            //     const lastTime = chatList[index]?.createdAt.split(' ')[2];
 
             //     if (lastTime === time) displayTime = false; // 다음 메시지와 시간이 같을 경우 false
             //   }
             // }
 
+            // console.log(chatList[index]?.createdAt.split(' ')[2]);
+            // console.log('채팅시간', chat.createdAt.split(' ')[2]);
+
+            if (index !== chatList.length - 1) {
+              //마지막 채팅 시간과 이전 채팅의 시간이 같으면 시간 안보이게
+              // console.log(chat.createdAt.split(' ')[2] === lastAt);
+            }
+
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
-                  {ampm === 'AM' ? (
-                    <MyChatTime>{'오전 ' + time}</MyChatTime>
+                  {index === chatList.length - 1 ? (
+                    // 마지막 인덱스가 아닐때만 실행
+                    // => 마지막 채팅은 무조건 시간이 보여야함
+                    <MyChatTime>
+                      {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+                    </MyChatTime>
+                  ) : chat.createdAt.split(' ')[2] === lastAt ? (
+                    <MyChatTime></MyChatTime>
                   ) : (
-                    <MyChatTime>{'오후 ' + time}</MyChatTime>
+                    <MyChatTime>
+                      {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+                    </MyChatTime>
                   )}
 
                   <MyChat>{chat.message}</MyChat>
@@ -297,11 +320,10 @@ const Chatroom = () => {
               return (
                 <UserChatBox key={message.id}>
                   <UserChat>{chat.message}</UserChat>
-                  {ampm === 'AM' ? (
-                    <UserChatTime>{'오전 ' + time}</UserChatTime>
-                  ) : (
-                    <UserChatTime>{'오후 ' + time}</UserChatTime>
-                  )}
+
+                  <UserChatTime>
+                    {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+                  </UserChatTime>
                 </UserChatBox>
               );
             }

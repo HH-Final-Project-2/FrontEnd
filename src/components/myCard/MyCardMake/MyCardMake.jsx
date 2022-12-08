@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import Layout from '../../layout/Layout';
 import { useNavigate } from 'react-router';
-import { _MakeCard } from '../../../redux/modules/mycardSlice';
+import {
+  saveInfo,
+  _companyInfo,
+  _getMakeCard,
+  _MakeCard,
+  _PutCard,
+} from '../../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { __imgPost } from '../../../redux/modules/CardsSlice';
 import {
@@ -27,6 +33,7 @@ import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 import {
   AssistiveText,
   ImgBox,
@@ -36,32 +43,27 @@ import { SectionFooter } from '../../footer/FooterStyle';
 import Modal from '../../card/cardPost/CardImgModal/Modal';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
 import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
+import { useEffect } from 'react';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
   const nav = useNavigate();
   const dispatch = useDispatch();
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
-  const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log(searchinfo);
+  const savemake = useSelector((state) => state.cardinfo.makesave);
   const imgGet = useSelector((state) => state.PostReducer.img);
-
-  console.log('이미지', imgGet);
-  console.log('search', searchinfo);
-
+  console.log(savemake);
   const [makeinfo, setMakeinfo] = useState({
-    // cardName: '',
-    // engName: '',
-    // email: '',
-    // phoneNum: '',
-    cardName: localStorage.getItem('cardName'),
-    email: localStorage.getItem('email'),
-    phoneNum: localStorage.getItem('phoneNum'),
+    cardName: savemake.cardName ? savemake.cardName : '',
+    email: savemake.email ? savemake.email : '',
+    phoneNum: savemake.phoneNum ? savemake.phoneNum : '',
     company: '',
     companyAddress: '',
-    department: '',
-    position: '',
-    tel: '',
-    fax: '',
+    department: savemake.department ? savemake.department : '',
+    position: savemake.position ? savemake.position : '',
+    tel: savemake.tel ? savemake.tel : '',
+    fax: savemake.fax ? savemake.fax : '',
   });
 
   const {
@@ -122,9 +124,23 @@ const MyCardMake = () => {
       ? phoneNum.includes('-')
       : false;
 
-  localStorage.setItem('cardName', cardName);
-  localStorage.setItem('email', email);
-  localStorage.setItem('phoneNum', phoneNum);
+  useEffect(() => {
+    dispatch(
+      saveInfo({
+        cardName: '',
+        email: '',
+        phoneNum: '',
+        company: '',
+        department: '',
+        companyAddress: '',
+        position: '',
+        tel: '',
+        fax: '',
+      })
+    );
+  }, []);
+
+  console.log(cardName.trim() === '');
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -143,9 +159,13 @@ const MyCardMake = () => {
         <Icbefore
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            localStorage.removeItem('cardName');
-            localStorage.removeItem('email');
-            localStorage.removeItem('phoneNum');
+            dispatch(
+              _companyInfo({
+                companyName: '',
+                companyAddress: '',
+              })
+            );
+
             nav(-1);
           }}
         />
@@ -155,11 +175,11 @@ const MyCardMake = () => {
         <SaveButton
           onClick={() => {
             if (
-              cardName.trim() === '' ||
-              company.trim() === '' ||
-              department.trim() === '' ||
-              email.trim() === '' ||
-              phoneNum.trim() === '' ||
+              cardName.trim() === '' &&
+              email.trim() === '' &&
+              phoneNum.trim() === '' &&
+              company.trim() === '' &&
+              department.trim() === '' &&
               position.trim() === ''
             ) {
               alert('필수란을 작성해주세요.');
@@ -174,9 +194,6 @@ const MyCardMake = () => {
               return;
             }
             PostHandler();
-            localStorage.removeItem('cardName');
-            localStorage.removeItem('email');
-            localStorage.removeItem('phoneNum');
           }}
         >
           저장
@@ -303,7 +320,29 @@ const MyCardMake = () => {
             value={searchinfo.company ? searchinfo.company : company}
             onChange={onChage}
             style={{ paddingLeft: '35px' }}
-            onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
+            onClick={() => {
+              dispatch(
+                saveInfo({
+                  cardName,
+                  email: imgGet.email !== undefined ? imgGet.email : email,
+                  phoneNum:
+                    imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
+                  company:
+                    searchinfo.company !== undefined
+                      ? searchinfo.company
+                      : company,
+                  department,
+                  companyAddress:
+                    searchinfo.companyAddress !== undefined
+                      ? searchinfo.companyAddress
+                      : companyAddress,
+                  position,
+                  tel: imgGet.tel !== undefined ? imgGet.tel : tel,
+                  fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                })
+              );
+              nav('/mypage/cardpatch/MyCardCompanySerach');
+            }}
           ></St_value>
 
           <St_Address
@@ -351,9 +390,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>
-            Tel<Essential>*</Essential>
-          </St_Key>
+          <St_Key>Tel</St_Key>
           <St_value
             name="tel"
             value={imgGet.tel !== undefined ? imgGet.tel : tel}

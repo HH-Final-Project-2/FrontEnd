@@ -61,6 +61,15 @@ export const _companyInfo = createAsyncThunk(
 );
 
 const initialState = {
+  makesave:[{
+    cardName: "",
+    email: "",
+    phoneNum: "",
+    department: "",
+    position: "",
+    tel: "",
+    fax: "",
+  }],
   cardinfo: [
     {
       cardName: '',
@@ -82,7 +91,11 @@ const initialState = {
 export const mycardSlice = createSlice({
   name: 'cardinfo', //모듈
   initialState,
-  reducers: {},
+  reducers: {
+    saveInfo : (state, action) =>{
+      state.makesave = action.payload;
+    }
+  },
   extraReducers: {
     [_MakeCard.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -106,5 +119,5 @@ export const mycardSlice = createSlice({
     },
   },
 });
-export const {} = mycardSlice.actions;
+export const {saveInfo} = mycardSlice.actions;
 export default mycardSlice.reducer;
