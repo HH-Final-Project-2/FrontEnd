@@ -63,8 +63,8 @@ export default function PostBottomSheet({ view, id }) {
                     timer: 1000,
                     showConfirmButton: false,
                     customClass: {
-                      popup: 'login-class',
-                      title: 'title-class',
+                      popup: 'allAlret-class',
+                      title: 'allTitle-class',
                     },
                   });
                   //if result.isConfirmed true면 실행됨(확인버튼)
@@ -95,8 +95,8 @@ export default function PostBottomSheet({ view, id }) {
                     timer: 1000,
                     width: '300px',
                     customClass: {
-                      popup: 'login-class',
-                      title: 'title-class',
+                      popup: 'allAlret-class',
+                      title: 'allTitle-class',
                     },
                   });
                   navigate('/cards');

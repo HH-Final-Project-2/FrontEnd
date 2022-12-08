@@ -31,7 +31,7 @@ export default function CommentBottomSheet({ commentList, id }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          text: '삭제되었습니다',
+          title: '댓글이 삭제되었습니다',
           width: '300px',
           timer: 1000,
           showConfirmButton: false,

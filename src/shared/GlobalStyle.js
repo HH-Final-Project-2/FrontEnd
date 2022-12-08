@@ -28,9 +28,9 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 40px;
     opacity: 0.9;
     margin-bottom: 800px;
+    padding-top: 5px;
   }
   .allTitle-class{
-    margin-top: 9px;
     font-weight: 500;
     font-size: 17px;
   }
