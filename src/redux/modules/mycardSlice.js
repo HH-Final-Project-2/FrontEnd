@@ -50,8 +50,10 @@ export const _searchGet = createAsyncThunk(
 export const _companyInfo = createAsyncThunk(
   'post/COMPANY_info',
   async (payload, thunkAPI) => {
+    console.log(payload)
     try {
       const { data } = await instance.post('/api/companyInfo', payload);
+      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) { }
   }
@@ -112,7 +114,7 @@ export const mycardSlice = createSlice({
     },
     [_companyInfo.fulfilled]: (state, action) => {
 
-      state.companyInfo = { ...action.payload };
+      state.companyInfo = action.payload;
     },
   },
 });
