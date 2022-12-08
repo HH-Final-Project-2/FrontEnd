@@ -51,7 +51,7 @@ const Mypage = () => {
         >
           로그아웃
         </Logout>
-        <Joinout
+        {/* <Joinout
           type="button"
           onClick={() => {
             Swal.fire({
@@ -85,7 +85,7 @@ const Mypage = () => {
           }}
         >
           회원탈퇴
-        </Joinout>
+        </Joinout> */}
       </OutLine>
     </Layout>
   );
