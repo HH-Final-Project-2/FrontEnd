@@ -54,9 +54,6 @@ const MyCardMake = () => {
     cardName: savemake.cardName ? savemake.cardName : '',
     email: savemake.email ? savemake.email : '',
     phoneNum: savemake.phoneNum ? savemake.phoneNum : '',
-    // cardName: localStorage.getItem('cardName'),
-    // email: localStorage.getItem('email'),
-    // phoneNum: localStorage.getItem('phoneNum'),
     company: '',
     companyAddress: '',
     department: savemake.department ? savemake.department : '',
@@ -123,10 +120,6 @@ const MyCardMake = () => {
       ? phoneNum.includes('-')
       : false;
 
-  // localStorage.setItem('cardName', cardName);
-  // localStorage.setItem('email', email);
-  // localStorage.setItem('phoneNum', phoneNum);
-
   useEffect(() => {
     dispatch(
       saveInfo({
@@ -141,14 +134,9 @@ const MyCardMake = () => {
         fax: '',
       })
     );
-
-    // dispatch(
-    //   _companyInfo({
-    //     companyName: '',
-    //     companyAddress: '',
-    //   })
-    // );
   }, []);
+
+  console.log(cardName.trim() === '');
 
   return (
     <Layout>
@@ -173,12 +161,12 @@ const MyCardMake = () => {
         <SaveButton
           onClick={() => {
             if (
-              cardName.length > 1 &&
-              email.length > 1 &&
-              phoneNum.length > 1 &&
-              company.length > 1 &&
-              department.length > 1 &&
-              position.length > 1
+              cardName.trim() === '' &&
+              email.trim() === '' &&
+              phoneNum.trim() === '' &&
+              company.trim() === '' &&
+              department.trim() === '' &&
+              position.trim() === ''
             ) {
               alert('필수란을 작성해주세요.');
               return;
@@ -192,9 +180,6 @@ const MyCardMake = () => {
               return;
             }
             PostHandler();
-            // localStorage.removeItem('cardName');
-            // localStorage.removeItem('email');
-            // localStorage.removeItem('phoneNum');
           }}
         >
           저장
@@ -276,7 +261,9 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>회사</St_Key>
+          <St_Key>
+            회사<Essential>*</Essential>
+          </St_Key>
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
