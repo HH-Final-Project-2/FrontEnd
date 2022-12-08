@@ -43,6 +43,7 @@ import Swal from "sweetalert2";
 import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
 import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
 
+
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -80,18 +81,7 @@ const MainCards = () => {
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
   const [companyHow, setCompanyHow] = useState('');
-  console.log(
-    cardName,
-    companyType,
-    department,
-    position,
-    email,
-    phoneNum,
-    tel,
-    fax,
-    company,
-    companyAddress
-  );
+
   const [pop, setPop] = useState(false);
   const [companyPop, setCompanyPop] = useState(false);
   //
@@ -190,10 +180,11 @@ const MainCards = () => {
       );
 
       Swal.fire({
-        title: "명함 작성 완료!",
+
+        text: '명함이 등록되었습니다',
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
+        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -203,10 +194,10 @@ const MainCards = () => {
       window.location.reload();
     } else {
       Swal.fire({
-        title: "입력한 내용을 확인해주세요",
+        title: '입력한 내용을 확인해주세요',
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
+        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -315,9 +306,9 @@ const MainCards = () => {
               <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
             </svg>
 
-            <div onClick={openModal} style={{ cursor: "pointer" }}>
-              <span style={{ color: "red" }}>여기</span>를 눌러{" "}
-              <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
+            <div onClick={openModal} style={{ cursor: 'pointer' }}>
+              <span style={{ color: 'red' }}>여기</span>를 눌러{' '}
+              <span style={{ color: 'red' }}>등록 가이드</span>를 확인해주세요{' '}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
@@ -479,23 +470,23 @@ const MainCards = () => {
               />
 
               {pop === true ? (
-                <AddressSearch style={{ color: "red" }}>
+                <AddressSearch style={{ color: 'red' }}>
                   <p
                     onClick={() => {
                       dispatch(
                         __cardInfo({
-                          cardName: cardName ? cardName : "",
+                          cardName: cardName ? cardName : '',
                           email: email,
                           phoneNum: phoneNum,
-                          department: department ? department : "",
-                          position: position ? position : "",
+                          department: department ? department : '',
+                          position: position ? position : '',
                           tel: tel,
                           fax: fax,
-                          companyType: companyType ? companyType : "",
-                          company: company ? company : "",
+                          companyType: companyType ? companyType : '',
+                          company: company ? company : '',
                         })
                       );
-                      navigate("/posts/companyOtherSearch");
+                      navigate('/posts/companyOtherSearch');
                     }}
                   >
                     회사 주소 검색
@@ -507,18 +498,19 @@ const MainCards = () => {
                     onClick={() => {
                       dispatch(
                         __cardInfo({
-                          cardName: cardName ? cardName : "",
+
+                          cardName: cardName ? cardName : '',
                           email: email,
                           phoneNum: phoneNum,
-                          department: department ? department : "",
-                          position: position ? position : "",
+                          department: department ? department : '',
+                          position: position ? position : '',
                           tel: tel,
                           fax: fax,
-                          companyType: companyType ? companyType : "",
-                          company: company ? company : "",
+                          companyType: companyType ? companyType : '',
+                          company: company ? company : '',
                         })
                       );
-                      navigate("/posts/companyOtherSearch");
+                      navigate('/posts/companyOtherSearch');
                     }}
                   >
                     회사 주소 검색

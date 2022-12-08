@@ -60,6 +60,7 @@ const Chatroom = () => {
 
   //게시글에서 가져오는 채팅방 ID
   const id = useSelector((state) => state.chat.roomId);
+
   //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
   //채팅방 유저 정보
@@ -68,6 +69,7 @@ const Chatroom = () => {
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
   console.log('이전채팅내용', chatList);
+
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -90,7 +92,6 @@ const Chatroom = () => {
 
   useEffect(() => {
     onConneted();
-    // console.log(socket.readyState);
     return () => {
       unSubscribe();
     };

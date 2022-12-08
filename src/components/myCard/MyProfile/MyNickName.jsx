@@ -53,7 +53,6 @@ const MyNickName = () => {
 
   const updateHandler = () => {
     dispatch(_PutPorfile(userinfo));
-    // console.log(userinfo);
     Swal.fire({
       title: `닉네임이 ${nickname}으로 변경되었습니다`,
       showConfirmButton: false,

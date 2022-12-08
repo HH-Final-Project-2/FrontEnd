@@ -29,16 +29,28 @@ import {
   Essential,
   PrevImg,
 } from '../MyCardMake/MyCardMakeStyle';
+
+import {
+  RadioBox,
+  RadioDetail,
+  ImgBox,
+  AddressSearch,
+  SectionLine,
+  AssistiveText,
+  CompanyInput,
+  SectionHeader,
+  FormCheckOther,
+  FormCheckOwn,
+  CheckOwn,
+  CheckOther,
+} from '../../card/cardPost/cardPostStyle';
+
 import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
-import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-import {
-  AssistiveText,
-  ImgBox,
-  SectionHeader,
-} from '../../card/cardPost/cardPostStyle';
+// import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
+
 import { SectionFooter } from '../../footer/FooterStyle';
 import Modal from '../../card/cardPost/CardImgModal/Modal';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
@@ -50,10 +62,12 @@ const MyCardMake = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
-  console.log(searchinfo);
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const imgGet = useSelector((state) => state.PostReducer.img);
-  console.log(savemake);
+
+  const [companyHow, setCompanyHow] = useState('');
+  const [pop, setPop] = useState(false);
+
   const [makeinfo, setMakeinfo] = useState({
     cardName: savemake.cardName ? savemake.cardName : '',
     email: savemake.email ? savemake.email : '',
@@ -65,6 +79,24 @@ const MyCardMake = () => {
     tel: savemake.tel ? savemake.tel : '',
     fax: savemake.fax ? savemake.fax : '',
   });
+
+  const [imggetmake, setImggetmake] = useState({
+    imggetemail: imgGet.email ? imgGet.email : '',
+    imggetphoneNum: imgGet.phoneNum ? imgGet.phoneNum : '',
+    imggettel: imgGet.tel ? imgGet.tel : '',
+    imggetfax: imgGet.fax ? imgGet.fax : '',
+  });
+
+  const { imggetemail, imggetphoneNum, imggettel, imggetfax } = imggetmake;
+
+  useEffect(() => {
+    setImggetmake({
+      imggetemail: imgGet.email,
+      imggetphoneNum: imgGet.phoneNum,
+      imggettel: imgGet.tel,
+      imggetfax: imgGet.fax,
+    });
+  }, [imgGet]);
 
   const {
     cardName,
@@ -82,6 +114,10 @@ const MyCardMake = () => {
     const { value, name } = e.target;
     setMakeinfo({
       ...makeinfo,
+      [name]: value,
+    });
+    setImggetmake({
+      ...imggetmake,
       [name]: value,
     });
   };
@@ -140,8 +176,6 @@ const MyCardMake = () => {
     );
   }, []);
 
-  console.log(cardName.trim() === '');
-
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -165,7 +199,6 @@ const MyCardMake = () => {
                 companyAddress: '',
               })
             );
-
             nav(-1);
           }}
         />
@@ -272,7 +305,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="cardName"
-            value={cardName}
+            value={cardName || ''}
             placeholder="이름"
             onChange={onChage}
           ></St_value>
@@ -284,7 +317,8 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="email"
-            value={imgGet.email !== undefined ? imgGet.email : email}
+            //value={email}
+            value={email || imggetemail}
             placeholder="Ex) abc@gmail.com"
             onChange={onChage}
           ></St_value>
@@ -299,7 +333,8 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="phoneNum"
-            value={imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum}
+            // value={phoneNum}
+            value={phoneNum || imggetphoneNum}
             placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
@@ -312,6 +347,190 @@ const MyCardMake = () => {
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
+
+          {/* <RadioBox>
+            <RadioDetail>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="find"
+                  name="companyType"
+                  value={'find'}
+                  checked={companyHow === 'find'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+              </label>
+            </RadioDetail>
+
+            <RadioDetail>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="myself"
+                  name="companyHow"
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="myself">직접 입력</CheckOther>
+              </label>
+            </RadioDetail>
+          </RadioBox>
+
+          {companyHow === 'myself' ? (
+            <div>
+              <CompanyInput
+                placeholder="회사명을 입력하세요"
+                name="company"
+                value={searchinfo.company ? searchinfo.company : company}
+                onChange={onChage}
+              />
+
+              {pop === true ? (
+                <AddressSearch style={{ color: 'red' }}>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        saveInfo({
+                          cardName,
+                          email:
+                            imgGet.email !== undefined ? imgGet.email : email,
+                          phoneNum:
+                            imgGet.phoneNum !== undefined
+                              ? imgGet.phoneNum
+                              : phoneNum,
+                          company:
+                            searchinfo.company !== undefined
+                              ? searchinfo.company
+                              : company,
+                          department,
+                          companyAddress:
+                            searchinfo.companyAddress !== undefined
+                              ? searchinfo.companyAddress
+                              : companyAddress,
+                          position,
+                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
+                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                        })
+                      );
+                      nav('/posts/companyOtherSearch');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              ) : (
+                <AddressSearch>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        saveInfo({
+                          cardName,
+                          email:
+                            imgGet.email !== undefined ? imgGet.email : email,
+                          phoneNum:
+                            imgGet.phoneNum !== undefined
+                              ? imgGet.phoneNum
+                              : phoneNum,
+                          company:
+                            searchinfo.company !== undefined
+                              ? searchinfo.company
+                              : company,
+                          department,
+                          companyAddress:
+                            searchinfo.companyAddress !== undefined
+                              ? searchinfo.companyAddress
+                              : companyAddress,
+                          position,
+                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
+                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                        })
+                      );
+                      nav('/posts/companyOtherSearch');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              )}
+            </div>
+          ) : (
+            <div>
+              <CompanyInput
+                readOnly
+                type="text"
+                name="company"
+                placeholder="회사 검색"
+                value={searchinfo.company ? searchinfo.company : company}
+                onChange={onChage}
+                onClick={() => {
+                  dispatch(
+                    saveInfo({
+                      cardName,
+                      email: imgGet.email !== undefined ? imgGet.email : email,
+                      phoneNum:
+                        imgGet.phoneNum !== undefined
+                          ? imgGet.phoneNum
+                          : phoneNum,
+                      company:
+                        searchinfo.company !== undefined
+                          ? searchinfo.company
+                          : company,
+                      department,
+                      companyAddress:
+                        searchinfo.companyAddress !== undefined
+                          ? searchinfo.companyAddress
+                          : companyAddress,
+                      position,
+                      tel: imgGet.tel !== undefined ? imgGet.tel : tel,
+                      fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                    })
+                  );
+                  nav('/mypage/cardpatch/MyCardCompanySerach');
+                }}
+              />
+              <St_Address
+                name="company"
+                value={
+                  searchinfo.companyAddress
+                    ? searchinfo.companyAddress
+                    : companyAddress
+                }
+                onChange={onChage}
+              >
+                <AddressBox>
+                  <div>
+                    <svg
+                      width="12"
+                      height="15"
+                      viewBox="0 0 12 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ marginRight: '8px' }}
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.66545 14.8907L5.71636 14.9204L5.73673 14.9322C5.81748 14.9767 5.90784 15 5.99964 15C6.09144 15 6.18179 14.9767 6.26255 14.9322L6.28291 14.9211L6.33455 14.8907C6.61899 14.7189 6.89655 14.5356 7.16655 14.3411C7.86551 13.8384 8.51857 13.2726 9.11782 12.6506C10.5316 11.1764 12 8.96141 12 6.11157C12 4.49068 11.3679 2.93618 10.2426 1.79004C9.11742 0.643896 7.5913 0 6 0C4.4087 0 2.88258 0.643896 1.75736 1.79004C0.632141 2.93618 0 4.49068 0 6.11157C0 8.96067 1.46909 11.1764 2.88218 12.6506C3.4812 13.2726 4.13402 13.8384 4.83273 14.3411C5.10296 14.5356 5.38076 14.719 5.66545 14.8907ZM6 8.33396C6.57865 8.33396 7.13361 8.09981 7.54278 7.68304C7.95195 7.26626 8.18182 6.70098 8.18182 6.11157C8.18182 5.52216 7.95195 4.95688 7.54278 4.5401C7.13361 4.12332 6.57865 3.88918 6 3.88918C5.42135 3.88918 4.86639 4.12332 4.45722 4.5401C4.04805 4.95688 3.81818 5.52216 3.81818 6.11157C3.81818 6.70098 4.04805 7.26626 4.45722 7.68304C4.86639 8.09981 5.42135 8.33396 6 8.33396Z"
+                        fill="#BCC2CC"
+                      />
+                    </svg>
+                  </div>
+                  <SearchAddress>
+                    {searchinfo.companyAddress
+                      ? searchinfo.companyAddress
+                      : companyAddress}
+                  </SearchAddress>
+                </AddressBox>
+              </St_Address>
+            </div>
+          )} */}
+
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
@@ -373,7 +592,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="position"
-            value={position}
+            value={position || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -384,7 +603,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="department"
-            value={department}
+            value={department || ''}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -393,7 +612,8 @@ const MyCardMake = () => {
           <St_Key>Tel</St_Key>
           <St_value
             name="tel"
-            value={imgGet.tel !== undefined ? imgGet.tel : tel}
+            // value={tel}
+            value={tel || imggettel}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -402,7 +622,8 @@ const MyCardMake = () => {
           <St_Key>Fax</St_Key>
           <St_value
             name="fax"
-            value={imgGet.fax !== undefined ? imgGet.fax : fax}
+            // value={fax}
+            value={fax || imggetfax}
             onChange={onChage}
           ></St_value>
         </Item>
