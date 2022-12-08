@@ -1,6 +1,4 @@
 import React from 'react';
-import { __searchPost } from '../../redux/modules/PostSlice';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import {
   Section1,

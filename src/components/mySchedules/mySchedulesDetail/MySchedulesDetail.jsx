@@ -40,7 +40,6 @@ const MySchedulesDetail = () => {
 
   return (
     <div>
-      {/* header */}
       <Section1>
         <Section2>
           <svg
@@ -74,9 +73,7 @@ const MySchedulesDetail = () => {
               .catch(function (error) {
                 console.log(error);
               })
-              .then(function () {
-                // always executed
-              });
+              .then(function () {});
             Swal.fire({
               title: '일정이 삭제되었습니다',
               showConfirmButton: false,
@@ -113,9 +110,6 @@ const MySchedulesDetail = () => {
         <ContentBox>
           <Content>{view.todo}</Content>
         </ContentBox>
-        {/* <ScheduleBtn>
-          <DeleteBtn>삭제</DeleteBtn>
-        </ScheduleBtn> */}
       </ContentSection>
     </div>
   );

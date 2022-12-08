@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { Board, SheetButton } from './CommentBottomSheetStyle';
@@ -8,28 +8,16 @@ import { useNavigate } from 'react-router';
 import { deleteComment } from '../../redux/modules/commentSlice';
 import Swal from 'sweetalert2';
 
-
 export default function CommentBottomSheet({ commentList, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const resizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', resizeWidth);
-    return () => {
-      window.removeEventListener('resize', resizeWidth);
-    };
-  }, []);
-
   const onAlertHandler = () => {
     setOpen(false);
     Swal.fire({
-      title: "댓글을 삭제하시겠습니까?",
+      title: '댓글을 삭제하시겠습니까?',
       showCancelButton: true,
       confirmButtonColor: '#5546FF',
       cancelButtonColor: '#BBB5FF',
@@ -40,8 +28,6 @@ export default function CommentBottomSheet({ commentList, id }) {
         popup: 'login-class',
         title: 'title-class',
       },
-
-
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -53,14 +39,16 @@ export default function CommentBottomSheet({ commentList, id }) {
             popup: 'allAlret-class',
             title: 'allTitle-class',
           },
-        })
-        dispatch(deleteComment({
-          postId: id,
-          commentId: commentList.id,
-        }))
+        });
+        dispatch(
+          deleteComment({
+            postId: id,
+            commentId: commentList.id,
+          })
+        );
       }
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -87,17 +75,11 @@ export default function CommentBottomSheet({ commentList, id }) {
           >
             수정
           </ul>
-          <ul
-
-            style={{ color: '#F82323' }}
-            onClick={onAlertHandler}
-          >
+          <ul style={{ color: '#F82323' }} onClick={onAlertHandler}>
             삭제
           </ul>
         </Board>
-
       </BottomSheet>
-
     </>
   );
 }

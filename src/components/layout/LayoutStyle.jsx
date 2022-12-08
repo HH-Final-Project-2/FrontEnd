@@ -17,8 +17,6 @@ export const Box = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  /* max-width: 1000px;
-  width: 100%; */
 `;
 export const BannerLayout = styled.div`
   position: fixed;
