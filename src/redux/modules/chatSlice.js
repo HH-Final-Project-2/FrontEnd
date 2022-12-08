@@ -8,15 +8,15 @@ const refreshToken = localStorage.getItem("refresh-Token");
 const initialState = {
   roomId: "",
   chat: [{
-    userId: 0, 
-    nickname: '', 
-    message: '', 
+    userId: 0,
+    nickname: '',
+    message: '',
     createdAt: ''
   }],
-  userinfo:"",
+  userinfo: "",
   chatRoom: "",
   chatListroomId: "",
-  subscribeId:"",
+  subscribeId: "",
   isLoading: false,
   error: null,
 };
@@ -46,18 +46,18 @@ export const deleteChatroom = createAsyncThunk(
   "post/delete",
   async (payload, thunkAPI) => {
     try {
-      const {data} = await axios.delete(
+      const { data } = await axios.delete(
         `https://bkyungkeem.shop/chat/rooms/${payload}`,
         {
           headers: {
             contentType: "application/json",
-            "Authorization":accessToken,
-            "Refresh-Token":refreshToken
+            "Authorization": accessToken,
+            "Refresh-Token": refreshToken
           },
         }
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -65,29 +65,28 @@ export const deleteChatroom = createAsyncThunk(
 export const _postId = createAsyncThunk(
   "post/chatid",
   async (payload, thunkAPI) => {
-    console.log("pay",payload)
     try {
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         "https://bkyungkeem.shop/chat/rooms",
         payload,
         {
           headers: {
             contentType: "application/json",
-            "Authorization":accessToken,
-            "Refresh-Token":refreshToken
+            "Authorization": accessToken,
+            "Refresh-Token": refreshToken
           },
         }
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
 //메시지 불러오기
 export const getMessage = createAsyncThunk(
   "get/chat",
-  async (payload, thunkAPI ) => {
-    if(payload){
+  async (payload, thunkAPI) => {
+    if (payload) {
       try {
         const data = await axios.get(`https://bkyungkeem.shop/chat/rooms/${payload}/messages`, {
           headers: {
@@ -97,12 +96,12 @@ export const getMessage = createAsyncThunk(
           },
         });
         return thunkAPI.fulfillWithValue(data.data);
-  
+
       } catch (error) {
-  
+
       }
     }
-   
+
   }
 );
 
@@ -111,7 +110,7 @@ export const getMessage = createAsyncThunk(
 export const getUserinfo = createAsyncThunk(
   "get/userinfo",
   async (payload, thunkAPI) => {
-    if(payload){
+    if (payload) {
       try {
         const { data } = await axios.get(`https://bkyungkeem.shop/chat/rooms/userInfo/${payload}`, {
           headers: {
@@ -121,9 +120,9 @@ export const getUserinfo = createAsyncThunk(
           },
         });
         return thunkAPI.fulfillWithValue(data);
-      } catch (error) {}
+      } catch (error) { }
     }
-    
+
   }
 );
 
@@ -133,9 +132,9 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action) => {
-      state.chat = [ ...state.chat ,action.payload];
+      state.chat = [...state.chat, action.payload];
     },
-    roomIdSave : (state,action) => {
+    roomIdSave: (state, action) => {
       state.chatListroomId = action.payload;
     }
   },
@@ -159,5 +158,5 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { addMessage,roomIdSave } = chatSlice.actions;
+export const { addMessage, roomIdSave } = chatSlice.actions;
 export default chatSlice.reducer;

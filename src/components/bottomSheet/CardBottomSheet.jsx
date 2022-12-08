@@ -94,11 +94,11 @@ export default function PostBottomSheet({ view, id }) {
                       config
                     )
                     .then(function (response) {
-                      console.log(response);
+
                       view.filter((x) => x.id !== response);
                     })
                     .catch(function (error) {
-                      console.log(error);
+
                     })
                     .then(function () {
                       // always executed

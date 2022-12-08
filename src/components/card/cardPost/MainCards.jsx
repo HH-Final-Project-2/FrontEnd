@@ -80,18 +80,7 @@ const MainCards = () => {
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
   const [companyHow, setCompanyHow] = useState('');
-  console.log(
-    cardName,
-    companyType,
-    department,
-    position,
-    email,
-    phoneNum,
-    tel,
-    fax,
-    company,
-    companyAddress
-  );
+
   const [pop, setPop] = useState(false);
   const [companyPop, setCompanyPop] = useState(false);
   //

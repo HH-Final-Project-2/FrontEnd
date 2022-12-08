@@ -12,8 +12,7 @@ import Footer from "../../footer/Footer";
 const MySchedulesItem = () => {
   const [value, onChange] = useState(new Date());
   const marks = useSelector((state) => state.ScheduleSlice.date);
-  console.log(marks);
-  console.log(value);
+
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const MySchedulesItem = () => {
 
   if (marks === null) return;
 
-  console.log(moment()._d);
 
   return (
     <div className="page">

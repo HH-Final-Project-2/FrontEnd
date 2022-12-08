@@ -45,9 +45,6 @@ const MyCardMake = () => {
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const imgGet = useSelector((state) => state.PostReducer.img);
 
-  console.log('이미지', imgGet);
-  console.log('search', searchinfo);
-
   const [makeinfo, setMakeinfo] = useState({
     // cardName: '',
     // engName: '',

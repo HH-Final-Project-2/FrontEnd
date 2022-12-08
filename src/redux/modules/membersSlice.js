@@ -80,7 +80,6 @@ export const passwordCheck = createAsyncThunk(
         "https://bkyungkeem.shop/api/mail/pw",
         payload
       );
-      console.log(data);
       // 사용가능한 이메일 alert
       if (data.data.success === true)
         return (
@@ -122,7 +121,6 @@ export const passwordFind = createAsyncThunk(
         "https://bkyungkeem.shop/api/change/pw",
         payload
       );
-      console.log(data);
       // 사용가능한 이메일 alert
       if (data.data.success === true)
         return (
@@ -280,7 +278,6 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
       });
 
   } catch (error) {
-    console.log(error);
   }
 });
 
@@ -327,7 +324,6 @@ const memberSlice = createSlice({
       state.check = action.payload.success;
     },
     [passwordCheck.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.pwCheck = action.payload.success;
     },
     [emailAuth.fulfilled]: (state, action) => {

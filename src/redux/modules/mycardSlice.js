@@ -9,7 +9,7 @@ export const _MakeCard = createAsyncThunk(
     try {
       const data = await instance.post("/api/mypages", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //get
@@ -18,9 +18,8 @@ export const _getMakeCard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("/api/mypages");
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //put
@@ -33,7 +32,7 @@ export const _PutCard = createAsyncThunk(
         payload
       );
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //검색
@@ -43,19 +42,18 @@ export const _searchGet = createAsyncThunk(
     try {
       const data = await instance.post(`/api/companySearch/?keyword=${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //회사명, 주소 저장
 export const _companyInfo = createAsyncThunk(
   "post/COMPANY_info",
   async (payload, thunkAPI) => {
-    console.log(payload)
+
     try {
       const { data } = await instance.post("/api/companyInfo", payload);
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -96,14 +94,14 @@ export const mycardSlice = createSlice({
       state.cardinfo = [{ ...state.cardinfo }, action.payload];
     },
     [_searchGet.fulfilled]: (state, action) => {
-      console.log(action.payload);
+
       state.searchCompany = { ...action.payload };
     },
     [_companyInfo.fulfilled]: (state, action) => {
-      console.log(action.payload);
+
       state.companyInfo = { ...action.payload };
     },
   },
 });
-export const {} = mycardSlice.actions;
+export const { } = mycardSlice.actions;
 export default mycardSlice.reducer;

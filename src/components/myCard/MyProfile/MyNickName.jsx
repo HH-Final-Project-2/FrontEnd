@@ -23,7 +23,6 @@ const MyNickName = () => {
   const dispatch = useDispatch();
 
   const profille = useSelector((state) => state.userprofile.userprofile);
-  // console.log('test', profille);
 
   const [userinfo, setUserinfo] = useState({
     nickname: profille.nickname,
@@ -58,7 +57,6 @@ const MyNickName = () => {
 
   const updateHandler = () => {
     dispatch(_PutPorfile(userinfo));
-    // console.log(userinfo);
     Swal.fire({
       title: `닉네임이 ${nickname}으로 변경되었습니다`,
       showConfirmButton: false,

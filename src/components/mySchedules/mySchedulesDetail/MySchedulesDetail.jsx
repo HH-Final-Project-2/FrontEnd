@@ -32,7 +32,7 @@ const MySchedulesDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const view = useSelector((state) => state.ScheduleSlice.detail);
-  console.log(view);
+
 
   useEffect(() => {
     dispatch(__schedulesDetailGet(id));
@@ -68,11 +68,9 @@ const MySchedulesDetail = () => {
             axios
               .delete(`https://bkyungkeem.shop/api/calendar/${id}`, config)
               .then(function (response) {
-                console.log(response);
                 view.filter((x) => x.id !== response);
               })
               .catch(function (error) {
-                console.log(error);
               })
               .then(function () {
                 // always executed

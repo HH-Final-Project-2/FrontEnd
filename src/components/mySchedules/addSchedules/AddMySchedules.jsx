@@ -30,7 +30,6 @@ const AddMySchedules = () => {
   const [title, setTitle] = useState();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  console.log(startDate);
 
   const { isLoading } = useSelector((state) => state.ScheduleSlice);
 

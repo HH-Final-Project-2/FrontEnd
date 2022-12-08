@@ -10,7 +10,6 @@ import {
 } from "../../../redux/modules/mycardSlice";
 import Pagination from "react-js-pagination";
 import Layout from "../../layout/Layout";
-import MyCardFooter from "../../footer/MyCardFooter";
 import SearchNone from "../../searchNone/SearchNone";
 import {
   ComInfor,
@@ -47,7 +46,7 @@ const MyCardCompanySerach = () => {
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
-  console.log(currentPosts);
+
   const handlePageChange = (page) => {
     setPage(page);
   };
