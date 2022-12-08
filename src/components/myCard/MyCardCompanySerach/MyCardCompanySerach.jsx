@@ -43,7 +43,6 @@ const MyCardCompanySerach = () => {
   const indexOfLastPost = page * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
-
   const handlePageChange = (page) => {
     setPage(page);
   };
@@ -92,13 +91,18 @@ const MyCardCompanySerach = () => {
               <ComInfor
                 key={post.id}
                 onClick={() => {
-                  dispatch(
-                    _companyInfo({
-                      companyName: post.companyName,
-                      companyAddress: post.companyAddress,
-                    })
-                  );
-                  nav(-1);
+                  setTimeout(() => {
+                    dispatch(
+                      _companyInfo({
+                        companyName: post.companyName,
+                        companyAddress: post.companyAddress,
+                      })
+                    );
+                  }, 100);
+
+                  setTimeout(() => {
+                    nav(-1);
+                  }, 300);
                 }}
               >
                 <Company>{post.companyName}</Company>
