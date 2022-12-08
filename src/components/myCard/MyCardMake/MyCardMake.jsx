@@ -29,9 +29,13 @@ import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 import {
   AssistiveText,
+  ImgBox,
   SectionHeader,
 } from '../../card/cardPost/cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
+import Modal from '../../card/cardPost/CardImgModal/Modal';
+import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
+import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -122,6 +126,16 @@ const MyCardMake = () => {
   localStorage.setItem('email', email);
   localStorage.setItem('phoneNum', phoneNum);
 
+  // 모달 사용하기위한 state
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Layout>
       <SectionHeader />
@@ -170,6 +184,40 @@ const MyCardMake = () => {
       </St_Header>
 
       <PatchBox>
+        <St_Key>
+          명함사진<Essential>*</Essential>
+        </St_Key>
+        <ImgBox>
+          {/* <img src={ExImg} alt="" /> */}
+          <svg
+            width="71"
+            height="39"
+            viewBox="0 0 71 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={openModal}
+            style={{ cursor: 'pointer' }}
+          >
+            <rect width="71" height="39" rx="2" fill="white" />
+            <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
+            <rect x="4" y="29" width="28" height="2" rx="1" fill="#E2E6EF" />
+            <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
+          </svg>
+
+          <div onClick={openModal} style={{ cursor: 'pointer' }}>
+            <span style={{ color: 'red' }}>여기</span>를 눌러{' '}
+            <span style={{ color: 'red' }}>등록 가이드</span>를 확인해주세요{' '}
+            <p />
+            형식에 맞지 않는 명함은 등록되지 않습니다.
+          </div>
+          <Modal open={modalOpen} close={closeModal} header="명함 이미지 예시">
+            <main>
+              <img src={cardImg} alt="" />
+              <img src={information} alt="" />
+            </main>
+          </Modal>
+        </ImgBox>
+
         <St_Card>
           {imgGet.imgUrl === undefined ? (
             <St_Plus htmlFor="card">
