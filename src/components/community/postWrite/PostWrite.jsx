@@ -107,6 +107,16 @@ const PostWrite = () => {
       )
     );
     dispatch(__writePost(formData));
+    Swal.fire({
+      title: '게시글이 등록되었습니다',
+      width: '300px',
+      timer: 1000,
+      showConfirmButton: false,
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
+    });
   };
 
   return (
