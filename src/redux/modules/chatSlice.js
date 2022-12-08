@@ -5,6 +5,7 @@ const accessToken = localStorage.getItem('authorization');
 const refreshToken = localStorage.getItem('refresh-Token');
 
 const initialState = {
+
   roomId: '',
   chat: [
     {
@@ -18,6 +19,7 @@ const initialState = {
   chatRoom: '',
   chatListroomId: '',
   subscribeId: '',
+
   isLoading: false,
   error: null,
 };
@@ -53,11 +55,12 @@ export const deleteChatroom = createAsyncThunk(
             contentType: 'application/json',
             Authorization: accessToken,
             'Refresh-Token': refreshToken,
+
           },
         }
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -65,7 +68,6 @@ export const deleteChatroom = createAsyncThunk(
 export const _postId = createAsyncThunk(
   'post/chatid',
   async (payload, thunkAPI) => {
-    console.log('pay', payload);
     try {
       const { data } = await axios.post(
         'https://bkyungkeem.shop/chat/rooms',
@@ -79,7 +81,7 @@ export const _postId = createAsyncThunk(
         }
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -100,8 +102,10 @@ export const getMessage = createAsyncThunk(
           }
         );
         return thunkAPI.fulfillWithValue(data.data);
+
       } catch (error) {}
     }
+
   }
 );
 
@@ -122,7 +126,7 @@ export const getUserinfo = createAsyncThunk(
           }
         );
         return thunkAPI.fulfillWithValue(data);
-      } catch (error) {}
+      } catch (error) { }
     }
   }
 );

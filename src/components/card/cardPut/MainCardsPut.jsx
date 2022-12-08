@@ -40,8 +40,7 @@ const MainCards = () => {
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
   );
-  console.log(companyGet);
-  console.log(companyOnly);
+
   const [companyHow, setCompanyHow] = useState();
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const MainCards = () => {
     tel: cardFix.tel,
     fax: cardFix.fax,
   });
-  console.log(inputValue.company);
+
   // const [company, setCompany] = useState(
   //   companyOnly !== undefined ? companyOnly : cardFix.company
   // );
@@ -92,15 +91,8 @@ const MainCards = () => {
   const valueChangeHandler = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
-    console.log(inputValue);
   };
   useEffect(() => setInputValue(cardFix), [cardFix]);
-  // useEffect(
-  //   () => setCompany(cardFix.company ? cardFix.company : companyOnly),
-  //   [cardFix, companyOnly]
-  // );
-
-  // console.log(company);
 
   const cardsSubmitHandler = () => {
     if (isValidEmail && isValidInput === true) {

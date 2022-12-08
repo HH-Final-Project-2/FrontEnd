@@ -8,7 +8,7 @@ export const __writeSchedules = createAsyncThunk(
       const data = await instance.post("/api/calendar", payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -20,7 +20,7 @@ export const __schedulesGet = createAsyncThunk(
       const data = await instance.get("/api/calendar");
       return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );
@@ -31,7 +31,7 @@ export const __schedulesDetailGet = createAsyncThunk(
       const data = await instance.get(`/api/calendar/${payload}`);
       return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
-      console.log(error);
+
     }
   }
 );

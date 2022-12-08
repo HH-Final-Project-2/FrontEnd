@@ -10,24 +10,17 @@ import {
 } from '../../redux/modules/chatSlice';
 import { ReactComponent as Profile } from '../../images/profile.svg';
 import { ReactComponent as Icon } from '../../images/ic-icon.svg';
-import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
+
 
 const Chatlist = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  // const chatList = useSelector((state) => state.chat.chat);
-  // console.log(chatList);
   const { chatRoom } = useSelector((state) => state.chat);
-  console.log(chatRoom.length);
 
   useEffect(() => {
     dispatch(getChatRoom());
   }, []);
-
-  // useEffect(() => {
-  //   chatRoom[0].id;
-  // }, [chatRoom]);
 
   if (chatRoom === undefined) return;
 
