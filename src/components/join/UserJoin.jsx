@@ -236,6 +236,7 @@ const UserJoin = () => {
         <InputContainer>
           <LabelText>이메일</LabelText>
           <InputJoin2
+            disabled={disable}
             name="email"
             type="text"
             placeholder="이메일"
@@ -276,6 +277,7 @@ const UserJoin = () => {
           <InputContainer>
             <LabelText>이메일 인증코드</LabelText>
             <InputJoin2
+              disabled={disable}
               name="auth"
               type="text"
               value={auth}
