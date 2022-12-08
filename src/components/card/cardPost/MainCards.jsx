@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import Layout from "../../layout/Layout";
-import Modal from "./CardImgModal/Modal";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Layout from '../../layout/Layout';
+import Modal from './CardImgModal/Modal';
 import {
   __writePost,
   __imgPost,
@@ -33,21 +33,17 @@ import {
   AssistiveText,
   CompanyInput,
   SectionHeader,
-  FormCheckOther,
-  FormCheckOwn,
-  CheckOwn,
-  CheckOther,
 } from './cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
-import Swal from "sweetalert2";
-import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
-import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
-
+import Swal from 'sweetalert2';
+import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
+import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
+  console.log(companyGet.cardName);
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
   );
@@ -134,21 +130,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-      email &&
-      company &&
-      companyAddress &&
-      companyType &&
-      phoneNum &&
-      department &&
-      position !== undefined
+    email &&
+    company &&
+    companyAddress &&
+    companyType &&
+    phoneNum &&
+    department &&
+    position !== undefined
       ? cardName.length >= 1 &&
-      email.length >= 1 &&
-      company.length >= 1 &&
-      companyAddress.length >= 1 &&
-      companyType.length >= 1 &&
-      phoneNum.length >= 1 &&
-      department.length >= 1 &&
-      position.length >= 1
+        email.length >= 1 &&
+        company.length >= 1 &&
+        companyAddress.length >= 1 &&
+        companyType.length >= 1 &&
+        phoneNum.length >= 1 &&
+        department.length >= 1 &&
+        position.length >= 1
       : false;
   //
 
@@ -190,27 +186,19 @@ const MainCards = () => {
       );
 
       Swal.fire({
-        title: "명함 작성 완료!",
+        text: '명함 작성 완료!',
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
-        customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
-        },
+        width: '300px',
       });
-      companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
+      companyType === 'own' ? navigate('/cards') : navigate('/otherCategory');
       window.location.reload();
     } else {
       Swal.fire({
-        title: "입력한 내용을 확인해주세요",
+        text: '입력한 내용을 확인해주세요',
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
-        customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
-        },
+        width: '300px',
       });
       setPop(true);
     }
@@ -229,20 +217,20 @@ const MainCards = () => {
           style={{ cursor: 'pointer' }}
           onClick={() => {
             Swal.fire({
-              title: "뒤로가기를 하시겠습니까?",
+              title: '뒤로가기를 하시겠습니까?',
               showCancelButton: true,
               confirmButtonColor: '#5546FF',
               cancelButtonColor: '#BBB5FF',
               confirmButtonText: '확인',
               cancelButtonText: '취소',
-              width: "300px",
+              width: '300px',
               customClass: {
                 popup: 'login-class',
                 title: 'title-class',
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.replace("/cards");
+                window.location.replace('/cards');
               }
             });
           }}
@@ -263,34 +251,30 @@ const MainCards = () => {
         <Item>
           <RadioBox>
             <RadioDetail>
-              <label>
-                <FormCheckOwn
-                  type="radio"
-                  id="own"
-                  name="companyType"
-                  value={'own'}
-                  checked={companyType === 'own'}
-                  onChange={(e) => {
-                    setCompanyType(e.target.value);
-                  }}
-                />
-                <CheckOwn htmlFor="own">자사</CheckOwn>
-              </label>
+              <input
+                type="radio"
+                id="own"
+                name="companyType"
+                value={'own'}
+                checked={companyType === 'own'}
+                onChange={(e) => {
+                  setCompanyType(e.target.value);
+                }}
+              />
+              <label htmlFor="own">자사</label>
             </RadioDetail>
             <RadioDetail>
-              <label>
-                <FormCheckOther
-                  type="radio"
-                  id="other"
-                  name="companyType"
-                  value={'other'}
-                  checked={companyType === 'other'}
-                  onChange={(e) => {
-                    setCompanyType(e.target.value);
-                  }}
-                />
-                <CheckOther htmlFor="other">타사</CheckOther>
-              </label>
+              <input
+                type="radio"
+                id="other"
+                name="companyType"
+                value={'other'}
+                checked={companyType === 'other'}
+                onChange={(e) => {
+                  setCompanyType(e.target.value);
+                }}
+              />
+              <label htmlFor="other">타사</label>
             </RadioDetail>
           </RadioBox>
         </Item>
@@ -307,7 +291,7 @@ const MainCards = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={openModal}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <rect width="71" height="39" rx="2" fill="white" />
               <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
@@ -315,9 +299,9 @@ const MainCards = () => {
               <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
             </svg>
 
-            <div onClick={openModal} style={{ cursor: "pointer" }}>
-              <span style={{ color: "red" }}>여기</span>를 눌러{" "}
-              <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
+            <div onClick={openModal} style={{ cursor: 'pointer' }}>
+              여기를 눌러{' '}
+              <span style={{ color: 'red' }}>등록 가이드를 확인</span>해주세요{' '}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
@@ -434,35 +418,31 @@ const MainCards = () => {
 
           <RadioBox>
             <RadioDetail>
-              <label>
-                <FormCheckOwn
-                  type="radio"
-                  id="find"
-                  name="companyType"
-                  value={'find'}
-                  checked={companyHow === 'find'}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
-              </label>
+              <input
+                type="radio"
+                id="find"
+                name="companyType"
+                value={'find'}
+                checked={companyHow === 'find'}
+                onChange={(e) => {
+                  setCompanyHow(e.target.value);
+                }}
+              />
+              <label htmlFor="find">회사 검색</label>
             </RadioDetail>
 
             <RadioDetail>
-              <label>
-                <FormCheckOther
-                  type="radio"
-                  id="myself"
-                  name="companyHow"
-                  value={'myself'}
-                  checked={companyHow === 'myself'}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <CheckOther htmlFor="myself">직접 입력</CheckOther>
-              </label>
+              <input
+                type="radio"
+                id="myself"
+                name="companyHow"
+                value={'myself'}
+                checked={companyHow === 'myself'}
+                onChange={(e) => {
+                  setCompanyHow(e.target.value);
+                }}
+              />
+              <label htmlFor="myself">직접 입력</label>
             </RadioDetail>
           </RadioBox>
 
@@ -477,54 +457,28 @@ const MainCards = () => {
                   setCompany(e.target.value);
                 }}
               />
-
-              {pop === true ? (
-                <AddressSearch style={{ color: "red" }}>
-                  <p
-                    onClick={() => {
-                      dispatch(
-                        __cardInfo({
-                          cardName: cardName ? cardName : "",
-                          email: email,
-                          phoneNum: phoneNum,
-                          department: department ? department : "",
-                          position: position ? position : "",
-                          tel: tel,
-                          fax: fax,
-                          companyType: companyType ? companyType : "",
-                          company: company ? company : "",
-                        })
-                      );
-                      navigate("/posts/companyOtherSearch");
-                    }}
-                  >
-                    회사 주소 검색
-                  </p>
-                </AddressSearch>
-              ) : (
-                <AddressSearch>
-                  <p
-                    onClick={() => {
-                      dispatch(
-                        __cardInfo({
-                          cardName: cardName ? cardName : "",
-                          email: email,
-                          phoneNum: phoneNum,
-                          department: department ? department : "",
-                          position: position ? position : "",
-                          tel: tel,
-                          fax: fax,
-                          companyType: companyType ? companyType : "",
-                          company: company ? company : "",
-                        })
-                      );
-                      navigate("/posts/companyOtherSearch");
-                    }}
-                  >
-                    회사 주소 검색
-                  </p>
-                </AddressSearch>
-              )}
+              <AddressSearch>
+                <p
+                  onClick={() => {
+                    dispatch(
+                      __cardInfo({
+                        cardName: cardName ? cardName : '',
+                        email: email,
+                        phoneNum: phoneNum,
+                        department: department ? department : '',
+                        position: position ? position : '',
+                        tel: tel,
+                        fax: fax,
+                        companyType: companyType ? companyType : '',
+                        company: company ? company : '',
+                      })
+                    );
+                    navigate('/posts/companyOtherSearch');
+                  }}
+                >
+                  회사 주소 검색
+                </p>
+              </AddressSearch>
             </div>
           ) : (
             <div>
