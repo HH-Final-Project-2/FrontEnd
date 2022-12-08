@@ -37,7 +37,7 @@ export default function PostBottomSheet({ detail, id }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title: '삭제되었습니다',
+          title: '게시글이 삭제되었습니다',
           width: '300px',
           timer: 1000,
           showConfirmButton: false,
