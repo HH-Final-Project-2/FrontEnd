@@ -23,7 +23,6 @@ const MyNickName = () => {
   const dispatch = useDispatch();
 
   const profille = useSelector((state) => state.userprofile.userprofile);
-  // console.log('test', profille);
 
   const [userinfo, setUserinfo] = useState({
     nickname: profille.nickname,
@@ -43,10 +42,6 @@ const MyNickName = () => {
       [name]: value,
     });
   };
-
-  // const onChange = (e) => {
-  //   setUserinfo(e.target.value);
-  // };
 
   useEffect(() => {
     dispatch(_getProfile());

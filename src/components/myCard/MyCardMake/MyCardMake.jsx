@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../layout/Layout';
 import { useNavigate } from 'react-router';
-import {
-  _getMakeCard,
-  _MakeCard,
-  _PutCard,
-} from '../../../redux/modules/mycardSlice';
+import { _MakeCard } from '../../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { __imgPost } from '../../../redux/modules/CardsSlice';
 import {
