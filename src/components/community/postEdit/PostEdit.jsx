@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { __putPost, __getPost } from '../../../redux/modules/PostSlice';
-import { SectionLine } from '../postList/PostListStyle';
 import { DeleteImage, ImgUploadButton } from '../postWrite/PostWriteStyle';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 import {

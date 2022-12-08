@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { HeaderStyle, AlarmSvg, LogoSvg } from "./HeaderStyle";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { HeaderStyle, LogoSvg } from './HeaderStyle';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const Header = () => {
     <HeaderStyle>
       <LogoSvg
         onClick={() => {
-          navigate("/cards");
+          navigate('/cards');
         }}
         width="120"
         height="28"

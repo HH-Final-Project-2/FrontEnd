@@ -16,7 +16,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { __writePost } from '../../../redux/modules/PostSlice';
 import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
-import { SectionLine } from '../postList/PostListStyle';
 import Swal from 'sweetalert2';
 
 const PostWrite = () => {

@@ -1,15 +1,13 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { ReactComponent as Xbutton } from "../../images/x-circle-fill.svg";
+import React, { useRef, useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { ReactComponent as Xbutton } from '../../images/x-circle-fill.svg';
 import {
-  emailCheck,
-  signUp,
   emailAuth,
   passwordCheck,
   passwordFind,
-} from "../../redux/modules/membersSlice";
+} from '../../redux/modules/membersSlice';
 import {
   JoinForm,
   LabelText,
@@ -25,12 +23,12 @@ import {
   JoinTitle,
   Section2,
   Section1,
-} from "./FindPasswordStyle";
-import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+} from './FindPasswordStyle';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const FindPassword = () => {
-  const [auth, setAuth] = useState("");
+  const [auth, setAuth] = useState('');
   const email = useSelector((state) => state.memberSlice.pwCheck);
   const authEmail = useSelector((state) => state.memberSlice.auth);
 
@@ -45,109 +43,109 @@ const FindPassword = () => {
 
   // 패스워드 같은지 검사
   const password = useRef();
-  password.current = watch("password");
+  password.current = watch('password');
 
   // 디스패치
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // 이메일,패스워드,이름,닉네임,연락처 버튼 초기값
-  const [stateXButtonEmail, setStateXButtonEmail] = useState("none");
-  const [stateXButtonPassword, setStateXButtonPassword] = useState("none");
+  const [stateXButtonEmail, setStateXButtonEmail] = useState('none');
+  const [stateXButtonPassword, setStateXButtonPassword] = useState('none');
   const [stateXButtonPasswordCheck, setStateXButtonPasswordCheck] =
-    useState("none");
+    useState('none');
 
   // 이메일 인증버튼 비활성화
   const [disable, setDisable] = React.useState(false);
 
   // 이메일,패스워드,이름,닉네임,연락처 watch
-  const watchForEmail = watch("email");
-  const watchForPassword = watch("password");
-  const watchForPasswordCheck = watch("passwordCheck");
+  const watchForEmail = watch('email');
+  const watchForPassword = watch('password');
+  const watchForPasswordCheck = watch('passwordCheck');
 
   // 인풋 값 입력시 버튼&폰트 색상 변경
   // 이메일 인증버튼
-  let setColor = "";
-  let setFontColor = "";
+  let setColor = '';
+  let setFontColor = '';
 
   // 인증번호 버튼
-  let setColor2 = "";
-  let setFontColor2 = "";
+  let setColor2 = '';
+  let setFontColor2 = '';
 
   // 가입하기 버튼
-  let setColor3 = "";
-  let setFontColor3 = "";
+  let setColor3 = '';
+  let setFontColor3 = '';
 
   if (watchForEmail) {
-    setColor = "#5546ff";
-    setFontColor = "white";
+    setColor = '#5546ff';
+    setFontColor = 'white';
   } else {
-    setColor = "#bbb5ff;";
-    setFontColor = "white";
+    setColor = '#bbb5ff;';
+    setFontColor = 'white';
   }
 
   if (auth) {
-    setColor2 = "#5546ff";
-    setFontColor2 = "white";
+    setColor2 = '#5546ff';
+    setFontColor2 = 'white';
   } else {
-    setColor2 = "#bbb5ff;";
-    setFontColor2 = "white";
+    setColor2 = '#bbb5ff;';
+    setFontColor2 = 'white';
   }
 
   if (watchForEmail && watchForPassword && watchForPasswordCheck && auth) {
-    setColor3 = "#5546ff";
-    setFontColor3 = "white";
+    setColor3 = '#5546ff';
+    setFontColor3 = 'white';
   } else {
-    setColor3 = "#bbb5ff;";
-    setFontColor3 = "white";
+    setColor3 = '#bbb5ff;';
+    setFontColor3 = 'white';
   }
 
   // 이메일 X버튼 디스플레이
   useEffect(() => {
     if (watchForEmail === undefined) {
-      setStateXButtonEmail("none");
+      setStateXButtonEmail('none');
     } else if (watchForEmail.length === 0) {
-      setStateXButtonEmail("none");
+      setStateXButtonEmail('none');
     } else {
-      setStateXButtonEmail("block");
+      setStateXButtonEmail('block');
     }
   });
 
   const xButtonEmail = () => {
-    resetField("email");
-    setStateXButtonEmail("none");
+    resetField('email');
+    setStateXButtonEmail('none');
   };
 
   // 패스워드 X버튼 디스플레이
   useEffect(() => {
     if (watchForPassword === undefined) {
-      setStateXButtonPassword("none");
+      setStateXButtonPassword('none');
     } else if (watchForPassword.length === 0) {
-      setStateXButtonPassword("none");
+      setStateXButtonPassword('none');
     } else {
-      setStateXButtonPassword("block");
+      setStateXButtonPassword('block');
     }
   });
 
   const xButtonPassword = () => {
-    resetField("password");
-    setStateXButtonEmail("none");
+    resetField('password');
+    setStateXButtonEmail('none');
   };
 
   // 패스워드 확인 X버튼 디스플레이
   useEffect(() => {
     if (watchForPasswordCheck === undefined) {
-      setStateXButtonPasswordCheck("none");
+      setStateXButtonPasswordCheck('none');
     } else if (watchForPasswordCheck.length === 0) {
-      setStateXButtonPasswordCheck("none");
+      setStateXButtonPasswordCheck('none');
     } else {
-      setStateXButtonPasswordCheck("block");
+      setStateXButtonPasswordCheck('block');
     }
   });
 
   const xButtonPasswordCheck = () => {
-    resetField("passwordcheck");
-    setStateXButtonEmail("none");
+    resetField('passwordcheck');
+    setStateXButtonEmail('none');
   };
 
   // 인증번호 X버튼
@@ -163,24 +161,24 @@ const FindPassword = () => {
   const onSubmit = (data) => {
     authEmail.success === true
       ? dispatch(
-        passwordFind({
-          email: watchForEmail,
-          code: auth,
-          password: watchForPassword,
-          passwordCheck: watchForPasswordCheck,
-        }),
-        navigate("/login")
-      )
+          passwordFind({
+            email: watchForEmail,
+            code: auth,
+            password: watchForPassword,
+            passwordCheck: watchForPasswordCheck,
+          }),
+          navigate('/login')
+        )
       : Swal.fire({
-        title: "이메일 인증이 필요합니다",
-        showConfirmButton: false,
-        timer: 1000,
-        width: "300px",
-        customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
-        },
-      });
+          title: '이메일 인증이 필요합니다',
+          showConfirmButton: false,
+          timer: 1000,
+          width: '300px',
+          customClass: {
+            popup: 'allAlret-class',
+            title: 'allTitle-class',
+          },
+        });
   };
   return (
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
@@ -211,7 +209,7 @@ const FindPassword = () => {
             name="email"
             type="text"
             placeholder="이메일"
-            {...register("email", {
+            {...register('email', {
               required: true,
               pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
             })}
@@ -263,8 +261,8 @@ const FindPassword = () => {
                 width="20"
                 height="20"
                 fill="#BCC2CC"
-                display={display(auth) ? "block" : "none"}
-                onClick={() => setAuth("")}
+                display={display(auth) ? 'block' : 'none'}
+                onClick={() => setAuth('')}
               />
             </InputButtonEmail>
           </InputContainer>
@@ -296,7 +294,7 @@ const FindPassword = () => {
           name="password"
           type="password"
           placeholder="6~15자, 영문, 숫자"
-          {...register("password", {
+          {...register('password', {
             required: true,
             pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/,
           })}
@@ -319,7 +317,7 @@ const FindPassword = () => {
           name="passwordCheck"
           type="password"
           placeholder="비밀번호를 한번 더 입력해주세요"
-          {...register("passwordCheck", {
+          {...register('passwordCheck', {
             required: true,
             validate: (value) => value === password.current,
           })}
@@ -334,7 +332,7 @@ const FindPassword = () => {
           />
         </InputButton>
       </InputContainer>
-      {errors.passwordCheck && errors.passwordCheck.type === "validate" && (
+      {errors.passwordCheck && errors.passwordCheck.type === 'validate' && (
         <ErrorText>비밀번호가 같지 않습니다</ErrorText>
       )}
 

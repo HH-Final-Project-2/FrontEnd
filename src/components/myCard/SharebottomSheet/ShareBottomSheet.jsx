@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { Board, St_share, Share, Textshare } from './ShareBottomSheetStyle';
@@ -16,18 +16,6 @@ export default function Bottom() {
       alert('error 명함을 확인 해주세요');
     }
   };
-
-  //화면크기 인식
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const resizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', resizeWidth);
-    return () => {
-      window.removeEventListener('resize', resizeWidth);
-    };
-  }, []);
 
   return (
     <>

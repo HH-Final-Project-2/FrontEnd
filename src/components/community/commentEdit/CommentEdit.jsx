@@ -13,12 +13,7 @@ import {
   getCommentList,
   putComment,
 } from '../../../redux/modules/commentSlice';
-import {
-  Section1,
-  Section1Title,
-  Section2,
-  SectionLine,
-} from '../postList/PostListStyle';
+import { Section1, Section1Title, Section2 } from '../postList/PostListStyle';
 
 const CommentEdit = () => {
   const dispatch = useDispatch();
