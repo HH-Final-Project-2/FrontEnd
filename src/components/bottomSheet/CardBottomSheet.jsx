@@ -44,7 +44,7 @@ export default function PostBottomSheet({ view, id }) {
             onClick={() => {
               setOpen(false);
               Swal.fire({
-                text: '명함을 삭제하시겠습니까?',
+                title: '명함을 삭제하시겠습니까?',
                 showCancelButton: true,
                 confirmButtonColor: 'white',
                 cancelButtonColor: 'white',
@@ -57,7 +57,7 @@ export default function PostBottomSheet({ view, id }) {
               }).then((result) => {
                 if (result.isConfirmed) {
                   Swal.fire({
-                    text: '삭제되었습니다',
+                    title: '삭제되었습니다',
                     timer: 1000,
                     showConfirmButton: false,
                     customClass: {

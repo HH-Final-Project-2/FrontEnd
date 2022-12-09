@@ -48,12 +48,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .confirm-text {
-
     color: #5546FF;
   }
 
   .cancel-text {
-
     color: #8892A0;
   }
 
@@ -62,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
     border: none;
   } 
 
-  
   p,
   ol,
   ul,
