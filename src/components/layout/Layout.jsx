@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
         <DivLayout2>{children}</DivLayout2>
       ) : (
         <Box>
-          <Version>V 1.0.0</Version>
+          <Version>V 1.0.1</Version>
           <BannerLayout>
             <Banner />
           </BannerLayout>

@@ -23,53 +23,100 @@ const MyNickName = () => {
   const dispatch = useDispatch();
 
   const profille = useSelector((state) => state.userprofile.userprofile);
+  const [nickname, setNickname] = useState(profille.nickname);
+  // const [userinfo, setUserinfo] = useState({
+  //   nickname: profille.nickname,
+  //   id: profille.id,
+  // });
 
-  const [userinfo, setUserinfo] = useState({
-    nickname: profille.nickname,
-    id: profille.id,
-  });
+  // const { nickname, id } = userinfo;
+  // // console.log(nickname)
+  // const cancel = () => {
+  //   setUserinfo('');
+  // };
 
-  const { nickname, id } = userinfo;
-
-  const cancel = () => {
-    setUserinfo('');
-  };
-
-  const onChange = (e) => {
-    const { value, name } = e.target;
-    setUserinfo({
-      ...userinfo,
-      [name]: value,
-    });
-  };
+  // const onChange = (e) => {
+  //   const { value, name } = e.target;
+  //   setUserinfo({
+  //     ...userinfo,
+  //     [name]: value,
+  //   });
+  // };
 
   useEffect(() => {
     dispatch(_getProfile());
   }, []);
 
   useEffect(() => {
-    setUserinfo(profille);
+    setNickname(profille.nickname);
   }, [profille]);
 
+  let checkNickname = nickname.length >= 2 && nickname.length <= 10
+  let pattenrNickname = /^[가-힣|a-z|A-Z|0-9|]+$/;
+
   const updateHandler = () => {
-    dispatch(_PutPorfile(userinfo));
-    Swal.fire({
-      title: `닉네임이 ${nickname}으로 변경되었습니다`,
-      showConfirmButton: false,
-      timer: 1000,
-      width: '340px',
-      customClass: {
-        popup: 'allAlret-class',
-        title: 'allTitle-class',
-      },
-    });
-    nav('/mypage');
+
+    if (nickname.trim() === '') {
+      Swal.fire({
+        title: '닉네임을 입력해주세요.',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+      return;
+    }
+    if (pattenrNickname.test(nickname) === false && checkNickname) {
+      Swal.fire({
+        title: '올바른 형식이 아닙니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+      return;
+    }
+    if (checkNickname) {
+      Swal.fire({
+        title: '닉네임이 변경되었습니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+      dispatch(_PutPorfile({ nickname }));
+      nav('/mypage');
+    } else {
+      Swal.fire({
+        title: '닉네임은 최소2~10자 입니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+    }
   };
+  const display = (str) => {
+    if (str.length >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   if (profille === undefined) return;
 
   return (
     <Layout>
+
       <St_Header>
         <Icbefore
           style={{ cursor: 'pointer' }}
@@ -80,30 +127,18 @@ const MyNickName = () => {
         <St_Title>닉네임 변경</St_Title>
       </St_Header>
       <InputBox>
-        <St_value name="nickname" value={nickname || ''} onChange={onChange} />
+        <St_value maxLength={10} name="nickname" value={nickname || ''} onChange={(e) => {
+          setNickname(e.target.value)
+        }} />
       </InputBox>
-      <ButtonX onClick={cancel}>
-        <Icx />
+      <ButtonX>
+        <Icx
+          display={display(nickname) ? "block" : "none"}
+          onClick={() => setNickname('')} />
       </ButtonX>
       <Btns>
         <CancelBtn onClick={() => nav('/mypage')}>취소</CancelBtn>
-        <SaveBtn
-          onClick={() => {
-            if (nickname.trim() === '') {
-              Swal.fire({
-                title: '닉네임을 입력해주세요.',
-                showConfirmButton: false,
-                timer: 1000,
-                customClass: {
-                  popup: 'allAlret-class',
-                  title: 'allTitle-class',
-                },
-              });
-              return;
-            }
-            updateHandler();
-          }}
-        >
+        <SaveBtn onClick={() => { updateHandler(); }}>
           저장
         </SaveBtn>
       </Btns>

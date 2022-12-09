@@ -197,7 +197,7 @@ const FindPassword = () => {
       </Section1>
 
       {/* 회원가입 제목 */}
-      <JoinTitle>비밀번호 재설정</JoinTitle>
+      <JoinTitle>비밀번호 찾기</JoinTitle>
 
       {/* 이메일 */}
       <EmailBox>
