@@ -165,11 +165,11 @@ const MyCardMake = () => {
   console.log(
     '이미지XXXXX',
     (cardName.trim() === '') === false &&
-      (email.trim() === '') === false &&
-      (phoneNum.trim() === '') === false &&
-      company.length === 0 &&
-      (department.trim() === '') === false &&
-      (position.trim() === '') === false
+    (email.trim() === '') === false &&
+    (phoneNum.trim() === '') === false &&
+    company.length === 0 &&
+    (department.trim() === '') === false &&
+    (position.trim() === '') === false
   );
   console.log(
     searchinfo.company,
@@ -217,7 +217,7 @@ const MyCardMake = () => {
     );
   }, []);
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -440,6 +440,7 @@ const MyCardMake = () => {
             회사<Essential>*</Essential>
           </St_Key>
 
+          {/* 라디오 버튼 start*/}
           {/* <RadioBox>
             <RadioDetail>
               <label>
@@ -524,23 +525,23 @@ const MyCardMake = () => {
                         saveInfo({
                           cardName,
                           email:
-                            imgGet.email !== undefined ? imgGet.email : email,
+                            imgGet.email !== null ? imgGet.email : email,
                           phoneNum:
-                            imgGet.phoneNum !== undefined
+                            imgGet.phoneNum !== null
                               ? imgGet.phoneNum
                               : phoneNum,
                           company:
-                            searchinfo.company !== undefined
+                            searchinfo.company !== null
                               ? searchinfo.company
                               : company,
                           department,
                           companyAddress:
-                            searchinfo.companyAddress !== undefined
+                            searchinfo.companyAddress !== null
                               ? searchinfo.companyAddress
                               : companyAddress,
                           position,
-                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
-                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                          tel: imgGet.tel !== null ? imgGet.tel : tel,
+                          fax: imgGet.fax !== null ? imgGet.fax : fax,
                         })
                       );
                       nav('/posts/companyOtherSearch');
@@ -622,6 +623,8 @@ const MyCardMake = () => {
               </St_Address>
             </div>
           )} */}
+          {/* 라디오 버튼 end*/}
+
 
           <CompanyIcon>
             <Iccompany />
@@ -701,7 +704,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Tel</St_Key>
+          <St_Key>유선전화</St_Key>
           <St_value
             name="tel"
             // value={tel}
@@ -711,7 +714,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Fax</St_Key>
+          <St_Key>팩스</St_Key>
           <St_value
             name="fax"
             // value={fax}

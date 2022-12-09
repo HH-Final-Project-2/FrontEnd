@@ -8,7 +8,7 @@ export const _getProfile = createAsyncThunk(
     try {
       const { data } = await instance.get('/api/members/profiles');
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 //프로필 put
@@ -16,9 +16,9 @@ export const _PutPorfile = createAsyncThunk(
   'put/profille',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.patch(`/api/members/profiles`, payload);
+      const { data } = await instance.patch('/api/members/profiles', payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
+    } catch (error) { }
   }
 );
 
@@ -50,5 +50,5 @@ export const porfileSlice = createSlice({
     },
   },
 });
-export const {} = porfileSlice.actions;
+export const { } = porfileSlice.actions;
 export default porfileSlice.reducer;

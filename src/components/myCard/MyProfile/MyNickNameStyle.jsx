@@ -17,9 +17,7 @@ export const St_Header = styled.div`
   justify-content: left;
 
   padding-left: 16px;
-
   color: #1a1f27;
-
   border-bottom: 1px solid #e2e6ef;
 `;
 

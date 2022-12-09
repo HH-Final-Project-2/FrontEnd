@@ -181,7 +181,7 @@ const MainCards = () => {
 
       Swal.fire({
 
-        text: '명함이 등록되었습니다',
+        title: '명함이 등록되었습니다',
         showConfirmButton: false,
         timer: 1000,
         customClass: {
