@@ -11,7 +11,6 @@ import {
 import { ReactComponent as Profile } from '../../images/profile.svg';
 import { ReactComponent as Icon } from '../../images/ic-icon.svg';
 
-
 const Chatlist = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -20,7 +19,7 @@ const Chatlist = () => {
 
   useEffect(() => {
     dispatch(getChatRoom());
-  }, []);
+  }, [chatRoom]);
 
   if (chatRoom === undefined) return;
 
