@@ -90,7 +90,6 @@ const Comment = ({ detailAuthorId }) => {
                 return Swal.fire({
                   title: '댓글을 입력해 주세요', showConfirmButton: false,
                   timer: 1000,
-                  width: '300px',
                   customClass: {
                     popup: 'allAlret-class',
                     title: 'allTitle-class',
@@ -115,7 +114,6 @@ const Comment = ({ detailAuthorId }) => {
                 return Swal.fire({
                   title: '댓글을 입력해 주세요', showConfirmButton: false,
                   timer: 1000,
-                  width: '300px',
                   customClass: {
                     popup: 'allAlret-class',
                     title: 'allTitle-class',
