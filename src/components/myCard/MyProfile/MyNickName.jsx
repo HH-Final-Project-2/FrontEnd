@@ -52,23 +52,11 @@ const MyNickName = () => {
   }, [profille]);
 
   let checkNickname = nickname.length >= 2 && nickname.length <= 10
+  let pattenrNickname = /^[가-힣|a-z|A-Z|0-9|]+$/;
 
   const updateHandler = () => {
 
-    if (checkNickname) {
-      dispatch(_PutPorfile({ nickname }));
-      Swal.fire({
-        title: `닉네임이 ${nickname}으로 변경되었습니다`,
-        showConfirmButton: false,
-        timer: 1000,
-        width: '330px',
-        customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
-        },
-      });
-      nav('/mypage');
-    } else if (nickname.trim() === '') {
+    if (nickname.trim() === '') {
       Swal.fire({
         title: '닉네임을 입력해주세요.',
         showConfirmButton: false,
@@ -79,13 +67,36 @@ const MyNickName = () => {
         },
       });
       return;
-
+    }
+    if (pattenrNickname.test(nickname) === false && checkNickname) {
+      Swal.fire({
+        title: '올바른 형식이 아닙니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+      return;
+    }
+    if (checkNickname) {
+      Swal.fire({
+        title: '닉네임이 변경되었습니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
+      dispatch(_PutPorfile({ nickname }));
+      nav('/mypage');
     } else {
       Swal.fire({
         title: '닉네임은 최소2~10자 입니다',
         showConfirmButton: false,
         timer: 1000,
-        width: '330px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -105,6 +116,7 @@ const MyNickName = () => {
 
   return (
     <Layout>
+
       <St_Header>
         <Icbefore
           style={{ cursor: 'pointer' }}
