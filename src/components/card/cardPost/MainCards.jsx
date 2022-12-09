@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import Layout from "../../layout/Layout";
-import Modal from "./CardImgModal/Modal";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import Layout from '../../layout/Layout';
+import Modal from './CardImgModal/Modal';
 import {
   __writePost,
   __imgPost,
@@ -39,10 +39,9 @@ import {
   CheckOther,
 } from './cardPostStyle';
 import { SectionFooter } from '../../footer/FooterStyle';
-import Swal from "sweetalert2";
-import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
-import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
-
+import Swal from 'sweetalert2';
+import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
+import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
 
 const MainCards = () => {
   const navigate = useNavigate();
@@ -124,21 +123,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-      email &&
-      company &&
-      companyAddress &&
-      companyType &&
-      phoneNum &&
-      department &&
-      position !== undefined
+    email &&
+    company &&
+    companyAddress &&
+    companyType &&
+    phoneNum &&
+    department &&
+    position !== undefined
       ? cardName.length >= 1 &&
-      email.length >= 1 &&
-      company.length >= 1 &&
-      companyAddress.length >= 1 &&
-      companyType.length >= 1 &&
-      phoneNum.length >= 1 &&
-      department.length >= 1 &&
-      position.length >= 1
+        email.length >= 1 &&
+        company.length >= 1 &&
+        companyAddress.length >= 1 &&
+        companyType.length >= 1 &&
+        phoneNum.length >= 1 &&
+        department.length >= 1 &&
+        position.length >= 1
       : false;
   //
 
@@ -180,24 +179,21 @@ const MainCards = () => {
       );
 
       Swal.fire({
-
-        text: '명함이 등록되었습니다',
+        title: '명함이 등록되었습니다',
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
         },
       });
-      companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
+      companyType === 'own' ? navigate('/cards') : navigate('/otherCategory');
       window.location.reload();
     } else {
       Swal.fire({
         title: '입력한 내용을 확인해주세요',
         showConfirmButton: false,
         timer: 1000,
-        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -220,20 +216,19 @@ const MainCards = () => {
           style={{ cursor: 'pointer' }}
           onClick={() => {
             Swal.fire({
-              title: "뒤로가기를 하시겠습니까?",
+              title: '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
               showCancelButton: true,
-              confirmButtonColor: '#5546FF',
-              cancelButtonColor: '#BBB5FF',
-              confirmButtonText: '확인',
-              cancelButtonText: '취소',
-              width: "300px",
+              confirmButtonColor: 'white',
+              cancelButtonColor: 'white',
+              confirmButtonText: '<div class="confirm-text">확인</div>',
+              cancelButtonText: '<div class="cancel-text">취소</div>',
               customClass: {
                 popup: 'login-class',
                 title: 'title-class',
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.replace("/cards");
+                window.location.replace('/cards');
               }
             });
           }}
@@ -298,7 +293,7 @@ const MainCards = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={openModal}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <rect width="71" height="39" rx="2" fill="white" />
               <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
@@ -498,7 +493,6 @@ const MainCards = () => {
                     onClick={() => {
                       dispatch(
                         __cardInfo({
-
                           cardName: cardName ? cardName : '',
                           email: email,
                           phoneNum: phoneNum,

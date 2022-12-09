@@ -161,24 +161,23 @@ const FindPassword = () => {
   const onSubmit = (data) => {
     authEmail.success === true
       ? dispatch(
-          passwordFind({
-            email: watchForEmail,
-            code: auth,
-            password: watchForPassword,
-            passwordCheck: watchForPasswordCheck,
-          }),
-          navigate('/login')
-        )
+        passwordFind({
+          email: watchForEmail,
+          code: auth,
+          password: watchForPassword,
+          passwordCheck: watchForPasswordCheck,
+        }),
+        navigate('/login')
+      )
       : Swal.fire({
-          title: '이메일 인증이 필요합니다',
-          showConfirmButton: false,
-          timer: 1000,
-          width: '300px',
-          customClass: {
-            popup: 'allAlret-class',
-            title: 'allTitle-class',
-          },
-        });
+        title: '이메일 인증이 필요합니다',
+        showConfirmButton: false,
+        timer: 1000,
+        customClass: {
+          popup: 'allAlret-class',
+          title: 'allTitle-class',
+        },
+      });
   };
   return (
     <JoinForm onSubmit={handleSubmit(onSubmit)}>
@@ -198,7 +197,7 @@ const FindPassword = () => {
       </Section1>
 
       {/* 회원가입 제목 */}
-      <JoinTitle>비밀번호 재설정</JoinTitle>
+      <JoinTitle>비밀번호 찾기</JoinTitle>
 
       {/* 이메일 */}
       <EmailBox>

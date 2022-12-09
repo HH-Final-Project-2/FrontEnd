@@ -181,13 +181,12 @@ const Chatroom = () => {
   const removeCheck = () => {
     setOpen(false);
     Swal.fire({
-      title: '채팅방을 나가시겠습니까?',
+      title: '<div class="title-wrap">채팅방을 나가시겠습니까?</div>',
       showCancelButton: true,
-      confirmButtonColor: '#5546FF',
-      cancelButtonColor: '#BBB5FF',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      width: '300px',
+      confirmButtonColor: 'white',
+      cancelButtonColor: 'white',
+      confirmButtonText: '<div class="confirm-text">확인</div>',
+      cancelButtonText: '<div class="cancel-text">취소</div>',
       customClass: {
         popup: 'login-class',
         title: 'title-class',
@@ -197,7 +196,6 @@ const Chatroom = () => {
         // 확인 버튼 누를시 동작
         Swal.fire({
           title: '채팅방 나가기 완료',
-          width: '300px',
           timer: 1000,
           showConfirmButton: false,
           customClass: {

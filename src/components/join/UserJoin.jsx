@@ -204,7 +204,6 @@ const UserJoin = () => {
       : Swal.fire({
         title: '이메일 인증이 필요합니다', showConfirmButton: false,
         timer: 1000,
-        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -236,7 +235,6 @@ const UserJoin = () => {
         <InputContainer>
           <LabelText>이메일</LabelText>
           <InputJoin2
-            disabled={disable}
             name="email"
             type="text"
             placeholder="이메일"
@@ -277,7 +275,6 @@ const UserJoin = () => {
           <InputContainer>
             <LabelText>이메일 인증코드</LabelText>
             <InputJoin2
-              disabled={disable}
               name="auth"
               type="text"
               value={auth}
@@ -323,6 +320,7 @@ const UserJoin = () => {
           name="password"
           type="password"
           placeholder="6~15자, 영문, 숫자"
+          maxLength={15}
           {...register("password", {
             required: true,
             pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/,
@@ -346,6 +344,7 @@ const UserJoin = () => {
           name="passwordCheck"
           type="password"
           placeholder="비밀번호를 한번 더 입력해주세요"
+          maxLength={15}
           {...register("passwordCheck", {
             required: true,
             validate: (value) => value === password.current,
@@ -372,9 +371,10 @@ const UserJoin = () => {
           name="username"
           type="text"
           placeholder="이름"
+          maxLength={5}
           {...register("username", {
             required: true,
-            pattern: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
+            pattern: /[가-힣]/,
             minLength: 2,
             maxLength: 5,
           })}
@@ -409,6 +409,7 @@ const UserJoin = () => {
           name="nickname"
           type="text"
           placeholder="2~10자 이내"
+          maxLength={10}
           {...register("nickname", {
             required: true,
             minLength: 2,
@@ -426,7 +427,7 @@ const UserJoin = () => {
         </InputButton>
       </InputContainer>
       {errors.nickname && errors.nickname.type === "required" && (
-        <ErrorText>닉네임 입력해주세요</ErrorText>
+        <ErrorText>닉네임을 입력해주세요</ErrorText>
       )}
       {errors.nickname && errors.nickname.type === "minLength" && (
         <ErrorText>닉네임은 최소2~10자 입니다</ErrorText>

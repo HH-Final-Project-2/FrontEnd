@@ -23,13 +23,12 @@ export default function PostBottomSheet({ detail, id }) {
   const onAlertHandler = () => {
     setOpen(false);
     Swal.fire({
-      title: '게시글을 삭제하시겠습니까?',
+      title: '<div class="title-wrap">게시글을 삭제하시겠습니까?</div>',
       showCancelButton: true,
-      confirmButtonColor: '#5546FF',
-      cancelButtonColor: '#BBB5FF',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      width: '300px',
+      confirmButtonColor: 'white',
+      cancelButtonColor: 'white',
+      confirmButtonText: '<div class="confirm-text">확인</div>',
+      cancelButtonText: '<div class="cancel-text">취소</div>',
       customClass: {
         popup: 'login-class',
         title: 'title-class',
@@ -38,7 +37,6 @@ export default function PostBottomSheet({ detail, id }) {
       if (result.isConfirmed) {
         Swal.fire({
           title: '게시글이 삭제되었습니다',
-          width: '300px',
           timer: 1000,
           showConfirmButton: false,
           customClass: {
