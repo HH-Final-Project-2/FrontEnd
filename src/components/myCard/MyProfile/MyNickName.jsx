@@ -57,7 +57,6 @@ const MyNickName = () => {
       title: `닉네임이 ${nickname}으로 변경되었습니다`,
       showConfirmButton: false,
       timer: 1000,
-      width: '300px',
       customClass: {
         popup: 'allAlret-class',
         title: 'allTitle-class',
@@ -94,7 +93,6 @@ const MyNickName = () => {
                 title: '닉네임을 입력해주세요.',
                 showConfirmButton: false,
                 timer: 1000,
-                width: '300px',
                 customClass: {
                   popup: 'allAlret-class',
                   title: 'allTitle-class',

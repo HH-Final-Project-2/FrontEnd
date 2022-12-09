@@ -11,10 +11,9 @@ const GlobalStyle = createGlobalStyle`
     display: none;
   }
 }
-  
   .login-class {
+    width: 270px;
     color: #1A1F27;
-    margin-bottom: 100px;
   }
   
   .title-class{
@@ -25,15 +24,43 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .allAlret-class{
+    width: 250px;
     border-radius: 40px;
     opacity: 0.9;
     margin-bottom: 800px;
-    padding-top: 5px;
+    height: 37px;
   }
   .allTitle-class{
+    position: relative;
+    bottom: 4px;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 16px;
+    margin-bottom: auto;
   }
+  .test{
+    margin-top: 4px;
+    font-size: 15px;
+    color: red;
+  }
+  .title-wrap{
+    position: relative;
+    top: 10px;
+  }
+
+  .confirm-text {
+
+    color: #5546FF;
+  }
+
+  .cancel-text {
+
+    color: #8892A0;
+  }
+
+  .confirm-button {
+    background: white;
+    border: none;
+  } 
 
   
   p,

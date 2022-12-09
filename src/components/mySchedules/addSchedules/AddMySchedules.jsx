@@ -103,7 +103,6 @@ const AddMySchedules = () => {
         title: "일정이 추가 되었습니다",
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -114,7 +113,6 @@ const AddMySchedules = () => {
         title: "작성한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',

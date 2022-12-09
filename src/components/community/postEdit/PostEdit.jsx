@@ -115,7 +115,6 @@ const PostEdit = () => {
     );
     Swal.fire({
       title: '게시글이 수정되었습니다',
-      width: '300px',
       timer: 1500,
       showConfirmButton: false,
       customClass: {

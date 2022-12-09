@@ -46,7 +46,6 @@ export const emailCheck = createAsyncThunk(
             title: data.data.data,
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -61,7 +60,6 @@ export const emailCheck = createAsyncThunk(
           title: data.data.error.message,
           showConfirmButton: false,
           timer: 1000,
-          width: "300px",
           customClass: {
             popup: 'allAlret-class',
             title: 'allTitle-class',
@@ -87,7 +85,6 @@ export const passwordCheck = createAsyncThunk(
             title: data.data.data,
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -102,7 +99,6 @@ export const passwordCheck = createAsyncThunk(
           title: data.data.error.message,
           showConfirmButton: false,
           timer: 1000,
-          width: "300px",
           customClass: {
             popup: 'allAlret-class',
             title: 'allTitle-class',
@@ -125,10 +121,9 @@ export const passwordFind = createAsyncThunk(
       if (data.data.success === true)
         return (
           Swal.fire({
-            title: data.data.data,
+            title: '비밀번호 변경이 완료되었습니다',
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -143,7 +138,6 @@ export const passwordFind = createAsyncThunk(
           title: data.data.error.message,
           showConfirmButton: false,
           timer: 1000,
-          width: "300px",
           customClass: {
             popup: 'allAlret-class',
             title: 'allTitle-class',
@@ -168,7 +162,6 @@ export const emailAuth = createAsyncThunk(
             title: data.data.data,
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -183,7 +176,6 @@ export const emailAuth = createAsyncThunk(
           title: data.data.error.message,
           showConfirmButton: false,
           timer: 1000,
-          width: "300px",
           customClass: {
             popup: 'allAlret-class',
             title: 'allTitle-class',
@@ -202,7 +194,6 @@ export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
       title: "회원가입을 축하드립니다",
       showConfirmButton: false,
       timer: 1000,
-      width: "300px",
       customClass: {
         popup: 'allAlret-class',
         title: 'allTitle-class',
@@ -232,22 +223,7 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
           localStorage.setItem("userid", res.data.data.id);
           localStorage.setItem("nickname", res.data.data.nickname);
 
-          Swal.fire({
-            title: "Businus에 오신걸 환영합니다",
-            showCancelButton: false,
-            confirmButtonColor: "#5546FF",
-            confirmButtonText: "확인",
-            width: "300px",
-            customClass: {
-              popup: 'login-class',
-              title: 'title-class',
-            },
-
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.replace("/cards");
-            }
-          });
+          window.location.replace("/cards");
 
         }
         // 이메일 확인
@@ -256,7 +232,6 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
             title: res.data.error.message,
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -269,7 +244,6 @@ export const signIn = createAsyncThunk("SIGNIN", async (payload, thunkAPI) => {
             title: res.data.error.message,
             showConfirmButton: false,
             timer: 1000,
-            width: "300px",
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -307,7 +281,6 @@ const memberSlice = createSlice({
     [signIn.fulfilled]: (state, action) => {
       state.members = action.payload
     },
-
 
     [emailCheck.fulfilled]: (state, action) => {
       state.check = action.payload.success;

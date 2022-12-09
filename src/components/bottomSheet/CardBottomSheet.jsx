@@ -46,11 +46,10 @@ export default function PostBottomSheet({ view, id }) {
               Swal.fire({
                 text: '명함을 삭제하시겠습니까?',
                 showCancelButton: true,
-                confirmButtonColor: '#5546FF',
-                cancelButtonColor: '#BBB5FF',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소',
-                width: '300px',
+                confirmButtonColor: 'white',
+                cancelButtonColor: 'white',
+                confirmButtonText: '<div class="confirm-text">확인</div>',
+                cancelButtonText: '<div class="cancel-text">취소</div>',
                 customClass: {
                   popup: 'login-class',
                   title: 'title-class',
@@ -59,7 +58,6 @@ export default function PostBottomSheet({ view, id }) {
                 if (result.isConfirmed) {
                   Swal.fire({
                     text: '삭제되었습니다',
-                    width: '300px',
                     timer: 1000,
                     showConfirmButton: false,
                     customClass: {
@@ -93,7 +91,6 @@ export default function PostBottomSheet({ view, id }) {
                     text: '삭제되었습니다',
                     showConfirmButton: false,
                     timer: 1000,
-                    width: '300px',
                     customClass: {
                       popup: 'allAlret-class',
                       title: 'allTitle-class',
