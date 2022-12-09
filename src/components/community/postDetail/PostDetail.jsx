@@ -136,15 +136,16 @@ const PostDetail = () => {
           <Date>{nowAt}</Date>
         </div>
 
-        {/* 채팅하기 버튼 svg start*/}
-        <Chat
+        {+userid === detail.authorId ? ('') : (<Chat
           onClick={() => {
             dispatch(_postId(postid));
             setTimeout(() => {
               navigate('/chat/chatroom/');
             }, 300);
           }}
-        />
+        />)}
+        {/* 채팅하기 버튼 svg start*/}
+
         {/* 채팅하기 버튼 svg end*/}
       </DetailPostSection1>
       <PostLine />
