@@ -204,7 +204,6 @@ const UserJoin = () => {
       : Swal.fire({
         title: '이메일 인증이 필요합니다', showConfirmButton: false,
         timer: 1000,
-        width: '300px',
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -236,6 +235,7 @@ const UserJoin = () => {
         <InputContainer>
           <LabelText>이메일</LabelText>
           <InputJoin2
+            disabled={disable}
             name="email"
             type="text"
             placeholder="이메일"
@@ -276,6 +276,7 @@ const UserJoin = () => {
           <InputContainer>
             <LabelText>이메일 인증코드</LabelText>
             <InputJoin2
+              disabled={disable}
               name="auth"
               type="text"
               value={auth}

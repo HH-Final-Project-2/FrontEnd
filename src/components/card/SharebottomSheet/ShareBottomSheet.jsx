@@ -16,7 +16,6 @@ export default function Bottom() {
         title: "클립보드 복사",
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',
@@ -27,7 +26,6 @@ export default function Bottom() {
         title: "명함을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
-        width: "300px",
         customClass: {
           popup: 'allAlret-class',
           title: 'allTitle-class',

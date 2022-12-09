@@ -107,6 +107,15 @@ const PostWrite = () => {
       )
     );
     dispatch(__writePost(formData));
+    Swal.fire({
+      title: '게시글이 등록되었습니다',
+      timer: 1000,
+      showConfirmButton: false,
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
+    });
   };
 
   return (
@@ -128,7 +137,6 @@ const PostWrite = () => {
             title: '게시글을 확인 해주세요',
             showConfirmButton: false,
             timer: 1000,
-            width: '300px',
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -142,7 +150,6 @@ const PostWrite = () => {
             title: '직군을 선택해 주세요',
             showConfirmButton: false,
             timer: 1000,
-            width: '300px',
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -155,7 +162,6 @@ const PostWrite = () => {
             title: '제목을 입력해 주세요',
             showConfirmButton: false,
             timer: 1000,
-            width: '300px',
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',
@@ -168,7 +174,6 @@ const PostWrite = () => {
             title: '내용을 입력해 주세요',
             showConfirmButton: false,
             timer: 1000,
-            width: '300px',
             customClass: {
               popup: 'allAlret-class',
               title: 'allTitle-class',

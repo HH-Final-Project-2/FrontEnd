@@ -65,10 +65,8 @@ const Chatroom = () => {
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
   //채팅방 유저 정보
   const userinfo = useSelector((state) => state.chat.userinfo);
-  console.log('채팅방유저정보', userinfo);
   //이전 채팅
   const chatList = useSelector((state) => state.chat.chat);
-  console.log('이전채팅내용', chatList);
 
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
@@ -142,7 +140,7 @@ const Chatroom = () => {
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
-        (data) => { },
+        (data) => {},
         headers
       )
       .unsubscribe();
@@ -177,19 +175,18 @@ const Chatroom = () => {
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const removeCheck = () => {
     setOpen(false);
     Swal.fire({
-      title: '채팅방을 나가시겠습니까?',
+      title: '<div class="title-wrap">채팅방을 나가시겠습니까?</div>',
       showCancelButton: true,
-      confirmButtonColor: '#5546FF',
-      cancelButtonColor: '#BBB5FF',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      width: '300px',
+      confirmButtonColor: 'white',
+      cancelButtonColor: 'white',
+      confirmButtonText: '<div class="confirm-text">확인</div>',
+      cancelButtonText: '<div class="cancel-text">취소</div>',
       customClass: {
         popup: 'login-class',
         title: 'title-class',
@@ -199,7 +196,6 @@ const Chatroom = () => {
         // 확인 버튼 누를시 동작
         Swal.fire({
           title: '채팅방 나가기 완료',
-          width: '300px',
           timer: 1000,
           showConfirmButton: false,
           customClass: {
@@ -207,10 +203,11 @@ const Chatroom = () => {
             title: 'allTitle-class',
           },
         });
-        dispatch(deleteChatroom(id === '' ? chatlistid : id));
+
         setTimeout(() => {
           nav('/chat');
-        }, 100);
+        }, 200);
+        dispatch(deleteChatroom(id === '' ? chatlistid : id));
       }
     });
   };
@@ -221,7 +218,6 @@ const Chatroom = () => {
   //   }
   // }
 
-  const lastAt = chatList[chatList.length - 1].createdAt.split(' ')[2];
   // const test = chatList[chatList.length - 1].createdAt.split(' ')[2];
   // console.log(test)
 
@@ -259,6 +255,7 @@ const Chatroom = () => {
             onClick={() => {
               disConneted();
               dispatch(deleteChatroom(id === '' ? chatlistid : id));
+              removeCheck();
             }}
           >
             나가기
@@ -275,7 +272,8 @@ const Chatroom = () => {
             const createdAt = chat.createdAt;
             const ampm = createdAt.split(' ')[1];
             const time = createdAt.split(' ')[2];
-
+            const lastAt =
+              chatList[chatList.length - 1].createdAt.split(' ')[2];
             // let displayTime = true;
 
             // if (index !== chatList.length - 1) {
@@ -291,10 +289,10 @@ const Chatroom = () => {
             // console.log(chatList[index]?.createdAt.split(' ')[2]);
             // console.log('채팅시간', chat.createdAt.split(' ')[2]);
 
-            if (index !== chatList.length - 1) {
-              //마지막 채팅 시간과 이전 채팅의 시간이 같으면 시간 안보이게
-              // console.log(chat.createdAt.split(' ')[2] === lastAt);
-            }
+            // if (index !== chatList.length - 1) {}
+
+            //마지막 채팅 시간과 이전 채팅의 시간이 같으면 시간 안보이게
+            // console.log(chat.createdAt.split(' ')[2] === lastAt);
 
             if (chat.userId === userinfo?.myId) {
               return (
@@ -317,6 +315,18 @@ const Chatroom = () => {
                 </MyChatBox>
               );
             }
+
+            // if (chat.userId === userinfo?.myId) {
+            //   return (
+            //     <MyChatBox key={message.id}>
+            //       <MyChatTime>
+            //         {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
+            //       </MyChatTime>
+            //       <MyChat>{chat.message}</MyChat>
+            //     </MyChatBox>
+            //   );
+            // }
+
             if (chat.userId !== userinfo?.myId) {
               return (
                 <UserChatBox key={message.id}>

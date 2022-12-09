@@ -122,6 +122,8 @@ const MyCardMake = () => {
     });
   };
 
+  console.log(cardName.trim() === '');
+
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
@@ -155,9 +157,48 @@ const MyCardMake = () => {
       ? email.includes('@') && email.includes('.')
       : false;
 
+  const isValidEmail2 =
+    imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
+      ? imgGet.imgUrl.includes('@') && imgGet.imgUrl.includes('.')
+      : false;
+
+  console.log(
+    '이미지XXXXX',
+    (cardName.trim() === '') === false &&
+    (email.trim() === '') === false &&
+    (phoneNum.trim() === '') === false &&
+    company.length === 0 &&
+    (department.trim() === '') === false &&
+    (position.trim() === '') === false
+  );
+  console.log(
+    searchinfo.company,
+    cardName.trim() === '',
+    email.trim() === '',
+    phoneNum.trim() === '',
+    searchinfo.company?.length,
+    department.trim() === '',
+    position.trim() === ''
+  );
+  console.log(imgGet.imgUrl === undefined);
+  // console.log(
+  //   '이미지OOOO',
+  //   (cardName.trim() === '') === false &&
+  //     (imgGet.email.trim() === '') === false &&
+  //     (imgGet.phoneNum.trim() === '') === false &&
+  //     company.length === 0 &&
+  //     (department.trim() === '') === false &&
+  //     (position.trim() === '') === false
+  // );
+
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
       ? phoneNum.includes('-')
+      : false;
+
+  const isValidPhone2 =
+    imgGet.phoneNum !== undefined && imgGet.phoneNum !== null
+      ? imgGet.phoneNum.includes('-')
       : false;
 
   useEffect(() => {
@@ -175,6 +216,8 @@ const MyCardMake = () => {
       })
     );
   }, []);
+
+  useEffect(() => { });
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -207,25 +250,74 @@ const MyCardMake = () => {
 
         <SaveButton
           onClick={() => {
-            if (
-              cardName.trim() === '' &&
-              email.trim() === '' &&
-              phoneNum.trim() === '' &&
-              company.trim() === '' &&
-              department.trim() === '' &&
-              position.trim() === ''
-            ) {
-              alert('필수란을 작성해주세요.');
-              return;
+            // (cardName.trim() === '') === false &&
+            // { email: imgGet.email !== undefined ? imgGet.email : email } ===
+            //   false &&
+            // (phoneNum.trim() === '' || imgGet.phoneNum.trim() === '') ===
+            //   false &&
+            // (company.trim() === '') === false &&
+            // (department.trim() === '') === false &&
+            // (position.trim() === '') === false
+
+            // imgGet.email,
+            // imgGet.phoneNum,
+            // imggettel: imgGet.tel,
+            // imggetfax: imgGet.fax
+
+            // // cardName.trim() === '' ||
+            // cardName.length === 0 ||
+            // // email.trim() === '' ||
+            // email.length === 0 ||
+            // // phoneNum.trim() === '' ||
+            // phoneNum.length === 0 ||
+            // // company.trim() === '' ||
+            // // department.trim() === '' ||
+            // department.length === 0 ||
+            // // position.trim() === '' ||
+            // position.length === 0
+            if (imgGet.imgUrl === undefined) {
+              if (
+                cardName.trim() === '' ||
+                email.trim() === '' ||
+                phoneNum.trim() === '' ||
+                searchinfo.company.length === 0 ||
+                department.trim() === '' ||
+                position.trim() === ''
+              ) {
+                alert('필수란을 작성해주세요.');
+                return;
+              }
+              if (isValidEmail === false) {
+                alert('이메일 형식이 맞지 않습니다.');
+                return;
+              }
+              if (isValidPhone === false) {
+                alert('연락처 형식이 맞지 않습니다.');
+                return;
+              }
             }
-            if (isValidEmail === false) {
-              alert('이메일 형식이 맞지 않습니다.');
-              return;
+            if (imgGet.imgUrl !== undefined) {
+              if (
+                cardName.trim() === '' ||
+                imgGet.email.trim() === '' ||
+                imgGet.phoneNum.trim() === '' ||
+                searchinfo.company.length === 0 ||
+                department.trim() === '' ||
+                position.trim() === ''
+              ) {
+                alert('필수란을 작성해주세요.');
+                return;
+              }
+              if (isValidEmail2 === false) {
+                alert('이메일 형식이 맞지 않습니다.');
+                return;
+              }
+              if (isValidPhone2 === false) {
+                alert('연락처 형식이 맞지 않습니다.');
+                return;
+              }
             }
-            if (isValidPhone === false) {
-              alert('연락처 형식이 맞지 않습니다.');
-              return;
-            }
+
             PostHandler();
           }}
         >
@@ -348,6 +440,7 @@ const MyCardMake = () => {
             회사<Essential>*</Essential>
           </St_Key>
 
+          {/* 라디오 버튼 start*/}
           {/* <RadioBox>
             <RadioDetail>
               <label>
@@ -432,23 +525,23 @@ const MyCardMake = () => {
                         saveInfo({
                           cardName,
                           email:
-                            imgGet.email !== undefined ? imgGet.email : email,
+                            imgGet.email !== null ? imgGet.email : email,
                           phoneNum:
-                            imgGet.phoneNum !== undefined
+                            imgGet.phoneNum !== null
                               ? imgGet.phoneNum
                               : phoneNum,
                           company:
-                            searchinfo.company !== undefined
+                            searchinfo.company !== null
                               ? searchinfo.company
                               : company,
                           department,
                           companyAddress:
-                            searchinfo.companyAddress !== undefined
+                            searchinfo.companyAddress !== null
                               ? searchinfo.companyAddress
                               : companyAddress,
                           position,
-                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
-                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                          tel: imgGet.tel !== null ? imgGet.tel : tel,
+                          fax: imgGet.fax !== null ? imgGet.fax : fax,
                         })
                       );
                       nav('/posts/companyOtherSearch');
@@ -530,6 +623,8 @@ const MyCardMake = () => {
               </St_Address>
             </div>
           )} */}
+          {/* 라디오 버튼 end*/}
+
 
           <CompanyIcon>
             <Iccompany />
@@ -609,7 +704,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Tel</St_Key>
+          <St_Key>유선전화</St_Key>
           <St_value
             name="tel"
             // value={tel}
@@ -619,7 +714,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Fax</St_Key>
+          <St_Key>팩스</St_Key>
           <St_value
             name="fax"
             // value={fax}

@@ -4,8 +4,12 @@ import Chatlist from '../components/chat/Chatlist';
 import Layout from '../components/layout/Layout';
 import ChatFooter from '../components/footer/ChatFooter';
 import { SectionFooter } from '../components/footer/FooterStyle';
+import { useEffect } from 'react';
 
 const Chat = () => {
+  // useEffect(() => {
+  //   window.location.reload();
+  // }, []);
   return (
     <Layout>
       <St_Header>

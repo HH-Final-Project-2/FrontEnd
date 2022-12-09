@@ -36,22 +36,12 @@ const Mypage = () => {
       <OutLine>
         <Logout
           onClick={() => {
-            Swal.fire({
-              title: `로그아웃 되었습니다.`,
-              showConfirmButton: false,
-              timer: 1000,
-              width: '300px',
-              customClass: {
-                popup: 'allAlret-class',
-                title: 'allTitle-class',
-              },
-            });
             dispatch(signOut({}));
           }}
         >
           로그아웃
         </Logout>
-        <Joinout
+        {/* <Joinout
           type="button"
           onClick={() => {
             Swal.fire({
@@ -85,7 +75,7 @@ const Mypage = () => {
           }}
         >
           회원탈퇴
-        </Joinout>
+        </Joinout> */}
       </OutLine>
     </Layout>
   );

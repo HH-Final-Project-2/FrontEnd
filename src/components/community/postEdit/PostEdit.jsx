@@ -14,6 +14,7 @@ import {
   ImageUpload,
   SelectJob,
 } from './PostEditStyle';
+import Swal from 'sweetalert2';
 
 const PostEdit = () => {
   const dispatch = useDispatch();
@@ -112,6 +113,15 @@ const PostEdit = () => {
         formData,
       })
     );
+    Swal.fire({
+      title: '게시글이 수정되었습니다',
+      timer: 1500,
+      showConfirmButton: false,
+      customClass: {
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
+      },
+    });
   };
 
   const display = (str) => {
