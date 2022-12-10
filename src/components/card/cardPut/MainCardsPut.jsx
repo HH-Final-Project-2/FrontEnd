@@ -28,7 +28,7 @@ import {
 } from "./MainCardsPutStyle";
 
 import { SectionFooter } from "../../footer/FooterStyle";
-import { SectionHeader } from "../cardPost/cardPostStyle";
+import { CheckOther, CheckOwn, FormCheckOther, FormCheckOwn, SectionHeader } from "../cardPost/cardPostStyle";
 import Swal from "sweetalert2";
 
 const MainCards = () => {
@@ -247,7 +247,41 @@ const MainCards = () => {
             <St_Key>
               회사<Essential>*</Essential>
             </St_Key>
+
             <RadioBox>
+              <RadioDetail>
+                <label>
+                  <FormCheckOwn
+                    type="radio"
+                    id="find"
+                    name="companyType"
+                    value={'find'}
+                    checked={companyHow === 'find'}
+                    onChange={(e) => {
+                      setCompanyHow(e.target.value);
+                    }}
+                  />
+                  <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+                </label>
+              </RadioDetail>
+
+              <RadioDetail>
+                <label>
+                  <FormCheckOther
+                    type="radio"
+                    id="myself"
+                    name="companyHow"
+                    value={'myself'}
+                    checked={companyHow === 'myself'}
+                    onChange={(e) => {
+                      setCompanyHow(e.target.value);
+                    }}
+                  />
+                  <CheckOther htmlFor="myself">직접 입력</CheckOther>
+                </label>
+              </RadioDetail>
+            </RadioBox>
+            {/* <RadioBox>
               <RadioDetail>
                 <input
                   type="radio"
@@ -274,7 +308,7 @@ const MainCards = () => {
                 />
                 <label htmlFor="myself">직접 입력</label>
               </RadioDetail>
-            </RadioBox>
+            </RadioBox> */}
 
             {companyHow === "myself" ? (
               <div>

@@ -50,17 +50,15 @@ export const _searchGet = createAsyncThunk(
 export const _companyInfo = createAsyncThunk(
   'post/COMPANY_info',
   async (payload, thunkAPI) => {
-    console.log(payload)
     try {
       const { data } = await instance.post('/api/companyInfo', payload);
-      console.log(data)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) { }
   }
 );
 
 const initialState = {
-  makesave:[{
+  makesave: [{
     cardName: "",
     email: "",
     phoneNum: "",
@@ -91,7 +89,7 @@ export const mycardSlice = createSlice({
   name: 'cardinfo', //모듈
   initialState,
   reducers: {
-    saveInfo : (state, action) =>{
+    saveInfo: (state, action) => {
       state.makesave = action.payload;
     }
   },
@@ -119,5 +117,5 @@ export const mycardSlice = createSlice({
   },
 });
 
-export const {saveInfo} = mycardSlice.actions;
+export const { saveInfo } = mycardSlice.actions;
 export default mycardSlice.reducer;
