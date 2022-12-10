@@ -372,3 +372,82 @@ export const FormCheckOther = styled.input.attrs({ type: 'radio' })`
   }
   display: none;
 `;
+
+
+// 회사검색 라디오 버튼
+export const CheckSearch = styled.span`
+  margin-left: 28px;
+  font-weight: 400;
+  font-size: 14px;
+  width: 160px;
+  height: 48px;
+  background: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #777;
+
+  border-radius: 4px 0px 0px 4px;
+`;
+
+export const FormCheckSearch = styled.input.attrs({ type: 'radio' })`
+  &:checked {
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    line-height: 33px;
+    font-weight: 500;
+    display: none;
+
+    border: 1px solid #e2e2e2;
+
+    background: #f5f5f5;
+    color: #bdbdbd;
+  }
+  &:checked + ${CheckSearch} {
+    border: 1px solid #e2e2e2;
+
+    background: #ffffff;
+    color: #222222;
+  }
+  display: none;
+`;
+
+// 직접입력 라디오 버튼
+export const CheckSelf = styled.span`
+  font-weight: 400;
+  font-size: 14px;
+  width: 160px;
+  height: 48px;
+  background: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #777;
+  border-radius: 0px 4px 4px 0px;
+`;
+
+export const FormCheckSelf = styled.input.attrs({ type: 'radio' })`
+  &:checked {
+    display: inline-block;
+    text-align: center;
+    height: 35px;
+    line-height: 33px;
+    font-weight: 500;
+    display: none;
+
+    border: 1px solid #e2e2e2;
+
+    background: #f5f5f5;
+    color: #bdbdbd;
+  }
+  &:checked + ${CheckSelf} {
+    border: 1px solid #e2e2e2;
+
+    background: #ffffff;
+    color: #222222;
+  }
+  display: none;
+`;
