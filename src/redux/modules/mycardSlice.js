@@ -50,10 +50,8 @@ export const _searchGet = createAsyncThunk(
 export const _companyInfo = createAsyncThunk(
   "post/COMPANY_info",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.post("/api/companyInfo", payload);
-      console.log(data);
+      const { data } = await instance.post('/api/companyInfo', payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -71,6 +69,7 @@ const initialState = {
       fax: "",
     },
   ],
+
   cardinfo: [
     {
       cardName: "",

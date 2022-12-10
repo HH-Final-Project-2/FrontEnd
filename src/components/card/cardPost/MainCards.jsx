@@ -60,6 +60,9 @@ const MainCards = () => {
   const [companyType, setCompanyType] = useState(
     companyGet.companyType ? companyGet.companyType : ""
   );
+  // const [otherCompanyType, setOtherCompanyType] = useState(
+  //   companyGet.companyType ? companyGet.companyType : ''
+  // );
   const [department, setDepartment] = useState(
     companyGet.department ? companyGet.department : ""
   );
@@ -80,7 +83,9 @@ const MainCards = () => {
   const [companyAddress, setCompanyAddress] = useState(
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
+
   const [companyHow, setCompanyHow] = useState("");
+
 
   const [pop, setPop] = useState(false);
   const [companyPop, setCompanyPop] = useState(false);
@@ -124,21 +129,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-    email &&
-    company &&
-    companyAddress &&
-    companyType &&
-    phoneNum &&
-    department &&
-    position !== undefined
+      email &&
+      company &&
+      companyAddress &&
+      companyType &&
+      phoneNum &&
+      department &&
+      position !== undefined
       ? cardName.length >= 1 &&
-        email.length >= 1 &&
-        company.length >= 1 &&
-        companyAddress.length >= 1 &&
-        companyType.length >= 1 &&
-        phoneNum.length >= 1 &&
-        department.length >= 1 &&
-        position.length >= 1
+      email.length >= 1 &&
+      company.length >= 1 &&
+      companyAddress.length >= 1 &&
+      companyType.length >= 1 &&
+      phoneNum.length >= 1 &&
+      department.length >= 1 &&
+      position.length >= 1
       : false;
   //
 
@@ -205,7 +210,6 @@ const MainCards = () => {
       setPop(true);
     }
   };
-  //
 
   return (
     <Layout>

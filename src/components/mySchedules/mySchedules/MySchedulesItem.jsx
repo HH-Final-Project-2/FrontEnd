@@ -70,40 +70,40 @@ const MySchedulesItem = () => {
           {moment(value).format('MM월 DD일 일정')}
           {marks !== null
             ? marks.map((x) => {
-                if (
-                  x.filteredDate !== null &&
-                  x.filteredDate.includes(moment(value).format('YYYY-MM-DD'))
-                ) {
-                  return (
-                    <div
-                      className="todoBox"
-                      key={x.id}
-                      onClick={() => {
-                        navigate(`/mySchedulesDetail/${x.id}`);
-                      }}
-                    >
-                      <div className="todoBoxSection">
-                        <div className="titleBox">
-                          <div className="titleSection">
-                            <div className="todoDot" />
-                            <div className="title">{x.title}</div>
-                          </div>
-                          <div className="todo">{x.todo}</div>
+              if (
+                x.filteredDate !== null &&
+                x.filteredDate.includes(moment(value).format('YYYY-MM-DD'))
+              ) {
+                return (
+                  <div
+                    className="todoBox"
+                    key={x.id}
+                    onClick={() => {
+                      navigate(`/mySchedulesDetail/${x.id}`);
+                    }}
+                  >
+                    <div className="todoBoxSection">
+                      <div className="titleBox">
+                        <div className="titleSection">
+                          <div className="todoDot" />
+                          <div className="title">{x.title}</div>
                         </div>
+                        <div className="todo">{x.todo}</div>
+                      </div>
 
-                        <div className="dateTime">
-                          <div className="startDate">
-                            {x.startDate} {x.startTime}
-                          </div>
-                          <div className="endDate">
-                            {x.endDate} {x.endTime}
-                          </div>
+                      <div className="dateTime">
+                        <div className="startDate">
+                          {x.startDate} {x.startTime}
+                        </div>
+                        <div className="endDate">
+                          {x.endDate} {x.endTime}
                         </div>
                       </div>
                     </div>
-                  );
-                } else return null;
-              })
+                  </div>
+                );
+              } else return null;
+            })
             : null}
         </div>
       </div>

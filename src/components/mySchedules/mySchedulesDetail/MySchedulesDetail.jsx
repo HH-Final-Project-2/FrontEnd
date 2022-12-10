@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -33,10 +33,9 @@ const MySchedulesDetail = () => {
   const { id } = useParams();
   const view = useSelector((state) => state.ScheduleSlice.detail);
 
-
   useEffect(() => {
     dispatch(__schedulesDetailGet(id));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
@@ -68,10 +67,12 @@ const MySchedulesDetail = () => {
               .delete(`https://bkyungkeem.shop/api/calendar/${id}`, config)
               .then(function (response) {
                 view.filter((x) => x.id !== response);
+
               })
               .catch(function (error) {
               })
               .then(function () { });
+
             Swal.fire({
               title: '일정이 삭제되었습니다',
               showConfirmButton: false,
@@ -80,8 +81,9 @@ const MySchedulesDetail = () => {
                 popup: 'allAlret-class',
                 title: 'allTitle-class',
               },
-            });
-            navigate('/MySchedules');
+            }).then(() => {
+              navigate('/mySchedules');
+            })
           }}
         >
           삭제

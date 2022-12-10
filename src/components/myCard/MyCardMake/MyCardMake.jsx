@@ -123,7 +123,6 @@ const MyCardMake = () => {
     });
   };
 
-  console.log(cardName.trim() === "");
 
   const mediaChangeHandler = (e) => {
     e.preventDefault();
@@ -162,35 +161,6 @@ const MyCardMake = () => {
     imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
       ? imgGet.imgUrl.includes("@") && imgGet.imgUrl.includes(".")
       : false;
-
-  console.log(
-    "이미지XXXXX",
-    (cardName.trim() === "") === false &&
-      (email.trim() === "") === false &&
-      (phoneNum.trim() === "") === false &&
-      company.length === 0 &&
-      (department.trim() === "") === false &&
-      (position.trim() === "") === false
-  );
-  console.log(
-    searchinfo.company,
-    cardName.trim() === "",
-    email.trim() === "",
-    phoneNum.trim() === "",
-    searchinfo.company?.length,
-    department.trim() === "",
-    position.trim() === ""
-  );
-  console.log(imgGet.email);
-  // console.log(
-  //   '이미지OOOO',
-  //   (cardName.trim() === '') === false &&
-  //     (imgGet.email.trim() === '') === false &&
-  //     (imgGet.phoneNum.trim() === '') === false &&
-  //     company.length === 0 &&
-  //     (department.trim() === '') === false &&
-  //     (position.trim() === '') === false
-  // );
 
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null

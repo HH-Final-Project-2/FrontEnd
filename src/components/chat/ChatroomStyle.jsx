@@ -95,8 +95,8 @@ export const UserChat = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  width: 373px;
-  height: 80px;
+  width: 375px;
+  height: 64px;
   position: fixed;
   bottom: 0;
   box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
@@ -105,7 +105,7 @@ export const Footer = styled.div`
   .dm {
     position: absolute;
     left: 318px;
-    bottom: 30px;
+    bottom: 14px;
   }
 `;
 

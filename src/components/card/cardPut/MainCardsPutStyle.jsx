@@ -174,18 +174,13 @@ export const RadioBox = styled.div`
   cursor: pointer;
 `;
 export const RadioDetail = styled.div`
-  display: flex;
-  justify-content: left;
+ display: flex;
 
-  margin: 0 0 20px 20px;
-  cursor: pointer;
-  label {
-    cursor: pointer;
-    margin-left: 8px;
-    font-size: 14px;
-  }
-  font-weight: 500;
-  font-size: 14px;
+margin-bottom: 20px;
+cursor: pointer;
+
+font-weight: 400;
+font-size: 14px;
 `;
 
 export const AddressSearch = styled.div`
