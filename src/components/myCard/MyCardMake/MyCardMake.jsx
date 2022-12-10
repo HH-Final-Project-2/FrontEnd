@@ -56,6 +56,7 @@ import Modal from '../../card/cardPost/CardImgModal/Modal';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
 import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -165,11 +166,11 @@ const MyCardMake = () => {
   console.log(
     '이미지XXXXX',
     (cardName.trim() === '') === false &&
-    (email.trim() === '') === false &&
-    (phoneNum.trim() === '') === false &&
-    company.length === 0 &&
-    (department.trim() === '') === false &&
-    (position.trim() === '') === false
+      (email.trim() === '') === false &&
+      (phoneNum.trim() === '') === false &&
+      company.length === 0 &&
+      (department.trim() === '') === false &&
+      (position.trim() === '') === false
   );
   console.log(
     searchinfo.company,
@@ -217,7 +218,7 @@ const MyCardMake = () => {
     );
   }, []);
 
-  useEffect(() => { });
+  useEffect(() => {});
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -242,7 +243,23 @@ const MyCardMake = () => {
                 companyAddress: '',
               })
             );
-            nav(-1);
+            Swal.fire({
+              title:
+                '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
+              showCancelButton: true,
+              confirmButtonColor: 'white',
+              cancelButtonColor: 'white',
+              confirmButtonText: '<div class="confirm-text">확인</div>',
+              cancelButtonText: '<div class="cancel-text">취소</div>',
+              customClass: {
+                popup: 'login-class',
+                title: 'title-class',
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                nav(-1);
+              }
+            });
           }}
         />
 
@@ -624,7 +641,6 @@ const MyCardMake = () => {
             </div>
           )} */}
           {/* 라디오 버튼 end*/}
-
 
           <CompanyIcon>
             <Iccompany />
