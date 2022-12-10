@@ -8,6 +8,7 @@ import {
   _MakeCard,
   _PutCard,
 } from "../../../redux/modules/mycardSlice";
+import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { __imgPost } from "../../../redux/modules/CardsSlice";
 import {
@@ -180,7 +181,7 @@ const MyCardMake = () => {
     department.trim() === "",
     position.trim() === ""
   );
-  console.log(imgGet.imgUrl === undefined);
+  console.log(imgGet.email);
   // console.log(
   //   '이미지OOOO',
   //   (cardName.trim() === '') === false &&
@@ -242,7 +243,23 @@ const MyCardMake = () => {
                 companyAddress: "",
               })
             );
-            nav(-1);
+            Swal.fire({
+              title:
+                '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
+              showCancelButton: true,
+              confirmButtonColor: "white",
+              cancelButtonColor: "white",
+              confirmButtonText: '<div class="confirm-text">확인</div>',
+              cancelButtonText: '<div class="cancel-text">취소</div>',
+              customClass: {
+                popup: "login-class",
+                title: "title-class",
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                nav(-1);
+              }
+            });
           }}
         />
 
@@ -250,31 +267,6 @@ const MyCardMake = () => {
 
         <SaveButton
           onClick={() => {
-            // (cardName.trim() === '') === false &&
-            // { email: imgGet.email !== undefined ? imgGet.email : email } ===
-            //   false &&
-            // (phoneNum.trim() === '' || imgGet.phoneNum.trim() === '') ===
-            //   false &&
-            // (company.trim() === '') === false &&
-            // (department.trim() === '') === false &&
-            // (position.trim() === '') === false
-
-            // imgGet.email,
-            // imgGet.phoneNum,
-            // imggettel: imgGet.tel,
-            // imggetfax: imgGet.fax
-
-            // // cardName.trim() === '' ||
-            // cardName.length === 0 ||
-            // // email.trim() === '' ||
-            // email.length === 0 ||
-            // // phoneNum.trim() === '' ||
-            // phoneNum.length === 0 ||
-            // // company.trim() === '' ||
-            // // department.trim() === '' ||
-            // department.length === 0 ||
-            // // position.trim() === '' ||
-            // position.length === 0
             if (imgGet.imgUrl === undefined) {
               if (
                 cardName.trim() === "" ||
@@ -440,6 +432,7 @@ const MyCardMake = () => {
             회사<Essential>*</Essential>
           </St_Key>
 
+          {/* 라디오 버튼 start*/}
           {/* <RadioBox>
             <RadioDetail>
               <label>
@@ -524,23 +517,23 @@ const MyCardMake = () => {
                         saveInfo({
                           cardName,
                           email:
-                            imgGet.email !== undefined ? imgGet.email : email,
+                            imgGet.email !== null ? imgGet.email : email,
                           phoneNum:
-                            imgGet.phoneNum !== undefined
+                            imgGet.phoneNum !== null
                               ? imgGet.phoneNum
                               : phoneNum,
                           company:
-                            searchinfo.company !== undefined
+                            searchinfo.company !== null
                               ? searchinfo.company
                               : company,
                           department,
                           companyAddress:
-                            searchinfo.companyAddress !== undefined
+                            searchinfo.companyAddress !== null
                               ? searchinfo.companyAddress
                               : companyAddress,
                           position,
-                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
-                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                          tel: imgGet.tel !== null ? imgGet.tel : tel,
+                          fax: imgGet.fax !== null ? imgGet.fax : fax,
                         })
                       );
                       nav('/posts/companyOtherSearch');
@@ -622,6 +615,7 @@ const MyCardMake = () => {
               </St_Address>
             </div>
           )} */}
+          {/* 라디오 버튼 end*/}
 
           <CompanyIcon>
             <Iccompany />
@@ -701,7 +695,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Tel</St_Key>
+          <St_Key>유선전화</St_Key>
           <St_value
             name="tel"
             // value={tel}
@@ -711,7 +705,7 @@ const MyCardMake = () => {
         </Item>
 
         <Item>
-          <St_Key>Fax</St_Key>
+          <St_Key>팩스</St_Key>
           <St_value
             name="fax"
             // value={fax}

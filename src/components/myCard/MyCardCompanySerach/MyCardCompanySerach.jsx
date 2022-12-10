@@ -78,12 +78,18 @@ const MyCardCompanySerach = () => {
           type="text"
           value={search}
           onChange={searchChangeHandler}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              dispatch(_searchGet(search));
+            }
+          }}
         ></Input>
       </SearchBox>
       <Icon>
         <IcSearch />
       </Icon>
-      <Button onClick={searchClickHandler}>검색</Button>
+      <Button
+        onClick={searchClickHandler}>검색</Button>
       <Section3>
         {currentPosts && currentPosts !== undefined ? (
           currentPosts.map((post) => {
