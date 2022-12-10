@@ -159,8 +159,8 @@ const MyCardMake = () => {
       : false;
 
   const isValidEmail2 =
-    imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
-      ? imgGet.imgUrl.includes('@') && imgGet.imgUrl.includes('.')
+    imgGet.email !== undefined && imgGet.email !== null
+      ? imgGet.email.includes('@') && imgGet.email.includes('.')
       : false;
 
   console.log(
@@ -181,7 +181,7 @@ const MyCardMake = () => {
     department.trim() === '',
     position.trim() === ''
   );
-  console.log(imgGet.imgUrl === undefined);
+  console.log(imgGet.email);
   // console.log(
   //   '이미지OOOO',
   //   (cardName.trim() === '') === false &&
@@ -267,31 +267,6 @@ const MyCardMake = () => {
 
         <SaveButton
           onClick={() => {
-            // (cardName.trim() === '') === false &&
-            // { email: imgGet.email !== undefined ? imgGet.email : email } ===
-            //   false &&
-            // (phoneNum.trim() === '' || imgGet.phoneNum.trim() === '') ===
-            //   false &&
-            // (company.trim() === '') === false &&
-            // (department.trim() === '') === false &&
-            // (position.trim() === '') === false
-
-            // imgGet.email,
-            // imgGet.phoneNum,
-            // imggettel: imgGet.tel,
-            // imggetfax: imgGet.fax
-
-            // // cardName.trim() === '' ||
-            // cardName.length === 0 ||
-            // // email.trim() === '' ||
-            // email.length === 0 ||
-            // // phoneNum.trim() === '' ||
-            // phoneNum.length === 0 ||
-            // // company.trim() === '' ||
-            // // department.trim() === '' ||
-            // department.length === 0 ||
-            // // position.trim() === '' ||
-            // position.length === 0
             if (imgGet.imgUrl === undefined) {
               if (
                 cardName.trim() === '' ||
