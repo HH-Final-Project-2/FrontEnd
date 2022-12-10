@@ -55,12 +55,19 @@ const PostList = () => {
   };
 
   const [selectBox, setSelectBox] = useState('');
+
   // 최신순, 조회순, 좋아요순 정렬
-  const selectHandler = (value) => {
-    if (value === 'news') dispatch(__getPostAll());
-    if (value === 'hits') dispatch(hitsSort());
-    if (value === 'likes') dispatch(heartSort());
-  };
+  // const selectHandler = (value) => {
+  //   if (value === 'news') dispatch(__getPostAll());
+  //   if (value === 'hits') dispatch(hitsSort());
+  //   if (value === 'likes') dispatch(heartSort());
+  // };
+
+  useEffect(() => {
+    if (selectBox === 'news') dispatch(__getPostAll());
+    if (selectBox === 'hits') dispatch(hitsSort());
+    if (selectBox === 'likes') dispatch(heartSort());
+  }, [selectBox])
 
   // 검색
   useEffect(() => {
@@ -144,7 +151,7 @@ const PostList = () => {
           className="sort"
           value={selectBox}
           onChange={(e) => setSelectBox(e.target.value)}
-          onClick={() => selectHandler(selectBox)} //?
+        // onClick={() => selectHandler(selectBox)} //?
         >
           <option hidden>정렬</option>
           <option value="news">최신순</option>

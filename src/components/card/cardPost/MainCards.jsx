@@ -227,11 +227,10 @@ const MainCards = () => {
               title:
                 '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
               showCancelButton: true,
-              confirmButtonColor: "#5546FF",
-              cancelButtonColor: "#BBB5FF",
-              confirmButtonText: "확인",
-              cancelButtonText: "취소",
-              width: "300px",
+              confirmButtonColor: 'white',
+              cancelButtonColor: 'white',
+              confirmButtonText: '<div class="confirm-text">확인</div>',
+              cancelButtonText: '<div class="cancel-text">취소</div>',
               customClass: {
                 popup: "login-class",
                 title: "title-class",
