@@ -10,8 +10,7 @@ export const __writePost = createAsyncThunk(
     try {
       const data = await instance.post("/api/businessCards", payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __imgPost = createAsyncThunk(
@@ -25,6 +24,7 @@ export const __imgPost = createAsyncThunk(
           "Refresh-Token": refreshToken,
         },
       };
+      console.log(payload);
       const data = await axios.post(
         "https://bkyungkeem.shop/api/upload/img",
         payload,
@@ -32,9 +32,7 @@ export const __imgPost = createAsyncThunk(
       );
 
       return thunkAPI.fulfillWithValue(data.data.data);
-    } catch (error) {
-
-    }
+    } catch (error) {}
   }
 );
 export const __mainGet = createAsyncThunk(
@@ -43,8 +41,7 @@ export const __mainGet = createAsyncThunk(
     try {
       const data = await instance.get("/api/businessCards");
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __searchGet = createAsyncThunk(
@@ -55,8 +52,7 @@ export const __searchGet = createAsyncThunk(
         `/api/companySearch/?keyword=${payload}`
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __CardSearchGet = createAsyncThunk(
@@ -67,8 +63,7 @@ export const __CardSearchGet = createAsyncThunk(
         `/api/search/businessCards/?keyword=${payload}`
       );
       return thunkAPI.fulfillWithValue(data.data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __cardInfo = createAsyncThunk(
@@ -77,8 +72,7 @@ export const __cardInfo = createAsyncThunk(
     try {
       const data = await instance.post(`/api/cardInfo`, payload);
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __companyInfo = createAsyncThunk(
@@ -87,8 +81,7 @@ export const __companyInfo = createAsyncThunk(
     try {
       const data = await instance.post("/api/companyInfo", payload);
       return thunkAPI.fulfillWithValue(data.data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 export const __viewGet = createAsyncThunk(
@@ -97,8 +90,7 @@ export const __viewGet = createAsyncThunk(
     try {
       const data = await instance.get(`/api/businessCards/${payload}`);
       return thunkAPI.fulfillWithValue(data.data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 
@@ -111,8 +103,7 @@ export const __fixPost = createAsyncThunk(
         payload
       );
       return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 
@@ -193,5 +184,5 @@ export const CardsSlice = createSlice({
   },
 });
 
-export const { } = CardsSlice.actions;
+export const {} = CardsSlice.actions;
 export default CardsSlice.reducer;
