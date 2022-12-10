@@ -75,21 +75,21 @@ const MainCards = () => {
 
   const isValidInput =
     inputValue.cardName &&
-    inputValue.email &&
-    lastCompany &&
-    inputValue.companyAddress &&
-    inputValue.companyType &&
-    inputValue.phoneNum &&
-    inputValue.department &&
-    inputValue.position !== undefined
+      inputValue.email &&
+      lastCompany &&
+      inputValue.companyAddress &&
+      inputValue.companyType &&
+      inputValue.phoneNum &&
+      inputValue.department &&
+      inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
-        inputValue.email.length >= 1 &&
-        lastCompany.length >= 1 &&
-        inputValue.companyAddress.length >= 1 &&
-        inputValue.companyType.length >= 1 &&
-        inputValue.phoneNum.length >= 1 &&
-        inputValue.department.length >= 1 &&
-        inputValue.position.length >= 1
+      inputValue.email.length >= 1 &&
+      lastCompany.length >= 1 &&
+      inputValue.companyAddress.length >= 1 &&
+      inputValue.companyType.length >= 1 &&
+      inputValue.phoneNum.length >= 1 &&
+      inputValue.department.length >= 1 &&
+      inputValue.position.length >= 1
       : false;
 
   const valueChangeHandler = (e) => {
@@ -189,11 +189,10 @@ const MainCards = () => {
                 title:
                   '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
                 showCancelButton: true,
-                confirmButtonColor: "#5546FF",
-                cancelButtonColor: "#BBB5FF",
-                confirmButtonText: "확인",
-                cancelButtonText: "취소",
-                width: "300px",
+                confirmButtonColor: 'white',
+                cancelButtonColor: 'white',
+                confirmButtonText: '<div class="confirm-text">확인</div>',
+                cancelButtonText: '<div class="cancel-text">취소</div>',
                 customClass: {
                   popup: "login-class",
                   title: "title-class",
@@ -243,7 +242,7 @@ const MainCards = () => {
               onChange={valueChangeHandler}
             ></St_value>
             {inputValue.phoneNum &&
-            inputValue.phoneNum.includes("-") === false ? (
+              inputValue.phoneNum.includes("-") === false ? (
               <AssistiveText>-을 포함해주세요</AssistiveText>
             ) : null}
           </Item>
@@ -382,8 +381,8 @@ const MainCards = () => {
                     companyGet.company
                       ? companyGet.company
                       : companyOnly
-                      ? companyOnly
-                      : company
+                        ? companyOnly
+                        : company
                   }
                   onClick={() => {
                     dispatch(
