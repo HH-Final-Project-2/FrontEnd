@@ -212,12 +212,16 @@ const Chatroom = () => {
     });
   };
 
-  // const chattime = ()=>{
-  //   for (let i =0; i < chatList.length; i ++){
-
-  //   }
+  // for (let i = 0; i < chatList.length; i++) {
+  //   return chatList[i].createdAt.split(' ')[2], console.log(i);
   // }
 
+  // const checktime = chatList.map((x, index) => {
+  //   for (let i = 0; i < chatList.length; i++)
+  //     return x.createdAt[i].split(' ')[2];
+  // });
+  // console.log(checktime);
+  // console.log(chatList);
   // const test = chatList[chatList.length - 1].createdAt.split(' ')[2];
   // console.log(test)
 
@@ -274,26 +278,10 @@ const Chatroom = () => {
             const time = createdAt.split(' ')[2];
             const lastAt =
               chatList[chatList.length - 1].createdAt.split(' ')[2];
-            // let displayTime = true;
 
-            // if (index !== chatList.length - 1) {
-            //   const lastsender = chatList[index]?.userId;
-
-            //   if (lastsender === chat[index]?.userId) {
-            //     const lastTime = chatList[index]?.createdAt.split(' ')[2];
-
-            //     if (lastTime === time) displayTime = false; // 다음 메시지와 시간이 같을 경우 false
-            //   }
-            // }
-
-            // console.log(chatList[index]?.createdAt.split(' ')[2]);
-            // console.log('채팅시간', chat.createdAt.split(' ')[2]);
-
-            // if (index !== chatList.length - 1) {}
-
-            //마지막 채팅 시간과 이전 채팅의 시간이 같으면 시간 안보이게
-            // console.log(chat.createdAt.split(' ')[2] === lastAt);
-
+            for (let i = 0; i < chatList.length; i++) {
+              console.log(i);
+            }
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>

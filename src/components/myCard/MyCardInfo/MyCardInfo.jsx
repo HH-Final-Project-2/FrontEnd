@@ -69,7 +69,7 @@ const MyCardInfo = () => {
         <Icbefore
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            //nav('/mypage');
+            nav('/mypage');
           }}
         />
 
