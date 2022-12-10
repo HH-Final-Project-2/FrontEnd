@@ -19,7 +19,7 @@ const Chatlist = () => {
 
   useEffect(() => {
     dispatch(getChatRoom());
-  }, [chatRoom]);
+  }, []);
 
   if (chatRoom === undefined) return;
 
