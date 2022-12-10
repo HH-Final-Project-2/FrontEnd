@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Layout from '../../layout/Layout';
-import { useNavigate } from 'react-router';
+import React, { useState } from "react";
+import Layout from "../../layout/Layout";
+import { useNavigate } from "react-router";
 import {
   saveInfo,
   _companyInfo,
   _getMakeCard,
   _MakeCard,
   _PutCard,
-} from '../../../redux/modules/mycardSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { __imgPost } from '../../../redux/modules/CardsSlice';
+} from "../../../redux/modules/mycardSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { __imgPost } from "../../../redux/modules/CardsSlice";
 import {
   St_Header,
   PatchBox,
@@ -28,7 +28,7 @@ import {
   AddressIcon,
   Essential,
   PrevImg,
-} from '../MyCardMake/MyCardMakeStyle';
+} from "../MyCardMake/MyCardMakeStyle";
 
 import {
   RadioBox,
@@ -43,19 +43,19 @@ import {
   FormCheckOwn,
   CheckOwn,
   CheckOther,
-} from '../../card/cardPost/cardPostStyle';
+} from "../../card/cardPost/cardPostStyle";
 
-import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
-import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
-import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
-import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { ReactComponent as Icplus } from "../../../images/ic-plus.svg";
+import { ReactComponent as Iccompany } from "../../../images/ic-company.svg";
+import { ReactComponent as Icaddress } from "../../../images/ic-address.svg";
+import { ReactComponent as Icbefore } from "../../../images/ic-before.svg";
 // import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
 
-import { SectionFooter } from '../../footer/FooterStyle';
-import Modal from '../../card/cardPost/CardImgModal/Modal';
-import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
-import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
-import { useEffect } from 'react';
+import { SectionFooter } from "../../footer/FooterStyle";
+import Modal from "../../card/cardPost/CardImgModal/Modal";
+import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
+import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
+import { useEffect } from "react";
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -65,26 +65,26 @@ const MyCardMake = () => {
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const imgGet = useSelector((state) => state.PostReducer.img);
 
-  const [companyHow, setCompanyHow] = useState('');
+  const [companyHow, setCompanyHow] = useState("");
   const [pop, setPop] = useState(false);
 
   const [makeinfo, setMakeinfo] = useState({
-    cardName: savemake.cardName ? savemake.cardName : '',
-    email: savemake.email ? savemake.email : '',
-    phoneNum: savemake.phoneNum ? savemake.phoneNum : '',
-    company: '',
-    companyAddress: '',
-    department: savemake.department ? savemake.department : '',
-    position: savemake.position ? savemake.position : '',
-    tel: savemake.tel ? savemake.tel : '',
-    fax: savemake.fax ? savemake.fax : '',
+    cardName: savemake.cardName ? savemake.cardName : "",
+    email: savemake.email ? savemake.email : "",
+    phoneNum: savemake.phoneNum ? savemake.phoneNum : "",
+    company: "",
+    companyAddress: "",
+    department: savemake.department ? savemake.department : "",
+    position: savemake.position ? savemake.position : "",
+    tel: savemake.tel ? savemake.tel : "",
+    fax: savemake.fax ? savemake.fax : "",
   });
 
   const [imggetmake, setImggetmake] = useState({
-    imggetemail: imgGet.email ? imgGet.email : '',
-    imggetphoneNum: imgGet.phoneNum ? imgGet.phoneNum : '',
-    imggettel: imgGet.tel ? imgGet.tel : '',
-    imggetfax: imgGet.fax ? imgGet.fax : '',
+    imggetemail: imgGet.email ? imgGet.email : "",
+    imggetphoneNum: imgGet.phoneNum ? imgGet.phoneNum : "",
+    imggettel: imgGet.tel ? imgGet.tel : "",
+    imggetfax: imgGet.fax ? imgGet.fax : "",
   });
 
   const { imggetemail, imggetphoneNum, imggettel, imggetfax } = imggetmake;
@@ -122,12 +122,12 @@ const MyCardMake = () => {
     });
   };
 
-  console.log(cardName.trim() === '');
+  console.log(cardName.trim() === "");
 
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
-    file.append('cardImg', e.target.files[0]);
+    file.append("cardImg", e.target.files[0]);
     dispatch(__imgPost(file));
   };
 
@@ -149,36 +149,36 @@ const MyCardMake = () => {
         fax: imgGet.fax !== undefined ? imgGet.fax : fax,
       })
     );
-    nav('/mypage');
+    nav("/mypage");
   };
 
   const isValidEmail =
     email !== undefined && email !== null
-      ? email.includes('@') && email.includes('.')
+      ? email.includes("@") && email.includes(".")
       : false;
 
   const isValidEmail2 =
     imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
-      ? imgGet.imgUrl.includes('@') && imgGet.imgUrl.includes('.')
+      ? imgGet.imgUrl.includes("@") && imgGet.imgUrl.includes(".")
       : false;
 
   console.log(
-    '이미지XXXXX',
-    (cardName.trim() === '') === false &&
-      (email.trim() === '') === false &&
-      (phoneNum.trim() === '') === false &&
+    "이미지XXXXX",
+    (cardName.trim() === "") === false &&
+      (email.trim() === "") === false &&
+      (phoneNum.trim() === "") === false &&
       company.length === 0 &&
-      (department.trim() === '') === false &&
-      (position.trim() === '') === false
+      (department.trim() === "") === false &&
+      (position.trim() === "") === false
   );
   console.log(
     searchinfo.company,
-    cardName.trim() === '',
-    email.trim() === '',
-    phoneNum.trim() === '',
+    cardName.trim() === "",
+    email.trim() === "",
+    phoneNum.trim() === "",
     searchinfo.company?.length,
-    department.trim() === '',
-    position.trim() === ''
+    department.trim() === "",
+    position.trim() === ""
   );
   console.log(imgGet.imgUrl === undefined);
   // console.log(
@@ -193,26 +193,26 @@ const MyCardMake = () => {
 
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
-      ? phoneNum.includes('-')
+      ? phoneNum.includes("-")
       : false;
 
   const isValidPhone2 =
     imgGet.phoneNum !== undefined && imgGet.phoneNum !== null
-      ? imgGet.phoneNum.includes('-')
+      ? imgGet.phoneNum.includes("-")
       : false;
 
   useEffect(() => {
     dispatch(
       saveInfo({
-        cardName: '',
-        email: '',
-        phoneNum: '',
-        company: '',
-        department: '',
-        companyAddress: '',
-        position: '',
-        tel: '',
-        fax: '',
+        cardName: "",
+        email: "",
+        phoneNum: "",
+        company: "",
+        department: "",
+        companyAddress: "",
+        position: "",
+        tel: "",
+        fax: "",
       })
     );
   }, []);
@@ -234,12 +234,12 @@ const MyCardMake = () => {
       <SectionHeader />
       <St_Header>
         <Icbefore
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
             dispatch(
               _companyInfo({
-                companyName: '',
-                companyAddress: '',
+                companyName: "",
+                companyAddress: "",
               })
             );
             nav(-1);
@@ -277,43 +277,43 @@ const MyCardMake = () => {
             // position.length === 0
             if (imgGet.imgUrl === undefined) {
               if (
-                cardName.trim() === '' ||
-                email.trim() === '' ||
-                phoneNum.trim() === '' ||
+                cardName.trim() === "" ||
+                email.trim() === "" ||
+                phoneNum.trim() === "" ||
                 searchinfo.company.length === 0 ||
-                department.trim() === '' ||
-                position.trim() === ''
+                department.trim() === "" ||
+                position.trim() === ""
               ) {
-                alert('필수란을 작성해주세요.');
+                alert("필수란을 작성해주세요.");
                 return;
               }
               if (isValidEmail === false) {
-                alert('이메일 형식이 맞지 않습니다.');
+                alert("이메일 형식이 맞지 않습니다.");
                 return;
               }
               if (isValidPhone === false) {
-                alert('연락처 형식이 맞지 않습니다.');
+                alert("연락처 형식이 맞지 않습니다.");
                 return;
               }
             }
             if (imgGet.imgUrl !== undefined) {
               if (
-                cardName.trim() === '' ||
-                imgGet.email.trim() === '' ||
-                imgGet.phoneNum.trim() === '' ||
+                cardName.trim() === "" ||
+                imgGet.email.trim() === "" ||
+                imgGet.phoneNum.trim() === "" ||
                 searchinfo.company.length === 0 ||
-                department.trim() === '' ||
-                position.trim() === ''
+                department.trim() === "" ||
+                position.trim() === ""
               ) {
-                alert('필수란을 작성해주세요.');
+                alert("필수란을 작성해주세요.");
                 return;
               }
               if (isValidEmail2 === false) {
-                alert('이메일 형식이 맞지 않습니다.');
+                alert("이메일 형식이 맞지 않습니다.");
                 return;
               }
               if (isValidPhone2 === false) {
-                alert('연락처 형식이 맞지 않습니다.');
+                alert("연락처 형식이 맞지 않습니다.");
                 return;
               }
             }
@@ -338,7 +338,7 @@ const MyCardMake = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             onClick={openModal}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <rect width="71" height="39" rx="2" fill="white" />
             <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
@@ -346,9 +346,9 @@ const MyCardMake = () => {
             <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
           </svg>
 
-          <div onClick={openModal} style={{ cursor: 'pointer' }}>
-            <span style={{ color: 'red' }}>여기</span>를 눌러{' '}
-            <span style={{ color: 'red' }}>등록 가이드</span>를 확인해주세요{' '}
+          <div onClick={openModal} style={{ cursor: "pointer" }}>
+            <span style={{ color: "red" }}>여기</span>를 눌러{" "}
+            <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
             <p />
             형식에 맞지 않는 명함은 등록되지 않습니다.
           </div>
@@ -384,7 +384,7 @@ const MyCardMake = () => {
                 src={imgGet.imgUrl}
                 alt="preview-img"
                 id="card"
-                style={{ margin: 'auto' }}
+                style={{ margin: "auto" }}
               />
             )
           )}
@@ -397,7 +397,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="cardName"
-            value={cardName || ''}
+            value={cardName || ""}
             placeholder="이름"
             onChange={onChage}
           ></St_value>
@@ -430,7 +430,7 @@ const MyCardMake = () => {
             placeholder="Ex) 010-0000-0000"
             onChange={onChage}
           ></St_value>
-          {phoneNum && phoneNum.includes('-') === false ? (
+          {phoneNum && phoneNum.includes("-") === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
@@ -630,7 +630,7 @@ const MyCardMake = () => {
             name="company"
             value={searchinfo.company ? searchinfo.company : company}
             onChange={onChage}
-            style={{ paddingLeft: '35px' }}
+            style={{ paddingLeft: "35px" }}
             onClick={() => {
               dispatch(
                 saveInfo({
@@ -652,7 +652,7 @@ const MyCardMake = () => {
                   fax: imgGet.fax !== undefined ? imgGet.fax : fax,
                 })
               );
-              nav('/mypage/cardpatch/MyCardCompanySerach');
+              nav("/mypage/cardpatch/MyCardCompanySerach");
             }}
           ></St_value>
 
@@ -684,7 +684,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="position"
-            value={position || ''}
+            value={position || ""}
             onChange={onChage}
           ></St_value>
         </Item>
@@ -695,7 +695,7 @@ const MyCardMake = () => {
           </St_Key>
           <St_value
             name="department"
-            value={department || ''}
+            value={department || ""}
             onChange={onChage}
           ></St_value>
         </Item>

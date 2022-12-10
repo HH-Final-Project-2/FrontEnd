@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
-import "react-datepicker/dist/react-datepicker.css";
+import "./react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __writeSchedules } from "../../../redux/modules/SchedulesSlice";
@@ -23,7 +23,6 @@ import {
 import { PostLine } from "../../community/postDetail/PostDetailStyle";
 import Swal from "sweetalert2";
 
-
 const AddMySchedules = () => {
   const [todo, setTodo] = useState();
   const [title, setTitle] = useState();
@@ -33,7 +32,7 @@ const AddMySchedules = () => {
   const { isLoading } = useSelector((state) => state.ScheduleSlice);
 
   useEffect(() => {
-    if (isLoading) navigate('/mySchedules');
+    if (isLoading) navigate("/mySchedules");
   }, [isLoading]);
 
   const startPlusNine = Number(startDate.toISOString().slice(11, 13));
@@ -49,7 +48,6 @@ const AddMySchedules = () => {
     .replace("T", " ")
     .replace(/\..*/, "")
     .slice(0, 10);
-
 
   const filterStartDate =
     startPlusNine <= 9
@@ -105,8 +103,8 @@ const AddMySchedules = () => {
         timer: 1000,
         width: "300px",
         customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
+          popup: "allAlret-class",
+          title: "allTitle-class",
         },
       });
     } else {
@@ -116,11 +114,25 @@ const AddMySchedules = () => {
         timer: 1000,
         width: "300px",
         customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
+          popup: "allAlret-class",
+          title: "allTitle-class",
         },
       });
     }
+  };
+  // 요일 반환
+  const getDayName = (date) => {
+    return date
+      .toLocaleDateString("ko-KR", {
+        weekday: "long",
+      })
+      .substr(0, 1);
+  };
+  // 날짜 비교시 년 월 일까지만 비교하게끔
+  const createDate = (date) => {
+    return new Date(
+      new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
+    );
   };
 
   return (
@@ -165,7 +177,7 @@ const AddMySchedules = () => {
         <DateStart>
           <div className="startDate">시작</div>
 
-          <div>
+          <div style={{ left: "30" }}>
             <DatePicker
               className="datePicker"
               closeOnScroll={true}
@@ -174,10 +186,19 @@ const AddMySchedules = () => {
               selected={startDate}
               onChange={(dateDay) => setStartDate(dateDay)}
               showTimeSelect // 시간 나오게 하기
+              popperModifiers={{ preventOverflow: { enabled: true } }}
+              popperPlacement="auto"
               // timeFormat="HH:mm" //시간 포맷
               timeIntervals={30} // 30분 단위로 선택 가능한 box가 나옴
               timeCaption="time"
               dateFormat="yyyy. MM. dd / HH시:mm분"
+              dayClassName={(date) =>
+                getDayName(createDate(date)) === "토"
+                  ? "saturday"
+                  : getDayName(createDate(date)) === "일"
+                  ? "sunday"
+                  : undefined
+              }
             />
           </div>
         </DateStart>
@@ -193,6 +214,8 @@ const AddMySchedules = () => {
               minDate={startDate}
               selected={endDate}
               onChange={(dateDay) => setEndDate(dateDay)}
+              popperModifiers={{ preventOverflow: { enabled: true } }}
+              popperPlacement="auto"
               showTimeSelect // 시간 나오게 하기
               // timeFormat="HH:mm" //시간 포맷
               timeIntervals={30} // 30분 단위로 선택 가능한 box가 나옴
