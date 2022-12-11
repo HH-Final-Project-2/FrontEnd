@@ -101,6 +101,7 @@ const AddMySchedules = () => {
         title: "일정이 추가 되었습니다",
         showConfirmButton: false,
         timer: 1000,
+        width: "300px",
         customClass: {
           popup: "allAlret-class",
           title: "allTitle-class",
@@ -111,6 +112,7 @@ const AddMySchedules = () => {
         title: "작성한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
+        width: "300px",
         customClass: {
           popup: "allAlret-class",
           title: "allTitle-class",
@@ -175,8 +177,10 @@ const AddMySchedules = () => {
         <DateStart>
           <div className="startDate">시작</div>
 
-          <div style={{ left: "30" }}>
+          <div className="datePickerBox">
             <DatePicker
+              // initial={{ opacity: 0, y: 0 }}
+              // animate={{ opacity: 1 }}
               className="datePicker"
               closeOnScroll={true}
               locale={ko}
