@@ -216,7 +216,7 @@ const AddMySchedules = () => {
           <div>
             <DatePicker
               className="datePicker"
-              closeOnScroll={true}
+              // closeOnScroll={true}
               locale={ko}
               minDate={startDate}
               selected={endDate}

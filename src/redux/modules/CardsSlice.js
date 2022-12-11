@@ -32,7 +32,9 @@ export const __imgPost = createAsyncThunk(
       );
 
       return thunkAPI.fulfillWithValue(data.data.data);
-    } catch (error) {}
+    } catch (error) {
+      alert("지원하지 않는 이미지 양식입니다");
+    }
   }
 );
 export const __mainGet = createAsyncThunk(
@@ -158,7 +160,15 @@ export const CardsSlice = createSlice({
       state.list = [state.list, action.payload];
     },
     [__imgPost.fulfilled]: (state, action) => {
+      console.log(action.payload);
       state.img = action.payload;
+      if (
+        action.payload.email === "" &&
+        action.payload.phoneNum === "" &&
+        action.payload.fax === "" &&
+        action.payload.tel === ""
+      )
+        alert("지원하지 않는 이미지 양식입니다");
     },
     [__mainGet.fulfilled]: (state, action) => {
       state.list = { ...action.payload };
