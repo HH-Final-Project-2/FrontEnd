@@ -45,8 +45,9 @@ const Router = () => {
 
   return (
     <BrowserRouter>
+
       <Routes>
-        {/* 메인 */}
+        {/* 
         <Route
           path="/"
           element={
@@ -56,7 +57,8 @@ const Router = () => {
               component={<Main />}
             />
           }
-        />
+        /> */}
+        <Route path="/" element={<Main />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/cardSearch" element={<CardSearch />} />
         <Route path="/otherCategory" element={<OtherCards />} />
@@ -104,20 +106,21 @@ const Router = () => {
 
         {/* 회원관리(회원가입,로그인)*/}
         <Route path="/join" element={<Join />} />
-        <Route
-          path="/login"
-          element={
-            <PrivateRoute
-              access={access}
-              refresh={refresh}
-              component={<Login />}
-            />
-          }
-        />
+        <Route path="/login" element={<Login />} />
+        {/* <Route
+        path="/login"
+        element={
+          <PrivateRoute
+            access={access}
+            refresh={refresh}
+            component={<Login />}
+          />
+        }
+      /> */}
         <Route path="/findPassword" element={<PasswordSearch />} />
         <Route path="/oauth/kakao" element={<Kakao />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 };
 
