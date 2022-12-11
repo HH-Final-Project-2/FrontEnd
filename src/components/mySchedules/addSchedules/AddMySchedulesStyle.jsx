@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const AddSchedulesBox = styled.div``;
+export const DatePickerBox = styled.div`
+  DatePicker {
+    margin: auto;
+  }
+`;
 
 export const AddBtn = styled.div`
   display: flex;
