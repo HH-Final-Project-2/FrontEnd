@@ -179,7 +179,6 @@ const AddMySchedules = () => {
 
           <div className="datePickerBox">
             <DatePicker
-              readOnly
               // initial={{ opacity: 0, y: 0 }}
               // animate={{ opacity: 1 }}
               className="datePicker"
@@ -216,7 +215,6 @@ const AddMySchedules = () => {
 
           <div>
             <DatePicker
-              readOnly
               className="datePicker"
               closeOnScroll={true}
               locale={ko}
