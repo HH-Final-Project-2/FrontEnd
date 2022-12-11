@@ -6,15 +6,10 @@ const Modal = (props) => {
   const { open, close, header } = props;
 
   return (
-    <div className={open ? "openModal modal" : "modal"}>
+    <div className={open ? "openModal modal" : "modal"} onClick={close}>
       {open ? (
         <section>
-          <header>
-            {header}
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-          </header>
+          <header>{header}</header>
           <main>{props.children}</main>
           <footer></footer>
         </section>

@@ -52,7 +52,11 @@ const MainCards = () => {
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
   );
-
+  const noneImg =
+    (imgGet.email && imgGet.fax && imgGet.tel && imgGet.phoneNum) === ""
+      ? false
+      : true;
+  console.log(noneImg);
   //state생성
   const [cardName, setCardName] = useState(
     companyGet.cardName ? companyGet.cardName : ""
@@ -86,32 +90,37 @@ const MainCards = () => {
 
   const [companyHow, setCompanyHow] = useState("");
 
-
   const [pop, setPop] = useState(false);
-  const [companyPop, setCompanyPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
 
-  useEffect(() => setCardName(companyGet.cardName), [companyGet]);
-  useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
-  useEffect(() => setDepartment(companyGet.department), [companyGet]);
-  useEffect(() => setPosition(companyGet.position), [companyGet]);
-  useEffect(
-    () => setEmail(imgGet.email ? imgGet.email : companyGet.email),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
-    [imgGet, companyGet]
-  );
+  useEffect(() => {
+    setCardName(companyGet.cardName);
+    setCompanyType(companyGet.companyType);
+    setDepartment(companyGet.department);
+    setPosition(companyGet.position);
+  }, [companyGet]);
+  // useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
+  // useEffect(() => setDepartment(companyGet.department), [companyGet]);
+  // useEffect(() => setPosition(companyGet.position), [companyGet]);
+  useEffect(() => {
+    setEmail(imgGet.email ? imgGet.email : companyGet.email);
+    setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum);
+    setTel(imgGet.tel ? imgGet.tel : companyGet.tel);
+    setFax(imgGet.fax ? imgGet.fax : companyGet.fax);
+  }, [imgGet, companyGet]);
+  // useEffect(
+  //   () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
+  //   [imgGet, companyGet]
+  // );
+  // useEffect(
+  //   () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
+  //   [imgGet, companyGet]
+  // );
+  // useEffect(
+  //   () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
+  //   [imgGet, companyGet]
+  // );
   useEffect(
     () => setCompany(companyGet.company ? companyGet.company : companyOnly),
     [companyGet, companyOnly]
@@ -129,21 +138,21 @@ const MainCards = () => {
 
   const isValidInput =
     cardName &&
-      email &&
-      company &&
-      companyAddress &&
-      companyType &&
-      phoneNum &&
-      department &&
-      position !== undefined
+    email &&
+    company &&
+    companyAddress &&
+    companyType &&
+    phoneNum &&
+    department &&
+    position !== undefined
       ? cardName.length >= 1 &&
-      email.length >= 1 &&
-      company.length >= 1 &&
-      companyAddress.length >= 1 &&
-      companyType.length >= 1 &&
-      phoneNum.length >= 1 &&
-      department.length >= 1 &&
-      position.length >= 1
+        email.length >= 1 &&
+        company.length >= 1 &&
+        companyAddress.length >= 1 &&
+        companyType.length >= 1 &&
+        phoneNum.length >= 1 &&
+        department.length >= 1 &&
+        position.length >= 1
       : false;
   //
 
@@ -227,8 +236,8 @@ const MainCards = () => {
               title:
                 '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
               showCancelButton: true,
-              confirmButtonColor: 'white',
-              cancelButtonColor: 'white',
+              confirmButtonColor: "white",
+              cancelButtonColor: "white",
               confirmButtonText: '<div class="confirm-text">확인</div>',
               cancelButtonText: '<div class="cancel-text">취소</div>',
               customClass: {
