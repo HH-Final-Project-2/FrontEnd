@@ -57,12 +57,6 @@ const PostList = () => {
   const [selectBox, setSelectBox] = useState('');
 
   // 최신순, 조회순, 좋아요순 정렬
-  // const selectHandler = (value) => {
-  //   if (value === 'news') dispatch(__getPostAll());
-  //   if (value === 'hits') dispatch(hitsSort());
-  //   if (value === 'likes') dispatch(heartSort());
-  // };
-
   useEffect(() => {
     if (selectBox === 'news') dispatch(__getPostAll());
     if (selectBox === 'hits') dispatch(hitsSort());
