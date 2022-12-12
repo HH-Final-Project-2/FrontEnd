@@ -157,8 +157,8 @@ const MyCardMake = () => {
       : false;
 
   const isValidEmail2 =
-    imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
-      ? imgGet.imgUrl.includes('@') && imgGet.imgUrl.includes('.')
+    imgGet.email !== undefined && imgGet.email !== null
+      ? imgGet.email.includes('@') && imgGet.email.includes('.')
       : false;
 
   const isValidPhone =
