@@ -123,8 +123,6 @@ const MyCardMake = () => {
     });
   };
 
-  console.log(cardName.trim() === '');
-
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
@@ -163,35 +161,6 @@ const MyCardMake = () => {
       ? imgGet.email.includes('@') && imgGet.email.includes('.')
       : false;
 
-  console.log(
-    '이미지XXXXX',
-    (cardName.trim() === '') === false &&
-      (email.trim() === '') === false &&
-      (phoneNum.trim() === '') === false &&
-      company.length === 0 &&
-      (department.trim() === '') === false &&
-      (position.trim() === '') === false
-  );
-  console.log(
-    searchinfo.company,
-    cardName.trim() === '',
-    email.trim() === '',
-    phoneNum.trim() === '',
-    searchinfo.company?.length,
-    department.trim() === '',
-    position.trim() === ''
-  );
-  console.log(imgGet.email);
-  // console.log(
-  //   '이미지OOOO',
-  //   (cardName.trim() === '') === false &&
-  //     (imgGet.email.trim() === '') === false &&
-  //     (imgGet.phoneNum.trim() === '') === false &&
-  //     company.length === 0 &&
-  //     (department.trim() === '') === false &&
-  //     (position.trim() === '') === false
-  // );
-
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
       ? phoneNum.includes('-')
@@ -218,8 +187,6 @@ const MyCardMake = () => {
     );
   }, []);
 
-  useEffect(() => {});
-
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -237,12 +204,6 @@ const MyCardMake = () => {
         <Icbefore
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            dispatch(
-              _companyInfo({
-                companyName: '',
-                companyAddress: '',
-              })
-            );
             Swal.fire({
               title:
                 '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
@@ -257,7 +218,7 @@ const MyCardMake = () => {
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                nav(-1);
+                window.location.replace('/mypage');
               }
             });
           }}
@@ -469,9 +430,13 @@ const MyCardMake = () => {
 
           {companyHow === 'myself' ? (
             <div>
-              <CompanyInput
+              <CompanyIcon>
+                <Iccompany />
+              </CompanyIcon>
+              <St_value
                 placeholder="회사명을 입력하세요"
                 name="company"
+                style={{ paddingLeft: '38px' }}
                 value={searchinfo.company ? searchinfo.company : company}
                 onChange={onChage}
               />
@@ -516,8 +481,7 @@ const MyCardMake = () => {
                       dispatch(
                         saveInfo({
                           cardName,
-                          email:
-                            imgGet.email !== null ? imgGet.email : email,
+                          email: imgGet.email !== null ? imgGet.email : email,
                           phoneNum:
                             imgGet.phoneNum !== null
                               ? imgGet.phoneNum
@@ -546,10 +510,14 @@ const MyCardMake = () => {
             </div>
           ) : (
             <div>
+              <CompanyIcon>
+                <Iccompany />
+              </CompanyIcon>
               <CompanyInput
                 readOnly
                 type="text"
                 name="company"
+                style={{ paddingLeft: '38px' }}
                 placeholder="회사 검색"
                 value={searchinfo.company ? searchinfo.company : company}
                 onChange={onChage}
@@ -579,40 +547,16 @@ const MyCardMake = () => {
                   nav('/mypage/cardpatch/MyCardCompanySerach');
                 }}
               />
-              <St_Address
-                name="company"
-                value={
-                  searchinfo.companyAddress
+              <AddressBox>
+                <AddressIcon>
+                  <Icaddress />
+                </AddressIcon>
+                <SearchAddress>
+                  {searchinfo.companyAddress
                     ? searchinfo.companyAddress
-                    : companyAddress
-                }
-                onChange={onChage}
-              >
-                <AddressBox>
-                  <div>
-                    <svg
-                      width="12"
-                      height="15"
-                      viewBox="0 0 12 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{ marginRight: '8px' }}
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M5.66545 14.8907L5.71636 14.9204L5.73673 14.9322C5.81748 14.9767 5.90784 15 5.99964 15C6.09144 15 6.18179 14.9767 6.26255 14.9322L6.28291 14.9211L6.33455 14.8907C6.61899 14.7189 6.89655 14.5356 7.16655 14.3411C7.86551 13.8384 8.51857 13.2726 9.11782 12.6506C10.5316 11.1764 12 8.96141 12 6.11157C12 4.49068 11.3679 2.93618 10.2426 1.79004C9.11742 0.643896 7.5913 0 6 0C4.4087 0 2.88258 0.643896 1.75736 1.79004C0.632141 2.93618 0 4.49068 0 6.11157C0 8.96067 1.46909 11.1764 2.88218 12.6506C3.4812 13.2726 4.13402 13.8384 4.83273 14.3411C5.10296 14.5356 5.38076 14.719 5.66545 14.8907ZM6 8.33396C6.57865 8.33396 7.13361 8.09981 7.54278 7.68304C7.95195 7.26626 8.18182 6.70098 8.18182 6.11157C8.18182 5.52216 7.95195 4.95688 7.54278 4.5401C7.13361 4.12332 6.57865 3.88918 6 3.88918C5.42135 3.88918 4.86639 4.12332 4.45722 4.5401C4.04805 4.95688 3.81818 5.52216 3.81818 6.11157C3.81818 6.70098 4.04805 7.26626 4.45722 7.68304C4.86639 8.09981 5.42135 8.33396 6 8.33396Z"
-                        fill="#BCC2CC"
-                      />
-                    </svg>
-                  </div>
-                  <SearchAddress>
-                    {searchinfo.companyAddress
-                      ? searchinfo.companyAddress
-                      : companyAddress}
-                  </SearchAddress>
-                </AddressBox>
-              </St_Address>
+                    : companyAddress}
+                </SearchAddress>
+              </AddressBox>
             </div>
           )} */}
           {/* 라디오 버튼 end*/}

@@ -211,6 +211,7 @@ const MyCardPatch = () => {
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
+
           <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
