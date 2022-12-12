@@ -58,18 +58,8 @@ export const _companyInfo = createAsyncThunk(
 );
 
 const initialState = {
-  makesave: [
-    {
-      cardName: "",
-      email: "",
-      phoneNum: "",
-      department: "",
-      position: "",
-      tel: "",
-      fax: "",
-    },
-  ],
-
+  makesave: [{}],
+  searchsave:[{}],
   cardinfo: [
     {
       cardName: "",
@@ -95,6 +85,10 @@ export const mycardSlice = createSlice({
     saveInfo: (state, action) => {
       state.makesave = action.payload;
     },
+    addresSsearchSave: (state, action) => {
+      state.searchsave = action.payload;
+      console.log(action.payload);
+    },
   },
   extraReducers: {
     [_MakeCard.fulfilled]: (state, action) => {
@@ -113,10 +107,11 @@ export const mycardSlice = createSlice({
       state.searchCompany = { ...action.payload };
     },
     [_companyInfo.fulfilled]: (state, action) => {
+      console.log(action.payload)
       state.companyInfo = action.payload;
     },
   },
 });
 
-export const { saveInfo } = mycardSlice.actions;
+export const { saveInfo,addresSsearchSave } = mycardSlice.actions;
 export default mycardSlice.reducer;
