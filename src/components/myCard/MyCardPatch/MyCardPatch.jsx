@@ -35,7 +35,7 @@ const MyCardPatch = () => {
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
-
+  console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
     email: cardinfo.email,
@@ -221,11 +221,10 @@ const MyCardPatch = () => {
               value={searchinfo.companyName ? searchinfo.companyName : company}
               onChange={onChage}
               style={{ paddingLeft: '42px' }}
-              onClick={() => nav('/mypage/cardpatch/MyCardCompanySerach')}
+              onClick={() => nav('/mypage/MyCardCompanySerach')}
             ></St_value>
           </div>
 
-          {/* <img src="/images/ic-company.png"></img> */}
           <St_Address
             name="companyAddress"
             value={
