@@ -31,6 +31,7 @@ const MyCardInfo = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
+  console.log(cardinfo);
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);

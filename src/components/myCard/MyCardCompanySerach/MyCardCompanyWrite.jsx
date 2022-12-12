@@ -23,6 +23,7 @@ const MyCardCompanyWrite = () => {
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     dispatch(saveInfo({ companyAddress: fullAddress }), navigate(-2));
+    console.log(fullAddress);
   };
 
   const handleSearch = (data) => {};

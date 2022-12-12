@@ -96,14 +96,12 @@ const MyCardCompanySerach = () => {
               <ComInfor
                 key={post.id}
                 onClick={() => {
-                  setTimeout(() => {
-                    dispatch(
-                      _companyInfo({
-                        companyName: post.companyName,
-                        companyAddress: post.companyAddress,
-                      })
-                    );
-                  }, 100);
+                  dispatch(
+                    _companyInfo({
+                      companyName: post.companyName,
+                      companyAddress: post.companyAddress,
+                    })
+                  );
 
                   nav(-1);
                 }}

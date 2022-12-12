@@ -77,8 +77,8 @@ const MyCardPatch = () => {
         email,
         phoneNum,
         company:
-          searchinfo.companyName !== undefined
-            ? searchinfo.companyName
+          searchinfo.company !== undefined
+            ? searchinfo.company
             : cardinfo.company,
         department,
         companyAddress:
@@ -218,7 +218,7 @@ const MyCardPatch = () => {
           <div>
             <St_value
               name="company"
-              value={searchinfo.companyName ? searchinfo.companyName : company}
+              value={searchinfo.company ? searchinfo.company : company}
               onChange={onChage}
               style={{ paddingLeft: '42px' }}
               onClick={() => nav('/mypage/MyCardCompanySerach')}
