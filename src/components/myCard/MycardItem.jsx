@@ -11,7 +11,7 @@ const MycardItem = () => {
   const dispatch = useDispatch();
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const companyinfo = useSelector((state) => state.PostReducer.companyInfo);
-
+  console.log(cardinfo.tel === '');
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
@@ -35,8 +35,14 @@ const MycardItem = () => {
         <NumBox>
           <Name>M.</Name>
           <Address2>{cardinfo.phoneNum}</Address2>
-          <Name>T.</Name>
-          <Address2>{cardinfo.tel}</Address2>
+          {cardinfo.tel === '' ? (
+            <></>
+          ) : (
+            <>
+              <Name>T.</Name>
+              <Address2>{cardinfo.tel}</Address2>
+            </>
+          )}
         </NumBox>
       </OutLine>
     </St_Card>
