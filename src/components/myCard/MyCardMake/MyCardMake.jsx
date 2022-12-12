@@ -550,7 +550,7 @@ const MyCardMake = () => {
           )}
           {/* 라디오 버튼 end*/}
 
-          <CompanyIcon>
+          {/* <CompanyIcon>
             <Iccompany />
           </CompanyIcon>
           <St_value
@@ -602,7 +602,7 @@ const MyCardMake = () => {
                 ? searchinfo.companyAddress
                 : companyAddress}
             </SearchAddress>
-          </AddressBox>
+          </AddressBox> */}
         </Item>
 
         <Item>
