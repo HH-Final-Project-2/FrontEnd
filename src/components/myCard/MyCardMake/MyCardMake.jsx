@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../../layout/Layout';
 import { useNavigate } from 'react-router';
 import {
+  addresSsearchSave,
   saveInfo,
   _companyInfo,
   _getMakeCard,
@@ -64,21 +65,27 @@ const MyCardMake = () => {
   const dispatch = useDispatch();
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
   const savemake = useSelector((state) => state.cardinfo.makesave);
+  const searchsave = useSelector((state) => state.cardinfo.searchsave);
   const imgGet = useSelector((state) => state.PostReducer.img);
+  console.log(searchsave);
 
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);
 
   const [makeinfo, setMakeinfo] = useState({
-    cardName: savemake.cardName ? savemake.cardName : '',
-    email: savemake.email ? savemake.email : '',
-    phoneNum: savemake.phoneNum ? savemake.phoneNum : '',
-    company: '',
-    companyAddress: '',
-    department: savemake.department ? savemake.department : '',
-    position: savemake.position ? savemake.position : '',
-    tel: savemake.tel ? savemake.tel : '',
-    fax: savemake.fax ? savemake.fax : '',
+    cardName: savemake.cardName ? savemake.cardName : searchsave.cardName,
+    email: savemake.email ? savemake.email : searchsave.email,
+    phoneNum: savemake.phoneNum ? savemake.phoneNum : searchsave.phoneNum,
+    company: savemake.company ? savemake.company : searchsave.company,
+    companyAddress: savemake.companyAddress
+      ? savemake.companyAddress
+      : searchsave.companyAddress,
+    department: savemake.department
+      ? savemake.department
+      : searchsave.department,
+    position: savemake.position ? savemake.position : searchsave.position,
+    tel: savemake.tel ? savemake.tel : searchsave.tel,
+    fax: savemake.fax ? savemake.fax : searchsave.fax,
   });
 
   const [imggetmake, setImggetmake] = useState({
@@ -171,21 +178,21 @@ const MyCardMake = () => {
       ? imgGet.phoneNum.includes('-')
       : false;
 
-  useEffect(() => {
-    dispatch(
-      saveInfo({
-        cardName: '',
-        email: '',
-        phoneNum: '',
-        company: '',
-        department: '',
-        companyAddress: '',
-        position: '',
-        tel: '',
-        fax: '',
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   dispatch(
+  //     saveInfo({
+  //       cardName: '',
+  //       email: '',
+  //       phoneNum: '',
+  //       company: '',
+  //       department: '',
+  //       companyAddress: '',
+  //       position: '',
+  //       tel: '',
+  //       fax: '',
+  //     })
+  //   );
+  // }, [savemake]);
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -394,7 +401,7 @@ const MyCardMake = () => {
           </St_Key>
 
           {/* 라디오 버튼 start*/}
-          {/* <RadioBox>
+          <RadioBox>
             <RadioDetail>
               <label>
                 <FormCheckOwn
@@ -446,26 +453,16 @@ const MyCardMake = () => {
                   <p
                     onClick={() => {
                       dispatch(
-                        saveInfo({
+                        addresSsearchSave({
                           cardName,
-                          email:
-                            imgGet.email !== undefined ? imgGet.email : email,
-                          phoneNum:
-                            imgGet.phoneNum !== undefined
-                              ? imgGet.phoneNum
-                              : phoneNum,
-                          company:
-                            searchinfo.company !== undefined
-                              ? searchinfo.company
-                              : company,
+                          email,
+                          phoneNum,
+                          company,
                           department,
-                          companyAddress:
-                            searchinfo.companyAddress !== undefined
-                              ? searchinfo.companyAddress
-                              : companyAddress,
+                          companyAddress,
                           position,
-                          tel: imgGet.tel !== undefined ? imgGet.tel : tel,
-                          fax: imgGet.fax !== undefined ? imgGet.fax : fax,
+                          tel,
+                          fax,
                         })
                       );
                       nav('/mypage/MyCardCompanyWrite');
@@ -479,26 +476,18 @@ const MyCardMake = () => {
                   <p
                     onClick={() => {
                       dispatch(
-                        saveInfo({
+                        addresSsearchSave({
                           cardName,
-                          email: imgGet.email !== null ? imgGet.email : email,
-                          phoneNum:
-                            imgGet.phoneNum !== null
-                              ? imgGet.phoneNum
-                              : phoneNum,
-                          company:
-                            searchinfo.company !== null
-                              ? searchinfo.company
-                              : company,
+                          email,
+                          phoneNum,
+                          company,
                           department,
-                          companyAddress:
-                            searchinfo.companyAddress !== null
-                              ? searchinfo.companyAddress
-                              : companyAddress,
+                          companyAddress,
                           position,
-                          tel: imgGet.tel !== null ? imgGet.tel : tel,
-                          fax: imgGet.fax !== null ? imgGet.fax : fax,
-                        })
+                          tel,
+                          fax,
+                        }),
+                        console.log(company)
                       );
                       nav('/mypage/MyCardCompanyWrite');
                     }}
@@ -558,7 +547,7 @@ const MyCardMake = () => {
                 </SearchAddress>
               </AddressBox>
             </div>
-          )} */}
+          )}
           {/* 라디오 버튼 end*/}
 
           <CompanyIcon>
