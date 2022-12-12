@@ -191,7 +191,7 @@ export const signUp = createAsyncThunk("SIGNAUTH", async (payload) => {
     await axios.post("https://bkyungkeem.shop/api/members/signup", payload);
 
     Swal.fire({
-      title: "회원가입을 축하드립니다",
+      title: "회원가입이 완료되었습니다",
       showConfirmButton: false,
       timer: 1000,
       customClass: {
