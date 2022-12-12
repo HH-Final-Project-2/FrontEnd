@@ -437,7 +437,7 @@ const MyCardMake = () => {
                 placeholder="회사명을 입력하세요"
                 name="company"
                 style={{ paddingLeft: '38px' }}
-                value={searchinfo.company ? searchinfo.company : company}
+                value={company}
                 onChange={onChage}
               />
 
@@ -468,7 +468,7 @@ const MyCardMake = () => {
                           fax: imgGet.fax !== undefined ? imgGet.fax : fax,
                         })
                       );
-                      nav('/posts/companyOtherSearch');
+                      nav('/mypage/MyCardCompanyWrite');
                     }}
                   >
                     회사 주소 검색
@@ -500,7 +500,7 @@ const MyCardMake = () => {
                           fax: imgGet.fax !== null ? imgGet.fax : fax,
                         })
                       );
-                      nav('/posts/companyOtherSearch');
+                      nav('/mypage/MyCardCompanyWrite');
                     }}
                   >
                     회사 주소 검색
@@ -544,7 +544,7 @@ const MyCardMake = () => {
                       fax: imgGet.fax !== undefined ? imgGet.fax : fax,
                     })
                   );
-                  nav('/mypage/cardpatch/MyCardCompanySerach');
+                  nav('/mypage/MyCardCompanySerach');
                 }}
               />
               <AddressBox>
@@ -590,7 +590,7 @@ const MyCardMake = () => {
                   fax: imgGet.fax !== undefined ? imgGet.fax : fax,
                 })
               );
-              nav('/mypage/cardpatch/MyCardCompanySerach');
+              nav('/mypage/MyCardCompanySerach');
             }}
           ></St_value>
 

@@ -19,8 +19,10 @@ import MyCardInfo from '../components/myCard/MyCardInfo/MyCardInfo';
 import MyCardPatch from '../components/myCard/MyCardPatch/MyCardPatch';
 import MyCardMake from '../components/myCard/MyCardMake/MyCardMake';
 import MyCardCompanySerach from '../components/myCard/MyCardCompanySerach/MyCardCompanySerach';
+import MyCardCompanyWrite from '../components/myCard/MyCardCompanySerach/MyCardCompanyWrite';
 import Manage from '../pages/Manage';
 import MyNickName from '../components/myCard/MyProfile/MyNickName';
+
 import Chat from '../pages/Chat';
 import Chatroom from '../components/chat/Chatroom';
 
@@ -38,6 +40,7 @@ import OtherSearchModal from '../components/card/companySearch/OtherSearchModal'
 import MySchedulesDetailPage from '../pages/MySchedulesDetailPage';
 import PasswordSearch from '../pages/PasswordSearch';
 import PrivateRoute from "./PrivateRoute";
+
 
 const Router = () => {
   const access = localStorage.getItem("authorization");
@@ -94,11 +97,13 @@ const Router = () => {
         <Route path="/mypage/cardinfo" element={<MyCardInfo />} />
         <Route path="/mypage/cardmake" element={<MyCardMake />} />
         <Route path="/mypage/cardpatch" element={<MyCardPatch />} />
-
         <Route
-          path="/mypage/cardpatch/MyCardCompanySerach"
+          path="/mypage/MyCardCompanySerach"
           element={<MyCardCompanySerach />}
         />
+        <Route
+        path='/mypage/MyCardCompanyWrite'
+        element={<MyCardCompanyWrite/>}/>
 
         {/* 채팅 */}
         <Route path="/chat" element={<Chat />} />

@@ -1,12 +1,12 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { _searchGet, _companyInfo } from "../../../redux/modules/mycardSlice";
-import Pagination from "react-js-pagination";
-import Layout from "../../layout/Layout";
-import SearchNone from "../../searchNone/SearchNone";
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { _searchGet, _companyInfo } from '../../../redux/modules/mycardSlice';
+import Pagination from 'react-js-pagination';
+import Layout from '../../layout/Layout';
+import SearchNone from '../../searchNone/SearchNone';
 
 import {
   ComInfor,
@@ -20,13 +20,13 @@ import {
   Button,
   Section3,
   PaginationBox,
-} from "../MyCardCompanySerach/MyCardCompanySerachStyle";
+} from '../MyCardCompanySerach/MyCardCompanySerachStyle';
 
-import { ReactComponent as Icbefore } from "../../../images/ic-before.svg";
-import { ReactComponent as IcSearch } from "../../../images/ic-search.svg";
+import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
+import { ReactComponent as IcSearch } from '../../../images/ic-search.svg';
 
 const MyCardCompanySerach = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const searched = useSelector((state) => state.cardinfo.searchCompany.data);
 
   const dispatch = useDispatch();
@@ -64,9 +64,9 @@ const MyCardCompanySerach = () => {
     <Layout>
       <St_Header>
         <Icbefore
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            dispatch(_companyInfo({ companyName: "", companyAddress: "" }));
+            dispatch(_companyInfo({ companyName: '', companyAddress: '' }));
             nav(-1);
           }}
         />
@@ -79,7 +79,7 @@ const MyCardCompanySerach = () => {
           value={search}
           onChange={searchChangeHandler}
           onKeyPress={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               dispatch(_searchGet(search));
             }
           }}
@@ -88,8 +88,7 @@ const MyCardCompanySerach = () => {
       <Icon>
         <IcSearch />
       </Icon>
-      <Button
-        onClick={searchClickHandler}>검색</Button>
+      <Button onClick={searchClickHandler}>검색</Button>
       <Section3>
         {currentPosts && currentPosts !== undefined ? (
           currentPosts.map((post) => {
@@ -106,9 +105,7 @@ const MyCardCompanySerach = () => {
                     );
                   }, 100);
 
-                  setTimeout(() => {
-                    nav(-1);
-                  }, 300);
+                  nav(-1);
                 }}
               >
                 <Company>{post.companyName}</Company>
