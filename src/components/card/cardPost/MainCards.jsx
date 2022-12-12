@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import Layout from '../../layout/Layout';
-import Modal from './CardImgModal/Modal';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import Layout from "../../layout/Layout";
+import Modal from "./CardImgModal/Modal";
 import {
   __writePost,
   __imgPost,
   __cardInfo,
-} from '../../../redux/modules/CardsSlice';
+} from "../../../redux/modules/CardsSlice";
 import {
   St_Header,
   PatchBox,
@@ -37,33 +37,41 @@ import {
   FormCheckOwn,
   CheckOwn,
   CheckOther,
-} from './cardPostStyle';
-import { SectionFooter } from '../../footer/FooterStyle';
-import Swal from 'sweetalert2';
-import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
-import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
+} from "./cardPostStyle";
+import { SectionFooter } from "../../footer/FooterStyle";
+import Swal from "sweetalert2";
+import cardImg from "../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png";
+import information from "../../../images/스크린샷 2022-12-07 오후 11.49.22.png";
 
 const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
+  console.log(imgGet);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
   );
-
+  const noneImg =
+    (imgGet.email && imgGet.fax && imgGet.tel && imgGet.phoneNum) === ""
+      ? false
+      : true;
+  console.log(noneImg);
   //state생성
   const [cardName, setCardName] = useState(
-    companyGet.cardName ? companyGet.cardName : ''
+    companyGet.cardName ? companyGet.cardName : ""
   );
   const [companyType, setCompanyType] = useState(
-    companyGet.companyType ? companyGet.companyType : ''
+    companyGet.companyType ? companyGet.companyType : ""
   );
+  // const [otherCompanyType, setOtherCompanyType] = useState(
+  //   companyGet.companyType ? companyGet.companyType : ''
+  // );
   const [department, setDepartment] = useState(
-    companyGet.department ? companyGet.department : ''
+    companyGet.department ? companyGet.department : ""
   );
   const [position, setPosition] = useState(
-    companyGet.position ? companyGet.position : ''
+    companyGet.position ? companyGet.position : ""
   );
   const [email, setEmail] = useState(
     imgGet.email ? imgGet.email : companyGet.email
@@ -79,33 +87,40 @@ const MainCards = () => {
   const [companyAddress, setCompanyAddress] = useState(
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
-  const [companyHow, setCompanyHow] = useState('');
+
+  const [companyHow, setCompanyHow] = useState("");
 
   const [pop, setPop] = useState(false);
-  const [companyPop, setCompanyPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
 
-  useEffect(() => setCardName(companyGet.cardName), [companyGet]);
-  useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
-  useEffect(() => setDepartment(companyGet.department), [companyGet]);
-  useEffect(() => setPosition(companyGet.position), [companyGet]);
-  useEffect(
-    () => setEmail(imgGet.email ? imgGet.email : companyGet.email),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
-    [imgGet, companyGet]
-  );
-  useEffect(
-    () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
-    [imgGet, companyGet]
-  );
+  useEffect(() => {
+    setCardName(companyGet.cardName);
+    setCompanyType(companyGet.companyType);
+    setDepartment(companyGet.department);
+    setPosition(companyGet.position);
+  }, [companyGet]);
+  // useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
+  // useEffect(() => setDepartment(companyGet.department), [companyGet]);
+  // useEffect(() => setPosition(companyGet.position), [companyGet]);
+  useEffect(() => {
+    setEmail(imgGet.email ? imgGet.email : companyGet.email);
+    setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum);
+    setTel(imgGet.tel ? imgGet.tel : companyGet.tel);
+    setFax(imgGet.fax ? imgGet.fax : companyGet.fax);
+  }, [imgGet, companyGet]);
+  // useEffect(
+  //   () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
+  //   [imgGet, companyGet]
+  // );
+  // useEffect(
+  //   () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
+  //   [imgGet, companyGet]
+  // );
+  // useEffect(
+  //   () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
+  //   [imgGet, companyGet]
+  // );
   useEffect(
     () => setCompany(companyGet.company ? companyGet.company : companyOnly),
     [companyGet, companyOnly]
@@ -114,11 +129,11 @@ const MainCards = () => {
 
   const isValidEmail =
     email !== undefined && email !== null
-      ? email.includes('@') && email.includes('.')
+      ? email.includes("@") && email.includes(".")
       : false;
   const isValidPhone =
     phoneNum !== undefined && phoneNum !== null
-      ? phoneNum.includes('-')
+      ? phoneNum.includes("-")
       : false;
 
   const isValidInput =
@@ -145,7 +160,7 @@ const MainCards = () => {
   const mediaChangeHandler = (e) => {
     e.preventDefault();
     const file = new FormData();
-    file.append('cardImg', e.target.files[0]);
+    file.append("cardImg", e.target.files[0]);
     dispatch(__imgPost(file));
   };
 
@@ -179,30 +194,32 @@ const MainCards = () => {
       );
 
       Swal.fire({
-        title: '명함이 등록되었습니다',
+        text: "명함이 등록되었습니다",
         showConfirmButton: false,
         timer: 1000,
+        width: "300px",
         customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
+          popup: "allAlret-class",
+          title: "allTitle-class",
         },
       });
-      companyType === 'own' ? navigate('/cards') : navigate('/otherCategory');
+      companyType === "own" ? navigate("/cards") : navigate("/otherCategory");
       window.location.reload();
     } else {
       Swal.fire({
-        title: '입력한 내용을 확인해주세요',
+        title: "입력한 내용을 확인해주세요",
         showConfirmButton: false,
         timer: 1000,
+        width: "300px",
         customClass: {
-          popup: 'allAlret-class',
-          title: 'allTitle-class',
+          popup: "allAlret-class",
+          title: "allTitle-class",
         },
       });
       setPop(true);
     }
   };
-  //
+
   return (
     <Layout>
       <SectionHeader />
@@ -213,22 +230,23 @@ const MainCards = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
             Swal.fire({
-              title: '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
+              title:
+                '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
               showCancelButton: true,
-              confirmButtonColor: 'white',
-              cancelButtonColor: 'white',
+              confirmButtonColor: "white",
+              cancelButtonColor: "white",
               confirmButtonText: '<div class="confirm-text">확인</div>',
               cancelButtonText: '<div class="cancel-text">취소</div>',
               customClass: {
-                popup: 'login-class',
-                title: 'title-class',
+                popup: "login-class",
+                title: "title-class",
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.replace('/cards');
+                window.location.replace("/cards");
               }
             });
           }}
@@ -254,8 +272,8 @@ const MainCards = () => {
                   type="radio"
                   id="own"
                   name="companyType"
-                  value={'own'}
-                  checked={companyType === 'own'}
+                  value={"own"}
+                  checked={companyType === "own"}
                   onChange={(e) => {
                     setCompanyType(e.target.value);
                   }}
@@ -269,8 +287,8 @@ const MainCards = () => {
                   type="radio"
                   id="other"
                   name="companyType"
-                  value={'other'}
-                  checked={companyType === 'other'}
+                  value={"other"}
+                  checked={companyType === "other"}
                   onChange={(e) => {
                     setCompanyType(e.target.value);
                   }}
@@ -293,7 +311,7 @@ const MainCards = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={openModal}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               <rect width="71" height="39" rx="2" fill="white" />
               <rect x="4" y="21" width="16" height="4" rx="2" fill="#BCC2CC" />
@@ -301,9 +319,9 @@ const MainCards = () => {
               <rect x="4" y="33" width="28" height="2" rx="1" fill="#E2E6EF" />
             </svg>
 
-            <div onClick={openModal} style={{ cursor: 'pointer' }}>
-              <span style={{ color: 'red' }}>여기</span>를 눌러{' '}
-              <span style={{ color: 'red' }}>등록 가이드</span>를 확인해주세요{' '}
+            <div onClick={openModal} style={{ cursor: "pointer" }}>
+              <span style={{ color: "red" }}>여기</span>를 눌러{" "}
+              <span style={{ color: "red" }}>등록 가이드</span>를 확인해주세요{" "}
               <p />
               형식에 맞지 않는 명함은 등록되지 않습니다.
             </div>
@@ -342,7 +360,7 @@ const MainCards = () => {
                   src={imgGet.imgUrl}
                   alt="preview-img"
                   id="card"
-                  style={{ margin: 'auto' }}
+                  style={{ margin: "auto" }}
                 />
               )
             )}
@@ -363,7 +381,7 @@ const MainCards = () => {
             type="text"
             placeholder="이름"
             name="cardName"
-            value={cardName || ''}
+            value={cardName || ""}
             minLength="1"
             maxLength="6"
             onChange={(e) => {
@@ -380,14 +398,14 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 010-0000-0000"
             name="phoneNum"
-            value={phoneNum || ''}
+            value={phoneNum || ""}
             maxLength="13"
             onChange={(e) => {
               setPhoneNum(e.target.value);
             }}
           />
 
-          {phoneNum && phoneNum.includes('-') === false ? (
+          {phoneNum && phoneNum.includes("-") === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
@@ -400,7 +418,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) abc@gmail.com"
             name="email"
-            value={email || ''}
+            value={email || ""}
             minLength="10"
             maxLength="30"
             onChange={(e) => {
@@ -425,8 +443,8 @@ const MainCards = () => {
                   type="radio"
                   id="find"
                   name="companyType"
-                  value={'find'}
-                  checked={companyHow === 'find'}
+                  value={"find"}
+                  checked={companyHow === "find"}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -441,8 +459,8 @@ const MainCards = () => {
                   type="radio"
                   id="myself"
                   name="companyHow"
-                  value={'myself'}
-                  checked={companyHow === 'myself'}
+                  value={"myself"}
+                  checked={companyHow === "myself"}
                   onChange={(e) => {
                     setCompanyHow(e.target.value);
                   }}
@@ -454,34 +472,34 @@ const MainCards = () => {
 
           {/* {radioState ?
 ( */}
-          {companyHow === 'myself' ? (
+          {companyHow === "myself" ? (
             <div>
               <CompanyInput
                 placeholder="회사명을 입력하세요"
-                value={company || ''}
+                value={company || ""}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
               />
 
               {pop === true ? (
-                <AddressSearch style={{ color: 'red' }}>
+                <AddressSearch style={{ color: "red" }}>
                   <p
                     onClick={() => {
                       dispatch(
                         __cardInfo({
-                          cardName: cardName ? cardName : '',
+                          cardName: cardName ? cardName : "",
                           email: email,
                           phoneNum: phoneNum,
-                          department: department ? department : '',
-                          position: position ? position : '',
+                          department: department ? department : "",
+                          position: position ? position : "",
                           tel: tel,
                           fax: fax,
-                          companyType: companyType ? companyType : '',
-                          company: company ? company : '',
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
                         })
                       );
-                      navigate('/posts/companyOtherSearch');
+                      navigate("/posts/companyOtherSearch");
                     }}
                   >
                     회사 주소 검색
@@ -493,18 +511,18 @@ const MainCards = () => {
                     onClick={() => {
                       dispatch(
                         __cardInfo({
-                          cardName: cardName ? cardName : '',
+                          cardName: cardName ? cardName : "",
                           email: email,
                           phoneNum: phoneNum,
-                          department: department ? department : '',
-                          position: position ? position : '',
+                          department: department ? department : "",
+                          position: position ? position : "",
                           tel: tel,
                           fax: fax,
-                          companyType: companyType ? companyType : '',
-                          company: company ? company : '',
+                          companyType: companyType ? companyType : "",
+                          company: company ? company : "",
                         })
                       );
-                      navigate('/posts/companyOtherSearch');
+                      navigate("/posts/companyOtherSearch");
                     }}
                   >
                     회사 주소 검색
@@ -519,29 +537,29 @@ const MainCards = () => {
                 type="text"
                 name="company"
                 placeholder="회사 검색"
-                value={company || ''}
+                value={company || ""}
                 onChange={(e) => {
                   setCompany(e.target.value);
                 }}
                 onClick={() => {
                   dispatch(
                     __cardInfo({
-                      cardName: cardName ? cardName : '',
+                      cardName: cardName ? cardName : "",
                       email: email,
                       phoneNum: phoneNum,
-                      department: department ? department : '',
-                      position: position ? position : '',
+                      department: department ? department : "",
+                      position: position ? position : "",
                       tel: tel,
                       fax: fax,
-                      companyType: companyType ? companyType : '',
+                      companyType: companyType ? companyType : "",
                     })
                   );
-                  navigate('/posts/companySearch');
+                  navigate("/posts/companySearch");
                 }}
               />
               <St_Address
                 name="companyAddress"
-                value={companyAddress || ''}
+                value={companyAddress || ""}
                 onChange={(e) => {
                   setCompanyAddress(e.target.value);
                 }}
@@ -554,7 +572,7 @@ const MainCards = () => {
                       viewBox="0 0 12 15"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      style={{ marginRight: '8px' }}
+                      style={{ marginRight: "8px" }}
                     >
                       <path
                         fillRule="evenodd"
@@ -586,7 +604,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 팀장"
             name="position"
-            value={position || ''}
+            value={position || ""}
             onChange={(e) => {
               setPosition(e.target.value);
             }}
@@ -600,7 +618,7 @@ const MainCards = () => {
             type="text"
             placeholder="Ex) 영업"
             name="department"
-            value={department || ''}
+            value={department || ""}
             onChange={(e) => {
               setDepartment(e.target.value);
             }}
@@ -613,12 +631,12 @@ const MainCards = () => {
             placeholder="Ex) 02-000-0000"
             name="tel"
             maxLength="13"
-            value={tel || ''}
+            value={tel || ""}
             onChange={(e) => {
               setTel(e.target.value);
             }}
           ></St_value>
-          {tel && tel.includes('-') === false ? (
+          {tel && tel.includes("-") === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>
@@ -629,12 +647,12 @@ const MainCards = () => {
             placeholder="Ex) 02-000-0000"
             name="fax"
             maxLength="13"
-            value={fax || ''}
+            value={fax || ""}
             onChange={(e) => {
               setFax(e.target.value);
             }}
           />
-          {fax && fax.includes('-') === false ? (
+          {fax && fax.includes("-") === false ? (
             <AssistiveText>- 을 포함해주세요</AssistiveText>
           ) : null}
         </Item>

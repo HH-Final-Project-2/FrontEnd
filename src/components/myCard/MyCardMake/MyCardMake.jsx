@@ -8,6 +8,7 @@ import {
   _MakeCard,
   _PutCard,
 } from '../../../redux/modules/mycardSlice';
+import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { __imgPost } from '../../../redux/modules/CardsSlice';
 import {
@@ -56,7 +57,6 @@ import Modal from '../../card/cardPost/CardImgModal/Modal';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
 import information from '../../../images/스크린샷 2022-12-07 오후 11.49.22.png';
 import { useEffect } from 'react';
-import Swal from 'sweetalert2';
 
 const MyCardMake = () => {
   //명함 만들기 페이지 컴포넌트
@@ -157,8 +157,8 @@ const MyCardMake = () => {
       : false;
 
   const isValidEmail2 =
-    imgGet.email !== undefined && imgGet.email !== null
-      ? imgGet.email.includes('@') && imgGet.email.includes('.')
+    imgGet.imgUrl !== undefined && imgGet.imgUrl !== null
+      ? imgGet.imgUrl.includes('@') && imgGet.imgUrl.includes('.')
       : false;
 
   const isValidPhone =

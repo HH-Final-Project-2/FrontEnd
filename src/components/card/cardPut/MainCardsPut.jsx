@@ -28,7 +28,7 @@ import {
 } from "./MainCardsPutStyle";
 
 import { SectionFooter } from "../../footer/FooterStyle";
-import { SectionHeader } from "../cardPost/cardPostStyle";
+import { CheckOther, CheckOwn, FormCheckOther, FormCheckOwn, SectionHeader } from "../cardPost/cardPostStyle";
 import Swal from "sweetalert2";
 
 const MainCards = () => {
@@ -42,6 +42,15 @@ const MainCards = () => {
   );
 
   const [companyHow, setCompanyHow] = useState();
+  const [company, setCompany] = useState(cardFix.company);
+  const [companyName, setCompanyName] = useState(cardFix.company);
+  const lastCompany =
+    (companyGet.company !== undefined ? companyGet.company : companyOnly) ||
+    (companyOnly !== undefined ? companyOnly : company);
+  console.log(lastCompany);
+  console.log(companyGet);
+  console.log(cardFix);
+  console.log(company);
 
   useEffect(() => {
     dispatch(__viewGet(id));
@@ -50,7 +59,6 @@ const MainCards = () => {
   const [inputValue, setInputValue] = useState({
     cardName: cardFix.cardName,
     email: cardFix.email,
-    company: cardFix.company ? cardFix.company : companyOnly,
     companyAddress: cardFix.companyAddress,
     companyType: cardFix.companyType,
     phoneNum: cardFix.phoneNum,
@@ -60,10 +68,6 @@ const MainCards = () => {
     fax: cardFix.fax,
   });
 
-  // const [company, setCompany] = useState(
-  //   companyOnly !== undefined ? companyOnly : cardFix.company
-  // );
-
   const isValidEmail =
     inputValue.email !== undefined && inputValue.email !== null
       ? inputValue.email.includes("@") && inputValue.email.includes(".")
@@ -72,7 +76,7 @@ const MainCards = () => {
   const isValidInput =
     inputValue.cardName &&
       inputValue.email &&
-      inputValue.company &&
+      lastCompany &&
       inputValue.companyAddress &&
       inputValue.companyType &&
       inputValue.phoneNum &&
@@ -80,7 +84,7 @@ const MainCards = () => {
       inputValue.position !== undefined
       ? inputValue.cardName.length >= 1 &&
       inputValue.email.length >= 1 &&
-      inputValue.company.length >= 1 &&
+      lastCompany.length >= 1 &&
       inputValue.companyAddress.length >= 1 &&
       inputValue.companyType.length >= 1 &&
       inputValue.phoneNum.length >= 1 &&
@@ -92,7 +96,22 @@ const MainCards = () => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
+
   useEffect(() => setInputValue(cardFix), [cardFix]);
+  // useEffect(() => companyChangeHandler, [companyOnly, companyGet]);
+
+  const companyChangeHandler = () => {
+    if (companyGet.company && companyOnly === undefined) {
+      return setCompany(companyGet.company);
+    } else if (companyOnly && companyGet.company === undefined) {
+      return setCompany(companyOnly);
+    } else if (companyOnly === undefined && companyGet.company === undefined) {
+      return setCompany(cardFix.company);
+    }
+  };
+  console.log("companyOnly", companyOnly);
+  console.log("companyget", companyGet.company);
+  console.log("company", company);
 
   const cardsSubmitHandler = () => {
     if (isValidEmail && isValidInput === true) {
@@ -106,7 +125,7 @@ const MainCards = () => {
           position: inputValue.position,
           tel: inputValue.tel,
           fax: inputValue.fax,
-          company: companyGet.company ? companyGet.company : companyOnly,
+          company: lastCompany,
           companyAddress:
             companyGet.companyAddress !== undefined
               ? companyGet.companyAddress
@@ -133,8 +152,8 @@ const MainCards = () => {
       showConfirmButton: false,
       timer: 1000,
       customClass: {
-        popup: 'allAlret-class',
-        title: 'allTitle-class',
+        popup: "allAlret-class",
+        title: "allTitle-class",
       },
     });
     navigate(`/posts/get/${id}`);
@@ -167,15 +186,16 @@ const MainCards = () => {
                 })
               );
               Swal.fire({
-                title: '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
+                title:
+                  '<div class="title-wrap"><p>이전페이지로 이동하시겠습니까?</p><p class="test">작성된 내용은 사라집니다</p></div>',
                 showCancelButton: true,
                 confirmButtonColor: 'white',
                 cancelButtonColor: 'white',
                 confirmButtonText: '<div class="confirm-text">확인</div>',
                 cancelButtonText: '<div class="cancel-text">취소</div>',
                 customClass: {
-                  popup: 'login-class',
-                  title: 'title-class',
+                  popup: "login-class",
+                  title: "title-class",
                 },
               }).then((result) => {
                 if (result.isConfirmed) {
@@ -247,7 +267,41 @@ const MainCards = () => {
             <St_Key>
               회사<Essential>*</Essential>
             </St_Key>
+
             <RadioBox>
+              <RadioDetail>
+                <label>
+                  <FormCheckOwn
+                    type="radio"
+                    id="find"
+                    name="companyType"
+                    value={'find'}
+                    checked={companyHow === 'find'}
+                    onChange={(e) => {
+                      setCompanyHow(e.target.value);
+                    }}
+                  />
+                  <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+                </label>
+              </RadioDetail>
+
+              <RadioDetail>
+                <label>
+                  <FormCheckOther
+                    type="radio"
+                    id="myself"
+                    name="companyHow"
+                    value={'myself'}
+                    checked={companyHow === 'myself'}
+                    onChange={(e) => {
+                      setCompanyHow(e.target.value);
+                    }}
+                  />
+                  <CheckOther htmlFor="myself">직접 입력</CheckOther>
+                </label>
+              </RadioDetail>
+            </RadioBox>
+            {/* <RadioBox>
               <RadioDetail>
                 <input
                   type="radio"
@@ -274,17 +328,17 @@ const MainCards = () => {
                 />
                 <label htmlFor="myself">직접 입력</label>
               </RadioDetail>
-            </RadioBox>
+            </RadioBox> */}
 
             {companyHow === "myself" ? (
               <div>
                 <CompanyInput
                   name="company"
                   placeholder="회사명을 입력하세요"
-                  value={
-                    inputValue.company ? inputValue.company : companyGet.company
-                  }
-                  onChange={valueChangeHandler}
+                  value={companyName || ""}
+                  onChange={(e) => {
+                    setCompanyName(e.target.value);
+                  }}
                 />
                 <AddressSearch>
                   <p
@@ -294,8 +348,10 @@ const MainCards = () => {
                           cardName: inputValue.cardName
                             ? inputValue.cardName
                             : "",
-                          email: inputValue.email,
-                          phoneNum: inputValue.phoneNum,
+                          email: inputValue.email ? inputValue.email : "",
+                          phoneNum: inputValue.phoneNum
+                            ? inputValue.phoneNum
+                            : "",
                           department: inputValue.department
                             ? inputValue.department
                             : "",
@@ -307,7 +363,7 @@ const MainCards = () => {
                           companyType: inputValue.companyType
                             ? inputValue.companyType
                             : "",
-                          company: inputValue.company ? inputValue.company : "",
+                          company: companyName ? companyName : company,
                         })
                       );
                       navigate("/posts/companyOtherSearch");
@@ -321,13 +377,13 @@ const MainCards = () => {
               <div>
                 <St_value
                   name="company"
-                  defaultValue={
-                    inputValue.company ? inputValue.company : companyOnly
+                  value={
+                    companyGet.company
+                      ? companyGet.company
+                      : companyOnly
+                        ? companyOnly
+                        : company
                   }
-                  value={companyGet.company ? companyGet.company : companyOnly}
-                  // onChange={(e) => {
-                  //   setInputValue({ company: e.target.value });
-                  // }}
                   onClick={() => {
                     dispatch(
                       __cardInfo({
@@ -347,7 +403,6 @@ const MainCards = () => {
                         companyType: inputValue.companyType
                           ? inputValue.companyType
                           : "",
-                        company: inputValue.company ? inputValue.company : "",
                       })
                     );
                     navigate("/posts/companySearch");

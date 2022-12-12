@@ -73,7 +73,7 @@ const UserLogin = () => {
       {/* 회원가입 이동 */}
       <SignUpBox>
         <p onClick={() => navigate("/join")}>회원가입</p>
-        <p onClick={() => navigate("/findPassword")}>비밀번호 재설정</p>
+        <p onClick={() => navigate("/findPassword")}>비밀번호 찾기</p>
       </SignUpBox>
     </JoinForm>
   );
