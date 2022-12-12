@@ -93,7 +93,25 @@ export const St_Detail_Body = styled.div`
   margin-top: 28px;
   font-weight: 500;
   font-size: 14px;
-
+  display: flex;
+  color: #1a1f27;
+`;
+export const St_Detail_Tel = styled.div`
+  margin-left: 10px;
+  margin-top: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  height: 17px;
+  color: #1a1f27;
+`;
+export const St_Detail_Fax = styled.div`
+  margin-left: 10px;
+  margin-top: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  height: 17px;
+  display: flex;
   color: #1a1f27;
 `;
 
