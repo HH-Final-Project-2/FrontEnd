@@ -56,15 +56,6 @@ export default function PostBottomSheet({ view, id }) {
                 },
               }).then((result) => {
                 if (result.isConfirmed) {
-                  Swal.fire({
-                    title: '삭제되었습니다',
-                    timer: 1000,
-                    showConfirmButton: false,
-                    customClass: {
-                      popup: 'allAlret-class',
-                      title: 'allTitle-class',
-                    },
-                  });
                   //if result.isConfirmed true면 실행됨(확인버튼)
                   const config = {
                     headers: {
@@ -88,7 +79,7 @@ export default function PostBottomSheet({ view, id }) {
                       // always executed
                     });
                   Swal.fire({
-                    text: '삭제되었습니다',
+                    title: '삭제되었습니다',
                     showConfirmButton: false,
                     timer: 1000,
                     customClass: {
