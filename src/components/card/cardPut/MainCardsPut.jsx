@@ -159,7 +159,6 @@ const MainCards = () => {
       navigate(`/posts/get/${id}`);
     })
   };
-
   return (
     <div>
       <Layout>
