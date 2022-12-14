@@ -249,12 +249,23 @@ export const PostSlice = createSlice({
       state.post = [action.payload, ...state.post];
     },
 
+    // 게시글 삭제
+    [__deletePost.fulfilled]: (state, action) => {
+      state.isLoading = true;
+      state.post = state.post.filter(
+        (postList) => postList.id !== action.payload
+      );
+
+    },
+
     //게시글 수정
     [__putPost.fulfilled]: (state, action) => {
       state.isLoading = true;
+      state.detail = action.payload;
+
+
       // 게시글 수정 후 상세 조회를 하면 이전 데이터가 깜빡였다 사라지는 이슈
       // state.post가 아닌 state.detail로 값을 전달하고 상태변경이 발생하도록 수정
-      state.detail = action.payload;
 
       // // 게시글 수정 응답 수신 후 게시글 목록으로 돌아간다
       // // 게시글 목록 PostList 컴포넌트가 다시 렌더링 되려면 state.post를 수정해야한다.
@@ -282,14 +293,7 @@ export const PostSlice = createSlice({
       // state.post = newPosts;
     },
 
-    // 게시글 삭제
-    [__deletePost.fulfilled]: (state, action) => {
-      state.isLoading = true;
-      state.post = state.post.filter(
-        (postList) => postList.id !== action.payload
-      );
 
-    },
   },
 });
 
