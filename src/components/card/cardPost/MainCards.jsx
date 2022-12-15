@@ -88,8 +88,8 @@ const MainCards = () => {
     companyGet.companyAddress ? companyGet.companyAddress : null
   );
 
-  const [companyHow, setCompanyHow] = useState("");
-
+  const [companyHow, setCompanyHow] = useState("find");
+  
   const [pop, setPop] = useState(false);
   //
   //state에 불러온 값 넣어주는 useEffect
@@ -439,7 +439,7 @@ const MainCards = () => {
                 <FormCheckOwn
                   type="radio"
                   id="find"
-                  name="companyType"
+                  name="companyHow"
                   value={"find"}
                   checked={companyHow === "find"}
                   onChange={(e) => {

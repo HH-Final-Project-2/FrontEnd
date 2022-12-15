@@ -148,17 +148,17 @@ const MainCards = () => {
       );
     }
     Swal.fire({
-      title: "명함이 수정되었습니다",
+      title: '명함이 수정되었습니다',
       showConfirmButton: false,
       timer: 1000,
       customClass: {
-        popup: "allAlret-class",
-        title: "allTitle-class",
+        popup: 'allAlret-class',
+        title: 'allTitle-class',
       },
-    });
-    navigate(`/posts/get/${id}`);
+    }).then(() => {
+      navigate(`/posts/get/${id}`);
+    })
   };
-
   return (
     <div>
       <Layout>

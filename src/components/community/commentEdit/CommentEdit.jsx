@@ -14,6 +14,7 @@ import {
   putComment,
 } from '../../../redux/modules/commentSlice';
 import { Section1, Section1Title, Section2 } from '../postList/PostListStyle';
+import Swal from 'sweetalert2';
 
 const CommentEdit = () => {
   const dispatch = useDispatch();
@@ -86,6 +87,15 @@ const CommentEdit = () => {
                   content: content,
                 })
               );
+              Swal.fire({
+                title: '댓글이 수정되었습니다',
+                timer: 1500,
+                showConfirmButton: false,
+                customClass: {
+                  popup: 'allAlret-class',
+                  title: 'allTitle-class',
+                },
+              });
             }}
           >
             등록
