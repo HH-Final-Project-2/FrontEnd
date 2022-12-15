@@ -17,15 +17,14 @@
 
 <br>
 
-## 🔗목차 | Contents
+## ✏목차 | Contents
 1. [개발기간](#-개발기간--project-period)
 2. [아키텍쳐](#-아키텍쳐--architecture)
 3. [주요 기능](#-주요-기능--Main-Function)
 4. [개발환경](#-개발환경--development-environment)
-5. [라이브러리](#-라이브러리--library)
-6. [ERD](#-erd)
-7. [트러블 슈팅](#-트러블-슈팅--trouble-shooting)
-8. [팀원](#-팀원--team)
+5. [ERD](#-erd)
+6. [트러블 슈팅](#-트러블-슈팅--trouble-shooting)
+7. [팀원](#-팀원--team)
 
 <br>
 
@@ -58,11 +57,11 @@
 ## ⛏ 개발환경 | Development Environment
 
 <img  src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
+<img src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
 <img  src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
 <img  src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
 <img  src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
 <img  src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
-<img  src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
 <img  src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
 <img  src="https://img.shields.io/badge/aws Cloundfront-EF2D5E?style=for-the-badge&logo=&logoColor=white">
 <img  src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
@@ -76,6 +75,7 @@
 <img  src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">
 <img  src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
 <img  src="https://img.shields.io/badge/Slack Webhook-4A154B?style=for-the-badge&logo=&logoColor=white">
+
 
 
 
