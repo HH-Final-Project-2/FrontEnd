@@ -179,10 +179,7 @@ const AddMySchedules = () => {
 
           <div className="datePickerBox">
             <DatePicker
-              // initial={{ opacity: 0, y: 0 }}
-              // animate={{ opacity: 1 }}
               className="datePicker"
-              // closeOnScroll={true}
               locale={ko}
               minDate={new Date()}
               selected={startDate}
@@ -216,7 +213,6 @@ const AddMySchedules = () => {
           <div>
             <DatePicker
               className="datePicker"
-              // closeOnScroll={true}
               locale={ko}
               minDate={startDate}
               selected={endDate}
