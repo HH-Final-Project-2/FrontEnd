@@ -55,7 +55,7 @@
 ## 📝 기술 스택 & 라이브러리 사용 이유
 ### ✔ Frond-end
 | **기술 스택** | **사용이유** |
-|:---:|:---:|
+|:---:|---|
 |AWS Amplify|테스트 환경 및 피드백 기반 추가작업시 자동배포 환경이 갖추어져 있지 않으면 변경사항이 있을 때마다 다시 배포를 해야하는 번거로움이 생기기 때문에 자동배포 환경이 필요했는데 배포할 도메인 하나만 구매하면 추가적인 비용 없이 자동배포 환경을 갖출 수 있는 AWS Amplify를 사용했다.|
 |sockJs/Stomp|채팅기능에 적합한 브라우저와 웹 서버 사이에 짧은 지연시간, 그리고 크로스 브라우징을 지원하는 API인 Sock.js와 HTTP에서 모델링 되는 Frame 기반 프로토콜 Stomp는 여러개의 채팅방을 개설하는 상황에 적합한 Stomp프로토콜을 사용했다.|
 ### ✔ Back-end
@@ -94,7 +94,7 @@
 <summary><b>✔ Frond-end</b></summary>
 <br>
 <details>
-<summary>(FE) 화면 새로고침이나 전환 시 랜더링 이슈</summary>
+<summary> 화면 새로고침이나 전환 시 랜더링 이슈</summary>
 <div markdown="1"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
 1.페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
@@ -111,7 +111,7 @@
 </details>
 
 <details>
-<summary>(FE) 커뮤니티 렌더링 이슈</summary>
+<summary> 커뮤니티 렌더링 이슈</summary>
 <div markdown="2"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
 1.게시글 등록/수정/삭제시 화면에 바로 렌더링 되지 않는 이슈</br>
@@ -129,7 +129,7 @@
 </details>
 
 <details>
-<summary>(FE) InvalidStateError: The connection has not been established yet </summary>
+<summary> InvalidStateError: The connection has not been established yet </summary>
 <div markdown="3"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
 1.게시글에서 채팅페이지로 이동 후 websocket connect보다 subscribe가 먼저 진행되는 이슈가 발생하여 TypeError도 함께 발생하였다.</br>
