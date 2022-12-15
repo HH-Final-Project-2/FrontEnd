@@ -103,7 +103,7 @@
 
 | 김석재 | 김승재  | 홍마로  | 황대연 | 김보경 | 서병범 | 정유성 | 최예빈 |
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| FE(리더) | FE | FE | FE | BE(부리더) | BE | BE | DESINGER |
+| FE(리더) | FE | FE | FE | BE(부리더) | BE | BE | DESIGNER |
 | [🔗](https://github.com/ssssssg-hub) |[🔗](https://github.com/andamiro98) |[🔗](https://github.com/formaro) |[🔗](https://github.com/dyhwnag) |[🔗](https://github.com/kimbokyung1220) | [🔗](https://github.com/ByeongbumSeo)| [🔗](https://github.com/yusung4612) | [🔗](https://github.com/HH-Final-Project-2) |
 
 
