@@ -65,14 +65,6 @@ export const UserChatBox = styled.div`
   margin: 20px auto;
 `;
 
-// const UserName = styled.span`
-//   font-size: 15px;
-//   display: flex;
-//   margin: auto;
-//   margin-left: 10px;
-//   align-items: center;
-// `;
-
 export const UserChat = styled.div`
   max-width: 280px;
 
