@@ -85,8 +85,8 @@
 
 <br>
 
-🔑 ERD 
-## ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
+## 🔑 ERD 
+ ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
 
 <br>
 
