@@ -67,7 +67,6 @@ const MyCardMake = () => {
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const searchsave = useSelector((state) => state.cardinfo.searchsave);
   const imgGet = useSelector((state) => state.PostReducer.img);
-  console.log(searchsave);
 
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);

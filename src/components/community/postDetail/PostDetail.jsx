@@ -141,16 +141,16 @@ const PostDetail = () => {
         ) : (
           <Chat
             onClick={() => {
-              dispatch(_postId(postid));
               setTimeout(() => {
                 navigate('/chat/chatroom/');
               }, 100);
+
+              setTimeout(() => {
+                dispatch(_postId(postid));
+              }, 200);
             }}
           />
         )}
-        {/* 채팅하기 버튼 svg start*/}
-
-        {/* 채팅하기 버튼 svg end*/}
       </DetailPostSection1>
       <PostLine />
 
