@@ -1,5 +1,5 @@
 
-# [Businus] 직장인을 위한 명함·일정 관리
+# [Businus] 직장인을위한 명함·일정 관리
 
 ## 🎉 Businus 소개 | About Us
 
@@ -7,8 +7,8 @@
 ![배2](https://user-images.githubusercontent.com/80233565/207816259-4a163362-0aee-4403-8d6f-6a049b169c39.png)
 
 👉 직장에서 만난 사람들의 연락처를 따로 관리하고 싶다면 ! </br>
-👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민된다면 ! </br>
-👉 커뮤니티를 통해 다양한 직군에 대해 궁금증을 해결하고 싶다면 ! </br>
+👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민 된다면 ! </br>
+👉 커뮤니트를 통해 다양한 직군에 대해 궁금증을 해결하고 싶다면 ! </br>
 
 - 이제 비지너스로 스마트하고 간편하게 관리해보세요.
 
@@ -40,6 +40,7 @@
 
 
 ## ⚔ 주요 기능
+### FE
 - 소셜 로그인 (카카오)
 - 명함 관리
 - 내 일정 관리
@@ -47,7 +48,10 @@
 - 커뮤니티 게시판
 - 내 명함 및 프로필 관리
 
-<br>
+### BE
+-
+-
+-
 
 
 ## ⛏ 개발환경 | Development Environment
@@ -86,12 +90,32 @@
 <br>
 
 ## 🔑 ERD 
- ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
+## ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
 
 <br>
 
 
 ## 🛠 트러블 슈팅 | Trouble shooting
+<details>
+<summary>(FE) 화면 새로고침이나 전환 시 랜더링 이슈</summary>
+<div markdown="1"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span></br>
+-initialState 기본 값 설정</br>
+-삼항연사자 혹은 if문으로 undefined일 때의 조건을 걸어줌</br>
+
+![트러블슈팅1](https://user-images.githubusercontent.com/80233565/207854388-39466131-68cc-40f2-90e8-179e5f8b2327.JPG)
+
+
+-reducer에서 서버와 통신 후에 fulfill되는 data형태 확인 </br>
+![트러블슈팅1-1](https://user-images.githubusercontent.com/80233565/207853952-322aa604-570d-42f3-af37-1186ab3d821a.JPG)
+
+
+
+</div>
+</details>
 
 
 
@@ -100,7 +124,7 @@
 | 김석재 | 김승재  | 홍마로  | 황대연 | 김보경 | 서병범 | 정유성 | 최예빈 |
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | FE(리더) | FE | FE | FE | BE(부리더) | BE | BE | DESIGNER |
-| [🔗](https://github.com/ssssssg-hub) |[🔗](https://github.com/andamiro98) |[🔗](https://github.com/formaro) |[🔗](https://github.com/dyhwnag) |[🔗](https://github.com/kimbokyung1220) | [🔗](https://github.com/ByeongbumSeo)| [🔗](https://github.com/yusung4612) | 📧choiyebin98@gmail.com |
+| [🔗](https://github.com/ssssssg-hub) |[🔗](https://github.com/andamiro98) |[🔗](https://github.com/formaro) |[🔗](https://github.com/dyhwnag) |[🔗](https://github.com/kimbokyung1220) | [🔗](https://github.com/ByeongbumSeo)| [🔗](https://github.com/yusung4612) | [🔗](https://github.com/HH-Final-Project-2) |
 
 
 
