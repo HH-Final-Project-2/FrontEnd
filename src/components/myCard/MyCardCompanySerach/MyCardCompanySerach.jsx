@@ -66,7 +66,7 @@ const MyCardCompanySerach = () => {
         <Icbefore
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            dispatch(_companyInfo({ companyName: '', companyAddress: '' }));
+            // dispatch(_companyInfo({ companyName: '', companyAddress: '' }));
             nav(-1);
           }}
         />

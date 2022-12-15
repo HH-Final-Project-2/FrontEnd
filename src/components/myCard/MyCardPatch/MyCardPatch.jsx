@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../layout/Layout';
 import MyCardFooter from '../../footer/MyCardFooter';
 import { useNavigate } from 'react-router';
-import { _getMakeCard, _PutCard } from '../../../redux/modules/mycardSlice';
+import {
+  addresSsearchSave,
+  saveInfo,
+  _getMakeCard,
+  _PutCard,
+} from '../../../redux/modules/mycardSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
@@ -22,10 +27,23 @@ import {
   Essential,
   SectionHeader,
 } from '../MyCardPatch/MyCardPatchStyle';
+import {
+  RadioBox,
+  RadioDetail,
+  ImgBox,
+  AddressSearch,
+  SectionLine,
+  AssistiveText,
+  CompanyInput,
+  FormCheckOther,
+  FormCheckOwn,
+  CheckOwn,
+  CheckOther,
+} from '../../card/cardPost/cardPostStyle';
+
 import Swal from 'sweetalert2';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 import { SectionFooter } from '../../footer/FooterStyle';
-import { AssistiveText } from '../../card/cardPost/cardPostStyle';
 
 const MyCardPatch = () => {
   //내 명함 수정 페이지 컴포넌트
@@ -35,16 +53,32 @@ const MyCardPatch = () => {
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
+
+
+  const savemake = useSelector((state) => state.cardinfo.makesave);
+
+  const searchsave = useSelector((state) => state.cardinfo.searchsave);
+  const [companyHow, setCompanyHow] = useState('');
+  const [pop, setPop] = useState(false);
+
+  // const [writeaddress, setWriteaddress] = useState({
+  //   companyAddress: savemake.companyAddress,
+  // });
+  // console.log('>>>', writeaddress.companyAddress);
+
+
   const [makeinfo, setMakeinfo] = useState({
-    cardName: cardinfo.cardName,
-    email: cardinfo.email,
-    phoneNum: cardinfo.phoneNum,
-    company: cardinfo.company,
-    companyAddress: cardinfo.companyAddress,
-    department: cardinfo.department,
-    position: cardinfo.position,
-    tel: cardinfo.tel,
-    fax: cardinfo.fax,
+    cardName: savemake.cardName ? savemake.cardName : cardinfo.cardName,
+    email: savemake.email ? savemake.email : cardinfo.email,
+    phoneNum: savemake.phoneNum ? savemake.phoneNum : cardinfo.phoneNum,
+    company: savemake.company ? savemake.company : cardinfo.company,
+    companyAddress: savemake.companyAddress
+      ? savemake.companyAddress
+      : cardinfo.companyAddress,
+    department: savemake.department ? savemake.department : cardinfo.department,
+    position: savemake.position ? savemake.position : cardinfo.position,
+    tel: savemake.tel ? savemake.tel : cardinfo.tel,
+    fax: savemake.fax ? savemake.fax : cardinfo.fax,
     id: cardinfo.id,
   });
 
@@ -60,7 +94,7 @@ const MyCardPatch = () => {
     fax,
     id,
   } = makeinfo;
-
+  console.log(companyAddress);
   const onChage = (e) => {
     const { value, name } = e.target;
     setMakeinfo({
@@ -69,6 +103,10 @@ const MyCardPatch = () => {
     });
   };
 
+  // useEffect(() => {
+  //   dispatch(saveInfo({ companyAddress: '' }));
+  // }, []);
+
   const updateHandler = () => {
     dispatch(
       _PutCard({
@@ -76,14 +114,12 @@ const MyCardPatch = () => {
         email,
         phoneNum,
         company:
-          searchinfo.company !== undefined
-            ? searchinfo.company
-            : cardinfo.company,
+          searchinfo.company !== undefined ? searchinfo.company : company,
         department,
         companyAddress:
           searchinfo.companyAddress !== undefined
             ? searchinfo.companyAddress
-            : cardinfo.companyAddress,
+            : companyAddress,
         position,
         tel,
         fax,
@@ -103,9 +139,9 @@ const MyCardPatch = () => {
     nav('/mypage/cardinfo');
   };
 
-  useEffect(() => {
-    dispatch(_getMakeCard());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(_getMakeCard());
+  // }, []);
 
   useEffect(() => {
     setMakeinfo(cardinfo);
@@ -210,6 +246,148 @@ const MyCardPatch = () => {
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
+
+          {/* 라디오 버튼 start*/}
+          {/* <RadioBox>
+            <RadioDetail>
+              <label>
+                <FormCheckOwn
+                  type="radio"
+                  id="find"
+                  name="companyType"
+                  value={'find'}
+                  checked={companyHow === 'find'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
+              </label>
+            </RadioDetail>
+
+            <RadioDetail>
+              <label>
+                <FormCheckOther
+                  type="radio"
+                  id="myself"
+                  name="companyHow"
+                  value={'myself'}
+                  checked={companyHow === 'myself'}
+                  onChange={(e) => {
+                    setCompanyHow(e.target.value);
+                  }}
+                />
+                <CheckOther htmlFor="myself">직접 입력</CheckOther>
+              </label>
+            </RadioDetail>
+          </RadioBox>
+
+          {companyHow === 'myself' ? (
+            <div>
+              <CompanyIcon>
+                <Iccompany />
+              </CompanyIcon>
+              <CompanyInput
+                placeholder="회사명을 입력하세요"
+                name="company"
+                style={{ paddingLeft: '38px' }}
+                value={company}
+                onChange={onChage}
+              />
+
+              {pop === true ? (
+                <AddressSearch style={{ color: 'red' }}>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        saveInfo({
+                          cardName,
+                          email,
+                          phoneNum,
+                          company,
+                          department,
+                          companyAddress,
+                          position,
+                          tel,
+                          fax,
+                        })
+                      );
+                      console.log('클릭', company);
+                      nav('/mypage/MyCardCompanyWrite');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              ) : (
+                <AddressSearch>
+                  <p
+                    onClick={() => {
+                      dispatch(
+                        saveInfo({
+                          cardName,
+                          email,
+                          phoneNum,
+                          company,
+                          department,
+                          companyAddress,
+                          position,
+                          tel,
+                          fax,
+                        })
+                      );
+                      console.log('클릭', company);
+                      nav('/mypage/MyCardCompanyWrite');
+                    }}
+                  >
+                    회사 주소 검색
+                  </p>
+                </AddressSearch>
+              )}
+            </div>
+          ) : (
+            <div>
+              <CompanyIcon>
+                <Iccompany />
+              </CompanyIcon>
+              <CompanyInput
+                readOnly
+                type="text"
+                name="company"
+                style={{ paddingLeft: '38px' }}
+                placeholder="회사 검색"
+                value={searchinfo.company ? searchinfo.company : company}
+                onChange={onChage}
+                onClick={() => {
+                  dispatch(
+                    saveInfo({
+                      cardName,
+                      email,
+                      phoneNum,
+                      company,
+                      department,
+                      companyAddress,
+                      position,
+                      tel,
+                      fax,
+                    })
+                  );
+                  nav('/mypage/MyCardCompanySerach');
+                }}
+              />
+              <AddressBox>
+                <AddressIcon>
+                  <Icaddress />
+                </AddressIcon>
+                <SearchAddress>
+                  {searchinfo.companyAddress
+                    ? searchinfo.companyAddress
+                    : companyAddress}
+                </SearchAddress>
+              </AddressBox>
+            </div>
+          )} */}
+          {/* 라디오 버튼 end*/}
 
           <CompanyIcon>
             <Iccompany />
