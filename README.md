@@ -1,5 +1,5 @@
 
-# [Businus] 직장인을위한 명함·일정 관리
+# [Businus] 직장인을 위한 명함·일정 관리
 
 ## 🎉 Businus 소개
 
@@ -7,10 +7,10 @@
 ![배2](https://user-images.githubusercontent.com/80233565/207816259-4a163362-0aee-4403-8d6f-6a049b169c39.png)
 
 👉 직장에서 만난 사람들의 연락처를 따로 관리하고 싶다면 ! </br>
-👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민 된다면 ! </br>
-👉 커뮤니트를 통해 다양한 직군에 대해 궁금증을 해결하고 싶다면 ! </br>
+👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민된다면 ! </br>
+👉 커뮤니티를 통해 다양한 직군에 대해 궁금증을 해결하고 싶다면 ! </br>
 
-- 이제 비지너스로 스마트하고 간편하게 관리해보세요.
+- 이제 비지너스로 스마트하고 간편하게 관리해 보세요.
 
 ### 🌎 링크 [비지너스 바로가기](https://www.businus2.com)
 
@@ -20,18 +20,18 @@
 ## ✏목차
 1. [개발기간](#-개발기간)
 2. [아키텍쳐](#-아키텍쳐)
-3. [주요 기능](#-주요-기능)
-4. [개발환경](#-개발환경)
-5. [ERD](#-erd)
-6. [트러블 슈팅](#-트러블-슈팅)
-7. [팀원](#-팀원)
+3. [기술스택](#-기술스택)
+4. [주요 기능](#-주요-기능)
+5. [트러블 슈팅](#-트러블-슈팅)
+6. [팀원](#-팀원)
 
 <br>
 
 
 
 ## ⌚ 개발기간
-2022.11.04 ~ 2022.12.16 (6주간)
+> 2022.11.04 ~ 2022.12.16<br>
+> 서비스 런칭 : 2022.12.08
 
 <br>
 
@@ -39,63 +39,51 @@
 ![아키텍처](https://user-images.githubusercontent.com/80233565/207819747-936b4d0c-5221-4d5b-950b-7ae2095f2420.JPG)
 
 
+<br>
+
+
+## ⛏ 기술스택
+|Part🗂|Tech⚒️|
+|:---:|:---:|
+|🌅Front|<img  src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"/><img  src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white"/><img  src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/><img  src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/><img  src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"><img  src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white"><img  src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"><img  src="https://img.shields.io/badge/KAKAO DEVELOPERS-FFCD00?style=for-the-badge&logo=KAKAO&logoColor=black"><img  src="https://img.shields.io/badge/STOMP-blue?style=for-the-badge&logo=StompJs&logoColor=white"><img  src="https://img.shields.io/badge/SOCKJS-navy?style=for-the-badge&logo=sockJS&logoColor=white"><img  src="https://img.shields.io/badge/AWS Amplify-FF9900?style=for-the-badge&logo=AWS Amplify&logoColor=white">|
+|⚙️Back|<img  src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"><img  src="https://img.shields.io/badge/Route53-FF9900?style=for-the-badge&logo=Route53&logoColor=white"><img  src="https://img.shields.io/badge/SSL-006600?style=for-the-badge&logo=white"><img  src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"><img  src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"><img  src="https://img.shields.io/badge/Spring Batch-6DB33F?style=for-the-badge&logo=white"><img  src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white"><img  src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white"><img  src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"><img  src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white"><img  src="https://img.shields.io/badge/OCR-099DFD?style=for-the-badge&logo=S&logoColor=white"><img  src="https://img.shields.io/badge/Cloud Vision API-4285F4?style=for-the-badge&logo=S&logoColor=white"><img  src="https://img.shields.io/badge/Google Storage-4285F4?style=for-the-badge&logo=Google&logoColor=white"><img  src="https://img.shields.io/badge/JPA-0ABF53?style=for-the-badge&logo=S&logoColor=white"><img  src="https://img.shields.io/badge/AWS Rds-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"><img  src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">|
+|⚒️Tool|<img src="https://img.shields.io/badge/VSCODE-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/><img src="https://img.shields.io/badge/FileZilla-BF0000?style=for-the-badge&logo=filezilla&logoColor=white"/><img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"/>|
+
+
+<br>
+
+## 📝 기술 스택 & 라이브러리 사용 이유
+### ✔ Frond-end
+| **기술 스택** | **사용이유** |
+|:---:|:---:|
+|AWS Amplify|테스트 환경 및 피드백 기반 추가작업시 자동배포 환경이 갖추어져 있지 않으면 변경사항이 있을 때마다 다시 배포를 해야하는 번거로움이 생기기 때문에 자동배포 환경이 필요했는데 배포할 도메인 하나만 구매하면 추가적인 비용 없이 자동배포 환경을 갖출 수 있는 AWS Amplify를 사용했다.|
+|sockJs/Stomp|채팅기능에 적합한 브라우저와 웹 서버 사이에 짧은 지연시간, 그리고 크로스 브라우징을 지원하는 API인 Sock.js와 HTTP에서 모델링 되는 Frame 기반 프로토콜 Stomp는 여러개의 채팅방을 개설하는 상황에 적합한 Stomp프로토콜을 사용했다.|
+### ✔ Back-end
+| **기술 스택** | **사용이유** |
+|:---:|:---:|
+|||
+|||
+|||
+|||
+
+
+<br>
+
 ## ⚔ 주요 기능
-### FE
 - 소셜 로그인 (카카오)
-- 명함 관리
+- 명함 관리 <b>(OCR)</b>
 - 내 일정 관리
 - 실시간 1:1 채팅
 - 커뮤니티 게시판
 - 내 명함 및 프로필 관리
-
-### BE
--
--
--
-
-
-## ⛏ 개발환경
-
-<img  src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
-<img  src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
-<img  src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
-<img  src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
-<img  src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
-<img  src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
-<img  src="https://img.shields.io/badge/KAKAO DEVELOPERS-FFCD00?style=for-the-badge&logo=KAKAO&logoColor=black">
-<img  src="https://img.shields.io/badge/STOMP-blue?style=for-the-badge&logo=StompJs&logoColor=white">
-<img  src="https://img.shields.io/badge/SOCKJS-navy?style=for-the-badge&logo=sockJS&logoColor=white">
-<img  src="https://img.shields.io/badge/AWS Amplify-FF9900?style=for-the-badge&logo=AWS Amplify&logoColor=white">
-<img  src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">
-<img  src="https://img.shields.io/badge/Route53-FF9900?style=for-the-badge&logo=Route53&logoColor=white">
-<img  src="https://img.shields.io/badge/SSL-006600?style=for-the-badge&logo=white">
-<img  src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
-<img  src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">
-<img  src="https://img.shields.io/badge/Spring Batch-6DB33F?style=for-the-badge&logo=white">
-<img  src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white">
-<img  src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white">
-<img  src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white">
-<img  src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white">
-<img  src="https://img.shields.io/badge/OCR-099DFD?style=for-the-badge&logo=S&logoColor=white">
-<img  src="https://img.shields.io/badge/Cloud Vision API-4285F4?style=for-the-badge&logo=S&logoColor=white">
-<img  src="https://img.shields.io/badge/Google Storage-4285F4?style=for-the-badge&logo=Google&logoColor=white">
-<img  src="https://img.shields.io/badge/JPA-0ABF53?style=for-the-badge&logo=S&logoColor=white">
-<img  src="https://img.shields.io/badge/AWS Rds-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
-<img  src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
-<img  src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=GitHub&logoColor=white">
-     
-
-    
-
 <br>
 
-## 🔑 ERD 
-## ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
-
-<br>
 
 
 ## 🛠 트러블 슈팅
+<details>
+<summary><b>✔ Frond-end</b></summary>
+<br>
 <details>
 <summary>(FE) 화면 새로고침이나 전환 시 랜더링 이슈</summary>
 <div markdown="1"></br>
@@ -148,8 +136,55 @@
 </div>
 
 </details>
+</details>
 
+<br>
 
+<details>
+<summary><b>✔ Back-end</b></summary>
+<br>
+<details>
+<summary>제목</summary>
+<div markdown="1"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+1.
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span></br>
+1.</br>
+2.</br>
+3.</br>
+</div>
+</details>
+
+<details>
+<summary>제목</summary>
+<div markdown="1"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+1.
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span></br>
+1.</br>
+2.</br>
+3.</br>
+</div>
+</details>
+
+<details>
+<summary>제목</summary>
+<div markdown="1"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+1.
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span></br>
+1.</br>
+2.</br>
+3.</br>
+</div>
+</details>
+</details>
+
+<br>
+<br>
 
 
 
