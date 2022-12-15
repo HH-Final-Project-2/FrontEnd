@@ -1,7 +1,7 @@
 
 # [Businus] 직장인을위한 명함·일정 관리
 
-## 🎉 Businus 소개 | About Us
+## 🎉 Businus 소개
 
 ### 명함·일정관리 한번에 어렵다면?
 ![배2](https://user-images.githubusercontent.com/80233565/207816259-4a163362-0aee-4403-8d6f-6a049b169c39.png)
@@ -18,24 +18,24 @@
 <br>
 
 ## ✏목차 | Contents
-1. [개발기간](#-개발기간--project-period)
-2. [아키텍쳐](#-아키텍쳐--architecture)
-3. [주요 기능](#-주요-기능--Main-Function)
-4. [개발환경](#-개발환경--development-environment)
+1. [개발기간](#-개발기간)
+2. [아키텍쳐](#-아키텍쳐)
+3. [주요 기능](#-주요-기능)
+4. [개발환경](#-개발환경)
 5. [ERD](#-erd)
-6. [트러블 슈팅](#-트러블-슈팅--trouble-shooting)
-7. [팀원](#-팀원--team)
+6. [트러블 슈팅](#-트러블-슈팅)
+7. [팀원](#-팀원)
 
 <br>
 
 
 
-## ⌚ 개발기간 | Project Period
+## ⌚ 개발기간
 2022.11.04 ~ 2022.12.16 (6주간)
 
 <br>
 
-## 🛠 아키텍쳐 | Architecture
+## 🛠 아키텍쳐
 ![아키텍처](https://user-images.githubusercontent.com/80233565/207819747-936b4d0c-5221-4d5b-950b-7ae2095f2420.JPG)
 
 
@@ -54,7 +54,7 @@
 -
 
 
-## ⛏ 개발환경 | Development Environment
+## ⛏ 개발환경
 
 <img  src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
 <img  src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
@@ -95,41 +95,54 @@
 <br>
 
 
-## 🛠 트러블 슈팅 | Trouble shooting
+## 🛠 트러블 슈팅
 <details>
 <summary>(FE) 화면 새로고침이나 전환 시 랜더링 이슈</summary>
 <div markdown="1"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
-페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
+1.페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
 </br></br>
 <span style="color:Red"> <b>문제 해결</b></span></br>
--initialState 기본 값 설정</br>
--삼항연사자 혹은 if문으로 undefined일 때의 조건을 걸어줌</br>
+1.initialState 기본 값 설정</br>
+2.삼항연사자 혹은 if문으로 undefined일 때의 조건을 걸어줌</br>
 
-![트러블슈팅1](https://user-images.githubusercontent.com/80233565/207854388-39466131-68cc-40f2-90e8-179e5f8b2327.JPG)
-
-
--reducer에서 서버와 통신 후에 fulfill되는 data형태 확인 </br>
+![트러블슈팅1](https://user-images.githubusercontent.com/80233565/207854388-39466131-68cc-40f2-90e8-179e5f8b2327.JPG)</br>
+3.reducer에서 서버와 통신 후에 fulfill되는 data형태 확인 </br>
 ![트러블슈팅1-1](https://user-images.githubusercontent.com/80233565/207853952-322aa604-570d-42f3-af37-1186ab3d821a.JPG)
 
+</div>
+</details>
+
+<details>
+<summary>(FE) 커뮤니티 렌더링 이슈</summary>
+<div markdown="2"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+1.게시글 등록/수정/삭제시 화면에 바로 렌더링 되지 않는 이슈</br>
+2.커뮤니티 상세조회 후 뒤로가기를 눌렀을 때 화면에 불필요한 내용들이 잠깐 렌더링 되는 이슈
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span>
+</br>
+1.initialState의 isLoading과 useEffect를 활용</br>
+2.loading이라는 상태를 만들고 상태변경시 LoadingPage를 return </br>
+
+![트러블슈팅2](https://user-images.githubusercontent.com/80233565/207856899-47122276-3832-49ba-a165-2a2f26425e67.JPG)
 
 
 </div>
-
 </details>
 
 <details>
 <summary>(FE) InvalidStateError: The connection has not been established yet </summary>
 <div markdown="3"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
-게시글에서 채팅페이지로 이동 후 websocket connect보다 subscribe가 먼저 진행되는 이슈가 발생하여 TypeError도 함께 발생하였다.
-
-</br></br>
-<span style="color:Red"> <b>문제 해결과정</b></span></br>
+1.게시글에서 채팅페이지로 이동 후 websocket connect보다 subscribe가 먼저 진행되는 이슈가 발생하여 TypeError도 함께 발생하였다.</br>
+</br>
+<span style="color:Red"> <b>문제 해결</b></span></br>
 1.웹소켓 커넥션 상태를 이용해 웹소켓의 상태가 1일 경우 즉 연결이 성립되고 통신중인 상태일 때 subscribe가 실행되도 구독이 되도록 해보았지만 변함은 없었다.</br>
 2.페이지 이동후 마운트 될 때 connect보다 subscirbe가 나중에 진행되도록 setTimeout을 설정하여 해결</br>
   (navigate를 먼저 할당하여 해결이 가능하지만 안정적인 작동을 위해 setTimeout 지정)</br>
-![트러블슈티 3-1](https://user-images.githubusercontent.com/113837393/207857903-b84be138-41c1-4a5e-8308-b3f020beaeee.png)
+![트러블3](https://user-images.githubusercontent.com/80233565/207860453-e387c826-75c7-4ac6-b19c-5d445b8ca162.JPG)
+
 
 </div>
 
