@@ -282,7 +282,6 @@ const MainCards = () => {
             명함사진<Essential>*</Essential>
           </St_Key>
           <ImgBox>
-            {/* <img src={ExImg} alt="" /> */}
             <svg
               width="71"
               height="39"
@@ -348,6 +347,7 @@ const MainCards = () => {
               type="file"
               id="card"
               accept="image/*"
+              loading="lazy"
               onChange={mediaChangeHandler}
             />
           </St_Card>
