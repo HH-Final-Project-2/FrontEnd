@@ -24,25 +24,6 @@ const MyNickName = () => {
 
   const profille = useSelector((state) => state.userprofile.userprofile);
   const [nickname, setNickname] = useState(profille.nickname);
-  // const [userinfo, setUserinfo] = useState({
-  //   nickname: profille.nickname,
-  //   id: profille.id,
-  // });
-
-  // const { nickname, id } = userinfo;
-  // // console.log(nickname)
-  // const cancel = () => {
-  //   setUserinfo('');
-  // };
-
-  // const onChange = (e) => {
-  //   const { value, name } = e.target;
-  //   setUserinfo({
-  //     ...userinfo,
-  //     [name]: value,
-  //   });
-  // };
-
   useEffect(() => {
     dispatch(_getProfile());
   }, []);

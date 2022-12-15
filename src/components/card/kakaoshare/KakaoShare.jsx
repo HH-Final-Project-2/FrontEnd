@@ -7,9 +7,6 @@ const KakaoShare = () => {
 
   const infor = `[${cardinfo.company}]\n이름 : ${cardinfo.cardName}(${cardinfo.position})\n전화번호 : ${cardinfo.phoneNum}\n이메일 : ${cardinfo.email}`;
 
-  // '전화번호:010-0000-0000'
-  // '이메일:qwer@qwer.com';
-
   useEffect(() => {
     if (window.Kakao) {
       const kakao = window.Kakao;

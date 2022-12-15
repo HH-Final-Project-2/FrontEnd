@@ -50,17 +50,6 @@ const Router = () => {
     <BrowserRouter>
 
       <Routes>
-        {/* 
-        <Route
-          path="/"
-          element={
-            <PrivateRoute
-              access={access}
-              refresh={refresh}
-              component={<Main />}
-            />
-          }
-        /> */}
         <Route path="/" element={<Main />} />
         <Route path="/cards" element={<Cards />} />
         <Route path="/cardSearch" element={<CardSearch />} />
@@ -112,16 +101,6 @@ const Router = () => {
         {/* 회원관리(회원가입,로그인)*/}
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route
-        path="/login"
-        element={
-          <PrivateRoute
-            access={access}
-            refresh={refresh}
-            component={<Login />}
-          />
-        }
-      /> */}
         <Route path="/findPassword" element={<PasswordSearch />} />
         <Route path="/oauth/kakao" element={<Kakao />} />
       </Routes>
