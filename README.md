@@ -140,7 +140,8 @@
 <span style="color:Red"> <b>문제 해결</b></span></br>
 1.웹소켓 커넥션 상태를 이용해 웹소켓의 상태가 1일 경우 즉 연결이 성립되고 통신중인 상태일 때 subscribe가 실행되도 구독이 되도록 해보았지만 변함은 없었다.</br>
 2.페이지 이동후 마운트 될 때 connect보다 subscirbe가 나중에 진행되도록 setTimeout을 설정하여 해결</br>
-  (navigate를 먼저 할당하여 해결이 가능하지만 안정적인 작동을 위해 setTimeout 지정)</br>
+(navigate를 먼저 할당하여 해결이 가능하지만 안정적인 작동을 위해 setTimeout 지정)</br>
+  
 ![트러블3](https://user-images.githubusercontent.com/80233565/207860453-e387c826-75c7-4ac6-b19c-5d445b8ca162.JPG)
 
 
