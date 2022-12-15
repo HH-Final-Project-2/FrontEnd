@@ -33,7 +33,6 @@ const MyCardInfo = () => {
   const dispatch = useDispatch();
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
-  console.log(cardinfo);
   useEffect(() => {
     dispatch(_getMakeCard());
   }, [dispatch]);
@@ -43,7 +42,7 @@ const MyCardInfo = () => {
   }, [Map, MapMarker, cardinfo]);
 
   const { kakao } = window;
-
+  
   const [map, setMap] = useState({
     center: { lat: 37.503680684679125, lng: 126.95701252583554 },
     isPanto: true,
