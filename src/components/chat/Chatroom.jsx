@@ -124,18 +124,6 @@ const Chatroom = () => {
     });
   };
 
-  // const subsCribe = () => {
-  //   client.subscribe(
-  //     `/sub/chat/room/${id === '' ? chatlistid : id}`,
-  //     (data) => {
-  //       // dispatch(subscribeId(data.headers.subscription));
-  //       const newMessage = JSON.parse(data.body);
-  //       dispatch(addMessage(newMessage));
-  //     },
-  //     headers
-  //   );
-  // };
-
   const unSubscribe = () => {
     client
       .subscribe(
@@ -211,19 +199,6 @@ const Chatroom = () => {
       }
     });
   };
-
-  // for (let i = 0; i < chatList.length; i++) {
-  //   return chatList[i].createdAt.split(' ')[2], console.log(i);
-  // }
-
-  // const checktime = chatList.map((x, index) => {
-  //   for (let i = 0; i < chatList.length; i++)
-  //     return x.createdAt[i].split(' ')[2];
-  // });
-  // console.log(checktime);
-  // console.log(chatList);
-  // const test = chatList[chatList.length - 1].createdAt.split(' ')[2];
-  // console.log(test)
 
   if (chatList === undefined) return;
 
@@ -303,17 +278,6 @@ const Chatroom = () => {
                 </MyChatBox>
               );
             }
-
-            // if (chat.userId === userinfo?.myId) {
-            //   return (
-            //     <MyChatBox key={message.id}>
-            //       <MyChatTime>
-            //         {ampm === 'AM' ? '오전 ' + time : '오후 ' + time}
-            //       </MyChatTime>
-            //       <MyChat>{chat.message}</MyChat>
-            //     </MyChatBox>
-            //   );
-            // }
 
             if (chat.userId !== userinfo?.myId) {
               return (
