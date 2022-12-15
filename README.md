@@ -18,24 +18,24 @@
 <br>
 
 ## ✏목차 | Contents
-1. [개발기간](#-개발기간--project-period)
-2. [아키텍쳐](#-아키텍쳐--architecture)
-3. [주요 기능](#-주요-기능--Main-Function)
-4. [개발환경](#-개발환경--development-environment)
+1. [개발기간](#-개발기간)
+2. [아키텍쳐](#-아키텍쳐)
+3. [주요 기능](#-주요-기능)
+4. [개발환경](#-개발환경)
 5. [ERD](#-erd)
-6. [트러블 슈팅](#-트러블-슈팅--trouble-shooting)
-7. [팀원](#-팀원--team)
+6. [트러블 슈팅](#-트러블-슈팅)
+7. [팀원](#-팀원)
 
 <br>
 
 
 
-## ⌚ 개발기간 | Project Period
+## ⌚ 개발기간
 2022.11.04 ~ 2022.12.16 (6주간)
 
 <br>
 
-## 🛠 아키텍쳐 | Architecture
+## 🛠 아키텍쳐
 ![아키텍처](https://user-images.githubusercontent.com/80233565/207819747-936b4d0c-5221-4d5b-950b-7ae2095f2420.JPG)
 
 
@@ -54,7 +54,7 @@
 -
 
 
-## ⛏ 개발환경 | Development Environment
+## ⛏ 개발환경
 
 <img  src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white">
 <img  src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
@@ -95,12 +95,12 @@
 <br>
 
 
-## 🛠 트러블 슈팅 | Trouble shooting
+## 🛠 트러블 슈팅
 <details>
 <summary>(FE) 화면 새로고침이나 전환 시 랜더링 이슈</summary>
 <div markdown="1"></br>
 <span style="color:Red"> <b>이슈 사항</b></span></br>
-페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
+- 페이지 렌더링시 useSelector로 불러오는 값이 undefined, map함수를 사용해 화면에 보여주는 경우 에러가 발생
 </br></br>
 <span style="color:Red"> <b>문제 해결</b></span></br>
 -initialState 기본 값 설정</br>
@@ -108,10 +108,26 @@
 
 ![트러블슈팅1](https://user-images.githubusercontent.com/80233565/207854388-39466131-68cc-40f2-90e8-179e5f8b2327.JPG)
 
-
 -reducer에서 서버와 통신 후에 fulfill되는 data형태 확인 </br>
 ![트러블슈팅1-1](https://user-images.githubusercontent.com/80233565/207853952-322aa604-570d-42f3-af37-1186ab3d821a.JPG)
 
+</div>
+</details>
+
+<details>
+<summary>(FE) 커뮤니티 렌더링 이슈</summary>
+<div markdown="2"></br>
+<span style="color:Red"> <b>이슈 사항</b></span></br>
+-게시글 등록/수정/삭제시 화면에 바로 렌더링 되지 않는 이슈
+-커뮤니티 상세조회 후 뒤로가기를 눌렀을 때 화면에 불필요한 내용들이</br>
+잠깐 렌더링 되는 이슈
+</br></br>
+<span style="color:Red"> <b>문제 해결</b></span>
+</br>
+-initialState의 isLoading과 useEffect를 활용</br>
+-loading이라는 상태를 만들고 상태변경시 LoadingPage를 return </br>
+
+![트러블슈팅2](https://user-images.githubusercontent.com/80233565/207856899-47122276-3832-49ba-a165-2a2f26425e67.JPG)
 
 
 </div>
