@@ -1,5 +1,5 @@
 
-# [Businus] 직장인을위한 명함·일정 관리 사이트
+# [Businus] 직장인을위한 명함·일정 관리
 
 ## 🎉 Businus 소개 | About Us
 
@@ -7,7 +7,7 @@
 ![배2](https://user-images.githubusercontent.com/80233565/207816259-4a163362-0aee-4403-8d6f-6a049b169c39.png)
 
 👉 직장에서 만난 사람들의 연락처를 따로 관리하고 싶다면 ! </br>
-👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민 된다면 !</br>
+👉 계속해서 쌓이는 명함들 어떻게 관리할지 고민 된다면 ! </br>
 👉 커뮤니트를 통해 다양한 직군에 대해 궁금증을 해결하고 싶다면 ! </br>
 
 - 이제 비지너스로 스마트하고 간편하게 관리해보세요.
@@ -35,8 +35,6 @@
 
 <br>
 
-
-
 ## 🛠 아키텍쳐 | Architecture
 ![아키텍처](https://user-images.githubusercontent.com/80233565/207819747-936b4d0c-5221-4d5b-950b-7ae2095f2420.JPG)
 
@@ -54,8 +52,6 @@
 -
 -
 -
-
-
 
 
 ## ⛏ 개발환경 | Development Environment
@@ -93,8 +89,8 @@
 
 <br>
 
-## 🔑 ERD 
-
+🔑 ERD 
+## ![erd](https://user-images.githubusercontent.com/80233565/207846959-056e718d-f33c-4038-aec3-2146f9dc8e87.JPG)
 
 <br>
 
@@ -106,9 +102,9 @@
 ## 🤸🏻‍ 팀원
 
 | 김석재 | 김승재  | 홍마로  | 황대연 | 김보경 | 서병범 | 정유성 | 최예빈 |
-|--|--|--|--|--|--|--|--|
-| FE | FE | FE | FE | BE | BE | BE | DESINGER |
-| [🔗](https://github.com/ssssssg-hub) |[🔗](https://github.com/andamiro98) |[🔗](https://github.com/formaro) |[🔗](https://github.com/dyhwnag) |[🔗](https://github.com/kimbokyung1220) | [🔗](https://github.com/ByeongbumSeo)| [🔗](https://github.com/yusung4612) | 📧 choiyebin98@gmail.com |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| FE(리더) | FE | FE | FE | BE(부리더) | BE | BE | DESINGER |
+| [🔗](https://github.com/ssssssg-hub) |[🔗](https://github.com/andamiro98) |[🔗](https://github.com/formaro) |[🔗](https://github.com/dyhwnag) |[🔗](https://github.com/kimbokyung1220) | [🔗](https://github.com/ByeongbumSeo)| [🔗](https://github.com/yusung4612) | [🔗](https://github.com/HH-Final-Project-2) |
 
 
 
