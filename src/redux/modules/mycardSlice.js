@@ -79,16 +79,17 @@ const initialState = {
   error: null,
 };
 export const mycardSlice = createSlice({
-  name: "cardinfo", //모듈
+  name: "cardinfo", 
   initialState,
   reducers: {
     saveInfo: (state, action) => {
+      console.log(action.payload);
       state.makesave = action.payload;
     },
     addresSsearchSave: (state, action) => {
-      state.searchsave = action.payload;
-      console.log(action.payload);
+      state.searchsave = action.payload; 
     },
+
   },
   extraReducers: {
     [_MakeCard.fulfilled]: (state, action) => {

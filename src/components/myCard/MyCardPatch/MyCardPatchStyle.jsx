@@ -107,7 +107,7 @@ export const CompanyIcon = styled.div`
   height: 0px;
   position: relative;
   display: flex;
-  top: 15px;
+  top: 16px;
   left: 36px;
 `;
 export const AddressIcon = styled.div`
