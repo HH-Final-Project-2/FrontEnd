@@ -35,7 +35,6 @@ const MyCardPatch = () => {
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
-  console.log(searchinfo);
   const [makeinfo, setMakeinfo] = useState({
     cardName: cardinfo.cardName,
     email: cardinfo.email,
