@@ -179,10 +179,7 @@ const AddMySchedules = () => {
 
           <div className="datePickerBox">
             <DatePicker
-              // initial={{ opacity: 0, y: 0 }}
-              // animate={{ opacity: 1 }}
               className="datePicker"
-              // closeOnScroll={true}
               locale={ko}
               minDate={new Date()}
               selected={startDate}
@@ -216,7 +213,6 @@ const AddMySchedules = () => {
           <div>
             <DatePicker
               className="datePicker"
-              // closeOnScroll={true}
               locale={ko}
               minDate={startDate}
               selected={endDate}
@@ -233,6 +229,13 @@ const AddMySchedules = () => {
               timeIntervals={30} // 30분 단위로 선택 가능한 box가 나옴
               timeCaption="time"
               dateFormat="yyyy. MM. dd / HH시:mm분"
+              dayClassName={(date) =>
+                getDayName(createDate(date)) === "토"
+                  ? "saturday"
+                  : getDayName(createDate(date)) === "일"
+                  ? "sunday"
+                  : undefined
+              }
             />
           </div>
         </DateEnd>

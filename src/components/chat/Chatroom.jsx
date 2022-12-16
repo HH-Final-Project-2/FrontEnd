@@ -120,18 +120,6 @@ const Chatroom = () => {
     });
   };
 
-  // const subsCribe = () => {
-  //   client.subscribe(
-  //     `/sub/chat/room/${id === '' ? chatlistid : id}`,
-  //     (data) => {
-  //       // dispatch(subscribeId(data.headers.subscription));
-  //       const newMessage = JSON.parse(data.body);
-  //       dispatch(addMessage(newMessage));
-  //     },
-  //     headers
-  //   );
-  // };
-
   const unSubscribe = () => {
     debugcall();
     client
@@ -215,24 +203,6 @@ const Chatroom = () => {
     });
   };
 
-  useEffect(() => {
-    // 현재 스크롤 위치 === scrollRef.current.scrollTop
-    // 스크롤 길이 === scrollRef.current.scrollHeight
-    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [chatList]);
-
-  // for (let i = 0; i < chatList.length; i++) {
-  //   return chatList[i].createdAt.split(' ')[2], console.log(i);
-  // }
-
-  // const checktime = chatList.map((x, index) => {
-  //   for (let i = 0; i < chatList.length; i++)
-  //     return x.createdAt[i].split(' ')[2];
-  // });
-  // console.log(checktime);
-  // console.log(chatList);
-  // const test = chatList[chatList.length - 1].createdAt.split(' ')[2];
-  // console.log(test)
 
   if (chatList === undefined) return;
 
@@ -288,9 +258,11 @@ const Chatroom = () => {
             const lastAt =
               chatList[chatList.length - 1].createdAt.split(' ')[2];
 
+
             // for (let i = 0; i < chatList.length; i++) {
             //   console.log(i);
             // }
+
 
             // if (chat.userId === userinfo?.myId) {
             //   return (
@@ -314,6 +286,7 @@ const Chatroom = () => {
             //   );
             // }
 
+
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
@@ -324,6 +297,7 @@ const Chatroom = () => {
                 </MyChatBox>
               );
             }
+
 
             if (chat.userId !== userinfo?.myId) {
               return (

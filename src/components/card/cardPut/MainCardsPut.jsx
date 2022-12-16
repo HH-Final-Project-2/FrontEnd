@@ -47,10 +47,6 @@ const MainCards = () => {
   const lastCompany =
     (companyGet.company !== undefined ? companyGet.company : companyOnly) ||
     (companyOnly !== undefined ? companyOnly : company);
-  console.log(lastCompany);
-  console.log(companyGet);
-  console.log(cardFix);
-  console.log(company);
 
   useEffect(() => {
     dispatch(__viewGet(id));
@@ -301,34 +297,6 @@ const MainCards = () => {
                 </label>
               </RadioDetail>
             </RadioBox>
-            {/* <RadioBox>
-              <RadioDetail>
-                <input
-                  type="radio"
-                  id="find"
-                  name="companyType"
-                  value={"find"}
-                  checked={companyHow === "find"}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <label htmlFor="find">회사 검색</label>
-              </RadioDetail>
-              <RadioDetail>
-                <input
-                  type="radio"
-                  id="myself"
-                  name="companyHow"
-                  value={"myself"}
-                  checked={companyHow === "myself"}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <label htmlFor="myself">직접 입력</label>
-              </RadioDetail>
-            </RadioBox> */}
 
             {companyHow === "myself" ? (
               <div>

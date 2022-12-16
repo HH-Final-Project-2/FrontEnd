@@ -41,8 +41,6 @@ const MainView = () => {
     dispatch(__mainGet());
   }, [dispatch]);
 
-  // if (mainpost === undefined) return null;
-
   return (
     <div>
       <Header />
