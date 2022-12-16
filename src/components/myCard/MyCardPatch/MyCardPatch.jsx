@@ -96,10 +96,6 @@ const MyCardPatch = () => {
     });
   };
 
-  // useEffect(() => {
-  //   dispatch(saveInfo({ companyAddress: '' }));
-  // }, []);
-
   const updateHandler = () => {
     dispatch(
       _PutCard({
@@ -131,10 +127,6 @@ const MyCardPatch = () => {
     });
     nav('/mypage/cardinfo');
   };
-
-  // useEffect(() => {
-  //   dispatch(_getMakeCard());
-  // }, []);
 
   useEffect(() => {
     setMakeinfo(cardinfo);
@@ -239,146 +231,6 @@ const MyCardPatch = () => {
           <St_Key>
             회사<Essential>*</Essential>
           </St_Key>
-
-          {/* 라디오 버튼 start*/}
-          {/* <RadioBox>
-            <RadioDetail>
-              <label>
-                <FormCheckOwn
-                  type="radio"
-                  id="find"
-                  name="companyType"
-                  value={'find'}
-                  checked={companyHow === 'find'}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <CheckOwn htmlFor="find">회사 검색</CheckOwn>
-              </label>
-            </RadioDetail>
-
-            <RadioDetail>
-              <label>
-                <FormCheckOther
-                  type="radio"
-                  id="myself"
-                  name="companyHow"
-                  value={'myself'}
-                  checked={companyHow === 'myself'}
-                  onChange={(e) => {
-                    setCompanyHow(e.target.value);
-                  }}
-                />
-                <CheckOther htmlFor="myself">직접 입력</CheckOther>
-              </label>
-            </RadioDetail>
-          </RadioBox>
-
-          {companyHow === 'myself' ? (
-            <div>
-              <CompanyIcon>
-                <Iccompany />
-              </CompanyIcon>
-              <CompanyInput
-                placeholder="회사명을 입력하세요"
-                name="company"
-                style={{ paddingLeft: '38px' }}
-                value={company}
-                onChange={onChage}
-              />
-
-              {pop === true ? (
-                <AddressSearch style={{ color: 'red' }}>
-                  <p
-                    onClick={() => {
-                      dispatch(
-                        saveInfo({
-                          cardName,
-                          email,
-                          phoneNum,
-                          company,
-                          department,
-                          companyAddress,
-                          position,
-                          tel,
-                          fax,
-                        })
-                      );
-                      nav('/mypage/MyCardCompanyWrite');
-                    }}
-                  >
-                    회사 주소 검색
-                  </p>
-                </AddressSearch>
-              ) : (
-                <AddressSearch>
-                  <p
-                    onClick={() => {
-                      dispatch(
-                        saveInfo({
-                          cardName,
-                          email,
-                          phoneNum,
-                          company,
-                          department,
-                          companyAddress,
-                          position,
-                          tel,
-                          fax,
-                        })
-                      );
-                      nav('/mypage/MyCardCompanyWrite');
-                    }}
-                  >
-                    회사 주소 검색
-                  </p>
-                </AddressSearch>
-              )}
-            </div>
-          ) : (
-            <div>
-              <CompanyIcon>
-                <Iccompany />
-              </CompanyIcon>
-              <CompanyInput
-                readOnly
-                type="text"
-                name="company"
-                style={{ paddingLeft: '38px' }}
-                placeholder="회사 검색"
-                value={searchinfo.company ? searchinfo.company : company}
-                onChange={onChage}
-                onClick={() => {
-                  dispatch(
-                    saveInfo({
-                      cardName,
-                      email,
-                      phoneNum,
-                      company,
-                      department,
-                      companyAddress,
-                      position,
-                      tel,
-                      fax,
-                    })
-                  );
-                  nav('/mypage/MyCardCompanySerach');
-                }}
-              />
-              <AddressBox>
-                <AddressIcon>
-                  <Icaddress />
-                </AddressIcon>
-                <SearchAddress>
-                  {searchinfo.companyAddress
-                    ? searchinfo.companyAddress
-                    : companyAddress}
-                </SearchAddress>
-              </AddressBox>
-            </div>
-          )} */}
-          {/* 라디오 버튼 end*/}
 
           <CompanyIcon>
             <Iccompany />
