@@ -141,13 +141,11 @@ const PostDetail = () => {
         ) : (
           <Chat
             onClick={() => {
-              setTimeout(() => {
-                navigate('/chat/chatroom/');
-              }, 100);
+              dispatch(_postId(postid));
 
               setTimeout(() => {
-                dispatch(_postId(postid));
-              }, 200);
+                navigate('/chat/chatroom/');
+              }, 300);
             }}
           />
         )}

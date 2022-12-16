@@ -95,12 +95,6 @@ const Chatroom = () => {
     };
   }, []);
 
-  useEffect(() => {
-    // 현재 스크롤 위치 === scrollRef.current.scrollTop
-    // 스크롤 길이 === scrollRef.current.scrollHeight
-    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [chatList]);
-
   const onConneted = () => {
     client.connect(headers, () => {
       setTimeout(() => {
@@ -212,6 +206,12 @@ const Chatroom = () => {
     });
   };
 
+  useEffect(() => {
+    // 현재 스크롤 위치 === scrollRef.current.scrollTop
+    // 스크롤 길이 === scrollRef.current.scrollHeight
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [chatList]);
+
   // for (let i = 0; i < chatList.length; i++) {
   //   return chatList[i].createdAt.split(' ')[2], console.log(i);
   // }
@@ -279,9 +279,9 @@ const Chatroom = () => {
             const lastAt =
               chatList[chatList.length - 1].createdAt.split(' ')[2];
 
-            for (let i = 0; i < chatList.length; i++) {
-              console.log(i);
-            }
+            // for (let i = 0; i < chatList.length; i++) {
+            //   console.log(i);
+            // }
 
             // if (chat.userId === userinfo?.myId) {
             //   return (
