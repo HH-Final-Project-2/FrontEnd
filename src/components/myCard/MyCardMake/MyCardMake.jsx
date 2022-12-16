@@ -471,7 +471,6 @@ const MyCardMake = () => {
                           tel,
                           fax,
                         }),
-                        console.log(company)
                       );
                       nav('/mypage/MyCardCompanyWrite');
                     }}
