@@ -145,7 +145,6 @@ const PostList = () => {
           className="sort"
           value={selectBox}
           onChange={(e) => setSelectBox(e.target.value)}
-        // onClick={() => selectHandler(selectBox)} //?
         >
           <option hidden>정렬</option>
           <option value="news">최신순</option>

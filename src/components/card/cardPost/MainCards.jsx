@@ -64,9 +64,6 @@ const MainCards = () => {
   const [companyType, setCompanyType] = useState(
     companyGet.companyType ? companyGet.companyType : ""
   );
-  // const [otherCompanyType, setOtherCompanyType] = useState(
-  //   companyGet.companyType ? companyGet.companyType : ''
-  // );
   const [department, setDepartment] = useState(
     companyGet.department ? companyGet.department : ""
   );
@@ -100,27 +97,12 @@ const MainCards = () => {
     setDepartment(companyGet.department);
     setPosition(companyGet.position);
   }, [companyGet]);
-  // useEffect(() => setCompanyType(companyGet.companyType), [companyGet]);
-  // useEffect(() => setDepartment(companyGet.department), [companyGet]);
-  // useEffect(() => setPosition(companyGet.position), [companyGet]);
   useEffect(() => {
     setEmail(imgGet.email ? imgGet.email : companyGet.email);
     setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum);
     setTel(imgGet.tel ? imgGet.tel : companyGet.tel);
     setFax(imgGet.fax ? imgGet.fax : companyGet.fax);
   }, [imgGet, companyGet]);
-  // useEffect(
-  //   () => setPhoneNum(imgGet.phoneNum ? imgGet.phoneNum : companyGet.phoneNum),
-  //   [imgGet, companyGet]
-  // );
-  // useEffect(
-  //   () => setTel(imgGet.tel ? imgGet.tel : companyGet.tel),
-  //   [imgGet, companyGet]
-  // );
-  // useEffect(
-  //   () => setFax(imgGet.fax ? imgGet.fax : companyGet.fax),
-  //   [imgGet, companyGet]
-  // );
   useEffect(
     () => setCompany(companyGet.company ? companyGet.company : companyOnly),
     [companyGet, companyOnly]
@@ -300,7 +282,6 @@ const MainCards = () => {
             명함사진<Essential>*</Essential>
           </St_Key>
           <ImgBox>
-            {/* <img src={ExImg} alt="" /> */}
             <svg
               width="71"
               height="39"
@@ -366,6 +347,7 @@ const MainCards = () => {
               type="file"
               id="card"
               accept="image/*"
+              loading="lazy"
               onChange={mediaChangeHandler}
             />
           </St_Card>
@@ -466,9 +448,6 @@ const MainCards = () => {
               </label>
             </RadioDetail>
           </RadioBox>
-
-          {/* {radioState ?
-( */}
           {companyHow === "myself" ? (
             <div>
               <CompanyInput
@@ -588,9 +567,6 @@ const MainCards = () => {
               </St_Address>
             </div>
           )}
-          {/* ) :
-''
-} */}
         </Item>
 
         <Item>

@@ -51,7 +51,7 @@ import { ReactComponent as Icplus } from '../../../images/ic-plus.svg';
 import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
-// import { ReactComponent as Xbutton } from '../../../images/x-circle-fill.svg';
+
 
 import { SectionFooter } from '../../footer/FooterStyle';
 import Modal from '../../card/cardPost/CardImgModal/Modal';
@@ -67,6 +67,7 @@ const MyCardMake = () => {
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const searchsave = useSelector((state) => state.cardinfo.searchsave);
   const imgGet = useSelector((state) => state.PostReducer.img);
+
 
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);
@@ -176,22 +177,6 @@ const MyCardMake = () => {
     imgGet.phoneNum !== undefined && imgGet.phoneNum !== null
       ? imgGet.phoneNum.includes('-')
       : false;
-
-  // useEffect(() => {
-  //   dispatch(
-  //     saveInfo({
-  //       cardName: '',
-  //       email: '',
-  //       phoneNum: '',
-  //       company: '',
-  //       department: '',
-  //       companyAddress: '',
-  //       position: '',
-  //       tel: '',
-  //       fax: '',
-  //     })
-  //   );
-  // }, [savemake]);
 
   // 모달 사용하기위한 state
   const [modalOpen, setModalOpen] = useState(false);
@@ -546,62 +531,7 @@ const MyCardMake = () => {
                 </SearchAddress>
               </AddressBox>
             </div>
-          )}
-          {/* 라디오 버튼 end*/}
-
-          {/* <CompanyIcon>
-            <Iccompany />
-          </CompanyIcon>
-          <St_value
-            name="company"
-            value={searchinfo.company ? searchinfo.company : company}
-            onChange={onChage}
-            style={{ paddingLeft: '35px' }}
-            onClick={() => {
-              dispatch(
-                saveInfo({
-                  cardName,
-                  email: imgGet.email !== undefined ? imgGet.email : email,
-                  phoneNum:
-                    imgGet.phoneNum !== undefined ? imgGet.phoneNum : phoneNum,
-                  company:
-                    searchinfo.company !== undefined
-                      ? searchinfo.company
-                      : company,
-                  department,
-                  companyAddress:
-                    searchinfo.companyAddress !== undefined
-                      ? searchinfo.companyAddress
-                      : companyAddress,
-                  position,
-                  tel: imgGet.tel !== undefined ? imgGet.tel : tel,
-                  fax: imgGet.fax !== undefined ? imgGet.fax : fax,
-                })
-              );
-              nav('/mypage/MyCardCompanySerach');
-            }}
-          ></St_value>
-
-          <St_Address
-            name="companyAddress"
-            value={
-              searchinfo.companyAddress
-                ? searchinfo.companyAddress
-                : companyAddress
-            }
-            onChange={onChage}
-          ></St_Address>
-
-          <AddressBox>
-            <AddressIcon>
-              <Icaddress />
-            </AddressIcon>
-            <SearchAddress>
-              {searchinfo.companyAddress
-                ? searchinfo.companyAddress
-                : companyAddress}
-            </SearchAddress>
-          </AddressBox> */}
+          )}       
         </Item>
 
         <Item>
