@@ -98,24 +98,23 @@ const Chatroom = () => {
 
   const onConneted = () => {
     client.connect(headers, () => {
-      setTimeout(() => {
-        client.subscribe(
-          `/sub/chat/room/${id === '' ? chatlistid : id}`,
-          (data) => {
-            // dispatch(subscribeId(data.headers.subscription));
-            const newMessage = JSON.parse(data.body);
-            dispatch(addMessage(newMessage));
-          },
-          headers
-        );
-        client.send(
-          '/pub/chat/enter',
-          headers,
-          JSON.stringify({
-            roomId: id === '' ? chatlistid : id,
-          })
-        );
-      }, 100);
+      client.subscribe(
+        `/sub/chat/room/${id === '' ? chatlistid : id}`,
+        (data) => {
+          // dispatch(subscribeId(data.headers.subscription));
+          const newMessage = JSON.parse(data.body);
+          dispatch(addMessage(newMessage));
+        },
+        headers
+      );
+      client.send(
+        '/pub/chat/enter',
+        headers,
+        JSON.stringify({
+          roomId: id === '' ? chatlistid : id,
+        })
+      );
+
       debugcall();
     });
   };
@@ -203,7 +202,6 @@ const Chatroom = () => {
     });
   };
 
-
   if (chatList === undefined) return;
 
   return (
@@ -258,11 +256,9 @@ const Chatroom = () => {
             const lastAt =
               chatList[chatList.length - 1].createdAt.split(' ')[2];
 
-
             // for (let i = 0; i < chatList.length; i++) {
             //   console.log(i);
             // }
-
 
             // if (chat.userId === userinfo?.myId) {
             //   return (
@@ -286,7 +282,6 @@ const Chatroom = () => {
             //   );
             // }
 
-
             if (chat.userId === userinfo?.myId) {
               return (
                 <MyChatBox key={message.id}>
@@ -297,7 +292,6 @@ const Chatroom = () => {
                 </MyChatBox>
               );
             }
-
 
             if (chat.userId !== userinfo?.myId) {
               return (
