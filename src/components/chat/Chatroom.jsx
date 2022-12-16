@@ -90,6 +90,7 @@ const Chatroom = () => {
 
   useEffect(() => {
     onConneted();
+    debugcall();
     return () => {
       unSubscribe();
     };
@@ -115,10 +116,12 @@ const Chatroom = () => {
           })
         );
       }, 100);
+      debugcall();
     });
   };
 
   const unSubscribe = () => {
+    debugcall();
     client
       .subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
@@ -130,6 +133,7 @@ const Chatroom = () => {
   };
 
   const sendMessage = () => {
+    debugcall();
     if (message.trim() === '') {
       return setMessage('');
     } else {
@@ -146,6 +150,10 @@ const Chatroom = () => {
     setMessage('');
   };
 
+  const debugcall = () => {
+    client.debug = null;
+  };
+
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       sendMessage();
@@ -154,6 +162,7 @@ const Chatroom = () => {
 
   const disConneted = () => {
     try {
+      debugcall();
       client.disconnect(() => {
         client.unsubscribe();
       }, headers);
