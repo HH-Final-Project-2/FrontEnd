@@ -146,6 +146,7 @@ export const chatSlice = createSlice({
     [_postId.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.roomId = action.payload;
+      
     },
     [getMessage.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
