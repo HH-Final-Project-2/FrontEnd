@@ -229,6 +229,13 @@ const AddMySchedules = () => {
               timeIntervals={30} // 30분 단위로 선택 가능한 box가 나옴
               timeCaption="time"
               dateFormat="yyyy. MM. dd / HH시:mm분"
+              dayClassName={(date) =>
+                getDayName(createDate(date)) === "토"
+                  ? "saturday"
+                  : getDayName(createDate(date)) === "일"
+                  ? "sunday"
+                  : undefined
+              }
             />
           </div>
         </DateEnd>
