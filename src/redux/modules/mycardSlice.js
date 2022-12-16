@@ -83,7 +83,6 @@ export const mycardSlice = createSlice({
   initialState,
   reducers: {
     saveInfo: (state, action) => {
-      console.log(action.payload);
       state.makesave = action.payload;
     },
     addresSsearchSave: (state, action) => {
@@ -108,7 +107,6 @@ export const mycardSlice = createSlice({
       state.searchCompany = { ...action.payload };
     },
     [_companyInfo.fulfilled]: (state, action) => {
-      console.log(action.payload)
       state.companyInfo = action.payload;
     },
   },
