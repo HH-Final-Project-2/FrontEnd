@@ -249,6 +249,7 @@ const Chatroom = () => {
             const lastAt =
               chatList[chatList.length - 1].createdAt.split(' ')[2];
 
+
             // for (let i = 0; i < chatList.length; i++) {
             //   console.log(i);
             // }
@@ -275,6 +276,7 @@ const Chatroom = () => {
             //     </MyChatBox>
             //   );
             // }
+
 
             if (chat.userId === userinfo?.myId) {
               return (

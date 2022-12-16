@@ -47,7 +47,6 @@ const MainCards = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const imgGet = useSelector((state) => state.PostReducer.img);
-  console.log(imgGet);
   const companyGet = useSelector((state) => state.PostReducer.companyInfo);
   const companyOnly = useSelector(
     (state) => state.PostReducer.defaultCard.company
@@ -56,7 +55,7 @@ const MainCards = () => {
     (imgGet.email && imgGet.fax && imgGet.tel && imgGet.phoneNum) === ""
       ? false
       : true;
-  console.log(noneImg);
+
   //state생성
   const [cardName, setCardName] = useState(
     companyGet.cardName ? companyGet.cardName : ""

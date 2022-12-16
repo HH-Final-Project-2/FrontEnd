@@ -24,7 +24,6 @@ export const __imgPost = createAsyncThunk(
           "Refresh-Token": refreshToken,
         },
       };
-      console.log(payload);
       const data = await axios.post(
         "https://bkyungkeem.shop/api/upload/img",
         payload,
@@ -160,13 +159,12 @@ export const CardsSlice = createSlice({
       state.list = [state.list, action.payload];
     },
     [__imgPost.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.img = action.payload;
       if (
-        action.payload.email === "" &&
-        action.payload.phoneNum === "" &&
-        action.payload.fax === "" &&
-        action.payload.tel === ""
+        action.payload.email === ""||null &&
+        action.payload.phoneNum === ""||null &&
+        action.payload.fax === ""||null &&
+        action.payload.tel === ""||null
       )
         alert("지원하지 않는 이미지 양식입니다");
     },
