@@ -222,7 +222,7 @@ const MyCardMake = () => {
                 cardName.trim() === '' ||
                 email.trim() === '' ||
                 phoneNum.trim() === '' ||
-                searchinfo.company.length === 0 ||
+                company.length === 0 ||
                 department.trim() === '' ||
                 position.trim() === ''
               ) {

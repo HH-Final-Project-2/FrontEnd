@@ -53,10 +53,9 @@ const MyCardPatch = () => {
 
   const cardinfo = useSelector((state) => state.cardinfo.cardinfo);
   const searchinfo = useSelector((state) => state.cardinfo.companyInfo);
-
-
+  console.log('검색', searchinfo);
   const savemake = useSelector((state) => state.cardinfo.makesave);
-
+  console.log('저장', savemake);
   const searchsave = useSelector((state) => state.cardinfo.searchsave);
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);
@@ -65,7 +64,6 @@ const MyCardPatch = () => {
   //   companyAddress: savemake.companyAddress,
   // });
   // console.log('>>>', writeaddress.companyAddress);
-
 
   const [makeinfo, setMakeinfo] = useState({
     cardName: savemake.cardName ? savemake.cardName : cardinfo.cardName,

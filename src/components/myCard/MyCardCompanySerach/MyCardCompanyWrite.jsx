@@ -26,7 +26,6 @@ const MyCardCompanyWrite = () => {
       saveInfo({ companyAddress: fullAddress }),
       navigate('/mypage/cardmake')
     );
-    console.log(fullAddress);
   };
 
   const handleSearch = (data) => {};
