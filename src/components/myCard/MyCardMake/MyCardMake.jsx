@@ -52,7 +52,6 @@ import { ReactComponent as Iccompany } from '../../../images/ic-company.svg';
 import { ReactComponent as Icaddress } from '../../../images/ic-address.svg';
 import { ReactComponent as Icbefore } from '../../../images/ic-before.svg';
 
-
 import { SectionFooter } from '../../footer/FooterStyle';
 import Modal from '../../card/cardPost/CardImgModal/Modal';
 import cardImg from '../../../images/KakaoTalk_Photo_2022-12-07-20-17-26.png';
@@ -67,7 +66,6 @@ const MyCardMake = () => {
   const savemake = useSelector((state) => state.cardinfo.makesave);
   const searchsave = useSelector((state) => state.cardinfo.searchsave);
   const imgGet = useSelector((state) => state.PostReducer.img);
-
 
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);
@@ -245,7 +243,7 @@ const MyCardMake = () => {
                 cardName.trim() === '' ||
                 imgGet.email.trim() === '' ||
                 imgGet.phoneNum.trim() === '' ||
-                searchinfo.company.length === 0 ||
+                company.length === 0 ||
                 department.trim() === '' ||
                 position.trim() === ''
               ) {
@@ -531,7 +529,7 @@ const MyCardMake = () => {
                 </SearchAddress>
               </AddressBox>
             </div>
-          )}       
+          )}
         </Item>
 
         <Item>
