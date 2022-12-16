@@ -61,12 +61,6 @@ const MyCardPatch = () => {
   const [companyHow, setCompanyHow] = useState('');
   const [pop, setPop] = useState(false);
 
-  // const [writeaddress, setWriteaddress] = useState({
-  //   companyAddress: savemake.companyAddress,
-  // });
-  // console.log('>>>', writeaddress.companyAddress);
-
-
   const [makeinfo, setMakeinfo] = useState({
     cardName: savemake.cardName ? savemake.cardName : cardinfo.cardName,
     email: savemake.email ? savemake.email : cardinfo.email,
@@ -94,7 +88,6 @@ const MyCardPatch = () => {
     fax,
     id,
   } = makeinfo;
-  console.log(companyAddress);
   const onChage = (e) => {
     const { value, name } = e.target;
     setMakeinfo({
@@ -312,7 +305,6 @@ const MyCardPatch = () => {
                           fax,
                         })
                       );
-                      console.log('클릭', company);
                       nav('/mypage/MyCardCompanyWrite');
                     }}
                   >
@@ -336,7 +328,6 @@ const MyCardPatch = () => {
                           fax,
                         })
                       );
-                      console.log('클릭', company);
                       nav('/mypage/MyCardCompanyWrite');
                     }}
                   >
