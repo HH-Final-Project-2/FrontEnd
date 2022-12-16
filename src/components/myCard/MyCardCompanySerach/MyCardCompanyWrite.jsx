@@ -22,11 +22,13 @@ const MyCardCompanyWrite = () => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
+
     dispatch(
       saveInfo({ companyAddress: fullAddress }),
       navigate('/mypage/cardmake')
     );
     console.log(fullAddress);
+
   };
 
   const handleSearch = (data) => {};
