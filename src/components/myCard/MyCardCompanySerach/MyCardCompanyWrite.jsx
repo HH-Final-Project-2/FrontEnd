@@ -22,6 +22,7 @@ const MyCardCompanyWrite = () => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
+
     dispatch(
       saveInfo({ companyAddress: fullAddress }),
       navigate('/mypage/cardmake')
