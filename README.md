@@ -1,5 +1,6 @@
 
 # [Businus] 직장인을 위한 명함·일정 관리
+![image](https://user-images.githubusercontent.com/107028312/209335602-6aec6910-51d4-4e25-80ed-a940152bbfca.png)
 
 ## 🎉 Businus 소개
 
