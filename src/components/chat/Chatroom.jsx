@@ -60,7 +60,6 @@ const Chatroom = () => {
 
   //게시글에서 가져오는 채팅방 ID
   const id = useSelector((state) => state.chat.roomId);
-
   //채팅 리스트에서 가져오는 채팅방 ID
   const chatlistid = useSelector((state) => state.chat.chatListroomId);
   //채팅방 유저 정보

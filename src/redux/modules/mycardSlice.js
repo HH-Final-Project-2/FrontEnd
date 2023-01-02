@@ -50,8 +50,10 @@ export const _searchGet = createAsyncThunk(
 export const _companyInfo = createAsyncThunk(
   "post/COMPANY_info",
   async (payload, thunkAPI) => {
+    console.log(payload)
     try {
       const { data } = await instance.post('/api/companyInfo', payload);
+      console.log("데이타",data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
