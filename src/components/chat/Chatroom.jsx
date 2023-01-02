@@ -95,8 +95,8 @@ const Chatroom = () => {
     };
   }, []);
 
-  const onConneted = () => {
-    client.connect(headers, () => {
+  const onConneted = async () => {
+    await client.connect(headers, () => {
       client.subscribe(
         `/sub/chat/room/${id === '' ? chatlistid : id}`,
         (data) => {
@@ -113,7 +113,6 @@ const Chatroom = () => {
           roomId: id === '' ? chatlistid : id,
         })
       );
-
       debugcall();
     });
   };
