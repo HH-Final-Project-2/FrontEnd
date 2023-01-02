@@ -105,9 +105,6 @@ const MainCards = () => {
       return setCompany(cardFix.company);
     }
   };
-  console.log("companyOnly", companyOnly);
-  console.log("companyget", companyGet.company);
-  console.log("company", company);
 
   const cardsSubmitHandler = () => {
     if (isValidEmail && isValidInput === true) {
